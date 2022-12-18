@@ -7,6 +7,8 @@
         <a href='https://img.shields.io/badge/language-C#-red.svg'><img src="https://img.shields.io/badge/language-CSharp-red.svg" alt=""></img></a>
 </p>
 
+ **后端接口项目已正式发布，地址为：[TS酒店管理系统API接口](https://gitee.com/java-and-net/topsky-hotel-manager-system-web-api)** 
+
 #  :pray: 引用的开源项目：
 
 1. ##### Fody——将所有dll打包成exe应用程序。[Fody,MIT开源协议](https://github.com/Fody/Fody)      
