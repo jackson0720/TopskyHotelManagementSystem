@@ -8,6 +8,8 @@ using SYS.Core;
 using SYS.FormUI.Properties;
 using SYS.Application;
 using Sunny.UI;
+using SYS.Common;
+using System.Collections.Generic;
 
 namespace SYS.FormUI
 {
@@ -188,7 +190,16 @@ namespace SYS.FormUI
         #region 当右键菜单打开时事件方法
         private void cmsMain_Opening(object sender, CancelEventArgs e)
         {
-            r = new RoomService().SelectRoomByRoomNo(lblRoomNo.Text);
+            Dictionary<string, string> room = new Dictionary<string, string>();
+            room.Add("no", lblRoomNo.Text);
+            var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null,room);
+
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.Show("接口服务异常！", "来自小T提示", UIStyle.Red);
+                return;
+            }
+            r = HttpHelper.JsonToModel<Room>(result.message);
             if (lblCustoNo.Text != "")
             {
                 tsmiCheckIn.Enabled = false;
@@ -277,7 +288,16 @@ namespace SYS.FormUI
 
             if (lblCustoNo.Text == "")
             {
-                Room r = new RoomService().SelectRoomByRoomNo(lblRoomNo.Text);
+                Dictionary<string, string> room = new Dictionary<string, string>();
+                room.Add("no", lblRoomNo.Text);
+                var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, room);
+
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.Show("接口服务异常！", "来自小T提示", UIStyle.Red);
+                    return;
+                }
+                Room r = HttpHelper.JsonToModel<Room>(result.message);
                 if (r.RoomStateId == 0)
                 {
                     rm_RoomNo = lblRoomNo.Text;
@@ -311,7 +331,18 @@ namespace SYS.FormUI
         #region 修改房间状态
         private void tsmiChangeState_Click(object sender, EventArgs e)
         {
-            rm_RoomStateId = Convert.ToInt32(new RoomService().SelectRoomStateIdByRoomNo(lblRoomNo.Text));
+            Dictionary<string, string> room = new Dictionary<string, string>
+            {
+                { "roomno", lblRoomNo.Text }
+            };
+            var result = HttpHelper.Request("Room/SelectRoomStateIdByRoomNo", null, room);
+
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.Show("SelectRoomStateIdByRoomNo+接口服务异常！", "来自小T提示", UIStyle.Red);
+                return;
+            }
+            rm_RoomStateId = Convert.ToInt32(result.message);
             rm_RoomNo = lblRoomNo.Text;
             FrmRoomStateManager frsm = new FrmRoomStateManager();
             frsm.ShowDialog();

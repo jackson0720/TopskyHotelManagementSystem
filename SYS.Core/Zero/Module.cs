@@ -40,7 +40,7 @@ namespace SYS.Core
         /// <summary>
         /// 资料创建时间
         /// </summary>
-        public DateTime datains_time { get; set; }
+        public DateTime? datains_time { get; set; }
 
         /// <summary>
         /// 资料更新人
@@ -50,6 +50,6 @@ namespace SYS.Core
         /// <summary>
         /// 资料更新时间
         /// </summary>
-        public DateTime datachg_time { get; set; }
+        public DateTime? datachg_time { get; set; }
     }
 }

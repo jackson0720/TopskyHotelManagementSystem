@@ -31,6 +31,8 @@ using SYS.Common;
 using System.Net;
 using System.Diagnostics;
 
+using System.Collections.Generic;
+
 namespace SYS.FormUI
 {
     public partial class FrmAdminEnter : UIForm
@@ -39,6 +41,9 @@ namespace SYS.FormUI
         {
             InitializeComponent();
         }
+
+        Dictionary<string, string> dic = null;
+        ResponseMsg result = null;
 
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
@@ -49,8 +54,15 @@ namespace SYS.FormUI
                 UIMessageDialog.ShowErrorDialog(this, "错误提示", "账号或密码包含除字母数字外的字符，请检查！", UIStyle.Red);
                 return;
             }
+
             Admin admin = new Admin() { AdminAccount = account, AdminPassword = pass };
-            Admin a = new AdminService().SelectMangerByPass(admin);
+            result = HttpHelper.Request("Admin/SelectMangerByPass", HttpHelper.ModelToJson(admin));
+            if (result.statusCode != 200)
+            {
+                UIMessageTip.ShowError("SelectMangerByPass+接口服务异常，请提交issue");
+                return;
+            }
+            Admin a = HttpHelper.JsonToModel<Admin>(result.message);
             if (a != null)//判断超管是否存在
             {
                 //判断当前管理员是否被禁用
@@ -70,7 +82,7 @@ namespace SYS.FormUI
                 FrmBackgroundSystem fm = new FrmBackgroundSystem();
                 fm.ShowDialog(this);//打开主窗体
                 this.Hide();//隐藏登录窗体
-                
+
             }
             else
             {

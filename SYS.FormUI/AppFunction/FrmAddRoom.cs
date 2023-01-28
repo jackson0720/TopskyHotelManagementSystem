@@ -23,7 +23,7 @@
  */
 using System;
 using System.Data;
-using MySql.Data.MySqlClient;
+
 using System.Windows.Forms;
 using SYS.Core;
 using SYS.Application;
@@ -42,6 +42,9 @@ namespace SYS.FormUI
 
         Room rn;
 
+        ResponseMsg result = null;
+        Dictionary<string, string> dic = null;
+
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtRoomNo.Text))
@@ -57,18 +60,27 @@ namespace SYS.FormUI
                     datains_usr = AdminInfo.Account,
                     datains_date = DateTime.Now
                 };
-                new RoomService().InsertRoom(rn);
-                UIMessageBox.Show("添加房间成功！");
-                LoadRoom();
-                #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + DateTime.Now + "新增了房间，房间号为：" + txtRoomNo.Text + "，房间类型为：" + cboRoomType.Text, 2);
-                #endregion
+                result = HttpHelper.Request("Room​/InsertRoom", HttpHelper.ModelToJson(rn));
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("InsertRoom+接口服务异常，请提交Issue！");
+                    return;
+                }
+                bool tf = result.message.ToString().Equals("true");
+                if (tf)
+                {
+                    UIMessageBox.Show("添加房间成功！");
+                    LoadRoom();
+                    #region 获取添加操作日志所需的信息
+                    RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + DateTime.Now + "新增了房间，房间号为：" + txtRoomNo.Text + "，房间类型为：" + cboRoomType.Text, 2);
+                    #endregion
+                    return;
+                }
             }
             else
             {
                 UIMessageBox.Show("房间信息不完整，请重试！");
             }
-
         }
 
 
@@ -76,7 +88,13 @@ namespace SYS.FormUI
         private void FrmAddRoom_Load(object sender, EventArgs e)
         {
             LoadRoom();
-            cboRoomType.DataSource = new RoomTypeService().SelectRoomTypesAll();
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue！");
+                return;
+            }
+            cboRoomType.DataSource = HttpHelper.JsonToList<RoomType>(result.message);
             cboRoomType.DisplayMember = "RoomName";
             cboRoomType.ValueMember = "RoomType";
             cboRoomType.SelectedIndex = 0;
@@ -84,7 +102,13 @@ namespace SYS.FormUI
 
         public void LoadRoom()
         {
-            List<Room> rooms = new RoomService().SelectCanUseRoomAll();
+            result = HttpHelper.Request("Room/SelectCanUseRoomAll");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue！");
+                return;
+            }
+            List<Room> rooms = HttpHelper.JsonToList<Room>(result.message);
             flpRoom.Controls.Clear();
             for (int i = 0; i < rooms.Count; i++)
             {
@@ -144,8 +168,17 @@ namespace SYS.FormUI
         private bool CheckRoomExists(string RoomNo)
         {
             bool ret = false;
-            Room room = new Room();
-            room = new RoomService().SelectRoomByRoomNo(RoomNo);
+            dic = new Dictionary<string, string>
+            {
+                { "no", RoomNo }
+            };
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo",null, dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue！");
+                return ret;
+            }
+            var room = HttpHelper.JsonToModel<Room>(result.message);
             if (room != null)
             {
                 ret = true;
