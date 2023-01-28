@@ -7,8 +7,6 @@
         <a href='https://img.shields.io/badge/language-C#-red.svg'><img src="https://img.shields.io/badge/language-CSharp-red.svg" alt=""></img></a>
 </p>
 
- **后端接口项目已正式发布，地址为：[TS酒店管理系统API接口](https://gitee.com/java-and-net/topsky-hotel-manager-system-web-api)** 
-
 #  :pray: 引用的开源项目：
 
 1. ##### Fody——将所有dll打包成exe应用程序。[Fody,MIT开源协议](https://github.com/Fody/Fody)      
@@ -57,63 +55,15 @@
 
 #  :open_file_folder: 系统结构：
 ```tree
-TopSkyHotelManagerSystem
-├─ JVNUI
-│    └─ js
-│           └─ parseUtil.js
+EOM.Client.TopSkyHotelManagerSystem
+├─ .git
+├─ .gitignore
+├─ EOM.Client.TopSkyHotelManagerSystem.sln
+├─ FodyWeavers.xml
 ├─ LICENSE
 ├─ README.md
-├─ SYS.Application
-│    ├─ .gitignore
-│    ├─ Business
-│    ├─ Customer
-│    ├─ Properties
-│    ├─ Room
-│    ├─ SYS.Application.csproj
-│    ├─ SYS.Application.csproj.user
-│    ├─ SYS.Application.csproj.vspscc
-│    ├─ Worker
-│    ├─ Zero
-│    ├─ app.config
-│    ├─ bin
-│    ├─ bitbug_favicon (1).ico
-│    ├─ obj
-│    ├─ packages.config
-│    └─ 基础核心类库jvncorelib(适用全平台).md
 ├─ SYS.Common
-│    ├─ .gitignore
-│    ├─ App.config
-│    ├─ BaseDbContext.cs
-│    ├─ DbContext.cs
-│    ├─ DbContextOption.cs
-│    ├─ HttpHelper.cs
-│    ├─ Properties
-│    ├─ RecordHelper
-│    ├─ Repository
-│    ├─ SYS.Common.csproj
-│    ├─ SYS.Common.csproj.vspscc
-│    ├─ bin
-│    ├─ bitbug_favicon (1).ico
-│    ├─ obj
-│    └─ packages.config
 ├─ SYS.Core
-│    ├─ .gitignore
-│    ├─ App.config
-│    ├─ Business
-│    ├─ Customer
-│    ├─ Properties
-│    ├─ Resources
-│    ├─ Room
-│    ├─ SYS.Core.csproj
-│    ├─ SYS.Core.csproj.user
-│    ├─ SYS.Core.csproj.vspscc
-│    ├─ Util
-│    ├─ Worker
-│    ├─ Zero
-│    ├─ bin
-│    ├─ bitbug_favicon (1).ico
-│    ├─ obj
-│    └─ packages.config
 ├─ SYS.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
@@ -123,48 +73,12 @@ TopSkyHotelManagerSystem
 │    ├─ AppUserControls
 │    ├─ FodyWeavers.xml
 │    ├─ FodyWeavers.xsd
-│    ├─ Font
 │    ├─ Logo
 │    ├─ Program.cs
 │    ├─ Properties
 │    ├─ Resources
-│    ├─ SYS.FormUI.csproj
-│    ├─ SYS.FormUI.csproj.user
-│    ├─ SYS.FormUI.csproj.vspscc
-│    ├─ bi
-│    ├─ bitbug_favicon (1).ico
-│    ├─ bitbug_favicon.ico
-│    ├─ icon
-│    ├─ logo.ico
-│    ├─ obj
-│    ├─ packages.config
-│    └─ 基础核心类库jvncorelib(适用全平台).md
 ├─ SYS.Library
-│    ├─ .gitignore
-│    ├─ MySql.Data.EntityFramework.dll
-│    ├─ MySql.Data.dll
-│    ├─ MySql.Web.dll
-│    ├─ Newtonsoft.Json.dll
-│    ├─ Newtonsoft.Json.xml
-│    ├─ Properties
-│    ├─ RequestHelper.dll
-│    ├─ SYS.Application.dll
-│    ├─ SYS.Application.xml
-│    ├─ SYS.Common.dll
-│    ├─ SYS.Core.dll
-│    ├─ SYS.Core.xml
-│    ├─ SYS.Library.csproj
-│    ├─ SYS.Library.csproj.user
-│    ├─ SYS.Library.csproj.vspscc
-│    ├─ app.config
-│    ├─ bin
-│    ├─ bitbug_favicon (1).ico
-│    ├─ kse.dll
-│    └─ obj
-├─ TSHotelManagerSystem.sln
-├─ packages
 ├─ 数据库脚本
-├─ 版本迭代功能
 ├─ 项目效果图
 └─ 项目相关文档
 ```
@@ -195,30 +109,20 @@ TopSkyHotelManagerSystem
 
 #  :family: 项目作者：
 
-**杨俊杰(即本账号，项目组长,核心代码编写和后期项目整合)**
+**原创团队：杨俊杰、熊越明、宾华安、张家杰**
 
-**熊越明(开发，项目代码编写)**
-
-**宾华安(数据库，提供数据库管理支持)**
-
-**张黔广(开发，APP前后端开发)**
-
-**张家杰(开发，代码编写开发)**
-
-**咖啡与网络(Java&Net)(后期维护团队)**
+**后期维护团队：易开元(Easy Open Meta)**
 
 #  :computer: 项目运行部署：
 
-**下载并安装Microsoft Visual Studio Professional 2017及以上版本，并通过下载Zip包解压，打开.sln后缀格式文件运行。**
+**下载并安装Microsoft Visual Studio Professional 2019及以上版本，并通过下载Zip包解压，打开.sln后缀格式文件运行。**
 
 #  :inbox_tray: 数据库运行部署(本地)：
 
-**作者及开发团队强烈建议使用MySQL/PostgreSQL数据库，安装MySQL/PostgreSQL数据库并开启服务，通过可视化管理工具对数据库进行建立，可通过打开执行数据库脚本文件夹内的.sql后缀格式文件进行快速建立数据表和导入数据，执行步骤(以MySQL数据库为例)：**
+**作者及开发团队强烈建议使用PostgreSQL数据库，安装PostgreSQL数据库并开启服务，通过可视化管理工具对数据库进行建立，可通过打开执行数据库脚本文件夹内的.sql后缀格式文件进行快速建立数据表和导入数据，执行步骤(以PostgreSQL数据库为例)：**
 
-**1、通过可视化管理工具链接MySQL数据库或PostgreSQL数据库，随后新建名为‘tshoteldb’数据库。**
+**1、通过可视化管理工具链接PostgreSQL数据库，随后新建名为‘tshoteldb’数据库。**
 
-**2、通过可视化管理工具打开Table.sql文件进行数据表建立。**
-
-**3、随后打开Data.sql文件进行数据导入。**
+**2、通过可视化管理工具打开：数据库脚本\PostgreSQL版本文件\db_file.sql进行数据表建立和数据导入。**
 
 [![java-and-net/TopskyHotelManagerSystem](https://gitee.com/java-and-net/TopskyHotelManagerSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
