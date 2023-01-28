@@ -60,7 +60,7 @@ namespace SYS.Core
         /// <summary>
         /// 入库时间
         /// </summary>
-        public DateTime CashTime { get; set; }
+        public DateTime? CashTime { get; set; }
         /// <summary>
         /// 资产来源
         /// </summary>

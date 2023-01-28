@@ -44,11 +44,11 @@ namespace SYS.Core
         /// <summary>
         /// 开始时间
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         /// <summary>
         /// 结束时间
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         /// <summary>
         /// 职位
         /// </summary>
@@ -68,7 +68,7 @@ namespace SYS.Core
         /// <summary>
         /// 资料创建时间
         /// </summary>
-        public DateTime datains_date { get; set; }
+        public DateTime? datains_date { get; set; }
         /// <summary>
         /// 资料更新人
         /// </summary>
@@ -76,6 +76,6 @@ namespace SYS.Core
         /// <summary>
         /// 资料更新时间
         /// </summary>
-        public DateTime datachg_date { get; set; }
+        public DateTime? datachg_date { get; set; }
     }
 }

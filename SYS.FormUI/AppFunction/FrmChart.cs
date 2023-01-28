@@ -27,6 +27,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Sunny.UI;
 using SYS.Application;
+using SYS.Common;
 using SYS.Core;
 
 namespace SYS.FormUI
@@ -38,13 +39,21 @@ namespace SYS.FormUI
             InitializeComponent();
         }
 
+        ResponseMsg result = null;
+
         private void FrmChart_Load(object sender, EventArgs e)
         {
             System.Windows.Forms.DataVisualization.Charting.Series series = new System.Windows.Forms.DataVisualization.Charting.Series("商品销售额(/元)");
             series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             //series.BorderWidth = 2;
             series.IsValueShownAsLabel = true;
-            var listHotelMoney = new CustoService().SelectAllMoney();
+            result = HttpHelper.Request("Custo/SelectAllMoney");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectAllMoney+接口服务异常，请提交Issue！");
+                return;
+            }
+            var listHotelMoney = HttpHelper.JsonToList<CustoSpend>(result.message);
             listHotelMoney.ForEach(source =>
             {
                 series.Points.AddXY(Convert.ToDouble(source.Years.ToString()), Convert.ToDouble(Convert.ToDouble(source.Money.ToString())));

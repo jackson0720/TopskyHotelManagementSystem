@@ -493,6 +493,16 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap 复制 {
+            get {
+                object obj = ResourceManager.GetObject("复制", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap 导出__4_ {
             get {
                 object obj = ResourceManager.GetObject("导出 (4)", resourceCulture);

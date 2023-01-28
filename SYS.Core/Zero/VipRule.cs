@@ -73,7 +73,7 @@ namespace SYS.Core
         /// <summary>
         /// 新增时间
         /// </summary>
-        public DateTime datains_date { get; set; }
+        public DateTime? datains_date { get; set; }
         /// <summary>
         /// 修改人
         /// </summary>
@@ -81,7 +81,7 @@ namespace SYS.Core
         /// <summary>
         /// 修改时间
         /// </summary>
-        public DateTime datachg_date { get; set; }
+        public DateTime? datachg_date { get; set; }
 
         /// <summary>
         /// 会员等级描述

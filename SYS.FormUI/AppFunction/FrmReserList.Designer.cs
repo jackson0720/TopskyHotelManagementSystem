@@ -114,7 +114,7 @@
             this.dgvReserList.RowTemplate.Height = 29;
             this.dgvReserList.SelectedIndex = -1;
             this.dgvReserList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReserList.ShowGridLine = true;
+            //this.dgvReserList.ShowGridLine = true;
             this.dgvReserList.Size = new System.Drawing.Size(726, 169);
             this.dgvReserList.TabIndex = 113;
             this.dgvReserList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReserList_CellClick);
