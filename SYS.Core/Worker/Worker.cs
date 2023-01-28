@@ -46,7 +46,7 @@ namespace SYS.Core
         /// 出生日期
         /// </summary>
         [SqlSugar.SugarColumn(ColumnName = "WorkerBirthday")]
-        public DateTime WorkerBirthday { get; set; }
+        public DateTime? WorkerBirthday { get; set; }
         /// <summary>
         /// 员工性别
         /// </summary>
@@ -110,7 +110,7 @@ namespace SYS.Core
         /// <summary>
         /// 员工入职时间
         /// </summary>
-        public DateTime WorkerTime { get; set; }
+        public DateTime? WorkerTime { get; set; }
         /// <summary>
         /// 员工面貌
         /// </summary>

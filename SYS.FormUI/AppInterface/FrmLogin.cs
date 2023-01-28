@@ -50,6 +50,8 @@ namespace SYS.FormUI
             #endregion
         }
 
+        ResponseMsg result = new ResponseMsg();
+
         #region 记录鼠标和窗体坐标的方法
         private Point mouseOld;//鼠标旧坐标
         private Point formOld;//窗体旧坐标 
@@ -162,7 +164,18 @@ namespace SYS.FormUI
                 if (CheckInput())//检验输入完整性
                 {
                     Worker worker = new Worker() { WorkerId = txtWorkerId.Text.Trim(), WorkerPwd = txtWorkerPwd.Text.Trim() };
-                    Worker w = new WorkerService().SelectWorkerInfoByWorkerIdAndWorkerPwd(worker);
+
+                    result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
+
+                    if (result.statusCode != 200)
+                    {
+                        UIMessageBox.Show("账号或密码错误！", "来自小T提示", UIStyle.Red);
+                        txtWorkerPwd.Focus();//聚焦
+                        return;
+                    }
+
+                    Worker w = HttpHelper.JsonToModel<Worker>(result.message);
+
                     if (w != null)//判断员工编号是否存在
                     {
                         if (w.delete_mk == 1)
@@ -188,10 +201,10 @@ namespace SYS.FormUI
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                //UIMessageBox.Show("服务器维护中，请稍后再试！", "温馨提示", UIStyle.Red);
+                //Console.WriteLine(ex);
+                UIMessageBox.Show("服务器维护中，请稍后再试！", "温馨提示", UIStyle.Red);
             }
         }
         #endregion

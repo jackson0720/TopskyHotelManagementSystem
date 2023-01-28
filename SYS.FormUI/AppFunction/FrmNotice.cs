@@ -23,6 +23,7 @@
  */
 using Sunny.UI;
 using SYS.Application;
+using SYS.Common;
 using SYS.Core;
 using System;
 using System.Collections.Generic;
@@ -43,9 +44,18 @@ namespace SYS.FormUI
             InitializeComponent();
         }
 
+        Dictionary<string, string> dic = null;
+        ResponseMsg result = null;
+
         private void FrmNotice_Load(object sender, EventArgs e)
         {
-            List<Notice> notices = new NoticeService().SelectNoticeAll();
+            result = HttpHelper.Request("Notice/SelectNoticeAll");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectNoticeAll+接口服务异常，请提交Issue！");
+                return;
+            }
+            List<Notice> notices = HttpHelper.JsonToList<Notice>(result.message);
             notices.ForEach(source =>
             {
                 dgvNoticeList.Items.Add(source.NoticeNo + ":" + source.Noticetheme);
@@ -56,7 +66,17 @@ namespace SYS.FormUI
         {
             //根据:来分割字符串并返回第一项数据即为公告编号
             var str = dgvNoticeList.SelectedItem.ToString().Split(":").First();
-            Notice notice = new NoticeService().SelectNoticeByNoticeNo(str);
+            dic= new Dictionary<string, string>()
+            {
+                { "noticeId",str}
+            };
+            result = HttpHelper.Request("Notice/SelectNoticeByNoticeNo",null,dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectNoticeAll+接口服务异常，请提交Issue！");
+                return;
+            }
+            Notice notice = HttpHelper.JsonToModel<Notice>(result.message);
             if (notice != null)
             {
                 rtbNoticeContent.Html = notice.NoticeContent;

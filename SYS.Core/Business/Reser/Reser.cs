@@ -55,11 +55,11 @@ namespace SYS.Core
         /// <summary>
         /// 预约起始
         /// </summary>
-        public DateTime ReserDate { get; set; }
+        public DateTime? ReserDate { get; set; }
         /// <summary>
         /// 预约止日
         /// </summary>
-        public DateTime ReserEndDay { get; set; }
+        public DateTime? ReserEndDay { get; set; }
         /// <summary>
         /// 删除标记
         /// </summary>
@@ -71,7 +71,7 @@ namespace SYS.Core
         /// <summary>
         /// 资料创建时间
         /// </summary>
-        public DateTime datains_date { get; set; }
+        public DateTime? datains_date { get; set; }
         /// <summary>
         /// 资料更新人
         /// </summary>
@@ -79,7 +79,7 @@ namespace SYS.Core
         /// <summary>
         /// 资料更新时间
         /// </summary>
-        public DateTime datachg_date { get; set; }
+        public DateTime? datachg_date { get; set; }
 
     }
 }

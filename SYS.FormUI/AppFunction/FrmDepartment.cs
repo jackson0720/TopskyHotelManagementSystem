@@ -50,25 +50,46 @@ namespace SYS.FormUI
             ReloadDeptList();
         }
 
+        ResponseMsg result = null;
+        Dictionary<string, string> dic = null;
+
         public void ReloadDeptList()
         {
             LoadDept();
             LoadLeader();
-            txtDeptNo.Text = new CounterHelper().GetNewId(CounterRuleConsts.DeptInfo);
+            txtDeptNo.Text = Util.GetListNewId("D", 3, 1, "-").FirstOrDefault();
             dgvDeptList.AutoGenerateColumns = false;
-            dgvDeptList.DataSource = new BaseService().SelectDeptAllCanUse();
+            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue！");
+                return;
+            }
+            dgvDeptList.DataSource =HttpHelper.JsonToList<Dept>(result.message);
         }
 
         public void LoadDept()
         {
-            cboDeptParent.DataSource = new BaseService().SelectDeptAllCanUse();
+            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue！");
+                return;
+            }
+            cboDeptParent.DataSource = HttpHelper.JsonToList<Dept>(result.message);
             cboDeptParent.DisplayMember = "dept_name";
             cboDeptParent.ValueMember = "dept_no";
         }
 
         public void LoadLeader()
         {
-            cboDeptLeader.DataSource = new WorkerService().SelectWorkerAll();
+            result = HttpHelper.Request("Worker/SelectWorkerAll");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectWorkerAll+接口服务异常，请提交Issue！");
+                return;
+            }
+            cboDeptLeader.DataSource = HttpHelper.JsonToList<Worker>(result.message);
             cboDeptLeader.DisplayMember = "WorkerName";
             cboDeptLeader.ValueMember = "WorkerId";
         }
@@ -103,8 +124,14 @@ namespace SYS.FormUI
             };
             if (CheckInput(dept))
             {
-                bool tf = new BaseService().AddDept(dept);
-                if (tf == false)
+                result = HttpHelper.Request("Base/AddDept",HttpHelper.ModelToJson(dept));
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("AddDept+接口服务异常，请提交Issue！");
+                    return;
+                }
+                bool tf = result.message.ToString().Equals("true");
+                if (!tf)
                 {
                     UIMessageBox.Show("添加失败！或是服务器繁忙所致，请稍后重试！", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
                     return;
@@ -150,8 +177,14 @@ namespace SYS.FormUI
             };
             if (CheckInput(dept))
             {
-                bool tf = new BaseService().UpdDept(dept);
-                if (tf == false)
+                result = HttpHelper.Request("Base/UpdDept", HttpHelper.ModelToJson(dept));
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("UpdDept+接口服务异常，请提交Issue！");
+                    return;
+                }
+                bool tf = result.message.ToString().Equals("true");
+                if (!tf)
                 {
                     UIMessageBox.Show("修改失败！或是服务器繁忙所致，请稍后重试！", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
                     return;
@@ -179,11 +212,18 @@ namespace SYS.FormUI
                 Dept dept = new Dept()
                 {
                     dept_no = txtDeptNo.Text.Trim(),
-                    dept_name = txtDeptName.Text.Trim(),
-                    dept_desc = txtDeptDesc.Text.Trim()
+                    delete_mk = 1,
+                    datachg_usr = AdminInfo.Account,
+                    datains_date = DateTime.Now
                 };
-                bool tf = new BaseService().DelDept(dept);
-                if (tf == false)
+                result = HttpHelper.Request("Base/DelDept", HttpHelper.ModelToJson(dept));
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("DelDept+接口服务异常，请提交Issue！");
+                    return;
+                }
+                bool tf = result.message.ToString().Equals("true");
+                if (!tf)
                 {
                     UIMessageBox.Show("删除失败！或是服务器繁忙所致，请稍后重试！", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
                     return;

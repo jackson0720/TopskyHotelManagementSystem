@@ -44,7 +44,7 @@ namespace SYS.Core
         /// <summary>
         /// 打卡时间
         /// </summary>
-        public DateTime CheckTime { get; set; }
+        public DateTime? CheckTime { get; set; }
         /// <summary>
         /// 打卡方式
         /// </summary>
@@ -70,7 +70,7 @@ namespace SYS.Core
         /// <summary>
         /// 资料创建时间
         /// </summary>
-        public DateTime datains_date { get; set; }
+        public DateTime? datains_date { get; set; }
         /// <summary>
         /// 资料更新人
         /// </summary>
@@ -78,7 +78,7 @@ namespace SYS.Core
         /// <summary>
         /// 资料更新时间
         /// </summary>
-        public DateTime datachg_date { get; set; }
+        public DateTime? datachg_date { get; set; }
 
     }
 }
