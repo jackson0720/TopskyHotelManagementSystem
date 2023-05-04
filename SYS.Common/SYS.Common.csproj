@@ -91,6 +91,7 @@
     <Compile Include="RecordHelper.cs" />
     <Compile Include="ResponseMsg.cs" />
     <Compile Include="Util\Util.cs" />
+    <Compile Include="WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

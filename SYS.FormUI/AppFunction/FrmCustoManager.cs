@@ -66,7 +66,7 @@ namespace SYS.FormUI
         private void FrmCustoManager_Load(object sender, EventArgs e)
         {
             //dgvCustomerList.AutoGenerateColumns = false;
-            this.btnPg.PageSize = 12;
+            this.btnPg.PageSize = 15;
             LoadCustomer();
             LoadCustoType();
             //txtCustoNo.ReadOnly = true;
@@ -88,7 +88,6 @@ namespace SYS.FormUI
         {
             dic = new Dictionary<string, string>()
             {
-                { "delete_mk","0"},
                 { "pageIndex","1"},
                 { "pageSize","15"}
             };
@@ -153,7 +152,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
                     return;
                 }
                 custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
@@ -174,7 +173,7 @@ namespace SYS.FormUI
             }
             else
             {
-                result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=20");
+                result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=15");
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
@@ -258,7 +257,6 @@ namespace SYS.FormUI
         {
             dic = new Dictionary<string, string>()
             {
-                { "delete_mk","0"},
                 { "pageIndex",pageIndex.ToString()},
                 { "pageSize",count.ToString()}
             };
