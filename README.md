@@ -1,3 +1,4 @@
+<h1 align="center"><img src="https://foruda.gitee.com/avatar/1677165732744604624/7158691_java-and-net_1677165732.png!avatar100" alt="组织logo.png" /></h1>
 <h1 align="center">TopskyHotelManagerSystem</h1>
 <p align="center">
 	<a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/stargazers'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/star.svg?theme=dark' alt='star'></img></a>
@@ -6,7 +7,11 @@
         <a href='https://img.shields.io/badge/license-MIT-000000.svg'><img src="https://img.shields.io/badge/license-MIT-000000.svg" alt=""></img></a>
         <a href='https://img.shields.io/badge/language-C#-red.svg'><img src="https://img.shields.io/badge/language-CSharp-red.svg" alt=""></img></a>
 </p>
-# ！！！注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
+
+#  :exclamation: 重要说明：
+
+ **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
+
 
 #  :pray: 引用的开源项目：
 
@@ -28,9 +33,9 @@
 
 5、针对MySQL和PostgreSQL数据库的说明：
 
-​		5.1、本地数据库若为MySQL，则请将Application层里的业务逻辑类继承的Repository改为MysqlRepository，并在Common层对HttpHelper里的mysqlString常量数据库连接字符串进行配置。
-
-​		5.2、本地数据库若为PostgreSQL，则无需进行任何改动，只需要在Common层对HttpHelper里的pgsqlString常量数据库连接字符串进行配置。
+		5.1、本地数据库若为MySQL，则请将Application层里的业务逻辑类继承的Repository改为MysqlRepository，并在Common层对HttpHelper里的mysqlString常量数据库连接字符串进行配置。
+	
+		5.2、本地数据库若为PostgreSQL，则无需进行任何改动，只需要在Common层对HttpHelper里的pgsqlString常量数据库连接字符串进行配置。
 
 #  :thought_balloon: 开发目的：
 
@@ -89,23 +94,23 @@ EOM.Client.TopSkyHotelManagerSystem
 
 #  :books: 系统功能模块汇总：
 
-| 功能汇总     |        |        |        |      |        |        |
-|----------|--------|--------|--------|------|--------|--------|
-| (前台)客房管理 | 预约房间   | 入住房间   | 结算退房   | 转换房间 | 查看用户信息 | 修改房间状态 |
-| (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户   |      |        |        |
-| (前台)商品消费 | 商品列表   | 搜索商品信息 | 商品消费   | 消费信息 |        |        |
-| (前台)扩展功能 | 无      |        |        |      |        |        |
-| (后台)基础信息 | 职位类型维护 | 民族类型维护 | 学历类型维护 | 部门信息维护 | | |
-| (后台)财务信息 | 员工工资账单 | 内部财务账单 | 酒店盈利情况 |      |        |        |
-| (后台)水电管理 | 水电信息 |        |        |      |        |        |
-| (后台)监管统计 | 监管部门情况 |        |        |      |        |        |
-| (后台)客房管理 | 房态图一览 | 新增客房 |        |      |        |        |
-| (后台)客户管理 | 客户信息管理 | 顾客消费账单 |        |      |        |        |
-| 功能汇总(续)  |      |        |   |   |   |   |
-| (后台)人事管理 | 员工管理 | 公告日志 | 上传公告日志 |   |   |   |
-| (后台)物资管理 | 商品管理 | 仓库物资   |   |   |   |   |
-| 员工操作日志   |      |        |   |   |   |   |
-| 系统管理 | 添加管理员 | 权限分配 | 启/禁用管理员 | | | |
+| 功能汇总       |              |              |               |              |              |              |
+| -------------- | ------------ | ------------ | ------------- | ------------ | ------------ | ------------ |
+| (前台)客房管理 | 预约房间     | 入住房间     | 结算退房      | 转换房间     | 查看用户信息 | 修改房间状态 |
+| (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户      |              |              |              |
+| (前台)商品消费 | 商品列表     | 搜索商品信息 | 商品消费      | 消费信息     |              |              |
+| (前台)扩展功能 | 无           |              |               |              |              |              |
+| (后台)基础信息 | 职位类型维护 | 民族类型维护 | 学历类型维护  | 部门信息维护 |              |              |
+| (后台)财务信息 | 员工工资账单 | 内部财务账单 | 酒店盈利情况  |              |              |              |
+| (后台)水电管理 | 水电信息     |              |               |              |              |              |
+| (后台)监管统计 | 监管部门情况 |              |               |              |              |              |
+| (后台)客房管理 | 房态图一览   | 新增客房     |               |              |              |              |
+| (后台)客户管理 | 客户信息管理 | 顾客消费账单 |               |              |              |              |
+| 功能汇总(续)   |              |              |               |              |              |              |
+| (后台)人事管理 | 员工管理     | 公告日志     | 上传公告日志  |              |              |              |
+| (后台)物资管理 | 商品管理     | 仓库物资     |               |              |              |              |
+| 员工操作日志   |              |              |               |              |              |              |
+| 系统管理       | 添加管理员   | 权限分配     | 启/禁用管理员 |              |              |              |
 
 
 #  :family: 项目作者：
