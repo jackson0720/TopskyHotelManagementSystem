@@ -110,7 +110,7 @@ EOM.Client.TopSkyHotelManagerSystem
 
 #  :family: 项目作者：
 
-**原创团队：杨俊杰、熊越明、宾华安、张家杰**
+**原创团队：Jackson、Benjamin、Bin、Jonathan**
 
 **后期维护团队：易开元(Easy Open Meta)**
 
