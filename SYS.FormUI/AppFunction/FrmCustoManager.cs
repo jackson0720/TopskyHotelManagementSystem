@@ -22,13 +22,17 @@
  *
  */
 using System;
-using MySql.Data.MySqlClient;
+
 using System.Windows.Forms;
 using SYS.Core;
 using SYS.FormUI.Properties;
 using System.Collections.Generic;
 using SYS.Application;
 using Sunny.UI;
+using SYS.Common;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace SYS.FormUI
 {
@@ -56,9 +60,13 @@ namespace SYS.FormUI
             ReloadCusto = LoadCustomer;
         }
 
+        Dictionary<string, string> dic = null;
+        ResponseMsg result = null;
+
         private void FrmCustoManager_Load(object sender, EventArgs e)
         {
             //dgvCustomerList.AutoGenerateColumns = false;
+            this.btnPg.PageSize = 15;
             LoadCustomer();
             LoadCustoType();
             //txtCustoNo.ReadOnly = true;
@@ -78,11 +86,21 @@ namespace SYS.FormUI
         #region 加载用户信息列表
         private void LoadCustomer()
         {
-            var count = 0;
-            List<Custo> lstSource = new CustoService().SelectCustoAll(ref count, 1, 20);
-            btnPg.TotalCount = count;
+            dic = new Dictionary<string, string>()
+            {
+                { "pageIndex","1"},
+                { "pageSize","15"}
+            };
+            result = HttpHelper.Request("Custo/SelectCustoAll",null,dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
+            this.btnPg.TotalCount = custos.total;
             this.dgvCustomerList.AutoGenerateColumns = false;
-            this.dgvCustomerList.DataSource = lstSource;
+            this.dgvCustomerList.DataSource = custos.listSource;
         }
         #endregion
 
@@ -124,19 +142,44 @@ namespace SYS.FormUI
         {
             dgvCustomerList.ClearRows();
             dgvCustomerList.AutoGenerateColumns = false;
-            List<Custo> custos = null;
+            OSelectCustoAllDto custos = new OSelectCustoAllDto();
             if (!txtCustoNo.Text.IsNullOrEmpty())
             {
-                custos = new CustoService().SelectCustoByInfo(new Custo { CustoNo = txtCustoNo.Text.Trim() });
+                dic = new Dictionary<string, string>
+                {
+                    { "CustoNo", txtCustoNo.Text.Trim() }
+                };
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
+                custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
             }
             else if (!txtCustoName.Text.IsNullOrEmpty())
             {
-                custos = new CustoService().SelectCustoByInfo(new Custo { CustoName = txtCustoName.Text.Trim() });
+                dic = new Dictionary<string, string>
+                {
+                    { "CustoName",  txtCustoName.Text.Trim() }
+                };
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
+                custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
             }
             else
             {
-                custos = new CustoService().SelectCustoAll(ref count,1,20);
-
+                result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=15");
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
+                custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
             }
             dgvCustomerList.DataSource = custos;
         }
@@ -212,15 +255,32 @@ namespace SYS.FormUI
 
         private void btnPg_PageChanged(object sender, object pagingSource, int pageIndex, int count)
         {
-            var totalCount = 0;
-            List<Custo> lstSource = new CustoService().SelectCustoAll(ref totalCount, pageIndex, count);
+            dic = new Dictionary<string, string>()
+            {
+                { "pageIndex",pageIndex.ToString()},
+                { "pageSize",count.ToString()}
+            };
+            result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
+            btnPg.TotalCount = custos.total;
             this.dgvCustomerList.AutoGenerateColumns = false;
-            this.dgvCustomerList.DataSource = lstSource;
+            this.dgvCustomerList.DataSource = custos.listSource;
         }
 
         private void btnPg_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void tsmiCustoNo_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(dgvCustomerList.Rows[0].Cells["CustoNo"].Value as string);
+            UIMessageTip.ShowOk("复制完成！", 1500);
         }
     }
 }

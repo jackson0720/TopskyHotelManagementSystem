@@ -65,7 +65,7 @@ namespace SYS.Core
         /// <summary>
         /// 奖惩时间
         /// </summary>
-        public DateTime GBTime { get; set; }
+        public DateTime? GBTime { get; set; }
         /// <summary>
         /// 类型名称
         /// </summary>
@@ -80,16 +80,8 @@ namespace SYS.Core
         /// </summary>
         public string datains_usr { get; set; }
         /// <summary>
-        /// 资料创建时间
-        /// </summary>
-        public DateTime datains_date { get; set; }
-        /// <summary>
         /// 资料更新人
         /// </summary>
         public string datachg_usr { get; set; }
-        /// <summary>
-        /// 资料更新时间
-        /// </summary>
-        public DateTime datachg_date { get; set; }
     }
 }

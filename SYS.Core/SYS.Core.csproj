@@ -51,9 +51,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\JVN.TopSkyHotelManagerSystem\SYS.Library\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql, Version=4.0.10.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npgsql.4.0.10\lib\net451\Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="SqlSugar, Version=5.0.1.8, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SqlSugar.5.0.2\lib\SqlSugar.dll</HintPath>
@@ -90,16 +87,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\Customer\OSelectCustoAllDto.cs" />
     <Compile Include="Business\Spend\SpendConsts.cs" />
     <Compile Include="Business\Customer\PassPortType.cs" />
     <Compile Include="Business\Customer\SexType.cs" />
     <Compile Include="Sys\NavBar\NavBar.cs" />
-    <Compile Include="Util\ApplicationVersionUtil.cs" />
-    <Compile Include="Util\CounterHelper.cs" />
-    <Compile Include="Util\CounterRuleConsts.cs" />
-    <Compile Include="Util\IDCardUtil.cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    <Compile Include="Util\ApplicationVersion.cs" />
+    <Compile Include="Util\Cardcodes.cs" />
     <Compile Include="Worker\GBType.cs" />
     <Compile Include="Worker\WorkerPic.cs" />
     <Compile Include="Zero\Admin.cs" />

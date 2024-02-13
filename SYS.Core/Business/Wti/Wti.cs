@@ -46,12 +46,12 @@ namespace SYS.Core
         /// 开始使用时间
         /// </summary>
         [SqlSugar.SugarColumn(ColumnName = "UseDate")]
-        public DateTime UseDate { get; set; }
+        public DateTime? UseDate { get; set; }
         /// <summary>
         /// 结束使用时间
         /// </summary>
         [SqlSugar.SugarColumn(ColumnName = "EndDate")]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         /// <summary>
         /// 水费
         /// </summary>
@@ -82,17 +82,9 @@ namespace SYS.Core
         /// </summary>
         public string datains_usr { get; set; }
         /// <summary>
-        /// 资料创建时间
-        /// </summary>
-        public DateTime datains_date { get; set; }
-        /// <summary>
         /// 资料更新人
         /// </summary>
         public string datachg_usr { get; set; }
-        /// <summary>
-        /// 资料更新时间
-        /// </summary>
-        public DateTime datachg_date { get; set; }
 
 
     }

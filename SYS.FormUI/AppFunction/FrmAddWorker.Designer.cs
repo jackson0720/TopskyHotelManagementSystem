@@ -426,10 +426,6 @@
             this.cboWorkerFace.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboWorkerFace.FillColor = System.Drawing.Color.White;
             this.cboWorkerFace.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.cboWorkerFace.Items.AddRange(new object[] {
-            "群众",
-            "团员",
-            "党员"});
             this.cboWorkerFace.Location = new System.Drawing.Point(433, 98);
             this.cboWorkerFace.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboWorkerFace.MinimumSize = new System.Drawing.Size(63, 0);

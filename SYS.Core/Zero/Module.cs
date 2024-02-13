@@ -36,20 +36,9 @@ namespace SYS.Core
         /// 资料创建人
         /// </summary>
         public string datains_usr { get; set; }
-
-        /// <summary>
-        /// 资料创建时间
-        /// </summary>
-        public DateTime datains_time { get; set; }
-
         /// <summary>
         /// 资料更新人
         /// </summary>
         public string datachg_usr { get; set; }
-
-        /// <summary>
-        /// 资料更新时间
-        /// </summary>
-        public DateTime datachg_time { get; set; }
     }
 }

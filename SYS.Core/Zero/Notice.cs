@@ -56,7 +56,7 @@ namespace SYS.Core
         /// 公告时间
         /// </summary>
         [SqlSugar.SugarColumn(ColumnName = "NoticeTime")]
-        public DateTime NoticeTime { get; set; }
+        public DateTime? NoticeTime { get; set; }
         /// <summary>
         /// 公告正文
         /// </summary>
@@ -77,17 +77,9 @@ namespace SYS.Core
         /// </summary>
         public string datains_usr { get; set; }
         /// <summary>
-        /// 资料创建时间
-        /// </summary>
-        public DateTime datains_date { get; set; }
-        /// <summary>
         /// 资料更新人
         /// </summary>
         public string datachg_usr { get; set; }
-        /// <summary>
-        /// 资料更新时间
-        /// </summary>
-        public DateTime datachg_date { get; set; }
 
     }
 }

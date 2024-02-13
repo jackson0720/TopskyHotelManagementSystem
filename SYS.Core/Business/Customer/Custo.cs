@@ -35,7 +35,7 @@ namespace SYS.Core
         /// <summary>
         /// 客户编号
         /// </summary>
-        [SqlSugar.SugarColumn(ColumnName = "custo_no",IsPrimaryKey = true)]
+        [SqlSugar.SugarColumn(ColumnName = "custo_no", IsPrimaryKey = true)]
         public string CustoNo { get; set; }
         /// <summary>
         /// 客户名称
@@ -71,7 +71,7 @@ namespace SYS.Core
         /// 出生日期
         /// </summary>
         [SqlSugar.SugarColumn(ColumnName = "custo_birth", IsNullable = true)]
-        public DateTime CustoBirth { get; set; }
+        public DateTime? CustoBirth { get; set; }
         /// <summary>
         /// 客户类型
         /// </summary>
@@ -101,17 +101,9 @@ namespace SYS.Core
         /// </summary>
         public string datains_usr { get; set; }
         /// <summary>
-        /// 资料创建时间
-        /// </summary>
-        public DateTime datains_date { get; set; }
-        /// <summary>
         /// 资料更新人
         /// </summary>
         public string datachg_usr { get; set; }
-        /// <summary>
-        /// 资料更新时间
-        /// </summary>
-        public DateTime datachg_date { get; set; }
 
     }
 }

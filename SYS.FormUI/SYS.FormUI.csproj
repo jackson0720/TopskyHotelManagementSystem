@@ -89,19 +89,8 @@
     <Reference Include="kse">
       <HintPath>..\SYS.Library\kse.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SYS.Library\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.EntityFramework, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SYS.Library\MySql.Data.EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql, Version=4.0.10.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npgsql.4.0.10\lib\net451\Npgsql.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SqlSugar">
       <HintPath>..\packages\SqlSugar.5.0.3.5\lib\SqlSugar.dll</HintPath>
@@ -258,29 +247,11 @@
     <Compile Include="AppMain\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppUserControls\ucBaseInformation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AppUserControls\ucBaseInformation.Designer.cs">
-      <DependentUpon>ucBaseInformation.cs</DependentUpon>
-    </Compile>
     <Compile Include="AppUserControls\ucNavBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AppUserControls\ucNavBar.Designer.cs">
       <DependentUpon>ucNavBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AppUserControls\ucPositionInformation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AppUserControls\ucPositionInformation.Designer.cs">
-      <DependentUpon>ucPositionInformation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AppUserControls\ucEducationInformation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AppUserControls\ucEducationInformation.Designer.cs">
-      <DependentUpon>ucEducationInformation.cs</DependentUpon>
     </Compile>
     <Compile Include="AppMain\FrmBackgroundSystem.cs">
       <SubType>Form</SubType>
@@ -462,14 +433,17 @@
     <Compile Include="AppFunction\FrmWorkerCheckInfo.Designer.cs">
       <DependentUpon>FrmWorkerCheckInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppUserControls\ucRoom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AppUserControls\ucRoom.Designer.cs">
+      <DependentUpon>ucRoom.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppUserControls\ucVipType.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AppUserControls\ucVipType.Designer.cs">
       <DependentUpon>ucVipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Font\UI-FontUtil.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -637,17 +611,11 @@
     <EmbeddedResource Include="AppMain\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppUserControls\ucBaseInformation.resx">
-      <DependentUpon>ucBaseInformation.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AppUserControls\ucNavBar.resx">
       <DependentUpon>ucNavBar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppUserControls\ucPositionInformation.resx">
-      <DependentUpon>ucPositionInformation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AppUserControls\ucEducationInformation.resx">
-      <DependentUpon>ucEducationInformation.cs</DependentUpon>
+    <EmbeddedResource Include="AppUserControls\ucRoom.resx">
+      <DependentUpon>ucRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppUserControls\ucVipType.resx">
       <DependentUpon>ucVipType.cs</DependentUpon>
@@ -846,6 +814,7 @@
     <Content Include="images\增加 添加 加减 %281%29.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="images\复制.png" />
     <Content Include="images\导出 %284%29.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1103,10 +1072,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SYS.Application\SYS.Application.csproj">
-      <Project>{600f4cc8-4323-4237-a55c-bfef4b67d57c}</Project>
-      <Name>SYS.Application</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SYS.Common\SYS.Common.csproj">
       <Project>{65501AF6-C629-448A-847E-1BCD60665865}</Project>
       <Name>SYS.Common</Name>

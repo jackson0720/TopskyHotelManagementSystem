@@ -51,16 +51,19 @@ namespace SYS.Core
         /// </summary>
         public string datains_usr { get; set; }
         /// <summary>
-        /// 资料创建时间
-        /// </summary>
-        public DateTime datains_date { get; set; }
-        /// <summary>
         /// 资料更新人
         /// </summary>
         public string datachg_usr { get; set; }
-        /// <summary>
-        /// 资料更新时间
-        /// </summary>
-        public DateTime datachg_date { get; set; }
+    }
+
+
+    public enum RT
+    {
+        标准单人间 = 0,
+        标准双人间 = 1,
+        豪华单人间 = 2,
+        豪华双人间 = 3,
+        情侣套房 = 4,
+        总统套房 = 5,
     }
 }
