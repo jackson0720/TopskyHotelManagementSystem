@@ -38,8 +38,7 @@ namespace SYS.FormUI
                 ReserRoom = cboReserRoomNo.Text,
                 ReserDate = dtpBouDate.Value,
                 ReserEndDay = dtpEndDate.Value,
-                datains_usr = LoginInfo.WorkerNo,
-                datains_date = DateTime.Now
+                datains_usr = LoginInfo.WorkerNo
             };
             Room room = new Room() 
             {
@@ -49,14 +48,14 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Reser​/InserReserInfo",HttpHelper.ModelToJson(reser));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("InserReserInfo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("InserReserInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             bool result1 = result.message.ToString().Equals("true");
             result = HttpHelper.Request("Room​/UpdateRoomInfoWithReser", HttpHelper.ModelToJson(room));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("UpdateRoomInfoWithReser+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("UpdateRoomInfoWithReser+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             bool result2 = result.message.ToString().Equals("true");
@@ -83,7 +82,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/SelectCanUseRoomAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboReserRoomNo.DataSource = HttpHelper.JsonToList<Room>(result.message);

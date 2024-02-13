@@ -61,7 +61,7 @@ namespace SYS.FormUI
             var result = HttpHelper.Request("Base/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             //加载部门信息
@@ -74,7 +74,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectNationAll",null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cbWorkerNation.DataSource = HttpHelper.JsonToList<Nation>(result.message);
@@ -86,7 +86,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPositionAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboWorkerPosition.DataSource = HttpHelper.JsonToList<Position>(result.message);
@@ -98,7 +98,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectSexTypeAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboSex.DataSource = HttpHelper.JsonToList<SexType>(result.message);
@@ -110,7 +110,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectEducationAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectEducationAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectEducationAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboEducation.DataSource = HttpHelper.JsonToList<Education>(result.message);
@@ -161,7 +161,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("WorkerPicture/WorkerPic", null, dic);
                 //if (result.statusCode != 200)
                 //{
-                //    UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue！");
+                //    UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
                 //    return;
                 //}
                 var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
@@ -178,7 +178,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 List<WorkerHistory> workerHistories = HttpHelper.JsonToList<WorkerHistory>(result.message);
@@ -235,7 +235,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("WorkerPicture/WorkerPic", null, dic);
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
@@ -256,7 +256,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", null, dic);
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     List<WorkerHistory> workerHistories = HttpHelper.JsonToList<WorkerHistory>(result.message);
@@ -294,13 +294,12 @@ namespace SYS.FormUI
                     WorkerFace = cboWorkerFace.SelectedValue.ToString(),
                     WorkerEducation = cboEducation.SelectedValue.ToString(),
                     WorkerBirthday = dtpBirthday.Value,
-                    datachg_usr = AdminInfo.Account,
-                    datachg_date = DateTime.Now
+                    datachg_usr = AdminInfo.Account
                 };
                 var result = HttpHelper.Request("Worker/UpdateWorker", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("UpdateWorker+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("UpdateWorker+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool i = result.message.ToString().Equals("true") ? true:false; /*new WorkerService().UpdateWorker(worker);*/
@@ -403,7 +402,7 @@ namespace SYS.FormUI
             var response = HttpHelper.Request("WorkerPicture/InsertWorkerPic", HttpHelper.ModelToJson(workerPic));
             if (response.statusCode != 200)
             {
-                UIMessageBox.ShowError("InsertWorkerPic+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("InsertWorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
@@ -429,8 +428,7 @@ namespace SYS.FormUI
                 WorkerTime = dtpTime.Value,
                 WorkerFace = cboWorkerFace.Text,
                 WorkerEducation = cboEducation.SelectedValue.ToString(),
-                datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
+                datains_usr = AdminInfo.Account
             };
             try
             {
@@ -438,7 +436,7 @@ namespace SYS.FormUI
                 var response = HttpHelper.Request("Worker/AddWorker", HttpHelper.ModelToJson(worker));
                 if (response.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("AddWorker+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("AddWorker+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool n = response.message.ToString().Equals("true")?true:false;
@@ -459,7 +457,7 @@ namespace SYS.FormUI
                     response = HttpHelper.Request("WorkerHistory/AddHistoryByWorkerId", HttpHelper.ModelToJson(workerHistory));
                     if (response.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("AddHistoryByWorkerId+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("AddHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     bool j = response.message.ToString().Equals("true") ? true : false;

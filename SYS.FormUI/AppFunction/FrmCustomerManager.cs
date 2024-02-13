@@ -56,7 +56,7 @@ namespace SYS.FormUI
         #region 用户管理界面加载事件方法
         private void FrmCustomerManager_Load(object sender, EventArgs e)
         {
-            this.btnPg.PageSize = 12;
+            this.btnPg.PageSize = 15;
             LoadCustomer();
         }
         #endregion
@@ -66,14 +66,13 @@ namespace SYS.FormUI
         {
             dic = new Dictionary<string, string>()
             {
-                { "delete_mk","0"},
                 { "pageIndex","1"},
-                { "pageSize","12"}
+                { "pageSize","15"}
             };
             result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
@@ -166,43 +165,50 @@ namespace SYS.FormUI
             List<Custo> custos = new List<Custo>();
             if (!txtCustoNo.Text.IsNullOrEmpty())
             {
-                dic = new Dictionary<string, string>
+                var custo = new Custo()
                 {
-                    { "CustoNo", txtCustoNo.Text.Trim() }
+                    CustoNo = txtCustoNo.Text.Trim()
                 };
-                result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", HttpHelper.ModelToJson(custo));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 //custos = HttpHelper.JsonToList<Custo>(result.message);
-                var listSource = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
-                custos = listSource.listSource;
+                custos = HttpHelper.JsonToList<Custo>(result.message);
+                //var listSource = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
+                //custos = listSource.listSource;
             }
             else if (!txtCustoName.Text.IsNullOrEmpty())
             {
-                dic = new Dictionary<string, string>
+                var custo = new Custo()
                 {
-                    { "CustoName",  txtCustoName.Text.Trim() }
+                    CustoName = txtCustoName.Text.Trim()
                 };
-                result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", HttpHelper.ModelToJson(custo));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                var listSource = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
-                custos = listSource.listSource;
+                //if (result.statusCode != 200)
+                //{
+                //    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                //    return;
+                //}
+                //var listSource = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
+                //custos = listSource.listSource;
+                custos = HttpHelper.JsonToList<Custo>(result.message);
             }
             else
             {
-                result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=10");
-                if (result.statusCode != 200)
-                {
-                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
-                    return;
-                }
+                result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=15");
+                //if (result.statusCode != 200)
+                //{
+                //    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                //    return;
+                //}
                 var listSource = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
                 custos = listSource.listSource;
             }
@@ -254,14 +260,13 @@ namespace SYS.FormUI
         {
             dic = new Dictionary<string, string>()
             {
-                { "delete_mk","0"},
                 { "pageIndex",pageIndex.ToString()},
                 { "pageSize",count.ToString()}
             };
             result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);

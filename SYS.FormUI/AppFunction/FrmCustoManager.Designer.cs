@@ -385,7 +385,7 @@
             this.btnPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPg.MinimumSize = new System.Drawing.Size(1, 1);
             this.btnPg.Name = "btnPg";
-            this.btnPg.PageSize = 12;
+            this.btnPg.PageSize = 15;
             this.btnPg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             this.btnPg.Size = new System.Drawing.Size(782, 34);
             this.btnPg.Style = Sunny.UI.UIStyle.Custom;

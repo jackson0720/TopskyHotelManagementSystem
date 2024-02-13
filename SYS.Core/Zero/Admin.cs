@@ -79,30 +79,14 @@ namespace SYS.Core
         /// </summary>
         public System.Int32 DeleteMk { get { return this._DeleteMk; } set { this._DeleteMk = value; } }
 
-        private string _datains_usr;
         /// <summary>
-        /// 资料新增人
+        /// 资料创建人
         /// </summary>
-        public string datains_usr { get { return this._datains_usr; } set { this._datains_usr = value; } }
-
-        private System.DateTime? _datains_time;
-        /// <summary>
-        /// 资料新增时间
-        /// </summary>
-        public System.DateTime? datains_time { get { return this._datains_time; } set { this._datains_time = value; } }
-
-        private string _datachg_usr;
+        public string datains_usr { get; set; }
         /// <summary>
         /// 资料更新人
         /// </summary>
-        public string datachg_usr { get { return this._datachg_usr; } set { this._datachg_usr = value; } }
-
-        private System.DateTime? _datachg_time;
-        /// <summary>
-        /// 资料更新时间
-        /// </summary>
-        public System.DateTime? datachg_time { get { return this._datachg_time; } set { this._datachg_time = value; } }
-    
+        public string datachg_usr { get; set; }
         /// <summary>
         /// 管理员类型描述
         /// </summary>

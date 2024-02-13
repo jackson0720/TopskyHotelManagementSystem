@@ -71,7 +71,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectEducationAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectEducationAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectEducationAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             educations = HttpHelper.JsonToList<Education>(result.message);
@@ -92,13 +92,12 @@ namespace SYS.FormUI
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
                 delete_mk = 0,
-                datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
+                datains_usr = AdminInfo.Account
             };
             result = HttpHelper.Request("Base​/AddEducation",HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("AddEducation+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("AddEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
             UIMessageTip.ShowOk("添加学历成功！", 1500);
@@ -122,12 +121,11 @@ namespace SYS.FormUI
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             result = HttpHelper.Request("Base​/UpdEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("UpdEducation+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("UpdEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
         }
@@ -144,20 +142,49 @@ namespace SYS.FormUI
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             result = HttpHelper.Request("Base​/DelEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("DelEducation+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("DelEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
+            }
+            UIMessageTip.ShowOk("删除成功！");
+            return;
+        }
+
+        private void dgvEducationList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txtEducationNo.Text = dgvEducationList.SelectedRows[0].Cells["clEducationNo"].Value.ToString();
+            txtEducationName.Text = dgvEducationList.SelectedRows[0].Cells["clEducationName"].Value.ToString();
+            if (dgvEducationList.SelectedRows[0].Cells["clDeleteMk"].Value.ToString() == "1")
+            {
+                btnDeleteEducation.Text = "恢复学历";
+                btnDeleteEducation.FillColor = Color.Green;
+                btnDeleteEducation.Click += btnRecoveryEducation_Click;
             }
         }
 
-        private void dgvEducationList_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnRecoveryEducation_Click(object sender, EventArgs e)
         {
-            txtEducationNo.Text = dgvEducationList.Rows[0].Cells["clEducationNo"].Value.ToString();
-            txtEducationName.Text = dgvEducationList.Rows[0].Cells["clEducationName"].Value.ToString();
+            if (dgvEducationList.SelectedRows.Count <= 0)
+            {
+                UIMessageTip.ShowWarning("未选择需修改的学历数据，请检查", 1500);
+                return;
+            }
+            var edu = new Education()
+            {
+                education_no = txtEducationNo.Text.Trim(),
+                education_name = txtEducationName.Text.Trim(),
+                delete_mk = 0,
+                datachg_usr = AdminInfo.Account,
+            };
+            result = HttpHelper.Request("Base​/UpdEducation", HttpHelper.ModelToJson(edu));
+            if (result.statusCode != 200 || result.message.ToString().Equals("false"))
+            {
+                UIMessageTip.ShowError("UpdEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
+                return;
+            }
         }
     }
 }

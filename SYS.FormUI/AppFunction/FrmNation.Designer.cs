@@ -43,9 +43,9 @@ namespace SYS.FormUI
             this.label20 = new System.Windows.Forms.Label();
             this.txtNationNo = new Sunny.UI.UITextBox();
             this.dgvNationList = new Sunny.UI.UIDataGridView();
-            this.clEducationNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clEducationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clNationNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clNationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clDeleteMk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -173,9 +173,9 @@ namespace SYS.FormUI
             this.dgvNationList.ColumnHeadersHeight = 32;
             this.dgvNationList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvNationList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clEducationNo,
-            this.clEducationName,
-            this.Column1,
+            this.clNationNo,
+            this.clNationName,
+            this.clDeleteMk,
             this.Column2,
             this.Column3,
             this.Column4,
@@ -213,29 +213,29 @@ namespace SYS.FormUI
             this.dgvNationList.ShowGridLine = true;
             this.dgvNationList.Size = new System.Drawing.Size(788, 582);
             this.dgvNationList.TabIndex = 199;
-            this.dgvNationList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNationList_CellClick);
+            this.dgvNationList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvNationList_CellMouseClick);
             // 
-            // clEducationNo
+            // clNationNo
             // 
-            this.clEducationNo.DataPropertyName = "nation_no";
-            this.clEducationNo.HeaderText = "民族编号";
-            this.clEducationNo.Name = "clEducationNo";
-            this.clEducationNo.ReadOnly = true;
+            this.clNationNo.DataPropertyName = "nation_no";
+            this.clNationNo.HeaderText = "民族编号";
+            this.clNationNo.Name = "clNationNo";
+            this.clNationNo.ReadOnly = true;
             // 
-            // clEducationName
+            // clNationName
             // 
-            this.clEducationName.DataPropertyName = "nation_name";
-            this.clEducationName.HeaderText = "民族名称";
-            this.clEducationName.Name = "clEducationName";
-            this.clEducationName.ReadOnly = true;
+            this.clNationName.DataPropertyName = "nation_name";
+            this.clNationName.HeaderText = "民族名称";
+            this.clNationName.Name = "clNationName";
+            this.clNationName.ReadOnly = true;
             // 
-            // Column1
+            // clDeleteMk
             // 
-            this.Column1.DataPropertyName = "delete_mk";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
+            this.clDeleteMk.DataPropertyName = "delete_mk";
+            this.clDeleteMk.HeaderText = "Column1";
+            this.clDeleteMk.Name = "clDeleteMk";
+            this.clDeleteMk.ReadOnly = true;
+            this.clDeleteMk.Visible = false;
             // 
             // Column2
             // 
@@ -307,9 +307,9 @@ namespace SYS.FormUI
         private System.Windows.Forms.Label label20;
         private Sunny.UI.UITextBox txtNationNo;
         private Sunny.UI.UIDataGridView dgvNationList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clEducationNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clEducationName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clNationNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clNationName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clDeleteMk;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

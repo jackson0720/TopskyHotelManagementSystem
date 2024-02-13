@@ -27,7 +27,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Reser/SelectReserAll", null, null);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvReserList.AutoGenerateColumns = false;
@@ -37,7 +37,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse", null, null);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
@@ -52,7 +52,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse", null, null);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
@@ -66,7 +66,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectSexTypeAll", null, null);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
@@ -97,13 +97,12 @@ namespace SYS.FormUI
                     CustoBirth = dtpBirthday.Value,
                     CustoType = cbCustoType.SelectedIndex,
                     delete_mk = 0,
-                    datains_usr = LoginInfo.WorkerNo,
-                    datains_date=DateTime.Now
+                    datains_usr = LoginInfo.WorkerNo
                 };
                 result = HttpHelper.Request("Custo​/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
 
@@ -117,7 +116,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(r), null);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 var reser = new Reser
@@ -127,7 +126,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("DeleteReserInfo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("DeleteReserInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
 
@@ -136,7 +135,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Reser/SelectReserAll", null, null);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 dgvReserList.DataSource = HttpHelper.JsonToList<Reser>(result.message);

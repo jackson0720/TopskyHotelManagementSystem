@@ -51,7 +51,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("App/CheckBaseVersion");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("CheckBaseVersion+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("CheckBaseVersion+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var newversion = HttpHelper.JsonToModel<Applicationversion>(result.message);

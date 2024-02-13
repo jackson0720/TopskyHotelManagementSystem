@@ -48,7 +48,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/SelectRoomStateAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectRoomStateAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectRoomStateAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboState.DataSource = HttpHelper.JsonToList<RoomState>(result.message);
@@ -78,7 +78,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("Room/UpdateRoomStateByRoomNo",null,dic);
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("UpdateRoomStateByRoomNo+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("UpdateRoomStateByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     if (result.message.ToString().Equals("true"))

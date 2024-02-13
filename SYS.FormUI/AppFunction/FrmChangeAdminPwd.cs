@@ -56,11 +56,11 @@ namespace SYS.FormUI
 
         private void btnUpdPwd_Click(object sender, EventArgs e)
         {
-            Admin admin = new Admin() { AdminAccount = AdminInfo.Account, AdminPassword = txtNewPwd.Text.Trim() };
+            Admin admin = new Admin() { AdminAccount = AdminInfo.Account, AdminPassword = txtNewPwd.Text.Trim(),datachg_usr = AdminInfo.Account };
             result = HttpHelper.Request("Admin​/UpdateNewPwdByOldPwd", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("UpdateNewPwdByOldPwd+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("UpdateNewPwdByOldPwd+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             bool tf = result.message.ToString().Equals("true");
@@ -91,7 +91,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Admin​/SelectMangerByPass", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectMangerByPass+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectMangerByPass+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var source = HttpHelper.JsonToModel<Admin>(result.message);

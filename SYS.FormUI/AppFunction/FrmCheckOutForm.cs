@@ -89,7 +89,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
@@ -104,7 +104,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
@@ -118,7 +118,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectSexTypeAll?delete_mk=0");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
@@ -132,16 +132,28 @@ namespace SYS.FormUI
             txtCustoNo.Text = ucRoomList.rm_CustoNo;
             CustoNo.Text = ucRoomList.rm_CustoNo;
             txtRoomNo.Text = ucRoomList.rm_RoomNo;
-            string rn = txtRoomNo.Text.ToString();
-            string rs = rn.Substring(0, 2);
+            
+            dic = new Dictionary<string, string>() 
+            {
+                { "no",txtRoomNo.Text.ToString()}
+            };
 
-            if (ucRoomList.co_CheckTime == null)
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo",null, dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+
+            Room room = HttpHelper.JsonToModel<Room>(result.message);
+
+            if (room.CheckTime == null)
             {
                 dtpCheckTime.Text = DateTime.Now.ToString("yyyy年MM月dd日");
             }
             else
             {
-                dtpCheckTime.Text = Convert.ToDateTime(ucRoomList.co_CheckTime).ToString("yyyy年MM月dd日");
+                dtpCheckTime.Text = Convert.ToDateTime(room.CheckTime).ToString("yyyy年MM月dd日");
             }
             dic = new Dictionary<string, string>()
             {
@@ -150,33 +162,12 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/DayByRoomNo", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            if (rs == "BD")
-            {
-                sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * 300));
-            }
-            if (rs == "BS")
-            {
-                sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * 425));
-            }
-            if (rs == "HD")
-            {
-                sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * 625));
-            }
-            if (rs == "HS")
-            {
-                sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * 660));
-            }
-            if (rs == "QL")
-            {
-                sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * 845));
-            }
-            if (rs == "ZT")
-            {
-                sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * 1080));
-            }
+
+            sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomMoney));
+
             lblDay.Text = Convert.ToString(Convert.ToInt32(result.message));
             w = new Wti()
             {
@@ -197,7 +188,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Custo​/SelectCardInfoByCustoNo", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             Custo cto = HttpHelper.JsonToModel<Custo>(result.message);
@@ -230,7 +221,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSpendInfoRoomNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSpendInfoRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvSpendList.AutoGenerateColumns = false;
@@ -250,7 +241,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Spend/SelectMoneyByRoomNoAndTime", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectMoneyByRoomNoAndTime+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectMoneyByRoomNoAndTime+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 total = Convert.ToDouble(result.message);
@@ -266,7 +257,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Wti/ListWtiInfoByRoomNo", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("ListWtiInfoByRoomNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("ListWtiInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listWti = HttpHelper.JsonToList<Wti>(result.message);
@@ -364,7 +355,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     Room r = HttpHelper.JsonToModel<Room>(result.message);//根据房间编号查询房间信息
@@ -378,7 +369,7 @@ namespace SYS.FormUI
                         result = HttpHelper.Request("Room/UpdateRoomByRoomNo", null, dic);
                         if (result.statusCode != 200)
                         {
-                            UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue！");
+                            UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         bool n = result.message.ToString().Equals("true");
@@ -387,7 +378,7 @@ namespace SYS.FormUI
                             result = HttpHelper.Request("Wti​/InsertWtiInfo", HttpHelper.ModelToJson(w));
                             if (result.statusCode != 200)
                             {
-                                UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue！");
+                                UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
                                 return;
                             }
                             this.Close();
@@ -414,7 +405,7 @@ namespace SYS.FormUI
                         result = HttpHelper.Request("Spend​/UpdateMoneyState", null, dic);
                         if (result.statusCode != 200)
                         {
-                            UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue！");
+                            UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         if (result.message.ToString().Equals("true"))
@@ -426,7 +417,7 @@ namespace SYS.FormUI
                             result = HttpHelper.Request("Room/UpdateRoomByRoomNo", null, dic);
                             if (result.statusCode != 200)
                             {
-                                UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue！");
+                                UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue或尝试更新版本！");
                                 return;
                             }
                             bool n = result.message.ToString().Equals("true");
@@ -435,7 +426,7 @@ namespace SYS.FormUI
                                 result = HttpHelper.Request("Wti​/InsertWtiInfo", HttpHelper.ModelToJson(w));
                                 if (result.statusCode != 200)
                                 {
-                                    UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue！");
+                                    UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
                                     return;
                                 }
                                 this.Close();

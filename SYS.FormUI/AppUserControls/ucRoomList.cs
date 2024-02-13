@@ -10,6 +10,7 @@ using SYS.Application;
 using Sunny.UI;
 using SYS.Common;
 using System.Collections.Generic;
+using SqlSugar;
 
 namespace SYS.FormUI
 {
@@ -285,18 +286,20 @@ namespace SYS.FormUI
         #region 双击进入入住/退房事件方法
         private void ucRoomList_DoubleClick(object sender, EventArgs e)
         {
-
-            if (lblCustoNo.Text == "")
+            List<Custo> custos = new List<Custo>();
+            if (!lblCustoNo.Text.IsNullOrEmpty())
             {
-                Dictionary<string, string> room = new Dictionary<string, string>();
-                room.Add("no", lblRoomNo.Text);
-                var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, room);
-
+                Dictionary<string, string> dic = new Dictionary<string, string>()
+                {
+                    { "CustoNo",lblCustoNo.Text.Trim() }
+                } ;
+                var result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.Show("接口服务异常！", "来自小T提示", UIStyle.Red);
+                    UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
+
                 Room r = HttpHelper.JsonToModel<Room>(result.message);
                 if (r.RoomStateId == 0)
                 {

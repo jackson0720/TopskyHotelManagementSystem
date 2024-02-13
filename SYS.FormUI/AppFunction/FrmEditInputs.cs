@@ -43,7 +43,7 @@ namespace SYS.FormUI
             var result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
@@ -58,7 +58,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
@@ -72,7 +72,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectSexTypeAll?delete_mk=0");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
@@ -123,13 +123,12 @@ namespace SYS.FormUI
                 CustoTel = txtTel.Text,
                 CustoAdress = txtCustoAdress.Text,
                 datachg_usr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
-                datachg_date = DateTime.Now
             };
 
             result = HttpHelper.Request("Custo/UpdCustomerInfoByCustoNo", HttpHelper.ModelToJson(custo));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("UpdCustomerInfoByCustoNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("UpdCustomerInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             bool t = result.message.ToString().Equals("true") ? true : false;
@@ -175,14 +174,13 @@ namespace SYS.FormUI
                 CustoTel = txtTel.Text,
                 CustoAdress = txtCustoAdress.Text,
                 datains_usr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
-                datains_date = DateTime.Now
 
             };
 
             result = HttpHelper.Request("Custo/InsertCustomerInfo", HttpHelper.ModelToJson<Custo>(custo), null);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             if (result.message.ToString().Equals("true"))

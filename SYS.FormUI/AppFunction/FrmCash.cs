@@ -47,7 +47,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
@@ -57,7 +57,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Worker/SelectWorkerAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectWorkerAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectWorkerAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboCashPerson.DataSource = HttpHelper.JsonToList<Worker>(result.message);
@@ -80,7 +80,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Cash/SelectCashInfoAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCashInfoAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCashInfoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvCashList.DataSource = HttpHelper.JsonToList<Cash>(result.message);
@@ -126,8 +126,7 @@ namespace SYS.FormUI
                 CashTime = dtpDate.Value,
                 CashSource = txtFrom.Text.Trim(),
                 CashPerson = cboCashPerson.SelectedValue.ToString(),
-                datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
+                datains_usr = AdminInfo.Account
             };
             if (CheckInput(cash))
             {
@@ -137,7 +136,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("Cash/AddCashInfo",HttpHelper.ModelToJson(cash));
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("AddCashInfo+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("AddCashInfo+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     bool n = result.message.ToString().Equals("true")?true:false;

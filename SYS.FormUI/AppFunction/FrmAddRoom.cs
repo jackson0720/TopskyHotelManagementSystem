@@ -47,7 +47,7 @@ namespace SYS.FormUI
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtRoomNo.Text))
+            if (!string.IsNullOrWhiteSpace(txtRoomNo.Text)&& !txtMoney.Text.IsNullOrWhiteSpace() && !txtDeposit.Text.IsNullOrWhiteSpace())
             {
                 rn = new Room()
                 {
@@ -57,13 +57,12 @@ namespace SYS.FormUI
                     RoomPosition = txtRoomPosition.Text,
                     RoomStateId = 0,
                     RoomDeposit = Convert.ToDecimal(txtDeposit.Text),
-                    datains_usr = AdminInfo.Account,
-                    datains_date = DateTime.Now
+                    datains_usr = AdminInfo.Account
                 };
                 result = HttpHelper.Request("Room​/InsertRoom", HttpHelper.ModelToJson(rn));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("InsertRoom+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("InsertRoom+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool tf = result.message.ToString().Equals("true");
@@ -91,7 +90,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("RoomType/SelectRoomTypesAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboRoomType.DataSource = HttpHelper.JsonToList<RoomType>(result.message);
@@ -105,7 +104,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/SelectCanUseRoomAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<Room> rooms = HttpHelper.JsonToList<Room>(result.message);
@@ -124,34 +123,34 @@ namespace SYS.FormUI
 
         private void cboRoomType_TextChanged(object sender, EventArgs e)
         {
-            if (cboRoomType.Text == "标准单人间")
+            if (cboRoomType.Text == nameof(RT.标准单人间))
             {
                 txtMoney.Text = "300";
                 txtRoomPosition.Text = "A层";
             }
-            else if (cboRoomType.Text == "标准双人间")
+            else if (cboRoomType.Text == nameof(RT.标准双人间))
             {
                 txtMoney.Text = "425";
                 txtRoomPosition.Text = "A层";
             }
-            else if (cboRoomType.Text == "豪华单人间")
+            else if (cboRoomType.Text == nameof(RT.豪华单人间))
             {
                 txtMoney.Text = "625";
                 txtRoomPosition.Text = "B层";
             }
-            else if (cboRoomType.Text == "豪华双人间")
+            else if (cboRoomType.Text == nameof(RT.豪华双人间))
             {
                 txtMoney.Text = "660";
                 txtRoomPosition.Text = "B层";
             }
-            else if (cboRoomType.Text == "情侣套房")
+            else if (cboRoomType.Text == nameof(RT.情侣套房))
             {
                 txtMoney.Text = "845";
                 txtRoomPosition.Text = "C层";
             }
-            else if (cboRoomType.Text == "总统套房")
+            else if (cboRoomType.Text == nameof(RT.总统套房))
             {
-                txtMoney.Text = "1080";
+                txtMoney.Text = RT.豪华单人间.ToString();
                 txtRoomPosition.Text = "D层";
             }
         }
@@ -175,7 +174,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/SelectRoomByRoomNo",null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return ret;
             }
             var room = HttpHelper.JsonToModel<Room>(result.message);

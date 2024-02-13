@@ -35,7 +35,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Admin/GetAllAdminList");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("GetAllAdminList+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("GetAllAdminList+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvAdminList.AutoGenerateColumns = false;
@@ -49,12 +49,13 @@ namespace SYS.FormUI
                 Admin admin = new Admin()
                 {
                     Id = Convert.ToInt32(dgvAdminList.SelectedRows[0].Cells["clId"].Value),
-                    DeleteMk = Convert.ToInt32(dgvAdminList.SelectedRows[0].Cells["Column1"].Value)
+                    DeleteMk = Convert.ToInt32(dgvAdminList.SelectedRows[0].Cells["Column1"].Value),
+                    datachg_usr = AdminInfo.Account
                 };
                 result = HttpHelper.Request("Admin/UpdAccount",HttpHelper.ModelToJson(admin));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("UpdAccount+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("UpdAccount+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool tf = result.message.ToString().Equals("true");

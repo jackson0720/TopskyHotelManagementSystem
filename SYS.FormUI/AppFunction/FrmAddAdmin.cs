@@ -36,7 +36,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Admin/GetAllAdmin");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("GetAllAdmin+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("GetAllAdmin+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvAdminList.AutoGenerateColumns = false;
@@ -53,15 +53,14 @@ namespace SYS.FormUI
                 AdminType = cbAccountType.SelectedValue.ToString(),
                 IsAdmin = cbAccountType.SelectedValue.ToString() == "超级管理员" ? 1 : 0,
                 DeleteMk = 0,
-                datains_usr = AdminInfo.Account,
-                datains_time = DateTime.Now
+                datains_usr = AdminInfo.Account
             };
             if (CheckInputs(admin))
             {
                 result = HttpHelper.Request("Admin​/AddAdmin", HttpHelper.ModelToJson(admin));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("AddAdmin+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("AddAdmin+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool tf = result.message.ToString().Equals("true");
@@ -79,7 +78,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Admin/GetAllAdminTypes");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("GetAllAdminTypes+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("GetAllAdminTypes+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cbAccountType.DataSource = HttpHelper.JsonToList<AdminType>(result.message);

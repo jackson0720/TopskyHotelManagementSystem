@@ -83,7 +83,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Admin/SelectAdminPwdByAccount", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectAdminPwdByAccount+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectAdminPwdByAccount+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var account = HttpHelper.JsonToModel<Admin>(result.message);

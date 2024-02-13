@@ -39,7 +39,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Admin/GetAdminInfoByAdminAccount", null,dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("GetAdminInfoByAdminAccount+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("GetAdminInfoByAdminAccount+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var adminInfo = HttpHelper.JsonToModel<Admin>(result.message);
@@ -67,7 +67,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Module/GetAllModuleByAdmin", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("GetAllModuleByAdmin+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("GetAllModuleByAdmin+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listMyModule = HttpHelper.JsonToList<Module>(result.message);
@@ -78,7 +78,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Module/GetAllModule");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("GetAllModule+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("GetAllModule+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listModules = HttpHelper.JsonToList<Module>(result.message);
@@ -113,7 +113,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Module/GetAllModuleByAdmin", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("GetAllModuleByAdmin+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("GetAllModuleByAdmin+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listExsitModule = HttpHelper.JsonToList<Module>(result.message);
@@ -124,7 +124,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Module/DelModuleZeroList", HttpHelper.ModelToJson(moduleZero));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("DelModuleZeroList+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("DelModuleZeroList+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 for (int i = 0; i < tfModuleZero.ItemsRight.Count; i++)
@@ -138,7 +138,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Module/AddModuleZeroList", HttpHelper.ModelToJson(listAddModule));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("AddModuleZeroList+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("AddModuleZeroList+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool tf = result.message.ToString().Equals("true");

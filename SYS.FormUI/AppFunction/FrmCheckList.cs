@@ -44,7 +44,7 @@ namespace SYS.FormUI
            var result = HttpHelper.Request("CheckInfo/SelectCheckInfoAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCheckInfoAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCheckInfoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvCheckInfo.AutoGenerateColumns = false;

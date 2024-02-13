@@ -84,8 +84,7 @@ namespace SYS.FormUI
                 rule_value = vipRule.rule_value,
                 type_id = vipRule.type_id,
                 delete_mk = 0,
-                datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
+                datains_usr = AdminInfo.Account
             };
             result = HttpHelper.Request("VipRule/AddVipRule",HttpHelper.ModelToJson(vipRule1));
             if (result.statusCode != 200)
@@ -106,7 +105,8 @@ namespace SYS.FormUI
                     rule_id = txtRuleId.Text.Trim(),
                     rule_name = txtRuleName.Text.Trim(),
                     rule_value = Convert.ToDecimal(dudSpendAmount.Value),
-                    type_id = Convert.ToInt32(cboCustoType.SelectedValue)
+                    type_id = Convert.ToInt32(cboCustoType.SelectedValue),
+                    datains_usr = AdminInfo.Account
                 };
                 if (InsertVipRule(vipRule1))
                 {

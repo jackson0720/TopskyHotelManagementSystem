@@ -268,7 +268,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Worker​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("ManagerWorkerAccount+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("ManagerWorkerAccount+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 #region 获取添加操作日志所需的信息
@@ -287,7 +287,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Worker​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("ManagerWorkerAccount+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("ManagerWorkerAccount+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 #region 获取添加操作日志所需的信息

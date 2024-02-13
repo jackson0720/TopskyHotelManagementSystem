@@ -57,7 +57,7 @@ namespace SYS.FormUI
             var result = HttpHelper.Request("Base/SelectNationAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cbWorkerNation.DataSource = HttpHelper.JsonToList<Nation>(result.message);
@@ -69,7 +69,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectSexTypeAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboSex.DataSource = HttpHelper.JsonToList<SexType>(result.message);
@@ -79,7 +79,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboWorkerClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
@@ -91,7 +91,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPositionAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboWorkerPosition.DataSource = HttpHelper.JsonToList<Position>(result.message);
@@ -112,7 +112,7 @@ namespace SYS.FormUI
             var result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerId", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectWorkerInfoByWorkerId+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectWorkerInfoByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             Worker worker = HttpHelper.JsonToModel<Worker>(result.message);
@@ -135,7 +135,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("WorkerPicture/WorkerPic", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
@@ -163,7 +163,7 @@ namespace SYS.FormUI
             var result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker), null);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectWorkerInfoByWorkerIdAndWorkerPwd+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectWorkerInfoByWorkerIdAndWorkerPwd+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             worker = HttpHelper.JsonToModel<Worker>(result.message);
@@ -217,7 +217,7 @@ namespace SYS.FormUI
             var result = HttpHelper.Request("Worker/UpdWorkerPwdByWorkNo", HttpHelper.ModelToJson(new Worker { WorkerId = LoginInfo.WorkerNo, WorkerPwd = txtNewPwd.Text.Trim() }), null);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("UpdWorkerPwdByWorkNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("UpdWorkerPwdByWorkNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             bool tf = result.message.ToString().Equals("true") ? true : false;
@@ -275,8 +275,7 @@ namespace SYS.FormUI
                 WorkerNation = cbWorkerNation.SelectedValue.ToString(),
                 WorkerTel = txtTel.Text.Trim(),
                 WorkerAddress = txtAddress.Text.Trim(),
-                datachg_usr = LoginInfo.WorkerNo,
-                datachg_date = DateTime.Now
+                datachg_usr = LoginInfo.WorkerNo
             };
 
             if (CheckInput(worker))
@@ -284,7 +283,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Worker/UpdateWorker", HttpHelper.ModelToJson(worker), null);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("UpdateWorker+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("UpdateWorker+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool tf = result.message.ToString().Equals("true") ? true:false;
@@ -324,7 +323,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("WorkerPicture/WorkerPic", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var source = HttpHelper.JsonToModel<WorkerPic>(result.message);
@@ -333,7 +332,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("WorkerPicture/DeleteWorkerPic", HttpHelper.ModelToJson(workerPic), null);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("DeleteWorkerPic+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("DeleteWorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 if (result.message.ToString().Equals("true"))
@@ -361,7 +360,7 @@ namespace SYS.FormUI
             var requestResult = HttpHelper.Request("WorkerPicture/InsertWorkerPic", HttpHelper.ModelToJson(workerPic), null);
             if (requestResult.statusCode != 200)
             {
-                UIMessageBox.ShowError("InsertWorkerPic+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("InsertWorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             picWorkerPic.BackgroundImage = null;

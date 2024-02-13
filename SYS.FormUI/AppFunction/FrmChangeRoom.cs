@@ -48,7 +48,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/SelectCanUseRoomAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboRoomList.DataSource = HttpHelper.JsonToList<Room>(result.message);
@@ -70,8 +70,7 @@ namespace SYS.FormUI
                     CustoNo = ucRoomList.CustoNo,
                     RoomStateId = 1,
                     CheckTime = DateTime.Now,
-                    datains_usr = LoginInfo.WorkerNo,
-                    datains_date = DateTime.Now
+                    datains_usr = LoginInfo.WorkerNo
                 };
                 dic = new Dictionary<string, string>()
                 {
@@ -80,7 +79,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Room/DayByRoomNo",null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 if (rno.StartsWith("BD"))
@@ -122,7 +121,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Room​/UpdateRoomInfo",HttpHelper.ModelToJson(checkInRoom), null);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("UpdateRoomInfo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("UpdateRoomInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool result1 = result.message.ToString().Equals("true");
@@ -133,7 +132,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Room​/UpdateRoomByRoomNo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 bool result2 = result.message.ToString().Equals("true");
@@ -144,7 +143,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Spend​/SelectSpendByCustoNo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectSpendByCustoNo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectSpendByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 var result3 = HttpHelper.JsonToList<Spend>(result.message);
@@ -154,7 +153,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("Spend​/UpdateSpendInfoByRoomNo", HttpHelper.ModelToJson(spend));
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("UpdateSpendInfoByRoomNo+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("UpdateSpendInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     bool result4 = result.message.ToString().Equals("true");
@@ -165,7 +164,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(s));
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("InsertSpendInfo+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("InsertSpendInfo+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     bool m = result.message.ToString().Equals("true");
