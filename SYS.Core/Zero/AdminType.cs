@@ -57,20 +57,12 @@ namespace SYS.Core
         public int delete_mk { get; set; }
 
         /// <summary>
-        /// 新增人
+        /// 资料创建人
         /// </summary>
         public string datains_usr { get; set; }
         /// <summary>
-        /// 新增时间
-        /// </summary>
-        public DateTime? datains_date { get; set; }
-        /// <summary>
-        /// 修改人
+        /// 资料更新人
         /// </summary>
         public string datachg_usr { get; set; }
-        /// <summary>
-        /// 修改时间
-        /// </summary>
-        public DateTime? datachg_date { get; set; }
     }
 }

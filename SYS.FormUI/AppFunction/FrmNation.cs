@@ -65,21 +65,16 @@ namespace SYS.FormUI
         public void ReloadNationList()
         {
             txtNationNo.Text = Util.GetListNewId("N", 3, 1, "-").FirstOrDefault();
+            
             result = HttpHelper.Request("Base/SelectNationAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             nations = HttpHelper.JsonToList<Nation>(result.message);
             dgvNationList.AutoGenerateColumns = false;
             dgvNationList.DataSource = nations;
-        }
-
-        private void dgvNationList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtNationNo.Text = dgvNationList.Rows[0].Cells["clNationNo"].Value.ToString();
-            txtNationName.Text = dgvNationList.Rows[0].Cells["clNationName"].Value.ToString();
         }
 
         private void btnAddNation_Click(object sender, EventArgs e)
@@ -96,12 +91,11 @@ namespace SYS.FormUI
                 nation_name = txtNationName.Text.Trim(),
                 delete_mk = 0,
                 datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
             };
             result = HttpHelper.Request("Base​/AddNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("AddNation+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("AddNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
             UIMessageTip.ShowOk("添加民族成功！", 1500);
@@ -124,12 +118,11 @@ namespace SYS.FormUI
                 nation_no = txtNationNo.Text.Trim(),
                 nation_name = txtNationName.Text.Trim(),
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             result = HttpHelper.Request("Base​/UpdNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("UpdNation+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("UpdNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
         }
@@ -146,12 +139,47 @@ namespace SYS.FormUI
                 nation_no = txtNationNo.Text.Trim(),
                 nation_name = txtNationName.Text.Trim(),
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             result = HttpHelper.Request("Base​/DelNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("DelNation+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("DelNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
+                return;
+            }
+            UIMessageTip.ShowOk("删除成功！");
+            return;
+        }
+
+        private void dgvNationList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txtNationNo.Text = dgvNationList.SelectedRows[0].Cells["clNationNo"].Value.ToString();
+            txtNationName.Text = dgvNationList.SelectedRows[0].Cells["clNationName"].Value.ToString();
+            if (dgvNationList.SelectedRows[0].Cells["clDeleteMk"].Value.ToString() == "1")
+            {
+                btnDeleteNation.Text = "恢复民族";
+                btnDeleteNation.FillColor = Color.Green;
+                btnDeleteNation.Click += btnRecoveryNation_Click;
+            }
+        }
+
+        private void btnRecoveryNation_Click(object sender, EventArgs e)
+        {
+            if (dgvNationList.SelectedRows.Count <= 0)
+            {
+                UIMessageTip.ShowWarning("未选择需修改的民族数据，请检查", 1500);
+                return;
+            }
+            var nat = new Nation()
+            {
+                nation_no = txtNationNo.Text.Trim(),
+                nation_name = txtNationName.Text.Trim(),
+                delete_mk = 0,
+                datachg_usr = AdminInfo.Account,
+            };
+            result = HttpHelper.Request("Base​/UpdNation", HttpHelper.ModelToJson(nat));
+            if (result.statusCode != 200 || result.message.ToString().Equals("false"))
+            {
+                UIMessageTip.ShowError("UpdNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
         }

@@ -60,7 +60,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPositionAll",null,dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboNewPosition.DataSource = HttpHelper.JsonToList<Position>(result.message);
@@ -70,7 +70,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboNewClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
@@ -95,12 +95,13 @@ namespace SYS.FormUI
             {
                 WorkerClub = cboNewClub.SelectedValue.ToString(),
                 WorkerPosition = cboNewPosition.SelectedValue.ToString(),
-                WorkerId = txtworkerId.Text
+                WorkerId = txtworkerId.Text,
+                datachg_usr = AdminInfo.Account
             };
             result = HttpHelper.Request("Worker​/UpdateWorkerPositionAndClub", HttpHelper.ModelToJson(worker));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("UpdateWorkerPositionAndClub+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("UpdateWorkerPositionAndClub+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             bool n = result.message.ToString().Equals("true");

@@ -52,7 +52,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Notice/SelectNoticeAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectNoticeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectNoticeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<Notice> notices = HttpHelper.JsonToList<Notice>(result.message);
@@ -73,7 +73,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Notice/SelectNoticeByNoticeNo",null,dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectNoticeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectNoticeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             Notice notice = HttpHelper.JsonToModel<Notice>(result.message);

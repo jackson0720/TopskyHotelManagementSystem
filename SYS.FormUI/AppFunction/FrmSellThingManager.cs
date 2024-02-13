@@ -51,7 +51,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Sellthing/SelectSellThingAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvSellthing.AutoGenerateColumns = false;
@@ -75,7 +75,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Sellthing/SelectSellThingAll",null,dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvSellthing.DataSource = HttpHelper.JsonToList<SellThing>(result.message);
@@ -90,7 +90,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Sellthing/DeleteSellThingBySellNo", null,dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("DeleteSellThingBySellNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("DeleteSellThingBySellNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             UIMessageBox.ShowSuccess("删除商品成功!");
@@ -132,7 +132,6 @@ namespace SYS.FormUI
                 format = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
                 Stock = txtStock.Value == 0 ? 0 : Convert.ToInt32(txtStock.Value),
                 datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
             };
             if (CheckInput(st))
             {
@@ -143,7 +142,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Sellthing/SelectSellInfoBySellNo",null,dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectSellInfoBySellNo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectSellInfoBySellNo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 var SellThing = HttpHelper.JsonToModel<SellThing>(result.message);
@@ -155,7 +154,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Sellthing​/InsertSellThing", HttpHelper.ModelToJson(st));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("InsertSellThing+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("InsertSellThing+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 if (!result.ToString().Equals("true"))
@@ -208,14 +207,13 @@ namespace SYS.FormUI
                 format = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
                 Stock = txtStock.Value == 0 ? 0 : Convert.ToInt32(txtStock.Value),
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             if (CheckInput(st))
             {
                 result = HttpHelper.Request("Sellthing​/UpdateSellthingInfo", HttpHelper.ModelToJson(st));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("UpdateSellthingInfo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("UpdateSellthingInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 if (!result.message.ToString().Equals("true"))

@@ -60,7 +60,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
@@ -75,7 +75,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
@@ -89,7 +89,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectSexTypeAll?delete_mk=0");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
@@ -100,14 +100,14 @@ namespace SYS.FormUI
             #endregion
             
             txtCustoNo.Text = ucRoomList.rm_CustoNo;
-            dic = new Dictionary<string, string>() 
+            dic = new Dictionary<string, string>()
             {
-                { "CustoNo",txtCustoNo.Text.Trim()}
+                { "CustoNo",txtCustoNo.Text.Trim() }
             };
             result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo",null,dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             Custo c = HttpHelper.JsonToModel<Custo>(result.message);

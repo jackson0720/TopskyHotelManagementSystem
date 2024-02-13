@@ -53,7 +53,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectGBTypeAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectGBTypeAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectGBTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             CboType.DataSource = HttpHelper.JsonToList<GBType>(result.message);
@@ -74,7 +74,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("WorkerGoodBad/SelectAllGoodBadByWorkNo", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectAllGoodBadByWorkNo+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectAllGoodBadByWorkNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             DgvGoodBadList.AutoGenerateColumns = false;
@@ -116,7 +116,6 @@ namespace SYS.FormUI
                 GBOperation = AdminInfo.Account,
                 GBTime = DtpDate.Value,
                 datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
             };
             if (CheckInput(goodBad))
             {
@@ -126,7 +125,7 @@ namespace SYS.FormUI
                     result = HttpHelper.Request("WorkerGoodBad​/AddGoodBad",HttpHelper.ModelToJson(goodBad));
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("AddGoodBad+接口服务异常，请提交Issue！");
+                        UIMessageBox.ShowError("AddGoodBad+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     bool n = result.message.ToString().Equals("true");

@@ -498,8 +498,7 @@ namespace SYS.FormUI
                         WorkerNo = LoginInfo.WorkerNo,
                         CheckWay = "系统界面",
                         CheckTime = DateTime.Parse(GetNetDateTime()),
-                        datains_usr = LoginInfo.WorkerNo,
-                        datains_date = DateTime.Now
+                        datains_usr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson(), null);
                     if (result.statusCode != 200)

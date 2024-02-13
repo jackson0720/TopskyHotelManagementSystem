@@ -94,7 +94,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Custo/SelectCustoAll",null,dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
@@ -152,7 +152,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
@@ -166,7 +166,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
@@ -176,7 +176,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=15");
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
@@ -263,7 +263,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);

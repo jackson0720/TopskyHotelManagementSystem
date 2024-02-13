@@ -24,7 +24,7 @@ namespace SYS.Common
             ResponseMsg result = HttpHelper.Request("App/SelectCardCode", null, dic);
             if (result.statusCode != 200)
             {
-                return new card { message = "SelectCardCode+接口服务异常，请提交Issue！" };
+                return new card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };
             }
             var addrResult = result.message;
             var address = addrResult.Replace(",", "").ToString();

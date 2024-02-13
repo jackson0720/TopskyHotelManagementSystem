@@ -214,8 +214,7 @@ namespace SYS.FormUI
                         CustoNo = txtCustoNo.Text,
                         RoomStateId = 1,
                         RoomNo = txtRoomNo.Text,
-                        datachg_usr = LoginInfo.WorkerNo,
-                        datachg_date = DateTime.Now,
+                        datachg_usr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("Room/UpdateRoomInfo", HttpHelper.ModelToJson(r), null);
                     if (result.statusCode != 200)

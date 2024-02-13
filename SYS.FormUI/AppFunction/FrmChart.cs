@@ -50,7 +50,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Custo/SelectAllMoney");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectAllMoney+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectAllMoney+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listHotelMoney = HttpHelper.JsonToList<CustoSpend>(result.message);

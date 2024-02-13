@@ -43,7 +43,7 @@ namespace SYS.FormUI
             var result = HttpHelper.Request("Spend/SelectSpendInfoAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSpendInfoAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectSpendInfoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvSpendList.AutoGenerateColumns = false;

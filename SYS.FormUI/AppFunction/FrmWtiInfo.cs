@@ -86,7 +86,6 @@ namespace SYS.FormUI
                 WaterUse = string.IsNullOrEmpty(txtWInfo.Text.Trim()) ? 0 : Convert.ToDecimal(txtWInfo.Text.Trim()),
                 Record = AdminInfo.Account,
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             result = HttpHelper.Request("Wti/UpdateWtiInfo",HttpHelper.ModelToJson(wti));
             if (result.statusCode != 200)

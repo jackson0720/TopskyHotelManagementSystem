@@ -133,7 +133,7 @@ namespace SYS.FormUI
             this.dgvDeptList.ShowGridLine = true;
             this.dgvDeptList.Size = new System.Drawing.Size(788, 582);
             this.dgvDeptList.TabIndex = 0;
-            this.dgvDeptList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeptList_CellClick);
+            this.dgvDeptList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDeptList_CellMouseClick);
             // 
             // clDeptNo
             // 

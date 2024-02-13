@@ -70,7 +70,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectPositionAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             positions = HttpHelper.JsonToList<Position>(result.message);
@@ -91,13 +91,12 @@ namespace SYS.FormUI
                 position_no = txtPositionNo.Text.Trim(),
                 position_name = txtPositionName.Text.Trim(),
                 delete_mk = 0,
-                datains_usr = AdminInfo.Account,
-                datains_date = DateTime.Now
+                datains_usr = AdminInfo.Account
             };
             result = HttpHelper.Request("Base​/AddPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("AddPosition+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("AddPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
             UIMessageTip.ShowOk("添加职位成功！", 1500);
@@ -106,12 +105,6 @@ namespace SYS.FormUI
             #endregion
             ReloadPositionList();
             return;
-        }
-
-        private void dgvPositionList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtPositionNo.Text = dgvPositionList.Rows[0].Cells["clPositionNo"].Value.ToString();
-            txtPositionName.Text = dgvPositionList.Rows[0].Cells["clPositionName"].Value.ToString();
         }
 
         private void btnUpdatePosition_Click(object sender, EventArgs e)
@@ -126,12 +119,11 @@ namespace SYS.FormUI
                 position_no = txtPositionNo.Text.Trim(),
                 position_name = txtPositionName.Text.Trim(),
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             result = HttpHelper.Request("Base​/UpdPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("UpdPosition+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("UpdPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
         }
@@ -149,12 +141,48 @@ namespace SYS.FormUI
                 position_name = txtPositionName.Text.Trim(),
                 delete_mk = 1,
                 datachg_usr = AdminInfo.Account,
-                datachg_date = DateTime.Now
             };
             result = HttpHelper.Request("Base​/DelPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
-                UIMessageTip.ShowError("DelPosition+接口服务异常，请提交Issue！", 1500);
+                UIMessageTip.ShowError("DelPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);
+                return;
+            }
+            UIMessageTip.ShowOk("删除成功！");
+            return;
+        }
+
+        private void dgvPositionList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txtPositionNo.Text = dgvPositionList.SelectedRows[0].Cells["clPositionNo"].Value.ToString();
+            txtPositionName.Text = dgvPositionList.SelectedRows[0].Cells["clPositionName"].Value.ToString();
+            if (dgvPositionList.SelectedRows[0].Cells["clDeleteMk"].Value.ToString() == "1")
+            {
+                btnDeletePosition.Text = "恢复职位";
+                btnDeletePosition.FillColor = Color.Green;
+                btnDeletePosition.RectColor = Color.Green;
+                btnDeletePosition.Click += btnRecoveryPosition_Click;
+            }
+        }
+
+        private void btnRecoveryPosition_Click(object sender, EventArgs e)
+        {
+            if (dgvPositionList.SelectedRows.Count <= 0)
+            {
+                UIMessageTip.ShowWarning("未选择需修改的职位数据，请检查", 1500);
+                return;
+            }
+            var pos = new Position()
+            {
+                position_no = txtPositionNo.Text.Trim(),
+                position_name = txtPositionName.Text.Trim(),
+                delete_mk = 0,
+                datachg_usr = AdminInfo.Account,
+            };
+            result = HttpHelper.Request("Base​/UpdPosition", HttpHelper.ModelToJson(pos));
+            if (result.statusCode != 200 || result.message.ToString().Equals("false"))
+            {
+                UIMessageTip.ShowError("UpdPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
         }

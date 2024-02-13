@@ -46,7 +46,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("App/SelectOperationlogAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvOperationlog.AutoGenerateColumns = false;

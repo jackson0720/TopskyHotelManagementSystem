@@ -56,7 +56,7 @@ namespace SYS.FormUI.AppFunction
             var result = HttpHelper.Request("Room/SelectRoomAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectRoomAll+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<Room> rooms = HttpHelper.JsonToList<Room>(result.message);

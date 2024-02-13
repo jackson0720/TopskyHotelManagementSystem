@@ -95,35 +95,35 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/SelectCanUseRoomAllByRoomState");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCanUseRoomAllByRoomState+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectCanUseRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             lblCanUse.Text = result.message.ToString();
             result = HttpHelper.Request("Room/SelectNotUseRoomAllByRoomState");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectNotUseRoomAllByRoomState+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectNotUseRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             lblCheck.Text = result.message.ToString();
             result = HttpHelper.Request("Room/SelectNotClearRoomAllByRoomState");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectNotClearRoomAllByRoomState+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectNotClearRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             lblNotClear.Text = result.message.ToString();
             result = HttpHelper.Request("Room/SelectFixingRoomAllByRoomState");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectFixingRoomAllByRoomState+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectFixingRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             lblFix.Text = result.message.ToString();
             result = HttpHelper.Request("Room/SelectReseredRoomAllByRoomState");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectReseredRoomAllByRoomState+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectReseredRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             lblReser.Text = result.message.ToString();
@@ -142,7 +142,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Room/SelectRoomAll");
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectRoomAll+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = HttpHelper.JsonToList<Room>(result.message);
@@ -156,7 +156,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Room/SelectRoomByTypeName",null,dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectRoomByTypeName+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("SelectRoomByTypeName+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = HttpHelper.JsonToList<Room>(result.message);
@@ -219,7 +219,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Room/SelectRoomByRoomState", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectRoomByRoomState+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectRoomByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             romsty = HttpHelper.JsonToList<Room>(result.message);

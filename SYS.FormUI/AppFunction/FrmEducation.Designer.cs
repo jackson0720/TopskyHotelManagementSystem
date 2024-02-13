@@ -45,7 +45,7 @@ namespace SYS.FormUI
             this.dgvEducationList = new Sunny.UI.UIDataGridView();
             this.clEducationNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clEducationName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clDeleteMk = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -175,7 +175,7 @@ namespace SYS.FormUI
             this.dgvEducationList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clEducationNo,
             this.clEducationName,
-            this.Column1,
+            this.clDeleteMk,
             this.Column2,
             this.Column3,
             this.Column4,
@@ -213,7 +213,7 @@ namespace SYS.FormUI
             this.dgvEducationList.ShowGridLine = true;
             this.dgvEducationList.Size = new System.Drawing.Size(788, 582);
             this.dgvEducationList.TabIndex = 185;
-            this.dgvEducationList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEducationList_CellClick);
+            this.dgvEducationList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEducationList_CellMouseClick);
             // 
             // clEducationNo
             // 
@@ -229,13 +229,13 @@ namespace SYS.FormUI
             this.clEducationName.Name = "clEducationName";
             this.clEducationName.ReadOnly = true;
             // 
-            // Column1
+            // clDeleteMk
             // 
-            this.Column1.DataPropertyName = "delete_mk";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
+            this.clDeleteMk.DataPropertyName = "delete_mk";
+            this.clDeleteMk.HeaderText = "Column1";
+            this.clDeleteMk.Name = "clDeleteMk";
+            this.clDeleteMk.ReadOnly = true;
+            this.clDeleteMk.Visible = false;
             // 
             // Column2
             // 
@@ -309,7 +309,7 @@ namespace SYS.FormUI
         private Sunny.UI.UIDataGridView dgvEducationList;
         private System.Windows.Forms.DataGridViewTextBoxColumn clEducationNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clEducationName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clDeleteMk;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

@@ -70,7 +70,6 @@ namespace SYS.FormUI
                     NoticeTime = dtpUpLoadDate.Value,
                     NoticeClub = cboSelectClub.SelectedValue.ToString(),
                     datains_usr = AdminInfo.Account,
-                    datains_date = DateTime.Now
                 };
 
                 switch (cbNoticeType.Text)
@@ -85,7 +84,7 @@ namespace SYS.FormUI
                 result = HttpHelper.Request("Notice​/InsertNotice", HttpHelper.ModelToJson(notice));
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("InsertNotice+接口服务异常，请提交Issue！");
+                    UIMessageBox.ShowError("InsertNotice+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 if (!result.message.ToString().Equals("true"))
@@ -123,7 +122,7 @@ namespace SYS.FormUI
             result = HttpHelper.Request("Base/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue！");
+                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             //加载部门信息
