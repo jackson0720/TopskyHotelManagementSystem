@@ -89,6 +89,11 @@ namespace SYS.FormUI
                     #region 获取添加操作日志所需的信息
                     RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + DateTime.Now + "新增了房间，房间号为：" + txtRoomNo.Text + "，房间类型为：" + cboRoomType.Text, 2);
                     #endregion
+                    txtRoomNo.Text = string.Empty;
+                    txtDeposit.Text = "0.00";
+                    txtMoney.Text = "0.00";
+                    txtRoomPosition.Text = string.Empty;
+
                     return;
                 }
             }
@@ -143,15 +148,6 @@ namespace SYS.FormUI
 
         }
 
-        private void txtRoomNo_TextChanged(object sender, EventArgs e)
-        {
-            if (CheckRoomExists(txtRoomNo.Text))
-            {
-                UIMessageBox.Show("该房间已存在，无法进行添加操作");
-                return;
-            }
-        }
-
         private bool CheckRoomExists(string RoomNo)
         {
             bool ret = false;
@@ -166,7 +162,7 @@ namespace SYS.FormUI
                 return ret;
             }
             var room = HttpHelper.JsonToModel<Room>(result.message);
-            if (room != null)
+            if (room.RoomNo != null)
             {
                 ret = true;
             }
@@ -176,6 +172,15 @@ namespace SYS.FormUI
         private void flpRoom_MouseEnter(object sender, EventArgs e)
         {
             return;
+        }
+
+        private void txtRoomNo_Validated(object sender, EventArgs e)
+        {
+            if (CheckRoomExists(txtRoomNo.Text))
+            {
+                UIMessageBox.ShowError("房间已存在。");
+                return;
+            }
         }
     }
 }
