@@ -10,6 +10,7 @@ using System.Web.Script.Services;
 using SYS.Common;
 using System.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
+using System.Security.Cryptography;
 
 namespace SYS.FormUI
 {

@@ -28,7 +28,12 @@ namespace SYS.FormUI
 
         protected override bool CheckData()
         {
-            return CheckEmpty(txtCustoName, "请输入姓名")
+            return CheckEmpty(txtCustoNo, "请输入客户ID")
+                   && CheckEmpty(txtCustoName, "请输入姓名")
+                   && CheckEmpty(cbCustoType, "请选择客户类型")
+                   && CheckEmpty(cbPassportType, "请选择证件类型")
+                   && CheckEmpty(cbSex, "请选择客户性别")
+                   && CheckEmpty(dtpBirthday, "请选择客户生日")
                    && CheckEmpty(txtCardID, "请输入证件号码")
                    && CheckEmpty(txtTel, "输入11位手机号码")
                    && CheckEmpty(txtCustoAdress, "请填写居住地址");
