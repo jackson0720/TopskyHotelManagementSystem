@@ -30,6 +30,7 @@ using SYS.Application;
 using System.Collections.Generic;
 using Sunny.UI;
 using SYS.Common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SYS.FormUI
 {
@@ -47,6 +48,21 @@ namespace SYS.FormUI
 
         private void btnAddRoom_Click(object sender, EventArgs e)
         {
+            dic = new Dictionary<string, string>
+            {
+                { "roomType", Convert.ToString(cboRoomType.SelectedValue.ToString())}
+            };
+            result = HttpHelper.Request("RoomType/SelectRoomTypeByType", null, dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectRoomTypeByType+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            RoomType roomType = HttpHelper.JsonToModel<RoomType>(result.message);
+
+            txtMoney.Text = Convert.ToDecimal(txtMoney.Text) <= 0 ? roomType.RoomRent.ToString() : txtMoney.Text;
+            txtDeposit.Text = Convert.ToDecimal(txtDeposit.Text) <= 0 ? roomType.RoomDeposit.ToString() : txtDeposit.Text;
+
             if (!string.IsNullOrWhiteSpace(txtRoomNo.Text)&& !txtMoney.Text.IsNullOrWhiteSpace() && !txtDeposit.Text.IsNullOrWhiteSpace())
             {
                 rn = new Room()
@@ -73,6 +89,11 @@ namespace SYS.FormUI
                     #region 获取添加操作日志所需的信息
                     RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + DateTime.Now + "新增了房间，房间号为：" + txtRoomNo.Text + "，房间类型为：" + cboRoomType.Text, 2);
                     #endregion
+                    txtRoomNo.Text = string.Empty;
+                    txtDeposit.Text = "0.00";
+                    txtMoney.Text = "0.00";
+                    txtRoomPosition.Text = string.Empty;
+
                     return;
                 }
             }
@@ -123,45 +144,8 @@ namespace SYS.FormUI
 
         private void cboRoomType_TextChanged(object sender, EventArgs e)
         {
-            if (cboRoomType.Text == nameof(RT.标准单人间))
-            {
-                txtMoney.Text = "300";
-                txtRoomPosition.Text = "A层";
-            }
-            else if (cboRoomType.Text == nameof(RT.标准双人间))
-            {
-                txtMoney.Text = "425";
-                txtRoomPosition.Text = "A层";
-            }
-            else if (cboRoomType.Text == nameof(RT.豪华单人间))
-            {
-                txtMoney.Text = "625";
-                txtRoomPosition.Text = "B层";
-            }
-            else if (cboRoomType.Text == nameof(RT.豪华双人间))
-            {
-                txtMoney.Text = "660";
-                txtRoomPosition.Text = "B层";
-            }
-            else if (cboRoomType.Text == nameof(RT.情侣套房))
-            {
-                txtMoney.Text = "845";
-                txtRoomPosition.Text = "C层";
-            }
-            else if (cboRoomType.Text == nameof(RT.总统套房))
-            {
-                txtMoney.Text = RT.豪华单人间.ToString();
-                txtRoomPosition.Text = "D层";
-            }
-        }
+            
 
-        private void txtRoomNo_TextChanged(object sender, EventArgs e)
-        {
-            if (CheckRoomExists(txtRoomNo.Text))
-            {
-                UIMessageBox.Show("该房间已存在，无法进行添加操作");
-                return;
-            }
         }
 
         private bool CheckRoomExists(string RoomNo)
@@ -178,7 +162,7 @@ namespace SYS.FormUI
                 return ret;
             }
             var room = HttpHelper.JsonToModel<Room>(result.message);
-            if (room != null)
+            if (room.RoomNo != null)
             {
                 ret = true;
             }
@@ -188,6 +172,15 @@ namespace SYS.FormUI
         private void flpRoom_MouseEnter(object sender, EventArgs e)
         {
             return;
+        }
+
+        private void txtRoomNo_Validated(object sender, EventArgs e)
+        {
+            if (CheckRoomExists(txtRoomNo.Text))
+            {
+                UIMessageBox.ShowError("房间已存在。");
+                return;
+            }
         }
     }
 }

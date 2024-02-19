@@ -43,6 +43,18 @@ namespace SYS.Core
         public string RoomName { get; set; }
 
         /// <summary>
+        /// 房间租金
+        /// </summary>
+        [SqlSugar.SugarColumn(ColumnName = "room_rent", ColumnDataType = "decimal")]
+        public decimal RoomRent { get; set; }
+
+        /// <summary>
+        /// 房间押金
+        /// </summary>
+        [SqlSugar.SugarColumn(ColumnName = "room_deposit")]
+        public decimal RoomDeposit { get; set; }
+
+        /// <summary>
         /// 删除标记
         /// </summary>
         public int delete_mk { get; set; }

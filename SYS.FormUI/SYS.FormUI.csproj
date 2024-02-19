@@ -882,9 +882,6 @@
     <Content Include="images\系统管理员.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\組織圖塊.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="images\经理部卡片.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -56,12 +56,12 @@ namespace SYS.Core
         /// <summary>
         /// 最后一次入住时间
         /// </summary>
-        [SqlSugar.SugarColumn(ColumnName = "check_in_time")]
+        [SqlSugar.SugarColumn(ColumnName = "check_in_time",IsNullable = true)]
         public DateTime? CheckTime { get; set; }
         /// <summary>
         /// 最后一次退房时间
         /// </summary>
-        [SqlSugar.SugarColumn(ColumnName = "check_out_time")]
+        [SqlSugar.SugarColumn(ColumnName = "check_out_time", IsNullable = true)]
         public DateTime? CheckOutTime { get; set; }
         /// <summary>
         /// 房间状态ID

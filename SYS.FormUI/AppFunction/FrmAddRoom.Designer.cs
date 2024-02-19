@@ -61,6 +61,7 @@
             this.txtRoomNo.StyleCustomMode = true;
             this.txtRoomNo.TabIndex = 106;
             this.txtRoomNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRoomNo.Validated += new System.EventHandler(this.txtRoomNo_Validated);
             // 
             // label3
             // 
