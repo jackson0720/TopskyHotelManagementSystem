@@ -1073,9 +1073,9 @@
       <Project>{65501AF6-C629-448A-847E-1BCD60665865}</Project>
       <Name>SYS.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SYS.Core\SYS.Core.csproj">
-      <Project>{cd039d0f-bd50-4fbf-b9cd-cdfab25c7dfa}</Project>
-      <Name>SYS.Core</Name>
+    <ProjectReference Include="..\topsky-hotel-manager-system-web-api\EOM.TSHotelManager.Common.Core\EOM.TSHotelManager.Common.Core.csproj">
+      <Project>{48b3f864-88d2-4bd1-a766-b9ebf342aed1}</Project>
+      <Name>EOM.TSHotelManager.Common.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

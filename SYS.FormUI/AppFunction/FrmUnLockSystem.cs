@@ -29,9 +29,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Sunny.UI;
-using SYS.Application;
+
 using SYS.Common;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 
 namespace SYS.FormUI
 {

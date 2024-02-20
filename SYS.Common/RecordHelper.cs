@@ -20,7 +20,7 @@ namespace SYS.Common
         public static void Record(string operationLog, int level)
         {
             string api = "App/AddLog";
-            var logDetail = new OperationLog
+            var logDetail = new Temp_OperationLog
             {
                 OperationTime = DateTime.Now,
                 LogContent = operationLog,

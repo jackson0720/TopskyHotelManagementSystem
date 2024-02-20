@@ -25,11 +25,11 @@ using System;
 
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using SYS.FormUI.Properties;
 using System.Collections.Generic;
 using System.Linq;
-using SYS.Application;
+
 using Sunny.UI;
 using SYS.Common;
 

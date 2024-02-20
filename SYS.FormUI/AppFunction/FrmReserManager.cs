@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using SYS.Application;
+
 using SYS.Common;
 using System.Linq;
 using System.Collections.Generic;

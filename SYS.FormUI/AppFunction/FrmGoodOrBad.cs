@@ -30,9 +30,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using SYS.Application;
+
 using SYS.Common;
 
 namespace SYS.FormUI

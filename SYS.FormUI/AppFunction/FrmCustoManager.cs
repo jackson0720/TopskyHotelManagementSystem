@@ -24,10 +24,10 @@
 using System;
 
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using SYS.FormUI.Properties;
 using System.Collections.Generic;
-using SYS.Application;
+
 using Sunny.UI;
 using SYS.Common;
 using System.Linq;

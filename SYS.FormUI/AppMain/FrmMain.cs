@@ -28,11 +28,11 @@ using System.Drawing;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using SYS.FormUI.Properties;
 using Sunny.UI;
 using System.Management;
-using SYS.Application;
+
 using SYS.Common;
 using SYS.FormUI.AppUserControls;
 

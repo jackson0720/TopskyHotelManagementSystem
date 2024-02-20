@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using SYS.FormUI.Properties;
-using SYS.Application;
+
 using Sunny.UI;
 using SYS.Common;
 using System.Collections.Generic;

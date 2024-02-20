@@ -23,10 +23,10 @@
  */
 using System;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using System.Collections.Generic;
-using SYS.Application;
+
 using SYS.Common;
 
 namespace SYS.FormUI

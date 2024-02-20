@@ -50,7 +50,7 @@ namespace SYS.Common
     /// <summary>
     /// 操作日志
     /// </summary>
-    public class OperationLog
+    public class Temp_OperationLog
     {
         /// <summary>
         /// 操作时间
