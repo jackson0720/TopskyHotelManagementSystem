@@ -22,10 +22,10 @@
  *
  */
 using Sunny.UI;
-using SYS.Application;
+
 using SYS.Common;
 //using SYS.Common;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using SYS.FormUI.Properties;
 using System;
 using System.Collections.Generic;

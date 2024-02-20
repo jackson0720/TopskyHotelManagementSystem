@@ -23,10 +23,10 @@
  */
 using System;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using System.Text.RegularExpressions;
-using SYS.Application;
+
 using SYS.Common;
 using System.Net;
 using System.Diagnostics;

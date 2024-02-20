@@ -23,12 +23,11 @@
  */
 using System;
 using System.Collections.Generic;
-
 using System.Drawing;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using SYS.Application;
+
 using System.Net;
 using System.Configuration;
 using System.IO;

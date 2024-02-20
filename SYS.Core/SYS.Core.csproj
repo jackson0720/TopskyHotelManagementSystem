@@ -87,7 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\Customer\OSelectCustoAllDto.cs" />
     <Compile Include="Business\Spend\SpendConsts.cs" />
     <Compile Include="Business\Customer\PassPortType.cs" />
     <Compile Include="Business\Customer\SexType.cs" />

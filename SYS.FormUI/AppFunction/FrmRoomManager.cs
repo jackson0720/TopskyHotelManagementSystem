@@ -24,9 +24,9 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using SYS.FormUI.Properties;
-using SYS.Application;
+
 using System.Drawing;
 using SYS.Common;
 using Sunny.UI;

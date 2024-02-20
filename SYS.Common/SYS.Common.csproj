@@ -87,7 +87,7 @@
     <Compile Include="AdminInfo.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="LoginInfo.cs" />
-    <Compile Include="OperationLog.cs" />
+    <Compile Include="Temp_OperationLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordHelper.cs" />
     <Compile Include="ResponseMsg.cs" />
@@ -97,7 +97,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\topsky-hotel-manager-system-web-api\EOM.TSHotelManager.Common.Core\EOM.TSHotelManager.Common.Core.csproj">
+      <Project>{48b3f864-88d2-4bd1-a766-b9ebf342aed1}</Project>
+      <Name>EOM.TSHotelManager.Common.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

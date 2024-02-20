@@ -24,11 +24,11 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using SYS.Core;
+using EOM.TSHotelManager.Common.Core;
 using SYS.FormUI.Properties;
 using System.Collections.Generic;
 using Sunny.UI;
-using SYS.Application;
+
 using SYS.Common;
 using System.Transactions;
 
