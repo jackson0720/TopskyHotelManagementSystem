@@ -1,7 +1,5 @@
-﻿using jvncorelib_fr.EncryptorLib;
-using jvncorelib_fr.EntityLib;
-using jvncorelib_fr.HttpLib;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +13,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
+using jvncorelib_fr.EncryptorLib;
+using jvncorelib_fr.EntityLib;
 
 namespace SYS.Common
 {
@@ -23,7 +23,7 @@ namespace SYS.Common
     /// </summary>
     public static class HttpHelper
     {
-        static EncryptLib encryptLib = new EncryptLib();
+        static  EncryptLib encrypt = new EncryptLib();
 
         #region 受限于打包插件的限制才放在这，个人开发时建议统一在App.Config进行配置
 
@@ -41,11 +41,64 @@ namespace SYS.Common
         /// </summary>
         public const string postUrl = "";
         /// <summary>
-        /// WebApi URL
+        /// WebApi URL(release)
         /// </summary>
+        //public const string apiUrl = "";
+
+
+
+        // Debug
         public const string apiUrl = "";
 
         #endregion
+
+        public class IgnoreNullValuesConverter : JsonConverter
+        {
+            private readonly bool _convertEmptyStringToNull;
+
+            // 添加一个构造函数，允许在创建转换器实例时指定是否将空字符串转换为 null
+            public IgnoreNullValuesConverter(bool convertEmptyStringToNull = false)
+            {
+                _convertEmptyStringToNull = convertEmptyStringToNull;
+            }
+
+            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            {
+                JObject obj = JObject.FromObject(value, serializer);
+
+                foreach (var prop in obj.Properties().ToList())
+                {
+                    if (prop.Value == null || string.IsNullOrEmpty(prop.Value.ToString()))
+                    {
+                        // 根据 _convertEmptyStringToNull 决定是移除属性还是设置为 null
+                        if (_convertEmptyStringToNull && prop.Value?.Type == JTokenType.String)
+                        {
+                            prop.Value = JValue.CreateNull();
+                        }
+                        else
+                        {
+                            prop.Remove();
+                        }
+                    }
+                }
+
+                obj.WriteTo(writer);
+            }
+
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                // 实现这个方法是必要的，但是本例中不需要修改
+                throw new NotImplementedException();
+            }
+
+            public override bool CanConvert(Type objectType)
+            {
+                // 仅为示例，根据实际情况调整
+                return objectType == typeof(JObject);
+            }
+
+            public override bool CanRead => false; // 设置为 false，因为我们不需要修改反序列化的行为
+        }
 
         /// <summary>
         /// WebClient上传文件至服务器
@@ -77,7 +130,7 @@ namespace SYS.Common
             var sourceStr = url.Replace("​", string.Empty);
 
             //解密原始URL
-            var api = encryptLib.Decryption(apiUrl);
+            var api = encrypt.Decryption(apiUrl);
 
             var requestUrl = api + sourceStr;
 
@@ -404,7 +457,11 @@ namespace SYS.Common
         {
             try
             {
-                return Newtonsoft.Json.JsonConvert.SerializeObject(input);
+                return Newtonsoft.Json.JsonConvert.SerializeObject(input, new JsonSerializerSettings
+                {
+                    Converters = { new IgnoreNullValuesConverter(true) },
+                    Formatting = Formatting.Indented // 如果需要格式化输出
+                });
             }
             catch (Exception ex)
             {
