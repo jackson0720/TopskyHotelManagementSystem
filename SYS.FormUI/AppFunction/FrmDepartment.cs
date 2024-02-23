@@ -35,6 +35,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using jvncorelib_fr.EntityLib;
 
 namespace SYS.FormUI
 {
@@ -256,9 +257,9 @@ namespace SYS.FormUI
         {
             if (dgvDeptList.SelectedRows.Count == 1)
             {
-                txtDeptNo.Text = dgvDeptList.SelectedRows[0].Cells["clDeptNo"].Value.ToString();
-                txtDeptName.Text = dgvDeptList.SelectedRows[0].Cells["clDeptName"].Value.ToString();
-                txtDeptDesc.Text = dgvDeptList.SelectedRows[0].Cells["clDeptDesc"].Value.ToString();
+                txtDeptNo.Text = dgvDeptList.SelectedRows[0].Cells["clDeptNo"].Value.IsNullOrEmpty() ? "" : dgvDeptList.SelectedRows[0].Cells["clDeptNo"].Value.ToString();
+                txtDeptName.Text = dgvDeptList.SelectedRows[0].Cells["clDeptName"].Value.IsNullOrEmpty() ? "" : dgvDeptList.SelectedRows[0].Cells["clDeptName"].Value.ToString();
+                txtDeptDesc.Text = dgvDeptList.SelectedRows[0].Cells["clDeptDesc"].Value.IsNullOrEmpty() ? "" : dgvDeptList.SelectedRows[0].Cells["clDeptDesc"].Value.ToString();
             }
         }
     }
