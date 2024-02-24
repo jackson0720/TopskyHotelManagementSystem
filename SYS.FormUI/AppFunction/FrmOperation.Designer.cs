@@ -213,7 +213,7 @@
             // 
             // FrmOperation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 36F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1005, 623);
@@ -224,6 +224,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmOperation";
             this.ShowIcon = true;
+            this.ShowTitleIcon = true;
             this.Text = "员工操作日志";
             this.Load += new System.EventHandler(this.FrmOperation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperationlog)).EndInit();

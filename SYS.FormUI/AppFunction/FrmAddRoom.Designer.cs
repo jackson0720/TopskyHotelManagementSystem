@@ -239,6 +239,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmAddRoom";
             this.ShowIcon = true;
+            this.ShowTitleIcon = true;
             this.Text = "新增客房";
             this.Load += new System.EventHandler(this.FrmAddRoom_Load);
             this.ResumeLayout(false);

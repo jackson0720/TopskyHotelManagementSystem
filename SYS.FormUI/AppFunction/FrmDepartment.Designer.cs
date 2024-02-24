@@ -442,7 +442,8 @@ namespace SYS.FormUI
             this.MinimizeBox = false;
             this.Name = "FrmDepartment";
             this.ShowIcon = true;
-            this.Text = "部门信息维护";
+            this.ShowTitleIcon = true;
+            this.Text = "部门信息";
             this.Load += new System.EventHandler(this.FrmDepartment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeptList)).EndInit();
             this.ResumeLayout(false);

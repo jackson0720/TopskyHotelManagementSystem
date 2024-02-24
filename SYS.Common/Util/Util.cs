@@ -17,6 +17,11 @@ namespace SYS.Common
 
         private static Dictionary<string, int> dic = new Dictionary<string, int>();
 
+        /// <summary>
+        /// 证件号码归属地查询
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public static card searchCode(string code)
         {
             Dictionary<string,string> dic = new Dictionary<string, string>();
