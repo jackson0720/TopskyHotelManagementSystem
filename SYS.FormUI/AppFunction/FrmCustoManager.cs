@@ -188,67 +188,55 @@ namespace SYS.FormUI
         #region 导出事件方法
         private void picLoadOut_Click_1(object sender, EventArgs e)
         {
-            //#region 导出信息保存为Excel表
-            //bool tf = UIMessageBox.Show("导出信息为敏感操作，确定要继续导出吗？(此步操作将写入操作日志)", "信息提醒",UIStyle.Orange,UIMessageBoxButtons.OKCancel);
-            //if (!tf)
-            //{
+            // 调用之前定义的导出方法
+            ExportHelper exportHelper = new ExportHelper();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // 设置保存对话框的属性
+            saveFileDialog.Filter = "2003~2007工作表*.xls|*.xls|2010及以上版本工作表*.xlsx|*.xlsx";
+            saveFileDialog.Title = cbExportAll.Checked ? "导出Excel文件(导出全部)" : "导出Excel文件(导出当前页)";
+            saveFileDialog.FileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + "客户列表"; // 默认文件名
+            saveFileDialog.CheckPathExists = true; // 检查目录是否存在
 
-            //    //Response.ContentEncoding = System.Text.Encoding.UTF8;
-            //    string fileName = "";
-            //    string saveFileName = "";
-            //    //fileName.Charset = "GB2312";
-            //    SaveFileDialog saveDialog = new SaveFileDialog();
-            //    //saveDialog.DefaultExt = "xls";
-            //    saveDialog.FileName = fileName;
-            //    saveDialog.Filter = "2003~2007工作表*.xls|*.xls|2010及以上版本工作表*.xlsx|*.xlsx";
-            //    saveDialog.ShowDialog();
-            //    saveFileName = saveDialog.FileName;
-            //    if (saveFileName.IndexOf(":") < 0) return;
-            //    Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-            //    if (xlApp == null)
-            //    {
-            //        UIMessageBox.Show("无法创建Excel对象,您的电脑可能未安装Excel！", "来自T仔的提醒",UIStyle.Red);
-            //        return;
-            //    }
-            //    Microsoft.Office.Interop.Excel.Workbooks workbooks = xlApp.Workbooks;
-            //    Microsoft.Office.Interop.Excel.Workbook workbook = workbooks.Add(Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet);
-            //    Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];
-            //    for (int i = 0; i < this.dgvCustomerList.Columns.Count; i++)
-            //    {
-            //        xlApp.Cells[1, i + 1] = dgvCustomerList.Columns[i].HeaderText;
-            //    }
-            //    for (int i = 0; i < dgvCustomerList.Rows.Count; i++)//添加每一项
-            //    {
-            //        for (int j = 0; j < dgvCustomerList.Columns.Count; j++)
-            //        {
-            //            xlApp.Cells[i + 2, j + 1] = dgvCustomerList.Rows[i].Cells[j].Value.ToString();
-            //        }
-            //    }
-            //    System.Windows.Forms.Application.DoEvents();
-            //    worksheet.Columns.EntireColumn.AutoFit();//列宽自适应
-            //    UIMessageBox.Show(fileName + "信息导出成功", "来自T仔提示",UIStyle.Green, UIMessageBoxButtons.OK);
-            //    #region 获取添加操作日志所需的信息
-            //    RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerName + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + DateTime.Now + "导出了" + "后台用户信息!", 3);
-            //    #endregion
-                
-            //    System.Diagnostics.Process.Start("Explorer.exe", saveFileName);
-            //    if (saveFileName != "")
-            //    {
-            //        try
-            //        {
-            //            workbook.Saved = true;
-            //            workbook.SaveCopyAs(saveFileName);  //fileSaved = true;                 
-            //        }
-            //        catch (Exception ex)
-            //        {//fileSaved = false;                      
-            //            UIMessageBox.Show("导出文件时出错,文件可能正被打开！\n" + ex.Message);
-            //            return;
-            //        }
-            //    }
-            //    xlApp.Quit();
-            //    GC.Collect();
-            //}
-            //#endregion
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 用户确认保存，获取选择的文件路径
+                string filePath = saveFileDialog.FileName;
+
+                try
+                {
+                    if (cbExportAll.Checked)
+                    {
+                        dic = new Dictionary<string, string>()
+                        {
+                            { "pageIndex",null},
+                            { "pageSize",null}
+                        };
+                        ResponseMsg response = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+                        if (response.statusCode != 200)
+                        {
+                            UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                            return;
+                        }
+                        OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(response.message);
+                        exportHelper.ExportDataToExcel(custos.listSource, filePath, new List<string> { "CustoSex", "PassportType", "CustoID", "CustoType", "delete_mk", "datains_usr", "datains_date", "datachg_usr", "datachg_date" });
+                    }
+                    else
+                    {
+                        exportHelper.ExportDataGridViewToExcel(dgvCustomerList, filePath, new List<string> { "Column1", "Column2", "Column3", "Column4" });
+                    }
+                    UIMessageBox.Show("导出成功！", "信息", UIStyle.Blue, UIMessageBoxButtons.OK);
+                    System.Diagnostics.Process.Start("Explorer.exe", filePath);
+                    #region 获取添加操作日志所需的信息
+                    RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerName + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + DateTime.Now + "导出了" + "后台用户信息!", 3);
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    // 处理可能发生的任何错误
+                    UIMessageBox.Show($"导出失败: {ex.Message}", "错误", UIStyle.Red, UIMessageBoxButtons.OK);
+                }
+            }
+            // 如果用户取消了保存，则不执行任何操作
         }
 
         #endregion

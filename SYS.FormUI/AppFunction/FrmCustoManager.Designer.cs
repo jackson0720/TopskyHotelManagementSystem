@@ -60,6 +60,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnPg = new Sunny.UI.UIPagination();
             this.uiLine1 = new Sunny.UI.UILine();
+            this.cbExportAll = new Sunny.UI.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerList)).BeginInit();
             this.cmsCustoManager.SuspendLayout();
             this.uiGroupBox1.SuspendLayout();
@@ -387,7 +388,7 @@
             this.btnPg.Name = "btnPg";
             this.btnPg.PageSize = 15;
             this.btnPg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.btnPg.Size = new System.Drawing.Size(782, 34);
+            this.btnPg.Size = new System.Drawing.Size(677, 34);
             this.btnPg.Style = Sunny.UI.UIStyle.Custom;
             this.btnPg.TabIndex = 121;
             this.btnPg.Text = null;
@@ -405,12 +406,26 @@
             this.uiLine1.TabIndex = 123;
             this.uiLine1.Text = "右键可复制客户编号";
             // 
+            // cbExportAll
+            // 
+            this.cbExportAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cbExportAll.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cbExportAll.Location = new System.Drawing.Point(687, 533);
+            this.cbExportAll.MinimumSize = new System.Drawing.Size(1, 1);
+            this.cbExportAll.Name = "cbExportAll";
+            this.cbExportAll.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.cbExportAll.Size = new System.Drawing.Size(98, 29);
+            this.cbExportAll.Style = Sunny.UI.UIStyle.Custom;
+            this.cbExportAll.TabIndex = 124;
+            this.cbExportAll.Text = "导出全部";
+            // 
             // FrmCustoManager
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1005, 623);
             this.ControlBox = false;
+            this.Controls.Add(this.cbExportAll);
             this.Controls.Add(this.uiLine1);
             this.Controls.Add(this.btnPg);
             this.Controls.Add(this.uiGroupBox1);
@@ -462,5 +477,6 @@
         private Sunny.UI.UIContextMenuStrip cmsCustoManager;
         private System.Windows.Forms.ToolStripMenuItem tsmiCustoNo;
         private Sunny.UI.UILine uiLine1;
+        private Sunny.UI.UICheckBox cbExportAll;
     }
 }
