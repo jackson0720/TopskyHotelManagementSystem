@@ -31,22 +31,22 @@ namespace SYS.Common
         /// 数据库配置连接
         /// </summary>
         public const string mysqlString = "server = localhost; user id = softuser; password = .; database = tshoteldb;";
-        public const string pgsqlString = "qpyxeqMNN342V18jm3VN+iCeovxqQKgUHzzuYeGmV90jqMTPS5/bJLdDi3XQw4T820gCZ8prLDZICtlvqHJ9Uhn0uys9KYEP0iMuvoE5vsw3JtsetpU7O58CXkujZzMi·<d^0$>%*c>fd;d*d#b%ad;0<d%%d^%<f";
+        public const string pgsqlString = "";
 
         /// <summary>
         /// 照片文件配置URL
         /// </summary>
-        public const string baseUrl = "RricsELofi55yQ4YD7ndbNP0T7c6nnhD8ASRT6/B35hjaWAdRSS0is7uQearyz60·e$>^b$?%^ff*;c?<$$ca?$#a%ddc;a0c";
+        public const string baseUrl = "";
 
         /// <summary>
         /// 上传照片URL
         /// </summary>
-        public const string postUrl = "qDxYOlHl/qx0D2DqQZ1fe6SR1JUnAdqex4VBmlwGoKZ2OJdf7qx9sxjnZbHlo/GM·%%*;#<%?<a?*;#feb*<a%^ac%<;;f^ad";
+        public const string postUrl = "";
 
         /// <summary>
         /// WebApi URL(release)
         /// </summary>
-        public const string apiUrl = "ulHRxE/NeTZxXjKM/6TPCkFYEW5tmFtjsBTOOB9/9+dPY73NQWgTkgljnazdnnDE·c>b*^fe>%;*e;c;?a%fe$cfe<c^#a?$#";
+        public const string apiUrl = "";
 
         // Debug
         //public const string apiUrl = "TpwjOXp/ehhJirV+vFi0C9PWjqeJwdTAn4s4GUFlXhM=·$$>a*d;?b?fb;>$;a<$^a*0c%?d?de<f";
