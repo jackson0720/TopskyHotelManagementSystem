@@ -54,8 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon %281%29.ico" />
-    <Content Include="EOM.TSHotelManager.Common.Core.dll" />
-    <Content Include="kse.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

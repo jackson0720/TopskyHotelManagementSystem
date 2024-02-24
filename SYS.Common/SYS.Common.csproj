@@ -84,13 +84,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminInfo.cs" />
-    <Compile Include="HttpHelper.cs" />
-    <Compile Include="LoginInfo.cs" />
-    <Compile Include="Temp_OperationLog.cs" />
+    <Compile Include="LocalInfo\AdminInfo.cs" />
+    <Compile Include="HttpHelper\HttpHelper.cs" />
+    <Compile Include="LocalInfo\LoginInfo.cs" />
+    <Compile Include="Util\Temp_OperationLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordHelper.cs" />
-    <Compile Include="ResponseMsg.cs" />
+    <Compile Include="Util\RecordHelper.cs" />
+    <Compile Include="HttpHelper\ResponseMsg.cs" />
     <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -423,6 +423,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCustoManager";
+            this.ShowTitleIcon = true;
             this.Style = Sunny.UI.UIStyle.Custom;
             this.Text = "客户信息管理";
             this.Load += new System.EventHandler(this.FrmCustoManager_Load);

@@ -255,6 +255,7 @@ namespace SYS.FormUI
             this.MinimizeBox = false;
             this.Name = "FrmAdminManager";
             this.ShowIcon = true;
+            this.ShowTitleIcon = true;
             this.Text = "启/禁用管理员";
             this.Load += new System.EventHandler(this.FrmAdminManager_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminList)).EndInit();

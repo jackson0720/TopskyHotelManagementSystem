@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("TS酒店管理系统")]
 [assembly: AssemblyDescription("一款为中小型酒店打造的管理系统！")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NF-TopSky小组&java-and-net")]
+[assembly: AssemblyCompany("易开元(EOM)")]
 [assembly: AssemblyProduct("TS酒店管理系统")]
-[assembly: AssemblyCopyright("Copyright ©  2018-2021 TopSky小组&java-and-net")]
+[assembly: AssemblyCopyright("Copyright ©  2018-2024 易开元(EOM)")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

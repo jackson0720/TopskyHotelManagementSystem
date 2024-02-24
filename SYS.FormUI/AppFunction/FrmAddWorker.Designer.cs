@@ -517,6 +517,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmAddWorker";
             this.ShowIcon = true;
+            this.ShowTitleIcon = true;
             this.Text = "添加员工";
             this.ButtonOkClick += new System.EventHandler(this.FrmAddWorker_ButtonOkClick);
             this.ButtonCancelClick += new System.EventHandler(this.FrmAddWorker_ButtonCancelClick);

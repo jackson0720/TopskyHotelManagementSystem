@@ -178,12 +178,6 @@
   <data name="人力资源部卡片" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\人力资源部卡片.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="添加  增加   加" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\添加  增加   加.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主页 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主页 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="picCommodity.Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\picCommodity.Image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -235,9 +229,6 @@
   <data name="锁屏" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\锁屏.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="minus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="切换账号" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\切换账号.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -265,9 +256,6 @@
   <data name="picExtend.ImagePress" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\picExtend.ImagePress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="获取用户编号" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\获取用户编号.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="转换" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icon\转换.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -277,14 +265,8 @@
   <data name="咖啡" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\咖啡.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="获取用户编号-ia" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\获取用户编号-ia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="uiButton1.BackgroundImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\uiButton1.BackgroundImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="上传照片" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\上传照片.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -322,28 +304,19 @@
   <data name="脏房icon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\脏房icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="增加 添加 加减 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\增加 添加 加减 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="导出 (4)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\导出 (4)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="可住房(hover)icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\可住房(hover)icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="复制" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\复制.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="修改" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\修改.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="修改a" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\修改a.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="检查更新 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\检查更新 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="系统管理员" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\系统管理员.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="修改" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\修改.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

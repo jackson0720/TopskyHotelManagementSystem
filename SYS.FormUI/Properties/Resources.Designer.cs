@@ -113,26 +113,6 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap minus {
-            get {
-                object obj = ResourceManager.GetObject("minus", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap minus__1_ {
-            get {
-                object obj = ResourceManager.GetObject("minus (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap picCommodity_Image {
             get {
                 object obj = ResourceManager.GetObject("picCommodity.Image", resourceCulture);
@@ -313,16 +293,6 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap 主页__1_ {
-            get {
-                object obj = ResourceManager.GetObject("主页 (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap 人力资源部卡片 {
             get {
                 object obj = ResourceManager.GetObject("人力资源部卡片", resourceCulture);
@@ -336,16 +306,6 @@ namespace SYS.FormUI.Properties {
         public static System.Drawing.Bitmap 修改 {
             get {
                 object obj = ResourceManager.GetObject("修改", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap 修改a {
-            get {
-                object obj = ResourceManager.GetObject("修改a", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -443,29 +403,9 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap 增加_添加_加减__1_ {
-            get {
-                object obj = ResourceManager.GetObject("增加 添加 加减 (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap 复制 {
             get {
                 object obj = ResourceManager.GetObject("复制", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap 导出__4_ {
-            get {
-                object obj = ResourceManager.GetObject("导出 (4)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -583,16 +523,6 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap 添加__增加___加 {
-            get {
-                object obj = ResourceManager.GetObject("添加  增加   加", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap 白金会员 {
             get {
                 object obj = ResourceManager.GetObject("白金会员", resourceCulture);
@@ -696,26 +626,6 @@ namespace SYS.FormUI.Properties {
         public static System.Drawing.Bitmap 脏房状态 {
             get {
                 object obj = ResourceManager.GetObject("脏房状态", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap 获取用户编号 {
-            get {
-                object obj = ResourceManager.GetObject("获取用户编号", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap 获取用户编号_ia {
-            get {
-                object obj = ResourceManager.GetObject("获取用户编号-ia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
