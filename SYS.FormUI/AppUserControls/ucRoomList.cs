@@ -291,35 +291,34 @@ namespace SYS.FormUI
             {
                 Dictionary<string, string> dic = new Dictionary<string, string>()
                 {
-                    { "CustoNo",lblCustoNo.Text.Trim() }
-                } ;
-                var result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", null, dic);
+                    { "no",lblRoomNo.Text.Trim() }
+                };
+                var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
 
                 Room r = HttpHelper.JsonToModel<Room>(result.message);
-                if (r.RoomStateId == 0)
+                switch (r.RoomStateId)
                 {
-                    rm_RoomNo = lblRoomNo.Text;
-                    FrmCheckIn frm = new FrmCheckIn();
-                    frm.Show();
+                    case 1:
+                        rm_CustoNo = lblCustoNo.Text;
+                        FrmSelectCustoInfo frmSelectCustoInfo = new FrmSelectCustoInfo();
+                        frmSelectCustoInfo.Show();
+                        break;
                 }
-                else
-                {
-                    return;
-                }
-
+            }
+            else if (lblCustoNo.Text.IsNullOrEmpty() && romCustoInfo.RoomStateId == 0)
+            {
+                rm_RoomNo = lblRoomNo.Text;
+                FrmCheckIn frm = new FrmCheckIn();
+                frm.Show();
             }
             else
             {
-                rm_CustoNo = lblCustoNo.Text;
-                rm_RoomNo = lblRoomNo.Text;
-                rm_RoomType = lblRoomType.Text;
-                FrmCheckOutForm frm = new FrmCheckOutForm();
-                frm.Show();
+                return;
             }
         }
         #endregion
