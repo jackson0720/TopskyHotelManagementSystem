@@ -1,12 +1,16 @@
-<h1 align="center"><img src="https://foruda.gitee.com/avatar/1677165732744604624/7158691_java-and-net_1677165732.png!avatar100" alt="组织logo.png" /></h1>
+<h1 align="center"><img src="https://foruda.gitee.com/avatar/1677165732744604624/7158691_java-and-net_1677165732.png!avatar100" alt="Organization Logo.png" /></h1>
 <h1 align="center">TopskyHotelManagerSystem</h1>
 <p align="center">
-	<a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/stargazers'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/star.svg?theme=dark' alt='star'></img></a>
-        <a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/fork'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/fork.svg?theme=dark' alt='fork'></img></a>
-        <a href='https://img.shields.io/travis/antvis/g2.svg'><img src="https://img.shields.io/travis/antvis/g2.svg" alt=""></img>
+	<a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/stargazers'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/star.svg?theme=white' alt='star'></img></a>
+        <a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/members'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/fork.svg?theme=white' alt='fork'></img></a>
         <a href='https://img.shields.io/badge/license-MIT-000000.svg'><img src="https://img.shields.io/badge/license-MIT-000000.svg" alt=""></img></a>
         <a href='https://img.shields.io/badge/language-C#-red.svg'><img src="https://img.shields.io/badge/language-CSharp-red.svg" alt=""></img></a>
 </p>
+<div align="center">
+	<p>中文文档 | <a href="./README.en.md">English Document</a></p>
+</div>
+
+
 
 #  :exclamation: 重要说明：
 
