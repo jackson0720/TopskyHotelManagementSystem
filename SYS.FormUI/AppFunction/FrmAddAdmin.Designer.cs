@@ -225,13 +225,13 @@ namespace SYS.FormUI
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAdminList.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvAdminList.RowHeadersVisible = false;
-            this.dgvAdminList.RowHeight = 29;
+            //this.dgvAdminList.RowHeight = 29;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             this.dgvAdminList.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvAdminList.RowTemplate.Height = 29;
             this.dgvAdminList.SelectedIndex = -1;
             this.dgvAdminList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAdminList.ShowGridLine = true;
+            //this.dgvAdminList.ShowGridLine = true;
             this.dgvAdminList.Size = new System.Drawing.Size(979, 386);
             this.dgvAdminList.TabIndex = 118;
             // 
@@ -350,6 +350,7 @@ namespace SYS.FormUI
             this.MinimizeBox = false;
             this.Name = "FrmAddAdmin";
             this.ShowIcon = true;
+            this.ShowTitleIcon = true;
             this.Text = "添加管理员";
             this.Load += new System.EventHandler(this.FrmAddAdmin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdminList)).EndInit();

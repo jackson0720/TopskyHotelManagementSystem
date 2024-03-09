@@ -61,6 +61,7 @@
             this.txtRoomNo.StyleCustomMode = true;
             this.txtRoomNo.TabIndex = 106;
             this.txtRoomNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRoomNo.Validated += new System.EventHandler(this.txtRoomNo_Validated);
             // 
             // label3
             // 
@@ -238,6 +239,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmAddRoom";
             this.ShowIcon = true;
+            this.ShowTitleIcon = true;
             this.Text = "新增客房";
             this.Load += new System.EventHandler(this.FrmAddRoom_Load);
             this.ResumeLayout(false);

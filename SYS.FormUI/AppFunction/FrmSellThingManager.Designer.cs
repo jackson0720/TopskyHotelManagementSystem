@@ -41,16 +41,6 @@
             this.btnUpdateSellthing = new Sunny.UI.UIButton();
             this.btnDeleteSellThing = new Sunny.UI.UIButton();
             this.dgvSellthing = new Sunny.UI.UIDataGridView();
-            this.txtStock = new Sunny.UI.UIDoubleUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtformat = new Sunny.UI.UITextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSellPrice = new Sunny.UI.UITextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSellName = new Sunny.UI.UITextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtSellNo = new Sunny.UI.UITextBox();
             this.clSellNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +51,16 @@
             this.clSellPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clFormat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtStock = new Sunny.UI.UIDoubleUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtformat = new Sunny.UI.UITextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSellPrice = new Sunny.UI.UITextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSellName = new Sunny.UI.UITextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtSellNo = new Sunny.UI.UITextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSellthing)).BeginInit();
             this.SuspendLayout();
             // 
@@ -198,20 +198,93 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvSellthing.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSellthing.RowHeadersVisible = false;
-            this.dgvSellthing.RowHeight = 29;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             this.dgvSellthing.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvSellthing.RowTemplate.Height = 29;
             this.dgvSellthing.SelectedIndex = -1;
             this.dgvSellthing.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSellthing.ShowGridLine = true;
             this.dgvSellthing.Size = new System.Drawing.Size(803, 538);
             this.dgvSellthing.TabIndex = 118;
             this.dgvSellthing.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSellthing_CellClick);
             // 
+            // clSellNo
+            // 
+            this.clSellNo.DataPropertyName = "SellNo";
+            this.clSellNo.HeaderText = "商品编号";
+            this.clSellNo.Name = "clSellNo";
+            this.clSellNo.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "delete_mk";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "datains_usr";
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "datains_date";
+            this.Column3.HeaderText = "Column3";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Visible = false;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "datachg_usr";
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Visible = false;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "datachg_date";
+            this.Column5.HeaderText = "Column5";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Visible = false;
+            // 
+            // clSellName
+            // 
+            this.clSellName.DataPropertyName = "SellName";
+            this.clSellName.HeaderText = "商品名称";
+            this.clSellName.Name = "clSellName";
+            this.clSellName.ReadOnly = true;
+            // 
+            // clSellPrice
+            // 
+            this.clSellPrice.DataPropertyName = "SellPriceStr";
+            this.clSellPrice.HeaderText = "价格(元)";
+            this.clSellPrice.Name = "clSellPrice";
+            this.clSellPrice.ReadOnly = true;
+            // 
+            // clFormat
+            // 
+            this.clFormat.DataPropertyName = "format";
+            this.clFormat.HeaderText = "规格";
+            this.clFormat.Name = "clFormat";
+            this.clFormat.ReadOnly = true;
+            // 
+            // clStock
+            // 
+            this.clStock.DataPropertyName = "Stock";
+            this.clStock.FillWeight = 60F;
+            this.clStock.HeaderText = "库存";
+            this.clStock.Name = "clStock";
+            this.clStock.ReadOnly = true;
+            // 
             // txtStock
             // 
-            this.txtStock.Decimal = 0;
             this.txtStock.Font = new System.Drawing.Font("微软雅黑", 15.75F);
             this.txtStock.Location = new System.Drawing.Point(825, 422);
             this.txtStock.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -356,82 +429,6 @@
             this.txtSellNo.TabIndex = 149;
             this.txtSellNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // clSellNo
-            // 
-            this.clSellNo.DataPropertyName = "SellNo";
-            this.clSellNo.HeaderText = "商品编号";
-            this.clSellNo.Name = "clSellNo";
-            this.clSellNo.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "delete_mk";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "datains_usr";
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "datains_date";
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Visible = false;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "datachg_usr";
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Visible = false;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "datachg_date";
-            this.Column5.HeaderText = "Column5";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Visible = false;
-            // 
-            // clSellName
-            // 
-            this.clSellName.DataPropertyName = "SellName";
-            this.clSellName.HeaderText = "商品名称";
-            this.clSellName.Name = "clSellName";
-            this.clSellName.ReadOnly = true;
-            // 
-            // clSellPrice
-            // 
-            this.clSellPrice.DataPropertyName = "SellPriceStr";
-            this.clSellPrice.HeaderText = "价格(元)";
-            this.clSellPrice.Name = "clSellPrice";
-            this.clSellPrice.ReadOnly = true;
-            // 
-            // clFormat
-            // 
-            this.clFormat.DataPropertyName = "format";
-            this.clFormat.HeaderText = "规格";
-            this.clFormat.Name = "clFormat";
-            this.clFormat.ReadOnly = true;
-            // 
-            // clStock
-            // 
-            this.clStock.DataPropertyName = "Stock";
-            this.clStock.FillWeight = 60F;
-            this.clStock.HeaderText = "库存";
-            this.clStock.Name = "clStock";
-            this.clStock.ReadOnly = true;
-            // 
             // FrmSellThingManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -461,6 +458,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmSellThingManager";
             this.ShowIcon = true;
+            this.ShowTitleIcon = true;
             this.Text = "商品管理";
             this.Load += new System.EventHandler(this.FrmSellThingManager_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSellthing)).EndInit();

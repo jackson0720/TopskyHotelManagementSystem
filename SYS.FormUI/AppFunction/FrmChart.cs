@@ -21,14 +21,10 @@
  *SOFTWARE.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using SYS.Application;
 using SYS.Common;
-using SYS.Core;
+using System;
 
 namespace SYS.FormUI
 {
@@ -64,7 +60,7 @@ namespace SYS.FormUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
+
         }
 
     }

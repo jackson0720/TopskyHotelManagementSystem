@@ -1,17 +1,10 @@
 ﻿
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using SYS.Application;
 using SYS.Common;
-using SYS.Core;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 using System.Windows.Forms;
 
 namespace SYS.FormUI
@@ -28,7 +21,12 @@ namespace SYS.FormUI
 
         protected override bool CheckData()
         {
-            return CheckEmpty(txtCustoName, "请输入姓名")
+            return CheckEmpty(txtCustoNo, "请输入客户ID")
+                   && CheckEmpty(txtCustoName, "请输入姓名")
+                   && CheckEmpty(cbCustoType, "请选择客户类型")
+                   && CheckEmpty(cbPassportType, "请选择证件类型")
+                   && CheckEmpty(cbSex, "请选择客户性别")
+                   && CheckEmpty(dtpBirthday, "请选择客户生日")
                    && CheckEmpty(txtCardID, "请输入证件号码")
                    && CheckEmpty(txtTel, "输入11位手机号码")
                    && CheckEmpty(txtCustoAdress, "请填写居住地址");
@@ -105,7 +103,7 @@ namespace SYS.FormUI
                     dtpBirthday.ReadOnly = false;
                     return;
                 }
-                
+
             }
         }
 
@@ -271,7 +269,7 @@ namespace SYS.FormUI
                         UIMessageBox.ShowError("请正确输入证件号码！");
                         return;
                     }
-                    finally 
+                    finally
                     {
                         cbPassportType.SelectedIndex = 0;
                     }

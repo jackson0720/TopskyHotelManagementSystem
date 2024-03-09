@@ -21,13 +21,12 @@
  *SOFTWARE.
  *
  */
+using EOM.TSHotelManager.Common.Core;
+using Sunny.UI;
+using SYS.Common;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Sunny.UI;
-using SYS.Application;
-using SYS.Common;
-using SYS.Core;
 
 namespace SYS.FormUI
 {
@@ -87,7 +86,7 @@ namespace SYS.FormUI
                 Record = AdminInfo.Account,
                 datachg_usr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Wti/UpdateWtiInfo",HttpHelper.ModelToJson(wti));
+            result = HttpHelper.Request("Wti/UpdateWtiInfo", HttpHelper.ModelToJson(wti));
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("UpdateWtiInfo+接口服务异常，请提交issue");
