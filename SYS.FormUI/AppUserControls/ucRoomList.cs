@@ -1,16 +1,15 @@
-﻿using System;
+﻿using EOM.TSHotelManager.Common.Core;
+using SqlSugar;
+using Sunny.UI;
+using SYS.Common;
+using SYS.FormUI.Properties;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using EOM.TSHotelManager.Common.Core;
-using SYS.FormUI.Properties;
-
-using Sunny.UI;
-using SYS.Common;
-using System.Collections.Generic;
-using SqlSugar;
 
 namespace SYS.FormUI
 {
@@ -162,7 +161,7 @@ namespace SYS.FormUI
             us_CustoSex = romRoomInfo.CustoSex == 1 ? "男" : "女";
             us_CustoTel = romRoomInfo.CustoTel;
             us_CustoID = romRoomInfo.CustoID;
-            us_CustoBirthday = romRoomInfo.CustoBirth == null? "":Convert.ToDateTime(romRoomInfo.CustoBirth).ToString();
+            us_CustoBirthday = romRoomInfo.CustoBirth == null ? "" : Convert.ToDateTime(romRoomInfo.CustoBirth).ToString();
             us_CustoPassportType = romRoomInfo.PassportType;
             us_CustoType = romRoomInfo.CustoType;
             us_CustoAddress = romRoomInfo.CustoAdress;
@@ -184,7 +183,7 @@ namespace SYS.FormUI
                     BackgroundImage = Resources.预约状态;
                     break;
             }
-            
+
         }
         #endregion
 
@@ -193,7 +192,7 @@ namespace SYS.FormUI
         {
             Dictionary<string, string> room = new Dictionary<string, string>();
             room.Add("no", lblRoomNo.Text);
-            var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null,room);
+            var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, room);
 
             if (result.statusCode != 200)
             {
