@@ -59,22 +59,22 @@ namespace SYS.FormUI
             // 
             this.dgvNoticeList.FillColor = System.Drawing.Color.White;
             this.dgvNoticeList.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.dgvNoticeList.FormatString = "";
+            this.dgvNoticeList.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
             this.dgvNoticeList.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.dgvNoticeList.Location = new System.Drawing.Point(4, 84);
             this.dgvNoticeList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvNoticeList.MinimumSize = new System.Drawing.Size(1, 1);
             this.dgvNoticeList.Name = "dgvNoticeList";
             this.dgvNoticeList.Padding = new System.Windows.Forms.Padding(2);
+            this.dgvNoticeList.ShowText = false;
             this.dgvNoticeList.Size = new System.Drawing.Size(195, 534);
             this.dgvNoticeList.TabIndex = 113;
             this.dgvNoticeList.Text = "uiListBox1";
-            //this.dgvNoticeList.ItemClick += new System.EventHandler(this.dgvNoticeList_ItemClick);
+            this.dgvNoticeList.Click += new System.EventHandler(this.dgvNoticeList_ItemClick);
             // 
             // FrmNotice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1005, 623);
             this.ControlBox = false;
             this.Controls.Add(this.dgvNoticeList);
@@ -84,9 +84,9 @@ namespace SYS.FormUI
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmNotice";
-            this.ShowIcon = true;
             this.ShowTitleIcon = true;
             this.Text = "历史公告";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1005, 623);
             this.Load += new System.EventHandler(this.FrmNotice_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

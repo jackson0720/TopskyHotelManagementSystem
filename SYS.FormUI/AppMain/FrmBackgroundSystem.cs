@@ -186,6 +186,13 @@ namespace SYS.FormUI
                         pnlForm.Controls.Add(frmAddRoom);
                         frmAddRoom.Show();
                         break;
+                    case "客房配置":
+                        pnlForm.Controls.Clear();
+                        FrmRoomConfig frmRoomConfig = new FrmRoomConfig();
+                        frmRoomConfig.TopLevel = false;
+                        pnlForm.Controls.Add(frmRoomConfig);
+                        frmRoomConfig.Show();
+                        break;
                     case "客户管理":
                         break;
                     case "会员等级规则":
@@ -382,8 +389,9 @@ namespace SYS.FormUI
 
         private void tsmiMySpace_Click(object sender, EventArgs e)
         {
-            //FrmMySpace frmMySpace = new FrmMySpace();
-            //frmMySpace.ShowDialog();
+            FrmMySpace frmMySpace = new FrmMySpace();
+            frmMySpace.Text = AdminInfo.Name + "的个人中心";
+            frmMySpace.ShowDialog();
         }
 
         private void FrmBackgroundSystem_FormClosing(object sender, FormClosingEventArgs e)

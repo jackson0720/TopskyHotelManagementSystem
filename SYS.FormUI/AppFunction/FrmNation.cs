@@ -132,6 +132,7 @@ namespace SYS.FormUI
             {
                 nation_no = txtNationNo.Text.Trim(),
                 nation_name = txtNationName.Text.Trim(),
+                delete_mk = 1,
                 datachg_usr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/DelNation", HttpHelper.ModelToJson(nat));
@@ -141,6 +142,7 @@ namespace SYS.FormUI
                 return;
             }
             UIMessageTip.ShowOk("删除成功！");
+            ReloadNationList();
             return;
         }
 
@@ -176,6 +178,7 @@ namespace SYS.FormUI
                 UIMessageTip.ShowError("UpdNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
+            ReloadNationList();
         }
     }
 }

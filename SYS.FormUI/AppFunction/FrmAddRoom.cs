@@ -103,7 +103,11 @@ namespace SYS.FormUI
         private void FrmAddRoom_Load(object sender, EventArgs e)
         {
             LoadRoom();
-            result = HttpHelper.Request("RoomType/SelectRoomTypesAll");
+            dic = new Dictionary<string, string>
+            {
+                { "isDelete","0"}
+            };
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll",null, dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");

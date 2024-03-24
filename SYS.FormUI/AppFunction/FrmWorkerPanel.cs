@@ -35,7 +35,7 @@ namespace SYS.FormUI
     /// <summary>
     /// 员工操作界面
     /// </summary>
-    public partial class FrmChangeWorker : Form
+    public partial class FrmWorkerPanel : Form
     {
         public static string wk_WorkerNo;
         public static string wk_WorkerName;
@@ -53,7 +53,7 @@ namespace SYS.FormUI
         public static string wk_WorkerEducation;
         public static string wk_WorkerStatus;
 
-        public FrmChangeWorker()
+        public FrmWorkerPanel()
         {
             InitializeComponent();
         }
@@ -219,7 +219,7 @@ namespace SYS.FormUI
 
         private void btnWatchInfo_Click(object sender, EventArgs e)
         {
-            FrmAddWorker aff = new FrmAddWorker();
+            FrmWorkerInfo aff = new FrmWorkerInfo();
             aff.Text = "员工信息查看页";
             aff.ShowDialog();
         }
@@ -249,7 +249,7 @@ namespace SYS.FormUI
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            FrmAddWorker frmAddWorker = new FrmAddWorker();
+            FrmWorkerInfo frmAddWorker = new FrmWorkerInfo();
             frmAddWorker.Text = "员工信息修改页";
             frmAddWorker.Show();
         }

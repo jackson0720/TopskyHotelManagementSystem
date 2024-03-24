@@ -42,10 +42,10 @@ namespace SYS.FormUI
 
         private void FrmWorkerCheckInfo_Load(object sender, EventArgs e)
         {
-            lblWorkerInfo.Text = "以下为员工：" + FrmChangeWorker.wk_WorkerNo + "-员工姓名：" + FrmChangeWorker.wk_WorkerName + "的所有打卡考勤记录:";
+            lblWorkerInfo.Text = "以下为员工：" + FrmWorkerPanel.wk_WorkerNo + "-员工姓名：" + FrmWorkerPanel.wk_WorkerName + "的所有打卡考勤记录:";
             dic = new Dictionary<string, string>()
             {
-                { "wid",FrmChangeWorker.wk_WorkerNo}
+                { "wid",FrmWorkerPanel.wk_WorkerNo}
             };
             result = HttpHelper.Request("WorkerCheck/SelectCheckInfoByWorkerNo", null, dic);
             if (result.statusCode != 200)
