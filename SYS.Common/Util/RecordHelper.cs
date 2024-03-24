@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EOM.TSHotelManager.Common.Core;
+using System;
 
 namespace SYS.Common
 {
@@ -15,7 +16,7 @@ namespace SYS.Common
         public static void Record(string operationLog, int level)
         {
             string api = "App/AddLog";
-            var logDetail = new Temp_OperationLog
+            var logDetail = new OperationLog
             {
                 OperationTime = DateTime.Now,
                 LogContent = operationLog,

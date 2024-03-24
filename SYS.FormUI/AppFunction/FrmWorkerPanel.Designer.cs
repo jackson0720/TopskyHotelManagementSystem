@@ -1,6 +1,6 @@
 ﻿namespace SYS.FormUI
 {
-    partial class FrmChangeWorker
+    partial class FrmWorkerPanel
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChangeWorker));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkerPanel));
             this.lblWorker = new System.Windows.Forms.Label();
             this.btnWatchInfo = new Sunny.UI.UIButton();
             this.btnUpWorker = new Sunny.UI.UIButton();

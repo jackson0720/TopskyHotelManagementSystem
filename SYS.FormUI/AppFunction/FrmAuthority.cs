@@ -103,7 +103,8 @@ namespace SYS.FormUI
             {
                 { "AdminAccount",txtAccount.Text.Trim() }
             };
-            result = HttpHelper.Request("Module/GetAllModuleByAdmin", null, dic);
+            var admin = new Admin { AdminAccount = txtAccount.Text.Trim() };
+            result = HttpHelper.Request("Module/GetAllModuleByAdmin", HttpHelper.ModelToJson(admin), null);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("GetAllModuleByAdmin+接口服务异常，请提交Issue或尝试更新版本！");

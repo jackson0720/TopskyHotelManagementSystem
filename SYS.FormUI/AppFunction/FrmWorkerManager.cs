@@ -104,7 +104,7 @@ namespace SYS.FormUI
                 wk_WorkerEducation = dgvWorkerList.SelectedRows[0].Cells["clWorkerEducation"].Value.ToString();
                 wk_WorkerNation = dgvWorkerList.SelectedRows[0].Cells["clWorkerNation"].Value.ToString();
                 wk_WorkerStatus = dgvWorkerList.SelectedRows[0].Cells["Column1"].Value.ToString();
-                FrmChangeWorker aff = new FrmChangeWorker();
+                FrmWorkerPanel aff = new FrmWorkerPanel();
                 aff.ShowDialog();
 
             }
@@ -114,7 +114,7 @@ namespace SYS.FormUI
 
         private void btnAddWorker_Click(object sender, EventArgs e)
         {
-            FrmAddWorker frm = new FrmAddWorker();
+            FrmWorkerInfo frm = new FrmWorkerInfo();
             frm.Show();
         }
 

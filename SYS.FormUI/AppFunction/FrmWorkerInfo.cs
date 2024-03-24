@@ -32,9 +32,9 @@ using System.Windows.Forms;
 
 namespace SYS.FormUI
 {
-    public partial class FrmAddWorker : UIEditForm
+    public partial class FrmWorkerInfo : UIEditForm
     {
-        public FrmAddWorker()
+        public FrmWorkerInfo()
         {
             InitializeComponent();
         }
@@ -133,30 +133,30 @@ namespace SYS.FormUI
                 }
                 btnOK.Visible = false;
                 btnCancel.Visible = false;
-                WorkerNo.Text = FrmChangeWorker.wk_WorkerNo;
-                WorkerName.Text = FrmChangeWorker.wk_WorkerName;
-                cboSex.Text = FrmChangeWorker.wk_WorkerSex;
-                cboWorkerPosition.Text = FrmChangeWorker.wk_WorkerPosition;
-                cboWorkerFace.Text = FrmChangeWorker.wk_WorkerFace;
-                cbWorkerNation.Text = FrmChangeWorker.wk_WorkerNation;
-                dtpBirthday.Value = Convert.ToDateTime(FrmChangeWorker.wk_WorkerBirthday);
-                dtpTime.Value = Convert.ToDateTime(FrmChangeWorker.wk_WorkerTime);
-                WorkerID.Text = FrmChangeWorker.wk_WorkerID;
-                txtAddress.Text = FrmChangeWorker.wk_WorkerAddress;
-                WorkerTel.Text = FrmChangeWorker.wk_WorkerTel;
-                cboEducation.Text = FrmChangeWorker.wk_WorkerEducation;
-                cboClub.Text = FrmChangeWorker.wk_WorkerClub;
+                WorkerNo.Text = FrmWorkerPanel.wk_WorkerNo;
+                WorkerName.Text = FrmWorkerPanel.wk_WorkerName;
+                cboSex.Text = FrmWorkerPanel.wk_WorkerSex;
+                cboWorkerPosition.Text = FrmWorkerPanel.wk_WorkerPosition;
+                cboWorkerFace.Text = FrmWorkerPanel.wk_WorkerFace;
+                cbWorkerNation.Text = FrmWorkerPanel.wk_WorkerNation;
+                dtpBirthday.Value = Convert.ToDateTime(FrmWorkerPanel.wk_WorkerBirthday);
+                dtpTime.Value = Convert.ToDateTime(FrmWorkerPanel.wk_WorkerTime);
+                WorkerID.Text = FrmWorkerPanel.wk_WorkerID;
+                txtAddress.Text = FrmWorkerPanel.wk_WorkerAddress;
+                WorkerTel.Text = FrmWorkerPanel.wk_WorkerTel;
+                cboEducation.Text = FrmWorkerPanel.wk_WorkerEducation;
+                cboClub.Text = FrmWorkerPanel.wk_WorkerClub;
 
                 dic = new Dictionary<string, string>
                 {
                     { "WorkerId", WorkerNo.Text.Trim() }
                 };
                 result = HttpHelper.Request("WorkerPicture/WorkerPic", null, dic);
-                //if (result.statusCode != 200)
-                //{
-                //    UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
-                //    return;
-                //}
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
                 var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
                 if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.Pic))
                 {
@@ -209,19 +209,19 @@ namespace SYS.FormUI
                 bool dr = UIMessageBox.Show("修改操作仅能修改姓名、性别、电话号码、联系地址、民族、面貌以及最高学历，以上是否知晓？点击确定继续进行修改！", "修改提醒", UIStyle.Orange, UIMessageBoxButtons.OKCancel);
                 if (dr)
                 {
-                    WorkerNo.Text = FrmChangeWorker.wk_WorkerNo;
-                    WorkerName.Text = FrmChangeWorker.wk_WorkerName;
-                    cboSex.Text = FrmChangeWorker.wk_WorkerSex;
-                    cboWorkerPosition.Text = FrmChangeWorker.wk_WorkerPosition;
-                    cboWorkerFace.Text = FrmChangeWorker.wk_WorkerFace;
-                    cbWorkerNation.Text = FrmChangeWorker.wk_WorkerNation;
-                    dtpBirthday.Value = Convert.ToDateTime(FrmChangeWorker.wk_WorkerBirthday);
-                    dtpTime.Value = Convert.ToDateTime(FrmChangeWorker.wk_WorkerTime);
-                    WorkerID.Text = FrmChangeWorker.wk_WorkerID;
-                    txtAddress.Text = FrmChangeWorker.wk_WorkerAddress;
-                    WorkerTel.Text = FrmChangeWorker.wk_WorkerTel;
-                    cboEducation.Text = FrmChangeWorker.wk_WorkerEducation;
-                    cboClub.Text = FrmChangeWorker.wk_WorkerClub;
+                    WorkerNo.Text = FrmWorkerPanel.wk_WorkerNo;
+                    WorkerName.Text = FrmWorkerPanel.wk_WorkerName;
+                    cboSex.Text = FrmWorkerPanel.wk_WorkerSex;
+                    cboWorkerPosition.Text = FrmWorkerPanel.wk_WorkerPosition;
+                    cboWorkerFace.Text = FrmWorkerPanel.wk_WorkerFace;
+                    cbWorkerNation.Text = FrmWorkerPanel.wk_WorkerNation;
+                    dtpBirthday.Value = Convert.ToDateTime(FrmWorkerPanel.wk_WorkerBirthday);
+                    dtpTime.Value = Convert.ToDateTime(FrmWorkerPanel.wk_WorkerTime);
+                    WorkerID.Text = FrmWorkerPanel.wk_WorkerID;
+                    txtAddress.Text = FrmWorkerPanel.wk_WorkerAddress;
+                    WorkerTel.Text = FrmWorkerPanel.wk_WorkerTel;
+                    cboEducation.Text = FrmWorkerPanel.wk_WorkerEducation;
+                    cboClub.Text = FrmWorkerPanel.wk_WorkerClub;
 
                     dic = new Dictionary<string, string>();
                     dic.Add("WorkerId", WorkerNo.Text.Trim());

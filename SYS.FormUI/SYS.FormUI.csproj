@@ -238,6 +238,12 @@
     <Compile Include="AppFunction\FrmPosition.Designer.cs">
       <DependentUpon>FrmPosition.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppFunction\FrmRoomConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppFunction\FrmRoomConfig.Designer.cs">
+      <DependentUpon>FrmRoomConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="AppFunction\FrmRoomMap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,11 +304,11 @@
     <Compile Include="AppFunction\FrmAddRoom.Designer.cs">
       <DependentUpon>FrmAddRoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppFunction\FrmAddWorker.cs">
+    <Compile Include="AppFunction\FrmWorkerInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppFunction\FrmAddWorker.Designer.cs">
-      <DependentUpon>FrmAddWorker.cs</DependentUpon>
+    <Compile Include="AppFunction\FrmWorkerInfo.Designer.cs">
+      <DependentUpon>FrmWorkerInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="AppInterface\FrmAdminEnter.cs">
       <SubType>Form</SubType>
@@ -334,11 +340,11 @@
     <Compile Include="AppFunction\FrmChangeRoom.Designer.cs">
       <DependentUpon>FrmChangeRoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppFunction\FrmChangeWorker.cs">
+    <Compile Include="AppFunction\FrmWorkerPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppFunction\FrmChangeWorker.Designer.cs">
-      <DependentUpon>FrmChangeWorker.cs</DependentUpon>
+    <Compile Include="AppFunction\FrmWorkerPanel.Designer.cs">
+      <DependentUpon>FrmWorkerPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="AppFunction\FrmCheckIn.cs">
       <SubType>Form</SubType>
@@ -510,6 +516,9 @@
     <EmbeddedResource Include="AppFunction\FrmPleaseWait.resx">
       <DependentUpon>FrmPleaseWait.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AppFunction\FrmRoomConfig.resx">
+      <DependentUpon>FrmRoomConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AppFunction\FrmVipRule.resx">
       <DependentUpon>FrmVipRule.cs</DependentUpon>
     </EmbeddedResource>
@@ -529,8 +538,8 @@
     <EmbeddedResource Include="AppFunction\FrmAddRoom.resx">
       <DependentUpon>FrmAddRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppFunction\FrmAddWorker.resx">
-      <DependentUpon>FrmAddWorker.cs</DependentUpon>
+    <EmbeddedResource Include="AppFunction\FrmWorkerInfo.resx">
+      <DependentUpon>FrmWorkerInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppFunction\FrmDepartment.resx">
       <DependentUpon>FrmDepartment.cs</DependentUpon>
@@ -568,8 +577,8 @@
     <EmbeddedResource Include="AppFunction\FrmChangeRoom.resx">
       <DependentUpon>FrmChangeRoom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppFunction\FrmChangeWorker.resx">
-      <DependentUpon>FrmChangeWorker.cs</DependentUpon>
+    <EmbeddedResource Include="AppFunction\FrmWorkerPanel.resx">
+      <DependentUpon>FrmWorkerPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppFunction\FrmCheckIn.resx">
       <DependentUpon>FrmCheckIn.cs</DependentUpon>
@@ -737,6 +746,7 @@
     <Content Include="images\lock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\lockicon.png" />
     <Content Include="images\settings2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -991,6 +1001,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EOM.TSHotelManager.Common.Util\EOM.TSHotelManager.Common.Util.csproj">
+      <Project>{3de4537c-6637-4d8d-9728-c923ea0b8b13}</Project>
+      <Name>EOM.TSHotelManager.Common.Util</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SYS.Common\SYS.Common.csproj">
       <Project>{65501AF6-C629-448A-847E-1BCD60665865}</Project>
       <Name>SYS.Common</Name>

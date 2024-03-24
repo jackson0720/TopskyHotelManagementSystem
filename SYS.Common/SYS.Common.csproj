@@ -146,7 +146,6 @@
     <Compile Include="HttpHelper\HttpHelper.cs" />
     <Compile Include="LocalInfo\LoginInfo.cs" />
     <Compile Include="Util\ExportHelper.cs" />
-    <Compile Include="Util\Temp_OperationLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\RecordHelper.cs" />
     <Compile Include="HttpHelper\ResponseMsg.cs" />
