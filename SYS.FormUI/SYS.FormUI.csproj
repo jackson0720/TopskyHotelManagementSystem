@@ -1001,10 +1001,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EOM.TSHotelManager.Common.Util\EOM.TSHotelManager.Common.Util.csproj">
-      <Project>{3de4537c-6637-4d8d-9728-c923ea0b8b13}</Project>
-      <Name>EOM.TSHotelManager.Common.Util</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SYS.Common\SYS.Common.csproj">
       <Project>{65501AF6-C629-448A-847E-1BCD60665865}</Project>
       <Name>SYS.Common</Name>
