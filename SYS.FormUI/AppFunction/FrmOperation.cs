@@ -41,14 +41,46 @@ namespace SYS.FormUI
 
         private void FrmOperation_Load(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("App/SelectOperationlogAll");
+            this.btnPg.PageSize = 15;
+            LoadOperationLog();
+        }
+
+        private void LoadOperationLog()
+        {
+            dic = new Dictionary<string, string>()
+            {
+                { "pageIndex","1"},
+                { "pageSize","15"}
+            };
+            result = HttpHelper.Request("App/SelectOperationlogAll", null, dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            dgvOperationlog.AutoGenerateColumns = false;
-            dgvOperationlog.DataSource = HttpHelper.JsonToList<OperationLog>(result.message);
+            OSelectAllDto<OperationLog> custos = HttpHelper.JsonToModel<OSelectAllDto<OperationLog>>(result.message);
+            this.btnPg.TotalCount = custos.total;
+            this.dgvOperationlog.AutoGenerateColumns = false;
+            this.dgvOperationlog.DataSource = custos.listSource;
+        }
+
+        private void btnPg_PageChanged(object sender, object pagingSource, int pageIndex, int count)
+        {
+            dic = new Dictionary<string, string>()
+            {
+                { "pageIndex",pageIndex.ToString()},
+                { "pageSize",count.ToString()}
+            };
+            result = HttpHelper.Request("App/SelectOperationlogAll", null, dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            OSelectAllDto<OperationLog> custos = HttpHelper.JsonToModel<OSelectAllDto<OperationLog>>(result.message);
+            this.btnPg.TotalCount = custos.total;
+            this.dgvOperationlog.AutoGenerateColumns = false;
+            this.dgvOperationlog.DataSource = custos.listSource;
         }
     }
 }

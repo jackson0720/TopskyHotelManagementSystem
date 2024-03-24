@@ -74,7 +74,7 @@ namespace SYS.FormUI
                 UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
+            OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
             btnPg.TotalCount = custos.total;
             this.dgvCustomerList.AutoGenerateColumns = false;
             this.dgvCustomerList.DataSource = custos.listSource;
@@ -118,7 +118,7 @@ namespace SYS.FormUI
             else
             {
                 result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=15");
-                var listSource = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
+                var listSource = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
                 custos = listSource.listSource;
             }
             dgvCustomerList.DataSource = custos;
@@ -178,7 +178,7 @@ namespace SYS.FormUI
                 UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            OSelectCustoAllDto custos = HttpHelper.JsonToModel<OSelectCustoAllDto>(result.message);
+            OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
             this.btnPg.TotalCount = custos.total;
             this.dgvCustomerList.AutoGenerateColumns = false;
             this.dgvCustomerList.DataSource = custos.listSource;

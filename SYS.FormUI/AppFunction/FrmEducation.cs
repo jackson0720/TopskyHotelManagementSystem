@@ -122,6 +122,7 @@ namespace SYS.FormUI
                 UIMessageTip.ShowError("UpdEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
                 return;
             }
+            ReloadEducationList();
         }
 
         private void btnDeleteEducation_Click(object sender, EventArgs e)
@@ -135,6 +136,7 @@ namespace SYS.FormUI
             {
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
+                delete_mk = 1,
                 datachg_usr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/DelEducation", HttpHelper.ModelToJson(edu));
@@ -144,6 +146,7 @@ namespace SYS.FormUI
                 return;
             }
             UIMessageTip.ShowOk("删除成功！");
+            ReloadEducationList();
             return;
         }
 

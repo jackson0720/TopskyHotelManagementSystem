@@ -46,6 +46,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clOperationLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnPg = new Sunny.UI.UIPagination();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperationlog)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,6 +114,7 @@
             this.dgvOperationlog.SelectedIndex = -1;
             this.dgvOperationlog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvOperationlog.Size = new System.Drawing.Size(998, 522);
+            this.dgvOperationlog.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.dgvOperationlog.TabIndex = 1;
             // 
             // clOperationTime
@@ -209,21 +211,38 @@
             this.Column6.ReadOnly = true;
             this.Column6.Visible = false;
             // 
+            // btnPg
+            // 
+            this.btnPg.ButtonInterval = 5;
+            this.btnPg.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.btnPg.Location = new System.Drawing.Point(4, 575);
+            this.btnPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPg.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnPg.Name = "btnPg";
+            this.btnPg.PageSize = 15;
+            this.btnPg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            this.btnPg.ShowText = false;
+            this.btnPg.Size = new System.Drawing.Size(997, 34);
+            this.btnPg.TabIndex = 121;
+            this.btnPg.Text = null;
+            this.btnPg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnPg.PageChanged += new Sunny.UI.UIPagination.OnPageChangeEventHandler(this.btnPg_PageChanged);
+            // 
             // FrmOperation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1005, 623);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPg);
             this.Controls.Add(this.dgvOperationlog);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmOperation";
-            this.ShowIcon = true;
             this.ShowTitleIcon = true;
             this.Text = "员工操作日志";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1005, 623);
             this.Load += new System.EventHandler(this.FrmOperation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOperationlog)).EndInit();
             this.ResumeLayout(false);
@@ -244,5 +263,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn clOperationLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private Sunny.UI.UIPagination btnPg;
     }
 }

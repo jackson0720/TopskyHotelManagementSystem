@@ -45,10 +45,10 @@ namespace SYS.FormUI
 
         private void FrmChangePosition_Load(object sender, EventArgs e)
         {
-            txtworkerId.Text = FrmChangeWorker.wk_WorkerNo;
-            txtworkerName.Text = FrmChangeWorker.wk_WorkerName;
-            txtClub.Text = FrmChangeWorker.wk_WorkerClub;
-            txtPosition.Text = FrmChangeWorker.wk_WorkerPosition;
+            txtworkerId.Text = FrmWorkerPanel.wk_WorkerNo;
+            txtworkerName.Text = FrmWorkerPanel.wk_WorkerName;
+            txtClub.Text = FrmWorkerPanel.wk_WorkerClub;
+            txtPosition.Text = FrmWorkerPanel.wk_WorkerPosition;
             //获取所有职位信息
             dic = new Dictionary<string, string>()
             {
@@ -77,12 +77,12 @@ namespace SYS.FormUI
 
         private void cboNewClub_TextChanged(object sender, EventArgs e)
         {
-            this.Text = "将" + FrmChangeWorker.wk_WorkerClub + "：" + FrmChangeWorker.wk_WorkerName + "任命为：" + cboNewClub.Text + "的" + cboNewPosition.Text + "";
+            this.Text = "将" + FrmWorkerPanel.wk_WorkerClub + "：" + FrmWorkerPanel.wk_WorkerName + "任命为：" + cboNewClub.Text + "的" + cboNewPosition.Text + "";
         }
 
         private void cboNewPosition_TextChanged(object sender, EventArgs e)
         {
-            this.Text = "将" + FrmChangeWorker.wk_WorkerClub + "：" + FrmChangeWorker.wk_WorkerName + "任命为：" + cboNewClub.Text + "的" + cboNewPosition.Text + "";
+            this.Text = "将" + FrmWorkerPanel.wk_WorkerClub + "：" + FrmWorkerPanel.wk_WorkerName + "任命为：" + cboNewClub.Text + "的" + cboNewPosition.Text + "";
 
         }
 

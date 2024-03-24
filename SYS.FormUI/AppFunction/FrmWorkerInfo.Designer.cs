@@ -1,6 +1,6 @@
 ﻿namespace SYS.FormUI
 {
-    partial class FrmAddWorker
+    partial class FrmWorkerInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAddWorker));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWorkerInfo));
             this.label15 = new System.Windows.Forms.Label();
             this.cboSex = new Sunny.UI.UIComboBox();
             this.WorkerNo = new Sunny.UI.UITextBox();
@@ -94,6 +94,8 @@
             this.cboSex.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboSex.FillColor = System.Drawing.Color.White;
             this.cboSex.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.cboSex.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboSex.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboSex.Location = new System.Drawing.Point(120, 151);
             this.cboSex.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboSex.MinimumSize = new System.Drawing.Size(63, 0);
@@ -101,28 +103,29 @@
             this.cboSex.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboSex.Radius = 20;
             this.cboSex.Size = new System.Drawing.Size(166, 35);
+            this.cboSex.SymbolSize = 24;
             this.cboSex.TabIndex = 113;
             this.cboSex.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboSex.Watermark = "";
             // 
             // WorkerNo
             // 
             this.WorkerNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.WorkerNo.FillColor = System.Drawing.Color.White;
             this.WorkerNo.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.WorkerNo.Location = new System.Drawing.Point(120, 45);
             this.WorkerNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.WorkerNo.Maximum = 2147483647D;
-            this.WorkerNo.Minimum = -2147483648D;
             this.WorkerNo.MinimumSize = new System.Drawing.Size(1, 1);
             this.WorkerNo.Name = "WorkerNo";
             this.WorkerNo.Padding = new System.Windows.Forms.Padding(5);
             this.WorkerNo.Radius = 20;
             this.WorkerNo.ReadOnly = true;
+            this.WorkerNo.ShowText = false;
             this.WorkerNo.Size = new System.Drawing.Size(166, 35);
             this.WorkerNo.Style = Sunny.UI.UIStyle.Custom;
             this.WorkerNo.StyleCustomMode = true;
             this.WorkerNo.TabIndex = 111;
             this.WorkerNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.WorkerNo.Watermark = "";
             // 
             // dtpBirthday
             // 
@@ -139,10 +142,12 @@
             this.dtpBirthday.Size = new System.Drawing.Size(166, 31);
             this.dtpBirthday.SymbolDropDown = 61555;
             this.dtpBirthday.SymbolNormal = 61555;
+            this.dtpBirthday.SymbolSize = 24;
             this.dtpBirthday.TabIndex = 110;
             this.dtpBirthday.Text = "2020-11-24";
             this.dtpBirthday.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.dtpBirthday.Value = new System.DateTime(2020, 11, 24, 22, 50, 36, 791);
+            this.dtpBirthday.Watermark = "";
             // 
             // label13
             // 
@@ -190,6 +195,8 @@
             this.cboWorkerPosition.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboWorkerPosition.FillColor = System.Drawing.Color.White;
             this.cboWorkerPosition.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.cboWorkerPosition.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboWorkerPosition.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboWorkerPosition.Location = new System.Drawing.Point(433, 151);
             this.cboWorkerPosition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboWorkerPosition.MinimumSize = new System.Drawing.Size(63, 0);
@@ -197,27 +204,28 @@
             this.cboWorkerPosition.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboWorkerPosition.Radius = 20;
             this.cboWorkerPosition.Size = new System.Drawing.Size(178, 35);
+            this.cboWorkerPosition.SymbolSize = 24;
             this.cboWorkerPosition.TabIndex = 121;
             this.cboWorkerPosition.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboWorkerPosition.Watermark = "";
             // 
             // WorkerName
             // 
             this.WorkerName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.WorkerName.FillColor = System.Drawing.Color.White;
             this.WorkerName.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.WorkerName.Location = new System.Drawing.Point(433, 45);
             this.WorkerName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.WorkerName.Maximum = 2147483647D;
-            this.WorkerName.Minimum = -2147483648D;
             this.WorkerName.MinimumSize = new System.Drawing.Size(1, 1);
             this.WorkerName.Name = "WorkerName";
             this.WorkerName.Padding = new System.Windows.Forms.Padding(5);
             this.WorkerName.Radius = 20;
+            this.WorkerName.ShowText = false;
             this.WorkerName.Size = new System.Drawing.Size(178, 35);
             this.WorkerName.Style = Sunny.UI.UIStyle.Custom;
             this.WorkerName.StyleCustomMode = true;
             this.WorkerName.TabIndex = 119;
             this.WorkerName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.WorkerName.Watermark = "";
             // 
             // dtpTime
             // 
@@ -235,10 +243,12 @@
             this.dtpTime.Size = new System.Drawing.Size(166, 31);
             this.dtpTime.SymbolDropDown = 61555;
             this.dtpTime.SymbolNormal = 61555;
+            this.dtpTime.SymbolSize = 24;
             this.dtpTime.TabIndex = 118;
             this.dtpTime.Text = "2020-11-24";
             this.dtpTime.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.dtpTime.Value = new System.DateTime(2020, 11, 24, 22, 50, 36, 791);
+            this.dtpTime.Watermark = "";
             // 
             // label19
             // 
@@ -286,6 +296,8 @@
             this.cboClub.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboClub.FillColor = System.Drawing.Color.White;
             this.cboClub.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.cboClub.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboClub.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboClub.Location = new System.Drawing.Point(433, 204);
             this.cboClub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboClub.MinimumSize = new System.Drawing.Size(63, 0);
@@ -293,8 +305,10 @@
             this.cboClub.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboClub.Radius = 20;
             this.cboClub.Size = new System.Drawing.Size(178, 35);
+            this.cboClub.SymbolSize = 24;
             this.cboClub.TabIndex = 123;
             this.cboClub.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboClub.Watermark = "";
             // 
             // label23
             // 
@@ -312,6 +326,8 @@
             this.cboEducation.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboEducation.FillColor = System.Drawing.Color.White;
             this.cboEducation.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.cboEducation.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboEducation.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboEducation.Location = new System.Drawing.Point(433, 257);
             this.cboEducation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboEducation.MinimumSize = new System.Drawing.Size(63, 0);
@@ -319,8 +335,10 @@
             this.cboEducation.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboEducation.Radius = 20;
             this.cboEducation.Size = new System.Drawing.Size(338, 35);
+            this.cboEducation.SymbolSize = 24;
             this.cboEducation.TabIndex = 125;
             this.cboEducation.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboEducation.Watermark = "";
             // 
             // label24
             // 
@@ -335,21 +353,20 @@
             // txtAddress
             // 
             this.txtAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAddress.FillColor = System.Drawing.Color.White;
             this.txtAddress.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtAddress.Location = new System.Drawing.Point(120, 310);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtAddress.Maximum = 2147483647D;
-            this.txtAddress.Minimum = -2147483648D;
             this.txtAddress.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Padding = new System.Windows.Forms.Padding(5);
             this.txtAddress.Radius = 20;
+            this.txtAddress.ShowText = false;
             this.txtAddress.Size = new System.Drawing.Size(651, 35);
             this.txtAddress.Style = Sunny.UI.UIStyle.Custom;
             this.txtAddress.StyleCustomMode = true;
             this.txtAddress.TabIndex = 127;
             this.txtAddress.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtAddress.Watermark = "";
             // 
             // label25
             // 
@@ -364,21 +381,20 @@
             // WorkerID
             // 
             this.WorkerID.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.WorkerID.FillColor = System.Drawing.Color.White;
             this.WorkerID.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.WorkerID.Location = new System.Drawing.Point(120, 363);
             this.WorkerID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.WorkerID.Maximum = 2147483647D;
-            this.WorkerID.Minimum = -2147483648D;
             this.WorkerID.MinimumSize = new System.Drawing.Size(1, 1);
             this.WorkerID.Name = "WorkerID";
             this.WorkerID.Padding = new System.Windows.Forms.Padding(5);
             this.WorkerID.Radius = 20;
+            this.WorkerID.ShowText = false;
             this.WorkerID.Size = new System.Drawing.Size(651, 35);
             this.WorkerID.Style = Sunny.UI.UIStyle.Custom;
             this.WorkerID.StyleCustomMode = true;
             this.WorkerID.TabIndex = 129;
             this.WorkerID.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.WorkerID.Watermark = "";
             this.WorkerID.Validated += new System.EventHandler(this.WorkerID_Validated);
             // 
             // label26
@@ -394,21 +410,20 @@
             // WorkerTel
             // 
             this.WorkerTel.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.WorkerTel.FillColor = System.Drawing.Color.White;
             this.WorkerTel.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.WorkerTel.Location = new System.Drawing.Point(120, 416);
             this.WorkerTel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.WorkerTel.Maximum = 2147483647D;
-            this.WorkerTel.Minimum = -2147483648D;
             this.WorkerTel.MinimumSize = new System.Drawing.Size(1, 1);
             this.WorkerTel.Name = "WorkerTel";
             this.WorkerTel.Padding = new System.Windows.Forms.Padding(5);
             this.WorkerTel.Radius = 20;
+            this.WorkerTel.ShowText = false;
             this.WorkerTel.Size = new System.Drawing.Size(651, 35);
             this.WorkerTel.Style = Sunny.UI.UIStyle.Custom;
             this.WorkerTel.StyleCustomMode = true;
             this.WorkerTel.TabIndex = 131;
             this.WorkerTel.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.WorkerTel.Watermark = "";
             // 
             // label27
             // 
@@ -426,6 +441,8 @@
             this.cboWorkerFace.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboWorkerFace.FillColor = System.Drawing.Color.White;
             this.cboWorkerFace.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.cboWorkerFace.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboWorkerFace.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboWorkerFace.Location = new System.Drawing.Point(433, 98);
             this.cboWorkerFace.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboWorkerFace.MinimumSize = new System.Drawing.Size(63, 0);
@@ -433,8 +450,10 @@
             this.cboWorkerFace.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboWorkerFace.Radius = 20;
             this.cboWorkerFace.Size = new System.Drawing.Size(178, 35);
+            this.cboWorkerFace.SymbolSize = 24;
             this.cboWorkerFace.TabIndex = 132;
             this.cboWorkerFace.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboWorkerFace.Watermark = "";
             // 
             // flpHistory
             // 
@@ -450,6 +469,8 @@
             this.cbWorkerNation.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cbWorkerNation.FillColor = System.Drawing.Color.White;
             this.cbWorkerNation.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.cbWorkerNation.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cbWorkerNation.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cbWorkerNation.Location = new System.Drawing.Point(120, 98);
             this.cbWorkerNation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbWorkerNation.MinimumSize = new System.Drawing.Size(63, 0);
@@ -457,8 +478,10 @@
             this.cbWorkerNation.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cbWorkerNation.Radius = 20;
             this.cbWorkerNation.Size = new System.Drawing.Size(166, 35);
+            this.cbWorkerNation.SymbolSize = 24;
             this.cbWorkerNation.TabIndex = 135;
             this.cbWorkerNation.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbWorkerNation.Watermark = "";
             // 
             // picWorkerPic
             // 
@@ -479,10 +502,9 @@
             this.openPic.Filter = "PNG文件|*.png|JPG文件|*.jpg|位图文件|*.bmp";
             this.openPic.FileOk += new System.ComponentModel.CancelEventHandler(this.openPic_FileOk);
             // 
-            // FrmAddWorker
+            // FrmWorkerInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(785, 760);
             this.Controls.Add(this.cbWorkerNation);
@@ -515,10 +537,10 @@
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label18);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmAddWorker";
-            this.ShowIcon = true;
+            this.Name = "FrmWorkerInfo";
             this.ShowTitleIcon = true;
             this.Text = "添加员工";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 785, 760);
             this.ButtonOkClick += new System.EventHandler(this.FrmAddWorker_ButtonOkClick);
             this.ButtonCancelClick += new System.EventHandler(this.FrmAddWorker_ButtonCancelClick);
             this.Load += new System.EventHandler(this.FrmAddWorker_Load);

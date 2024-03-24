@@ -90,6 +90,10 @@ namespace SYS.FormUI
                     return;
                 }
                 UIMessageBox.ShowSuccess("上传成功！");
+                txtNoticeTheme.Text = string.Empty;
+                rtbNoticeContent.Html = string.Empty;
+                cbNoticeType.SelectedIndex = 0;
+                cboSelectClub.SelectedIndex = 0;
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + DateTime.Now + "位于" + AdminInfo.SoftwareVersion + "执行：" + "上传公告操作！新增值为：" + notice.NoticeNo, 2);
                 #endregion
@@ -116,6 +120,7 @@ namespace SYS.FormUI
 
         private void FrmUpLoad_Load(object sender, EventArgs e)
         {
+            dtpUpLoadDate.Value = DateTime.Now;
             result = HttpHelper.Request("Base/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAddRoom));
             this.txtRoomNo = new Sunny.UI.UITextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,26 +42,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddRoom = new Sunny.UI.UIButton();
             this.flpRoom = new System.Windows.Forms.FlowLayoutPanel();
+            this.ttTips = new Sunny.UI.UIToolTip(this.components);
             this.SuspendLayout();
             // 
             // txtRoomNo
             // 
             this.txtRoomNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRoomNo.FillColor = System.Drawing.Color.White;
             this.txtRoomNo.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtRoomNo.Location = new System.Drawing.Point(238, 501);
             this.txtRoomNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRoomNo.Maximum = 2147483647D;
-            this.txtRoomNo.Minimum = -2147483648D;
             this.txtRoomNo.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtRoomNo.Name = "txtRoomNo";
             this.txtRoomNo.Padding = new System.Windows.Forms.Padding(5);
             this.txtRoomNo.Radius = 20;
+            this.txtRoomNo.ShowText = false;
             this.txtRoomNo.Size = new System.Drawing.Size(127, 35);
             this.txtRoomNo.Style = Sunny.UI.UIStyle.Custom;
             this.txtRoomNo.StyleCustomMode = true;
             this.txtRoomNo.TabIndex = 106;
             this.txtRoomNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRoomNo.Watermark = "";
             this.txtRoomNo.Validated += new System.EventHandler(this.txtRoomNo_Validated);
             // 
             // label3
@@ -76,21 +77,20 @@
             // txtRoomPosition
             // 
             this.txtRoomPosition.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRoomPosition.FillColor = System.Drawing.Color.White;
             this.txtRoomPosition.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtRoomPosition.Location = new System.Drawing.Point(493, 501);
             this.txtRoomPosition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRoomPosition.Maximum = 2147483647D;
-            this.txtRoomPosition.Minimum = -2147483648D;
             this.txtRoomPosition.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtRoomPosition.Name = "txtRoomPosition";
             this.txtRoomPosition.Padding = new System.Windows.Forms.Padding(5);
             this.txtRoomPosition.Radius = 20;
+            this.txtRoomPosition.ShowText = false;
             this.txtRoomPosition.Size = new System.Drawing.Size(127, 35);
             this.txtRoomPosition.Style = Sunny.UI.UIStyle.Custom;
             this.txtRoomPosition.StyleCustomMode = true;
             this.txtRoomPosition.TabIndex = 108;
             this.txtRoomPosition.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRoomPosition.Watermark = "";
             // 
             // label1
             // 
@@ -105,23 +105,23 @@
             // txtMoney
             // 
             this.txtMoney.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMoney.FillColor = System.Drawing.Color.White;
             this.txtMoney.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtMoney.Location = new System.Drawing.Point(748, 501);
             this.txtMoney.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMoney.Maximum = 2147483647D;
-            this.txtMoney.Minimum = -2147483648D;
             this.txtMoney.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtMoney.Name = "txtMoney";
             this.txtMoney.Padding = new System.Windows.Forms.Padding(5);
             this.txtMoney.Radius = 20;
+            this.txtMoney.ShowText = false;
             this.txtMoney.Size = new System.Drawing.Size(127, 35);
             this.txtMoney.Style = Sunny.UI.UIStyle.Custom;
             this.txtMoney.StyleCustomMode = true;
             this.txtMoney.TabIndex = 110;
             this.txtMoney.Text = "0.00";
             this.txtMoney.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ttTips.SetToolTip(this.txtMoney, "如未填写或为0，将自动获取房间类型配置数据");
             this.txtMoney.Type = Sunny.UI.UITextBox.UIEditType.Double;
+            this.txtMoney.Watermark = "";
             // 
             // label4
             // 
@@ -149,6 +149,8 @@
             this.cboRoomType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboRoomType.FillColor = System.Drawing.Color.White;
             this.cboRoomType.Font = new System.Drawing.Font("微软雅黑", 15.75F);
+            this.cboRoomType.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboRoomType.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboRoomType.Location = new System.Drawing.Point(238, 564);
             this.cboRoomType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboRoomType.MinimumSize = new System.Drawing.Size(63, 0);
@@ -156,30 +158,32 @@
             this.cboRoomType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboRoomType.Radius = 20;
             this.cboRoomType.Size = new System.Drawing.Size(127, 35);
+            this.cboRoomType.SymbolSize = 24;
             this.cboRoomType.TabIndex = 112;
             this.cboRoomType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboRoomType.Watermark = "";
             this.cboRoomType.TextChanged += new System.EventHandler(this.cboRoomType_TextChanged);
             // 
             // txtDeposit
             // 
             this.txtDeposit.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDeposit.FillColor = System.Drawing.Color.White;
             this.txtDeposit.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtDeposit.Location = new System.Drawing.Point(490, 564);
             this.txtDeposit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtDeposit.Maximum = 2147483647D;
-            this.txtDeposit.Minimum = -2147483648D;
             this.txtDeposit.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtDeposit.Name = "txtDeposit";
             this.txtDeposit.Padding = new System.Windows.Forms.Padding(5);
             this.txtDeposit.Radius = 20;
+            this.txtDeposit.ShowText = false;
             this.txtDeposit.Size = new System.Drawing.Size(128, 35);
             this.txtDeposit.Style = Sunny.UI.UIStyle.Custom;
             this.txtDeposit.StyleCustomMode = true;
             this.txtDeposit.TabIndex = 114;
             this.txtDeposit.Text = "0.00";
             this.txtDeposit.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ttTips.SetToolTip(this.txtDeposit, "如未填写或为0，将自动获取房间类型配置数据");
             this.txtDeposit.Type = Sunny.UI.UITextBox.UIEditType.Double;
+            this.txtDeposit.Watermark = "";
             // 
             // label2
             // 
@@ -202,6 +206,7 @@
             this.btnAddRoom.Size = new System.Drawing.Size(127, 35);
             this.btnAddRoom.TabIndex = 115;
             this.btnAddRoom.Text = "新增客房";
+            this.btnAddRoom.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnAddRoom.Click += new System.EventHandler(this.btnAddRoom_Click);
             // 
             // flpRoom
@@ -214,10 +219,15 @@
             this.flpRoom.TabIndex = 116;
             this.flpRoom.MouseEnter += new System.EventHandler(this.flpRoom_MouseEnter);
             // 
+            // ttTips
+            // 
+            this.ttTips.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
+            this.ttTips.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.ttTips.OwnerDraw = true;
+            // 
             // FrmAddRoom
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1005, 623);
@@ -238,9 +248,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAddRoom";
-            this.ShowIcon = true;
             this.ShowTitleIcon = true;
             this.Text = "新增客房";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 1005, 623);
             this.Load += new System.EventHandler(this.FrmAddRoom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,5 +270,6 @@
         private System.Windows.Forms.Label label2;
         private Sunny.UI.UIButton btnAddRoom;
         private System.Windows.Forms.FlowLayoutPanel flpRoom;
+        private Sunny.UI.UIToolTip ttTips;
     }
 }
