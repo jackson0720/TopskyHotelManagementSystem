@@ -1,4 +1,5 @@
 ﻿using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.Common.Util;
 using Sunny.UI;
 using SYS.Common;
 using System;
@@ -47,7 +48,7 @@ namespace SYS.FormUI
                 DeleteMk = 0,
                 datains_usr = AdminInfo.Account
             };
-            if (CheckInputs(admin))
+            if (ValidateHelper.Validate(admin))
             {
                 result = HttpHelper.Request("Admin​/AddAdmin", HttpHelper.ModelToJson(admin));
                 if (result.statusCode != 200)
@@ -76,32 +77,6 @@ namespace SYS.FormUI
             cbAccountType.DataSource = HttpHelper.JsonToList<AdminType>(result.message);
             cbAccountType.ValueMember = "type_id";
             cbAccountType.DisplayMember = "type_name";
-        }
-
-        public bool CheckInputs(Admin admin)
-        {
-            bool result = true;
-            if (string.IsNullOrWhiteSpace(admin.AdminAccount))
-            {
-                result = false;
-            }
-            if (string.IsNullOrWhiteSpace(admin.AdminPassword))
-            {
-                result = false;
-            }
-            if (string.IsNullOrWhiteSpace(admin.AdminName))
-            {
-                result = false;
-            }
-            if (string.IsNullOrWhiteSpace(admin.IsAdmin + ""))
-            {
-                result = false;
-            }
-            if (string.IsNullOrWhiteSpace(admin.AdminType))
-            {
-                result = false;
-            }
-            return result;
         }
 
         private void cbAccountType_SelectedIndexChanged(object sender, EventArgs e)

@@ -71,16 +71,6 @@ namespace SYS.FormUI.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] Alibaba_PuHuiTi_Regular {
-            get {
-                object obj = ResourceManager.GetObject("Alibaba_PuHuiTi_Regular", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         public static System.Drawing.Bitmap arrow_down_b {
@@ -133,16 +123,6 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap picCommodity_ImagePress {
-            get {
-                object obj = ResourceManager.GetObject("picCommodity.ImagePress", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap picCustomer_Image {
             get {
                 object obj = ResourceManager.GetObject("picCustomer.Image", resourceCulture);
@@ -163,16 +143,6 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap picCustomer_ImagePress {
-            get {
-                object obj = ResourceManager.GetObject("picCustomer.ImagePress", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap picExtend_Image {
             get {
                 object obj = ResourceManager.GetObject("picExtend.Image", resourceCulture);
@@ -186,16 +156,6 @@ namespace SYS.FormUI.Properties {
         public static System.Drawing.Bitmap picExtend_ImageHover {
             get {
                 object obj = ResourceManager.GetObject("picExtend.ImageHover", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap picExtend_ImagePress {
-            get {
-                object obj = ResourceManager.GetObject("picExtend.ImagePress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,39 +193,9 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap picRoom_ImagePress {
-            get {
-                object obj = ResourceManager.GetObject("picRoom.ImagePress", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap picRoom_ImageSelected {
-            get {
-                object obj = ResourceManager.GetObject("picRoom.ImageSelected", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap settings2 {
             get {
                 object obj = ResourceManager.GetObject("settings2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap uiButton1_BackgroundImage {
-            get {
-                object obj = ResourceManager.GetObject("uiButton1.BackgroundImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

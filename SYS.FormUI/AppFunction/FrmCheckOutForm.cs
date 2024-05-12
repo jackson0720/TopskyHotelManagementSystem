@@ -147,11 +147,11 @@ namespace SYS.FormUI
 
             if (room.CheckTime == null)
             {
-                dtpCheckTime.Text = DateTime.Now.ToString("yyyy年MM月dd日");
+                dtpCheckTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
             else
             {
-                dtpCheckTime.Text = Convert.ToDateTime(room.CheckTime).ToString("yyyy年MM月dd日");
+                dtpCheckTime.Text = Convert.ToDateTime(room.CheckTime).ToString("yyyy-MM-dd");
             }
             dic = new Dictionary<string, string>()
             {
@@ -456,6 +456,5 @@ namespace SYS.FormUI
             }
         }
         #endregion
-
     }
 }

@@ -32,11 +32,12 @@
             // 
             // ucNavBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "ucNavBar";
-            this.Size = new System.Drawing.Size(124, 83);
+            this.Size = new System.Drawing.Size(227, 145);
             this.ResumeLayout(false);
 
         }

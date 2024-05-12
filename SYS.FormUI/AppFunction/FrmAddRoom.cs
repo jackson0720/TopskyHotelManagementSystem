@@ -22,6 +22,7 @@
  *
  */
 using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.Common.Util;
 using Sunny.UI;
 using SYS.Common;
 using System;
@@ -58,18 +59,18 @@ namespace SYS.FormUI
             txtMoney.Text = Convert.ToDecimal(txtMoney.Text) <= 0 ? roomType.RoomRent.ToString() : txtMoney.Text;
             txtDeposit.Text = Convert.ToDecimal(txtDeposit.Text) <= 0 ? roomType.RoomDeposit.ToString() : txtDeposit.Text;
 
-            if (!string.IsNullOrWhiteSpace(txtRoomNo.Text) && !txtMoney.Text.IsNullOrWhiteSpace() && !txtDeposit.Text.IsNullOrWhiteSpace())
+            rn = new Room()
             {
-                rn = new Room()
-                {
-                    RoomNo = txtRoomNo.Text,
-                    RoomType = cboRoomType.SelectedIndex,
-                    RoomMoney = Convert.ToDecimal(txtMoney.Text),
-                    RoomPosition = txtRoomPosition.Text,
-                    RoomStateId = 0,
-                    RoomDeposit = Convert.ToDecimal(txtDeposit.Text),
-                    datains_usr = AdminInfo.Account
-                };
+                RoomNo = txtRoomNo.Text,
+                RoomType = cboRoomType.SelectedIndex,
+                RoomMoney = Convert.ToDecimal(txtMoney.Text),
+                RoomPosition = txtRoomPosition.Text,
+                RoomStateId = 0,
+                RoomDeposit = Convert.ToDecimal(txtDeposit.Text),
+                datains_usr = AdminInfo.Account
+            };
+            if (ValidateHelper.Validate(rn))
+            {
                 result = HttpHelper.Request("Room​/InsertRoom", HttpHelper.ModelToJson(rn));
                 if (result.statusCode != 200)
                 {
@@ -96,6 +97,7 @@ namespace SYS.FormUI
             {
                 UIMessageBox.Show("房间信息不完整，请重试！");
             }
+
         }
 
 

@@ -309,6 +309,8 @@ namespace SYS.FormUI
                 {
                     ucNavBar = new ucNavBar();
                     ucNavBar.Name = listSource[i].nav_name;
+                    ucNavBar.MouseDown += new MouseEventHandler(Navbar_MouseDown);
+                    ucNavBar.MouseLeave += new System.EventHandler(Navbar_MouseLeave);
                     switch (listSource[i].nav_name)
                     {
                         case "客房管理":
@@ -334,6 +336,46 @@ namespace SYS.FormUI
                 return;
             }
             #endregion
+        }
+
+        private void Navbar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ucNavBar uc = sender as ucNavBar; // 使用sender参数获取事件的发起者
+            if (uc != null)
+            {
+                switch (uc.Name)
+                {
+                    case "客房管理":
+                        uc.BackgroundImage = Resources.picRoom_ImageHover;
+                        break;
+                    case "用户管理":
+                        uc.BackgroundImage = Resources.picCustomer_ImageHover;
+                        break;
+                    case "商品消费":
+                        uc.BackgroundImage = Resources.picCommodity_ImageHover;
+                        break;
+                }
+            }
+        }
+
+        private void Navbar_MouseLeave(object sender, System.EventArgs e)
+        {
+            ucNavBar uc = sender as ucNavBar; // 使用sender参数获取事件的发起者
+            if (uc != null)
+            {
+                switch (uc.Name)
+                {
+                    case "客房管理":
+                        uc.BackgroundImage = Resources.picRoom_Image;
+                        break;
+                    case "用户管理":
+                        uc.BackgroundImage = Resources.picCustomer_Image;
+                        break;
+                    case "商品消费":
+                        uc.BackgroundImage = Resources.picCommodity_Image;
+                        break;
+                }
+            }
         }
 
         #region 窗体加载事件方法
