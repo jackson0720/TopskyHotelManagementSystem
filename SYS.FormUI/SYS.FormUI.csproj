@@ -122,8 +122,8 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -137,8 +137,8 @@
       <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Text.Encoding.CodePages, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encoding.CodePages.5.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    <Reference Include="System.Text.Encoding.CodePages, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encoding.CodePages.6.0.0\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
@@ -686,9 +686,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\Alibaba-PuHuiTi-Regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="基础核心类库jvncorelib%28适用全平台%29.md" />
   </ItemGroup>
   <ItemGroup>
@@ -698,46 +695,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete2a.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\搜索--1a.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\添 加a.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\修改a.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\delete2-a.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\搜索--1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\添 加-a.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\修改.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\显示.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\隐藏.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\导出 %284%291.png" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\获取用户编号.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\获取用户编号-ia.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\jpg_auto_04N58PICPw2s58PICaP4M8cef_PIC2018.jpg!w1024_new_small.png">
@@ -880,18 +841,13 @@
     </Content>
     <None Include="Resources\picCommodity.Image.png" />
     <None Include="Resources\picCommodity.ImageHover.png" />
-    <None Include="Resources\picCommodity.ImagePress.png" />
     <None Include="Resources\picCustomer.Image.png" />
     <None Include="Resources\picCustomer.ImageHover.png" />
-    <None Include="Resources\picCustomer.ImagePress.png" />
     <None Include="Resources\picExtend.Image.png" />
     <None Include="Resources\picExtend.ImageHover.png" />
-    <None Include="Resources\picExtend.ImagePress.png" />
     <None Include="Resources\picLogo.BackgroundImage.png" />
     <None Include="Resources\picRoom.Image.png" />
     <None Include="Resources\picRoom.ImageHover.png" />
-    <None Include="Resources\picRoom.ImagePress.png" />
-    <None Include="Resources\picRoom.ImageSelected.png" />
     <None Include="Resources\uiButton1.BackgroundImage.png" />
     <Content Include="Resources\上传照片.png" />
     <Content Include="Resources\打卡.png" />
@@ -902,14 +858,12 @@
     <None Include="Resources\添加管理员.png" />
     <None Include="Resources\jpg_auto_04N58PICPw2s58PICaP4M8cef_PIC2018.jpg!w1024_new_small.png" />
     <None Include="Resources\系统管理员.png" />
-    <None Include="Resources\返回 %281%29.png" />
     <None Include="Resources\关于我们.png" />
     <None Include="Resources\检查更新 %281%29.png" />
     <None Include="Resources\个人中心.png" />
     <None Include="Resources\锁屏.png" />
     <None Include="Resources\切换账号.png" />
     <None Include="Resources\注销.png" />
-    <None Include="Resources\主页 %281%29.png" />
     <None Include="Resources\脏房icon1.png" />
     <None Include="Resources\脏房状态.png" />
     <None Include="Resources\预约状态.png" />
@@ -939,17 +893,12 @@
     <None Include="Resources\财务部卡片.png" />
     <None Include="Resources\lock.png" />
     <None Include="Resources\settings2.png" />
-    <None Include="Resources\添加  增加   加.png" />
-    <None Include="Resources\增加 添加 加减 %281%29.png" />
     <None Include="Resources\月亮.png" />
     <None Include="Resources\咖啡.png" />
     <None Include="Resources\早上.png" />
     <Content Include="FodyWeavers.xml" />
     <None Include="Resources\arrow-down-b.png" />
-    <None Include="Resources\minus %281%29.png" />
-    <None Include="Resources\minus.png" />
     <None Include="Resources\close.png" />
-    <None Include="Resources\770e7b52ecafc807247aad51bb6c6b43.jpg" />
     <Content Include="icon\add to card.ico" />
     <Content Include="icon\add_person.ico" />
     <Content Include="icon\check-out2.ico" />
@@ -986,7 +935,6 @@
     <Content Include="icon\部门.ico" />
     <Content Include="icon\预约.ico" />
     <Content Include="Logo\bitbug_favicon %281%29.ico" />
-    <None Include="Resources\77377282_p0_master1200.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -1001,10 +949,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EOM.TSHotelManager.Common.Util\EOM.TSHotelManager.Common.Util.csproj">
-      <Project>{3de4537c-6637-4d8d-9728-c923ea0b8b13}</Project>
-      <Name>EOM.TSHotelManager.Common.Util</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SYS.Common\SYS.Common.csproj">
       <Project>{65501AF6-C629-448A-847E-1BCD60665865}</Project>
       <Name>SYS.Common</Name>
@@ -1012,6 +956,10 @@
     <ProjectReference Include="..\topsky-hotel-manager-system-web-api\EOM.TSHotelManager.Common.Core\EOM.TSHotelManager.Common.Core.csproj">
       <Project>{48b3f864-88d2-4bd1-a766-b9ebf342aed1}</Project>
       <Name>EOM.TSHotelManager.Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\topsky-hotel-manager-system-web-api\EOM.TSHotelManager.Common.Util\EOM.TSHotelManager.Common.Util.csproj">
+      <Project>{9a62b6be-7c26-465f-a8d1-2cee66d6f837}</Project>
+      <Name>EOM.TSHotelManager.Common.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

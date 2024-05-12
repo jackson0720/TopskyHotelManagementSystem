@@ -22,6 +22,7 @@
  *
  */
 using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.Common.Util;
 using Sunny.UI;
 using SYS.Common;
 using System;
@@ -84,35 +85,6 @@ namespace SYS.FormUI
             dgvCashList.DataSource = HttpHelper.JsonToList<Cash>(result.message);
         }
 
-        public bool CheckInput(Cash cash)
-        {
-            if (string.IsNullOrWhiteSpace(cash.CashNo))
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(cash.CashName))
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(cash.CashPerson))
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(cash.CashPrice + ""))
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(cash.CashSource))
-            {
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(cash.CashTime + ""))
-            {
-                return false;
-            }
-            return true;
-        }
-
         private void btnOK_Click(object sender, EventArgs e)
         {
             Cash cash = new Cash()
@@ -126,7 +98,7 @@ namespace SYS.FormUI
                 CashPerson = cboCashPerson.SelectedValue.ToString(),
                 datains_usr = AdminInfo.Account
             };
-            if (CheckInput(cash))
+            if (ValidateHelper.Validate(cash))
             {
                 bool dr = UIMessageBox.Show("请确认信息没有错误，一旦录入则无法修改！", "警告提醒", UIStyle.Orange, UIMessageBoxButtons.OKCancel);
                 if (dr == true)

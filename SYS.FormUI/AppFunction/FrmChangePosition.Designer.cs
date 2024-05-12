@@ -88,22 +88,21 @@
             // 
             this.txtworkerId.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtworkerId.Enabled = false;
-            this.txtworkerId.FillColor = System.Drawing.Color.White;
             this.txtworkerId.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtworkerId.Location = new System.Drawing.Point(86, 44);
             this.txtworkerId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtworkerId.Maximum = 2147483647D;
-            this.txtworkerId.Minimum = -2147483648D;
             this.txtworkerId.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtworkerId.Name = "txtworkerId";
             this.txtworkerId.Padding = new System.Windows.Forms.Padding(5);
             this.txtworkerId.Radius = 20;
             this.txtworkerId.ReadOnly = true;
+            this.txtworkerId.ShowText = false;
             this.txtworkerId.Size = new System.Drawing.Size(125, 29);
             this.txtworkerId.Style = Sunny.UI.UIStyle.Custom;
             this.txtworkerId.StyleCustomMode = true;
             this.txtworkerId.TabIndex = 106;
             this.txtworkerId.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtworkerId.Watermark = "";
             // 
             // label7
             // 
@@ -118,22 +117,21 @@
             // txtworkerName
             // 
             this.txtworkerName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtworkerName.FillColor = System.Drawing.Color.White;
             this.txtworkerName.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtworkerName.Location = new System.Drawing.Point(86, 88);
             this.txtworkerName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtworkerName.Maximum = 2147483647D;
-            this.txtworkerName.Minimum = -2147483648D;
             this.txtworkerName.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtworkerName.Name = "txtworkerName";
             this.txtworkerName.Padding = new System.Windows.Forms.Padding(5);
             this.txtworkerName.Radius = 20;
             this.txtworkerName.ReadOnly = true;
+            this.txtworkerName.ShowText = false;
             this.txtworkerName.Size = new System.Drawing.Size(125, 29);
             this.txtworkerName.Style = Sunny.UI.UIStyle.Custom;
             this.txtworkerName.StyleCustomMode = true;
             this.txtworkerName.TabIndex = 108;
             this.txtworkerName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtworkerName.Watermark = "";
             // 
             // label8
             // 
@@ -149,42 +147,41 @@
             // 
             this.txtPosition.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPosition.Enabled = false;
-            this.txtPosition.FillColor = System.Drawing.Color.White;
             this.txtPosition.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtPosition.Location = new System.Drawing.Point(86, 177);
             this.txtPosition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtPosition.Maximum = 2147483647D;
-            this.txtPosition.Minimum = -2147483648D;
             this.txtPosition.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Padding = new System.Windows.Forms.Padding(5);
             this.txtPosition.Radius = 20;
+            this.txtPosition.ReadOnly = true;
+            this.txtPosition.ShowText = false;
             this.txtPosition.Size = new System.Drawing.Size(125, 29);
             this.txtPosition.Style = Sunny.UI.UIStyle.Custom;
             this.txtPosition.StyleCustomMode = true;
             this.txtPosition.TabIndex = 110;
             this.txtPosition.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtPosition.Watermark = "";
             // 
             // txtClub
             // 
             this.txtClub.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtClub.Enabled = false;
-            this.txtClub.FillColor = System.Drawing.Color.White;
             this.txtClub.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtClub.Location = new System.Drawing.Point(86, 133);
             this.txtClub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtClub.Maximum = 2147483647D;
-            this.txtClub.Minimum = -2147483648D;
             this.txtClub.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtClub.Name = "txtClub";
             this.txtClub.Padding = new System.Windows.Forms.Padding(5);
             this.txtClub.Radius = 20;
             this.txtClub.ReadOnly = true;
+            this.txtClub.ShowText = false;
             this.txtClub.Size = new System.Drawing.Size(125, 29);
             this.txtClub.Style = Sunny.UI.UIStyle.Custom;
             this.txtClub.StyleCustomMode = true;
             this.txtClub.TabIndex = 109;
             this.txtClub.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtClub.Watermark = "";
             // 
             // cboNewClub
             // 
@@ -192,6 +189,8 @@
             this.cboNewClub.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboNewClub.FillColor = System.Drawing.Color.White;
             this.cboNewClub.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cboNewClub.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboNewClub.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboNewClub.Location = new System.Drawing.Point(299, 133);
             this.cboNewClub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboNewClub.MinimumSize = new System.Drawing.Size(63, 0);
@@ -199,8 +198,10 @@
             this.cboNewClub.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboNewClub.Radius = 20;
             this.cboNewClub.Size = new System.Drawing.Size(125, 29);
+            this.cboNewClub.SymbolSize = 24;
             this.cboNewClub.TabIndex = 111;
             this.cboNewClub.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboNewClub.Watermark = "";
             this.cboNewClub.TextChanged += new System.EventHandler(this.cboNewClub_TextChanged);
             // 
             // cboNewPosition
@@ -209,6 +210,8 @@
             this.cboNewPosition.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
             this.cboNewPosition.FillColor = System.Drawing.Color.White;
             this.cboNewPosition.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.cboNewPosition.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
+            this.cboNewPosition.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
             this.cboNewPosition.Location = new System.Drawing.Point(299, 177);
             this.cboNewPosition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cboNewPosition.MinimumSize = new System.Drawing.Size(63, 0);
@@ -216,8 +219,10 @@
             this.cboNewPosition.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
             this.cboNewPosition.Radius = 20;
             this.cboNewPosition.Size = new System.Drawing.Size(125, 29);
+            this.cboNewPosition.SymbolSize = 24;
             this.cboNewPosition.TabIndex = 112;
             this.cboNewPosition.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cboNewPosition.Watermark = "";
             this.cboNewPosition.TextChanged += new System.EventHandler(this.cboNewPosition_TextChanged);
             // 
             // btnOK
@@ -231,12 +236,12 @@
             this.btnOK.Size = new System.Drawing.Size(100, 40);
             this.btnOK.TabIndex = 113;
             this.btnOK.Text = "任     命";
+            this.btnOK.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // FrmChangePosition
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(544, 216);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.cboNewPosition);
@@ -257,9 +262,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmChangePosition";
-            this.ShowIcon = true;
             this.ShowTitleIcon = true;
             this.Text = "将XXX任命为XXX";
+            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 544, 216);
             this.Load += new System.EventHandler(this.FrmChangePosition_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

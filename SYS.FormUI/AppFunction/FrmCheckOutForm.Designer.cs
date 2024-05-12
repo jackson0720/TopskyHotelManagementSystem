@@ -107,9 +107,9 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiTabControlMenu2 = new Sunny.UI.UITabControlMenu();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtReceipts = new Sunny.UI.UITextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtReceipts = new Sunny.UI.UITextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpendList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWti)).BeginInit();
             this.uiTabControlMenu2.SuspendLayout();
@@ -131,6 +131,7 @@
             this.btnBalance.TabIndex = 116;
             this.btnBalance.Text = "结         算";
             this.btnBalance.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnBalance.Click += new System.EventHandler(this.btnBalance_Click);
             // 
             // lblVIPPrice
             // 
@@ -382,6 +383,7 @@
             this.dtpCheckTime.Size = new System.Drawing.Size(168, 35);
             this.dtpCheckTime.Style = Sunny.UI.UIStyle.Custom;
             this.dtpCheckTime.StyleCustomMode = true;
+            this.dtpCheckTime.Symbol = 559683;
             this.dtpCheckTime.TabIndex = 111;
             this.dtpCheckTime.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.dtpCheckTime.Watermark = "";
@@ -1012,6 +1014,22 @@
             this.tabPage1.Text = "退房结算";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // txtReceipts
+            // 
+            this.txtReceipts.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtReceipts.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtReceipts.Location = new System.Drawing.Point(584, 328);
+            this.txtReceipts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtReceipts.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtReceipts.Name = "txtReceipts";
+            this.txtReceipts.Padding = new System.Windows.Forms.Padding(5);
+            this.txtReceipts.ShowText = false;
+            this.txtReceipts.Size = new System.Drawing.Size(74, 26);
+            this.txtReceipts.TabIndex = 117;
+            this.txtReceipts.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtReceipts.Watermark = "";
+            this.txtReceipts.TextChanged += new System.EventHandler(this.txtReceipts_TextChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.cboCustoType);
@@ -1034,7 +1052,7 @@
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Location = new System.Drawing.Point(201, 0);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(664, 658);
+            this.tabPage2.Size = new System.Drawing.Size(664, 550);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "客户信息";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1044,25 +1062,10 @@
             this.tabPage3.Controls.Add(this.dgvWti);
             this.tabPage3.Location = new System.Drawing.Point(201, 0);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(664, 658);
+            this.tabPage3.Size = new System.Drawing.Size(664, 550);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "历史水电情况";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // txtReceipts
-            // 
-            this.txtReceipts.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtReceipts.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtReceipts.Location = new System.Drawing.Point(584, 328);
-            this.txtReceipts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtReceipts.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtReceipts.Name = "txtReceipts";
-            this.txtReceipts.Padding = new System.Windows.Forms.Padding(5);
-            this.txtReceipts.ShowText = false;
-            this.txtReceipts.Size = new System.Drawing.Size(74, 26);
-            this.txtReceipts.TabIndex = 117;
-            this.txtReceipts.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.txtReceipts.Watermark = "";
             // 
             // FrmCheckOutForm
             // 
