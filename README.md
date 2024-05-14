@@ -25,6 +25,8 @@
 
 3. ##### SunnyUI——SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。[SunnyUI.Net,GPL3.0开源协议](https://gitee.com/yhuse/SunnyUI)
 
+4. ##### RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)
+
 #  :exclamation: 本项目说明：
 
 1、二次开发本项目时请遵照MIT开源协议,SunnyUI.Net框架采用的是GPL3.0开源协议、SQLSugarORM框架采用的是Apache2.0，需要用到时请务必在项目介绍加上对应声明。

@@ -1,7 +1,9 @@
 ﻿using jvncorelib_fr.EncryptorLib;
 using jvncorelib_fr.EntityLib;
+using jvncorelib_fr.HttpLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +15,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Windows.Input;
 
 namespace SYS.Common
 {
@@ -29,33 +32,29 @@ namespace SYS.Common
         /// 数据库配置连接
         /// </summary>
         public const string mysqlString = "server = localhost; user id = softuser; password = .; database = tshoteldb;";
-
-        public const string pgsqlString = "";
-
         /// <summary>
         /// 照片文件配置URL
         /// </summary>
         public const string baseUrl = "";
-
         /// <summary>
         /// 上传照片URL
         /// </summary>
         public const string postUrl = "";
-
         /// <summary>
         /// WebApi URL(release)
         /// </summary>
         public const string apiUrl = "";
-
-        // Debug
+        /// <summary>
+        /// WebApi URL(debug)
+        /// </summary>
         //public const string apiUrl = "";
+
         #endregion
 
         public class IgnoreNullValuesConverter : JsonConverter
         {
             private readonly bool _convertEmptyStringToNull;
 
-            // 添加一个构造函数，允许在创建转换器实例时指定是否将空字符串转换为 null
             public IgnoreNullValuesConverter(bool convertEmptyStringToNull = false)
             {
                 _convertEmptyStringToNull = convertEmptyStringToNull;
@@ -69,7 +68,6 @@ namespace SYS.Common
                 {
                     if (prop.Value == null || string.IsNullOrEmpty(prop.Value.ToString()))
                     {
-                        // 根据 _convertEmptyStringToNull 决定是移除属性还是设置为 null
                         if (_convertEmptyStringToNull && prop.Value?.Type == JTokenType.String)
                         {
                             prop.Value = JValue.CreateNull();
@@ -86,17 +84,15 @@ namespace SYS.Common
 
             public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
             {
-                // 实现这个方法是必要的，但是本例中不需要修改
                 throw new NotImplementedException();
             }
 
             public override bool CanConvert(Type objectType)
             {
-                // 仅为示例，根据实际情况调整
                 return objectType == typeof(JObject);
             }
 
-            public override bool CanRead => false; // 设置为 false，因为我们不需要修改反序列化的行为
+            public override bool CanRead => false;
         }
 
         /// <summary>
@@ -172,95 +168,56 @@ namespace SYS.Common
                 }
             }
 
-            HttpWebRequest req = null;
+            var reponse = new RestResponse();
+            var client = new RestClient(url);
+            var request = new RestRequest();
+
             string resultContent = "";
             System.IO.Stream stream = null;
             StreamReader reader = null;
-            HttpWebResponse rsp = null;
+            RestResponse rsp = null;
 
             try
             {
-                req = GetWebRequest(url, "GET");//post也行
-
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    req.ContentType = contentType;
-                }
-                else
-                {
-                    req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
-                }
+                //if (!string.IsNullOrEmpty(contentType))
+                //{
+                //    request.AddHeader("Content-Type",contentType);
+                //}
+                //else
+                //{
+                //    request.AddHeader("Content-Type",ContentType.FormUrlEncoded);
+                //}
 
                 if (!string.IsNullOrEmpty(referer))
                 {
-                    req.Referer = referer;
+                    request.AddHeader("Referer", referer);
                 }
 
                 if (!string.IsNullOrEmpty(cookie))
                 {
-                    req.Headers.Add("Cookie", cookie);
+                    request.AddHeader("Cookie", cookie);
                 }
+
+                request.AddHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36");
 
                 if (dicHeaders != null)
                 {
                     foreach (var key in dicHeaders.Keys)
                     {
-                        req.Headers.Add(key, dicHeaders[key]);
+                        request.AddHeader(key, dicHeaders[key]);
                     }
                 }
 
                 var token = LoginInfo.UserToken.IsNullOrEmpty() ? AdminInfo.UserToken : LoginInfo.UserToken;
 
-                req.Headers.Add("Authorization", string.Format("Bearer {0}", token));
+                request.AddHeader("Authorization", string.Format("Bearer {0}", token));
+                rsp = client.ExecuteGet(request);
 
-                rsp = (HttpWebResponse)req.GetResponse();
-
-                Encoding encoding = null;
-                try
-                {
-                    encoding = string.IsNullOrEmpty(rsp.CharacterSet) ? Encoding.UTF8 : Encoding.GetEncoding(rsp.CharacterSet);
-                }
-                catch (Exception)
-                {
-                    encoding = Encoding.UTF8;
-                }
-
-                if (!string.IsNullOrEmpty(contentType))
-                {
-                    Regex regex = new Regex("charset\\s*=\\s*(\\S+)", RegexOptions.IgnoreCase);
-                    Match match = null;
-                    match = regex.Match(contentType);
-                    if (match.Success)
-                    {
-                        try
-                        {
-                            encoding = Encoding.GetEncoding(match.Groups[1].Value.Trim());
-                        }
-                        catch (Exception)
-                        {
-                            encoding = string.IsNullOrEmpty(rsp.CharacterSet) ? Encoding.UTF8 : Encoding.GetEncoding(rsp.CharacterSet);
-                        }
-                    }
-                }
-
-                // 以字符流的方式读取HTTP响应
-                stream = rsp.GetResponseStream();
-                reader = new StreamReader(stream, encoding);
-                resultContent = reader.ReadToEnd();
+                resultContent = rsp.Content;
             }
             catch (Exception)
             {
-                //LogWriter.WriteError(ex, MethodBase.GetCurrentMethod(), url, parameters, contentType, referer);
                 throw;
-            }
-            finally
-            {
-                // 释放资源
-                if (reader != null) reader.Close();
-                if (stream != null) stream.Close();
-                if (rsp != null) rsp.Close();
-                if (req != null) req.Abort();
-                //GC.Collect();
             }
 
             return new ResponseMsg() { statusCode = (int)rsp.StatusCode, message = resultContent };
@@ -278,59 +235,49 @@ namespace SYS.Common
         /// <returns></returns>
         public static ResponseMsg DoPost(string url, string jsonParam = null, string contentType = null, string referer = null, string cookie = null, Dictionary<string, string> dicHeaders = null)
         {
-            var resultContent = string.Empty;
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "POST";
-
+            var reponse = new RestResponse();
+            var client = new RestClient(url);
+            var request = new RestRequest();
             if (!string.IsNullOrEmpty(contentType))
             {
-                request.ContentType = contentType;
+                request.AddHeader("Content-Type", contentType);
             }
             else
             {
-                request.ContentType = "application/json;charset=utf-8";
+                request.AddHeader("Content-Type", ContentType.Json);
             }
 
             if (!string.IsNullOrEmpty(referer))
             {
-                request.Referer = referer;
+                request.AddHeader("Referer", referer);
             }
 
             if (!string.IsNullOrEmpty(cookie))
             {
-                request.Headers.Add("Cookie", cookie);
+                request.AddHeader("Cookie", cookie);
             }
 
             if (dicHeaders != null)
             {
                 foreach (var key in dicHeaders.Keys)
                 {
-                    request.Headers.Add(key, dicHeaders[key]);
+                    request.AddHeader(key, dicHeaders[key]);
                 }
             }
 
+            request.AddHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36");
+
+            request.AddBody(jsonParam);
+
             var token = LoginInfo.UserToken.IsNullOrEmpty() ? AdminInfo.UserToken : LoginInfo.UserToken;
 
-            request.Headers.Add("Authorization", string.Format("Bearer {0}", token));
+            request.AddHeader("Authorization", string.Format("Bearer {0}", token));
 
-            Stream writer = null;
+            reponse = client.ExecutePost(request);
 
-            if (jsonParam != null)
-            {
-                byte[] byteData = Encoding.UTF8.GetBytes(jsonParam);
-                int length = byteData.Length;
-                request.ContentLength = length;
-                writer = request.GetRequestStream();
-                writer.Write(byteData, 0, length);
-                writer.Close();
-            }
+            var responseString = reponse.Content;
 
-            var response = (HttpWebResponse)request.GetResponse();
-            var responseString = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("utf-8")).ReadToEnd();
-
-            resultContent = responseString.ToString();
-
-            return new ResponseMsg() { statusCode = (int)response.StatusCode, message = resultContent };
+            return new ResponseMsg() { statusCode = (int)reponse.StatusCode, message = responseString };
         }
 
         /// <summary>
@@ -382,47 +329,6 @@ namespace SYS.Common
 
             String stringToEncode = HttpUtility.UrlEncode(str, e).Replace("+", "%20").Replace("*", "%2A").Replace("(", "%28").Replace(")", "%29");
             return REG_URL_ENCODING.Replace(stringToEncode, m => m.Value.ToUpperInvariant());
-        }
-
-        /// <summary>
-        /// 获取网页请求
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="method"></param>
-        /// <returns></returns>
-        public static HttpWebRequest GetWebRequest(string url, string method)
-        {
-            HttpWebRequest req = null;
-            if (url.Contains("https"))
-            {
-                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
-                req = (HttpWebRequest)WebRequest.CreateDefault(new Uri(url));
-            }
-            else
-            {
-                req = (HttpWebRequest)WebRequest.Create(url);
-            }
-
-            req.ServicePoint.Expect100Continue = false;
-            req.Method = method;
-            req.KeepAlive = true;
-            req.UserAgent = "userAgent";
-            req.Timeout = 100000;
-
-            return req;
-        }
-
-        /// <summary>
-        /// 获取网页请求扩展-检查请求
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="certificate"></param>
-        /// <param name="chain"></param>
-        /// <param name="errors"></param>
-        /// <returns></returns>
-        public static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
-        { //直接确认，否则打不开
-            return true;
         }
 
         /// <summary>
