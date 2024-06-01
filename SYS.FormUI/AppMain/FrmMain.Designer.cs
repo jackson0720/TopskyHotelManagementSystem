@@ -28,468 +28,473 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            this.lblTime = new System.Windows.Forms.Label();
-            this.tmrDate = new System.Windows.Forms.Timer(this.components);
-            this.lblSoftName = new System.Windows.Forms.Label();
-            this.pnlMID = new System.Windows.Forms.Panel();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiExChange = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.lblScroll = new Sunny.UI.UIScrollingText();
-            this.tmrFont = new System.Windows.Forms.Timer(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnHello = new Sunny.UI.UIButton();
-            this.flpNav = new System.Windows.Forms.FlowLayoutPanel();
-            this.picSetting = new Sunny.UI.UIButton();
-            this.uiButton1 = new Sunny.UI.UIButton();
-            this.picFormSize = new Sunny.UI.UIButton();
-            this.picClose = new Sunny.UI.UIButton();
-            this.pnlCheckInfo = new System.Windows.Forms.Panel();
-            this.lblClose = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblCheckDay = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            this.tsmiChangeUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiMySpace = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiLockScreen = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiLoginBackSystem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCheckUpdate = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiAboutUs = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiExitSystem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsMain.SuspendLayout();
-            this.pnlCheckInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            this.SuspendLayout();
+            lblTime = new System.Windows.Forms.Label();
+            tmrDate = new System.Windows.Forms.Timer(components);
+            lblSoftName = new System.Windows.Forms.Label();
+            pnlMID = new System.Windows.Forms.Panel();
+            notifyIcon1 = new System.Windows.Forms.NotifyIcon(components);
+            cmsMain = new System.Windows.Forms.ContextMenuStrip(components);
+            tsmiChangeUser = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiMySpace = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiExChange = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            tsmiLockScreen = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            tsmiLoginBackSystem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            tsmiCheckUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiAboutUs = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiExitSystem = new System.Windows.Forms.ToolStripMenuItem();
+            linkLabel1 = new System.Windows.Forms.LinkLabel();
+            lblScroll = new Sunny.UI.UIScrollingText();
+            tmrFont = new System.Windows.Forms.Timer(components);
+            label3 = new System.Windows.Forms.Label();
+            btnHello = new Sunny.UI.UIButton();
+            flpNav = new System.Windows.Forms.FlowLayoutPanel();
+            picSetting = new Sunny.UI.UIButton();
+            uiButton1 = new Sunny.UI.UIButton();
+            picFormSize = new Sunny.UI.UIButton();
+            picClose = new Sunny.UI.UIButton();
+            pnlCheckInfo = new System.Windows.Forms.Panel();
+            lblClose = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            lblCheckDay = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            picLogo = new System.Windows.Forms.PictureBox();
+            cmsMain.SuspendLayout();
+            pnlCheckInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            SuspendLayout();
             // 
             // lblTime
             // 
-            this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTime.AutoSize = true;
-            this.lblTime.BackColor = System.Drawing.Color.Transparent;
-            this.lblTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblTime.Font = new System.Drawing.Font("MiSans Normal", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTime.Location = new System.Drawing.Point(52, 152);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(94, 25);
-            this.lblTime.TabIndex = 2;
-            this.lblTime.Text = "NowTime";
+            lblTime.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblTime.AutoSize = true;
+            lblTime.BackColor = System.Drawing.Color.Transparent;
+            lblTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblTime.Location = new System.Drawing.Point(55, 137);
+            lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new System.Drawing.Size(92, 24);
+            lblTime.TabIndex = 2;
+            lblTime.Text = "NowTime";
             // 
             // tmrDate
             // 
-            this.tmrDate.Enabled = true;
-            this.tmrDate.Interval = 60000;
-            this.tmrDate.Tick += new System.EventHandler(this.tmrDate_Tick);
+            tmrDate.Enabled = true;
+            tmrDate.Interval = 60000;
+            tmrDate.Tick += tmrDate_Tick;
             // 
             // lblSoftName
             // 
-            this.lblSoftName.BackColor = System.Drawing.Color.Transparent;
-            this.lblSoftName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblSoftName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoftName.Location = new System.Drawing.Point(282, 4);
-            this.lblSoftName.Name = "lblSoftName";
-            this.lblSoftName.Size = new System.Drawing.Size(670, 36);
-            this.lblSoftName.TabIndex = 14;
-            this.lblSoftName.Text = "TS酒店管理系统";
-            this.lblSoftName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblSoftName.BackColor = System.Drawing.Color.Transparent;
+            lblSoftName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            lblSoftName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            lblSoftName.Location = new System.Drawing.Point(328, 6);
+            lblSoftName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblSoftName.Name = "lblSoftName";
+            lblSoftName.Size = new System.Drawing.Size(736, 36);
+            lblSoftName.TabIndex = 14;
+            lblSoftName.Text = "TS酒店管理系统";
+            lblSoftName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlMID
             // 
-            this.pnlMID.BackColor = System.Drawing.Color.Transparent;
-            this.pnlMID.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlMID.Location = new System.Drawing.Point(4, 226);
-            this.pnlMID.Name = "pnlMID";
-            this.pnlMID.Size = new System.Drawing.Size(1072, 489);
-            this.pnlMID.TabIndex = 23;
+            pnlMID.BackColor = System.Drawing.Color.Transparent;
+            pnlMID.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pnlMID.Location = new System.Drawing.Point(5, 223);
+            pnlMID.Margin = new System.Windows.Forms.Padding(4);
+            pnlMID.Name = "pnlMID";
+            pnlMID.Size = new System.Drawing.Size(1251, 693);
+            pnlMID.TabIndex = 23;
             // 
             // notifyIcon1
             // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "TS酒店管理系统";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.BalloonTipClosed += new System.EventHandler(this.notifyIcon1_BalloonTipClosed);
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            notifyIcon1.Icon = (System.Drawing.Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "TS酒店管理系统";
+            notifyIcon1.Visible = true;
+            notifyIcon1.BalloonTipClosed += notifyIcon1_BalloonTipClosed;
+            notifyIcon1.MouseDoubleClick += notifyIcon1_MouseDoubleClick;
             // 
             // cmsMain
             // 
-            this.cmsMain.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiChangeUser,
-            this.tsmiMySpace,
-            this.tsmiExChange,
-            this.toolStripSeparator3,
-            this.tsmiLockScreen,
-            this.toolStripSeparator4,
-            this.tsmiLoginBackSystem,
-            this.toolStripSeparator2,
-            this.tsmiCheckUpdate,
-            this.tsmiAboutUs,
-            this.tsmiExitSystem});
-            this.cmsMain.Name = "cmsMain";
-            this.cmsMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.cmsMain.Size = new System.Drawing.Size(208, 214);
-            // 
-            // tsmiExChange
-            // 
-            this.tsmiExChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.tsmiExChange.Name = "tsmiExChange";
-            this.tsmiExChange.Size = new System.Drawing.Size(207, 24);
-            this.tsmiExChange.Text = "换班";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(204, 6);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(204, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(204, 6);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLabel1.Location = new System.Drawing.Point(175, 20);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(50, 17);
-            this.linkLabel1.TabIndex = 26;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "未打卡";
-            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Green;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // lblScroll
-            // 
-            this.lblScroll.Active = true;
-            this.lblScroll.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.lblScroll.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblScroll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.lblScroll.Interval = 1000;
-            this.lblScroll.Location = new System.Drawing.Point(282, 62);
-            this.lblScroll.MinimumSize = new System.Drawing.Size(1, 1);
-            this.lblScroll.Name = "lblScroll";
-            this.lblScroll.Radius = 0;
-            this.lblScroll.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.lblScroll.Size = new System.Drawing.Size(793, 45);
-            this.lblScroll.TabIndex = 0;
-            // 
-            // tmrFont
-            // 
-            this.tmrFont.Enabled = true;
-            this.tmrFont.Interval = 1000;
-            this.tmrFont.Tick += new System.EventHandler(this.tmrFont_Tick);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("MiSans Normal", 14.25F);
-            this.label3.Location = new System.Drawing.Point(53, 189);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 25);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "NowTime";
-            // 
-            // btnHello
-            // 
-            this.btnHello.BackColor = System.Drawing.Color.Transparent;
-            this.btnHello.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHello.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnHello.FillColor = System.Drawing.Color.Transparent;
-            this.btnHello.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnHello.Location = new System.Drawing.Point(12, 182);
-            this.btnHello.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnHello.Name = "btnHello";
-            this.btnHello.Radius = 20;
-            this.btnHello.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.btnHello.RectColor = System.Drawing.Color.Transparent;
-            this.btnHello.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.btnHello.Size = new System.Drawing.Size(35, 35);
-            this.btnHello.Style = Sunny.UI.UIStyle.Custom;
-            this.btnHello.StyleCustomMode = true;
-            this.btnHello.TabIndex = 33;
-            // 
-            // flpNav
-            // 
-            this.flpNav.AutoScroll = true;
-            this.flpNav.BackColor = System.Drawing.Color.Transparent;
-            this.flpNav.Location = new System.Drawing.Point(282, 130);
-            this.flpNav.Name = "flpNav";
-            this.flpNav.Size = new System.Drawing.Size(793, 90);
-            this.flpNav.TabIndex = 72;
-            // 
-            // picSetting
-            // 
-            this.picSetting.BackColor = System.Drawing.Color.Transparent;
-            this.picSetting.BackgroundImage = global::SYS.FormUI.Properties.Resources.settings2;
-            this.picSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picSetting.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.picSetting.FillColor = System.Drawing.Color.Transparent;
-            this.picSetting.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.picSetting.Location = new System.Drawing.Point(958, 5);
-            this.picSetting.MinimumSize = new System.Drawing.Size(1, 1);
-            this.picSetting.Name = "picSetting";
-            this.picSetting.Radius = 0;
-            this.picSetting.Size = new System.Drawing.Size(35, 35);
-            this.picSetting.Style = Sunny.UI.UIStyle.Custom;
-            this.picSetting.StyleCustomMode = true;
-            this.picSetting.TabIndex = 38;
-            this.picSetting.Click += new System.EventHandler(this.picSetting_Click);
-            this.picSetting.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picSetting_MouseDown);
-            this.picSetting.MouseLeave += new System.EventHandler(this.picSetting_MouseLeave);
-            this.picSetting.MouseHover += new System.EventHandler(this.picSetting_MouseHover);
-            // 
-            // uiButton1
-            // 
-            this.uiButton1.BackColor = System.Drawing.Color.Transparent;
-            this.uiButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uiButton1.BackgroundImage")));
-            this.uiButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uiButton1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.uiButton1.FillColor = System.Drawing.Color.Transparent;
-            this.uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiButton1.Location = new System.Drawing.Point(12, 146);
-            this.uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiButton1.Name = "uiButton1";
-            this.uiButton1.Radius = 20;
-            this.uiButton1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            this.uiButton1.RectColor = System.Drawing.Color.Transparent;
-            this.uiButton1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.uiButton1.Size = new System.Drawing.Size(35, 35);
-            this.uiButton1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiButton1.StyleCustomMode = true;
-            this.uiButton1.TabIndex = 31;
-            // 
-            // picFormSize
-            // 
-            this.picFormSize.BackColor = System.Drawing.Color.Transparent;
-            this.picFormSize.BackgroundImage = global::SYS.FormUI.Properties.Resources.arrow_down_b;
-            this.picFormSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFormSize.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.picFormSize.FillColor = System.Drawing.Color.Transparent;
-            this.picFormSize.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.picFormSize.Location = new System.Drawing.Point(999, 5);
-            this.picFormSize.MinimumSize = new System.Drawing.Size(1, 1);
-            this.picFormSize.Name = "picFormSize";
-            this.picFormSize.Radius = 0;
-            this.picFormSize.Size = new System.Drawing.Size(35, 35);
-            this.picFormSize.Style = Sunny.UI.UIStyle.Custom;
-            this.picFormSize.StyleCustomMode = true;
-            this.picFormSize.TabIndex = 29;
-            this.picFormSize.Click += new System.EventHandler(this.picFormSize_Click_1);
-            this.picFormSize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picFormSize_MouseDown);
-            this.picFormSize.MouseLeave += new System.EventHandler(this.picFormSize_MouseLeave_1);
-            this.picFormSize.MouseHover += new System.EventHandler(this.picFormSize_MouseHover);
-            // 
-            // picClose
-            // 
-            this.picClose.BackColor = System.Drawing.Color.Transparent;
-            this.picClose.BackgroundImage = global::SYS.FormUI.Properties.Resources.close;
-            this.picClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picClose.FillColor = System.Drawing.Color.Transparent;
-            this.picClose.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.picClose.Location = new System.Drawing.Point(1040, 5);
-            this.picClose.MinimumSize = new System.Drawing.Size(1, 1);
-            this.picClose.Name = "picClose";
-            this.picClose.Radius = 0;
-            this.picClose.Size = new System.Drawing.Size(35, 35);
-            this.picClose.Style = Sunny.UI.UIStyle.Custom;
-            this.picClose.TabIndex = 28;
-            this.picClose.Click += new System.EventHandler(this.picClose_Click_1);
-            this.picClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picClose_MouseDown);
-            this.picClose.MouseLeave += new System.EventHandler(this.picClose_MouseLeave_1);
-            this.picClose.MouseHover += new System.EventHandler(this.picClose_MouseHover);
-            // 
-            // pnlCheckInfo
-            // 
-            this.pnlCheckInfo.BackColor = System.Drawing.Color.Transparent;
-            this.pnlCheckInfo.BackgroundImage = global::SYS.FormUI.Properties.Resources.打卡2;
-            this.pnlCheckInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlCheckInfo.Controls.Add(this.lblClose);
-            this.pnlCheckInfo.Controls.Add(this.label4);
-            this.pnlCheckInfo.Controls.Add(this.lblCheckDay);
-            this.pnlCheckInfo.Controls.Add(this.label2);
-            this.pnlCheckInfo.Location = new System.Drawing.Point(170, 43);
-            this.pnlCheckInfo.Name = "pnlCheckInfo";
-            this.pnlCheckInfo.Size = new System.Drawing.Size(88, 73);
-            this.pnlCheckInfo.TabIndex = 27;
-            this.pnlCheckInfo.Visible = false;
-            // 
-            // lblClose
-            // 
-            this.lblClose.AutoSize = true;
-            this.lblClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblClose.Location = new System.Drawing.Point(66, 5);
-            this.lblClose.Name = "lblClose";
-            this.lblClose.Size = new System.Drawing.Size(16, 17);
-            this.lblClose.TabIndex = 3;
-            this.lblClose.Text = "×";
-            this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(18, 48);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(22, 17);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "天";
-            // 
-            // lblCheckDay
-            // 
-            this.lblCheckDay.AutoSize = true;
-            this.lblCheckDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCheckDay.Location = new System.Drawing.Point(7, 28);
-            this.lblCheckDay.Name = "lblCheckDay";
-            this.lblCheckDay.Size = new System.Drawing.Size(48, 17);
-            this.lblCheckDay.TabIndex = 1;
-            this.lblCheckDay.Text = "36500";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(5, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "您已打卡：";
-            // 
-            // picLogo
-            // 
-            this.picLogo.BackColor = System.Drawing.Color.Transparent;
-            this.picLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLogo.BackgroundImage")));
-            this.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picLogo.Location = new System.Drawing.Point(4, 5);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(163, 111);
-            this.picLogo.TabIndex = 15;
-            this.picLogo.TabStop = false;
-            this.picLogo.Click += new System.EventHandler(this.picLogo_Click);
+            cmsMain.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, 134);
+            cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsmiChangeUser, tsmiMySpace, tsmiExChange, toolStripSeparator3, tsmiLockScreen, toolStripSeparator4, tsmiLoginBackSystem, toolStripSeparator2, tsmiCheckUpdate, tsmiAboutUs, tsmiExitSystem });
+            cmsMain.Name = "cmsMain";
+            cmsMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            cmsMain.Size = new System.Drawing.Size(208, 214);
             // 
             // tsmiChangeUser
             // 
-            this.tsmiChangeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsmiChangeUser.Image = global::SYS.FormUI.Properties.Resources.切换账号;
-            this.tsmiChangeUser.Name = "tsmiChangeUser";
-            this.tsmiChangeUser.Size = new System.Drawing.Size(207, 24);
-            this.tsmiChangeUser.Text = "切换用户";
-            this.tsmiChangeUser.Click += new System.EventHandler(this.tsmiChangeUser_Click);
+            tsmiChangeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            tsmiChangeUser.Image = Properties.Resources.切换账号;
+            tsmiChangeUser.Name = "tsmiChangeUser";
+            tsmiChangeUser.Size = new System.Drawing.Size(207, 24);
+            tsmiChangeUser.Text = "切换用户";
+            tsmiChangeUser.Click += tsmiChangeUser_Click;
             // 
             // tsmiMySpace
             // 
-            this.tsmiMySpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsmiMySpace.Image = global::SYS.FormUI.Properties.Resources.个人中心;
-            this.tsmiMySpace.Name = "tsmiMySpace";
-            this.tsmiMySpace.Size = new System.Drawing.Size(207, 24);
-            this.tsmiMySpace.Text = "个人中心";
-            this.tsmiMySpace.Click += new System.EventHandler(this.tsmiMySpace_Click);
+            tsmiMySpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            tsmiMySpace.Image = Properties.Resources.个人中心;
+            tsmiMySpace.Name = "tsmiMySpace";
+            tsmiMySpace.Size = new System.Drawing.Size(207, 24);
+            tsmiMySpace.Text = "个人中心";
+            tsmiMySpace.Click += tsmiMySpace_Click;
+            // 
+            // tsmiExChange
+            // 
+            tsmiExChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            tsmiExChange.Name = "tsmiExChange";
+            tsmiExChange.Size = new System.Drawing.Size(207, 24);
+            tsmiExChange.Text = "换班";
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new System.Drawing.Size(204, 6);
             // 
             // tsmiLockScreen
             // 
-            this.tsmiLockScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsmiLockScreen.Image = global::SYS.FormUI.Properties.Resources.锁屏;
-            this.tsmiLockScreen.Name = "tsmiLockScreen";
-            this.tsmiLockScreen.Size = new System.Drawing.Size(207, 24);
-            this.tsmiLockScreen.Text = "快速锁屏";
-            this.tsmiLockScreen.Click += new System.EventHandler(this.tsmiLockScreen_Click);
+            tsmiLockScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            tsmiLockScreen.Image = Properties.Resources.锁屏;
+            tsmiLockScreen.Name = "tsmiLockScreen";
+            tsmiLockScreen.Size = new System.Drawing.Size(207, 24);
+            tsmiLockScreen.Text = "快速锁屏";
+            tsmiLockScreen.Click += tsmiLockScreen_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new System.Drawing.Size(204, 6);
             // 
             // tsmiLoginBackSystem
             // 
-            this.tsmiLoginBackSystem.Enabled = false;
-            this.tsmiLoginBackSystem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsmiLoginBackSystem.Image = global::SYS.FormUI.Properties.Resources.系统管理员;
-            this.tsmiLoginBackSystem.Name = "tsmiLoginBackSystem";
-            this.tsmiLoginBackSystem.Size = new System.Drawing.Size(207, 24);
-            this.tsmiLoginBackSystem.Text = "进入后台管理系统";
-            this.tsmiLoginBackSystem.Click += new System.EventHandler(this.tsmiLoginBackSystem_Click);
+            tsmiLoginBackSystem.Enabled = false;
+            tsmiLoginBackSystem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            tsmiLoginBackSystem.Image = Properties.Resources.系统管理员;
+            tsmiLoginBackSystem.Name = "tsmiLoginBackSystem";
+            tsmiLoginBackSystem.Size = new System.Drawing.Size(207, 24);
+            tsmiLoginBackSystem.Text = "进入后台管理系统";
+            tsmiLoginBackSystem.Click += tsmiLoginBackSystem_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(204, 6);
             // 
             // tsmiCheckUpdate
             // 
-            this.tsmiCheckUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsmiCheckUpdate.Image = global::SYS.FormUI.Properties.Resources.检查更新__1_;
-            this.tsmiCheckUpdate.Name = "tsmiCheckUpdate";
-            this.tsmiCheckUpdate.Size = new System.Drawing.Size(207, 24);
-            this.tsmiCheckUpdate.Text = "检查更新";
-            this.tsmiCheckUpdate.Click += new System.EventHandler(this.tsmiCheckUpdate_Click);
+            tsmiCheckUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            tsmiCheckUpdate.Image = Properties.Resources.检查更新__1_;
+            tsmiCheckUpdate.Name = "tsmiCheckUpdate";
+            tsmiCheckUpdate.Size = new System.Drawing.Size(207, 24);
+            tsmiCheckUpdate.Text = "检查更新";
+            tsmiCheckUpdate.Click += tsmiCheckUpdate_Click;
             // 
             // tsmiAboutUs
             // 
-            this.tsmiAboutUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsmiAboutUs.Image = global::SYS.FormUI.Properties.Resources.关于我们;
-            this.tsmiAboutUs.Name = "tsmiAboutUs";
-            this.tsmiAboutUs.Size = new System.Drawing.Size(207, 24);
-            this.tsmiAboutUs.Text = "关于我们";
-            this.tsmiAboutUs.Click += new System.EventHandler(this.tsmiAboutUs_Click);
+            tsmiAboutUs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            tsmiAboutUs.Image = Properties.Resources.关于我们;
+            tsmiAboutUs.Name = "tsmiAboutUs";
+            tsmiAboutUs.Size = new System.Drawing.Size(207, 24);
+            tsmiAboutUs.Text = "关于我们";
+            tsmiAboutUs.Click += tsmiAboutUs_Click;
             // 
             // tsmiExitSystem
             // 
-            this.tsmiExitSystem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.tsmiExitSystem.Image = global::SYS.FormUI.Properties.Resources.注销;
-            this.tsmiExitSystem.Name = "tsmiExitSystem";
-            this.tsmiExitSystem.Size = new System.Drawing.Size(207, 24);
-            this.tsmiExitSystem.Text = "退出系统";
-            this.tsmiExitSystem.Click += new System.EventHandler(this.tsmiExitSystem_Click);
+            tsmiExitSystem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            tsmiExitSystem.Image = Properties.Resources.注销;
+            tsmiExitSystem.Name = "tsmiExitSystem";
+            tsmiExitSystem.Size = new System.Drawing.Size(207, 24);
+            tsmiExitSystem.Text = "退出系统";
+            tsmiExitSystem.Click += tsmiExitSystem_Click;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.BackColor = System.Drawing.Color.Transparent;
+            linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            linkLabel1.Location = new System.Drawing.Point(193, 25);
+            linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new System.Drawing.Size(50, 17);
+            linkLabel1.TabIndex = 26;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "未打卡";
+            linkLabel1.VisitedLinkColor = System.Drawing.Color.Green;
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // lblScroll
+            // 
+            lblScroll.Active = true;
+            lblScroll.FillColor = System.Drawing.Color.FromArgb(235, 243, 255);
+            lblScroll.Font = new System.Drawing.Font("微软雅黑", 12F);
+            lblScroll.Interval = 1000;
+            lblScroll.Location = new System.Drawing.Point(329, 46);
+            lblScroll.Margin = new System.Windows.Forms.Padding(4);
+            lblScroll.MinimumSize = new System.Drawing.Size(1, 1);
+            lblScroll.Name = "lblScroll";
+            lblScroll.Radius = 0;
+            lblScroll.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            lblScroll.Size = new System.Drawing.Size(790, 33);
+            lblScroll.TabIndex = 0;
+            // 
+            // tmrFont
+            // 
+            tmrFont.Enabled = true;
+            tmrFont.Interval = 1000;
+            tmrFont.Tick += tmrFont_Tick;
+            // 
+            // label3
+            // 
+            label3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            label3.AutoSize = true;
+            label3.BackColor = System.Drawing.Color.Transparent;
+            label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            label3.Location = new System.Drawing.Point(55, 180);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(54, 24);
+            label3.TabIndex = 30;
+            label3.Text = "Hello";
+            // 
+            // btnHello
+            // 
+            btnHello.BackColor = System.Drawing.Color.Transparent;
+            btnHello.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            btnHello.FillColor = System.Drawing.Color.Transparent;
+            btnHello.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnHello.Location = new System.Drawing.Point(7, 170);
+            btnHello.Margin = new System.Windows.Forms.Padding(4);
+            btnHello.MinimumSize = new System.Drawing.Size(1, 1);
+            btnHello.Name = "btnHello";
+            btnHello.Radius = 20;
+            btnHello.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            btnHello.RectColor = System.Drawing.Color.Transparent;
+            btnHello.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            btnHello.Size = new System.Drawing.Size(40, 34);
+            btnHello.Style = Sunny.UI.UIStyle.Custom;
+            btnHello.StyleCustomMode = true;
+            btnHello.TabIndex = 33;
+            btnHello.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            // 
+            // flpNav
+            // 
+            flpNav.AutoScroll = true;
+            flpNav.BackColor = System.Drawing.Color.Transparent;
+            flpNav.Location = new System.Drawing.Point(329, 87);
+            flpNav.Margin = new System.Windows.Forms.Padding(4);
+            flpNav.Name = "flpNav";
+            flpNav.Size = new System.Drawing.Size(926, 113);
+            flpNav.TabIndex = 72;
+            // 
+            // picSetting
+            // 
+            picSetting.BackColor = System.Drawing.Color.Transparent;
+            picSetting.BackgroundImage = Properties.Resources.settings2;
+            picSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            picSetting.FillColor = System.Drawing.Color.Transparent;
+            picSetting.Font = new System.Drawing.Font("微软雅黑", 12F);
+            picSetting.Location = new System.Drawing.Point(1124, 4);
+            picSetting.Margin = new System.Windows.Forms.Padding(4);
+            picSetting.MinimumSize = new System.Drawing.Size(1, 1);
+            picSetting.Name = "picSetting";
+            picSetting.Radius = 0;
+            picSetting.Size = new System.Drawing.Size(41, 38);
+            picSetting.Style = Sunny.UI.UIStyle.Custom;
+            picSetting.StyleCustomMode = true;
+            picSetting.TabIndex = 38;
+            picSetting.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            picSetting.Click += picSetting_Click;
+            picSetting.MouseDown += picSetting_MouseDown;
+            picSetting.MouseLeave += picSetting_MouseLeave;
+            picSetting.MouseHover += picSetting_MouseHover;
+            // 
+            // uiButton1
+            // 
+            uiButton1.BackColor = System.Drawing.Color.Transparent;
+            uiButton1.BackgroundImage = (System.Drawing.Image)resources.GetObject("uiButton1.BackgroundImage");
+            uiButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            uiButton1.FillColor = System.Drawing.Color.Transparent;
+            uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            uiButton1.Location = new System.Drawing.Point(8, 129);
+            uiButton1.Margin = new System.Windows.Forms.Padding(4);
+            uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
+            uiButton1.Name = "uiButton1";
+            uiButton1.Radius = 20;
+            uiButton1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            uiButton1.RectColor = System.Drawing.Color.Transparent;
+            uiButton1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            uiButton1.Size = new System.Drawing.Size(40, 34);
+            uiButton1.Style = Sunny.UI.UIStyle.Custom;
+            uiButton1.StyleCustomMode = true;
+            uiButton1.TabIndex = 31;
+            uiButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            // 
+            // picFormSize
+            // 
+            picFormSize.BackColor = System.Drawing.Color.Transparent;
+            picFormSize.BackgroundImage = Properties.Resources.arrow_down_b;
+            picFormSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            picFormSize.FillColor = System.Drawing.Color.Transparent;
+            picFormSize.Font = new System.Drawing.Font("微软雅黑", 12F);
+            picFormSize.Location = new System.Drawing.Point(1170, 4);
+            picFormSize.Margin = new System.Windows.Forms.Padding(4);
+            picFormSize.MinimumSize = new System.Drawing.Size(1, 1);
+            picFormSize.Name = "picFormSize";
+            picFormSize.Radius = 0;
+            picFormSize.Size = new System.Drawing.Size(41, 38);
+            picFormSize.Style = Sunny.UI.UIStyle.Custom;
+            picFormSize.StyleCustomMode = true;
+            picFormSize.TabIndex = 29;
+            picFormSize.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            picFormSize.Click += picFormSize_Click_1;
+            picFormSize.MouseDown += picFormSize_MouseDown;
+            picFormSize.MouseLeave += picFormSize_MouseLeave_1;
+            picFormSize.MouseHover += picFormSize_MouseHover;
+            // 
+            // picClose
+            // 
+            picClose.BackColor = System.Drawing.Color.Transparent;
+            picClose.BackgroundImage = Properties.Resources.close;
+            picClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            picClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            picClose.FillColor = System.Drawing.Color.Transparent;
+            picClose.Font = new System.Drawing.Font("微软雅黑", 12F);
+            picClose.Location = new System.Drawing.Point(1216, 4);
+            picClose.Margin = new System.Windows.Forms.Padding(4);
+            picClose.MinimumSize = new System.Drawing.Size(1, 1);
+            picClose.Name = "picClose";
+            picClose.Radius = 0;
+            picClose.Size = new System.Drawing.Size(39, 38);
+            picClose.Style = Sunny.UI.UIStyle.Custom;
+            picClose.TabIndex = 28;
+            picClose.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            picClose.Click += picClose_Click_1;
+            picClose.MouseDown += picClose_MouseDown;
+            picClose.MouseLeave += picClose_MouseLeave_1;
+            picClose.MouseHover += picClose_MouseHover;
+            // 
+            // pnlCheckInfo
+            // 
+            pnlCheckInfo.BackColor = System.Drawing.Color.Transparent;
+            pnlCheckInfo.BackgroundImage = Properties.Resources.打卡2;
+            pnlCheckInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pnlCheckInfo.Controls.Add(lblClose);
+            pnlCheckInfo.Controls.Add(label4);
+            pnlCheckInfo.Controls.Add(lblCheckDay);
+            pnlCheckInfo.Controls.Add(label2);
+            pnlCheckInfo.Location = new System.Drawing.Point(187, 58);
+            pnlCheckInfo.Margin = new System.Windows.Forms.Padding(4);
+            pnlCheckInfo.Name = "pnlCheckInfo";
+            pnlCheckInfo.Size = new System.Drawing.Size(103, 103);
+            pnlCheckInfo.TabIndex = 27;
+            pnlCheckInfo.Visible = false;
+            // 
+            // lblClose
+            // 
+            lblClose.AutoSize = true;
+            lblClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblClose.Location = new System.Drawing.Point(77, 7);
+            lblClose.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblClose.Name = "lblClose";
+            lblClose.Size = new System.Drawing.Size(16, 17);
+            lblClose.TabIndex = 3;
+            lblClose.Text = "×";
+            lblClose.Click += lblClose_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label4.Location = new System.Drawing.Point(21, 68);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(22, 17);
+            label4.TabIndex = 2;
+            label4.Text = "天";
+            // 
+            // lblCheckDay
+            // 
+            lblCheckDay.AutoSize = true;
+            lblCheckDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblCheckDay.Location = new System.Drawing.Point(8, 40);
+            lblCheckDay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblCheckDay.Name = "lblCheckDay";
+            lblCheckDay.Size = new System.Drawing.Size(48, 17);
+            lblCheckDay.TabIndex = 1;
+            lblCheckDay.Text = "36500";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label2.Location = new System.Drawing.Point(6, 6);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(67, 15);
+            label2.TabIndex = 0;
+            label2.Text = "您已打卡：";
+            // 
+            // picLogo
+            // 
+            picLogo.BackColor = System.Drawing.Color.Transparent;
+            picLogo.BackgroundImage = (System.Drawing.Image)resources.GetObject("picLogo.BackgroundImage");
+            picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            picLogo.Cursor = System.Windows.Forms.Cursors.Hand;
+            picLogo.Location = new System.Drawing.Point(5, 7);
+            picLogo.Margin = new System.Windows.Forms.Padding(4);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new System.Drawing.Size(165, 111);
+            picLogo.TabIndex = 15;
+            picLogo.TabStop = false;
+            picLogo.Click += picLogo_Click;
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1080, 720);
-            this.Controls.Add(this.flpNav);
-            this.Controls.Add(this.picSetting);
-            this.Controls.Add(this.btnHello);
-            this.Controls.Add(this.uiButton1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblScroll);
-            this.Controls.Add(this.picFormSize);
-            this.Controls.Add(this.picClose);
-            this.Controls.Add(this.pnlCheckInfo);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.pnlMID);
-            this.Controls.Add(this.picLogo);
-            this.Controls.Add(this.lblSoftName);
-            this.Controls.Add(this.lblTime);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TS酒店管理系统";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
-            this.Load += new System.EventHandler(this.FrmMain_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseDown_1);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseMove_1);
-            this.cmsMain.ResumeLayout(false);
-            this.pnlCheckInfo.ResumeLayout(false);
-            this.pnlCheckInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            ClientSize = new System.Drawing.Size(1260, 920);
+            Controls.Add(flpNav);
+            Controls.Add(picSetting);
+            Controls.Add(btnHello);
+            Controls.Add(uiButton1);
+            Controls.Add(label3);
+            Controls.Add(lblScroll);
+            Controls.Add(picFormSize);
+            Controls.Add(picClose);
+            Controls.Add(pnlCheckInfo);
+            Controls.Add(linkLabel1);
+            Controls.Add(pnlMID);
+            Controls.Add(picLogo);
+            Controls.Add(lblSoftName);
+            Controls.Add(lblTime);
+            DoubleBuffered = true;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+            Margin = new System.Windows.Forms.Padding(4);
+            Name = "FrmMain";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "TS酒店管理系统";
+            FormClosing += FrmMain_FormClosing;
+            FormClosed += FrmMain_FormClosed;
+            Load += FrmMain_Load;
+            MouseDown += FrmMain_MouseDown_1;
+            MouseMove += FrmMain_MouseMove_1;
+            cmsMain.ResumeLayout(false);
+            pnlCheckInfo.ResumeLayout(false);
+            pnlCheckInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

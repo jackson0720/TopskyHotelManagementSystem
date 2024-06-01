@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // ucNavBar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.Name = "ucNavBar";
-            this.Size = new System.Drawing.Size(227, 145);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.Transparent;
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            Margin = new System.Windows.Forms.Padding(4);
+            Name = "ucNavBar";
+            Size = new System.Drawing.Size(153, 113);
+            ResumeLayout(false);
         }
 
         #endregion

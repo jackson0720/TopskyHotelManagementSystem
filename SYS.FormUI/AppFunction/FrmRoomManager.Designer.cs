@@ -28,457 +28,494 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRoomManager));
-            this.flpRoom = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlRoomState = new System.Windows.Forms.Panel();
-            this.lblReser = new System.Windows.Forms.Label();
-            this.lblFix = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.lblNotClear = new System.Windows.Forms.Label();
-            this.lblCheck = new System.Windows.Forms.Label();
-            this.lblCanUse = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pnlRoomInfo = new System.Windows.Forms.Panel();
-            this.lblRoomState = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblRoomNo = new System.Windows.Forms.Label();
-            this.lblCustoNo = new System.Windows.Forms.Label();
-            this.lblRoomPosition = new System.Windows.Forms.Label();
-            this.lblCheckTime = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAll = new Sunny.UI.UIButton();
-            this.btnBD = new Sunny.UI.UIButton();
-            this.btnBS = new Sunny.UI.UIButton();
-            this.btnHD = new Sunny.UI.UIButton();
-            this.btnHS = new Sunny.UI.UIButton();
-            this.btnQL = new Sunny.UI.UIButton();
-            this.btnZT = new Sunny.UI.UIButton();
-            this.picRefrech = new System.Windows.Forms.PictureBox();
-            this.pnlRoomState.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.pnlRoomInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picRefrech)).BeginInit();
-            this.SuspendLayout();
+            flpRoom = new System.Windows.Forms.FlowLayoutPanel();
+            pnlRoomState = new System.Windows.Forms.Panel();
+            lblReser = new System.Windows.Forms.Label();
+            lblFix = new System.Windows.Forms.Label();
+            pictureBox5 = new System.Windows.Forms.PictureBox();
+            pictureBox4 = new System.Windows.Forms.PictureBox();
+            lblNotClear = new System.Windows.Forms.Label();
+            lblCheck = new System.Windows.Forms.Label();
+            lblCanUse = new System.Windows.Forms.Label();
+            pictureBox3 = new System.Windows.Forms.PictureBox();
+            pictureBox2 = new System.Windows.Forms.PictureBox();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            pnlRoomInfo = new System.Windows.Forms.Panel();
+            lblRoomState = new System.Windows.Forms.Label();
+            label11 = new System.Windows.Forms.Label();
+            lblRoomNo = new System.Windows.Forms.Label();
+            lblCustoNo = new System.Windows.Forms.Label();
+            lblRoomPosition = new System.Windows.Forms.Label();
+            lblCheckTime = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            btnAll = new Sunny.UI.UIButton();
+            btnBD = new Sunny.UI.UIButton();
+            btnBS = new Sunny.UI.UIButton();
+            btnHD = new Sunny.UI.UIButton();
+            btnHS = new Sunny.UI.UIButton();
+            btnQL = new Sunny.UI.UIButton();
+            btnZT = new Sunny.UI.UIButton();
+            picRefrech = new System.Windows.Forms.PictureBox();
+            pnlRoomState.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlRoomInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picRefrech).BeginInit();
+            SuspendLayout();
             // 
             // flpRoom
             // 
-            this.flpRoom.AutoScroll = true;
-            this.flpRoom.BackColor = System.Drawing.Color.Transparent;
-            this.flpRoom.Location = new System.Drawing.Point(227, 59);
-            this.flpRoom.Name = "flpRoom";
-            this.flpRoom.Size = new System.Drawing.Size(838, 424);
-            this.flpRoom.TabIndex = 71;
+            flpRoom.AutoScroll = true;
+            flpRoom.BackColor = System.Drawing.Color.Transparent;
+            flpRoom.Location = new System.Drawing.Point(265, 84);
+            flpRoom.Margin = new System.Windows.Forms.Padding(4);
+            flpRoom.Name = "flpRoom";
+            flpRoom.Size = new System.Drawing.Size(978, 601);
+            flpRoom.TabIndex = 71;
             // 
             // pnlRoomState
             // 
-            this.pnlRoomState.BackColor = System.Drawing.Color.Transparent;
-            this.pnlRoomState.Controls.Add(this.lblReser);
-            this.pnlRoomState.Controls.Add(this.lblFix);
-            this.pnlRoomState.Controls.Add(this.pictureBox5);
-            this.pnlRoomState.Controls.Add(this.pictureBox4);
-            this.pnlRoomState.Controls.Add(this.lblNotClear);
-            this.pnlRoomState.Controls.Add(this.lblCheck);
-            this.pnlRoomState.Controls.Add(this.lblCanUse);
-            this.pnlRoomState.Controls.Add(this.pictureBox3);
-            this.pnlRoomState.Controls.Add(this.pictureBox2);
-            this.pnlRoomState.Controls.Add(this.pictureBox1);
-            this.pnlRoomState.Location = new System.Drawing.Point(2, 3);
-            this.pnlRoomState.Name = "pnlRoomState";
-            this.pnlRoomState.Size = new System.Drawing.Size(219, 259);
-            this.pnlRoomState.TabIndex = 5;
+            pnlRoomState.BackColor = System.Drawing.Color.Transparent;
+            pnlRoomState.Controls.Add(lblReser);
+            pnlRoomState.Controls.Add(lblFix);
+            pnlRoomState.Controls.Add(pictureBox5);
+            pnlRoomState.Controls.Add(pictureBox4);
+            pnlRoomState.Controls.Add(lblNotClear);
+            pnlRoomState.Controls.Add(lblCheck);
+            pnlRoomState.Controls.Add(lblCanUse);
+            pnlRoomState.Controls.Add(pictureBox3);
+            pnlRoomState.Controls.Add(pictureBox2);
+            pnlRoomState.Controls.Add(pictureBox1);
+            pnlRoomState.Location = new System.Drawing.Point(2, 4);
+            pnlRoomState.Margin = new System.Windows.Forms.Padding(4);
+            pnlRoomState.Name = "pnlRoomState";
+            pnlRoomState.Size = new System.Drawing.Size(255, 367);
+            pnlRoomState.TabIndex = 5;
             // 
             // lblReser
             // 
-            this.lblReser.AutoSize = true;
-            this.lblReser.BackColor = System.Drawing.Color.RoyalBlue;
-            this.lblReser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblReser.ForeColor = System.Drawing.Color.White;
-            this.lblReser.Location = new System.Drawing.Point(176, 222);
-            this.lblReser.Name = "lblReser";
-            this.lblReser.Size = new System.Drawing.Size(19, 20);
-            this.lblReser.TabIndex = 14;
-            this.lblReser.Text = "0";
+            lblReser.AutoSize = true;
+            lblReser.BackColor = System.Drawing.Color.RoyalBlue;
+            lblReser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
+            lblReser.ForeColor = System.Drawing.Color.White;
+            lblReser.Location = new System.Drawing.Point(204, 325);
+            lblReser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblReser.Name = "lblReser";
+            lblReser.Size = new System.Drawing.Size(19, 20);
+            lblReser.TabIndex = 14;
+            lblReser.Text = "0";
             // 
             // lblFix
             // 
-            this.lblFix.AutoSize = true;
-            this.lblFix.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(167)))), ((int)(((byte)(203)))));
-            this.lblFix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblFix.ForeColor = System.Drawing.Color.White;
-            this.lblFix.Location = new System.Drawing.Point(176, 171);
-            this.lblFix.Name = "lblFix";
-            this.lblFix.Size = new System.Drawing.Size(19, 20);
-            this.lblFix.TabIndex = 13;
-            this.lblFix.Text = "0";
+            lblFix.AutoSize = true;
+            lblFix.BackColor = System.Drawing.Color.FromArgb(95, 167, 203);
+            lblFix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
+            lblFix.ForeColor = System.Drawing.Color.White;
+            lblFix.Location = new System.Drawing.Point(204, 249);
+            lblFix.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblFix.Name = "lblFix";
+            lblFix.Size = new System.Drawing.Size(19, 20);
+            lblFix.TabIndex = 13;
+            lblFix.Text = "0";
             // 
             // pictureBox5
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.White;
-            this.pictureBox5.BackgroundImage = global::SYS.FormUI.Properties.Resources.预约房icon;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(4, 212);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(212, 41);
-            this.pictureBox5.TabIndex = 12;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            this.pictureBox5.MouseLeave += new System.EventHandler(this.pictureBox5_MouseLeave);
-            this.pictureBox5.MouseHover += new System.EventHandler(this.pictureBox5_MouseHover);
+            pictureBox5.BackColor = System.Drawing.Color.White;
+            pictureBox5.BackgroundImage = Properties.Resources.预约房icon;
+            pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pictureBox5.Location = new System.Drawing.Point(4, 310);
+            pictureBox5.Margin = new System.Windows.Forms.Padding(4);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new System.Drawing.Size(247, 50);
+            pictureBox5.TabIndex = 12;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
+            pictureBox5.MouseLeave += pictureBox5_MouseLeave;
+            pictureBox5.MouseHover += pictureBox5_MouseHover;
             // 
             // pictureBox4
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.White;
-            this.pictureBox4.BackgroundImage = global::SYS.FormUI.Properties.Resources.维修房icon;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(5, 160);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(212, 41);
-            this.pictureBox4.TabIndex = 12;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            this.pictureBox4.MouseLeave += new System.EventHandler(this.pictureBox4_MouseLeave);
-            this.pictureBox4.MouseHover += new System.EventHandler(this.pictureBox4_MouseHover);
+            pictureBox4.BackColor = System.Drawing.Color.White;
+            pictureBox4.BackgroundImage = Properties.Resources.维修房icon;
+            pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pictureBox4.Location = new System.Drawing.Point(5, 234);
+            pictureBox4.Margin = new System.Windows.Forms.Padding(4);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new System.Drawing.Size(247, 50);
+            pictureBox4.TabIndex = 12;
+            pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
+            pictureBox4.MouseLeave += pictureBox4_MouseLeave;
+            pictureBox4.MouseHover += pictureBox4_MouseHover;
             // 
             // lblNotClear
             // 
-            this.lblNotClear.AutoSize = true;
-            this.lblNotClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(155)))), ((int)(((byte)(138)))));
-            this.lblNotClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblNotClear.ForeColor = System.Drawing.Color.White;
-            this.lblNotClear.Location = new System.Drawing.Point(176, 119);
-            this.lblNotClear.Name = "lblNotClear";
-            this.lblNotClear.Size = new System.Drawing.Size(19, 20);
-            this.lblNotClear.TabIndex = 11;
-            this.lblNotClear.Text = "0";
+            lblNotClear.AutoSize = true;
+            lblNotClear.BackColor = System.Drawing.Color.FromArgb(140, 155, 138);
+            lblNotClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
+            lblNotClear.ForeColor = System.Drawing.Color.White;
+            lblNotClear.Location = new System.Drawing.Point(204, 172);
+            lblNotClear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblNotClear.Name = "lblNotClear";
+            lblNotClear.Size = new System.Drawing.Size(19, 20);
+            lblNotClear.TabIndex = 11;
+            lblNotClear.Text = "0";
             // 
             // lblCheck
             // 
-            this.lblCheck.AutoSize = true;
-            this.lblCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(195)))), ((int)(((byte)(96)))));
-            this.lblCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCheck.ForeColor = System.Drawing.Color.White;
-            this.lblCheck.Location = new System.Drawing.Point(176, 67);
-            this.lblCheck.Name = "lblCheck";
-            this.lblCheck.Size = new System.Drawing.Size(19, 20);
-            this.lblCheck.TabIndex = 10;
-            this.lblCheck.Text = "0";
+            lblCheck.AutoSize = true;
+            lblCheck.BackColor = System.Drawing.Color.FromArgb(108, 195, 96);
+            lblCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
+            lblCheck.ForeColor = System.Drawing.Color.White;
+            lblCheck.Location = new System.Drawing.Point(204, 98);
+            lblCheck.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblCheck.Name = "lblCheck";
+            lblCheck.Size = new System.Drawing.Size(19, 20);
+            lblCheck.TabIndex = 10;
+            lblCheck.Text = "0";
             // 
             // lblCanUse
             // 
-            this.lblCanUse.AutoSize = true;
-            this.lblCanUse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
-            this.lblCanUse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCanUse.ForeColor = System.Drawing.Color.White;
-            this.lblCanUse.Location = new System.Drawing.Point(176, 14);
-            this.lblCanUse.Name = "lblCanUse";
-            this.lblCanUse.Size = new System.Drawing.Size(19, 20);
-            this.lblCanUse.TabIndex = 9;
-            this.lblCanUse.Text = "0";
+            lblCanUse.AutoSize = true;
+            lblCanUse.BackColor = System.Drawing.Color.FromArgb(102, 255, 204);
+            lblCanUse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
+            lblCanUse.ForeColor = System.Drawing.Color.White;
+            lblCanUse.Location = new System.Drawing.Point(204, 19);
+            lblCanUse.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblCanUse.Name = "lblCanUse";
+            lblCanUse.Size = new System.Drawing.Size(19, 20);
+            lblCanUse.TabIndex = 9;
+            lblCanUse.Text = "0";
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.White;
-            this.pictureBox3.BackgroundImage = global::SYS.FormUI.Properties.Resources.脏房icon1;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 108);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(212, 41);
-            this.pictureBox3.TabIndex = 7;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-            this.pictureBox3.MouseLeave += new System.EventHandler(this.pictureBox3_MouseLeave);
-            this.pictureBox3.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
+            pictureBox3.BackColor = System.Drawing.Color.White;
+            pictureBox3.BackgroundImage = Properties.Resources.脏房icon1;
+            pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pictureBox3.Location = new System.Drawing.Point(4, 158);
+            pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new System.Drawing.Size(247, 50);
+            pictureBox3.TabIndex = 7;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
+            pictureBox3.MouseLeave += pictureBox3_MouseLeave;
+            pictureBox3.MouseHover += pictureBox3_MouseHover;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox2.BackgroundImage = global::SYS.FormUI.Properties.Resources.已住房icon;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(4, 56);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(212, 41);
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            this.pictureBox2.MouseLeave += new System.EventHandler(this.pictureBox2_MouseLeave);
-            this.pictureBox2.MouseHover += new System.EventHandler(this.pictureBox2_MouseHover);
+            pictureBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            pictureBox2.BackgroundImage = Properties.Resources.已住房icon;
+            pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pictureBox2.Location = new System.Drawing.Point(4, 82);
+            pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new System.Drawing.Size(247, 50);
+            pictureBox2.TabIndex = 6;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            pictureBox2.MouseLeave += pictureBox2_MouseLeave;
+            pictureBox2.MouseHover += pictureBox2_MouseHover;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.BackgroundImage = global::SYS.FormUI.Properties.Resources.可住房icon;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(212, 42);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
-            this.pictureBox1.MouseHover += new System.EventHandler(this.pictureBox1_MouseHover);
+            pictureBox1.BackColor = System.Drawing.Color.White;
+            pictureBox1.BackgroundImage = Properties.Resources.可住房icon;
+            pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            pictureBox1.Location = new System.Drawing.Point(4, 4);
+            pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(247, 52);
+            pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            pictureBox1.MouseLeave += pictureBox1_MouseLeave;
+            pictureBox1.MouseHover += pictureBox1_MouseHover;
             // 
             // pnlRoomInfo
             // 
-            this.pnlRoomInfo.BackColor = System.Drawing.Color.Transparent;
-            this.pnlRoomInfo.Controls.Add(this.lblRoomState);
-            this.pnlRoomInfo.Controls.Add(this.label11);
-            this.pnlRoomInfo.Controls.Add(this.lblRoomNo);
-            this.pnlRoomInfo.Controls.Add(this.lblCustoNo);
-            this.pnlRoomInfo.Controls.Add(this.lblRoomPosition);
-            this.pnlRoomInfo.Controls.Add(this.lblCheckTime);
-            this.pnlRoomInfo.Controls.Add(this.label4);
-            this.pnlRoomInfo.Controls.Add(this.label3);
-            this.pnlRoomInfo.Controls.Add(this.label2);
-            this.pnlRoomInfo.Controls.Add(this.label1);
-            this.pnlRoomInfo.Location = new System.Drawing.Point(2, 268);
-            this.pnlRoomInfo.Name = "pnlRoomInfo";
-            this.pnlRoomInfo.Size = new System.Drawing.Size(219, 215);
-            this.pnlRoomInfo.TabIndex = 72;
+            pnlRoomInfo.BackColor = System.Drawing.Color.Transparent;
+            pnlRoomInfo.Controls.Add(lblRoomState);
+            pnlRoomInfo.Controls.Add(label11);
+            pnlRoomInfo.Controls.Add(lblRoomNo);
+            pnlRoomInfo.Controls.Add(lblCustoNo);
+            pnlRoomInfo.Controls.Add(lblRoomPosition);
+            pnlRoomInfo.Controls.Add(lblCheckTime);
+            pnlRoomInfo.Controls.Add(label4);
+            pnlRoomInfo.Controls.Add(label3);
+            pnlRoomInfo.Controls.Add(label2);
+            pnlRoomInfo.Controls.Add(label1);
+            pnlRoomInfo.Location = new System.Drawing.Point(2, 380);
+            pnlRoomInfo.Margin = new System.Windows.Forms.Padding(4);
+            pnlRoomInfo.Name = "pnlRoomInfo";
+            pnlRoomInfo.Size = new System.Drawing.Size(255, 305);
+            pnlRoomInfo.TabIndex = 72;
             // 
             // lblRoomState
             // 
-            this.lblRoomState.AutoSize = true;
-            this.lblRoomState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblRoomState.Location = new System.Drawing.Point(104, 190);
-            this.lblRoomState.Name = "lblRoomState";
-            this.lblRoomState.Size = new System.Drawing.Size(10, 15);
-            this.lblRoomState.TabIndex = 16;
-            this.lblRoomState.Text = " ";
+            lblRoomState.AutoSize = true;
+            lblRoomState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblRoomState.Location = new System.Drawing.Point(132, 269);
+            lblRoomState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblRoomState.Name = "lblRoomState";
+            lblRoomState.Size = new System.Drawing.Size(10, 15);
+            lblRoomState.TabIndex = 16;
+            lblRoomState.Text = " ";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(1, 190);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 15);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "房间状态：";
+            label11.AutoSize = true;
+            label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label11.Location = new System.Drawing.Point(12, 269);
+            label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(67, 15);
+            label11.TabIndex = 15;
+            label11.Text = "房间状态：";
             // 
             // lblRoomNo
             // 
-            this.lblRoomNo.AutoSize = true;
-            this.lblRoomNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblRoomNo.Location = new System.Drawing.Point(104, 10);
-            this.lblRoomNo.Name = "lblRoomNo";
-            this.lblRoomNo.Size = new System.Drawing.Size(10, 15);
-            this.lblRoomNo.TabIndex = 14;
-            this.lblRoomNo.Text = " ";
+            lblRoomNo.AutoSize = true;
+            lblRoomNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblRoomNo.Location = new System.Drawing.Point(132, 14);
+            lblRoomNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblRoomNo.Name = "lblRoomNo";
+            lblRoomNo.Size = new System.Drawing.Size(10, 15);
+            lblRoomNo.TabIndex = 14;
+            lblRoomNo.Text = " ";
             // 
             // lblCustoNo
             // 
-            this.lblCustoNo.AutoSize = true;
-            this.lblCustoNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCustoNo.Location = new System.Drawing.Point(104, 55);
-            this.lblCustoNo.Name = "lblCustoNo";
-            this.lblCustoNo.Size = new System.Drawing.Size(10, 15);
-            this.lblCustoNo.TabIndex = 12;
-            this.lblCustoNo.Text = " ";
+            lblCustoNo.AutoSize = true;
+            lblCustoNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblCustoNo.Location = new System.Drawing.Point(132, 78);
+            lblCustoNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblCustoNo.Name = "lblCustoNo";
+            lblCustoNo.Size = new System.Drawing.Size(10, 15);
+            lblCustoNo.TabIndex = 12;
+            lblCustoNo.Text = " ";
             // 
             // lblRoomPosition
             // 
-            this.lblRoomPosition.AutoSize = true;
-            this.lblRoomPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblRoomPosition.Location = new System.Drawing.Point(104, 145);
-            this.lblRoomPosition.Name = "lblRoomPosition";
-            this.lblRoomPosition.Size = new System.Drawing.Size(10, 15);
-            this.lblRoomPosition.TabIndex = 10;
-            this.lblRoomPosition.Text = " ";
+            lblRoomPosition.AutoSize = true;
+            lblRoomPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblRoomPosition.Location = new System.Drawing.Point(132, 205);
+            lblRoomPosition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblRoomPosition.Name = "lblRoomPosition";
+            lblRoomPosition.Size = new System.Drawing.Size(10, 15);
+            lblRoomPosition.TabIndex = 10;
+            lblRoomPosition.Text = " ";
             // 
             // lblCheckTime
             // 
-            this.lblCheckTime.AutoSize = true;
-            this.lblCheckTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCheckTime.Location = new System.Drawing.Point(80, 100);
-            this.lblCheckTime.Name = "lblCheckTime";
-            this.lblCheckTime.Size = new System.Drawing.Size(10, 15);
-            this.lblCheckTime.TabIndex = 9;
-            this.lblCheckTime.Text = " ";
+            lblCheckTime.AutoSize = true;
+            lblCheckTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblCheckTime.Location = new System.Drawing.Point(104, 142);
+            lblCheckTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblCheckTime.Name = "lblCheckTime";
+            lblCheckTime.Size = new System.Drawing.Size(10, 15);
+            lblCheckTime.TabIndex = 9;
+            lblCheckTime.Text = " ";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(1, 145);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "所在区域：";
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label4.Location = new System.Drawing.Point(12, 205);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(67, 15);
+            label4.TabIndex = 3;
+            label4.Text = "所在区域：";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(1, 100);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "入住时间：";
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label3.Location = new System.Drawing.Point(12, 142);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(67, 15);
+            label3.TabIndex = 2;
+            label3.Text = "入住时间：";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(1, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "客户名字：";
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label2.Location = new System.Drawing.Point(12, 78);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(67, 15);
+            label2.TabIndex = 1;
+            label2.Text = "客户名字：";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(1, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "房间号码：";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label1.Location = new System.Drawing.Point(12, 14);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(67, 15);
+            label1.TabIndex = 0;
+            label1.Text = "房间号码：";
             // 
             // btnAll
             // 
-            this.btnAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAll.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnAll.Location = new System.Drawing.Point(233, 13);
-            this.btnAll.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(108, 31);
-            this.btnAll.TabIndex = 0;
-            this.btnAll.Text = "全部房间";
-            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
+            btnAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnAll.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnAll.Location = new System.Drawing.Point(272, 18);
+            btnAll.Margin = new System.Windows.Forms.Padding(4);
+            btnAll.MinimumSize = new System.Drawing.Size(1, 1);
+            btnAll.Name = "btnAll";
+            btnAll.Size = new System.Drawing.Size(126, 42);
+            btnAll.TabIndex = 0;
+            btnAll.Text = "全部房间";
+            btnAll.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnAll.Click += btnAll_Click;
             // 
             // btnBD
             // 
-            this.btnBD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBD.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnBD.Location = new System.Drawing.Point(346, 13);
-            this.btnBD.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnBD.Name = "btnBD";
-            this.btnBD.Size = new System.Drawing.Size(108, 31);
-            this.btnBD.TabIndex = 1;
-            this.btnBD.Text = "标准单人间";
-            this.btnBD.Click += new System.EventHandler(this.btnBD_Click);
+            btnBD.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnBD.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnBD.Location = new System.Drawing.Point(404, 18);
+            btnBD.Margin = new System.Windows.Forms.Padding(4);
+            btnBD.MinimumSize = new System.Drawing.Size(1, 1);
+            btnBD.Name = "btnBD";
+            btnBD.Size = new System.Drawing.Size(126, 42);
+            btnBD.TabIndex = 1;
+            btnBD.Text = "标准单人间";
+            btnBD.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnBD.Click += btnBD_Click;
             // 
             // btnBS
             // 
-            this.btnBS.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBS.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnBS.Location = new System.Drawing.Point(459, 13);
-            this.btnBS.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnBS.Name = "btnBS";
-            this.btnBS.Size = new System.Drawing.Size(108, 31);
-            this.btnBS.TabIndex = 2;
-            this.btnBS.Text = "标准双人间";
-            this.btnBS.Click += new System.EventHandler(this.btnBS_Click);
+            btnBS.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnBS.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnBS.Location = new System.Drawing.Point(536, 18);
+            btnBS.Margin = new System.Windows.Forms.Padding(4);
+            btnBS.MinimumSize = new System.Drawing.Size(1, 1);
+            btnBS.Name = "btnBS";
+            btnBS.Size = new System.Drawing.Size(126, 42);
+            btnBS.TabIndex = 2;
+            btnBS.Text = "标准双人间";
+            btnBS.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnBS.Click += btnBS_Click;
             // 
             // btnHD
             // 
-            this.btnHD.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHD.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnHD.Location = new System.Drawing.Point(572, 13);
-            this.btnHD.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnHD.Name = "btnHD";
-            this.btnHD.Size = new System.Drawing.Size(108, 31);
-            this.btnHD.TabIndex = 3;
-            this.btnHD.Text = "豪华单人间";
-            this.btnHD.Click += new System.EventHandler(this.btnHD_Click);
+            btnHD.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnHD.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnHD.Location = new System.Drawing.Point(667, 18);
+            btnHD.Margin = new System.Windows.Forms.Padding(4);
+            btnHD.MinimumSize = new System.Drawing.Size(1, 1);
+            btnHD.Name = "btnHD";
+            btnHD.Size = new System.Drawing.Size(126, 42);
+            btnHD.TabIndex = 3;
+            btnHD.Text = "豪华单人间";
+            btnHD.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnHD.Click += btnHD_Click;
             // 
             // btnHS
             // 
-            this.btnHS.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHS.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnHS.Location = new System.Drawing.Point(685, 13);
-            this.btnHS.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnHS.Name = "btnHS";
-            this.btnHS.Size = new System.Drawing.Size(108, 31);
-            this.btnHS.TabIndex = 4;
-            this.btnHS.Text = "豪华双人间";
-            this.btnHS.Click += new System.EventHandler(this.btnHS_Click);
+            btnHS.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnHS.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnHS.Location = new System.Drawing.Point(799, 18);
+            btnHS.Margin = new System.Windows.Forms.Padding(4);
+            btnHS.MinimumSize = new System.Drawing.Size(1, 1);
+            btnHS.Name = "btnHS";
+            btnHS.Size = new System.Drawing.Size(126, 42);
+            btnHS.TabIndex = 4;
+            btnHS.Text = "豪华双人间";
+            btnHS.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnHS.Click += btnHS_Click;
             // 
             // btnQL
             // 
-            this.btnQL.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQL.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnQL.Location = new System.Drawing.Point(798, 13);
-            this.btnQL.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnQL.Name = "btnQL";
-            this.btnQL.Size = new System.Drawing.Size(108, 31);
-            this.btnQL.TabIndex = 5;
-            this.btnQL.Text = "情侣套房";
-            this.btnQL.Click += new System.EventHandler(this.btnQL_Click);
+            btnQL.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnQL.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnQL.Location = new System.Drawing.Point(931, 18);
+            btnQL.Margin = new System.Windows.Forms.Padding(4);
+            btnQL.MinimumSize = new System.Drawing.Size(1, 1);
+            btnQL.Name = "btnQL";
+            btnQL.Size = new System.Drawing.Size(126, 42);
+            btnQL.TabIndex = 5;
+            btnQL.Text = "情侣套房";
+            btnQL.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnQL.Click += btnQL_Click;
             // 
             // btnZT
             // 
-            this.btnZT.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnZT.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnZT.Location = new System.Drawing.Point(911, 13);
-            this.btnZT.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnZT.Name = "btnZT";
-            this.btnZT.Size = new System.Drawing.Size(108, 31);
-            this.btnZT.TabIndex = 6;
-            this.btnZT.Text = "总统套房";
-            this.btnZT.Click += new System.EventHandler(this.btnZT_Click);
+            btnZT.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnZT.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnZT.Location = new System.Drawing.Point(1063, 18);
+            btnZT.Margin = new System.Windows.Forms.Padding(4);
+            btnZT.MinimumSize = new System.Drawing.Size(1, 1);
+            btnZT.Name = "btnZT";
+            btnZT.Size = new System.Drawing.Size(126, 42);
+            btnZT.TabIndex = 6;
+            btnZT.Text = "总统套房";
+            btnZT.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnZT.Click += btnZT_Click;
             // 
             // picRefrech
             // 
-            this.picRefrech.BackColor = System.Drawing.Color.Transparent;
-            this.picRefrech.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picRefrech.BackgroundImage")));
-            this.picRefrech.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picRefrech.Location = new System.Drawing.Point(1024, 14);
-            this.picRefrech.Name = "picRefrech";
-            this.picRefrech.Size = new System.Drawing.Size(32, 29);
-            this.picRefrech.TabIndex = 94;
-            this.picRefrech.TabStop = false;
-            this.picRefrech.Click += new System.EventHandler(this.picRefrech_Click);
+            picRefrech.BackColor = System.Drawing.Color.Transparent;
+            picRefrech.BackgroundImage = Properties.Resources.blue_refresh;
+            picRefrech.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            picRefrech.Location = new System.Drawing.Point(1195, 20);
+            picRefrech.Margin = new System.Windows.Forms.Padding(4);
+            picRefrech.Name = "picRefrech";
+            picRefrech.Size = new System.Drawing.Size(43, 40);
+            picRefrech.TabIndex = 94;
+            picRefrech.TabStop = false;
+            picRefrech.Click += picRefrech_Click;
             // 
             // FrmRoomManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1072, 490);
-            this.Controls.Add(this.btnZT);
-            this.Controls.Add(this.btnQL);
-            this.Controls.Add(this.btnHS);
-            this.Controls.Add(this.btnHD);
-            this.Controls.Add(this.btnBS);
-            this.Controls.Add(this.btnBD);
-            this.Controls.Add(this.btnAll);
-            this.Controls.Add(this.picRefrech);
-            this.Controls.Add(this.pnlRoomInfo);
-            this.Controls.Add(this.pnlRoomState);
-            this.Controls.Add(this.flpRoom);
-            this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmRoomManager";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmRoomManager";
-            this.TransparencyKey = System.Drawing.Color.White;
-            this.Load += new System.EventHandler(this.FrmRoomManager_Load);
-            this.pnlRoomState.ResumeLayout(false);
-            this.pnlRoomState.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.pnlRoomInfo.ResumeLayout(false);
-            this.pnlRoomInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picRefrech)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            ClientSize = new System.Drawing.Size(1251, 694);
+            Controls.Add(btnZT);
+            Controls.Add(btnQL);
+            Controls.Add(btnHS);
+            Controls.Add(btnHD);
+            Controls.Add(btnBS);
+            Controls.Add(btnBD);
+            Controls.Add(btnAll);
+            Controls.Add(picRefrech);
+            Controls.Add(pnlRoomInfo);
+            Controls.Add(pnlRoomState);
+            Controls.Add(flpRoom);
+            DoubleBuffered = true;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(4);
+            Name = "FrmRoomManager";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "C";
+            TransparencyKey = System.Drawing.Color.White;
+            Load += FrmRoomManager_Load;
+            pnlRoomState.ResumeLayout(false);
+            pnlRoomState.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlRoomInfo.ResumeLayout(false);
+            pnlRoomInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picRefrech).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

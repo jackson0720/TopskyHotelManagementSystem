@@ -408,7 +408,7 @@ namespace SYS.FormUI
                 label3.Text = "下午好," + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.咖啡;
             }
-            SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
+            //SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
 
             Dictionary<string, string> user = new Dictionary<string, string>();
             user.Add("wkn", LoginInfo.WorkerNo);

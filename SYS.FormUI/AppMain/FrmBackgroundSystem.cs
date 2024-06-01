@@ -138,10 +138,10 @@ namespace SYS.FormUI
                         break;
                     case "酒店盈利情况":
                         pnlForm.Controls.Clear();
-                        FrmChart frmChart = new FrmChart();
-                        frmChart.TopLevel = false;
-                        pnlForm.Controls.Add(frmChart);
-                        frmChart.Show();
+                        //FrmChart frmChart = new FrmChart();
+                        //frmChart.TopLevel = false;
+                        //pnlForm.Controls.Add(frmChart);
+                        //frmChart.Show();
                         break;
                     case "水电管理":
                         break;
@@ -227,17 +227,17 @@ namespace SYS.FormUI
                         break;
                     case "公告日志":
                         pnlForm.Controls.Clear();
-                        FrmNotice frmNotice = new FrmNotice();
-                        frmNotice.TopLevel = false;
-                        pnlForm.Controls.Add(frmNotice);
-                        frmNotice.Show();
+                        //FrmNotice frmNotice = new FrmNotice();
+                        //frmNotice.TopLevel = false;
+                        //pnlForm.Controls.Add(frmNotice);
+                        //frmNotice.Show();
                         break;
                     case "上传公告日志":
                         pnlForm.Controls.Clear();
-                        FrmUpLoadNotice frmUpLoadNotice = new FrmUpLoadNotice();
-                        frmUpLoadNotice.TopLevel = false;
-                        pnlForm.Controls.Add(frmUpLoadNotice);
-                        frmUpLoadNotice.Show();
+                        //FrmUpLoadNotice frmUpLoadNotice = new FrmUpLoadNotice();
+                        //frmUpLoadNotice.TopLevel = false;
+                        //pnlForm.Controls.Add(frmUpLoadNotice);
+                        //frmUpLoadNotice.Show();
                         break;
                     case "物资管理":
                         break;

@@ -2,6 +2,7 @@
 using Sunny.UI;
 using SYS.Common;
 using System;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -25,7 +26,7 @@ namespace SYS.FormUI
 
         public void threadPro()
         {
-            MethodInvoker MethInvo = new MethodInvoker(ShowLoginForm);
+            System.Windows.Forms.MethodInvoker MethInvo = new System.Windows.Forms.MethodInvoker(ShowLoginForm);
             BeginInvoke(MethInvo);
         }
 
@@ -49,8 +50,11 @@ namespace SYS.FormUI
             }
             var newversion = HttpHelper.JsonToModel<Applicationversion>(result.message);
 
-            string version = System.Windows.Forms.Application.ProductVersion.ToString();
-            if (newversion.base_version != version)
+            var targetVersion = new Version(newversion.base_version);
+            var assembly = Assembly.GetExecutingAssembly();
+            var currentVersion = assembly.GetName().Version;
+
+            if (!currentVersion.Equals(targetVersion))
             {
                 lblTips.Text = "旧版已停止使用，请到github或gitee仓库更新最新发行版！";
                 System.Windows.Forms.Application.Exit();

@@ -22,6 +22,7 @@
  *
  */
 using System;
+using System.Windows.Forms;
 
 namespace SYS.FormUI
 {
@@ -33,9 +34,9 @@ namespace SYS.FormUI
         [STAThread]
         static void Main()
         {
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            System.Windows.Forms.Application.Run(new FrmLoading());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FrmLoading());
         }
     }
 

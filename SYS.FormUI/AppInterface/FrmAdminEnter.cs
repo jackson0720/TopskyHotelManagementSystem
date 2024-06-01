@@ -22,7 +22,7 @@
  *
  */
 using EOM.TSHotelManager.Common.Core;
-using jvncorelib_fr.EncryptorLib;
+using jvncorelib.EncryptorLib;
 using Sunny.UI;
 using SYS.Common;
 using System;

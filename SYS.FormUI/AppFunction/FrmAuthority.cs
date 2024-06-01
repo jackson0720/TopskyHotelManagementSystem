@@ -1,5 +1,5 @@
 ﻿using EOM.TSHotelManager.Common.Core;
-using jvncorelib_fr.EntityLib;
+using jvncorelib.EntityLib;
 using Sunny.UI;
 using SYS.Common;
 using System;
