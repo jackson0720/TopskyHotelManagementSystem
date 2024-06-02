@@ -16,6 +16,7 @@
 
  **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
 
+ **注意：目前Net8-breaking分支处于不稳定阶段，如果你是想体验程序，请不要拉取此分支，因为目前该分支运行存在诸多问题**
 
 #  :pray: 引用的开源项目：
 
