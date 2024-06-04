@@ -75,7 +75,7 @@
             lblTime.BackColor = System.Drawing.Color.Transparent;
             lblTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblTime.Location = new System.Drawing.Point(55, 137);
+            lblTime.Location = new System.Drawing.Point(52, 146);
             lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblTime.Name = "lblTime";
             lblTime.Size = new System.Drawing.Size(92, 24);
@@ -93,10 +93,10 @@
             lblSoftName.BackColor = System.Drawing.Color.Transparent;
             lblSoftName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             lblSoftName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
-            lblSoftName.Location = new System.Drawing.Point(328, 6);
+            lblSoftName.Location = new System.Drawing.Point(328, 7);
             lblSoftName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblSoftName.Name = "lblSoftName";
-            lblSoftName.Size = new System.Drawing.Size(736, 36);
+            lblSoftName.Size = new System.Drawing.Size(610, 36);
             lblSoftName.TabIndex = 14;
             lblSoftName.Text = "TS酒店管理系统";
             lblSoftName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,7 +108,7 @@
             pnlMID.Location = new System.Drawing.Point(5, 223);
             pnlMID.Margin = new System.Windows.Forms.Padding(4);
             pnlMID.Name = "pnlMID";
-            pnlMID.Size = new System.Drawing.Size(1251, 693);
+            pnlMID.Size = new System.Drawing.Size(1072, 490);
             pnlMID.TabIndex = 23;
             // 
             // notifyIcon1
@@ -219,7 +219,7 @@
             linkLabel1.BackColor = System.Drawing.Color.Transparent;
             linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            linkLabel1.Location = new System.Drawing.Point(193, 25);
+            linkLabel1.Location = new System.Drawing.Point(214, 25);
             linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new System.Drawing.Size(50, 17);
@@ -235,13 +235,14 @@
             lblScroll.FillColor = System.Drawing.Color.FromArgb(235, 243, 255);
             lblScroll.Font = new System.Drawing.Font("微软雅黑", 12F);
             lblScroll.Interval = 1000;
-            lblScroll.Location = new System.Drawing.Point(329, 46);
+            lblScroll.Location = new System.Drawing.Point(329, 56);
             lblScroll.Margin = new System.Windows.Forms.Padding(4);
             lblScroll.MinimumSize = new System.Drawing.Size(1, 1);
             lblScroll.Name = "lblScroll";
             lblScroll.Radius = 0;
             lblScroll.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            lblScroll.Size = new System.Drawing.Size(790, 33);
+            lblScroll.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
+            lblScroll.Size = new System.Drawing.Size(627, 33);
             lblScroll.TabIndex = 0;
             // 
             // tmrFont
@@ -257,7 +258,7 @@
             label3.BackColor = System.Drawing.Color.Transparent;
             label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            label3.Location = new System.Drawing.Point(55, 180);
+            label3.Location = new System.Drawing.Point(53, 191);
             label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(54, 24);
@@ -270,7 +271,7 @@
             btnHello.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             btnHello.FillColor = System.Drawing.Color.Transparent;
             btnHello.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnHello.Location = new System.Drawing.Point(7, 170);
+            btnHello.Location = new System.Drawing.Point(5, 181);
             btnHello.Margin = new System.Windows.Forms.Padding(4);
             btnHello.MinimumSize = new System.Drawing.Size(1, 1);
             btnHello.Name = "btnHello";
@@ -288,10 +289,10 @@
             // 
             flpNav.AutoScroll = true;
             flpNav.BackColor = System.Drawing.Color.Transparent;
-            flpNav.Location = new System.Drawing.Point(329, 87);
+            flpNav.Location = new System.Drawing.Point(329, 102);
             flpNav.Margin = new System.Windows.Forms.Padding(4);
             flpNav.Name = "flpNav";
-            flpNav.Size = new System.Drawing.Size(926, 113);
+            flpNav.Size = new System.Drawing.Size(748, 113);
             flpNav.TabIndex = 72;
             // 
             // picSetting
@@ -301,7 +302,7 @@
             picSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             picSetting.FillColor = System.Drawing.Color.Transparent;
             picSetting.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picSetting.Location = new System.Drawing.Point(1124, 4);
+            picSetting.Location = new System.Drawing.Point(946, 6);
             picSetting.Margin = new System.Windows.Forms.Padding(4);
             picSetting.MinimumSize = new System.Drawing.Size(1, 1);
             picSetting.Name = "picSetting";
@@ -323,7 +324,7 @@
             uiButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             uiButton1.FillColor = System.Drawing.Color.Transparent;
             uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            uiButton1.Location = new System.Drawing.Point(8, 129);
+            uiButton1.Location = new System.Drawing.Point(5, 132);
             uiButton1.Margin = new System.Windows.Forms.Padding(4);
             uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             uiButton1.Name = "uiButton1";
@@ -331,7 +332,7 @@
             uiButton1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             uiButton1.RectColor = System.Drawing.Color.Transparent;
             uiButton1.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            uiButton1.Size = new System.Drawing.Size(40, 34);
+            uiButton1.Size = new System.Drawing.Size(40, 39);
             uiButton1.Style = Sunny.UI.UIStyle.Custom;
             uiButton1.StyleCustomMode = true;
             uiButton1.TabIndex = 31;
@@ -344,7 +345,7 @@
             picFormSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             picFormSize.FillColor = System.Drawing.Color.Transparent;
             picFormSize.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picFormSize.Location = new System.Drawing.Point(1170, 4);
+            picFormSize.Location = new System.Drawing.Point(992, 6);
             picFormSize.Margin = new System.Windows.Forms.Padding(4);
             picFormSize.MinimumSize = new System.Drawing.Size(1, 1);
             picFormSize.Name = "picFormSize";
@@ -367,7 +368,7 @@
             picClose.Cursor = System.Windows.Forms.Cursors.Hand;
             picClose.FillColor = System.Drawing.Color.Transparent;
             picClose.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picClose.Location = new System.Drawing.Point(1216, 4);
+            picClose.Location = new System.Drawing.Point(1038, 6);
             picClose.Margin = new System.Windows.Forms.Padding(4);
             picClose.MinimumSize = new System.Drawing.Size(1, 1);
             picClose.Name = "picClose";
@@ -390,7 +391,7 @@
             pnlCheckInfo.Controls.Add(label4);
             pnlCheckInfo.Controls.Add(lblCheckDay);
             pnlCheckInfo.Controls.Add(label2);
-            pnlCheckInfo.Location = new System.Drawing.Point(187, 58);
+            pnlCheckInfo.Location = new System.Drawing.Point(208, 58);
             pnlCheckInfo.Margin = new System.Windows.Forms.Padding(4);
             pnlCheckInfo.Name = "pnlCheckInfo";
             pnlCheckInfo.Size = new System.Drawing.Size(103, 103);
@@ -462,7 +463,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            ClientSize = new System.Drawing.Size(1260, 920);
+            ClientSize = new System.Drawing.Size(1082, 718);
             Controls.Add(flpNav);
             Controls.Add(picSetting);
             Controls.Add(btnHello);

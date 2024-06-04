@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -192,7 +193,7 @@ namespace SYS.FormUI
             // 设置保存对话框的属性
             saveFileDialog.Filter = "2003~2007工作表*.xls|*.xls|2010及以上版本工作表*.xlsx|*.xlsx";
             saveFileDialog.Title = cbExportAll.Checked ? "导出Excel文件(导出全部)" : "导出Excel文件(导出当前页)";
-            saveFileDialog.FileName = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + "客户列表"; // 默认文件名
+            saveFileDialog.FileName = Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyyMMddHHmmss") + "_" + "客户列表"; // 默认文件名
             saveFileDialog.CheckPathExists = true; // 检查目录是否存在
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -225,7 +226,7 @@ namespace SYS.FormUI
                     UIMessageBox.Show("导出成功！", "信息", UIStyle.Blue, UIMessageBoxButtons.OK);
                     System.Diagnostics.Process.Start("Explorer.exe", filePath);
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerName + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + DateTime.Now + "导出了" + "后台用户信息!", 3);
+                    RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerName + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "导出了" + "后台用户信息!", 3);
                     #endregion
                 }
                 catch (Exception ex)

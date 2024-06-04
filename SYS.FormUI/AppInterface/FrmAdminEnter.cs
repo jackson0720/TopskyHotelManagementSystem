@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using jvncorelib.EncryptorLib;
 using Sunny.UI;
@@ -71,10 +72,10 @@ namespace SYS.FormUI
                 AdminInfo.Name = a.AdminName;
                 AdminInfo.Account = a.AdminAccount;
                 AdminInfo.isAdmin = a.IsAdmin == 0 ? false : true;
-                AdminInfo.SoftwareVersion = System.Windows.Forms.Application.ProductVersion.ToString();
+                AdminInfo.SoftwareVersion = Util.GetApplicationVersion().ToString();
                 AdminInfo.UserToken = a.user_token;
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + DateTime.Now + "位于" + AdminInfo.SoftwareVersion + "版本登入了后台管理系统！", 3);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "版本登入了后台管理系统！", 3);
                 #endregion
                 FrmBackgroundSystem fm = new FrmBackgroundSystem();
                 fm.ShowDialog(this);//打开主窗体

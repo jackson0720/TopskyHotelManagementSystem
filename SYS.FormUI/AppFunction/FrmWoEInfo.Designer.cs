@@ -1,6 +1,6 @@
 ﻿namespace SYS.FormUI
 {
-    partial class FrmWtiInfo
+    partial class FrmWoEInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWtiInfo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmWoEInfo));
             this.dgvWti = new Sunny.UI.UIDataGridView();
             this.clWtiNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clRoomNo = new System.Windows.Forms.DataGridViewTextBoxColumn();

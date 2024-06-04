@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -33,7 +34,7 @@ namespace SYS.FormUI
     public partial class FrmCustomerManager : Form
     {
 
-        public delegate void ReloadCustomerList(bool onlyVip = false);
+        public delegate void ReloadCustomerList();
 
 
         //定义委托类型的变量
@@ -56,15 +57,17 @@ namespace SYS.FormUI
         }
         #endregion
 
+        private static bool? onlyVip = null;
+
         #region 加载用户信息列表
-        private void LoadCustomer(bool onlyVip = false)
+        private void LoadCustomer()
         {
             dic = new Dictionary<string, string>()
             {
                 { "pageIndex","1"},
                 { "pageSize","15"}
             };
-            if (onlyVip)
+            if (onlyVip != null && (bool)onlyVip)
             {
                 dic.Add("onlyVip", onlyVip.ToString());
             }
@@ -172,6 +175,10 @@ namespace SYS.FormUI
                 { "pageIndex",pageIndex.ToString()},
                 { "pageSize",count.ToString()}
             };
+            if (onlyVip != null && (bool)onlyVip)
+            {
+                dic.Add("onlyVip", onlyVip.ToString());
+            }
             result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
             if (result.statusCode != 200)
             {
@@ -192,7 +199,38 @@ namespace SYS.FormUI
 
         private void cbOnlyVip_CheckedChanged(object sender, EventArgs e)
         {
-            LoadCustomer(cbOnlyVip.Checked);
+            if (sender is UICheckBox checkBox)
+            {
+                if (checkBox.Checked)
+                {
+                    onlyVip = true;
+                    dic = new Dictionary<string, string>()
+                    {
+                        { "pageIndex","1"},
+                        { "pageSize","15"}
+                    };
+                    if (onlyVip != null && (bool)onlyVip)
+                    {
+                        dic.Add("onlyVip", onlyVip.ToString());
+                    }
+                    result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+                    if (result.statusCode != 200)
+                    {
+                        UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                        return;
+                    }
+                    OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
+                    this.btnPg.TotalCount = custos.total;
+                    this.dgvCustomerList.AutoGenerateColumns = false;
+                    this.dgvCustomerList.DataSource = custos.listSource;
+                }
+                else
+                {
+                    onlyVip = false;
+                    LoadCustomer();
+                }
+            }
+            
         }
     }
 

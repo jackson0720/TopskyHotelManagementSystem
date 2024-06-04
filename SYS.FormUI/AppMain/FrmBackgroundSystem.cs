@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
@@ -66,7 +67,7 @@ namespace SYS.FormUI
 
             LoadModule();
 
-            DateTime tmCur = DateTime.Now;
+            DateTime tmCur = Convert.ToDateTime(Util.GetNetDateTime());
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {//晚上
@@ -147,10 +148,10 @@ namespace SYS.FormUI
                         break;
                     case "水电信息":
                         pnlForm.Controls.Clear();
-                        FrmWtiInfo frmWtiInfo = new FrmWtiInfo();
-                        frmWtiInfo.TopLevel = false;
-                        pnlForm.Controls.Add(frmWtiInfo);
-                        frmWtiInfo.Show();
+                        FrmWoEInfo frmWoEInfo = new FrmWoEInfo();
+                        frmWoEInfo.TopLevel = false;
+                        pnlForm.Controls.Add(frmWoEInfo);
+                        frmWoEInfo.Show();
                         break;
                     case "监管统计":
                         break;
@@ -350,7 +351,7 @@ namespace SYS.FormUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lbTime.Text = DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss");
+            lbTime.Text = Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy年MM月dd日 HH:mm:ss");
         }
 
         private void FrmBackgroundSystem_FormClosed(object sender, FormClosedEventArgs e)

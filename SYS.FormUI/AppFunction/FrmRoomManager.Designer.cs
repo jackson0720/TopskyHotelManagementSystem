@@ -51,14 +51,8 @@
             label3 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
-            btnAll = new Sunny.UI.UIButton();
-            btnBD = new Sunny.UI.UIButton();
-            btnBS = new Sunny.UI.UIButton();
-            btnHD = new Sunny.UI.UIButton();
-            btnHS = new Sunny.UI.UIButton();
-            btnQL = new Sunny.UI.UIButton();
-            btnZT = new Sunny.UI.UIButton();
             picRefrech = new System.Windows.Forms.PictureBox();
+            flpRoomTypes = new Sunny.UI.UIFlowLayoutPanel();
             pnlRoomState.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -73,10 +67,10 @@
             // 
             flpRoom.AutoScroll = true;
             flpRoom.BackColor = System.Drawing.Color.Transparent;
-            flpRoom.Location = new System.Drawing.Point(265, 84);
+            flpRoom.Location = new System.Drawing.Point(265, 103);
             flpRoom.Margin = new System.Windows.Forms.Padding(4);
             flpRoom.Name = "flpRoom";
-            flpRoom.Size = new System.Drawing.Size(978, 601);
+            flpRoom.Size = new System.Drawing.Size(804, 383);
             flpRoom.TabIndex = 71;
             // 
             // pnlRoomState
@@ -92,10 +86,10 @@
             pnlRoomState.Controls.Add(pictureBox3);
             pnlRoomState.Controls.Add(pictureBox2);
             pnlRoomState.Controls.Add(pictureBox1);
-            pnlRoomState.Location = new System.Drawing.Point(2, 4);
+            pnlRoomState.Location = new System.Drawing.Point(2, 5);
             pnlRoomState.Margin = new System.Windows.Forms.Padding(4);
             pnlRoomState.Name = "pnlRoomState";
-            pnlRoomState.Size = new System.Drawing.Size(255, 367);
+            pnlRoomState.Size = new System.Drawing.Size(255, 294);
             pnlRoomState.TabIndex = 5;
             // 
             // lblReser
@@ -104,7 +98,7 @@
             lblReser.BackColor = System.Drawing.Color.RoyalBlue;
             lblReser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
             lblReser.ForeColor = System.Drawing.Color.White;
-            lblReser.Location = new System.Drawing.Point(204, 325);
+            lblReser.Location = new System.Drawing.Point(204, 253);
             lblReser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblReser.Name = "lblReser";
             lblReser.Size = new System.Drawing.Size(19, 20);
@@ -117,7 +111,7 @@
             lblFix.BackColor = System.Drawing.Color.FromArgb(95, 167, 203);
             lblFix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
             lblFix.ForeColor = System.Drawing.Color.White;
-            lblFix.Location = new System.Drawing.Point(204, 249);
+            lblFix.Location = new System.Drawing.Point(204, 195);
             lblFix.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblFix.Name = "lblFix";
             lblFix.Size = new System.Drawing.Size(19, 20);
@@ -129,7 +123,7 @@
             pictureBox5.BackColor = System.Drawing.Color.White;
             pictureBox5.BackgroundImage = Properties.Resources.预约房icon;
             pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            pictureBox5.Location = new System.Drawing.Point(4, 310);
+            pictureBox5.Location = new System.Drawing.Point(4, 238);
             pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new System.Drawing.Size(247, 50);
@@ -144,7 +138,7 @@
             pictureBox4.BackColor = System.Drawing.Color.White;
             pictureBox4.BackgroundImage = Properties.Resources.维修房icon;
             pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            pictureBox4.Location = new System.Drawing.Point(5, 234);
+            pictureBox4.Location = new System.Drawing.Point(4, 180);
             pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new System.Drawing.Size(247, 50);
@@ -160,7 +154,7 @@
             lblNotClear.BackColor = System.Drawing.Color.FromArgb(140, 155, 138);
             lblNotClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
             lblNotClear.ForeColor = System.Drawing.Color.White;
-            lblNotClear.Location = new System.Drawing.Point(204, 172);
+            lblNotClear.Location = new System.Drawing.Point(204, 137);
             lblNotClear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblNotClear.Name = "lblNotClear";
             lblNotClear.Size = new System.Drawing.Size(19, 20);
@@ -173,7 +167,7 @@
             lblCheck.BackColor = System.Drawing.Color.FromArgb(108, 195, 96);
             lblCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
             lblCheck.ForeColor = System.Drawing.Color.White;
-            lblCheck.Location = new System.Drawing.Point(204, 98);
+            lblCheck.Location = new System.Drawing.Point(204, 78);
             lblCheck.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblCheck.Name = "lblCheck";
             lblCheck.Size = new System.Drawing.Size(19, 20);
@@ -186,7 +180,7 @@
             lblCanUse.BackColor = System.Drawing.Color.FromArgb(102, 255, 204);
             lblCanUse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 134);
             lblCanUse.ForeColor = System.Drawing.Color.White;
-            lblCanUse.Location = new System.Drawing.Point(204, 19);
+            lblCanUse.Location = new System.Drawing.Point(204, 20);
             lblCanUse.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblCanUse.Name = "lblCanUse";
             lblCanUse.Size = new System.Drawing.Size(19, 20);
@@ -198,7 +192,7 @@
             pictureBox3.BackColor = System.Drawing.Color.White;
             pictureBox3.BackgroundImage = Properties.Resources.脏房icon1;
             pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            pictureBox3.Location = new System.Drawing.Point(4, 158);
+            pictureBox3.Location = new System.Drawing.Point(4, 122);
             pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new System.Drawing.Size(247, 50);
@@ -213,7 +207,7 @@
             pictureBox2.BackColor = System.Drawing.Color.WhiteSmoke;
             pictureBox2.BackgroundImage = Properties.Resources.已住房icon;
             pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            pictureBox2.Location = new System.Drawing.Point(4, 82);
+            pictureBox2.Location = new System.Drawing.Point(4, 64);
             pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new System.Drawing.Size(247, 50);
@@ -252,17 +246,17 @@
             pnlRoomInfo.Controls.Add(label3);
             pnlRoomInfo.Controls.Add(label2);
             pnlRoomInfo.Controls.Add(label1);
-            pnlRoomInfo.Location = new System.Drawing.Point(2, 380);
+            pnlRoomInfo.Location = new System.Drawing.Point(2, 307);
             pnlRoomInfo.Margin = new System.Windows.Forms.Padding(4);
             pnlRoomInfo.Name = "pnlRoomInfo";
-            pnlRoomInfo.Size = new System.Drawing.Size(255, 305);
+            pnlRoomInfo.Size = new System.Drawing.Size(255, 179);
             pnlRoomInfo.TabIndex = 72;
             // 
             // lblRoomState
             // 
             lblRoomState.AutoSize = true;
             lblRoomState.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblRoomState.Location = new System.Drawing.Point(132, 269);
+            lblRoomState.Location = new System.Drawing.Point(87, 147);
             lblRoomState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblRoomState.Name = "lblRoomState";
             lblRoomState.Size = new System.Drawing.Size(10, 15);
@@ -273,7 +267,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            label11.Location = new System.Drawing.Point(12, 269);
+            label11.Location = new System.Drawing.Point(12, 147);
             label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new System.Drawing.Size(67, 15);
@@ -284,7 +278,7 @@
             // 
             lblRoomNo.AutoSize = true;
             lblRoomNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblRoomNo.Location = new System.Drawing.Point(132, 14);
+            lblRoomNo.Location = new System.Drawing.Point(87, 14);
             lblRoomNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblRoomNo.Name = "lblRoomNo";
             lblRoomNo.Size = new System.Drawing.Size(10, 15);
@@ -295,7 +289,7 @@
             // 
             lblCustoNo.AutoSize = true;
             lblCustoNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblCustoNo.Location = new System.Drawing.Point(132, 78);
+            lblCustoNo.Location = new System.Drawing.Point(87, 47);
             lblCustoNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblCustoNo.Name = "lblCustoNo";
             lblCustoNo.Size = new System.Drawing.Size(10, 15);
@@ -306,7 +300,7 @@
             // 
             lblRoomPosition.AutoSize = true;
             lblRoomPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblRoomPosition.Location = new System.Drawing.Point(132, 205);
+            lblRoomPosition.Location = new System.Drawing.Point(87, 114);
             lblRoomPosition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblRoomPosition.Name = "lblRoomPosition";
             lblRoomPosition.Size = new System.Drawing.Size(10, 15);
@@ -317,7 +311,7 @@
             // 
             lblCheckTime.AutoSize = true;
             lblCheckTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblCheckTime.Location = new System.Drawing.Point(104, 142);
+            lblCheckTime.Location = new System.Drawing.Point(87, 81);
             lblCheckTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblCheckTime.Name = "lblCheckTime";
             lblCheckTime.Size = new System.Drawing.Size(10, 15);
@@ -328,7 +322,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            label4.Location = new System.Drawing.Point(12, 205);
+            label4.Location = new System.Drawing.Point(12, 114);
             label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(67, 15);
@@ -339,7 +333,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            label3.Location = new System.Drawing.Point(12, 142);
+            label3.Location = new System.Drawing.Point(12, 81);
             label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(67, 15);
@@ -350,7 +344,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            label2.Location = new System.Drawing.Point(12, 78);
+            label2.Location = new System.Drawing.Point(12, 47);
             label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(67, 15);
@@ -368,116 +362,37 @@
             label1.TabIndex = 0;
             label1.Text = "房间号码：";
             // 
-            // btnAll
-            // 
-            btnAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnAll.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnAll.Location = new System.Drawing.Point(272, 18);
-            btnAll.Margin = new System.Windows.Forms.Padding(4);
-            btnAll.MinimumSize = new System.Drawing.Size(1, 1);
-            btnAll.Name = "btnAll";
-            btnAll.Size = new System.Drawing.Size(126, 42);
-            btnAll.TabIndex = 0;
-            btnAll.Text = "全部房间";
-            btnAll.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            btnAll.Click += btnAll_Click;
-            // 
-            // btnBD
-            // 
-            btnBD.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnBD.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnBD.Location = new System.Drawing.Point(404, 18);
-            btnBD.Margin = new System.Windows.Forms.Padding(4);
-            btnBD.MinimumSize = new System.Drawing.Size(1, 1);
-            btnBD.Name = "btnBD";
-            btnBD.Size = new System.Drawing.Size(126, 42);
-            btnBD.TabIndex = 1;
-            btnBD.Text = "标准单人间";
-            btnBD.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            btnBD.Click += btnBD_Click;
-            // 
-            // btnBS
-            // 
-            btnBS.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnBS.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnBS.Location = new System.Drawing.Point(536, 18);
-            btnBS.Margin = new System.Windows.Forms.Padding(4);
-            btnBS.MinimumSize = new System.Drawing.Size(1, 1);
-            btnBS.Name = "btnBS";
-            btnBS.Size = new System.Drawing.Size(126, 42);
-            btnBS.TabIndex = 2;
-            btnBS.Text = "标准双人间";
-            btnBS.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            btnBS.Click += btnBS_Click;
-            // 
-            // btnHD
-            // 
-            btnHD.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnHD.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnHD.Location = new System.Drawing.Point(667, 18);
-            btnHD.Margin = new System.Windows.Forms.Padding(4);
-            btnHD.MinimumSize = new System.Drawing.Size(1, 1);
-            btnHD.Name = "btnHD";
-            btnHD.Size = new System.Drawing.Size(126, 42);
-            btnHD.TabIndex = 3;
-            btnHD.Text = "豪华单人间";
-            btnHD.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            btnHD.Click += btnHD_Click;
-            // 
-            // btnHS
-            // 
-            btnHS.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnHS.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnHS.Location = new System.Drawing.Point(799, 18);
-            btnHS.Margin = new System.Windows.Forms.Padding(4);
-            btnHS.MinimumSize = new System.Drawing.Size(1, 1);
-            btnHS.Name = "btnHS";
-            btnHS.Size = new System.Drawing.Size(126, 42);
-            btnHS.TabIndex = 4;
-            btnHS.Text = "豪华双人间";
-            btnHS.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            btnHS.Click += btnHS_Click;
-            // 
-            // btnQL
-            // 
-            btnQL.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnQL.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnQL.Location = new System.Drawing.Point(931, 18);
-            btnQL.Margin = new System.Windows.Forms.Padding(4);
-            btnQL.MinimumSize = new System.Drawing.Size(1, 1);
-            btnQL.Name = "btnQL";
-            btnQL.Size = new System.Drawing.Size(126, 42);
-            btnQL.TabIndex = 5;
-            btnQL.Text = "情侣套房";
-            btnQL.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            btnQL.Click += btnQL_Click;
-            // 
-            // btnZT
-            // 
-            btnZT.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnZT.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnZT.Location = new System.Drawing.Point(1063, 18);
-            btnZT.Margin = new System.Windows.Forms.Padding(4);
-            btnZT.MinimumSize = new System.Drawing.Size(1, 1);
-            btnZT.Name = "btnZT";
-            btnZT.Size = new System.Drawing.Size(126, 42);
-            btnZT.TabIndex = 6;
-            btnZT.Text = "总统套房";
-            btnZT.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            btnZT.Click += btnZT_Click;
-            // 
             // picRefrech
             // 
             picRefrech.BackColor = System.Drawing.Color.Transparent;
             picRefrech.BackgroundImage = Properties.Resources.blue_refresh;
             picRefrech.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            picRefrech.Location = new System.Drawing.Point(1195, 20);
+            picRefrech.Location = new System.Drawing.Point(1030, 25);
             picRefrech.Margin = new System.Windows.Forms.Padding(4);
             picRefrech.Name = "picRefrech";
-            picRefrech.Size = new System.Drawing.Size(43, 40);
+            picRefrech.Size = new System.Drawing.Size(39, 39);
             picRefrech.TabIndex = 94;
             picRefrech.TabStop = false;
             picRefrech.Click += picRefrech_Click;
+            // 
+            // flpRoomTypes
+            // 
+            flpRoomTypes.BackColor = System.Drawing.Color.Transparent;
+            flpRoomTypes.FillColor = System.Drawing.Color.Transparent;
+            flpRoomTypes.FillColor2 = System.Drawing.Color.Transparent;
+            flpRoomTypes.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            flpRoomTypes.Location = new System.Drawing.Point(265, 4);
+            flpRoomTypes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            flpRoomTypes.MinimumSize = new System.Drawing.Size(1, 1);
+            flpRoomTypes.Name = "flpRoomTypes";
+            flpRoomTypes.Padding = new System.Windows.Forms.Padding(2);
+            flpRoomTypes.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
+            flpRoomTypes.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            flpRoomTypes.ShowText = false;
+            flpRoomTypes.Size = new System.Drawing.Size(757, 92);
+            flpRoomTypes.TabIndex = 95;
+            flpRoomTypes.Text = "uiFlowLayoutPanel1";
+            flpRoomTypes.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmRoomManager
             // 
@@ -485,15 +400,9 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            ClientSize = new System.Drawing.Size(1251, 694);
-            Controls.Add(btnZT);
-            Controls.Add(btnQL);
-            Controls.Add(btnHS);
-            Controls.Add(btnHD);
-            Controls.Add(btnBS);
-            Controls.Add(btnBD);
-            Controls.Add(btnAll);
+            ClientSize = new System.Drawing.Size(1072, 490);
             Controls.Add(picRefrech);
+            Controls.Add(flpRoomTypes);
             Controls.Add(pnlRoomInfo);
             Controls.Add(pnlRoomState);
             Controls.Add(flpRoom);
@@ -502,7 +411,6 @@
             Margin = new System.Windows.Forms.Padding(4);
             Name = "FrmRoomManager";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "C";
             TransparencyKey = System.Drawing.Color.White;
             Load += FrmRoomManager_Load;
             pnlRoomState.ResumeLayout(false);
@@ -538,18 +446,12 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         public System.Windows.Forms.Label lblReser;
-        private Sunny.UI.UIButton btnAll;
-        private Sunny.UI.UIButton btnBD;
-        private Sunny.UI.UIButton btnBS;
-        private Sunny.UI.UIButton btnHD;
-        private Sunny.UI.UIButton btnHS;
-        private Sunny.UI.UIButton btnQL;
-        private Sunny.UI.UIButton btnZT;
         public System.Windows.Forms.Label lblRoomState;
         public System.Windows.Forms.Label lblRoomNo;
         public System.Windows.Forms.Label lblCustoNo;
         public System.Windows.Forms.Label lblRoomPosition;
         public System.Windows.Forms.Label lblCheckTime;
         public System.Windows.Forms.Panel pnlRoomInfo;
+        private Sunny.UI.UIFlowLayoutPanel flpRoomTypes;
     }
 }

@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -147,7 +148,7 @@ namespace SYS.FormUI
 
             if (room.CheckTime == null)
             {
-                dtpCheckTime.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                dtpCheckTime.Text = Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd");
             }
             else
             {
@@ -170,7 +171,7 @@ namespace SYS.FormUI
             w = new Wti()
             {
                 CustoNo = txtCustoNo.Text,
-                EndDate = Convert.ToDateTime(DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))),
+                EndDate = Convert.ToDateTime(DateTime.Parse(Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm:ss"))),
                 PowerUse = Convert.ToDecimal(Convert.ToInt32(result.message) * 3 * 1),
                 WaterUse = Convert.ToDecimal(Convert.ToDouble(result.message) * 80 * 0.002),
                 RoomNo = txtRoomNo.Text,
@@ -389,7 +390,7 @@ namespace SYS.FormUI
                         FrmRoomManager.Reload("");
 
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + DateTime.Now + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
+                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
                         #endregion
                         scope.Complete();
                     }
@@ -436,7 +437,7 @@ namespace SYS.FormUI
                             UIMessageBox.Show("结算成功！", "系统提示", UIStyle.Green);
                             FrmRoomManager.Reload("");
                             #region 获取添加操作日志所需的信息
-                            RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + DateTime.Now + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
+                            RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
                             #endregion
                             scope.Complete();
                             return;

@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +21,11 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
+using SYS.FormUI.AppUserControls;
 using SYS.FormUI.Properties;
 using System;
 using System.Collections.Generic;
@@ -72,19 +74,56 @@ namespace SYS.FormUI
             //    }
             //}
 
+            LoadRoomTypes();
+
             LoadData();
 
         }
         #endregion
 
+        private void LoadRoomTypes()
+        {
+            dic = new Dictionary<string, string>()
+            {
+                { "isDelete","0"}
+            };
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll", null, dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            var listRoomTypes = HttpHelper.JsonToList<RoomType>(result.message);
+
+            flpRoomTypes.Clear();
+            ucRoomType ucRoomType = null;
+            ucRoomType = new ucRoomType();
+            ucRoomType.btnRoomType.Text = "全部房间";
+            ucRoomType.btnRoomType.Name = "btnAll";
+            ucRoomType.btnRoomType.Click += btnAll_Click;
+            flpRoomTypes.Controls.Add(ucRoomType);
+            foreach (var type in listRoomTypes)
+            {
+                ucRoomType = new ucRoomType();
+                ucRoomType.btnRoomType.Text = type.RoomName;
+                ucRoomType.btnRoomType.Name = Convert.ToString(type.Roomtype);
+                ucRoomType.btnRoomType.Click += btnRoomType_Click;
+                flpRoomTypes.Controls.Add(ucRoomType);
+            }
+        }
+
+        private void btnRoomType_Click(object sender, EventArgs e)
+        {
+            if (sender is UIButton button)
+            {
+                string buttonName = button.Text;
+                LoadData(buttonName);
+            }
+        }
+
         private void btnAll_Click(object sender, EventArgs e)
         {
             LoadData();
-        }
-
-        private void btnBD_Click(object sender, EventArgs e)
-        {
-            LoadData(btnBD.Text);
         }
 
         public void LoadRoomInfo()
@@ -174,31 +213,6 @@ namespace SYS.FormUI
             lblCustoNo.Text = "";
             lblCheckTime.Text = "";
             LoadRoomInfo();
-        }
-
-        private void btnBS_Click(object sender, EventArgs e)
-        {
-            LoadData(btnBS.Text);
-        }
-
-        private void btnHD_Click(object sender, EventArgs e)
-        {
-            LoadData(btnHD.Text);
-        }
-
-        private void btnHS_Click(object sender, EventArgs e)
-        {
-            LoadData(btnHS.Text);
-        }
-
-        private void btnQL_Click(object sender, EventArgs e)
-        {
-            LoadData(btnQL.Text);
-        }
-
-        private void btnZT_Click(object sender, EventArgs e)
-        {
-            LoadData(btnZT.Text);
         }
 
         private void picRefrech_Click(object sender, EventArgs e)
