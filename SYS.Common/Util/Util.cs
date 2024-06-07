@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 
@@ -20,14 +23,14 @@ namespace SYS.Common
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public static card searchCode(string code)
+        public static Card searchCode(string code)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("identityCard", code.Substring(0, 6));
             ResponseMsg result = HttpHelper.Request("App/SelectCardCode", null, dic);
             if (result.statusCode != 200)
             {
-                return new card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };
+                return new Card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };
             }
             var addrResult = result.message;
             var address = addrResult.Replace(",", "").ToString();
@@ -42,7 +45,7 @@ namespace SYS.Common
             {
                 sex = "男";
             }
-            return new card { message = string.Empty, sex = sex, address = address, birthday = birthday };
+            return new Card { message = string.Empty, sex = sex, address = address, birthday = birthday };
         }
 
         /// <summary>
@@ -62,7 +65,7 @@ namespace SYS.Common
             {
                 sb.Clear();
                 sb.Append(preCode);
-                DateTime now = DateTime.Now;
+                DateTime now = Convert.ToDateTime(DateTime.Now);
                 string text = now.ToString("yyyyMMdd");
                 sb.Append(text);
                 sb.Append(separatorChar);
@@ -84,7 +87,7 @@ namespace SYS.Common
                             while (true)
                             {
                                 string a = text;
-                                now = DateTime.Now;
+                                now = Convert.ToDateTime(DateTime.Now);
                                 if (a == now.ToString("yyyyMMdd"))
                                 {
                                     Thread.Sleep(0);
@@ -108,12 +111,35 @@ namespace SYS.Common
             return list;
         }
 
+        /// <summary>
+        /// 获取当前程序版本号
+        /// </summary>
+        /// <returns></returns>
+        public static Version GetApplicationVersion()
+        {
+            StackTrace stackTrace = new StackTrace();
+
+            StackFrame callingFrame = stackTrace.GetFrame(1);
+            if (callingFrame != null)
+            {
+                MethodBase method = callingFrame.GetMethod();
+                if (method != null)
+                {
+                    Assembly callingAssembly = method.DeclaringType.Assembly;
+                    Version currentVersion = callingAssembly.GetName().Version;
+                    return currentVersion;
+                }
+            }
+
+            return null;
+        }
     }
+
 
     /// <summary>
     /// 身份证实体类
     /// </summary>
-    public class card
+    public class Card
     {
         /// <summary>
         /// 消息

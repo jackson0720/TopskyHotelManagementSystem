@@ -69,7 +69,19 @@ namespace SYS.FormUI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
+
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap blue_refresh
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("blue_refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
@@ -99,7 +111,6 @@ namespace SYS.FormUI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>

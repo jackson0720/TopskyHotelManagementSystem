@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -271,7 +272,7 @@ namespace SYS.FormUI
                     return;
                 }
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + DateTime.Now + "位于" + AdminInfo.SoftwareVersion + "执行：" + "启用员工账号操作！新增值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "启用员工账号操作！新增值为：" + worker.WorkerId, 2);
                 #endregion
                 this.Close();
                 FrmWorkerManager.Reload();
@@ -290,7 +291,7 @@ namespace SYS.FormUI
                     return;
                 }
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + DateTime.Now + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用员工账号操作！新增值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用员工账号操作！新增值为：" + worker.WorkerId, 2);
                 #endregion
                 this.Close();
                 FrmWorkerManager.Reload();

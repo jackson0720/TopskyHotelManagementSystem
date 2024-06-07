@@ -1,4 +1,27 @@
-﻿using EOM.TSHotelManager.Common.Core;
+﻿/*
+ * MIT License
+ *Copyright (c) 2021~2024 易开元(EOM)
+
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+
+ *The above copyright notice and this permission notice shall be included in all
+ *copies or substantial portions of the Software.
+
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *SOFTWARE.
+ *
+ */
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
 using System;
@@ -63,7 +86,7 @@ namespace SYS.FormUI
             {
                 UIMessageBox.ShowSuccess("预约成功！请在指定时间内进行登记入住");
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + DateTime.Now + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", 1);
+                RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", 1);
                 #endregion
                 FrmRoomManager.Reload("");
                 this.Close();
@@ -88,7 +111,7 @@ namespace SYS.FormUI
             cboReserRoomNo.DisplayMember = "RoomNo";
             cboReserRoomNo.ValueMember = "RoomNo";
             cboReserRoomNo.Text = ucRoomList.co_RoomNo;
-            dtpBouDate.Value = DateTime.Now;
+            dtpBouDate.Value = Convert.ToDateTime(DateTime.Now);
         }
 
         private void btnReserList_Click(object sender, EventArgs e)
