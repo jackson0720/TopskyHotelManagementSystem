@@ -41,7 +41,7 @@ namespace SYS.Common
         /// <summary>
         /// WebApi URL(release)
         /// </summary>
-        public const string apiUrl = "8mAiJnMNaO2iHgY9O7V4XbzKlbxBF81rX0I0/gTiMRYUO3pzc+ptFfDIqHzNC/IB·0$f*f$c<f#>d;#e0bda^?eddcc?0^>b$";
+        public const string apiUrl = "";
         /// <summary>
         /// WebApi URL(debug)
         /// </summary>
