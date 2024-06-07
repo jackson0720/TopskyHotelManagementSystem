@@ -97,7 +97,7 @@ namespace SYS.FormUI
             }
             UIMessageTip.ShowOk("添加学历成功！", 1500);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增学历类型操作！新增值为：" + edu.education_no, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增学历类型操作！新增值为：" + edu.education_no, 2);
             #endregion
             ReloadEducationList();
             return;

@@ -127,7 +127,7 @@ namespace SYS.FormUI
                 {
                     UIMessageBox.ShowSuccess("录入成功！");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加会员规则操作！新增值为：" + vipRule1.rule_id, 2);
+                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加会员规则操作！新增值为：" + vipRule1.rule_id, 2);
                     #endregion
                     LoadVipType();
                     return;

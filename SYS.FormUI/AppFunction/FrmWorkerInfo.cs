@@ -301,7 +301,7 @@ namespace SYS.FormUI
                 {
                     UIMessageBox.ShowSuccess("信息修改成功！");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改员工操作！修改值为：" + worker.WorkerId, 2);
+                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改员工操作！修改值为：" + worker.WorkerId, 2);
                     #endregion
                     this.Close();
                     FrmWorkerManager.Reload();
@@ -464,7 +464,7 @@ namespace SYS.FormUI
                         this.Close();
                         FrmWorkerManager.Reload();
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加员工操作！新增值为：" + worker.WorkerId, 2);
+                        RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加员工操作！新增值为：" + worker.WorkerId, 2);
                         #endregion
                     }
                     else

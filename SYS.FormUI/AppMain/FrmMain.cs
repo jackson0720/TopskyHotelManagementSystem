@@ -29,10 +29,12 @@ using SYS.FormUI.AppUserControls;
 using SYS.FormUI.Properties;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 
@@ -56,7 +58,7 @@ namespace SYS.FormUI
             // 接受Form1对象
             this.returnForm1 = F1;
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", 3);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", 3);
             #endregion
             Stop = StopUseExit;
             Start = StartUseExit;
@@ -128,9 +130,9 @@ namespace SYS.FormUI
         #region 定时器：获取网络时间
         private void tmrDate_Tick(object sender, EventArgs e)
         {
-            lblTime.Text = Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm");
+            lblTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm");
 
-            DateTime tmCur = Convert.ToDateTime(Util.GetNetDateTime());
+            DateTime tmCur = Convert.ToDateTime(DateTime.Now);
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {//晚上
@@ -355,9 +357,9 @@ namespace SYS.FormUI
 
             LoadFonts();
 
-            lblTime.Text = Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm");
+            lblTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm");
 
-            DateTime tmCur = Convert.ToDateTime(Util.GetNetDateTime());
+            DateTime tmCur = Convert.ToDateTime(DateTime.Now);
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {//晚上
@@ -423,9 +425,23 @@ namespace SYS.FormUI
             }
 
             Base _base = HttpHelper.JsonToModel<Base>(result.message);
-
             //调用系统默认的浏览器
-            System.Diagnostics.Process.Start(_base.url_addr);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Process.Start(new ProcessStartInfo(_base.url_addr) { UseShellExecute = true });
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Process.Start("xdg-open", _base.url_addr);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                Process.Start("open", _base.url_addr);
+            }
+            else
+            {
+                throw new PlatformNotSupportedException("This OS is not supported");
+            }
         }
         #endregion
 
@@ -502,7 +518,7 @@ namespace SYS.FormUI
                     {
                         WorkerNo = LoginInfo.WorkerNo,
                         CheckWay = "系统界面",
-                        CheckTime = DateTime.Parse(Util.GetNetDateTime()),
+                        CheckTime = DateTime.Now,
                         datains_usr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson(), null);

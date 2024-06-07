@@ -93,7 +93,7 @@ namespace SYS.FormUI
             }
             UIMessageBox.ShowSuccess("删除商品成功!");
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除商品操作！删除值为：" + st.SellNo, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除商品操作！删除值为：" + st.SellNo, 2);
             #endregion
             LoadData();
             return;
@@ -162,7 +162,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("添加商品成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增商品操作！新增值为：" + st.SellNo, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增商品操作！新增值为：" + st.SellNo, 2);
                 #endregion
                 LoadData();
                 string SellId = Util.GetListNewId("ST", 3, 1, "-").FirstOrDefault();
@@ -221,7 +221,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("修改商品成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改商品操作！修改值为：" + st.SellNo, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改商品操作！修改值为：" + st.SellNo, 2);
                 #endregion
                 LoadData();
             }

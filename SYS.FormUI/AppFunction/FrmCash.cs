@@ -115,7 +115,7 @@ namespace SYS.FormUI
                         UIMessageBox.Show("录入成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                         LoadCashInfo();
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "进行资产录入，资产编号为：" + txtCashNo.Text.Trim(), 3);
+                        RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "进行资产录入，资产编号为：" + txtCashNo.Text.Trim(), 3);
                         txtCashNo.Text = Util.GetListNewId("CN", 3, 1, "-").FirstOrDefault();
                         #endregion
                     }

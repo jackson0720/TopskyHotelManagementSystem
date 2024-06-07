@@ -95,7 +95,7 @@ namespace SYS.FormUI
             }
             UIMessageTip.ShowOk("添加民族成功！", 1500);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增民族类型操作！新增值为：" + nat.nation_no, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增民族类型操作！新增值为：" + nat.nation_no, 2);
             #endregion
             ReloadNationList();
             return;

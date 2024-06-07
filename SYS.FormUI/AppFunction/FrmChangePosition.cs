@@ -107,7 +107,7 @@ namespace SYS.FormUI
             {
                 UIMessageBox.ShowSuccess("任命已生效!");
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "职位任命操作！任命值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "职位任命操作！任命值为：" + worker.WorkerId, 2);
                 #endregion
                 FrmWorkerManager.Reload();
                 this.Close();

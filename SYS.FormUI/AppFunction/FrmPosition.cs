@@ -96,7 +96,7 @@ namespace SYS.FormUI
             }
             UIMessageTip.ShowOk("添加职位成功！", 1500);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增职位类型操作！新增值为：" + pos.position_no, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增职位类型操作！新增值为：" + pos.position_no, 2);
             #endregion
             ReloadPositionList();
             return;

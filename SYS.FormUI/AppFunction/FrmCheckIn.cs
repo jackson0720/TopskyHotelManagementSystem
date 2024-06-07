@@ -210,7 +210,7 @@ namespace SYS.FormUI
                 {
                     Room r = new Room()
                     {
-                        CheckTime = Convert.ToDateTime(Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm:ss")),
+                        CheckTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                         CustoNo = txtCustoNo.Text,
                         RoomStateId = 1,
                         RoomNo = txtRoomNo.Text,
@@ -229,7 +229,7 @@ namespace SYS.FormUI
                         txtCustoNo.Text = "";
                         FrmRoomManager.Reload("");
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "帮助" + r.CustoNo + "进行了入住操作！", 1);
+                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustoNo + "进行了入住操作！", 1);
                         #endregion
                         scope.Complete();
                         this.Close();

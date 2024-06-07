@@ -75,7 +75,7 @@ namespace SYS.FormUI
                 AdminInfo.SoftwareVersion = Util.GetApplicationVersion().ToString();
                 AdminInfo.UserToken = a.user_token;
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "版本登入了后台管理系统！", 3);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "版本登入了后台管理系统！", 3);
                 #endregion
                 FrmBackgroundSystem fm = new FrmBackgroundSystem();
                 fm.ShowDialog(this);//打开主窗体

@@ -161,7 +161,7 @@ namespace SYS.FormUI
 
             UIMessageBox.Show("修改成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustoNo, 3);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustoNo, 3);
             #endregion
             this.Close();
             FrmCustomerManager.ReloadCustomer();
@@ -209,7 +209,7 @@ namespace SYS.FormUI
                 UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 FrmCustomerManager.ReloadCustomer();
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustoNo, 3);
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustoNo, 3);
                 #endregion
                 this.Close();
             }

@@ -127,7 +127,7 @@ namespace SYS.FormUI
 
                 Room r = new Room()
                 {
-                    CheckTime = Convert.ToDateTime(Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm:ss")),
+                    CheckTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                     CustoNo = custo.CustoNo,
                     RoomStateId = 1,
                     RoomNo = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString()

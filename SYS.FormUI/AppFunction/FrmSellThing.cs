@@ -231,7 +231,7 @@ namespace SYS.FormUI
                                 CustoNo = r.CustoNo,
                                 SpendPrice = Convert.ToDecimal(txtPrice.Text),
                                 SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value) + listSource.FirstOrDefault(a => a.SpendName.Equals(txtSellName.Text.Trim())).SpendMoney,
-                                SpendTime = Convert.ToDateTime(Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm:ss")),
+                                SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                                 MoneyState = SpendConsts.UnSettle,
                                 datachg_usr = LoginInfo.WorkerNo
                             };
@@ -255,7 +255,7 @@ namespace SYS.FormUI
                                 LoadSpendInfoByRoomNo(r.RoomNo);
                                 LoadSellThingInfo();
                                 #region 获取添加操作日志所需的信息
-                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
                                 #endregion
                             }
                         }
@@ -269,7 +269,7 @@ namespace SYS.FormUI
                                 CustoNo = r.CustoNo,
                                 SpendPrice = Convert.ToDecimal(txtPrice.Text),
                                 SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value),
-                                SpendTime = Convert.ToDateTime(Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm:ss")),
+                                SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                                 MoneyState = SpendConsts.UnSettle,
                                 datains_usr = LoginInfo.WorkerNo,
                             };
@@ -294,7 +294,7 @@ namespace SYS.FormUI
                                 LoadSpendInfoByRoomNo(r.RoomNo);
                                 LoadSellThingInfo();
                                 #region 获取添加操作日志所需的信息
-                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
                                 #endregion
                                 nudNum.Value = 0;
                                 return;
@@ -316,7 +316,7 @@ namespace SYS.FormUI
                             CustoNo = r.CustoNo,
                             SpendPrice = Convert.ToDecimal(txtPrice.Text),
                             SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value),
-                            SpendTime = Convert.ToDateTime(Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm:ss")),
+                            SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                             MoneyState = SpendConsts.UnSettle,
                         };
                         result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(s));
@@ -340,7 +340,7 @@ namespace SYS.FormUI
                             LoadSpendInfoByRoomNo(r.RoomNo);
                             LoadSellThingInfo();
                             #region 获取添加操作日志所需的信息
-                            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
                             #endregion
                             nudNum.Value = 0;
                             return;
@@ -414,7 +414,7 @@ namespace SYS.FormUI
                         }
                         UIMessageTip.ShowOk("撤销成功！", 1000);
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + custoNo + "撤销了消费商品:" + txtSellName.Text + "操作！", 2);
+                        RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + custoNo + "撤销了消费商品:" + txtSellName.Text + "操作！", 2);
                         #endregion
                         LoadSpendInfoByRoomNo(txtRoomNo.Text);
                         LoadSellThingInfo();

@@ -86,7 +86,7 @@ namespace SYS.FormUI
             {
                 UIMessageBox.ShowSuccess("预约成功！请在指定时间内进行登记入住");
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", 1);
+                RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", 1);
                 #endregion
                 FrmRoomManager.Reload("");
                 this.Close();
@@ -111,7 +111,7 @@ namespace SYS.FormUI
             cboReserRoomNo.DisplayMember = "RoomNo";
             cboReserRoomNo.ValueMember = "RoomNo";
             cboReserRoomNo.Text = ucRoomList.co_RoomNo;
-            dtpBouDate.Value = Convert.ToDateTime(Util.GetNetDateTime());
+            dtpBouDate.Value = Convert.ToDateTime(DateTime.Now);
         }
 
         private void btnReserList_Click(object sender, EventArgs e)

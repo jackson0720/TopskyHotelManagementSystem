@@ -114,7 +114,7 @@ namespace SYS.FormUI
                 dept_name = txtDeptName.Text.Trim(),
                 dept_desc = txtDeptDesc.Text.Trim(),
                 dept_parent = cboDeptParent.SelectedValue.ToString(),
-                dept_date = Convert.ToDateTime(Util.GetNetDateTime()),
+                dept_date = Convert.ToDateTime(DateTime.Now),
                 dept_leader = cboDeptLeader.SelectedValue.ToString(),
                 datains_usr = AdminInfo.Account
             };
@@ -134,7 +134,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("添加成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加部门类型操作！新增值为：" + dept.dept_no, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加部门类型操作！新增值为：" + dept.dept_no, 2);
                 #endregion                
                 txtDeptName.Text = "";
                 txtDeptDesc.Text = "";
@@ -181,7 +181,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("修改成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改部门类型操作！修改值为：" + dept.dept_no, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改部门类型操作！修改值为：" + dept.dept_no, 2);
                 #endregion   
                 txtDeptName.Text = "";
                 txtDeptDesc.Text = "";
@@ -237,7 +237,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("删除成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除部门类型操作！删除值为：" + dept.dept_no, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除部门类型操作！删除值为：" + dept.dept_no, 2);
                 #endregion   
                 txtDeptName.Text = "";
                 txtDeptDesc.Text = "";

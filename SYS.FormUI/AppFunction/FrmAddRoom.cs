@@ -83,7 +83,7 @@ namespace SYS.FormUI
                     UIMessageBox.Show("添加房间成功！");
                     LoadRoom();
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "新增了房间，房间号为：" + txtRoomNo.Text + "，房间类型为：" + cboRoomType.Text, 2);
+                    RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "新增了房间，房间号为：" + txtRoomNo.Text + "，房间类型为：" + cboRoomType.Text, 2);
                     #endregion
                     txtRoomNo.Text = string.Empty;
                     txtDeposit.Text = "0.00";

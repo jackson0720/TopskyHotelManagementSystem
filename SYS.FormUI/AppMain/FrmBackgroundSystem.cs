@@ -67,7 +67,7 @@ namespace SYS.FormUI
 
             LoadModule();
 
-            DateTime tmCur = Convert.ToDateTime(Util.GetNetDateTime());
+            DateTime tmCur = Convert.ToDateTime(DateTime.Now);
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {//晚上
@@ -351,7 +351,7 @@ namespace SYS.FormUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lbTime.Text = Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy年MM月dd日 HH:mm:ss");
+            lbTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy年MM月dd日 HH:mm:ss");
         }
 
         private void FrmBackgroundSystem_FormClosed(object sender, FormClosedEventArgs e)

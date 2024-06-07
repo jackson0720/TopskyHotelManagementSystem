@@ -272,7 +272,7 @@ namespace SYS.FormUI
                     return;
                 }
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "启用员工账号操作！新增值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "启用员工账号操作！新增值为：" + worker.WorkerId, 2);
                 #endregion
                 this.Close();
                 FrmWorkerManager.Reload();
@@ -291,7 +291,7 @@ namespace SYS.FormUI
                     return;
                 }
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用员工账号操作！新增值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用员工账号操作！新增值为：" + worker.WorkerId, 2);
                 #endregion
                 this.Close();
                 FrmWorkerManager.Reload();

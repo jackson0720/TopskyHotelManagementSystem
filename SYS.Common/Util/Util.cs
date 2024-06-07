@@ -65,7 +65,7 @@ namespace SYS.Common
             {
                 sb.Clear();
                 sb.Append(preCode);
-                DateTime now = Convert.ToDateTime(Util.GetNetDateTime());
+                DateTime now = Convert.ToDateTime(DateTime.Now);
                 string text = now.ToString("yyyyMMdd");
                 sb.Append(text);
                 sb.Append(separatorChar);
@@ -87,7 +87,7 @@ namespace SYS.Common
                             while (true)
                             {
                                 string a = text;
-                                now = Convert.ToDateTime(Util.GetNetDateTime());
+                                now = Convert.ToDateTime(DateTime.Now);
                                 if (a == now.ToString("yyyyMMdd"))
                                 {
                                     Thread.Sleep(0);
@@ -133,48 +133,6 @@ namespace SYS.Common
 
             return null;
         }
-
-        /// <summary>
-        /// 获取网络时间
-        /// </summary>
-        /// <returns></returns>
-        public static string GetNetDateTime()
-        {
-            //获取网络时间
-            WebRequest request = null;
-            WebResponse response = null;
-            WebHeaderCollection headerCollection = null;
-            string datetime = string.Empty;
-            try
-            {
-                request = WebRequest.Create("https://www.baidu.com");
-                request.Timeout = 3000;
-                request.Credentials = CredentialCache.DefaultCredentials;
-                response = request.GetResponse();
-                headerCollection = response.Headers;
-                foreach (var h in headerCollection.AllKeys)
-                {
-                    if (h == "Date")
-                    {
-                        datetime = headerCollection[h];
-                    }
-                }
-                datetime = DateTime.ParseExact(datetime, "ddd, dd MMM yyyy HH:mm:ss 'GMT'", System.Globalization.CultureInfo.InvariantCulture)
-                    .ToString("yyyy-MM-dd HH:mm:ss");
-                return datetime;
-            }
-            catch (Exception) { return datetime; }
-            finally
-            {
-                if (request != null)
-                { request.Abort(); }
-                if (response != null)
-                { response.Close(); }
-                if (headerCollection != null)
-                { headerCollection.Clear(); }
-            }
-        }
-
     }
 
 

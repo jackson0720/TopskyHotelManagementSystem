@@ -223,7 +223,7 @@ namespace SYS.FormUI
 
             UIMessageBox.Show("修改成功，系统将在稍后退出，请使用新密码进行登录系统！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改密码操作！", 2);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改密码操作！", 2);
             #endregion
             FrmMain.CloseMy();
             this.Close();
@@ -288,7 +288,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("修改成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", 2);
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", 2);
                 #endregion
                 LoadData();
                 return;

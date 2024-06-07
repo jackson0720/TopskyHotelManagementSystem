@@ -106,7 +106,7 @@ namespace SYS.FormUI.AppFunction
                     return;
                 }
                 UIMessageBox.ShowSuccess("提交成功，房间状态已添加！");
-                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "新增了房间状态，状态编码为：" + txtRoomTypeId.IntValue, 2);
+                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "新增了房间状态，状态编码为：" + txtRoomTypeId.IntValue, 2);
                 txtRoomTypeId.IntValue = 0;
                 txtRoomTypeName.Text = null;
                 dudDeposit.Value = 0;
@@ -138,7 +138,7 @@ namespace SYS.FormUI.AppFunction
                     return;
                 }
                 UIMessageBox.ShowSuccess("提交成功，状态信息已修改！");
-                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "修改了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
+                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "修改了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
                 LoadRoomType();
                 txtRoomTypeId.IntValue = 0;
                 txtRoomTypeName.Text = null;
@@ -171,7 +171,7 @@ namespace SYS.FormUI.AppFunction
                     return;
                 }
                 UIMessageBox.ShowSuccess("提交成功，状态信息已删除！");
-                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "删除了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
+                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "删除了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
                 LoadRoomType();
                 return;
             }

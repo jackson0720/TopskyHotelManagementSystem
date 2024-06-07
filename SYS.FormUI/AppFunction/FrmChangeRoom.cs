@@ -80,7 +80,7 @@ namespace SYS.FormUI
                 RoomNo = nrno,
                 CustoNo = ucRoomList.CustoNo,
                 RoomStateId = 1,
-                CheckTime = Convert.ToDateTime(Util.GetNetDateTime()),
+                CheckTime = Convert.ToDateTime(DateTime.Now),
                 datains_usr = LoginInfo.WorkerNo
             };
             dic = new Dictionary<string, string>()
@@ -103,7 +103,7 @@ namespace SYS.FormUI
                 CustoNo = ucRoomList.CustoNo,
                 SpendPrice = Convert.ToDecimal(sum),
                 SpendMoney = Convert.ToDecimal(sum),
-                SpendTime = Convert.ToDateTime(Convert.ToDateTime(Util.GetNetDateTime()).ToString("yyyy-MM-dd HH:mm:ss")),
+                SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                 MoneyState = SpendConsts.UnSettle,
             };
 
@@ -161,7 +161,7 @@ namespace SYS.FormUI
                     bool m = result.message.ToString().Equals("true");
                     FrmRoomManager.Reload("");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(Util.GetNetDateTime()) + "位于" + LoginInfo.SoftwareVersion + "执行：" + ucRoomList.CustoNo + "于" + Convert.ToDateTime(Util.GetNetDateTime()) + "进行了换房！", 2);
+                    RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + ucRoomList.CustoNo + "于" + Convert.ToDateTime(DateTime.Now) + "进行了换房！", 2);
                     #endregion
                     scope.Complete();
                     this.Close();
