@@ -68,14 +68,14 @@ namespace SYS.FormUI
                 return;
             }
             //将水电费信息加载到Dgv
-            dgvWti.DataSource = HttpHelper.JsonToList<Wti>(result.message);
+            dgvWti.DataSource = HttpHelper.JsonToList<HydroelectricPower>(result.message);
             dgvWti.AutoGenerateColumns = false;
         }
         #endregion
 
         private void btnUpdWti_Click(object sender, EventArgs e)
         {
-            Wti wti = new Wti
+            HydroelectricPower wti = new HydroelectricPower
             {
                 WtiNo = Convert.ToInt16(txtRecordNo.Text.Trim()),
                 RoomNo = txtRoomNo.Text.Trim(),

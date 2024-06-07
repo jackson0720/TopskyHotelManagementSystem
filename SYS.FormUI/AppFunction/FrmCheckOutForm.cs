@@ -45,7 +45,7 @@ namespace SYS.FormUI
         public static string co_CustoAddress;
         public static string co_CustoType;
         public static string co_CustoID;
-        public static Wti w;
+        public static HydroelectricPower w;
 
         public FrmCheckOutForm()
         {
@@ -168,7 +168,7 @@ namespace SYS.FormUI
             sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomMoney));
 
             lblDay.Text = Convert.ToString(Convert.ToInt32(result.message));
-            w = new Wti()
+            w = new HydroelectricPower()
             {
                 CustoNo = txtCustoNo.Text,
                 EndDate = Convert.ToDateTime(DateTime.Parse(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss"))),
@@ -259,7 +259,7 @@ namespace SYS.FormUI
                 UIMessageBox.ShowError("ListWtiInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var listWti = HttpHelper.JsonToList<Wti>(result.message);
+            var listWti = HttpHelper.JsonToList<HydroelectricPower>(result.message);
             dgvWti.DataSource = listWti;
             dgvWti.AutoGenerateColumns = false;
             #endregion
