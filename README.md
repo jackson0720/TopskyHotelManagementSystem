@@ -16,8 +16,6 @@
 
  **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
 
- **注意：目前Net8-breaking分支处于不稳定阶段，如果你是想体验程序，请不要拉取此分支，因为目前该分支运行存在诸多问题**
-
 #  :pray: 引用的开源项目：
 
 1. ##### Fody——将所有dll打包成exe应用程序。[Fody,MIT开源协议](https://github.com/Fody/Fody)      
@@ -50,21 +48,21 @@
 
 #  :mag_right: 系统开发环境：
 
-操作系统：Windows 10(x64)
+操作系统：Windows 11(x64)
 
-开发工具：Microsoft Visual Studio 2015(系统第一版本)/Microsoft Visual Studio 2019(系统最新版本)
+开发工具：Microsoft Visual Studio 2022(系统最新版本)
 
-数据库：Microsoft SQL Server 2008 R2(最初版本所使用的)/MySQL v8.0.22(强烈推荐！)/PostgreSql13(强烈推荐！)
+数据库：PostgreSql16(强烈推荐！)
 
-数据库管理工具：Microsoft SQL Server 2008 R2 Mangerment Studio/Navicat 15
+数据库管理工具：Dbgate
 
 开发语言：C#语言、T-SQL语言
 
 开发平台：.Net
 
-开发框架：.Net Framework 4.5.2/.Net Framework 4.6.1(已全面升级)——>.Net Framework 4.7.1
+开发框架：.Net 8
 
-开发技术：.NET WinForm
+开发技术：.NET 8 WinForm
 
 #  :open_file_folder: 系统结构：
 ```tree
@@ -128,7 +126,8 @@ EOM.Client.TopSkyHotelManagerSystem
 
 #  :computer: 项目运行部署：
 
-**下载并安装Microsoft Visual Studio Professional 2019及以上版本，并通过下载Zip包解压，打开.sln后缀格式文件运行。**
+**下载并安装.NET 8及以上SDK版本。**
+**下载并安装Microsoft Visual Studio Professional 2022及以上版本，并通过下载Zip包解压，打开.sln后缀格式文件运行。**
 
 #  :inbox_tray: 数据库运行部署(本地)：
 
