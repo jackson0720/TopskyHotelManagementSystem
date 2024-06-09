@@ -15,6 +15,8 @@
 
 **Note: The master branch changes with the v2.x version, which significantly differs from the v1.x version. Those interested in the v1.x version can move to the v1.x branch address**: https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/
 
+**Effective immediately, version numbers will follow the format x.x.x.x. First digit: program version, second: framework version, third: major updates, fourth: bug fixes. For example, version 2.0 on .NET 8 is 2.8.0.0. On .NET 9, it will be 2.9.0.0, and so on.**
+
 # :pray: Open Source Projects Referenced:
 
 1. ##### Fody—Packs all dlls into an exe application. [Fody, MIT License](https://github.com/Fody/Fody)
