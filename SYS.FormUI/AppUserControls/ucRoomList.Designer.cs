@@ -36,7 +36,7 @@
             tsmiChangeRoom = new System.Windows.Forms.ToolStripMenuItem();
             tsmiSelectUserInfo = new System.Windows.Forms.ToolStripMenuItem();
             tsmiChangeState = new System.Windows.Forms.ToolStripMenuItem();
-            lblCustoNo = new System.Windows.Forms.Label();
+            lblCustoName = new System.Windows.Forms.Label();
             lblRoomType = new System.Windows.Forms.Label();
             lblRoomNo = new System.Windows.Forms.Label();
             uttTips = new Sunny.UI.UIToolTip(components);
@@ -94,19 +94,19 @@
             tsmiChangeState.Text = "修改房间状态";
             tsmiChangeState.Click += tsmiChangeState_Click;
             // 
-            // lblCustoNo
+            // lblCustoName
             // 
-            lblCustoNo.AutoSize = true;
-            lblCustoNo.BackColor = System.Drawing.Color.Transparent;
-            lblCustoNo.ContextMenuStrip = cmsMain;
-            lblCustoNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblCustoNo.Location = new System.Drawing.Point(32, 74);
-            lblCustoNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            lblCustoNo.Name = "lblCustoNo";
-            lblCustoNo.Size = new System.Drawing.Size(62, 17);
-            lblCustoNo.TabIndex = 10;
-            lblCustoNo.Text = "CustoNo";
-            lblCustoNo.MouseClick += lblCustoNo_MouseClick;
+            lblCustoName.AutoSize = true;
+            lblCustoName.BackColor = System.Drawing.Color.Transparent;
+            lblCustoName.ContextMenuStrip = cmsMain;
+            lblCustoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblCustoName.Location = new System.Drawing.Point(37, 75);
+            lblCustoName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblCustoName.Name = "lblCustoName";
+            lblCustoName.Size = new System.Drawing.Size(81, 17);
+            lblCustoName.TabIndex = 10;
+            lblCustoName.Text = "CustoName";
+            lblCustoName.MouseClick += lblCustoNo_MouseClick;
             // 
             // lblRoomType
             // 
@@ -114,7 +114,7 @@
             lblRoomType.BackColor = System.Drawing.Color.Transparent;
             lblRoomType.ContextMenuStrip = cmsMain;
             lblRoomType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblRoomType.Location = new System.Drawing.Point(32, 14);
+            lblRoomType.Location = new System.Drawing.Point(37, 9);
             lblRoomType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblRoomType.Name = "lblRoomType";
             lblRoomType.Size = new System.Drawing.Size(61, 17);
@@ -129,7 +129,7 @@
             lblRoomNo.ContextMenuStrip = cmsMain;
             lblRoomNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             lblRoomNo.ForeColor = System.Drawing.Color.Black;
-            lblRoomNo.Location = new System.Drawing.Point(32, 44);
+            lblRoomNo.Location = new System.Drawing.Point(37, 42);
             lblRoomNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblRoomNo.Name = "lblRoomNo";
             lblRoomNo.Size = new System.Drawing.Size(63, 17);
@@ -167,7 +167,7 @@
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             ContextMenuStrip = cmsMain;
             Controls.Add(lblMark);
-            Controls.Add(lblCustoNo);
+            Controls.Add(lblCustoName);
             Controls.Add(lblRoomType);
             Controls.Add(lblRoomNo);
             DoubleBuffered = true;
@@ -193,7 +193,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiChangeState;
         private System.Windows.Forms.ToolStripMenuItem tsmiChangeRoom;
         private System.Windows.Forms.ToolStripMenuItem tsmiReserRoom;
-        public System.Windows.Forms.Label lblCustoNo;
+        public System.Windows.Forms.Label lblCustoName;
         public System.Windows.Forms.Label lblRoomType;
         public System.Windows.Forms.Label lblRoomNo;
         private Sunny.UI.UIToolTip uttTips;

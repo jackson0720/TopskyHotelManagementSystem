@@ -58,7 +58,7 @@ namespace SYS.FormUI.AppFunction
                 romt = new ucRoomList();
                 romt.lblMark.Text = "Mark";
                 romt.lblRoomNo.Text = rooms[i].RoomNo;
-                romt.lblCustoNo.Text = rooms[i].CustoNo;
+                romt.lblCustoName.Text = rooms[i].CustoNo;
                 romt.lblRoomType.Text = rooms[i].RoomName;
                 romt.romCustoInfo = rooms[i];
                 flpRoom.Controls.Add(romt);

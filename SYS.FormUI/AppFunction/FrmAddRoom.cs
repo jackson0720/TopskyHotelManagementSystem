@@ -134,9 +134,9 @@ namespace SYS.FormUI
             for (int i = 0; i < rooms.Count; i++)
             {
                 romt = new ucRoomList();
-                romt.lblMark.Text = "Mark";
+                romt.lblMark.Text = "Mark"; //=Mark时，判断为房态图，禁用右键菜单
                 romt.lblRoomNo.Text = rooms[i].RoomNo;
-                romt.lblCustoNo.Text = rooms[i].CustoNo;
+                romt.lblCustoName.Text = rooms[i].CustoNo;
                 romt.lblRoomType.Text = rooms[i].RoomName;
                 romt.romCustoInfo = rooms[i];
                 flpRoom.Controls.Add(romt);

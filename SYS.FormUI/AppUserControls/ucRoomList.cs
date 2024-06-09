@@ -223,7 +223,7 @@ namespace SYS.FormUI
                 return;
             }
             r = HttpHelper.JsonToModel<Room>(result.message);
-            if (lblCustoNo.Text != "")
+            if (lblCustoName.Text != "")
             {
                 tsmiCheckIn.Enabled = false;
                 tsmiCheckOut.Enabled = true;
@@ -250,7 +250,7 @@ namespace SYS.FormUI
                 tsmiChangeRoom.Enabled = false;
                 tsmiReserRoom.Enabled = false;
             }
-            else if (lblCustoNo.Text == "")
+            else if (lblCustoName.Text == "")
             {
                 tsmiCheckIn.Enabled = true;
                 tsmiCheckOut.Enabled = false;
@@ -269,7 +269,7 @@ namespace SYS.FormUI
         {
             if (r.RoomStateId == 4)
             {
-                rm_CustoNo = lblCustoNo.Text;
+                rm_CustoNo = lblCustoName.Text;
                 rm_RoomNo = lblRoomNo.Text;
                 rm_RoomType = lblRoomType.Text;
                 rm_RoomMoney = Convert.ToDecimal(romCustoInfo.RoomMoney).ToString();
@@ -281,7 +281,7 @@ namespace SYS.FormUI
             }
             else
             {
-                rm_CustoNo = lblCustoNo.Text;
+                rm_CustoNo = lblCustoName.Text;
                 rm_RoomNo = lblRoomNo.Text;
                 rm_RoomType = lblRoomType.Text;
                 rm_RoomMoney = Convert.ToDecimal(romCustoInfo.RoomMoney).ToString();
@@ -297,7 +297,7 @@ namespace SYS.FormUI
         #region 退房事件方法
         private void tsmiCheckOut_Click(object sender, EventArgs e)
         {
-            rm_CustoNo = lblCustoNo.Text;
+            rm_CustoNo = lblCustoName.Text;
             rm_RoomNo = lblRoomNo.Text;
             rm_RoomType = lblRoomType.Text;
             FrmCheckOutForm frm = new FrmCheckOutForm();
@@ -309,7 +309,7 @@ namespace SYS.FormUI
         private void ucRoomList_DoubleClick(object sender, EventArgs e)
         {
             List<Custo> custos = new List<Custo>();
-            if (!lblCustoNo.Text.IsNullOrEmpty())
+            if (!lblCustoName.Text.IsNullOrEmpty())
             {
                 Dictionary<string, string> dic = new Dictionary<string, string>()
                 {
@@ -326,13 +326,13 @@ namespace SYS.FormUI
                 switch (r.RoomStateId)
                 {
                     case 1:
-                        rm_CustoNo = lblCustoNo.Text;
+                        rm_CustoNo = lblCustoName.Text;
                         FrmSelectCustoInfo frmSelectCustoInfo = new FrmSelectCustoInfo();
                         frmSelectCustoInfo.Show();
                         break;
                 }
             }
-            else if (lblCustoNo.Text.IsNullOrEmpty() && romCustoInfo.RoomStateId == 0)
+            else if (lblCustoName.Text.IsNullOrEmpty() && romCustoInfo.RoomStateId == 0)
             {
                 rm_RoomNo = lblRoomNo.Text;
                 FrmCheckIn frm = new FrmCheckIn();
@@ -347,7 +347,7 @@ namespace SYS.FormUI
 
         private void tsmiSelectUserInfo_Click(object sender, EventArgs e)
         {
-            rm_CustoNo = lblCustoNo.Text;
+            rm_CustoNo = lblCustoName.Text;
             FrmSelectCustoInfo frm = new FrmSelectCustoInfo();
             frm.Show();
         }
@@ -382,7 +382,7 @@ namespace SYS.FormUI
             if (tf)
             {
                 RoomNo = lblRoomNo.Text;
-                CustoNo = lblCustoNo.Text;
+                CustoNo = lblCustoName.Text;
                 RoomState = lblRoomType.Text;
                 FrmChangeRoom frm = new FrmChangeRoom();
                 frm.Show();

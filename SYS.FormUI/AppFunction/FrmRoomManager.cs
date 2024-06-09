@@ -200,9 +200,9 @@ namespace SYS.FormUI
             for (int i = 0; i < romsty.Count; i++)
             {
                 romt = new ucRoomList();
-                romt.lblMark.Text = String.Empty;
+                romt.lblMark.Text = String.Empty; //=String.Empty时，判断为非房态图，可放开右键菜单
                 romt.lblRoomNo.Text = romsty[i].RoomNo;
-                romt.lblCustoNo.Text = romsty[i].CustoNo;
+                romt.lblCustoName.Text = romsty[i].CustoName;
                 romt.lblRoomType.Text = romsty[i].RoomName;
                 romt.romCustoInfo = romsty[i];
                 flpRoom.Controls.Add(romt);
@@ -239,7 +239,7 @@ namespace SYS.FormUI
                 romt = new ucRoomList();
                 romt.lblMark.Text = String.Empty;
                 romt.lblRoomNo.Text = romsty[i].RoomNo;
-                romt.lblCustoNo.Text = romsty[i].CustoNo;
+                romt.lblCustoName.Text = romsty[i].CustoNo;
                 romt.lblRoomType.Text = romsty[i].RoomName;
                 romt.romCustoInfo = romsty[i];
                 flpRoom.Controls.Add(romt);
