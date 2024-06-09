@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -92,7 +93,7 @@ namespace SYS.FormUI
             }
             UIMessageBox.ShowSuccess("删除商品成功!");
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + DateTime.Now + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除商品操作！删除值为：" + st.SellNo, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除商品操作！删除值为：" + st.SellNo, 2);
             #endregion
             LoadData();
             return;
@@ -161,7 +162,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("添加商品成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + DateTime.Now + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增商品操作！新增值为：" + st.SellNo, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增商品操作！新增值为：" + st.SellNo, 2);
                 #endregion
                 LoadData();
                 string SellId = Util.GetListNewId("ST", 3, 1, "-").FirstOrDefault();
@@ -220,7 +221,7 @@ namespace SYS.FormUI
                 }
                 UIMessageBox.Show("修改商品成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + DateTime.Now + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改商品操作！修改值为：" + st.SellNo, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改商品操作！修改值为：" + st.SellNo, 2);
                 #endregion
                 LoadData();
             }

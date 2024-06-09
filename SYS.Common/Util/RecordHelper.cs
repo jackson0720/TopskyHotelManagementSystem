@@ -18,14 +18,14 @@ namespace SYS.Common
             string api = "App/AddLog";
             var logDetail = new OperationLog
             {
-                OperationTime = DateTime.Now,
+                OperationTime = Convert.ToDateTime(DateTime.Now),
                 LogContent = operationLog,
                 OperationAccount = LoginInfo.WorkerNo + AdminInfo.Account,
                 OperationLevel = level == 1 ? RecordLevel.Normal : level == 2 ? RecordLevel.Warning : RecordLevel.Danger,
                 SoftwareVersion = AdminInfo.SoftwareVersion + LoginInfo.SoftwareVersion,
                 delete_mk = 0,
                 datains_usr = AdminInfo.Account + LoginInfo.WorkerNo,
-                datains_date = DateTime.Now
+                datains_date = Convert.ToDateTime(DateTime.Now)
             };
             HttpHelper.Request(api, HttpHelper.ModelToJson(logDetail));
         }

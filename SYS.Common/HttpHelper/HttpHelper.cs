@@ -1,6 +1,6 @@
-﻿using jvncorelib_fr.EncryptorLib;
-using jvncorelib_fr.EntityLib;
-using jvncorelib_fr.HttpLib;
+﻿using jvncorelib.EncryptorLib;
+using jvncorelib.EntityLib;
+using jvncorelib.HttpLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -10,11 +10,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.Script.Serialization;
 using System.Windows.Input;
 
 namespace SYS.Common
@@ -173,21 +171,10 @@ namespace SYS.Common
             var request = new RestRequest();
 
             string resultContent = "";
-            System.IO.Stream stream = null;
-            StreamReader reader = null;
             RestResponse rsp = null;
 
             try
             {
-                //if (!string.IsNullOrEmpty(contentType))
-                //{
-                //    request.AddHeader("Content-Type",contentType);
-                //}
-                //else
-                //{
-                //    request.AddHeader("Content-Type",ContentType.FormUrlEncoded);
-                //}
-
                 if (!string.IsNullOrEmpty(referer))
                 {
                     request.AddHeader("Referer", referer);
@@ -339,8 +326,7 @@ namespace SYS.Common
         /// <returns></returns>
         public static List<T> JsonToList<T>(string JsonStr)
         {
-            JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
-            return javaScriptSerializer.Deserialize<List<T>>(JsonStr);
+            return JsonConvert.DeserializeObject<List<T>>(JsonStr);
         }
 
         /// <summary>
@@ -351,14 +337,7 @@ namespace SYS.Common
         /// <returns></returns>
         public static T JsonToModel<T>(this string input)
         {
-            try
-            {
-                return JsonConvert.DeserializeObject<T>(input);
-            }
-            catch (Exception)
-            {
-                return default(T);
-            }
+            return JsonConvert.DeserializeObject<T>(input);
         }
 
         /// <summary>

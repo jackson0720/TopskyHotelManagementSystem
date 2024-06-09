@@ -28,450 +28,441 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.dgvCustomerList = new Sunny.UI.UIDataGridView();
-            this.CustoNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustoName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustoSex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustoTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustoBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PassportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustoAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmsCustoManager = new Sunny.UI.UIContextMenuStrip();
-            this.tsmiCustoNo = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSerach = new Sunny.UI.UIButton();
-            this.btnAddCusto = new Sunny.UI.UIButton();
-            this.btnUpdCustomer = new Sunny.UI.UIButton();
-            this.uiGroupBox1 = new Sunny.UI.UIGroupBox();
-            this.txtCustoName = new Sunny.UI.UITextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCustoNo = new Sunny.UI.UITextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnPg = new Sunny.UI.UIPagination();
-            this.uiLine1 = new Sunny.UI.UILine();
-            this.cbOnlyVip = new Sunny.UI.UICheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerList)).BeginInit();
-            this.cmsCustoManager.SuspendLayout();
-            this.uiGroupBox1.SuspendLayout();
-            this.SuspendLayout();
+            toolTip1 = new System.Windows.Forms.ToolTip(components);
+            dgvCustomerList = new Sunny.UI.UIDataGridView();
+            CustoNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            CustoName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            CustoSex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            CustoTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            CustoBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            typeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            PassportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            CustoAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            cmsCustoManager = new Sunny.UI.UIContextMenuStrip();
+            tsmiCustoNo = new System.Windows.Forms.ToolStripMenuItem();
+            btnSerach = new Sunny.UI.UIButton();
+            btnAddCusto = new Sunny.UI.UIButton();
+            btnUpdCustomer = new Sunny.UI.UIButton();
+            uiGroupBox1 = new Sunny.UI.UIGroupBox();
+            txtCustoName = new Sunny.UI.UITextBox();
+            label1 = new System.Windows.Forms.Label();
+            txtCustoNo = new Sunny.UI.UITextBox();
+            label3 = new System.Windows.Forms.Label();
+            btnPg = new Sunny.UI.UIPagination();
+            uiLine1 = new Sunny.UI.UILine();
+            cbOnlyVip = new Sunny.UI.UICheckBox();
+            ((System.ComponentModel.ISupportInitialize)dgvCustomerList).BeginInit();
+            cmsCustoManager.SuspendLayout();
+            uiGroupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // toolTip1
             // 
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip1.ToolTipTitle = "获取账号";
+            toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            toolTip1.ToolTipTitle = "获取账号";
             // 
             // dgvCustomerList
             // 
-            this.dgvCustomerList.AllowUserToAddRows = false;
-            this.dgvCustomerList.AllowUserToDeleteRows = false;
-            this.dgvCustomerList.AllowUserToResizeColumns = false;
-            this.dgvCustomerList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgvCustomerList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvCustomerList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCustomerList.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCustomerList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvCustomerList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dgvCustomerList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dgvCustomerList.AllowUserToAddRows = false;
+            dgvCustomerList.AllowUserToDeleteRows = false;
+            dgvCustomerList.AllowUserToResizeColumns = false;
+            dgvCustomerList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
+            dgvCustomerList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvCustomerList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCustomerList.BackgroundColor = System.Drawing.Color.White;
+            dgvCustomerList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dgvCustomerList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dgvCustomerList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(80, 160, 255);
             dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 12F);
             dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCustomerList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvCustomerList.ColumnHeadersHeight = 25;
-            this.dgvCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvCustomerList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CustoNo,
-            this.CustoName,
-            this.CustoSex,
-            this.CustoTel,
-            this.CustoBirth,
-            this.typeName,
-            this.PassportName,
-            this.CustoAdress,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9});
-            this.dgvCustomerList.ContextMenuStrip = this.cmsCustoManager;
-            this.dgvCustomerList.EnableHeadersVisualStyles = false;
-            this.dgvCustomerList.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.dgvCustomerList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.dgvCustomerList.Location = new System.Drawing.Point(12, 12);
-            this.dgvCustomerList.Name = "dgvCustomerList";
-            this.dgvCustomerList.ReadOnly = true;
+            dgvCustomerList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dgvCustomerList.ColumnHeadersHeight = 25;
+            dgvCustomerList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvCustomerList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { CustoNo, CustoName, CustoSex, CustoTel, CustoBirth, typeName, PassportName, CustoAdress, Column1, Column2, Column3, Column4, Column5, Column6, Column7, Column8, Column9 });
+            dgvCustomerList.ContextMenuStrip = cmsCustoManager;
+            dgvCustomerList.EnableHeadersVisualStyles = false;
+            dgvCustomerList.Font = new System.Drawing.Font("微软雅黑", 12F);
+            dgvCustomerList.GridColor = System.Drawing.Color.FromArgb(80, 160, 255);
+            dgvCustomerList.Location = new System.Drawing.Point(14, 7);
+            dgvCustomerList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            dgvCustomerList.Name = "dgvCustomerList";
+            dgvCustomerList.ReadOnly = true;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
             dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(80, 160, 255);
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCustomerList.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvCustomerList.RowHeadersVisible = false;
+            dgvCustomerList.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dgvCustomerList.RowHeadersVisible = false;
             dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            this.dgvCustomerList.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvCustomerList.RowTemplate.Height = 29;
-            this.dgvCustomerList.SelectedIndex = -1;
-            this.dgvCustomerList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomerList.Size = new System.Drawing.Size(1048, 381);
-            this.dgvCustomerList.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgvCustomerList.Style = Sunny.UI.UIStyle.Custom;
-            this.dgvCustomerList.TabIndex = 83;
-            this.toolTip1.SetToolTip(this.dgvCustomerList, "选中客户右键可进行更多操作");
-            this.dgvCustomerList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerList_CellClick);
+            dgvCustomerList.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dgvCustomerList.RowTemplate.Height = 29;
+            dgvCustomerList.SelectedIndex = -1;
+            dgvCustomerList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dgvCustomerList.Size = new System.Drawing.Size(1053, 352);
+            dgvCustomerList.StripeOddColor = System.Drawing.Color.FromArgb(235, 243, 255);
+            dgvCustomerList.Style = Sunny.UI.UIStyle.Custom;
+            dgvCustomerList.TabIndex = 83;
+            toolTip1.SetToolTip(dgvCustomerList, "选中客户右键可进行更多操作");
+            dgvCustomerList.CellClick += dgvCustomerList_CellClick;
             // 
             // CustoNo
             // 
-            this.CustoNo.DataPropertyName = "CustoNo";
-            this.CustoNo.HeaderText = "客户编号";
-            this.CustoNo.Name = "CustoNo";
-            this.CustoNo.ReadOnly = true;
+            CustoNo.DataPropertyName = "CustoNo";
+            CustoNo.HeaderText = "客户编号";
+            CustoNo.Name = "CustoNo";
+            CustoNo.ReadOnly = true;
             // 
             // CustoName
             // 
-            this.CustoName.DataPropertyName = "CustoName";
-            this.CustoName.HeaderText = "客户姓名";
-            this.CustoName.Name = "CustoName";
-            this.CustoName.ReadOnly = true;
+            CustoName.DataPropertyName = "CustoName";
+            CustoName.HeaderText = "客户姓名";
+            CustoName.Name = "CustoName";
+            CustoName.ReadOnly = true;
             // 
             // CustoSex
             // 
-            this.CustoSex.DataPropertyName = "SexName";
-            this.CustoSex.HeaderText = "性别";
-            this.CustoSex.Name = "CustoSex";
-            this.CustoSex.ReadOnly = true;
+            CustoSex.DataPropertyName = "SexName";
+            CustoSex.HeaderText = "性别";
+            CustoSex.Name = "CustoSex";
+            CustoSex.ReadOnly = true;
             // 
             // CustoTel
             // 
-            this.CustoTel.DataPropertyName = "CustoTel";
-            this.CustoTel.HeaderText = "联系方式";
-            this.CustoTel.Name = "CustoTel";
-            this.CustoTel.ReadOnly = true;
+            CustoTel.DataPropertyName = "CustoTel";
+            CustoTel.HeaderText = "联系方式";
+            CustoTel.Name = "CustoTel";
+            CustoTel.ReadOnly = true;
             // 
             // CustoBirth
             // 
-            this.CustoBirth.DataPropertyName = "CustoBirth";
-            this.CustoBirth.HeaderText = "出生日期";
-            this.CustoBirth.Name = "CustoBirth";
-            this.CustoBirth.ReadOnly = true;
+            CustoBirth.DataPropertyName = "CustoBirth";
+            CustoBirth.HeaderText = "出生日期";
+            CustoBirth.Name = "CustoBirth";
+            CustoBirth.ReadOnly = true;
             // 
             // typeName
             // 
-            this.typeName.DataPropertyName = "typeName";
-            this.typeName.HeaderText = "客户类型";
-            this.typeName.Name = "typeName";
-            this.typeName.ReadOnly = true;
+            typeName.DataPropertyName = "typeName";
+            typeName.HeaderText = "客户类型";
+            typeName.Name = "typeName";
+            typeName.ReadOnly = true;
             // 
             // PassportName
             // 
-            this.PassportName.DataPropertyName = "PassportName";
-            this.PassportName.HeaderText = "证件类型";
-            this.PassportName.Name = "PassportName";
-            this.PassportName.ReadOnly = true;
+            PassportName.DataPropertyName = "PassportName";
+            PassportName.HeaderText = "证件类型";
+            PassportName.Name = "PassportName";
+            PassportName.ReadOnly = true;
             // 
             // CustoAdress
             // 
-            this.CustoAdress.DataPropertyName = "CustoAdress";
-            this.CustoAdress.HeaderText = "客户地址";
-            this.CustoAdress.Name = "CustoAdress";
-            this.CustoAdress.ReadOnly = true;
+            CustoAdress.DataPropertyName = "CustoAdress";
+            CustoAdress.HeaderText = "客户地址";
+            CustoAdress.Name = "CustoAdress";
+            CustoAdress.ReadOnly = true;
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "PassportType";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
+            Column1.DataPropertyName = "PassportType";
+            Column1.HeaderText = "Column1";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Visible = false;
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "CustoType";
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
+            Column2.DataPropertyName = "CustoType";
+            Column2.HeaderText = "Column2";
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Visible = false;
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "CustoID";
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Visible = false;
+            Column3.DataPropertyName = "CustoID";
+            Column3.HeaderText = "Column3";
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Visible = false;
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "CustoSex";
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Visible = false;
+            Column4.DataPropertyName = "CustoSex";
+            Column4.HeaderText = "Column4";
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Visible = false;
             // 
             // Column5
             // 
-            this.Column5.DataPropertyName = "delete_mk";
-            this.Column5.HeaderText = "Column5";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Visible = false;
+            Column5.DataPropertyName = "delete_mk";
+            Column5.HeaderText = "Column5";
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            Column5.Visible = false;
             // 
             // Column6
             // 
-            this.Column6.DataPropertyName = "datains_usr";
-            this.Column6.HeaderText = "Column6";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Visible = false;
+            Column6.DataPropertyName = "datains_usr";
+            Column6.HeaderText = "Column6";
+            Column6.Name = "Column6";
+            Column6.ReadOnly = true;
+            Column6.Visible = false;
             // 
             // Column7
             // 
-            this.Column7.DataPropertyName = "datains_date";
-            this.Column7.HeaderText = "Column7";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Visible = false;
+            Column7.DataPropertyName = "datains_date";
+            Column7.HeaderText = "Column7";
+            Column7.Name = "Column7";
+            Column7.ReadOnly = true;
+            Column7.Visible = false;
             // 
             // Column8
             // 
-            this.Column8.DataPropertyName = "datachg_usr";
-            this.Column8.HeaderText = "Column8";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
+            Column8.DataPropertyName = "datachg_usr";
+            Column8.HeaderText = "Column8";
+            Column8.Name = "Column8";
+            Column8.ReadOnly = true;
+            Column8.Visible = false;
             // 
             // Column9
             // 
-            this.Column9.DataPropertyName = "datachg_date";
-            this.Column9.HeaderText = "Column9";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Visible = false;
+            Column9.DataPropertyName = "datachg_date";
+            Column9.HeaderText = "Column9";
+            Column9.Name = "Column9";
+            Column9.ReadOnly = true;
+            Column9.Visible = false;
             // 
             // cmsCustoManager
             // 
-            this.cmsCustoManager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
-            this.cmsCustoManager.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.cmsCustoManager.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCustoNo});
-            this.cmsCustoManager.Name = "cmsCustoManager";
-            this.cmsCustoManager.Size = new System.Drawing.Size(177, 30);
+            cmsCustoManager.BackColor = System.Drawing.Color.FromArgb(243, 249, 255);
+            cmsCustoManager.Font = new System.Drawing.Font("微软雅黑", 12F);
+            cmsCustoManager.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsmiCustoNo });
+            cmsCustoManager.Name = "cmsCustoManager";
+            cmsCustoManager.Size = new System.Drawing.Size(177, 30);
             // 
             // tsmiCustoNo
             // 
-            this.tsmiCustoNo.Image = global::SYS.FormUI.Properties.Resources.复制;
-            this.tsmiCustoNo.Name = "tsmiCustoNo";
-            this.tsmiCustoNo.Size = new System.Drawing.Size(176, 26);
-            this.tsmiCustoNo.Text = "复制用户编号";
-            this.tsmiCustoNo.Click += new System.EventHandler(this.tsmiCustoNo_Click);
+            tsmiCustoNo.Image = Properties.Resources.复制;
+            tsmiCustoNo.Name = "tsmiCustoNo";
+            tsmiCustoNo.Size = new System.Drawing.Size(176, 26);
+            tsmiCustoNo.Text = "复制用户编号";
+            tsmiCustoNo.Click += tsmiCustoNo_Click;
             // 
             // btnSerach
             // 
-            this.btnSerach.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSerach.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnSerach.Location = new System.Drawing.Point(591, 443);
-            this.btnSerach.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnSerach.Name = "btnSerach";
-            this.btnSerach.Radius = 30;
-            this.btnSerach.Size = new System.Drawing.Size(97, 41);
-            this.btnSerach.TabIndex = 84;
-            this.btnSerach.Text = "搜    索";
-            this.btnSerach.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSerach.Click += new System.EventHandler(this.btnSerach_BtnClick);
+            btnSerach.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnSerach.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnSerach.Location = new System.Drawing.Point(614, 426);
+            btnSerach.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            btnSerach.MinimumSize = new System.Drawing.Size(1, 1);
+            btnSerach.Name = "btnSerach";
+            btnSerach.Radius = 30;
+            btnSerach.Size = new System.Drawing.Size(113, 54);
+            btnSerach.TabIndex = 84;
+            btnSerach.Text = "搜    索";
+            btnSerach.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnSerach.Click += btnSerach_BtnClick;
             // 
             // btnAddCusto
             // 
-            this.btnAddCusto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddCusto.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnAddCusto.Location = new System.Drawing.Point(774, 443);
-            this.btnAddCusto.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnAddCusto.Name = "btnAddCusto";
-            this.btnAddCusto.Radius = 30;
-            this.btnAddCusto.Size = new System.Drawing.Size(97, 41);
-            this.btnAddCusto.TabIndex = 85;
-            this.btnAddCusto.Text = "添加客户";
-            this.btnAddCusto.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAddCusto.Click += new System.EventHandler(this.btnAddCusto_BtnClick);
+            btnAddCusto.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnAddCusto.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnAddCusto.Location = new System.Drawing.Point(784, 426);
+            btnAddCusto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            btnAddCusto.MinimumSize = new System.Drawing.Size(1, 1);
+            btnAddCusto.Name = "btnAddCusto";
+            btnAddCusto.Radius = 30;
+            btnAddCusto.Size = new System.Drawing.Size(113, 54);
+            btnAddCusto.TabIndex = 85;
+            btnAddCusto.Text = "添加客户";
+            btnAddCusto.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnAddCusto.Click += btnAddCusto_BtnClick;
             // 
             // btnUpdCustomer
             // 
-            this.btnUpdCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdCustomer.Enabled = false;
-            this.btnUpdCustomer.FillDisableColor = System.Drawing.Color.Silver;
-            this.btnUpdCustomer.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnUpdCustomer.Location = new System.Drawing.Point(957, 443);
-            this.btnUpdCustomer.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnUpdCustomer.Name = "btnUpdCustomer";
-            this.btnUpdCustomer.Radius = 30;
-            this.btnUpdCustomer.Size = new System.Drawing.Size(97, 41);
-            this.btnUpdCustomer.Style = Sunny.UI.UIStyle.Custom;
-            this.btnUpdCustomer.TabIndex = 87;
-            this.btnUpdCustomer.Text = "修改客户";
-            this.btnUpdCustomer.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUpdCustomer.Click += new System.EventHandler(this.btnUpdCustomer_Click);
+            btnUpdCustomer.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnUpdCustomer.Enabled = false;
+            btnUpdCustomer.FillDisableColor = System.Drawing.Color.Silver;
+            btnUpdCustomer.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnUpdCustomer.Location = new System.Drawing.Point(954, 426);
+            btnUpdCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            btnUpdCustomer.MinimumSize = new System.Drawing.Size(1, 1);
+            btnUpdCustomer.Name = "btnUpdCustomer";
+            btnUpdCustomer.Radius = 30;
+            btnUpdCustomer.Size = new System.Drawing.Size(113, 54);
+            btnUpdCustomer.Style = Sunny.UI.UIStyle.Custom;
+            btnUpdCustomer.TabIndex = 87;
+            btnUpdCustomer.Text = "修改客户";
+            btnUpdCustomer.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnUpdCustomer.Click += btnUpdCustomer_Click;
             // 
             // uiGroupBox1
             // 
-            this.uiGroupBox1.Controls.Add(this.txtCustoName);
-            this.uiGroupBox1.Controls.Add(this.label1);
-            this.uiGroupBox1.Controls.Add(this.txtCustoNo);
-            this.uiGroupBox1.Controls.Add(this.label3);
-            this.uiGroupBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiGroupBox1.Location = new System.Drawing.Point(12, 426);
-            this.uiGroupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Padding = new System.Windows.Forms.Padding(0, 32, 0, 0);
-            this.uiGroupBox1.Size = new System.Drawing.Size(572, 62);
-            this.uiGroupBox1.TabIndex = 119;
-            this.uiGroupBox1.Text = "条件搜索";
-            this.uiGroupBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            uiGroupBox1.Controls.Add(txtCustoName);
+            uiGroupBox1.Controls.Add(label1);
+            uiGroupBox1.Controls.Add(txtCustoNo);
+            uiGroupBox1.Controls.Add(label3);
+            uiGroupBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            uiGroupBox1.Location = new System.Drawing.Point(14, 405);
+            uiGroupBox1.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            uiGroupBox1.MinimumSize = new System.Drawing.Size(1, 1);
+            uiGroupBox1.Name = "uiGroupBox1";
+            uiGroupBox1.Padding = new System.Windows.Forms.Padding(0, 45, 0, 0);
+            uiGroupBox1.Size = new System.Drawing.Size(591, 81);
+            uiGroupBox1.TabIndex = 119;
+            uiGroupBox1.Text = "条件搜索";
+            uiGroupBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtCustoName
             // 
-            this.txtCustoName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoName.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoName.Location = new System.Drawing.Point(387, 23);
-            this.txtCustoName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoName.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoName.Name = "txtCustoName";
-            this.txtCustoName.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoName.Radius = 20;
-            this.txtCustoName.ShowText = false;
-            this.txtCustoName.Size = new System.Drawing.Size(173, 33);
-            this.txtCustoName.TabIndex = 94;
-            this.txtCustoName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCustoName.Watermark = "";
+            txtCustoName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            txtCustoName.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            txtCustoName.Location = new System.Drawing.Point(387, 34);
+            txtCustoName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtCustoName.MinimumSize = new System.Drawing.Size(1, 1);
+            txtCustoName.Name = "txtCustoName";
+            txtCustoName.Padding = new System.Windows.Forms.Padding(5);
+            txtCustoName.Radius = 20;
+            txtCustoName.ShowText = false;
+            txtCustoName.Size = new System.Drawing.Size(173, 33);
+            txtCustoName.TabIndex = 94;
+            txtCustoName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtCustoName.Watermark = "";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(292, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 25);
-            this.label1.TabIndex = 93;
-            this.label1.Text = "客户姓名";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label1.Location = new System.Drawing.Point(292, 37);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(88, 25);
+            label1.TabIndex = 93;
+            label1.Text = "客户姓名";
             // 
             // txtCustoNo
             // 
-            this.txtCustoNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoNo.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoNo.Location = new System.Drawing.Point(112, 23);
-            this.txtCustoNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoNo.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoNo.Name = "txtCustoNo";
-            this.txtCustoNo.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoNo.Radius = 20;
-            this.txtCustoNo.ShowText = false;
-            this.txtCustoNo.Size = new System.Drawing.Size(173, 33);
-            this.txtCustoNo.TabIndex = 92;
-            this.txtCustoNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCustoNo.Watermark = "";
+            txtCustoNo.Cursor = System.Windows.Forms.Cursors.IBeam;
+            txtCustoNo.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            txtCustoNo.Location = new System.Drawing.Point(112, 34);
+            txtCustoNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtCustoNo.MinimumSize = new System.Drawing.Size(1, 1);
+            txtCustoNo.Name = "txtCustoNo";
+            txtCustoNo.Padding = new System.Windows.Forms.Padding(5);
+            txtCustoNo.Radius = 20;
+            txtCustoNo.ShowText = false;
+            txtCustoNo.Size = new System.Drawing.Size(173, 33);
+            txtCustoNo.TabIndex = 92;
+            txtCustoNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtCustoNo.Watermark = "";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(17, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 25);
-            this.label3.TabIndex = 91;
-            this.label3.Text = "客户编号";
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            label3.Location = new System.Drawing.Point(17, 37);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(88, 25);
+            label3.TabIndex = 91;
+            label3.Text = "客户编号";
             // 
             // btnPg
             // 
-            this.btnPg.ButtonInterval = 5;
-            this.btnPg.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnPg.Location = new System.Drawing.Point(12, 401);
-            this.btnPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnPg.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnPg.Name = "btnPg";
-            this.btnPg.PageSize = 15;
-            this.btnPg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            this.btnPg.ShowText = false;
-            this.btnPg.Size = new System.Drawing.Size(636, 34);
-            this.btnPg.TabIndex = 120;
-            this.btnPg.Text = null;
-            this.btnPg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnPg.PageChanged += new Sunny.UI.UIPagination.OnPageChangeEventHandler(this.btnPg_PageChanged);
+            btnPg.BackColor = System.Drawing.Color.Transparent;
+            btnPg.ButtonInterval = 5;
+            btnPg.FillColor = System.Drawing.Color.Transparent;
+            btnPg.FillColor2 = System.Drawing.Color.Transparent;
+            btnPg.Font = new System.Drawing.Font("微软雅黑", 12F);
+            btnPg.Location = new System.Drawing.Point(14, 370);
+            btnPg.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            btnPg.MinimumSize = new System.Drawing.Size(1, 1);
+            btnPg.Name = "btnPg";
+            btnPg.PageSize = 15;
+            btnPg.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
+            btnPg.ShowText = false;
+            btnPg.Size = new System.Drawing.Size(667, 35);
+            btnPg.TabIndex = 120;
+            btnPg.Text = null;
+            btnPg.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            btnPg.PageChanged += btnPg_PageChanged;
             // 
             // uiLine1
             // 
-            this.uiLine1.BackColor = System.Drawing.Color.Transparent;
-            this.uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLine1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.uiLine1.Location = new System.Drawing.Point(774, 406);
-            this.uiLine1.MinimumSize = new System.Drawing.Size(2, 2);
-            this.uiLine1.Name = "uiLine1";
-            this.uiLine1.Size = new System.Drawing.Size(286, 29);
-            this.uiLine1.TabIndex = 124;
-            this.uiLine1.Text = "右键可复制快速客户编号";
+            uiLine1.BackColor = System.Drawing.Color.Transparent;
+            uiLine1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            uiLine1.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            uiLine1.Location = new System.Drawing.Point(776, 377);
+            uiLine1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            uiLine1.MinimumSize = new System.Drawing.Size(2, 3);
+            uiLine1.Name = "uiLine1";
+            uiLine1.Size = new System.Drawing.Size(291, 24);
+            uiLine1.TabIndex = 124;
+            uiLine1.Text = "右键可复制快速客户编号";
             // 
             // cbOnlyVip
             // 
-            this.cbOnlyVip.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbOnlyVip.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.cbOnlyVip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.cbOnlyVip.Location = new System.Drawing.Point(655, 406);
-            this.cbOnlyVip.MinimumSize = new System.Drawing.Size(1, 1);
-            this.cbOnlyVip.Name = "cbOnlyVip";
-            this.cbOnlyVip.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.cbOnlyVip.Size = new System.Drawing.Size(113, 29);
-            this.cbOnlyVip.Style = Sunny.UI.UIStyle.Custom;
-            this.cbOnlyVip.TabIndex = 126;
-            this.cbOnlyVip.Text = "仅查看会员";
-            this.cbOnlyVip.CheckedChanged += new System.EventHandler(this.cbOnlyVip_CheckedChanged);
+            cbOnlyVip.Cursor = System.Windows.Forms.Cursors.Hand;
+            cbOnlyVip.Font = new System.Drawing.Font("微软雅黑", 12F);
+            cbOnlyVip.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            cbOnlyVip.Location = new System.Drawing.Point(657, 377);
+            cbOnlyVip.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            cbOnlyVip.MinimumSize = new System.Drawing.Size(1, 1);
+            cbOnlyVip.Name = "cbOnlyVip";
+            cbOnlyVip.Padding = new System.Windows.Forms.Padding(26, 0, 0, 0);
+            cbOnlyVip.Size = new System.Drawing.Size(111, 24);
+            cbOnlyVip.Style = Sunny.UI.UIStyle.Custom;
+            cbOnlyVip.TabIndex = 126;
+            cbOnlyVip.Text = "仅查看会员";
+            cbOnlyVip.CheckedChanged += cbOnlyVip_CheckedChanged;
             // 
             // FrmCustomerManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1072, 490);
-            this.Controls.Add(this.cbOnlyVip);
-            this.Controls.Add(this.uiLine1);
-            this.Controls.Add(this.btnPg);
-            this.Controls.Add(this.uiGroupBox1);
-            this.Controls.Add(this.btnUpdCustomer);
-            this.Controls.Add(this.btnAddCusto);
-            this.Controls.Add(this.btnSerach);
-            this.Controls.Add(this.dgvCustomerList);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmCustomerManager";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TS酒店管理系统";
-            this.Load += new System.EventHandler(this.FrmCustomerManager_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomerList)).EndInit();
-            this.cmsCustoManager.ResumeLayout(false);
-            this.uiGroupBox1.ResumeLayout(false);
-            this.uiGroupBox1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
+            ClientSize = new System.Drawing.Size(1072, 490);
+            Controls.Add(cbOnlyVip);
+            Controls.Add(uiLine1);
+            Controls.Add(btnPg);
+            Controls.Add(uiGroupBox1);
+            Controls.Add(btnUpdCustomer);
+            Controls.Add(btnAddCusto);
+            Controls.Add(btnSerach);
+            Controls.Add(dgvCustomerList);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            Name = "FrmCustomerManager";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Text = "TS酒店管理系统";
+            Load += FrmCustomerManager_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvCustomerList).EndInit();
+            cmsCustoManager.ResumeLayout(false);
+            uiGroupBox1.ResumeLayout(false);
+            uiGroupBox1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

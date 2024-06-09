@@ -15,8 +15,6 @@
 
 **Note: The master branch changes with the v2.x version, which significantly differs from the v1.x version. Those interested in the v1.x version can move to the v1.x branch address**: https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/
 
-**Note: The Net8-breaking branch is currently in an unstable phase. If you wish to experience the program, please do not pull this branch as it has many issues at the moment.**
-
 # :pray: Open Source Projects Referenced:
 
 1. ##### Fody—Packs all dlls into an exe application. [Fody, MIT License](https://github.com/Fody/Fody)
@@ -49,21 +47,21 @@ In today's rapidly developing hotel industry, with the increase in daily hotel w
 
 # :mag_right: System Development Environment:
 
-Operating System: Windows 10(x64)
+Operating System: Windows 11(x64)
 
-Development Tools: Microsoft Visual Studio 2015 (first version of the system)/Microsoft Visual Studio 2019 (latest version of the system)
+Development Tools: Microsoft Visual Studio 2022 (latest version of the system)
 
-Database: Microsoft SQL Server 2008 R2 (used in the earliest version)/MySQL v8.0.22 (highly recommended!)/PostgreSQL13 (highly recommended!)
+Database: PostgreSQL16 (highly recommended!)
 
-Database Management Tools: Microsoft SQL Server 2008 R2 Management Studio/Navicat 15
+Database Management Tools: DbGate
 
 Programming Languages: C# language, T-SQL language
 
 Development Platform: .Net
 
-Development Framework: .Net Framework 4.5.2/.Net Framework 4.6.1 (fully upgraded) —>.Net Framework 4.7.1
+Development Framework: .Net 8
 
-Development Technology: .NET WinForm
+Development Technology: .NET 8 WinForm
 
 # :open_file_folder: System Structure:
 
@@ -128,7 +126,8 @@ EOM.Client.TopSkyHotelManagerSystem
 
 # :computer: Project Setup and Deployment:
 
-**Download and install Microsoft Visual Studio Professional 2019 or above, unzip the downloaded Zip package, and run the .sln file.**
+**Download and install .NET SDK version 8 or above.**
+**Download and install Microsoft Visual Studio Professional 2022 or above, unzip the downloaded Zip package, and run the .sln file.**
 
 # :inbox_tray: Database Setup and Deployment (Local):
 

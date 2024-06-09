@@ -1,4 +1,4 @@
-﻿using jvncorelib_fr.EntityLib;
+﻿using jvncorelib.EntityLib;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;

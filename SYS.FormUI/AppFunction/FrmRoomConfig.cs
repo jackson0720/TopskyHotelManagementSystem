@@ -1,6 +1,29 @@
-﻿using EOM.TSHotelManager.Common.Core;
+﻿/*
+ * MIT License
+ *Copyright (c) 2021~2024 易开元(EOM)
+
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+
+ *The above copyright notice and this permission notice shall be included in all
+ *copies or substantial portions of the Software.
+
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *SOFTWARE.
+ *
+ */
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.Common.Util;
-using jvncorelib_fr.EntityLib;
+using jvncorelib.EntityLib;
 using Sunny.UI;
 using SYS.Common;
 using System;
@@ -83,7 +106,7 @@ namespace SYS.FormUI.AppFunction
                     return;
                 }
                 UIMessageBox.ShowSuccess("提交成功，房间状态已添加！");
-                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + DateTime.Now + "新增了房间状态，状态编码为：" + txtRoomTypeId.IntValue, 2);
+                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "新增了房间状态，状态编码为：" + txtRoomTypeId.IntValue, 2);
                 txtRoomTypeId.IntValue = 0;
                 txtRoomTypeName.Text = null;
                 dudDeposit.Value = 0;
@@ -115,7 +138,7 @@ namespace SYS.FormUI.AppFunction
                     return;
                 }
                 UIMessageBox.ShowSuccess("提交成功，状态信息已修改！");
-                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + DateTime.Now + "修改了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
+                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "修改了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
                 LoadRoomType();
                 txtRoomTypeId.IntValue = 0;
                 txtRoomTypeName.Text = null;
@@ -148,7 +171,7 @@ namespace SYS.FormUI.AppFunction
                     return;
                 }
                 UIMessageBox.ShowSuccess("提交成功，状态信息已删除！");
-                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + DateTime.Now + "删除了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
+                RecordHelper.Record(AdminInfo.Account + AdminInfo.Name + "于" + Convert.ToDateTime(DateTime.Now) + "删除了房间状态配置，状态编码为：" + txtRoomTypeId.IntValue, 2);
                 LoadRoomType();
                 return;
             }

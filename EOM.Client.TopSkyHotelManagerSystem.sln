@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYS.FormUI", "SYS.FormUI\SYS.FormUI.csproj", "{8854DCB7-F2D7-4276-8D10-C7A124436145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYS.FormUI", "SYS.FormUI\SYS.FormUI.csproj", "{8854DCB7-F2D7-4276-8D10-C7A124436145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SYS.Common", "SYS.Common\SYS.Common.csproj", "{65501AF6-C629-448A-847E-1BCD60665865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SYS.Common", "SYS.Common\SYS.Common.csproj", "{65501AF6-C629-448A-847E-1BCD60665865}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{6A3E4936-8B95-49E0-842B-E002C0E024CE}"
 EndProject

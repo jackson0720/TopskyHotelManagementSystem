@@ -28,163 +28,161 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiReserRoom = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCheckIn = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCheckOut = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiChangeRoom = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSelectUserInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiChangeState = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblCustoNo = new System.Windows.Forms.Label();
-            this.lblRoomType = new System.Windows.Forms.Label();
-            this.lblRoomNo = new System.Windows.Forms.Label();
-            this.uttTips = new Sunny.UI.UIToolTip(this.components);
-            this.lblMark = new Sunny.UI.UILabel();
-            this.cmsMain.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            cmsMain = new System.Windows.Forms.ContextMenuStrip(components);
+            tsmiReserRoom = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiCheckIn = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiCheckOut = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiChangeRoom = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiSelectUserInfo = new System.Windows.Forms.ToolStripMenuItem();
+            tsmiChangeState = new System.Windows.Forms.ToolStripMenuItem();
+            lblCustoName = new System.Windows.Forms.Label();
+            lblRoomType = new System.Windows.Forms.Label();
+            lblRoomNo = new System.Windows.Forms.Label();
+            uttTips = new Sunny.UI.UIToolTip(components);
+            lblMark = new Sunny.UI.UILabel();
+            cmsMain.SuspendLayout();
+            SuspendLayout();
             // 
             // cmsMain
             // 
-            this.cmsMain.ImageScalingSize = new System.Drawing.Size(28, 28);
-            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiReserRoom,
-            this.tsmiCheckIn,
-            this.tsmiCheckOut,
-            this.tsmiChangeRoom,
-            this.tsmiSelectUserInfo,
-            this.tsmiChangeState});
-            this.cmsMain.Name = "cmsMain";
-            this.cmsMain.Size = new System.Drawing.Size(149, 136);
-            this.cmsMain.Opening += new System.ComponentModel.CancelEventHandler(this.cmsMain_Opening);
+            cmsMain.ImageScalingSize = new System.Drawing.Size(28, 28);
+            cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsmiReserRoom, tsmiCheckIn, tsmiCheckOut, tsmiChangeRoom, tsmiSelectUserInfo, tsmiChangeState });
+            cmsMain.Name = "cmsMain";
+            cmsMain.Size = new System.Drawing.Size(149, 136);
+            cmsMain.Opening += cmsMain_Opening;
             // 
             // tsmiReserRoom
             // 
-            this.tsmiReserRoom.Name = "tsmiReserRoom";
-            this.tsmiReserRoom.Size = new System.Drawing.Size(148, 22);
-            this.tsmiReserRoom.Text = "预约房间";
-            this.tsmiReserRoom.Click += new System.EventHandler(this.tsmiReserRoom_Click);
+            tsmiReserRoom.Name = "tsmiReserRoom";
+            tsmiReserRoom.Size = new System.Drawing.Size(148, 22);
+            tsmiReserRoom.Text = "预约房间";
+            tsmiReserRoom.Click += tsmiReserRoom_Click;
             // 
             // tsmiCheckIn
             // 
-            this.tsmiCheckIn.Name = "tsmiCheckIn";
-            this.tsmiCheckIn.Size = new System.Drawing.Size(148, 22);
-            this.tsmiCheckIn.Text = "入住房间";
-            this.tsmiCheckIn.Click += new System.EventHandler(this.tsmiCheckIn_Click);
+            tsmiCheckIn.Name = "tsmiCheckIn";
+            tsmiCheckIn.Size = new System.Drawing.Size(148, 22);
+            tsmiCheckIn.Text = "入住房间";
+            tsmiCheckIn.Click += tsmiCheckIn_Click;
             // 
             // tsmiCheckOut
             // 
-            this.tsmiCheckOut.Name = "tsmiCheckOut";
-            this.tsmiCheckOut.Size = new System.Drawing.Size(148, 22);
-            this.tsmiCheckOut.Text = "结算退房";
-            this.tsmiCheckOut.Click += new System.EventHandler(this.tsmiCheckOut_Click);
+            tsmiCheckOut.Name = "tsmiCheckOut";
+            tsmiCheckOut.Size = new System.Drawing.Size(148, 22);
+            tsmiCheckOut.Text = "结算退房";
+            tsmiCheckOut.Click += tsmiCheckOut_Click;
             // 
             // tsmiChangeRoom
             // 
-            this.tsmiChangeRoom.Name = "tsmiChangeRoom";
-            this.tsmiChangeRoom.Size = new System.Drawing.Size(148, 22);
-            this.tsmiChangeRoom.Text = "转换房间";
-            this.tsmiChangeRoom.Click += new System.EventHandler(this.tsmiChangeRoom_Click);
+            tsmiChangeRoom.Name = "tsmiChangeRoom";
+            tsmiChangeRoom.Size = new System.Drawing.Size(148, 22);
+            tsmiChangeRoom.Text = "转换房间";
+            tsmiChangeRoom.Click += tsmiChangeRoom_Click;
             // 
             // tsmiSelectUserInfo
             // 
-            this.tsmiSelectUserInfo.Name = "tsmiSelectUserInfo";
-            this.tsmiSelectUserInfo.Size = new System.Drawing.Size(148, 22);
-            this.tsmiSelectUserInfo.Text = "查看用户信息";
-            this.tsmiSelectUserInfo.Click += new System.EventHandler(this.tsmiSelectUserInfo_Click);
+            tsmiSelectUserInfo.Name = "tsmiSelectUserInfo";
+            tsmiSelectUserInfo.Size = new System.Drawing.Size(148, 22);
+            tsmiSelectUserInfo.Text = "查看用户信息";
+            tsmiSelectUserInfo.Click += tsmiSelectUserInfo_Click;
             // 
             // tsmiChangeState
             // 
-            this.tsmiChangeState.Name = "tsmiChangeState";
-            this.tsmiChangeState.Size = new System.Drawing.Size(148, 22);
-            this.tsmiChangeState.Text = "修改房间状态";
-            this.tsmiChangeState.Click += new System.EventHandler(this.tsmiChangeState_Click);
+            tsmiChangeState.Name = "tsmiChangeState";
+            tsmiChangeState.Size = new System.Drawing.Size(148, 22);
+            tsmiChangeState.Text = "修改房间状态";
+            tsmiChangeState.Click += tsmiChangeState_Click;
             // 
-            // lblCustoNo
+            // lblCustoName
             // 
-            this.lblCustoNo.AutoSize = true;
-            this.lblCustoNo.BackColor = System.Drawing.Color.Transparent;
-            this.lblCustoNo.ContextMenuStrip = this.cmsMain;
-            this.lblCustoNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCustoNo.Location = new System.Drawing.Point(26, 59);
-            this.lblCustoNo.Name = "lblCustoNo";
-            this.lblCustoNo.Size = new System.Drawing.Size(62, 17);
-            this.lblCustoNo.TabIndex = 10;
-            this.lblCustoNo.Text = "CustoNo";
-            this.lblCustoNo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblCustoNo_MouseClick);
+            lblCustoName.AutoSize = true;
+            lblCustoName.BackColor = System.Drawing.Color.Transparent;
+            lblCustoName.ContextMenuStrip = cmsMain;
+            lblCustoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblCustoName.Location = new System.Drawing.Point(37, 75);
+            lblCustoName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblCustoName.Name = "lblCustoName";
+            lblCustoName.Size = new System.Drawing.Size(81, 17);
+            lblCustoName.TabIndex = 10;
+            lblCustoName.Text = "CustoName";
+            lblCustoName.MouseClick += lblCustoNo_MouseClick;
             // 
             // lblRoomType
             // 
-            this.lblRoomType.AutoSize = true;
-            this.lblRoomType.BackColor = System.Drawing.Color.Transparent;
-            this.lblRoomType.ContextMenuStrip = this.cmsMain;
-            this.lblRoomType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblRoomType.Location = new System.Drawing.Point(27, 3);
-            this.lblRoomType.Name = "lblRoomType";
-            this.lblRoomType.Size = new System.Drawing.Size(61, 17);
-            this.lblRoomType.TabIndex = 9;
-            this.lblRoomType.Text = "RoomTy";
-            this.lblRoomType.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblRoomType_MouseClick);
+            lblRoomType.AutoSize = true;
+            lblRoomType.BackColor = System.Drawing.Color.Transparent;
+            lblRoomType.ContextMenuStrip = cmsMain;
+            lblRoomType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblRoomType.Location = new System.Drawing.Point(37, 9);
+            lblRoomType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblRoomType.Name = "lblRoomType";
+            lblRoomType.Size = new System.Drawing.Size(61, 17);
+            lblRoomType.TabIndex = 9;
+            lblRoomType.Text = "RoomTy";
+            lblRoomType.MouseClick += lblRoomType_MouseClick;
             // 
             // lblRoomNo
             // 
-            this.lblRoomNo.AutoSize = true;
-            this.lblRoomNo.BackColor = System.Drawing.Color.Transparent;
-            this.lblRoomNo.ContextMenuStrip = this.cmsMain;
-            this.lblRoomNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblRoomNo.ForeColor = System.Drawing.Color.Black;
-            this.lblRoomNo.Location = new System.Drawing.Point(27, 31);
-            this.lblRoomNo.Name = "lblRoomNo";
-            this.lblRoomNo.Size = new System.Drawing.Size(63, 17);
-            this.lblRoomNo.TabIndex = 8;
-            this.lblRoomNo.Text = "RoomNo";
-            this.lblRoomNo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblRoomNo_MouseClick);
+            lblRoomNo.AutoSize = true;
+            lblRoomNo.BackColor = System.Drawing.Color.Transparent;
+            lblRoomNo.ContextMenuStrip = cmsMain;
+            lblRoomNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            lblRoomNo.ForeColor = System.Drawing.Color.Black;
+            lblRoomNo.Location = new System.Drawing.Point(37, 42);
+            lblRoomNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblRoomNo.Name = "lblRoomNo";
+            lblRoomNo.Size = new System.Drawing.Size(63, 17);
+            lblRoomNo.TabIndex = 8;
+            lblRoomNo.Text = "RoomNo";
+            lblRoomNo.MouseClick += lblRoomNo_MouseClick;
             // 
             // uttTips
             // 
-            this.uttTips.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(54)))), ((int)(((byte)(54)))));
-            this.uttTips.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.uttTips.OwnerDraw = true;
-            this.uttTips.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.uttTips.ToolTipTitle = "点击提示";
+            uttTips.BackColor = System.Drawing.Color.FromArgb(54, 54, 54);
+            uttTips.ForeColor = System.Drawing.Color.FromArgb(239, 239, 239);
+            uttTips.OwnerDraw = true;
+            uttTips.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            uttTips.ToolTipTitle = "点击提示";
             // 
             // lblMark
             // 
-            this.lblMark.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblMark.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.lblMark.Location = new System.Drawing.Point(36, 48);
-            this.lblMark.Name = "lblMark";
-            this.lblMark.Size = new System.Drawing.Size(15, 23);
-            this.lblMark.TabIndex = 11;
-            this.lblMark.Text = "uiLabel1";
-            this.lblMark.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblMark.Visible = false;
+            lblMark.Font = new System.Drawing.Font("微软雅黑", 12F);
+            lblMark.ForeColor = System.Drawing.Color.FromArgb(48, 48, 48);
+            lblMark.Location = new System.Drawing.Point(91, 33);
+            lblMark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblMark.Name = "lblMark";
+            lblMark.Size = new System.Drawing.Size(18, 33);
+            lblMark.TabIndex = 11;
+            lblMark.Text = "uiLabel1";
+            lblMark.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblMark.Visible = false;
             // 
             // ucRoomList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BackgroundImage = global::SYS.FormUI.Properties.Resources.可住状态;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ContextMenuStrip = this.cmsMain;
-            this.Controls.Add(this.lblMark);
-            this.Controls.Add(this.lblCustoNo);
-            this.Controls.Add(this.lblRoomType);
-            this.Controls.Add(this.lblRoomNo);
-            this.DoubleBuffered = true;
-            this.Name = "ucRoomList";
-            this.Size = new System.Drawing.Size(95, 79);
-            this.uttTips.SetToolTip(this, "a)、点击鼠标左键查看房间信息\r\nb)、点击鼠标右键打开选项菜单\r\nc)、快速双击鼠标左键可快速入住/查看信息");
-            this.Load += new System.EventHandler(this.ucRoomList_Load);
-            this.SizeChanged += new System.EventHandler(this.ucRoomList_SizeChanged);
-            this.Click += new System.EventHandler(this.ucRoomList_Click);
-            this.DoubleClick += new System.EventHandler(this.ucRoomList_DoubleClick);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ucRoomList_MouseClick);
-            this.cmsMain.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.MenuHighlight;
+            BackgroundImage = Properties.Resources.可住状态;
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            ContextMenuStrip = cmsMain;
+            Controls.Add(lblMark);
+            Controls.Add(lblCustoName);
+            Controls.Add(lblRoomType);
+            Controls.Add(lblRoomNo);
+            DoubleBuffered = true;
+            Margin = new System.Windows.Forms.Padding(4);
+            Name = "ucRoomList";
+            Size = new System.Drawing.Size(122, 102);
+            uttTips.SetToolTip(this, "a)、点击鼠标左键查看房间信息\r\nb)、点击鼠标右键打开选项菜单\r\nc)、快速双击鼠标左键可快速入住/查看信息");
+            Load += ucRoomList_Load;
+            SizeChanged += ucRoomList_SizeChanged;
+            Click += ucRoomList_Click;
+            DoubleClick += ucRoomList_DoubleClick;
+            MouseClick += ucRoomList_MouseClick;
+            cmsMain.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -195,7 +193,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiChangeState;
         private System.Windows.Forms.ToolStripMenuItem tsmiChangeRoom;
         private System.Windows.Forms.ToolStripMenuItem tsmiReserRoom;
-        public System.Windows.Forms.Label lblCustoNo;
+        public System.Windows.Forms.Label lblCustoName;
         public System.Windows.Forms.Label lblRoomType;
         public System.Windows.Forms.Label lblRoomNo;
         private Sunny.UI.UIToolTip uttTips;

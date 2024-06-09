@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021 咖啡与网络(java-and-net)
+ *Copyright (c) 2021~2024 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -28,10 +29,14 @@ using SYS.FormUI.AppUserControls;
 using SYS.FormUI.Properties;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace SYS.FormUI
 {
@@ -53,7 +58,7 @@ namespace SYS.FormUI
             // 接受Form1对象
             this.returnForm1 = F1;
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + DateTime.Now + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", 3);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", 3);
             #endregion
             Stop = StopUseExit;
             Start = StartUseExit;
@@ -122,49 +127,12 @@ namespace SYS.FormUI
         }
         #endregion
 
-        #region 获取网络时间
-        public static string GetNetDateTime()
-        {
-            //获取网络时间
-            WebRequest request = null;
-            WebResponse response = null;
-            WebHeaderCollection headerCollection = null;
-            string datetime = string.Empty;
-            try
-            {
-                request = WebRequest.Create("https://www.baidu.com");
-                request.Timeout = 3000;
-                request.Credentials = CredentialCache.DefaultCredentials;
-                response = request.GetResponse();
-                headerCollection = response.Headers;
-                foreach (var h in headerCollection.AllKeys)
-                {
-                    if (h == "Date")
-                    {
-                        datetime = headerCollection[h];
-                    }
-                }
-                return datetime;
-            }
-            catch (Exception) { return datetime; }
-            finally
-            {
-                if (request != null)
-                { request.Abort(); }
-                if (response != null)
-                { response.Close(); }
-                if (headerCollection != null)
-                { headerCollection.Clear(); }
-            }
-        }
-        #endregion
-
         #region 定时器：获取网络时间
         private void tmrDate_Tick(object sender, EventArgs e)
         {
-            lblTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            lblTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm");
 
-            DateTime tmCur = DateTime.Now;
+            DateTime tmCur = Convert.ToDateTime(DateTime.Now);
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {//晚上
@@ -381,7 +349,7 @@ namespace SYS.FormUI
         #region 窗体加载事件方法
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + "_V" + System.Windows.Forms.Application.ProductVersion.ToString();
+            lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + "_V" + Util.GetApplicationVersion();
 
             tmrDate.Enabled = true;
 
@@ -389,9 +357,9 @@ namespace SYS.FormUI
 
             LoadFonts();
 
-            lblTime.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+            lblTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm");
 
-            DateTime tmCur = DateTime.Now;
+            DateTime tmCur = Convert.ToDateTime(DateTime.Now);
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {//晚上
@@ -408,7 +376,7 @@ namespace SYS.FormUI
                 label3.Text = "下午好," + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.咖啡;
             }
-            SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
+            //SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
 
             Dictionary<string, string> user = new Dictionary<string, string>();
             user.Add("wkn", LoginInfo.WorkerNo);
@@ -425,7 +393,7 @@ namespace SYS.FormUI
                 linkLabel1.ForeColor = Color.Green;
                 linkLabel1.LinkColor = Color.Green;
             }
-            notifyIcon1.Text = "TS酒店管理系统-" + LoginInfo.WorkerName + "-版本号：" + System.Windows.Forms.Application.ProductVersion.ToString();
+            notifyIcon1.Text = "TS酒店管理系统-" + LoginInfo.WorkerName + "-版本号：" + Util.GetApplicationVersion();
             wk_WorkerName = LoginInfo.WorkerName;
             pnlMID.Controls.Clear();
             FrmRoomManager frm1 = new FrmRoomManager();
@@ -457,9 +425,23 @@ namespace SYS.FormUI
             }
 
             Base _base = HttpHelper.JsonToModel<Base>(result.message);
-
             //调用系统默认的浏览器
-            System.Diagnostics.Process.Start(_base.url_addr);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Process.Start(new ProcessStartInfo(_base.url_addr) { UseShellExecute = true });
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Process.Start("xdg-open", _base.url_addr);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                Process.Start("open", _base.url_addr);
+            }
+            else
+            {
+                throw new PlatformNotSupportedException("This OS is not supported");
+            }
         }
         #endregion
 
@@ -536,7 +518,7 @@ namespace SYS.FormUI
                     {
                         WorkerNo = LoginInfo.WorkerNo,
                         CheckWay = "系统界面",
-                        CheckTime = DateTime.Parse(GetNetDateTime()),
+                        CheckTime = DateTime.Now,
                         datains_usr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson(), null);

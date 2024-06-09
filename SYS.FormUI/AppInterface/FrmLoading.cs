@@ -1,7 +1,31 @@
-﻿using EOM.TSHotelManager.Common.Core;
+﻿/*
+ * MIT License
+ *Copyright (c) 2021~2024 易开元(EOM)
+
+ *Permission is hereby granted, free of charge, to any person obtaining a copy
+ *of this software and associated documentation files (the "Software"), to deal
+ *in the Software without restriction, including without limitation the rights
+ *to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *copies of the Software, and to permit persons to whom the Software is
+ *furnished to do so, subject to the following conditions:
+
+ *The above copyright notice and this permission notice shall be included in all
+ *copies or substantial portions of the Software.
+
+ *THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *SOFTWARE.
+ *
+ */
+using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
 using System;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -16,7 +40,7 @@ namespace SYS.FormUI
 
         private void FrmLoading_Load(object sender, EventArgs e)
         {
-            lblSoftwareVersion.Text = System.Windows.Forms.Application.ProductVersion.ToString();
+            lblSoftwareVersion.Text = Util.GetApplicationVersion().ToString();
             lblDllVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             CheckUpdate();
             //Thread thread2 = new Thread(threadPro);//创建新线程
@@ -25,7 +49,7 @@ namespace SYS.FormUI
 
         public void threadPro()
         {
-            MethodInvoker MethInvo = new MethodInvoker(ShowLoginForm);
+            System.Windows.Forms.MethodInvoker MethInvo = new System.Windows.Forms.MethodInvoker(ShowLoginForm);
             BeginInvoke(MethInvo);
         }
 
@@ -49,8 +73,11 @@ namespace SYS.FormUI
             }
             var newversion = HttpHelper.JsonToModel<Applicationversion>(result.message);
 
-            string version = System.Windows.Forms.Application.ProductVersion.ToString();
-            if (newversion.base_version != version)
+            var targetVersion = new Version(newversion.base_version);
+            var assembly = Assembly.GetExecutingAssembly();
+            var currentVersion = assembly.GetName().Version;
+
+            if (!currentVersion.Equals(targetVersion))
             {
                 lblTips.Text = "旧版已停止使用，请到github或gitee仓库更新最新发行版！";
                 System.Windows.Forms.Application.Exit();
