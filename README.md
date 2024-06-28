@@ -16,6 +16,8 @@
 
  **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
 
+ **即日起，程序版本号规范将固定为x.x.x.x，第一位为当前程序版本，第二位为当前程序框架版本，第三位为功能大变更版本，第四位为日常修复版本，例如：基于.NET 8框架的2.0版本，对应的版本号是2.8.0.0，往后的.NET 9将会是2.9.0.0，并以此类推**
+
 #  :pray: 引用的开源项目：
 
 1. ##### Fody——将所有dll打包成exe应用程序。[Fody,MIT开源协议](https://github.com/Fody/Fody)      
