@@ -30,12 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             label2 = new System.Windows.Forms.Label();
-            picLogin = new Sunny.UI.UIButton();
-            txtWorkerId = new Sunny.UI.UITextBox();
-            txtWorkerPwd = new Sunny.UI.UITextBox();
-            btnLoginBackSystem = new Sunny.UI.UIButton();
-            picFormSize = new Sunny.UI.UIButton();
-            uiButton1 = new Sunny.UI.UIButton();
+            txtWorkerId = new AntdUI.Input();
+            txtWorkerPwd = new AntdUI.Input();
+            picLogin = new AntdUI.Button();
+            btnLoginBackSystem = new AntdUI.Button();
+            picFormSize = new AntdUI.Button();
+            picClose = new AntdUI.Button();
+            avatar1 = new AntdUI.Avatar();
+            avatar2 = new AntdUI.Avatar();
+            label1 = new AntdUI.Label();
             SuspendLayout();
             // 
             // label2
@@ -50,157 +53,131 @@
             label2.TabIndex = 5;
             label2.Text = "  ";
             // 
-            // picLogin
-            // 
-            picLogin.BackColor = System.Drawing.Color.Transparent;
-            picLogin.Cursor = System.Windows.Forms.Cursors.Hand;
-            picLogin.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picLogin.Location = new System.Drawing.Point(658, 415);
-            picLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            picLogin.MinimumSize = new System.Drawing.Size(1, 1);
-            picLogin.Name = "picLogin";
-            picLogin.Radius = 30;
-            picLogin.Size = new System.Drawing.Size(191, 57);
-            picLogin.Style = Sunny.UI.UIStyle.Custom;
-            picLogin.TabIndex = 15;
-            picLogin.Text = "登      录";
-            picLogin.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            picLogin.Click += picLogin_Click;
-            // 
             // txtWorkerId
             // 
-            txtWorkerId.BackColor = System.Drawing.Color.Transparent;
-            txtWorkerId.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            txtWorkerId.Cursor = System.Windows.Forms.Cursors.IBeam;
-            txtWorkerId.FillColor = System.Drawing.Color.FromArgb(238, 224, 224);
-            txtWorkerId.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            txtWorkerId.Location = new System.Drawing.Point(648, 194);
-            txtWorkerId.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-            txtWorkerId.MinimumSize = new System.Drawing.Size(1, 1);
+            txtWorkerId.BackColor = System.Drawing.Color.White;
+            txtWorkerId.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F);
+            txtWorkerId.Location = new System.Drawing.Point(648, 190);
             txtWorkerId.Name = "txtWorkerId";
-            txtWorkerId.Padding = new System.Windows.Forms.Padding(6, 7, 6, 7);
-            txtWorkerId.Radius = 20;
-            txtWorkerId.RectColor = System.Drawing.Color.FromArgb(238, 224, 224);
-            txtWorkerId.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            txtWorkerId.ShowText = false;
-            txtWorkerId.Size = new System.Drawing.Size(238, 45);
-            txtWorkerId.Style = Sunny.UI.UIStyle.Custom;
-            txtWorkerId.TabIndex = 16;
+            txtWorkerId.Size = new System.Drawing.Size(238, 52);
+            txtWorkerId.TabIndex = 32;
             txtWorkerId.Text = "WK010";
-            txtWorkerId.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            txtWorkerId.Watermark = "";
             // 
             // txtWorkerPwd
             // 
-            txtWorkerPwd.BackColor = System.Drawing.Color.Transparent;
-            txtWorkerPwd.Cursor = System.Windows.Forms.Cursors.IBeam;
-            txtWorkerPwd.FillColor = System.Drawing.Color.FromArgb(238, 224, 224);
-            txtWorkerPwd.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            txtWorkerPwd.Location = new System.Drawing.Point(648, 266);
-            txtWorkerPwd.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-            txtWorkerPwd.MinimumSize = new System.Drawing.Size(1, 1);
+            txtWorkerPwd.BackColor = System.Drawing.Color.White;
+            txtWorkerPwd.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F);
+            txtWorkerPwd.Location = new System.Drawing.Point(648, 264);
             txtWorkerPwd.Name = "txtWorkerPwd";
-            txtWorkerPwd.Padding = new System.Windows.Forms.Padding(6, 7, 6, 7);
             txtWorkerPwd.PasswordChar = '*';
-            txtWorkerPwd.Radius = 20;
-            txtWorkerPwd.RectColor = System.Drawing.Color.FromArgb(238, 224, 224);
-            txtWorkerPwd.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
-            txtWorkerPwd.ShowText = false;
-            txtWorkerPwd.Size = new System.Drawing.Size(238, 47);
-            txtWorkerPwd.Style = Sunny.UI.UIStyle.Custom;
-            txtWorkerPwd.TabIndex = 17;
+            txtWorkerPwd.PasswordCopy = true;
+            txtWorkerPwd.Size = new System.Drawing.Size(238, 52);
+            txtWorkerPwd.TabIndex = 33;
             txtWorkerPwd.Text = "admin";
-            txtWorkerPwd.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            txtWorkerPwd.Watermark = "";
+            // 
+            // picLogin
+            // 
+            picLogin.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            picLogin.Location = new System.Drawing.Point(658, 423);
+            picLogin.Name = "picLogin";
+            picLogin.Radius = 8;
+            picLogin.Shape = AntdUI.TShape.Round;
+            picLogin.Size = new System.Drawing.Size(191, 57);
+            picLogin.TabIndex = 34;
+            picLogin.Text = "登      录";
+            picLogin.Type = AntdUI.TTypeMini.Primary;
+            picLogin.Click += picLogin_Click;
             // 
             // btnLoginBackSystem
             // 
-            btnLoginBackSystem.BackColor = System.Drawing.Color.Transparent;
-            btnLoginBackSystem.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnLoginBackSystem.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnLoginBackSystem.Location = new System.Drawing.Point(658, 343);
-            btnLoginBackSystem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            btnLoginBackSystem.MinimumSize = new System.Drawing.Size(1, 1);
+            btnLoginBackSystem.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            btnLoginBackSystem.Location = new System.Drawing.Point(658, 342);
             btnLoginBackSystem.Name = "btnLoginBackSystem";
-            btnLoginBackSystem.Radius = 30;
+            btnLoginBackSystem.Radius = 8;
+            btnLoginBackSystem.Shape = AntdUI.TShape.Round;
             btnLoginBackSystem.Size = new System.Drawing.Size(191, 57);
-            btnLoginBackSystem.Style = Sunny.UI.UIStyle.Custom;
-            btnLoginBackSystem.TabIndex = 18;
-            btnLoginBackSystem.Text = "进入后台管理系统";
-            btnLoginBackSystem.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnLoginBackSystem.TabIndex = 35;
+            btnLoginBackSystem.Text = "后台管理系统";
+            btnLoginBackSystem.Type = AntdUI.TTypeMini.Primary;
             btnLoginBackSystem.Click += btnLoginBackSystem_Click;
             // 
             // picFormSize
             // 
             picFormSize.BackColor = System.Drawing.Color.Transparent;
-            picFormSize.BackgroundImage = Properties.Resources.arrow_down_b;
-            picFormSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            picFormSize.FillColor = System.Drawing.Color.Transparent;
-            picFormSize.FillHoverColor = System.Drawing.Color.RoyalBlue;
-            picFormSize.FillSelectedColor = System.Drawing.Color.RoyalBlue;
-            picFormSize.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picFormSize.Location = new System.Drawing.Point(826, 1);
-            picFormSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            picFormSize.MinimumSize = new System.Drawing.Size(1, 1);
+            picFormSize.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            picFormSize.Ghost = true;
+            picFormSize.Image = Properties.Resources.arrow_down_b;
+            picFormSize.ImageSize = new System.Drawing.Size(32, 32);
+            picFormSize.Location = new System.Drawing.Point(822, 1);
             picFormSize.Name = "picFormSize";
-            picFormSize.Radius = 0;
-            picFormSize.RectHoverColor = System.Drawing.Color.RoyalBlue;
-            picFormSize.RectPressColor = System.Drawing.Color.RoyalBlue;
-            picFormSize.RectSelectedColor = System.Drawing.Color.RoyalBlue;
             picFormSize.Size = new System.Drawing.Size(41, 38);
-            picFormSize.Style = Sunny.UI.UIStyle.Custom;
-            picFormSize.StyleCustomMode = true;
-            picFormSize.TabIndex = 31;
-            picFormSize.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            picFormSize.TabIndex = 36;
             picFormSize.Click += picMin_Click;
-            picFormSize.MouseDown += picFormSize_MouseDown;
-            picFormSize.MouseLeave += picFormSize_MouseLeave;
-            picFormSize.MouseHover += picFormSize_MouseHover;
             // 
-            // uiButton1
+            // picClose
             // 
-            uiButton1.BackColor = System.Drawing.Color.Transparent;
-            uiButton1.BackgroundImage = Properties.Resources.close;
-            uiButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            uiButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            uiButton1.FillColor = System.Drawing.Color.Transparent;
-            uiButton1.FillHoverColor = System.Drawing.Color.RoyalBlue;
-            uiButton1.FillSelectedColor = System.Drawing.Color.RoyalBlue;
-            uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            uiButton1.Location = new System.Drawing.Point(874, 1);
-            uiButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
-            uiButton1.Name = "uiButton1";
-            uiButton1.Radius = 0;
-            uiButton1.RectHoverColor = System.Drawing.Color.RoyalBlue;
-            uiButton1.RectPressColor = System.Drawing.Color.RoyalBlue;
-            uiButton1.RectSelectedColor = System.Drawing.Color.RoyalBlue;
-            uiButton1.Size = new System.Drawing.Size(41, 38);
-            uiButton1.Style = Sunny.UI.UIStyle.Custom;
-            uiButton1.TabIndex = 30;
-            uiButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            uiButton1.Click += picClose_Click;
-            uiButton1.MouseDown += uiButton1_MouseDown;
-            uiButton1.MouseLeave += uiButton1_MouseLeave;
-            uiButton1.MouseHover += uiButton1_MouseHover;
+            picClose.BackColor = System.Drawing.Color.Transparent;
+            picClose.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            picClose.Ghost = true;
+            picClose.Image = Properties.Resources.close;
+            picClose.ImageSize = new System.Drawing.Size(32, 32);
+            picClose.Location = new System.Drawing.Point(875, 1);
+            picClose.Name = "picClose";
+            picClose.Size = new System.Drawing.Size(41, 38);
+            picClose.TabIndex = 37;
+            picClose.Click += picClose_Click;
+            // 
+            // avatar1
+            // 
+            avatar1.Image = (System.Drawing.Image)resources.GetObject("avatar1.Image");
+            avatar1.ImageFit = AntdUI.TFit.None;
+            avatar1.Location = new System.Drawing.Point(605, 195);
+            avatar1.Name = "avatar1";
+            avatar1.Size = new System.Drawing.Size(45, 43);
+            avatar1.TabIndex = 38;
+            avatar1.Text = "a";
+            // 
+            // avatar2
+            // 
+            avatar2.Image = (System.Drawing.Image)resources.GetObject("avatar2.Image");
+            avatar2.ImageFit = AntdUI.TFit.None;
+            avatar2.Location = new System.Drawing.Point(605, 268);
+            avatar2.Name = "avatar2";
+            avatar2.Size = new System.Drawing.Size(45, 43);
+            avatar2.TabIndex = 39;
+            avatar2.Text = "a";
+            // 
+            // label1
+            // 
+            label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F);
+            label1.Location = new System.Drawing.Point(648, 72);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(222, 83);
+            label1.TabIndex = 40;
+            label1.Text = "欢迎登录";
+            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmLogin
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.White;
             BackgroundImage = (System.Drawing.Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             ClientSize = new System.Drawing.Size(916, 510);
+            Controls.Add(label1);
+            Controls.Add(avatar2);
+            Controls.Add(avatar1);
+            Controls.Add(picClose);
             Controls.Add(picFormSize);
-            Controls.Add(uiButton1);
             Controls.Add(btnLoginBackSystem);
+            Controls.Add(picLogin);
             Controls.Add(txtWorkerPwd);
             Controls.Add(txtWorkerId);
-            Controls.Add(picLogin);
             Controls.Add(label2);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
-            Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            Margin = new System.Windows.Forms.Padding(4);
             Name = "FrmLogin";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "TS酒店管理系统";
@@ -214,12 +191,15 @@
 
         #endregion
         private System.Windows.Forms.Label label2;
-        private Sunny.UI.UIButton picLogin;
-        private Sunny.UI.UITextBox txtWorkerId;
-        private Sunny.UI.UITextBox txtWorkerPwd;
-        private Sunny.UI.UIButton btnLoginBackSystem;
-        private Sunny.UI.UIButton picFormSize;
-        private Sunny.UI.UIButton uiButton1;
+        private AntdUI.Input txtWorkerId;
+        private AntdUI.Input txtWorkerPwd;
+        private AntdUI.Button picLogin;
+        private AntdUI.Button btnLoginBackSystem;
+        private AntdUI.Button picFormSize;
+        private AntdUI.Button picClose;
+        private AntdUI.Avatar avatar1;
+        private AntdUI.Avatar avatar2;
+        private AntdUI.Label label1;
     }
 }
 

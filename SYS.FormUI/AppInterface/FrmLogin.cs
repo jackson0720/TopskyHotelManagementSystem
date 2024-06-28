@@ -22,6 +22,7 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -32,7 +33,7 @@ using System.Windows.Forms;
 
 namespace SYS.FormUI
 {
-    public partial class FrmLogin : Form
+    public partial class FrmLogin : Window
     {
         //FrmStart f = null;
         public FrmLogin(/*FrmStart frm*/)
@@ -207,12 +208,6 @@ namespace SYS.FormUI
         }
         #endregion
 
-
-        private void picLogin_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLoginBackSystem_Click(object sender, EventArgs e)
         {
             FrmAdminEnter frmAdminEnter = new FrmAdminEnter();
@@ -234,24 +229,6 @@ namespace SYS.FormUI
         {
             this.picFormSize.BackColor = System.Drawing.Color.Transparent;
             this.picFormSize.BackgroundImage = Resources.arrow_down_b;
-            this.picFormSize.RectColor = System.Drawing.Color.FromArgb(80, 160, 255);
-        }
-
-        private void uiButton1_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.uiButton1.BackColor = System.Drawing.Color.RoyalBlue;
-        }
-
-        private void uiButton1_MouseHover(object sender, EventArgs e)
-        {
-            this.uiButton1.BackColor = System.Drawing.Color.RoyalBlue;
-        }
-
-        private void uiButton1_MouseLeave(object sender, EventArgs e)
-        {
-            this.uiButton1.BackColor = System.Drawing.Color.Transparent;
-            this.uiButton1.BackgroundImage = Resources.close;
-            this.uiButton1.RectColor = System.Drawing.Color.FromArgb(80, 160, 255);
         }
     }
 }
