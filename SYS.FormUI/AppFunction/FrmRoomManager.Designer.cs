@@ -389,7 +389,7 @@
             flpRoomTypes.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
             flpRoomTypes.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             flpRoomTypes.ShowText = false;
-            flpRoomTypes.Size = new System.Drawing.Size(757, 92);
+            flpRoomTypes.Size = new System.Drawing.Size(757, 90);
             flpRoomTypes.TabIndex = 95;
             flpRoomTypes.Text = "uiFlowLayoutPanel1";
             flpRoomTypes.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;

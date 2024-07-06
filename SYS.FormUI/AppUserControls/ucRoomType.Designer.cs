@@ -35,7 +35,7 @@
             // 
             btnRoomType.Cursor = System.Windows.Forms.Cursors.Hand;
             btnRoomType.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnRoomType.Location = new System.Drawing.Point(0, 4);
+            btnRoomType.Location = new System.Drawing.Point(0, 2);
             btnRoomType.Margin = new System.Windows.Forms.Padding(4);
             btnRoomType.MinimumSize = new System.Drawing.Size(1, 1);
             btnRoomType.Name = "btnRoomType";

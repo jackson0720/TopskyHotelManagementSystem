@@ -22,6 +22,7 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
