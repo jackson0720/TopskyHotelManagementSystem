@@ -163,8 +163,8 @@ namespace SYS.FormUI
 
         #region 实例化房态图的房间信息
         public string romTypeName;
-        public Room romCustoInfo = new Room();
-        public Custo romRoomInfo = new Custo();
+        public Room romRoomInfo = new Room();
+        public Custo romCustoInfo = new Custo();
         #endregion
 
         #region 鼠标点击房态图传值到类
@@ -179,16 +179,16 @@ namespace SYS.FormUI
         {
             this.CanPenetrate();
             this.Region = new Region(GetRoundRectPath(new RectangleF(0, 0, this.Width, this.Height), 6f));
-            us_CustoNo = romRoomInfo.CustoNo;
-            us_CustoName = romRoomInfo.CustoName;
-            us_CustoSex = romRoomInfo.CustoSex == 1 ? "男" : "女";
-            us_CustoTel = romRoomInfo.CustoTel;
-            us_CustoID = romRoomInfo.CustoID;
-            us_CustoBirthday = romRoomInfo.CustoBirth == null ? "" : Convert.ToDateTime(romRoomInfo.CustoBirth).ToString();
-            us_CustoPassportType = romRoomInfo.PassportType;
-            us_CustoType = romRoomInfo.CustoType;
-            us_CustoAddress = romRoomInfo.CustoAdress;
-            switch (romCustoInfo.RoomStateId)
+            us_CustoNo = romCustoInfo.CustoNo;
+            us_CustoName = romCustoInfo.CustoName;
+            us_CustoSex = romCustoInfo.CustoSex == 1 ? "男" : "女";
+            us_CustoTel = romCustoInfo.CustoTel;
+            us_CustoID = romCustoInfo.CustoID;
+            us_CustoBirthday = romCustoInfo.CustoBirth == null ? "" : Convert.ToDateTime(romCustoInfo.CustoBirth).ToString();
+            us_CustoPassportType = romCustoInfo.PassportType;
+            us_CustoType = romCustoInfo.CustoType;
+            us_CustoAddress = romCustoInfo.CustoAdress;
+            switch (romRoomInfo.RoomStateId)
             {
                 case 0:
                     BackgroundImage = Resources.可住状态;
@@ -272,7 +272,7 @@ namespace SYS.FormUI
                 rm_CustoNo = lblCustoName.Text;
                 rm_RoomNo = lblRoomNo.Text;
                 rm_RoomType = lblRoomType.Text;
-                rm_RoomMoney = Convert.ToDecimal(romCustoInfo.RoomMoney).ToString();
+                rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
                 rm_RoomStateId = 4;
                 UIMessageBox.ShowInfo("欢迎入住，请先注册客户信息！");
                 FrmReserList frm = new FrmReserList();
@@ -284,7 +284,7 @@ namespace SYS.FormUI
                 rm_CustoNo = lblCustoName.Text;
                 rm_RoomNo = lblRoomNo.Text;
                 rm_RoomType = lblRoomType.Text;
-                rm_RoomMoney = Convert.ToDecimal(romCustoInfo.RoomMoney).ToString();
+                rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
                 FrmCheckIn frm = new FrmCheckIn();
                 frm.Show();
             }
@@ -332,7 +332,7 @@ namespace SYS.FormUI
                         break;
                 }
             }
-            else if (lblCustoName.Text.IsNullOrEmpty() && romCustoInfo.RoomStateId == 0)
+            else if (lblCustoName.Text.IsNullOrEmpty() && romRoomInfo.RoomStateId == 0)
             {
                 rm_RoomNo = lblRoomNo.Text;
                 FrmCheckIn frm = new FrmCheckIn();
@@ -406,12 +406,12 @@ namespace SYS.FormUI
 
         public void LoadRoomInfo()
         {
-            co_RoomNo = romCustoInfo.RoomNo;
-            co_CustoNo = romCustoInfo.CustoName;
-            romTypeName = romCustoInfo.RoomName;
-            co_CheckTime = romCustoInfo.CheckTime;
-            co_RoomPosition = romCustoInfo.RoomPosition;
-            co_RoomState = romCustoInfo.RoomState;
+            co_RoomNo = romRoomInfo.RoomNo;
+            co_CustoNo = romRoomInfo.CustoName;
+            romTypeName = romRoomInfo.RoomName;
+            co_CheckTime = romRoomInfo.CheckTime;
+            co_RoomPosition = romRoomInfo.RoomPosition;
+            co_RoomState = romRoomInfo.RoomState;
 
         }
 

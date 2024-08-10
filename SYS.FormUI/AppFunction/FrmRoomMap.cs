@@ -37,7 +37,7 @@ namespace SYS.FormUI.AppFunction
         {
             InitializeComponent();
         }
-        ucRoomList romt = null;
+        ucRoom room = null;
         private void FrmRoomMap_Load(object sender, EventArgs e)
         {
             LoadRoom();
@@ -55,13 +55,11 @@ namespace SYS.FormUI.AppFunction
             List<Room> rooms = HttpHelper.JsonToList<Room>(result.message);
             for (int i = 0; i < rooms.Count; i++)
             {
-                romt = new ucRoomList();
-                romt.lblMark.Text = "Mark";
-                romt.lblRoomNo.Text = rooms[i].RoomNo;
-                romt.lblCustoName.Text = rooms[i].CustoNo;
-                romt.lblRoomType.Text = rooms[i].RoomName;
-                romt.romCustoInfo = rooms[i];
-                flpRoom.Controls.Add(romt);
+                room = new ucRoom();
+                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", rooms[i].RoomName, rooms[i].RoomNo, rooms[i].CustoName);
+                room.lblMark = string.Empty;
+                room.romRoomInfo = rooms[i];
+                flpRoom.Controls.Add(room);
             }
         }
 

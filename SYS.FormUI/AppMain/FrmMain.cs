@@ -437,8 +437,10 @@ namespace SYS.FormUI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Dictionary<string, string> user = new Dictionary<string, string>();
-            user.Add("wkn", LoginInfo.WorkerNo);
+            Dictionary<string, string> user = new()
+            {
+                { "wkn", LoginInfo.WorkerNo }
+            };
             result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo", null, user);
             if (result.statusCode != 200)
             {
@@ -468,7 +470,7 @@ namespace SYS.FormUI
                 bool dr = UIMessageBox.Show("你今天还未打卡哦，请先打卡吧！", "打卡提醒", UIStyle.Blue, UIMessageBoxButtons.OK);
                 if (dr == true)
                 {
-                    WorkerCheck workerCheck = new WorkerCheck
+                    WorkerCheck workerCheck = new()
                     {
                         WorkerNo = LoginInfo.WorkerNo,
                         CheckWay = "系统界面",
@@ -518,26 +520,6 @@ namespace SYS.FormUI
 
         }
 
-        private void picFormSize_MouseHover(object sender, EventArgs e)
-        {
-            this.btnFormSize.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picFormSize_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.btnFormSize.BackColor = System.Drawing.Color.FromArgb(74, 131, 229);
-        }
-
-        private void picClose_MouseHover(object sender, EventArgs e)
-        {
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picClose_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.btnClose.BackColor = System.Drawing.Color.FromArgb(74, 131, 229);
-        }
-
         private void tsmiMySpace_Click(object sender, EventArgs e)
         {
             FrmMySpace frmMySpace = new FrmMySpace();
@@ -567,23 +549,6 @@ namespace SYS.FormUI
             cmsMain.Show(Cursor.Position);
         }
 
-        private void picSetting_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.picSetting.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picSetting_MouseHover(object sender, EventArgs e)
-        {
-            this.picSetting.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picSetting_MouseLeave(object sender, EventArgs e)
-        {
-            this.picSetting.BackColor = System.Drawing.Color.Transparent;
-            this.picSetting.BackgroundImage = Resources.settings2;
-            this.picSetting.RectColor = System.Drawing.Color.FromArgb(80, 160, 255);
-        }
-
         private void notifyIcon1_BalloonTipClosed(object sender, EventArgs e)
         {
             notifyIcon1.Dispose();
@@ -594,7 +559,7 @@ namespace SYS.FormUI
             {
                 case "客房管理":
                     pnlMID.Controls.Clear();
-                    FrmRoomManager frmRoomManager = new FrmRoomManager
+                    FrmRoomManager frmRoomManager = new()
                     {
                         TopLevel = false
                     };
@@ -603,15 +568,19 @@ namespace SYS.FormUI
                     break;
                 case "用户管理":
                     pnlMID.Controls.Clear();
-                    FrmCustomerManager frmCustomerManager = new FrmCustomerManager();
-                    frmCustomerManager.TopLevel = false;
+                    FrmCustomerManager frmCustomerManager = new()
+                    {
+                        TopLevel = false
+                    };
                     pnlMID.Controls.Add(frmCustomerManager);
                     frmCustomerManager.Show();
                     break;
                 case "商品消费":
                     pnlMID.Controls.Clear();
-                    FrmSellThing frmSellThing = new FrmSellThing();
-                    frmSellThing.TopLevel = false;
+                    FrmSellThing frmSellThing = new()
+                    {
+                        TopLevel = false
+                    };
                     pnlMID.Controls.Add(frmSellThing);
                     frmSellThing.Show();
                     break;

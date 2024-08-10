@@ -53,7 +53,7 @@ namespace SYS.FormUI
         #region 窗体加载事件方法
         private void FrmCheckIn_Load(object sender, EventArgs e)
         {
-            txtRoomNo.Text = ucRoomList.rm_RoomNo;
+            txtRoomNo.Text = ucRoom.rm_RoomNo;
             Dictionary<string, string> pairs = new Dictionary<string, string>();
             pairs.Add("no", txtRoomNo.Text.Trim());
             result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, pairs);
@@ -91,7 +91,7 @@ namespace SYS.FormUI
             }
             catch
             {
-                txtCustoNo.Text = ucRoomList.rm_CustoNo;
+                txtCustoNo.Text = ucRoom.rm_CustoNo;
             }
 
         }

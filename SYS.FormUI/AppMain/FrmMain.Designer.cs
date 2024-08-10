@@ -384,10 +384,10 @@
             // muNavBar
             // 
             muNavBar.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F);
-            muNavBar.Location = new System.Drawing.Point(211, 172);
+            muNavBar.Location = new System.Drawing.Point(311, 172);
             muNavBar.Mode = AntdUI.TMenuMode.Horizontal;
             muNavBar.Name = "muNavBar";
-            muNavBar.Size = new System.Drawing.Size(865, 45);
+            muNavBar.Size = new System.Drawing.Size(765, 45);
             muNavBar.TabIndex = 39;
             muNavBar.Text = "menu1";
             muNavBar.SelectChanged += muNavBar_SelectChanged;
@@ -429,6 +429,7 @@
             btnSetting.Name = "btnSetting";
             btnSetting.Size = new System.Drawing.Size(41, 38);
             btnSetting.TabIndex = 42;
+            btnSetting.Click += btnSetting_Click;
             // 
             // FrmMain
             // 

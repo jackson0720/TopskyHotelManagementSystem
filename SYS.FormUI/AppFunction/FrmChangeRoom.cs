@@ -61,7 +61,7 @@ namespace SYS.FormUI
         {
             double sum = 0;
             string lbu = LoginInfo.WorkerName;
-            string rno = ucRoomList.RoomNo.ToString();
+            string rno = ucRoom.RoomNo.ToString();
             string nrno = cboRoomList.Text;
             dic = new Dictionary<string, string>()
             {
@@ -78,7 +78,7 @@ namespace SYS.FormUI
             Room checkInRoom = new Room()
             {
                 RoomNo = nrno,
-                CustoNo = ucRoomList.CustoNo,
+                CustoNo = ucRoom.CustoNo,
                 RoomStateId = 1,
                 CheckTime = Convert.ToDateTime(DateTime.Now),
                 datains_usr = LoginInfo.WorkerNo
@@ -100,7 +100,7 @@ namespace SYS.FormUI
                 RoomNo = cboRoomList.Text,
                 SpendName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
                 SpendAmount = Convert.ToInt32(result.message),
-                CustoNo = ucRoomList.CustoNo,
+                CustoNo = ucRoom.CustoNo,
                 SpendPrice = Convert.ToDecimal(sum),
                 SpendMoney = Convert.ToDecimal(sum),
                 SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
@@ -138,7 +138,7 @@ namespace SYS.FormUI
             var result3 = HttpHelper.JsonToList<Spend>(result.message);
             if (result3.Count != 0)
             {
-                Spend spend = new Spend() { RoomNo = nrno, CustoNo = ucRoomList.CustoNo };
+                Spend spend = new Spend() { RoomNo = nrno, CustoNo = ucRoom.CustoNo };
                 result = HttpHelper.Request("Spend​/UpdateSpendInfoByRoomNo", HttpHelper.ModelToJson(spend));
                 if (result.statusCode != 200)
                 {
@@ -161,7 +161,7 @@ namespace SYS.FormUI
                     bool m = result.message.ToString().Equals("true");
                     FrmRoomManager.Reload("");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + ucRoomList.CustoNo + "于" + Convert.ToDateTime(DateTime.Now) + "进行了换房！", 2);
+                    RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + ucRoom.CustoNo + "于" + Convert.ToDateTime(DateTime.Now) + "进行了换房！", 2);
                     #endregion
                     scope.Complete();
                     this.Close();
@@ -175,7 +175,7 @@ namespace SYS.FormUI
 
         private void cboRoomList_TextChanged(object sender, EventArgs e)
         {
-            string str = firstLoad ? ucRoomList.RoomNo.ToString() : cboRoomList.SelectedValue.ToString();
+            string str = firstLoad ? ucRoom.RoomNo.ToString() : cboRoomList.SelectedValue.ToString();
             dic = new Dictionary<string, string>()
             {
                 { "no",str}

@@ -101,7 +101,7 @@ namespace SYS.FormUI
         }
 
 
-        ucRoomList romt = null;
+        ucRoom room = null;
         private void FrmAddRoom_Load(object sender, EventArgs e)
         {
             LoadRoom();
@@ -133,13 +133,16 @@ namespace SYS.FormUI
             flpRoom.Controls.Clear();
             for (int i = 0; i < rooms.Count; i++)
             {
-                romt = new ucRoomList();
-                romt.lblMark.Text = "Mark"; //=Mark时，判断为房态图，禁用右键菜单
-                romt.lblRoomNo.Text = rooms[i].RoomNo;
-                romt.lblCustoName.Text = rooms[i].CustoNo;
-                romt.lblRoomType.Text = rooms[i].RoomName;
-                romt.romCustoInfo = rooms[i];
-                flpRoom.Controls.Add(romt);
+                //romt = new ucRoomList();
+                //romt.lblMark.Text = "Mark"; //=Mark时，判断为房态图，禁用右键菜单
+                //romt.lblRoomNo.Text = rooms[i].RoomNo;
+                //romt.lblCustoName.Text = rooms[i].CustoNo;
+                //romt.lblRoomType.Text = rooms[i].RoomName;
+                //romt.romRoomInfo = rooms[i];
+                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", rooms[i].RoomName, rooms[i].RoomNo, rooms[i].CustoName);
+                room.lblMark = "Mark"; //=Mark时，判断为房态图，禁用右键菜单
+                room.romRoomInfo = rooms[i];
+                flpRoom.Controls.Add(room);
             }
         }
 

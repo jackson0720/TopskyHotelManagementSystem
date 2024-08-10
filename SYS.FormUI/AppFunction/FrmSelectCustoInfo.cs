@@ -25,6 +25,7 @@
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
+using SYS.FormUI.AppUserControls;
 using System;
 using System.Collections.Generic;
 
@@ -98,7 +99,7 @@ namespace SYS.FormUI
             this.cbSex.SelectedIndex = 0;
             #endregion
 
-            txtCustoNo.Text = ucRoomList.rm_CustoNo;
+            txtCustoNo.Text = ucRoom.rm_CustoNo;
             dic = new Dictionary<string, string>()
             {
                 { "CustoNo",txtCustoNo.Text.Trim() }

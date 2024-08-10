@@ -43,7 +43,7 @@ namespace SYS.FormUI
         #region 窗体加载事件
         private void FrmRoomStateManager_Load(object sender, EventArgs e)
         {
-            txtRoomNo.Text = ucRoomList.rm_RoomNo;
+            txtRoomNo.Text = ucRoom.rm_RoomNo;
             result = HttpHelper.Request("Room/SelectRoomStateAll");
             if (result.statusCode != 200)
             {

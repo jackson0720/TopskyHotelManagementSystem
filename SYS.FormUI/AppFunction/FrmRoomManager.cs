@@ -30,6 +30,7 @@ using SYS.FormUI.AppUserControls;
 using SYS.FormUI.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace SYS.FormUI
@@ -61,26 +62,96 @@ namespace SYS.FormUI
         ResponseMsg result = null;
 
         List<Room> romsty = null;
-        ucRoomList romt = null;
+        ucRoom room = null;
+        string EmptyCount;
+        string OccupiedCount;
+        string UnderRepairCount;
+        string ReservedCount;
+        string DirtyCount;
         #region 房间加载事件方法
         private void FrmRoomManager_Load(object sender, EventArgs e)
         {
             LoadRoomInfo();
-
-            //foreach (Control item in this.pnlRoomInfo.Controls)
-            //{
-            //    if (item.GetType().ToString() == "System.Windows.Forms.Label")
-            //    {
-            //        item.Font = UI_FontUtil.childControlFont;
-            //    }
-            //}
-
+            LoadRoomCount();
+            LoadRoomState();
             LoadRoomTypes();
-
             LoadData();
-
         }
         #endregion
+
+        private void LoadRoomState()
+        {
+            muRoomState.Items.Clear();
+            // 获取所有状态的详细信息列表
+            List<RoomStateConstant.StateInfo.StateDetail> stateList = RoomStateConstant.StateInfo.GetAllStateDetails();
+            MenuItem menuItem = null;
+            if (!stateList.IsNullOrEmpty())
+            {
+                foreach (var item in stateList)
+                {
+                    menuItem = new MenuItem
+                    {
+                        Text = item.Description
+                    };
+                    menuItem.Tag = item.Code;
+                    if (Enum.TryParse(item.Code, out RoomStateConstant.State roomState))
+                    {
+                        menuItem.Text += roomState switch
+                        {
+                            RoomStateConstant.State.Empty => "(" + EmptyCount + ")",
+                            RoomStateConstant.State.Occupied => "(" + OccupiedCount + ")",
+                            RoomStateConstant.State.UnderRepair => "(" + UnderRepairCount + ")",
+                            RoomStateConstant.State.Dirty => "(" + DirtyCount + ")",
+                            RoomStateConstant.State.Reserved => "(" + ReservedCount + ")"
+                        };
+                        menuItem.Icon = roomState switch
+                        {
+                            RoomStateConstant.State.Empty => Resources.可住状态,
+                            RoomStateConstant.State.Occupied => Resources.已住状态,
+                            RoomStateConstant.State.UnderRepair => Resources.维修状态,
+                            RoomStateConstant.State.Dirty => Resources.脏房状态,
+                            RoomStateConstant.State.Reserved => Resources.预约状态
+                        };
+                    }
+                    muRoomState.Items.Add(menuItem);
+                }
+            }
+
+        }
+
+        private void LoadRoomCount()
+        {
+            result = HttpHelper.Request("Room/SelectCanUseRoomAllByRoomState");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectCanUseRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
+            }
+            EmptyCount = result.message;
+            result = HttpHelper.Request("Room/SelectNotUseRoomAllByRoomState");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectNotUseRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
+            }
+            OccupiedCount = result.message;
+            result = HttpHelper.Request("Room/SelectNotClearRoomAllByRoomState");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectNotClearRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
+            }
+            DirtyCount = result.message;
+            result = HttpHelper.Request("Room/SelectFixingRoomAllByRoomState");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectFixingRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
+            }
+            UnderRepairCount = result.message;
+            result = HttpHelper.Request("Room/SelectReseredRoomAllByRoomState");
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectReseredRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
+            }
+            ReservedCount = result.message;
+        }
 
         private void LoadRoomTypes()
         {
@@ -129,46 +200,12 @@ namespace SYS.FormUI
 
         public void LoadRoomInfo()
         {
-            result = HttpHelper.Request("Room/SelectCanUseRoomAllByRoomState");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectCanUseRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            lblCanUse.Text = result.message.ToString();
-            result = HttpHelper.Request("Room/SelectNotUseRoomAllByRoomState");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectNotUseRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            lblCheck.Text = result.message.ToString();
-            result = HttpHelper.Request("Room/SelectNotClearRoomAllByRoomState");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectNotClearRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            lblNotClear.Text = result.message.ToString();
-            result = HttpHelper.Request("Room/SelectFixingRoomAllByRoomState");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectFixingRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            lblFix.Text = result.message.ToString();
-            result = HttpHelper.Request("Room/SelectReseredRoomAllByRoomState");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectReseredRoomAllByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            lblReser.Text = result.message.ToString();
-            lblRoomNo.Text = ucRoomList.co_RoomNo;
-            lblCustoNo.Text = ucRoomList.co_CustoNo;
-            lblRoomPosition.Text = ucRoomList.co_RoomPosition;
-            lblCheckTime.Text = ucRoomList.co_CheckTime == null ? "" : Convert.ToDateTime(ucRoomList.co_CheckTime).ToString("yyyy-MM-dd");
-            lblRoomState.Text = ucRoomList.co_RoomState;
+
+            lblRoomNo.Text = ucRoom.co_RoomNo;
+            lblCustoNo.Text = ucRoom.co_CustoNo;
+            lblRoomPosition.Text = ucRoom.co_RoomPosition;
+            lblCheckTime.Text = ucRoom.co_CheckTime == null ? "" : Convert.ToDateTime(ucRoom.co_CheckTime).ToString("yyyy-MM-dd");
+            lblRoomState.Text = ucRoom.co_RoomState;
         }
 
         private void LoadData(string typeName = "")
@@ -200,13 +237,12 @@ namespace SYS.FormUI
             }
             for (int i = 0; i < romsty.Count; i++)
             {
-                romt = new ucRoomList();
-                romt.lblMark.Text = String.Empty; //=String.Empty时，判断为非房态图，可放开右键菜单
-                romt.lblRoomNo.Text = romsty[i].RoomNo;
-                romt.lblCustoName.Text = romsty[i].CustoName;
-                romt.lblRoomType.Text = romsty[i].RoomName;
-                romt.romCustoInfo = romsty[i];
-                flpRoom.Controls.Add(romt);
+                room = new ucRoom();
+                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNo, romsty[i].CustoName);
+                room.lblMark = string.Empty;
+                room.romRoomInfo = romsty[i];
+                room.romCustoInfo = new Custo { CustoNo = romsty[i].CustoNo, CustoName = romsty[i].CustoName };
+                flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
             lblRoomPosition.Text = "";
@@ -214,11 +250,6 @@ namespace SYS.FormUI
             lblCustoNo.Text = "";
             lblCheckTime.Text = "";
             LoadRoomInfo();
-        }
-
-        private void picRefrech_Click(object sender, EventArgs e)
-        {
-            LoadData();
         }
 
         private void LoadRoomByState(int stateid)
@@ -237,13 +268,12 @@ namespace SYS.FormUI
             romsty = HttpHelper.JsonToList<Room>(result.message);
             for (int i = 0; i < romsty.Count; i++)
             {
-                romt = new ucRoomList();
-                romt.lblMark.Text = String.Empty;
-                romt.lblRoomNo.Text = romsty[i].RoomNo;
-                romt.lblCustoName.Text = romsty[i].CustoNo;
-                romt.lblRoomType.Text = romsty[i].RoomName;
-                romt.romCustoInfo = romsty[i];
-                flpRoom.Controls.Add(romt);
+                room = new ucRoom();
+                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNo, romsty[i].CustoName);
+                room.lblMark = string.Empty;
+                room.romRoomInfo = romsty[i];
+                room.romCustoInfo = new Custo { CustoNo = romsty[i].CustoNo, CustoName = romsty[i].CustoName };
+                flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
             lblRoomPosition.Text = "";
@@ -252,80 +282,30 @@ namespace SYS.FormUI
             lblCheckTime.Text = "";
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            LoadRoomByState(0);
-        }
-
-        private void pictureBox1_MouseHover(object sender, EventArgs e)
-        {
-            pictureBox1.BackgroundImage = Resources.可住房_hover_icon;
-        }
-
-        private void pictureBox2_MouseHover(object sender, EventArgs e)
-        {
-            pictureBox2.BackgroundImage = Resources.已住房_hover_icon;
-        }
-
-        private void pictureBox3_MouseHover(object sender, EventArgs e)
-        {
-            pictureBox3.BackgroundImage = Resources.脏房_hover_icon;
-        }
-
-        private void pictureBox4_MouseHover(object sender, EventArgs e)
-        {
-            pictureBox4.BackgroundImage = Resources.维修房_hover_icon;
-        }
-
-        private void pictureBox4_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox4.BackgroundImage = Resources.维修房icon;
-        }
-
-        private void pictureBox3_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox3.BackgroundImage = Resources.脏房icon1;
-        }
-
-        private void pictureBox2_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox2.BackgroundImage = Resources.已住房icon;
-        }
-
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox1.BackgroundImage = Resources.可住房icon;
-        }
-
-        private void pictureBox5_MouseHover(object sender, EventArgs e)
-        {
-            pictureBox5.BackgroundImage = Resources.预约房_hover_icon;
-        }
-
-        private void pictureBox5_MouseLeave(object sender, EventArgs e)
-        {
-            pictureBox5.BackgroundImage = Resources.预约房icon;
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void muRoomState_SelectChanged(object sender, MenuItem item)
         {
             flpRoom.Controls.Clear();
-            LoadRoomByState(1);
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-            LoadRoomByState(3);
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            LoadRoomByState(2);
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            LoadRoomByState(4);
+            if (Enum.TryParse(item.Tag.ToString(), out RoomStateConstant.State roomState))
+            {
+                switch (roomState)
+                {
+                    case RoomStateConstant.State.Empty:
+                        LoadRoomByState(0);
+                        break;
+                    case RoomStateConstant.State.Occupied:
+                        LoadRoomByState(1);
+                        break;
+                    case RoomStateConstant.State.UnderRepair:
+                        LoadRoomByState(2);
+                        break;
+                    case RoomStateConstant.State.Dirty:
+                        LoadRoomByState(3);
+                        break;
+                    case RoomStateConstant.State.Reserved:
+                        LoadRoomByState(4);
+                        break;
+                }
+            }
         }
     }
 }
