@@ -128,9 +128,9 @@ namespace SYS.FormUI
             #endregion
 
             double sum = 0;
-            txtCustoNo.Text = ucRoomList.rm_CustoNo;
-            CustoNo.Text = ucRoomList.rm_CustoNo;
-            txtRoomNo.Text = ucRoomList.rm_RoomNo;
+            txtCustoNo.Text = ucRoom.rm_CustoNo;
+            CustoNo.Text = ucRoom.rm_CustoNo;
+            txtRoomNo.Text = ucRoom.rm_RoomNo;
 
             dic = new Dictionary<string, string>()
             {

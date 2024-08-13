@@ -22,6 +22,7 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using SYS.Common;
@@ -40,7 +41,7 @@ using static System.Windows.Forms.DataFormats;
 
 namespace SYS.FormUI
 {
-    public partial class FrmMain : Form
+    public partial class FrmMain : Window
     {
         private FrmLogin returnForm1 = null;
         public FrmMain(FrmLogin F1)
@@ -185,15 +186,16 @@ namespace SYS.FormUI
         #endregion
 
         #region 退出当前程序
-        private void picClose_Click_1(object sender, EventArgs e)
+        private void picClose_Click(object sender, EventArgs e)
         {
+
             System.Windows.Forms.Application.Exit();
             notifyIcon1.Dispose();
         }
         #endregion
 
         #region 窗体最小化
-        private void picFormSize_Click_1(object sender, EventArgs e)
+        private void picFormSize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
@@ -212,50 +214,6 @@ namespace SYS.FormUI
         #endregion
 
         /// <summary>
-        /// 客房管理点击事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RoomManager_Event(object sender, EventArgs e)
-        {
-            pnlMID.Controls.Clear();
-            FrmRoomManager frm1 = new FrmRoomManager
-            {
-                TopLevel = false
-            };
-            pnlMID.Controls.Add(frm1);
-            frm1.Show();
-        }
-
-        /// <summary>
-        /// 用户管理点击事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CustoManager_Event(object sender, EventArgs e)
-        {
-            pnlMID.Controls.Clear();
-            FrmCustomerManager frm1 = new FrmCustomerManager();
-            frm1.TopLevel = false;
-            pnlMID.Controls.Add(frm1);
-            frm1.Show();
-        }
-
-        /// <summary>
-        /// 商品消费点击事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SellManager_Event(object sender, EventArgs e)
-        {
-            pnlMID.Controls.Clear();
-            FrmSellThing frm1 = new FrmSellThing();
-            frm1.TopLevel = false;
-            pnlMID.Controls.Add(frm1);
-            frm1.Show();
-        }
-
-        /// <summary>
         /// 加载导航控件列表
         /// </summary>
         private void LoadNavBar()
@@ -268,39 +226,35 @@ namespace SYS.FormUI
                 listSource = null;
                 return;
             }
-            flpNav.Controls.Clear();
+            muNavBar.Controls.Clear();
             listSource = HttpHelper.JsonToList<NavBar>(result.message);
-            ucNavBar ucNavBar = null;
+            MenuItem menuItem = null;
             if (!listSource.IsNullOrEmpty())
             {
-                for (int i = 0; i < listSource.Count; i++)
+                foreach (var item in listSource)
                 {
-                    ucNavBar = new ucNavBar();
-                    ucNavBar.Name = listSource[i].nav_name;
-                    ucNavBar.MouseDown += new MouseEventHandler(Navbar_MouseDown);
-                    ucNavBar.MouseLeave += new System.EventHandler(Navbar_MouseLeave);
-                    switch (listSource[i].nav_name)
+                    menuItem = new MenuItem
+                    {
+                        Text = item.nav_name
+                    };
+                    switch (item.nav_name)
                     {
                         case "客房管理":
-                            ucNavBar.Click += new EventHandler(RoomManager_Event);
-                            ucNavBar.BackgroundImage = Resources.picRoom_Image;
+                            menuItem.Icon = Resources.picRoom_Image;
                             break;
                         case "用户管理":
-                            ucNavBar.Click += new EventHandler(CustoManager_Event);
-                            ucNavBar.BackgroundImage = Resources.picCustomer_Image;
+                            menuItem.Icon = Resources.picCustomer_Image;
                             break;
                         case "商品消费":
-                            ucNavBar.Click += new EventHandler(SellManager_Event);
-                            ucNavBar.BackgroundImage = Resources.picCommodity_Image;
+                            menuItem.Icon = Resources.picCommodity_Image;
                             break;
                     }
-                    ucNavBar.Margin = new Padding(listSource[i].margin_left, 0, 0, 0);
-                    flpNav.Controls.Add(ucNavBar);
+                    muNavBar.Items.Add(menuItem);
                 }
             }
             else
             {
-                UIMessageBox.ShowError("服务器维护中，请过会再试");
+                AntdUI.Message.error(this, "服务器维护中，请过会再试");
                 return;
             }
             #endregion
@@ -363,17 +317,17 @@ namespace SYS.FormUI
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {//晚上
-                label3.Text = "(*´▽｀)ノノ晚上好," + LoginInfo.WorkerName;
+                label3.Text = "(*´▽｀)ノノ晚上好 " + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.月亮;
             }
             else if (tmCur.Hour > 8 && tmCur.Hour < 12)
             {//上午
-                label3.Text = "上午好," + LoginInfo.WorkerName;
+                label3.Text = "(*´▽｀)ノノ上午好 " + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.早上;
             }
             else
             {//下午
-                label3.Text = "下午好," + LoginInfo.WorkerName;
+                label3.Text = "(*´▽｀)ノノ下午好 " + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.咖啡;
             }
             //SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
@@ -483,8 +437,10 @@ namespace SYS.FormUI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Dictionary<string, string> user = new Dictionary<string, string>();
-            user.Add("wkn", LoginInfo.WorkerNo);
+            Dictionary<string, string> user = new()
+            {
+                { "wkn", LoginInfo.WorkerNo }
+            };
             result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo", null, user);
             if (result.statusCode != 200)
             {
@@ -514,7 +470,7 @@ namespace SYS.FormUI
                 bool dr = UIMessageBox.Show("你今天还未打卡哦，请先打卡吧！", "打卡提醒", UIStyle.Blue, UIMessageBoxButtons.OK);
                 if (dr == true)
                 {
-                    WorkerCheck workerCheck = new WorkerCheck
+                    WorkerCheck workerCheck = new()
                     {
                         WorkerNo = LoginInfo.WorkerNo,
                         CheckWay = "系统界面",
@@ -564,40 +520,6 @@ namespace SYS.FormUI
 
         }
 
-        private void picFormSize_MouseHover(object sender, EventArgs e)
-        {
-            this.picFormSize.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picFormSize_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.picFormSize.BackColor = System.Drawing.Color.FromArgb(74, 131, 229);
-        }
-
-        private void picClose_MouseHover(object sender, EventArgs e)
-        {
-            this.picClose.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picClose_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.picClose.BackColor = System.Drawing.Color.FromArgb(74, 131, 229);
-        }
-
-        private void picFormSize_MouseLeave_1(object sender, EventArgs e)
-        {
-            this.picFormSize.BackColor = System.Drawing.Color.Transparent;
-            this.picFormSize.BackgroundImage = Resources.arrow_down_b;
-            this.picFormSize.RectColor = System.Drawing.Color.FromArgb(80, 160, 255);
-        }
-
-        private void picClose_MouseLeave_1(object sender, EventArgs e)
-        {
-            this.picClose.BackColor = System.Drawing.Color.Transparent;
-            this.picClose.BackgroundImage = Resources.close;
-            this.picClose.RectColor = System.Drawing.Color.FromArgb(80, 160, 255);
-        }
-
         private void tsmiMySpace_Click(object sender, EventArgs e)
         {
             FrmMySpace frmMySpace = new FrmMySpace();
@@ -622,31 +544,49 @@ namespace SYS.FormUI
 
         }
 
-        private void picSetting_Click(object sender, EventArgs e)
+        private void btnSetting_Click(object sender, EventArgs e)
         {
             cmsMain.Show(Cursor.Position);
-        }
-
-        private void picSetting_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.picSetting.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picSetting_MouseHover(object sender, EventArgs e)
-        {
-            this.picSetting.BackColor = System.Drawing.Color.FromArgb(111, 168, 255);
-        }
-
-        private void picSetting_MouseLeave(object sender, EventArgs e)
-        {
-            this.picSetting.BackColor = System.Drawing.Color.Transparent;
-            this.picSetting.BackgroundImage = Resources.settings2;
-            this.picSetting.RectColor = System.Drawing.Color.FromArgb(80, 160, 255);
         }
 
         private void notifyIcon1_BalloonTipClosed(object sender, EventArgs e)
         {
             notifyIcon1.Dispose();
         }
+        private void muNavBar_SelectChanged(object sender, MenuItem item)
+        {
+            switch (item.Text)
+            {
+                case "客房管理":
+                    pnlMID.Controls.Clear();
+                    FrmRoomManager frmRoomManager = new()
+                    {
+                        TopLevel = false
+                    };
+                    pnlMID.Controls.Add(frmRoomManager);
+                    frmRoomManager.Show();
+                    break;
+                case "用户管理":
+                    pnlMID.Controls.Clear();
+                    FrmCustomerManager frmCustomerManager = new()
+                    {
+                        TopLevel = false
+                    };
+                    pnlMID.Controls.Add(frmCustomerManager);
+                    frmCustomerManager.Show();
+                    break;
+                case "商品消费":
+                    pnlMID.Controls.Clear();
+                    FrmSellThing frmSellThing = new()
+                    {
+                        TopLevel = false
+                    };
+                    pnlMID.Controls.Add(frmSellThing);
+                    frmSellThing.Show();
+                    break;
+            }
+        }
+
+        
     }
 }

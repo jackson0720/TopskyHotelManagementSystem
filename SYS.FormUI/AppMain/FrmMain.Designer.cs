@@ -52,17 +52,17 @@
             tmrFont = new System.Windows.Forms.Timer(components);
             label3 = new System.Windows.Forms.Label();
             btnHello = new Sunny.UI.UIButton();
-            flpNav = new System.Windows.Forms.FlowLayoutPanel();
-            picSetting = new Sunny.UI.UIButton();
             uiButton1 = new Sunny.UI.UIButton();
-            picFormSize = new Sunny.UI.UIButton();
-            picClose = new Sunny.UI.UIButton();
             pnlCheckInfo = new System.Windows.Forms.Panel();
             lblClose = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             lblCheckDay = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             picLogo = new System.Windows.Forms.PictureBox();
+            muNavBar = new AntdUI.Menu();
+            btnClose = new AntdUI.Button();
+            btnFormSize = new AntdUI.Button();
+            btnSetting = new AntdUI.Button();
             cmsMain.SuspendLayout();
             pnlCheckInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -75,7 +75,7 @@
             lblTime.BackColor = System.Drawing.Color.Transparent;
             lblTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            lblTime.Location = new System.Drawing.Point(52, 146);
+            lblTime.Location = new System.Drawing.Point(53, 141);
             lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblTime.Name = "lblTime";
             lblTime.Size = new System.Drawing.Size(92, 24);
@@ -96,7 +96,7 @@
             lblSoftName.Location = new System.Drawing.Point(328, 7);
             lblSoftName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblSoftName.Name = "lblSoftName";
-            lblSoftName.Size = new System.Drawing.Size(610, 36);
+            lblSoftName.Size = new System.Drawing.Size(597, 36);
             lblSoftName.TabIndex = 14;
             lblSoftName.Text = "TS酒店管理系统";
             lblSoftName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -105,7 +105,7 @@
             // 
             pnlMID.BackColor = System.Drawing.Color.Transparent;
             pnlMID.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            pnlMID.Location = new System.Drawing.Point(5, 223);
+            pnlMID.Location = new System.Drawing.Point(4, 225);
             pnlMID.Margin = new System.Windows.Forms.Padding(4);
             pnlMID.Name = "pnlMID";
             pnlMID.Size = new System.Drawing.Size(1072, 490);
@@ -235,14 +235,14 @@
             lblScroll.FillColor = System.Drawing.Color.FromArgb(235, 243, 255);
             lblScroll.Font = new System.Drawing.Font("微软雅黑", 12F);
             lblScroll.Interval = 1000;
-            lblScroll.Location = new System.Drawing.Point(329, 56);
+            lblScroll.Location = new System.Drawing.Point(328, 58);
             lblScroll.Margin = new System.Windows.Forms.Padding(4);
             lblScroll.MinimumSize = new System.Drawing.Size(1, 1);
             lblScroll.Name = "lblScroll";
             lblScroll.Radius = 0;
             lblScroll.RectSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.None;
             lblScroll.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
-            lblScroll.Size = new System.Drawing.Size(627, 33);
+            lblScroll.Size = new System.Drawing.Size(597, 33);
             lblScroll.TabIndex = 0;
             // 
             // tmrFont
@@ -258,7 +258,7 @@
             label3.BackColor = System.Drawing.Color.Transparent;
             label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            label3.Location = new System.Drawing.Point(53, 191);
+            label3.Location = new System.Drawing.Point(53, 193);
             label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(54, 24);
@@ -271,7 +271,7 @@
             btnHello.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             btnHello.FillColor = System.Drawing.Color.Transparent;
             btnHello.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnHello.Location = new System.Drawing.Point(5, 181);
+            btnHello.Location = new System.Drawing.Point(5, 183);
             btnHello.Margin = new System.Windows.Forms.Padding(4);
             btnHello.MinimumSize = new System.Drawing.Size(1, 1);
             btnHello.Name = "btnHello";
@@ -285,38 +285,6 @@
             btnHello.TabIndex = 33;
             btnHello.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
             // 
-            // flpNav
-            // 
-            flpNav.AutoScroll = true;
-            flpNav.BackColor = System.Drawing.Color.Transparent;
-            flpNav.Location = new System.Drawing.Point(329, 102);
-            flpNav.Margin = new System.Windows.Forms.Padding(4);
-            flpNav.Name = "flpNav";
-            flpNav.Size = new System.Drawing.Size(748, 113);
-            flpNav.TabIndex = 72;
-            // 
-            // picSetting
-            // 
-            picSetting.BackColor = System.Drawing.Color.Transparent;
-            picSetting.BackgroundImage = Properties.Resources.settings2;
-            picSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            picSetting.FillColor = System.Drawing.Color.Transparent;
-            picSetting.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picSetting.Location = new System.Drawing.Point(946, 6);
-            picSetting.Margin = new System.Windows.Forms.Padding(4);
-            picSetting.MinimumSize = new System.Drawing.Size(1, 1);
-            picSetting.Name = "picSetting";
-            picSetting.Radius = 0;
-            picSetting.Size = new System.Drawing.Size(41, 38);
-            picSetting.Style = Sunny.UI.UIStyle.Custom;
-            picSetting.StyleCustomMode = true;
-            picSetting.TabIndex = 38;
-            picSetting.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            picSetting.Click += picSetting_Click;
-            picSetting.MouseDown += picSetting_MouseDown;
-            picSetting.MouseLeave += picSetting_MouseLeave;
-            picSetting.MouseHover += picSetting_MouseHover;
-            // 
             // uiButton1
             // 
             uiButton1.BackColor = System.Drawing.Color.Transparent;
@@ -324,7 +292,7 @@
             uiButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             uiButton1.FillColor = System.Drawing.Color.Transparent;
             uiButton1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            uiButton1.Location = new System.Drawing.Point(5, 132);
+            uiButton1.Location = new System.Drawing.Point(6, 127);
             uiButton1.Margin = new System.Windows.Forms.Padding(4);
             uiButton1.MinimumSize = new System.Drawing.Size(1, 1);
             uiButton1.Name = "uiButton1";
@@ -337,50 +305,6 @@
             uiButton1.StyleCustomMode = true;
             uiButton1.TabIndex = 31;
             uiButton1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            // 
-            // picFormSize
-            // 
-            picFormSize.BackColor = System.Drawing.Color.Transparent;
-            picFormSize.BackgroundImage = Properties.Resources.arrow_down_b;
-            picFormSize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            picFormSize.FillColor = System.Drawing.Color.Transparent;
-            picFormSize.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picFormSize.Location = new System.Drawing.Point(992, 6);
-            picFormSize.Margin = new System.Windows.Forms.Padding(4);
-            picFormSize.MinimumSize = new System.Drawing.Size(1, 1);
-            picFormSize.Name = "picFormSize";
-            picFormSize.Radius = 0;
-            picFormSize.Size = new System.Drawing.Size(41, 38);
-            picFormSize.Style = Sunny.UI.UIStyle.Custom;
-            picFormSize.StyleCustomMode = true;
-            picFormSize.TabIndex = 29;
-            picFormSize.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            picFormSize.Click += picFormSize_Click_1;
-            picFormSize.MouseDown += picFormSize_MouseDown;
-            picFormSize.MouseLeave += picFormSize_MouseLeave_1;
-            picFormSize.MouseHover += picFormSize_MouseHover;
-            // 
-            // picClose
-            // 
-            picClose.BackColor = System.Drawing.Color.Transparent;
-            picClose.BackgroundImage = Properties.Resources.close;
-            picClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            picClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            picClose.FillColor = System.Drawing.Color.Transparent;
-            picClose.Font = new System.Drawing.Font("微软雅黑", 12F);
-            picClose.Location = new System.Drawing.Point(1038, 6);
-            picClose.Margin = new System.Windows.Forms.Padding(4);
-            picClose.MinimumSize = new System.Drawing.Size(1, 1);
-            picClose.Name = "picClose";
-            picClose.Radius = 0;
-            picClose.Size = new System.Drawing.Size(39, 38);
-            picClose.Style = Sunny.UI.UIStyle.Custom;
-            picClose.TabIndex = 28;
-            picClose.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-            picClose.Click += picClose_Click_1;
-            picClose.MouseDown += picClose_MouseDown;
-            picClose.MouseLeave += picClose_MouseLeave_1;
-            picClose.MouseHover += picClose_MouseHover;
             // 
             // pnlCheckInfo
             // 
@@ -457,28 +381,77 @@
             picLogo.TabStop = false;
             picLogo.Click += picLogo_Click;
             // 
+            // muNavBar
+            // 
+            muNavBar.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F);
+            muNavBar.Location = new System.Drawing.Point(311, 172);
+            muNavBar.Mode = AntdUI.TMenuMode.Horizontal;
+            muNavBar.Name = "muNavBar";
+            muNavBar.Size = new System.Drawing.Size(765, 45);
+            muNavBar.TabIndex = 39;
+            muNavBar.Text = "menu1";
+            muNavBar.SelectChanged += muNavBar_SelectChanged;
+            // 
+            // btnClose
+            // 
+            btnClose.BackColor = System.Drawing.Color.Transparent;
+            btnClose.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            btnClose.Ghost = true;
+            btnClose.Image = Properties.Resources.close;
+            btnClose.ImageSize = new System.Drawing.Size(32, 32);
+            btnClose.Location = new System.Drawing.Point(1032, 5);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new System.Drawing.Size(41, 38);
+            btnClose.TabIndex = 41;
+            btnClose.Click += picClose_Click;
+            // 
+            // btnFormSize
+            // 
+            btnFormSize.BackColor = System.Drawing.Color.Transparent;
+            btnFormSize.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            btnFormSize.Ghost = true;
+            btnFormSize.Image = Properties.Resources.arrow_down_b;
+            btnFormSize.ImageSize = new System.Drawing.Size(32, 32);
+            btnFormSize.Location = new System.Drawing.Point(982, 5);
+            btnFormSize.Name = "btnFormSize";
+            btnFormSize.Size = new System.Drawing.Size(41, 38);
+            btnFormSize.TabIndex = 40;
+            btnFormSize.Click += picFormSize_Click;
+            // 
+            // btnSetting
+            // 
+            btnSetting.BackColor = System.Drawing.Color.Transparent;
+            btnSetting.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            btnSetting.Ghost = true;
+            btnSetting.Image = Properties.Resources.settings2;
+            btnSetting.ImageSize = new System.Drawing.Size(32, 32);
+            btnSetting.Location = new System.Drawing.Point(932, 5);
+            btnSetting.Name = "btnSetting";
+            btnSetting.Size = new System.Drawing.Size(41, 38);
+            btnSetting.TabIndex = 42;
+            btnSetting.Click += btnSetting_Click;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(235, 243, 255);
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            ClientSize = new System.Drawing.Size(1082, 718);
-            Controls.Add(flpNav);
-            Controls.Add(picSetting);
+            ClientSize = new System.Drawing.Size(1080, 721);
+            Controls.Add(lblScroll);
+            Controls.Add(btnSetting);
+            Controls.Add(btnClose);
+            Controls.Add(btnFormSize);
+            Controls.Add(muNavBar);
             Controls.Add(btnHello);
             Controls.Add(uiButton1);
             Controls.Add(label3);
-            Controls.Add(lblScroll);
-            Controls.Add(picFormSize);
-            Controls.Add(picClose);
             Controls.Add(pnlCheckInfo);
             Controls.Add(linkLabel1);
             Controls.Add(pnlMID);
             Controls.Add(picLogo);
             Controls.Add(lblSoftName);
             Controls.Add(lblTime);
-            DoubleBuffered = true;
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Margin = new System.Windows.Forms.Padding(4);
@@ -518,8 +491,6 @@
         private System.Windows.Forms.Label lblClose;
         public System.Windows.Forms.NotifyIcon notifyIcon1;
         public System.Windows.Forms.ContextMenuStrip cmsMain;
-        private Sunny.UI.UIButton picClose;
-        private Sunny.UI.UIButton picFormSize;
         private System.Windows.Forms.Timer tmrFont;
         private Sunny.UI.UIScrollingText lblScroll;
         private System.Windows.Forms.Label label3;
@@ -531,6 +502,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiLoginBackSystem;
         private Sunny.UI.UIButton picSetting;
         private System.Windows.Forms.ToolStripMenuItem tsmiExChange;
-        private System.Windows.Forms.FlowLayoutPanel flpNav;
+        private AntdUI.Menu muNavBar;
+        private AntdUI.Button btnClose;
+        private AntdUI.Button btnFormSize;
+        private AntdUI.Button btnSetting;
     }
 }

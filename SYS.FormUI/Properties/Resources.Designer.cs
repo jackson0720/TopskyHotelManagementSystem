@@ -69,25 +69,23 @@ namespace SYS.FormUI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap blue_refresh
-        {
-            get
-            {
-                object obj = ResourceManager.GetObject("blue_refresh", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         public static System.Drawing.Bitmap arrow_down_b {
             get {
                 object obj = ResourceManager.GetObject("arrow-down-b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap blue_refresh {
+            get {
+                object obj = ResourceManager.GetObject("blue_refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -111,6 +109,7 @@ namespace SYS.FormUI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
@@ -354,6 +353,16 @@ namespace SYS.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        public static System.Drawing.Bitmap 密码 {
+            get {
+                object obj = ResourceManager.GetObject("密码", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         public static System.Drawing.Bitmap 已住房_hover_icon {
             get {
                 object obj = ResourceManager.GetObject("已住房(hover)icon", resourceCulture);
@@ -457,6 +466,16 @@ namespace SYS.FormUI.Properties {
         public static System.Drawing.Bitmap 注销 {
             get {
                 object obj = ResourceManager.GetObject("注销", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap 用户登录 {
+            get {
+                object obj = ResourceManager.GetObject("用户登录", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -577,6 +596,16 @@ namespace SYS.FormUI.Properties {
         public static System.Drawing.Bitmap 财务部卡片 {
             get {
                 object obj = ResourceManager.GetObject("财务部卡片", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap 账号 {
+            get {
+                object obj = ResourceManager.GetObject("账号", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

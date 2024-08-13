@@ -110,7 +110,7 @@ namespace SYS.FormUI
             cboReserRoomNo.DataSource = HttpHelper.JsonToList<Room>(result.message);
             cboReserRoomNo.DisplayMember = "RoomNo";
             cboReserRoomNo.ValueMember = "RoomNo";
-            cboReserRoomNo.Text = ucRoomList.co_RoomNo;
+            cboReserRoomNo.Text = ucRoom.co_RoomNo;
             dtpBouDate.Value = Convert.ToDateTime(DateTime.Now);
         }
 
