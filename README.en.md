@@ -31,7 +31,7 @@
 
 # :exclamation: Project Description:
 
-1. When redeveloping this project, please follow the MIT open-source license. The SunnyUI.Net framework uses the GPL3.0 open-source license, and the SQLSugarORM framework uses the Apache2.0 license. Please be sure to include the corresponding statement in the project introduction.
+1. When conducting secondary development of this project, please comply with the MIT open source license. All referenced open source projects adopt their respective open source licenses. When using these open source projects, be sure to include the appropriate declarations in the project description and conduct any open source actions in accordance with their respective licenses.
 
 2. Bugs and comments are welcome!
 
@@ -41,7 +41,7 @@
 
 5. For MySQL and PostgreSQL databases:
 
-        5.1 If the local database is MySQL, please change the Repository inherited by the business logic class in the Application layer to MysqlRepository, and configure the mysqlString constant database connection string in the Common layer’s HttpHelper.
+        5.1 If your local database is MySQL, please pull the [MySQL special branch](https://gitee.com/java-and-net/topsky-hotel-manager-system-web-api/tree/MySQL_Version/).
         
         5.2 If the local database is PostgreSQL, no changes are needed, just configure the pgsqlString constant database connection string in the Common layer’s HttpHelper.
 
@@ -77,9 +77,9 @@ EOM.Client.TopSkyHotelManagerSystem
 ├─ FodyWeavers.xml
 ├─ LICENSE
 ├─ README.md
-├─ SYS.Common
-├─ SYS.Core
-├─ SYS.FormUI
+├─ EOM.TSHotelManager.Common
+├─ EOM.TSHotelManager.Common.Core
+├─ EOM.TSHotelManager.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
 │    ├─ AppFunction

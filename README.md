@@ -32,17 +32,17 @@
 
 #  :exclamation: 本项目说明：
 
-1、二次开发本项目时请遵照MIT开源协议,SunnyUI.Net框架采用的是GPL3.0开源协议、SQLSugarORM框架采用的是Apache2.0，需要用到时请务必在项目介绍加上对应声明。
+1、在对本项目进行二次开发时，请遵循 MIT 开源协议。所有引用的其他开源项目均采用其各自的开源协议。使用这些开源项目时，请务必在项目介绍中添加相应的声明，并按照各自的开源协议进行开源等操作。
 
 2、有bug欢迎提出issue！或进行评论
 
-3、本系统95%页面基于SunnyUI.Net控件库进行创建，在此特别声明！
+3、本系统UI框架主要基于Sunny.UI和AntdUI进行创建，在此特别声明！
 
 4、关于数据库脚本问题，请先移步至数据库脚本文件夹下，选择Mysql版本或PostgreSQL版本任意文件夹下载Data和Table两个文件，再数据库中先执行Table.sql，再执行Data.sql!
 
 5、针对MySQL和PostgreSQL数据库的说明：
 
-		5.1、本地数据库若为MySQL，则请将Application层里的业务逻辑类继承的Repository改为MysqlRepository，并在Common层对HttpHelper里的mysqlString常量数据库连接字符串进行配置。
+		5.1、本地数据库若为MySQL，请拉取[MySQL专用分支](https://gitee.com/java-and-net/topsky-hotel-manager-system-web-api/tree/MySQL_Version/)。
 	
 		5.2、本地数据库若为PostgreSQL，则无需进行任何改动，只需要在Common层对HttpHelper里的pgsqlString常量数据库连接字符串进行配置。
 
@@ -77,9 +77,9 @@ EOM.Client.TopSkyHotelManagerSystem
 ├─ FodyWeavers.xml
 ├─ LICENSE
 ├─ README.md
-├─ SYS.Common
-├─ SYS.Core
-├─ SYS.FormUI
+├─ EOM.TSHotelManager.Common
+├─ EOM.TSHotelManager.Common.Core
+├─ EOM.TSHotelManager.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
 │    ├─ AppFunction
