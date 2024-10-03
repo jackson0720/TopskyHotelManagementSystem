@@ -59,10 +59,10 @@ namespace EOM.TSHotelManager.FormUI
                 UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            OSelectAllDto<OperationLog> custos = HttpHelper.JsonToModel<OSelectAllDto<OperationLog>>(result.message);
-            this.btnPg.TotalCount = custos.total;
+            OSelectAllDto<OperationLog> operationlog = HttpHelper.JsonToModel<OSelectAllDto<OperationLog>>(result.message);
+            this.btnPg.TotalCount = operationlog.total;
             this.dgvOperationlog.AutoGenerateColumns = false;
-            this.dgvOperationlog.DataSource = custos.listSource;
+            this.dgvOperationlog.DataSource = operationlog.listSource;
         }
 
         private void btnPg_PageChanged(object sender, object pagingSource, int pageIndex, int count)
@@ -78,10 +78,10 @@ namespace EOM.TSHotelManager.FormUI
                 UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            OSelectAllDto<OperationLog> custos = HttpHelper.JsonToModel<OSelectAllDto<OperationLog>>(result.message);
-            this.btnPg.TotalCount = custos.total;
+            OSelectAllDto<OperationLog> operationlog = HttpHelper.JsonToModel<OSelectAllDto<OperationLog>>(result.message);
+            this.btnPg.TotalCount = operationlog.total;
             this.dgvOperationlog.AutoGenerateColumns = false;
-            this.dgvOperationlog.DataSource = custos.listSource;
+            this.dgvOperationlog.DataSource = operationlog.listSource;
         }
     }
 }
