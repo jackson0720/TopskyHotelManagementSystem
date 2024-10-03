@@ -53,7 +53,7 @@ namespace EOM.TSHotelManager.FormUI
             }
 
             Admin admin = new Admin() { AdminAccount = account, AdminPassword = new EncryptLib().Encryption(pass, EncryptionLevel.Enhanced) };
-            result = HttpHelper.Request("Admin/SelectMangerByPass", HttpHelper.ModelToJson(admin));
+            result = HttpHelper.Request("Admin/SelectManagerByPass", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectMangerByPass+接口服务异常，请提交issue");
