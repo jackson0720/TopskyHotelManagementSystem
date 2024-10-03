@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EOM.TSHotelManager.Common",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EOM.TSHotelManager.FormUI", "EOM.TSHotelManager.FormUI\EOM.TSHotelManager.FormUI.csproj", "{D89E76F5-007B-4915-91A8-265CCA6814BF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EOM.TSHotelManager.Shared", "topsky-hotel-manager-system-web-api\EOM.TSHotelManager.Shared\EOM.TSHotelManager.Shared.csproj", "{1A37446C-A721-4507-89B5-7BFF6F66A004}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{D89E76F5-007B-4915-91A8-265CCA6814BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D89E76F5-007B-4915-91A8-265CCA6814BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D89E76F5-007B-4915-91A8-265CCA6814BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A37446C-A721-4507-89B5-7BFF6F66A004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A37446C-A721-4507-89B5-7BFF6F66A004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A37446C-A721-4507-89B5-7BFF6F66A004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A37446C-A721-4507-89B5-7BFF6F66A004}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{9A62B6BE-7C26-465F-A8D1-2CEE66D6F837} = {6A3E4936-8B95-49E0-842B-E002C0E024CE}
 		{781CEE04-DDB4-4037-8175-9A6548716871} = {3B8902EC-CAB9-406A-AAF7-24DABD885AC0}
 		{D89E76F5-007B-4915-91A8-265CCA6814BF} = {3B8902EC-CAB9-406A-AAF7-24DABD885AC0}
+		{1A37446C-A721-4507-89B5-7BFF6F66A004} = {6A3E4936-8B95-49E0-842B-E002C0E024CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B93ABE6D-89AD-45B3-94FB-65BD98597CC6}
