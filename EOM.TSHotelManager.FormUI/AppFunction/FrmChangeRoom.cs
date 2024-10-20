@@ -52,8 +52,8 @@ namespace EOM.TSHotelManager.FormUI
                 return;
             }
             cboRoomList.DataSource = HttpHelper.JsonToList<Room>(result.message);
-            cboRoomList.ValueMember = "RoomNo";
-            cboRoomList.DisplayMember = "RoomNo";
+            cboRoomList.DisplayMember = nameof(Room.RoomNo);
+            cboRoomList.ValueMember = nameof(Room.RoomNo);
             firstLoad = false;
         }
 
@@ -61,7 +61,7 @@ namespace EOM.TSHotelManager.FormUI
         {
             double sum = 0;
             string lbu = LoginInfo.WorkerName;
-            string rno = ucRoom.RoomNo.ToString();
+            string rno = ucRoom.co_RoomNo.ToString();
             string nrno = cboRoomList.Text;
             dic = new Dictionary<string, string>()
             {
@@ -78,7 +78,7 @@ namespace EOM.TSHotelManager.FormUI
             Room checkInRoom = new Room()
             {
                 RoomNo = nrno,
-                CustoNo = ucRoom.CustoNo,
+                CustoNo = ucRoom.co_CustoNo,
                 RoomStateId = 1,
                 CheckTime = Convert.ToDateTime(DateTime.Now),
                 datains_usr = LoginInfo.WorkerNo
@@ -100,7 +100,7 @@ namespace EOM.TSHotelManager.FormUI
                 RoomNo = cboRoomList.Text,
                 SpendName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
                 SpendAmount = Convert.ToInt32(result.message),
-                CustoNo = ucRoom.CustoNo,
+                CustoNo = ucRoom.co_CustoNo,
                 SpendPrice = Convert.ToDecimal(sum),
                 SpendMoney = Convert.ToDecimal(sum),
                 SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),

@@ -128,9 +128,9 @@ namespace EOM.TSHotelManager.FormUI
             #endregion
 
             double sum = 0;
-            txtCustoNo.Text = ucRoom.rm_CustoNo;
-            CustoNo.Text = ucRoom.rm_CustoNo;
-            txtRoomNo.Text = ucRoom.rm_RoomNo;
+            txtCustoNo.Text = ucRoom.co_CustoNo;
+            CustoNo.Text = ucRoom.co_CustoNo;
+            txtRoomNo.Text = ucRoom.co_RoomNo;
 
             dic = new Dictionary<string, string>()
             {
@@ -253,7 +253,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "roomno",txtRoomNo.Text.Trim()}
             };
-            result = HttpHelper.Request("Wti/ListWtiInfoByRoomNo", null, dic);
+            result = HttpHelper.Request("HydroelectricPower/ListWtiInfoByRoomNo", null, dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("ListWtiInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -374,7 +374,7 @@ namespace EOM.TSHotelManager.FormUI
                         bool n = result.message.ToString().Equals("true");
                         if (n)
                         {
-                            result = HttpHelper.Request("Wti​/InsertWtiInfo", HttpHelper.ModelToJson(w));
+                            result = HttpHelper.Request("HydroelectricPower​/InsertWtiInfo", HttpHelper.ModelToJson(w));
                             if (result.statusCode != 200)
                             {
                                 UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -422,7 +422,7 @@ namespace EOM.TSHotelManager.FormUI
                             bool n = result.message.ToString().Equals("true");
                             if (n)
                             {
-                                result = HttpHelper.Request("Wti​/InsertWtiInfo", HttpHelper.ModelToJson(w));
+                                result = HttpHelper.Request("HydroelectricPower​/InsertWtiInfo", HttpHelper.ModelToJson(w));
                                 if (result.statusCode != 200)
                                 {
                                     UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");

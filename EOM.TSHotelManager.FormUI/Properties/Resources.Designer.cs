@@ -101,6 +101,31 @@ namespace EOM.TSHotelManager.FormUI.Properties {
         }
         
         /// <summary>
+        ///   查找类似 &lt;?xml version=&quot;1.0&quot;?&gt;
+        ///&lt;doc&gt;
+        ///    &lt;assembly&gt;
+        ///        &lt;name&gt;EOM.TSHotelManager.Common.Core&lt;/name&gt;
+        ///    &lt;/assembly&gt;
+        ///    &lt;members&gt;
+        ///        &lt;member name=&quot;P:EOM.TSHotelManager.Common.Core.BaseDTO.datains_usr&quot;&gt;
+        ///            &lt;summary&gt;
+        ///            资料创建人
+        ///            &lt;/summary&gt;
+        ///        &lt;/member&gt;
+        ///        &lt;member name=&quot;P:EOM.TSHotelManager.Common.Core.BaseDTO.datains_date&quot;&gt;
+        ///            &lt;summary&gt;
+        ///            资料创建时间
+        ///            &lt;/summary&gt;
+        ///        &lt;/member&gt;
+        ///        &lt;member name=&quot;P:EOM.TSHotelManager.Common.Cor [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string EOM_TSHotelManager_Common_Core {
+            get {
+                return ResourceManager.GetString("EOM.TSHotelManager.Common.Core", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap jpg_auto_04N58PICPw2s58PICaP4M8cef_PIC2018_jpg_w1024_new_small {

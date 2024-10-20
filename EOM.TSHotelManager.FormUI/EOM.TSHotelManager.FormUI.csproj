@@ -12,6 +12,8 @@
 	  <PlatformTarget>x64</PlatformTarget>
 	  <AssemblyName>TS酒店管理系统</AssemblyName>
 	  <ApplicationIcon>logo.ico</ApplicationIcon>
+	  <FodyWeavingTaskPath>$(SolutionDir)packages\Fody\build\Fody.targets</FodyWeavingTaskPath>
+	  <FodyDisabled>false</FodyDisabled>
   </PropertyGroup>
 	  <!--<OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -202,6 +204,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+	<Content Include="bin\Debug\*.xml" CopyToOutputDirectory="PreserveNewest" />
+	<Content Include="bin\Release\*.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\EOM.TSHotelManager.Common\EOM.TSHotelManager.Common.csproj">
@@ -247,7 +251,15 @@
 		<EmbeddedResource Remove="AppInterface\FrmNewLogin.resx" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Remove="FodyWeavers.xml" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Content Include="logo.ico" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="FodyWeavers.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Properties\Resources.resx">

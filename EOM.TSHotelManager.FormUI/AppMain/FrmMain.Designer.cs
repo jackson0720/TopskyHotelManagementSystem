@@ -391,6 +391,7 @@
             muNavBar.Size = new Size(765, 45);
             muNavBar.TabIndex = 39;
             muNavBar.Text = "menu1";
+            muNavBar.SelectChanged += muNavBar_SelectChanged;
             // 
             // btnClose
             // 

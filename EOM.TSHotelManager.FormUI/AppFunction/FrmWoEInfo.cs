@@ -61,7 +61,7 @@ namespace EOM.TSHotelManager.FormUI
         /// </summary>
         private void LoadWtiInfo()
         {
-            result = HttpHelper.Request("Wti/SelectWtiInfoAll");
+            result = HttpHelper.Request("HydroelectricPower/SelectWtiInfoAll");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectWtiInfoAll+接口服务异常，请提交issue");
@@ -87,7 +87,7 @@ namespace EOM.TSHotelManager.FormUI
                 Record = AdminInfo.Account,
                 datachg_usr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Wti/UpdateWtiInfo", HttpHelper.ModelToJson(wti));
+            result = HttpHelper.Request("HydroelectricPower/UpdateWtiInfo", HttpHelper.ModelToJson(wti));
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("UpdateWtiInfo+接口服务异常，请提交issue");

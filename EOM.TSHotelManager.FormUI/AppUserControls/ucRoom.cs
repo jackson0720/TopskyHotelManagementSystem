@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -66,6 +67,10 @@ namespace EOM.TSHotelManager.FormUI
 
         private void btnRoom_Click(object sender, EventArgs e)
         {
+            if (lblMark == "Mark")
+            {
+                return;
+            }
             LoadRoomInfo();
             FrmRoomManager.ReadInfo();
         }
@@ -168,15 +173,18 @@ namespace EOM.TSHotelManager.FormUI
         {
             this.CanPenetrate();
             this.Region = new Region(GetRoundRectPath(new RectangleF(0, 0, this.Width, this.Height), 6f));
-            us_CustoNo = romCustoInfo.CustoNo;
-            us_CustoName = romCustoInfo.CustoName;
-            us_CustoSex = romCustoInfo.CustoSex == 1 ? "男" : "女";
-            us_CustoTel = romCustoInfo.CustoTel;
-            us_CustoID = romCustoInfo.CustoID;
-            us_CustoBirthday = romCustoInfo.CustoBirth == null ? "" : Convert.ToDateTime(romCustoInfo.CustoBirth).ToString();
-            us_CustoPassportType = romCustoInfo.PassportType;
-            us_CustoType = romCustoInfo.CustoType;
-            us_CustoAddress = romCustoInfo.CustoAdress;
+            if (!romCustoInfo.IsNullOrEmpty())
+            {
+                us_CustoNo = romCustoInfo.CustoNo;
+                us_CustoName = romCustoInfo.CustoName;
+                us_CustoSex = romCustoInfo.CustoSex == 1 ? "男" : "女";
+                us_CustoTel = romCustoInfo.CustoTel;
+                us_CustoID = romCustoInfo.CustoID;
+                us_CustoBirthday = romCustoInfo.CustoBirth == null ? "" : Convert.ToDateTime(romCustoInfo.CustoBirth).ToString();
+                us_CustoPassportType = romCustoInfo.PassportType;
+                us_CustoType = romCustoInfo.CustoType;
+                us_CustoAddress = romCustoInfo.CustoAdress;
+            }
             switch (romRoomInfo.RoomStateId)
             {
                 case 0:
@@ -207,6 +215,11 @@ namespace EOM.TSHotelManager.FormUI
         }
         private void cmsMain_Opening(object sender, CancelEventArgs e)
         {
+            if (lblMark=="Mark")
+            {
+                e.Cancel = true;
+                return;
+            }
             Dictionary<string, string> room = new Dictionary<string, string>();
             room.Add("no", btnRoom.Text.Split("\n\n")[1].ToString());
             var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, room);

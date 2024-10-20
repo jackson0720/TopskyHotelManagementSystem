@@ -43,10 +43,15 @@ namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmMain : Window
     {
-        private FrmLogin returnForm1 = null;
+        private FrmLogin returnForm1 = null; 
+        private LoadingProgress _loadingProgress;
+
         public FrmMain(FrmLogin F1)
         {
             InitializeComponent();
+            _loadingProgress = new LoadingProgress();
+
+
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
             SetStyle(ControlStyles.UserPaint, true);
@@ -553,9 +558,17 @@ namespace EOM.TSHotelManager.FormUI
         {
             notifyIcon1.Dispose();
         }
-        private void muNavBar_SelectChanged(object sender, MenuItem item)
+
+        private void cpUITheme_ValueChanged(object sender, ColorEventArgs e)
         {
-            switch (item.Text)
+            AntdUI.Style.Db.SetPrimary(e.Value);
+            Refresh();
+        }
+
+        private void muNavBar_SelectChanged(object sender, MenuSelectEventArgs e)
+        {
+            _loadingProgress.Show();
+            switch (e.Value.Text)
             {
                 case "客房管理":
                     pnlMID.Controls.Clear();
@@ -585,12 +598,8 @@ namespace EOM.TSHotelManager.FormUI
                     frmSellThing.Show();
                     break;
             }
-        }
+            _loadingProgress.Close();
 
-        private void cpUITheme_ValueChanged(object sender, ColorEventArgs e)
-        {
-            AntdUI.Style.Db.SetPrimary(e.Value);
-            Refresh();
         }
     }
 }

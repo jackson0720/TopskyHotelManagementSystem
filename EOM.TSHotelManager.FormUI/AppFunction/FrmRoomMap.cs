@@ -57,7 +57,7 @@ namespace EOM.TSHotelManager.FormUI.AppFunction
             {
                 room = new ucRoom();
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", rooms[i].RoomName, rooms[i].RoomNo, rooms[i].CustoName);
-                room.lblMark = string.Empty;
+                room.lblMark = "Mark";
                 room.romRoomInfo = rooms[i];
                 flpRoom.Controls.Add(room);
             }
