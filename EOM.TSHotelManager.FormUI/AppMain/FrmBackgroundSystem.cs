@@ -23,20 +23,17 @@
  */
 
 
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
 using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.AppFunction;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
+using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmBackgroundSystem : UIForm
     {
+        private LoadingProgress _loadingProgress;
+
         public delegate void UpdPwd();
 
         public static UpdPwd closeform;
@@ -49,6 +46,7 @@ namespace EOM.TSHotelManager.FormUI
 
             closeform = Closeform;
             hideform = HideWinform;
+            _loadingProgress = new LoadingProgress();
         }
 
         public void HideWinform()
@@ -94,6 +92,7 @@ namespace EOM.TSHotelManager.FormUI
 
         private void Aside_MenuItemClick(TreeNode node, NavMenuItem item, int pageIndex)
         {
+            _loadingProgress.Show();
             if (!node.Text.IsNullOrEmpty())
             {
                 switch (node.Text)
@@ -283,6 +282,7 @@ namespace EOM.TSHotelManager.FormUI
                         break;
 
                 }
+                _loadingProgress.Close();
             }
         }
 

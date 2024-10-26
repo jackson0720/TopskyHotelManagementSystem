@@ -1,20 +1,11 @@
-﻿using EOM.TSHotelManager.Common.Core;
-using NPOI.SS.Formula.Functions;
-using Sunny.UI;
-using EOM.TSHotelManager.Common;
+﻿using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using jvncorelib.EntityLib;
+using Sunny.UI;
+using System.ComponentModel;
+using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -215,7 +206,7 @@ namespace EOM.TSHotelManager.FormUI
         }
         private void cmsMain_Opening(object sender, CancelEventArgs e)
         {
-            if (lblMark=="Mark")
+            if (lblMark == "Mark")
             {
                 e.Cancel = true;
                 return;

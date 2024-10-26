@@ -23,10 +23,9 @@
  */
 
 
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
 
 namespace EOM.TSHotelManager.FormUI
 {

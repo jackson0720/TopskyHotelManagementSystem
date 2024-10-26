@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EOM.TSHotelManager.Common
+﻿namespace EOM.TSHotelManager.Common
 {
-    public class CustomTypeConstant:Constant<CustomTypeConstant>
+    public class CustomTypeConstant : Constant<CustomTypeConstant>
     {
         // 普通会员
         public static readonly CustomTypeConstant RegularMember = new CustomTypeConstant("0", "普通会员");

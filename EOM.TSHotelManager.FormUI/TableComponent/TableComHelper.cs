@@ -1,11 +1,5 @@
 ﻿using AntdUI;
-using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.Common.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 
@@ -164,7 +158,7 @@ namespace EOM.TSHotelManager.FormUI
 
             return tableColumns;
         }
-       
+
         /// <summary>
         /// 获取字段对应注释
         /// </summary>

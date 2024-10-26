@@ -21,14 +21,10 @@
  *SOFTWARE.
  *
  */
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
 using System.Reflection;
-using System.Threading;
-using System.Windows.Forms;
-using Sunny.UI.Win32;
 
 namespace EOM.TSHotelManager.FormUI
 {

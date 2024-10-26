@@ -21,12 +21,10 @@
  *SOFTWARE.
  *
  */
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
 using EOM.TSHotelManager.Common;
-using System;
-using System.Linq;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.Common.Util;
+using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {

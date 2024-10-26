@@ -21,8 +21,6 @@
  *SOFTWARE.
  *
  */
-using System.Windows.Forms;
-
 namespace EOM.TSHotelManager.FormUI.AppUserControls
 {
     public partial class ucNavBar : UserControl

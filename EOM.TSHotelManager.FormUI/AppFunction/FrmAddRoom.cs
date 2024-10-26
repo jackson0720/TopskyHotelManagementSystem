@@ -21,15 +21,12 @@
  *SOFTWARE.
  *
  */
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
-using EOM.TSHotelManager.Common.Util;
 using AntdUI;
-using System.Linq;
+using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.Common.Util;
 using jvncorelib.EntityLib;
+using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -112,7 +109,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "isDelete","0"}
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypesAll",null, dic);
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll", null, dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -148,7 +145,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "roomTypeId",cboRoomType.SelectedValue.ToString()}
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypeByType",null,dic);
+            result = HttpHelper.Request("RoomType/SelectRoomTypeByType", null, dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypeByType+接口服务异常，请提交Issue或尝试更新版本！");

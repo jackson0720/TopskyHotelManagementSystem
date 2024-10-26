@@ -23,15 +23,11 @@
  */
 
 using AntdUI;
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
 using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.AppUserControls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
 using EOM.TSHotelManager.FormUI.Properties;
+using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {

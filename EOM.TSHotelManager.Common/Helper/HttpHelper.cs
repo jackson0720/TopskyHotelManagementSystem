@@ -1,19 +1,12 @@
 ﻿using jvncorelib.EncryptorLib;
 using jvncorelib.EntityLib;
-using jvncorelib.HttpLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Security;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
-using System.Windows.Input;
 
 namespace EOM.TSHotelManager.Common
 {
@@ -41,7 +34,7 @@ namespace EOM.TSHotelManager.Common
         /// <summary>
         /// WebApi URL(release)
         /// </summary>
-        public const string apiUrl = "";
+        public const string apiUrl = "HnCrMZZhh4EOT9hCYq0TrjnEzfX4Z9QGa/p99xv+fkXo+rM8Vv17CCjYNTs4JQoK·c$$cd;;0*>#$;b%?b>*<ac%c0b0ebc*b";
         /// <summary>
         /// WebApi URL(debug)
         /// </summary>

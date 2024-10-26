@@ -1,5 +1,3 @@
-using EOM.TSHotelManager.Common;
-
 namespace EOM.TSHotelManager.FormUI
 {
     internal static class Program

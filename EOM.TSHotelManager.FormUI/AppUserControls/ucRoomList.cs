@@ -21,18 +21,14 @@
  *SOFTWARE.
  *
  */
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.FormUI.Properties;
 using SqlSugar;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using EOM.TSHotelManager.FormUI.Properties;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManager.FormUI
 {

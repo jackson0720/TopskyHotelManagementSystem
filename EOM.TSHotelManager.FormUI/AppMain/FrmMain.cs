@@ -23,27 +23,19 @@
  */
 
 using AntdUI;
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
 using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.AppUserControls;
 using EOM.TSHotelManager.FormUI.Properties;
-using System;
-using System.Collections.Generic;
+using Sunny.UI;
 using System.Diagnostics;
-using System.Drawing;
-using System.Net;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Windows.Forms;
-using static System.Windows.Forms.DataFormats;
 
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmMain : Window
     {
-        private FrmLogin returnForm1 = null; 
+        private FrmLogin returnForm1 = null;
         private LoadingProgress _loadingProgress;
 
         public FrmMain(FrmLogin F1)
@@ -263,46 +255,6 @@ namespace EOM.TSHotelManager.FormUI
                 return;
             }
             #endregion
-        }
-
-        private void Navbar_MouseDown(object sender, MouseEventArgs e)
-        {
-            ucNavBar uc = sender as ucNavBar; // 使用sender参数获取事件的发起者
-            if (uc != null)
-            {
-                switch (uc.Name)
-                {
-                    case "客房管理":
-                        uc.BackgroundImage = Resources.picRoom_ImageHover;
-                        break;
-                    case "用户管理":
-                        uc.BackgroundImage = Resources.picCustomer_ImageHover;
-                        break;
-                    case "商品消费":
-                        uc.BackgroundImage = Resources.picCommodity_ImageHover;
-                        break;
-                }
-            }
-        }
-
-        private void Navbar_MouseLeave(object sender, System.EventArgs e)
-        {
-            ucNavBar uc = sender as ucNavBar; // 使用sender参数获取事件的发起者
-            if (uc != null)
-            {
-                switch (uc.Name)
-                {
-                    case "客房管理":
-                        uc.BackgroundImage = Resources.picRoom_Image;
-                        break;
-                    case "用户管理":
-                        uc.BackgroundImage = Resources.picCustomer_Image;
-                        break;
-                    case "商品消费":
-                        uc.BackgroundImage = Resources.picCommodity_Image;
-                        break;
-                }
-            }
         }
 
         #region 窗体加载事件方法

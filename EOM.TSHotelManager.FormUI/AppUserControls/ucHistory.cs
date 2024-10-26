@@ -22,8 +22,6 @@
  *
  */
 
-using System.Windows.Forms;
-
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class ucHistory : UserControl
