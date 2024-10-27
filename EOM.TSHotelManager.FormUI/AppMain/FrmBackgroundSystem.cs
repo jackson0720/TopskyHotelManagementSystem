@@ -32,6 +32,8 @@ namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmBackgroundSystem : UIForm
     {
+        private FrmAdminEnter returnForm1 = null;
+
         private LoadingProgress _loadingProgress;
 
         public delegate void UpdPwd();
@@ -40,13 +42,15 @@ namespace EOM.TSHotelManager.FormUI
 
         public static UpdPwd hideform;
 
-        public FrmBackgroundSystem()
+        public FrmBackgroundSystem(FrmAdminEnter F1, LoadingProgress loadingProgress)
         {
             InitializeComponent();
+            _loadingProgress = loadingProgress;
+
+            this.returnForm1 = F1;
 
             closeform = Closeform;
             hideform = HideWinform;
-            _loadingProgress = new LoadingProgress();
         }
 
         public void HideWinform()
@@ -59,7 +63,8 @@ namespace EOM.TSHotelManager.FormUI
 
         private void FrmBackgroundSystem_Load(object sender, EventArgs e)
         {
-            this.Owner.Close();
+            this.Owner.Hide();
+
             //清除前台Token使其无效
             LoginInfo.UserToken = null;
 
@@ -78,6 +83,11 @@ namespace EOM.TSHotelManager.FormUI
             else
             {//下午
                 uiLabel1.Text = "下午好," + AdminInfo.Name;
+            }
+
+            if (_loadingProgress != null)
+            {
+                _loadingProgress.Close();
             }
 
         }

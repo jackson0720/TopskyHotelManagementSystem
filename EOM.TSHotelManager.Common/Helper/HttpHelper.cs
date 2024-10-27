@@ -34,7 +34,7 @@ namespace EOM.TSHotelManager.Common
         /// <summary>
         /// WebApi URL(release)
         /// </summary>
-        public const string apiUrl = "HnCrMZZhh4EOT9hCYq0TrjnEzfX4Z9QGa/p99xv+fkXo+rM8Vv17CCjYNTs4JQoK·c$$cd;;0*>#$;b%?b>*<ac%c0b0ebc*b";
+        public const string apiUrl = "";
         /// <summary>
         /// WebApi URL(debug)
         /// </summary>

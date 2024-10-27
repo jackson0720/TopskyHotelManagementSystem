@@ -38,11 +38,10 @@ namespace EOM.TSHotelManager.FormUI
         private FrmLogin returnForm1 = null;
         private LoadingProgress _loadingProgress;
 
-        public FrmMain(FrmLogin F1)
+        public FrmMain(FrmLogin F1, LoadingProgress loadingProgress)
         {
             InitializeComponent();
-            _loadingProgress = new LoadingProgress();
-
+            _loadingProgress = loadingProgress;
 
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
@@ -260,6 +259,8 @@ namespace EOM.TSHotelManager.FormUI
         #region 窗体加载事件方法
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            this.Owner.Hide();
+            
             lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + "_V" + ApplicationUtil.GetApplicationVersion();
 
             tmrDate.Enabled = true;
@@ -311,6 +312,12 @@ namespace EOM.TSHotelManager.FormUI
             frm1.TopLevel = false;
             pnlMID.Controls.Add(frm1);
             frm1.Show();
+
+            if (_loadingProgress != null)
+            {
+                _loadingProgress.Close();
+            }
+
         }
         #endregion
 
