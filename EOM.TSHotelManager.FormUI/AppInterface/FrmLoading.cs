@@ -93,9 +93,9 @@ namespace EOM.TSHotelManager.FormUI
                             UIMessageBox.ShowWarning("最新版本中未找到可更新的 .exe 文件。");
                         }
                     }
-                    else if (versionCompareResult == 0)
+                    else
                     {
-                        UIMessageBox.ShowInfo("当前已为最新版本，无需更新！");
+                        UIMessageBox.ShowSuccess("当前已为最新版本，无需更新！");
                         await Task.Run(() => threadPro());
                     }
                 }
