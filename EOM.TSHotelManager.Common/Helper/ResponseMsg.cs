@@ -9,6 +9,6 @@
         /// <summary>
         /// 错误信息
         /// </summary>
-        public string message { get; set; }
+        public string? message { get; set; }
     }
 }

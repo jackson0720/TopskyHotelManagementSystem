@@ -28,146 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wbWaiting = new Sunny.UI.UIWaitingBar();
-            this.lblTips = new Sunny.UI.UILabel();
-            this.uiTitlePanel1 = new Sunny.UI.UITitlePanel();
-            this.lblSoftwareNewVersion = new Sunny.UI.UILabel();
-            this.lblDllVersion = new Sunny.UI.UILabel();
-            this.lblSoftwareVersion = new Sunny.UI.UILabel();
-            this.uiLabel4 = new Sunny.UI.UILabel();
-            this.uiLabel3 = new Sunny.UI.UILabel();
-            this.uiLabel2 = new Sunny.UI.UILabel();
-            this.uiTitlePanel1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // wbWaiting
-            // 
-            this.wbWaiting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.wbWaiting.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.wbWaiting.Location = new System.Drawing.Point(12, 40);
-            this.wbWaiting.MinimumSize = new System.Drawing.Size(70, 23);
-            this.wbWaiting.Name = "wbWaiting";
-            this.wbWaiting.Size = new System.Drawing.Size(556, 23);
-            this.wbWaiting.TabIndex = 0;
-            this.wbWaiting.Text = "uiWaitingBar1";
+            lblTips = new Sunny.UI.UILabel();
+            uiTitlePanel1 = new Sunny.UI.UITitlePanel();
+            lblSoftwareVersion = new Sunny.UI.UILabel();
+            uiLabel2 = new Sunny.UI.UILabel();
+            uiTitlePanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // lblTips
             // 
-            this.lblTips.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTips.Location = new System.Drawing.Point(108, 80);
-            this.lblTips.Name = "lblTips";
-            this.lblTips.Size = new System.Drawing.Size(364, 23);
-            this.lblTips.TabIndex = 1;
-            this.lblTips.Text = "检测新版本中，请让计算机保持联网状态.....";
-            this.lblTips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblTips.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            lblTips.ForeColor = Color.FromArgb(48, 48, 48);
+            lblTips.Location = new Point(44, 51);
+            lblTips.Name = "lblTips";
+            lblTips.Size = new Size(247, 23);
+            lblTips.TabIndex = 1;
+            lblTips.Text = "检测新版本中，请让计算机保持联网状态.....";
+            lblTips.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // uiTitlePanel1
             // 
-            this.uiTitlePanel1.Controls.Add(this.lblSoftwareNewVersion);
-            this.uiTitlePanel1.Controls.Add(this.lblDllVersion);
-            this.uiTitlePanel1.Controls.Add(this.lblSoftwareVersion);
-            this.uiTitlePanel1.Controls.Add(this.uiLabel4);
-            this.uiTitlePanel1.Controls.Add(this.uiLabel3);
-            this.uiTitlePanel1.Controls.Add(this.uiLabel2);
-            this.uiTitlePanel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiTitlePanel1.ForeColor = System.Drawing.Color.White;
-            this.uiTitlePanel1.Location = new System.Drawing.Point(166, 120);
-            this.uiTitlePanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiTitlePanel1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiTitlePanel1.Name = "uiTitlePanel1";
-            this.uiTitlePanel1.Padding = new System.Windows.Forms.Padding(0, 25, 0, 0);
-            this.uiTitlePanel1.ShowCollapse = true;
-            this.uiTitlePanel1.Size = new System.Drawing.Size(247, 124);
-            this.uiTitlePanel1.TabIndex = 2;
-            this.uiTitlePanel1.Text = "软件版本信息";
-            this.uiTitlePanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiTitlePanel1.TitleHeight = 25;
-            // 
-            // lblSoftwareNewVersion
-            // 
-            this.lblSoftwareNewVersion.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblSoftwareNewVersion.Location = new System.Drawing.Point(122, 93);
-            this.lblSoftwareNewVersion.Name = "lblSoftwareNewVersion";
-            this.lblSoftwareNewVersion.Size = new System.Drawing.Size(111, 23);
-            this.lblSoftwareNewVersion.TabIndex = 8;
-            this.lblSoftwareNewVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblDllVersion
-            // 
-            this.lblDllVersion.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblDllVersion.Location = new System.Drawing.Point(122, 63);
-            this.lblDllVersion.Name = "lblDllVersion";
-            this.lblDllVersion.Size = new System.Drawing.Size(111, 23);
-            this.lblDllVersion.TabIndex = 7;
-            this.lblDllVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            uiTitlePanel1.Controls.Add(lblSoftwareVersion);
+            uiTitlePanel1.Controls.Add(uiLabel2);
+            uiTitlePanel1.Font = new Font("微软雅黑", 12F);
+            uiTitlePanel1.ForeColor = Color.White;
+            uiTitlePanel1.Location = new Point(44, 91);
+            uiTitlePanel1.Margin = new Padding(4, 5, 4, 5);
+            uiTitlePanel1.MinimumSize = new Size(1, 1);
+            uiTitlePanel1.Name = "uiTitlePanel1";
+            uiTitlePanel1.Padding = new Padding(0, 25, 0, 0);
+            uiTitlePanel1.ShowCollapse = true;
+            uiTitlePanel1.ShowText = false;
+            uiTitlePanel1.Size = new Size(247, 66);
+            uiTitlePanel1.TabIndex = 2;
+            uiTitlePanel1.Text = "软件版本信息";
+            uiTitlePanel1.TextAlignment = ContentAlignment.MiddleCenter;
+            uiTitlePanel1.TitleHeight = 25;
             // 
             // lblSoftwareVersion
             // 
-            this.lblSoftwareVersion.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblSoftwareVersion.Location = new System.Drawing.Point(123, 33);
-            this.lblSoftwareVersion.Name = "lblSoftwareVersion";
-            this.lblSoftwareVersion.Size = new System.Drawing.Size(110, 23);
-            this.lblSoftwareVersion.TabIndex = 6;
-            this.lblSoftwareVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // uiLabel4
-            // 
-            this.uiLabel4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel4.Location = new System.Drawing.Point(14, 93);
-            this.uiLabel4.Name = "uiLabel4";
-            this.uiLabel4.Size = new System.Drawing.Size(111, 23);
-            this.uiLabel4.TabIndex = 5;
-            this.uiLabel4.Text = "程序最新版本号：";
-            this.uiLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiLabel3
-            // 
-            this.uiLabel3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel3.Location = new System.Drawing.Point(14, 63);
-            this.uiLabel3.Name = "uiLabel3";
-            this.uiLabel3.Size = new System.Drawing.Size(111, 23);
-            this.uiLabel3.TabIndex = 4;
-            this.uiLabel3.Text = "本地链库版本号：";
-            this.uiLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblSoftwareVersion.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            lblSoftwareVersion.ForeColor = Color.FromArgb(48, 48, 48);
+            lblSoftwareVersion.Location = new Point(123, 33);
+            lblSoftwareVersion.Name = "lblSoftwareVersion";
+            lblSoftwareVersion.Size = new Size(110, 23);
+            lblSoftwareVersion.TabIndex = 6;
+            lblSoftwareVersion.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // uiLabel2
             // 
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiLabel2.Location = new System.Drawing.Point(15, 33);
-            this.uiLabel2.Name = "uiLabel2";
-            this.uiLabel2.Size = new System.Drawing.Size(110, 23);
-            this.uiLabel2.TabIndex = 3;
-            this.uiLabel2.Text = "本地程序版本号：";
-            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            uiLabel2.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiLabel2.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel2.Location = new Point(15, 33);
+            uiLabel2.Name = "uiLabel2";
+            uiLabel2.Size = new Size(110, 23);
+            uiLabel2.TabIndex = 3;
+            uiLabel2.Text = "本地程序版本号：";
+            uiLabel2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FrmLoading
             // 
-            this.AllowShowTitle = false;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 256);
-            this.Controls.Add(this.uiTitlePanel1);
-            this.Controls.Add(this.lblTips);
-            this.Controls.Add(this.wbWaiting);
-            this.Name = "FrmLoading";
-            this.Padding = new System.Windows.Forms.Padding(0);
-            this.ShowTitle = false;
-            this.Text = "FrmLoading";
-            this.Load += new System.EventHandler(this.FrmLoading_Load);
-            this.uiTitlePanel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AllowShowTitle = false;
+            AutoScaleMode = AutoScaleMode.None;
+            ClientSize = new Size(335, 180);
+            Controls.Add(uiTitlePanel1);
+            Controls.Add(lblTips);
+            Name = "FrmLoading";
+            Padding = new Padding(0);
+            ShowTitle = false;
+            Text = "FrmLoading";
+            ZoomScaleRect = new Rectangle(15, 15, 580, 256);
+            Load += FrmLoading_Load;
+            uiTitlePanel1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
-
-        private Sunny.UI.UIWaitingBar wbWaiting;
         private Sunny.UI.UILabel lblTips;
         private Sunny.UI.UITitlePanel uiTitlePanel1;
-        private Sunny.UI.UILabel lblSoftwareNewVersion;
         private Sunny.UI.UILabel lblDllVersion;
         private Sunny.UI.UILabel lblSoftwareVersion;
-        private Sunny.UI.UILabel uiLabel4;
         private Sunny.UI.UILabel uiLabel3;
         private Sunny.UI.UILabel uiLabel2;
     }

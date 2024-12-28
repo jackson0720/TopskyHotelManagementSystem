@@ -17,35 +17,39 @@ namespace EOM.TSHotelManager.FormUI
         }
 
 
+        ResponseMsg result = new ResponseMsg();
+        Dictionary<string, string> getParam = new Dictionary<string, string>();
+        string postParam = string.Empty;
+
         #region 存放房间信息类
         //用于结算、转房显示信息用
-        public static string rm_RoomNo;
-        public static string rm_CustoNo;
-        public static string rm_RoomType;
-        public static string rm_RoomMoney;
+        public static string? rm_RoomNo;
+        public static string? rm_CustoNo;
+        public static string? rm_RoomType;
+        public static string? rm_RoomMoney;
         public static int rm_RoomStateId;
 
-        public static string co_RoomNo;
-        public static string co_CustoNo;
+        public static string? co_RoomNo;
+        public static string? co_CustoNo;
         public static DateTime? co_CheckTime;
-        public static string co_RoomPosition;
-        public static string co_RoomState;
-        public static string co_CustoName;
-        public static string co_CustoType;
+        public static string? co_RoomPosition;
+        public static string? co_RoomState;
+        public static string? co_CustoName;
+        public static string? co_CustoType;
         #endregion
 
         #region 存放用户信息类
         //用于房态图、查看用户信息用
-        public static string us_CustoNo;
-        public static string us_RoomNo;
-        public static string us_CustoName;
-        public static string us_CustoBirthday;
-        public static string us_CustoSex;
-        public static string us_CustoTel;
+        public static string? us_CustoNo;
+        public static string? us_RoomNo;
+        public static string? us_CustoName;
+        public static string? us_CustoBirthday;
+        public static string? us_CustoSex;
+        public static string? us_CustoTel;
         public static int us_CustoPassportType;
-        public static string us_CustoAddress;
+        public static string? us_CustoAddress;
         public static int us_CustoType;
-        public static string us_CustoID;
+        public static string? us_CustoID;
         #endregion
 
         #region 实例化房态图的房间信息
@@ -158,20 +162,20 @@ namespace EOM.TSHotelManager.FormUI
 
         }
 
-        static List<string> roomInfo = null;
+        private static List<string>? roomInfo = null;
 
         private void ucRoom_Load(object sender, EventArgs e)
         {
             this.CanPenetrate();
             this.Region = new Region(GetRoundRectPath(new RectangleF(0, 0, this.Width, this.Height), 6f));
-            if (!romCustoInfo.IsNullOrEmpty())
+            if (romCustoInfo != null)
             {
                 us_CustoNo = romCustoInfo.CustoNo;
                 us_CustoName = romCustoInfo.CustoName;
                 us_CustoSex = romCustoInfo.CustoSex == 1 ? "男" : "女";
                 us_CustoTel = romCustoInfo.CustoTel;
                 us_CustoID = romCustoInfo.CustoID;
-                us_CustoBirthday = romCustoInfo.CustoBirth == null ? "" : Convert.ToDateTime(romCustoInfo.CustoBirth).ToString();
+                us_CustoBirthday = romCustoInfo.CustoBirth == default ? "" : Convert.ToDateTime(romCustoInfo.CustoBirth).ToString();
                 us_CustoPassportType = romCustoInfo.PassportType;
                 us_CustoType = romCustoInfo.CustoType;
                 us_CustoAddress = romCustoInfo.CustoAdress;
@@ -195,10 +199,9 @@ namespace EOM.TSHotelManager.FormUI
                     break;
             }
             btnRoom.BackgroundImageLayout = AntdUI.TFit.Cover;
-            roomInfo = btnRoom.Text.Split("\n\n").ToList();
         }
 
-        Room r = null;
+        Room r;
         private void tsmiReserRoom_Click(object sender, EventArgs e)
         {
             FrmReserManager frm = new FrmReserManager();
@@ -211,17 +214,25 @@ namespace EOM.TSHotelManager.FormUI
                 e.Cancel = true;
                 return;
             }
-            Dictionary<string, string> room = new Dictionary<string, string>();
-            room.Add("no", btnRoom.Text.Split("\n\n")[1].ToString());
-            var result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, room);
+            var roomText = btnRoom.Text?.Split("\n\n");
+            if (roomText == null || roomText.Length < 2)
+            {
+                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
+                return;
+            }
+            getParam = new Dictionary<string, string>
+            {
+                { "no", roomText[1] }
+            };
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo", string.Empty, getParam);
 
             if (result.statusCode != 200)
             {
                 UIMessageBox.Show("接口服务异常！", "来自小T提示", UIStyle.Red);
                 return;
             }
-            r = HttpHelper.JsonToModel<Room>(result.message);
-            if (btnRoom.Text.Split("\n\n")[1].ToString() != "")
+            r = HttpHelper.JsonToModel<Room>(result.message!)!;
+            if (r.RoomStateId == 1)
             {
                 tsmiCheckIn.Enabled = false;
                 tsmiCheckOut.Enabled = true;
@@ -230,7 +241,7 @@ namespace EOM.TSHotelManager.FormUI
                 tsmiChangeRoom.Enabled = true;
                 tsmiReserRoom.Enabled = false;
             }
-            else if (r.RoomStateId == 3 || r.RoomStateId == 2)
+            else if (r.RoomStateId == 2 || r.RoomStateId == 3)
             {
                 tsmiCheckIn.Enabled = false;
                 tsmiCheckOut.Enabled = false;
@@ -248,7 +259,7 @@ namespace EOM.TSHotelManager.FormUI
                 tsmiChangeRoom.Enabled = false;
                 tsmiReserRoom.Enabled = false;
             }
-            else if (btnRoom.Text.Split("\n\n")[2].ToString() == "")
+            else
             {
                 tsmiCheckIn.Enabled = true;
                 tsmiCheckOut.Enabled = false;
@@ -261,51 +272,65 @@ namespace EOM.TSHotelManager.FormUI
 
         private void tsmiCheckIn_Click(object sender, EventArgs e)
         {
-            if (r.RoomStateId == 4)
+            if (romCustoInfo != null && romRoomInfo != null)
             {
-                rm_CustoNo = roomInfo[2];
-                rm_RoomNo = roomInfo[1];
-                rm_RoomType = roomInfo[0];
-                rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
-                rm_RoomStateId = 4;
-                UIMessageBox.ShowInfo("欢迎入住，请先注册客户信息！");
-                FrmReserList frm = new FrmReserList();
-                frm.ShowDialog();
-                return;
+                if (r.RoomStateId == 4)
+                {
+                    rm_CustoNo = romCustoInfo.CustoNo;
+                    rm_RoomNo = romRoomInfo.RoomNo;
+                    rm_RoomType = romRoomInfo.RoomName;
+                    rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
+                    rm_RoomStateId = 4;
+                    UIMessageBox.ShowInfo("欢迎入住，请先注册客户信息！");
+                    FrmReserList frm = new FrmReserList();
+                    frm.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    rm_CustoNo = romCustoInfo.CustoNo;
+                    rm_RoomNo = romRoomInfo.RoomNo;
+                    rm_RoomType = romRoomInfo.RoomName;
+                    rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
+                    FrmCheckIn frm = new FrmCheckIn();
+                    frm.Show();
+                }
             }
             else
             {
-                rm_CustoNo = roomInfo[2];
-                rm_RoomNo = roomInfo[1];
-                rm_RoomType = roomInfo[0];
-                rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
-                FrmCheckIn frm = new FrmCheckIn();
-                frm.Show();
+                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
             }
         }
 
         private void tsmiCheckOut_Click(object sender, EventArgs e)
         {
-            rm_CustoNo = roomInfo[2];
-            rm_RoomNo = roomInfo[1];
-            rm_RoomType = roomInfo[0];
+            rm_CustoNo = romRoomInfo.CustoNo;
+            rm_RoomNo = romRoomInfo.RoomNo;
+            rm_RoomType = romRoomInfo.RoomName;
             FrmCheckOutForm frm = new FrmCheckOutForm();
             frm.Show();
         }
 
-        public static string RoomNo;
-        public static string CustoNo;
-        public static string RoomState;
+        public static string? RoomNo;
+        public static string? CustoNo;
+        public static string? RoomState;
         private void tsmiChangeRoom_Click(object sender, EventArgs e)
         {
-            bool tf = UIMessageBox.Show("确定要进行转房吗？", "来自小T的提醒", UIStyle.Orange, UIMessageBoxButtons.OKCancel);
-            if (tf)
+            if (romCustoInfo != null && romRoomInfo != null)
             {
-                RoomNo = roomInfo[1];
-                CustoNo = roomInfo[2];
-                RoomState = roomInfo[0];
-                FrmChangeRoom frm = new FrmChangeRoom();
-                frm.Show();
+                bool tf = UIMessageBox.Show("确定要进行转房吗？", "来自小T的提醒", UIStyle.Orange, UIMessageBoxButtons.OKCancel);
+                if (tf)
+                {
+                    RoomNo = romRoomInfo.RoomNo;
+                    CustoNo = romCustoInfo.CustoNo;
+                    RoomState = romRoomInfo.RoomState;
+                    FrmChangeRoom frm = new FrmChangeRoom();
+                    frm.Show();
+                }
+            }
+            else
+            {
+                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
             }
         }
 
@@ -318,21 +343,47 @@ namespace EOM.TSHotelManager.FormUI
 
         private void tsmiChangeState_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> room = new Dictionary<string, string>
+            if (r.RoomStateId == 4)
             {
-                { "roomno", roomInfo[1] }
-            };
-            var result = HttpHelper.Request("Room/SelectRoomStateIdByRoomNo", null, room);
-
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.Show("SelectRoomStateIdByRoomNo+接口服务异常！", "来自小T提示", UIStyle.Red);
-                return;
+                bool tf = UIMessageBox.Show("当前房间已被预约，确认更改状态后将会删除原本预约状态及信息，你确定吗？", "来自小T的提醒", UIStyle.Red, UIMessageBoxButtons.OKCancel);
+                if (tf)
+                {
+                    getParam = new Dictionary<string, string>()
+                    {
+                        {"no",r.RoomNo }
+                    };
+                    result = HttpHelper.Request("Reser/SelectReserInfoByRoomNo", null, getParam);
+                    if (result.statusCode != 200)
+                    {
+                        UIMessageBox.Show("SelectReserInfoByRoomNo+接口服务异常！", "来自小T提示", UIStyle.Red);
+                        return;
+                    }
+                    else
+                    {
+                        var reser = new Reser
+                        {
+                            ReserId = HttpHelper.JsonToModel<Reser>(result.message!)!.ReserId
+                        };
+                        result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser), null);
+                        if (result.statusCode != 200)
+                        {
+                            UIMessageBox.Show("DeleteReserInfo+接口服务异常！", "来自小T提示", UIStyle.Red);
+                            return;
+                        }
+                    }
+                }
             }
-            rm_RoomStateId = Convert.ToInt32(result.message);
-            rm_RoomNo = roomInfo[1];
-            FrmRoomStateManager frsm = new FrmRoomStateManager();
-            frsm.ShowDialog();
+            if (romCustoInfo != null && romRoomInfo != null)
+            {
+                rm_RoomStateId = romRoomInfo.RoomStateId;
+                rm_RoomNo = romRoomInfo.RoomNo;
+                FrmRoomStateManager frsm = new FrmRoomStateManager();
+                frsm.ShowDialog();
+            }
+            else
+            {
+                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
+            }
         }
     }
 }

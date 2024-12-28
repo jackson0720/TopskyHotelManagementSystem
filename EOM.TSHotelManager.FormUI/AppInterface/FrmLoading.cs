@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,201 @@
  */
 using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
+using Newtonsoft.Json;
 using Sunny.UI;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmLoading : UIForm
     {
+        private string CurrentVersion => ApplicationUtil.GetApplicationVersion().ToString();
+        private string GithubRepoUrl = "https://api.github.com/repos/easy-open-meta/TopskyHotelManagerSystem/releases/latest";
+        private string FileName { get; set; }
+        private string CurrentExecutablePath => Application.ExecutablePath;
+        private string CurrentExecutableName => Path.GetFileName(CurrentExecutablePath);
+        private string FallbackUrl = "https://pan.gkhive.com/TS%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%BA%93";
+
+        private ProgressBar progressBar;
+
         public FrmLoading()
         {
             InitializeComponent();
+            progressBar = new ProgressBar
+            {
+                Minimum = 0,
+                Maximum = 100,
+                Dock = DockStyle.Top
+            };
+            this.Controls.Add(progressBar);
+        }
+
+        private async void CheckForUpdate()
+        {
+            try
+            {
+                using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+                client.DefaultRequestHeaders.Add("User-Agent", await GetDefaultUserAgentAsync());
+                var response = await client.GetAsync(GithubRepoUrl);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    var release = JsonConvert.DeserializeObject<GitHubRelease>(result);
+
+                    var latestVersion = release!.TagName.Replace("v", "", StringComparison.OrdinalIgnoreCase);
+                    var currentVersion = CurrentVersion.Replace("v", "", StringComparison.OrdinalIgnoreCase);
+
+                    var versionCompareResult = string.Compare(latestVersion, currentVersion, StringComparison.OrdinalIgnoreCase);
+
+                    if (versionCompareResult > 0)
+                    {
+                        var updateAsset = release.Assets.FirstOrDefault(a => a.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase));
+                        if (updateAsset != null)
+                        {
+                            FileName = $"{updateAsset.Name}_{DateTime.Now.ToString("yyyyMMddHHmmsss")}";
+                            var isUpdated = await DownloadAndInstallUpdate(updateAsset.BrowserDownloadUrl, updateAsset.Name, new Progress<double>(ReportProgress));
+                            if (isUpdated)
+                            {
+                                UIMessageBox.ShowWarning("旧版已停止使用，稍后将自动下载最新发行版！");
+                                ExitApplication();
+                            }
+                            else
+                            {
+                                UIMessageBox.ShowWarning("更新失败，请手动下载最新版本。");
+                            }
+                        }
+                        else
+                        {
+                            UIMessageBox.ShowWarning("最新版本中未找到可更新的 .exe 文件。");
+                        }
+                    }
+                    else if (versionCompareResult == 0)
+                    {
+                        UIMessageBox.ShowInfo("当前已为最新版本，无需更新！");
+                        await Task.Run(() => threadPro());
+                    }
+                }
+                else
+                {
+                    UIMessageBox.Show("无法获取最新版本信息，请检查网络连接。");
+                    ExitApplication();
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                UIMessageBox.Show("网络连接超时，无法检查更新。即将跳转到网盘版本库");
+                OpenFallbackUrl();
+                ExitApplication();
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.Show($"检查更新时发生错误: {ex.Message}");
+            }
+        }
+
+        private async Task<string> GetDefaultUserAgentAsync()
+        {
+            using var webBrowser = new WebBrowser();
+            webBrowser.ScriptErrorsSuppressed = true;
+            var tcs = new TaskCompletionSource<bool>();
+            webBrowser.DocumentCompleted += (sender, e) => tcs.TrySetResult(true);
+
+            webBrowser.Navigate(FallbackUrl);
+
+            await tcs.Task;
+
+            string? userAgent = webBrowser.Document?.InvokeScript("eval", new object[] { "navigator.userAgent;" })?.ToString();
+            return userAgent ?? string.Empty;
+        }
+
+        private async Task<bool> DownloadAndInstallUpdate(string downloadUrl, string fileName, IProgress<double> progress)
+        {
+            try
+            {
+                using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+                var tempFilePath = Path.Combine(Path.GetTempPath(), fileName);
+
+                var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+                var contentLength = response.Content.Headers.ContentLength;
+
+                using var fileStream = new FileStream(tempFilePath, FileMode.Create, FileAccess.Write, FileShare.None);
+                using var stream = await response.Content.ReadAsStreamAsync();
+
+                var totalBytesRead = 0L;
+                var buffer = new byte[8192];
+                int bytesRead;
+
+                while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                {
+                    await fileStream.WriteAsync(buffer, 0, bytesRead);
+                    totalBytesRead += bytesRead;
+
+                    if (contentLength.HasValue)
+                    {
+                        var progressPercentage = (double)totalBytesRead / contentLength.Value * 100;
+                        progress.Report(progressPercentage);
+                    }
+                }
+
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "explorer.exe",
+                    Arguments = $"/select, \"{tempFilePath}\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                });
+
+                ExitApplication();
+
+                return true;
+            }
+            catch (OperationCanceledException)
+            {
+                UIMessageBox.Show("网络连接超时，无法下载更新。");
+                OpenFallbackUrl();
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.Show($"下载更新时发生错误: {ex.Message}");
+                OpenFallbackUrl();
+            }
+            return false;
+        }
+
+        private void ReportProgress(double percentage)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<double>(ReportProgress), percentage);
+            }
+            else
+            {
+                progressBar.Value = (int)percentage;
+            }
+        }
+
+        private void OpenFallbackUrl()
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = FallbackUrl,
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                UIMessageBox.Show($"打开浏览器时发生错误: {ex.Message}");
+            }
         }
 
         private void FrmLoading_Load(object sender, EventArgs e)
         {
             lblSoftwareVersion.Text = ApplicationUtil.GetApplicationVersion().ToString();
-            lblDllVersion.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            CheckUpdate();
-            //Thread thread2 = new Thread(threadPro);//创建新线程
-            //thread2.Start();
+            CheckForUpdate();
         }
 
         public void threadPro()
@@ -57,40 +233,31 @@ namespace EOM.TSHotelManager.FormUI
             this.Close();
         }
 
-        ResponseMsg result = new ResponseMsg();
-
-        #region 判断版本号
-        private void CheckUpdate()
+        private void FrmLoading_FormClosing(object sender, FormClosingEventArgs e)
         {
-            result = HttpHelper.Request("App/CheckBaseVersion");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("CheckBaseVersion+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            var newversion = HttpHelper.JsonToModel<Applicationversion>(result.message);
-
-            var targetVersion = new System.Version(newversion.base_version);
-            var assembly = Assembly.GetExecutingAssembly();
-            var currentVersion = assembly.GetName().Version;
-
-            if (!currentVersion!.Equals(targetVersion))
-            {
-                lblTips.Text = "旧版已停止使用，请到github或gitee仓库更新最新发行版！";
-                System.Windows.Forms.Application.Exit();
-                this.Visible = false;
-                //调用系统默认的浏览器
-                System.Diagnostics.Process.Start("https://gitee.com/java-and-net/TopskyHotelManagerSystem/releases");
-            }
-            else
-            {
-                lblSoftwareNewVersion.Text = newversion.base_version;
-                lblTips.Text = "当前已为最新版本，无需更新！";
-                Thread thread2 = new Thread(threadPro);//创建新线程
-                thread2.Start();
-            }
         }
-        #endregion
 
+        private void ExitApplication()
+        {
+            Application.Exit();
+        }
+
+        public class GitHubRelease
+        {
+            [JsonProperty("tag_name")]
+            public string TagName { get; set; }
+
+            [JsonProperty("assets")]
+            public List<GitHubAsset> Assets { get; set; }
+        }
+
+        public class GitHubAsset
+        {
+            [JsonProperty("name")]
+            public string Name { get; set; }
+
+            [JsonProperty("browser_download_url")]
+            public string BrowserDownloadUrl { get; set; }
+        }
     }
 }

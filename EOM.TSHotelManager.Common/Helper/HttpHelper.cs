@@ -51,9 +51,9 @@ namespace EOM.TSHotelManager.Common
                 _convertEmptyStringToNull = convertEmptyStringToNull;
             }
 
-            public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                JObject obj = JObject.FromObject(value, serializer);
+                JObject obj = JObject.FromObject(value ?? new object(), serializer);
 
                 foreach (var prop in obj.Properties().ToList())
                 {
@@ -73,12 +73,12 @@ namespace EOM.TSHotelManager.Common
                 obj.WriteTo(writer);
             }
 
-            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            public override object ReadJson(JsonReader? reader, Type? objectType, object? existingValue, JsonSerializer? serializer)
             {
                 throw new NotImplementedException();
             }
 
-            public override bool CanConvert(Type objectType)
+            public override bool CanConvert(Type? objectType)
             {
                 return objectType == typeof(JObject);
             }
@@ -93,12 +93,17 @@ namespace EOM.TSHotelManager.Common
         /// <param name="uriString">服务器文件夹路径</param>
         public static string UpLoadFile(string fileNamePath, string uriString)
         {
-            // 创建WebClient实例
-            WebClient myWebClient = new WebClient();
-            byte[] responseData = myWebClient.UploadFile(uriString, "POST", fileNamePath);//得到返回的内容
-            String str = Encoding.UTF8.GetString(responseData);//得到的目的字符串
+            using HttpClient client = new HttpClient();
+            using MultipartFormDataContent content = new MultipartFormDataContent();
+            using FileStream fs = new FileStream(fileNamePath, FileMode.Open, FileAccess.Read);
+            using StreamContent streamContent = new StreamContent(fs);
+            content.Add(streamContent, "file", Path.GetFileName(fileNamePath));
 
-            return str.Replace('\"', ' ');
+            HttpResponseMessage response = client.PostAsync(uriString, content).Result;
+            response.EnsureSuccessStatusCode();
+            string responseData = response.Content.ReadAsStringAsync().Result;
+
+            return responseData.Replace('\"', ' ');
         }
 
         /// <summary>
@@ -108,7 +113,7 @@ namespace EOM.TSHotelManager.Common
         /// <param name="json"></param>
         /// <param name="dic"></param>
         /// <returns></returns>
-        public static ResponseMsg Request(string url, string json = null, Dictionary<string, string> dic = null)
+        public static ResponseMsg Request(string url, string? json = null, Dictionary<string, string>? dic = null)
         {
             ResponseMsg msg = new ResponseMsg();
 
@@ -135,6 +140,25 @@ namespace EOM.TSHotelManager.Common
 
             return msg;
         }
+
+        /// <summary>
+        /// 批量请求
+        /// </summary>
+        /// <param name="requests"></param>
+        /// <returns></returns>
+        public static Dictionary<string, ResponseMsg> RaiseRequests(Dictionary<string, (string? json, Dictionary<string, string>? dic)> requests)
+        {
+            var results = new Dictionary<string, ResponseMsg>();
+
+            foreach (var (url, (json, dic)) in requests)
+            {
+                var result = Request(url, json, dic);
+                results[url] = result;
+            }
+
+            return results;
+        }
+
         /// <summary>
         /// GET请求
         /// </summary>
@@ -145,7 +169,7 @@ namespace EOM.TSHotelManager.Common
         /// <param name="cookie"></param>
         /// <param name="dicHeaders"></param>
         /// <returns></returns>
-        public static ResponseMsg DoGet(string url, IDictionary<string, string> parameters = null, string contentType = null, string referer = null, string cookie = null, Dictionary<string, string> dicHeaders = null)
+        public static ResponseMsg DoGet(string url, IDictionary<string, string>? parameters = null, string? contentType = null, string? referer = null, string? cookie = null, Dictionary<string, string>? dicHeaders = null)
         {
             if (parameters != null && parameters.Count > 0)
             {
@@ -163,8 +187,8 @@ namespace EOM.TSHotelManager.Common
             var client = new RestClient(url);
             var request = new RestRequest();
 
-            string resultContent = "";
-            RestResponse rsp = null;
+            string? resultContent = null;
+            RestResponse? rsp = null;
 
             try
             {
@@ -213,7 +237,7 @@ namespace EOM.TSHotelManager.Common
         /// <param name="cookie"></param>
         /// <param name="dicHeaders"></param>
         /// <returns></returns>
-        public static ResponseMsg DoPost(string url, string jsonParam = null, string contentType = null, string referer = null, string cookie = null, Dictionary<string, string> dicHeaders = null)
+        public static ResponseMsg DoPost(string url, string? jsonParam = null, string? contentType = null, string? referer = null, string? cookie = null, Dictionary<string, string>? dicHeaders = null)
         {
             var reponse = new RestResponse();
             var client = new RestClient(url);
@@ -247,7 +271,7 @@ namespace EOM.TSHotelManager.Common
 
             request.AddHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36");
 
-            request.AddBody(jsonParam);
+            request.AddBody(jsonParam!);
 
             var token = LoginInfo.UserToken.IsNullOrEmpty() ? AdminInfo.UserToken : LoginInfo.UserToken;
 
@@ -298,7 +322,7 @@ namespace EOM.TSHotelManager.Common
         * 1.左右括号没有转移（Java的URLEncoder.encode有）
         * 2.转移符合都是小写的，Java是大写的
         */
-        public static string UrlEncode(string str, Encoding e)
+        public static string? UrlEncode(string? str, Encoding e)
         {
             var REG_URL_ENCODING = new Regex(@"%[a-f0-9]{2}");
 
@@ -317,9 +341,20 @@ namespace EOM.TSHotelManager.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="JsonStr"></param>
         /// <returns></returns>
-        public static List<T> JsonToList<T>(string JsonStr)
+        public static List<T>? JsonToList<T>(string JsonStr)
         {
             return JsonConvert.DeserializeObject<List<T>>(JsonStr);
+        }
+
+        /// <summary>
+        /// Json转分页列表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="json"></param>
+        /// <returns></returns>
+        public static T? JsonToPageList<T>(string json) where T : class
+        {
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         /// <summary>
@@ -328,7 +363,7 @@ namespace EOM.TSHotelManager.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static T JsonToModel<T>(this string input)
+        public static T? JsonToModel<T>(this string input)
         {
             return JsonConvert.DeserializeObject<T>(input);
         }
