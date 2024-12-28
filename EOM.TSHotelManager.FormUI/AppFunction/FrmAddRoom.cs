@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,14 +21,12 @@
  *SOFTWARE.
  *
  */
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
-using EOM.TSHotelManager.Common.Util;
 using AntdUI;
-using System.Linq;
+using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.Common.Util;
+using jvncorelib.EntityLib;
+using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -111,7 +109,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "isDelete","0"}
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypesAll",null, dic);
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll", null, dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -123,16 +121,17 @@ namespace EOM.TSHotelManager.FormUI
 
         public void LoadRoom()
         {
-            result = HttpHelper.Request("Room/SelectCanUseRoomAll");
+            result = HttpHelper.Request("Room/SelectRoomAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("SelectRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<Room> rooms = HttpHelper.JsonToList<Room>(result.message);
             flpRoom.Controls.Clear();
             for (int i = 0; i < rooms.Count; i++)
             {
+                room = new ucRoom();
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", rooms[i].RoomName, rooms[i].RoomNo, rooms[i].CustoName);
                 room.lblMark = "Mark"; //=Mark时，判断为房态图，禁用右键菜单
                 room.romRoomInfo = rooms[i];
@@ -142,8 +141,21 @@ namespace EOM.TSHotelManager.FormUI
 
         private void cboRoomType_TextChanged(object sender, EventArgs e)
         {
+            dic = new Dictionary<string, string>()
+            {
+                { "roomTypeId",cboRoomType.SelectedValue.ToString()}
+            };
+            result = HttpHelper.Request("RoomType/SelectRoomTypeByType", null, dic);
+            if (result.statusCode != 200)
+            {
+                UIMessageBox.ShowError("SelectRoomTypeByType+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
 
+            var roomType = HttpHelper.JsonToModel<RoomType>(result.message);
 
+            txtMoney.Value = !roomType.IsNullOrEmpty() ? roomType.RoomRent : 0;
+            txtDeposit.Value = !roomType.IsNullOrEmpty() ? roomType.RoomDeposit : 0;
         }
 
         private bool CheckRoomExists(string RoomNo)

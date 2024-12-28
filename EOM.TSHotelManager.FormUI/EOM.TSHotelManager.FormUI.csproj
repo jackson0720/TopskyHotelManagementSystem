@@ -12,28 +12,9 @@
 	  <PlatformTarget>x64</PlatformTarget>
 	  <AssemblyName>TS酒店管理系统</AssemblyName>
 	  <ApplicationIcon>logo.ico</ApplicationIcon>
+	  <FodyWeavingTaskPath>$(SolutionDir)packages\Fody\build\Fody.targets</FodyWeavingTaskPath>
+	  <FodyDisabled>false</FodyDisabled>
   </PropertyGroup>
-	  <!--<OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-	<ForceDesignerDPIUnaware>true</ForceDesignerDPIUnaware>
-	<ApplicationVersion>2.8.0.0</ApplicationVersion>
-	<AssemblyVersion>2.8.0.0</AssemblyVersion>
-	<FileVersion>2.8.0.0</FileVersion>
-	<ProductVersion>2.8.0.0</ProductVersion>
-	<PlatformTarget>x64</PlatformTarget>
-	<BaseOutputPath></BaseOutputPath>
-	  
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-	    <OutputPath>bin\Debug\</OutputPath>
-	    <DebugType>portable</DebugType>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-	    <OutputPath>bin\Release\</OutputPath>
-	    <DebugType>portable</DebugType>
-    </PropertyGroup>-->
   <ItemGroup>
     <Compile Update="AppFunction\FrmAboutUs.cs">
       <SubType>Form</SubType>
@@ -183,9 +164,6 @@
     <Compile Update="AppUserControls\ucRoom.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="AppUserControls\ucRoomList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="AppUserControls\ucRoomType.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +180,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+	<Content Include="bin\Debug\*.xml" CopyToOutputDirectory="PreserveNewest" />
+	<Content Include="bin\Release\*.xml" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\EOM.TSHotelManager.Common\EOM.TSHotelManager.Common.csproj">
@@ -247,7 +227,15 @@
 		<EmbeddedResource Remove="AppInterface\FrmNewLogin.resx" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Remove="FodyWeavers.xml" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Content Include="logo.ico" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Include="FodyWeavers.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Properties\Resources.resx">

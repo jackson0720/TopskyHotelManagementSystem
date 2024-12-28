@@ -1,5 +1,4 @@
 ﻿using EOM.TSHotelManager.Common.Core;
-using System;
 
 namespace EOM.TSHotelManager.Common
 {

@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,20 @@
  */
 
 using AntdUI;
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
 using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.Properties;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Linq;
+using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmLogin : Window
     {
-        //FrmStart f = null;
-        public FrmLogin(/*FrmStart frm*/)
+        private LoadingProgress _loadingProgress;
+        public FrmLogin()
         {
             InitializeComponent();
-            //f = frm;
+            _loadingProgress = new LoadingProgress();
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
             SetStyle(ControlStyles.UserPaint, true);
@@ -158,6 +154,7 @@ namespace EOM.TSHotelManager.FormUI
         #region 登录图片点击事件
         private void picLogin_Click(object sender, EventArgs e)
         {
+            _loadingProgress.Show();
             try
             {
                 if (CheckInput())//检验输入完整性
@@ -189,10 +186,9 @@ namespace EOM.TSHotelManager.FormUI
                         LoginInfo.WorkerPosition = w.PositionName;
                         LoginInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
                         LoginInfo.UserToken = w.user_token;
-                        FrmMain frm = new FrmMain(this);
+                        FrmMain frm = new FrmMain(this, _loadingProgress);
                         this.Hide();//隐藏登录窗体
-                        frm.ShowDialog();//打开主窗体
-
+                        frm.ShowDialog(this);//打开主窗体
                     }
                     else
                     {
@@ -206,6 +202,9 @@ namespace EOM.TSHotelManager.FormUI
                 //Console.WriteLine(ex);
                 UIMessageBox.Show("服务器维护中，请稍后再试！", "温馨提示", UIStyle.Red);
             }
+            finally
+            {
+            }
         }
         #endregion
 
@@ -213,7 +212,6 @@ namespace EOM.TSHotelManager.FormUI
         {
             FrmAdminEnter frmAdminEnter = new FrmAdminEnter();
             frmAdminEnter.ShowDialog(this);
-            this.Close();
         }
 
         private void picFormSize_MouseDown(object sender, MouseEventArgs e)

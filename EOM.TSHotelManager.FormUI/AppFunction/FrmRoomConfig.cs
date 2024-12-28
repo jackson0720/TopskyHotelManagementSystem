@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -21,20 +21,11 @@
  *SOFTWARE.
  *
  */
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.Common.Util;
 using jvncorelib.EntityLib;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using EOM.TSHotelManager.Common.Util;
 
 namespace EOM.TSHotelManager.FormUI.AppFunction
 {
@@ -50,7 +41,7 @@ namespace EOM.TSHotelManager.FormUI.AppFunction
 
         public void LoadRoomType()
         {
-            result = HttpHelper.Request("RoomType/SelectRoomTypesAll",null);
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll", null);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -159,7 +150,7 @@ namespace EOM.TSHotelManager.FormUI.AppFunction
                 RoomName = txtRoomTypeName.Text.Trim(),
                 RoomRent = Convert.ToDecimal(dudRent.Value),
                 RoomDeposit = Convert.ToDecimal(dudDeposit.Value),
-                delete_mk = deleteMk == 0 ? 1:0,
+                delete_mk = deleteMk == 0 ? 1 : 0,
                 datachg_usr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(roomType))

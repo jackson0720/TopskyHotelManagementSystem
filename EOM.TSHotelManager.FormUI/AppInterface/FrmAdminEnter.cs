@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -22,21 +22,21 @@
  *
  */
 
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using jvncorelib.EncryptorLib;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmAdminEnter : UIForm
     {
+        private LoadingProgress _loadingProgress;
         public FrmAdminEnter()
         {
             InitializeComponent();
+            _loadingProgress = new LoadingProgress();
         }
 
         Dictionary<string, string> dic = null;
@@ -44,6 +44,8 @@ namespace EOM.TSHotelManager.FormUI
 
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
+            _loadingProgress.Show();
+
             string account = txtAccount.Text.Trim();//获取超管账号
             string pass = txtPassword.Text.Trim();//获取超管密码
             if (!CheckInputString(account, pass))
@@ -77,9 +79,9 @@ namespace EOM.TSHotelManager.FormUI
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "版本登入了后台管理系统！", 3);
                 #endregion
-                FrmBackgroundSystem fm = new FrmBackgroundSystem();
-                fm.ShowDialog(this);//打开主窗体
+                FrmBackgroundSystem fm = new FrmBackgroundSystem(this, _loadingProgress);
                 this.Hide();//隐藏登录窗体
+                fm.ShowDialog(this);//打开主窗体
 
             }
             else
@@ -89,15 +91,9 @@ namespace EOM.TSHotelManager.FormUI
             }
         }
 
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void FrmAdminEnter_Load(object sender, EventArgs e)
         {
-            //this.Owner.Hide();
+            this.Owner.Hide();
             txtAccount.Text = "admin";
             txtPassword.Text = "admin";
         }

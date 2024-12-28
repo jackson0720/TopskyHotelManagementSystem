@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -22,14 +22,10 @@
  *
  */
 
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Transactions;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -253,7 +249,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "roomno",txtRoomNo.Text.Trim()}
             };
-            result = HttpHelper.Request("Wti/ListWtiInfoByRoomNo", null, dic);
+            result = HttpHelper.Request("HydroelectricPower/ListWtiInfoByRoomNo", null, dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("ListWtiInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -374,7 +370,7 @@ namespace EOM.TSHotelManager.FormUI
                         bool n = result.message.ToString().Equals("true");
                         if (n)
                         {
-                            result = HttpHelper.Request("Wti​/InsertWtiInfo", HttpHelper.ModelToJson(w));
+                            result = HttpHelper.Request("HydroelectricPower​/InsertWtiInfo", HttpHelper.ModelToJson(w));
                             if (result.statusCode != 200)
                             {
                                 UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -388,6 +384,7 @@ namespace EOM.TSHotelManager.FormUI
                         }
                         UIMessageBox.Show("结算成功！", "系统提示", UIStyle.Green);
                         FrmRoomManager.Reload("");
+                        FrmRoomManager._RefreshRoomCount();
 
                         #region 获取添加操作日志所需的信息
                         RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
@@ -422,7 +419,7 @@ namespace EOM.TSHotelManager.FormUI
                             bool n = result.message.ToString().Equals("true");
                             if (n)
                             {
-                                result = HttpHelper.Request("Wti​/InsertWtiInfo", HttpHelper.ModelToJson(w));
+                                result = HttpHelper.Request("HydroelectricPower​/InsertWtiInfo", HttpHelper.ModelToJson(w));
                                 if (result.statusCode != 200)
                                 {
                                     UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -436,6 +433,7 @@ namespace EOM.TSHotelManager.FormUI
                             }
                             UIMessageBox.Show("结算成功！", "系统提示", UIStyle.Green);
                             FrmRoomManager.Reload("");
+                            FrmRoomManager._RefreshRoomCount();
                             #region 获取添加操作日志所需的信息
                             RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
                             #endregion

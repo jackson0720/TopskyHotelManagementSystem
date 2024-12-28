@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EOM.TSHotelManager.Common
+﻿namespace EOM.TSHotelManager.Common
 {
-    public class PassportConstant:Constant<PassportConstant>
+    public class PassportConstant : Constant<PassportConstant>
     {
         // 中国居民身份证
         public static readonly PassportConstant ChineseResidentIdentityCard = new PassportConstant("0", "中国居民身份证");

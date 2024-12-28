@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +23,26 @@
  */
 
 using AntdUI;
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
 using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.AppUserControls;
 using EOM.TSHotelManager.FormUI.Properties;
-using System;
-using System.Collections.Generic;
+using Sunny.UI;
 using System.Diagnostics;
-using System.Drawing;
-using System.Net;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Windows.Forms;
-using static System.Windows.Forms.DataFormats;
 
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmMain : Window
     {
         private FrmLogin returnForm1 = null;
-        public FrmMain(FrmLogin F1)
+        private LoadingProgress _loadingProgress;
+
+        public FrmMain(FrmLogin F1, LoadingProgress loadingProgress)
         {
             InitializeComponent();
+            _loadingProgress = loadingProgress;
+
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
             SetStyle(ControlStyles.UserPaint, true);
@@ -260,49 +256,11 @@ namespace EOM.TSHotelManager.FormUI
             #endregion
         }
 
-        private void Navbar_MouseDown(object sender, MouseEventArgs e)
-        {
-            ucNavBar uc = sender as ucNavBar; // 使用sender参数获取事件的发起者
-            if (uc != null)
-            {
-                switch (uc.Name)
-                {
-                    case "客房管理":
-                        uc.BackgroundImage = Resources.picRoom_ImageHover;
-                        break;
-                    case "用户管理":
-                        uc.BackgroundImage = Resources.picCustomer_ImageHover;
-                        break;
-                    case "商品消费":
-                        uc.BackgroundImage = Resources.picCommodity_ImageHover;
-                        break;
-                }
-            }
-        }
-
-        private void Navbar_MouseLeave(object sender, System.EventArgs e)
-        {
-            ucNavBar uc = sender as ucNavBar; // 使用sender参数获取事件的发起者
-            if (uc != null)
-            {
-                switch (uc.Name)
-                {
-                    case "客房管理":
-                        uc.BackgroundImage = Resources.picRoom_Image;
-                        break;
-                    case "用户管理":
-                        uc.BackgroundImage = Resources.picCustomer_Image;
-                        break;
-                    case "商品消费":
-                        uc.BackgroundImage = Resources.picCommodity_Image;
-                        break;
-                }
-            }
-        }
-
         #region 窗体加载事件方法
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            this.Owner.Hide();
+            
             lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + "_V" + ApplicationUtil.GetApplicationVersion();
 
             tmrDate.Enabled = true;
@@ -354,6 +312,12 @@ namespace EOM.TSHotelManager.FormUI
             frm1.TopLevel = false;
             pnlMID.Controls.Add(frm1);
             frm1.Show();
+
+            if (_loadingProgress != null)
+            {
+                _loadingProgress.Close();
+            }
+
         }
         #endregion
 
@@ -553,9 +517,17 @@ namespace EOM.TSHotelManager.FormUI
         {
             notifyIcon1.Dispose();
         }
-        private void muNavBar_SelectChanged(object sender, MenuItem item)
+
+        private void cpUITheme_ValueChanged(object sender, ColorEventArgs e)
         {
-            switch (item.Text)
+            AntdUI.Style.Db.SetPrimary(e.Value);
+            Refresh();
+        }
+
+        private void muNavBar_SelectChanged(object sender, MenuSelectEventArgs e)
+        {
+            _loadingProgress.Show();
+            switch (e.Value.Text)
             {
                 case "客房管理":
                     pnlMID.Controls.Clear();
@@ -585,12 +557,8 @@ namespace EOM.TSHotelManager.FormUI
                     frmSellThing.Show();
                     break;
             }
-        }
+            _loadingProgress.Close();
 
-        private void cpUITheme_ValueChanged(object sender, ColorEventArgs e)
-        {
-            AntdUI.Style.Db.SetPrimary(e.Value);
-            Refresh();
         }
     }
 }

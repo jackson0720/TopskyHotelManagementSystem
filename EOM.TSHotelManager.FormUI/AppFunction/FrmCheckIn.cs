@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +23,9 @@
  */
 
 
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Transactions;
 
 namespace EOM.TSHotelManager.FormUI
@@ -40,36 +37,27 @@ namespace EOM.TSHotelManager.FormUI
             InitializeComponent();
         }
 
-        protected override bool CheckData()
-        {
-            return CheckEmpty(txtCustoName, "请输入姓名")
-                   && CheckEmpty(txtCustoNo, "请输入客户编号")
-                   && CheckEmpty(txtCustoTel, "输入11位手机号码");
-        }
-        int count = 0;
-
         ResponseMsg result = new ResponseMsg();
 
-        #region 窗体加载事件方法
         private void FrmCheckIn_Load(object sender, EventArgs e)
         {
             txtRoomNo.Text = ucRoom.rm_RoomNo;
             Dictionary<string, string> pairs = new Dictionary<string, string>();
-            pairs.Add("no", txtRoomNo.Text.Trim());
+            pairs.Add("no", txtRoomNo.Text.Trim()!);
             result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, pairs);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectRoomByRoomNo+接口服务异常，请提交issue");
                 return;
             }
-            Room r = HttpHelper.JsonToModel<Room>(result.message);
+            Room r = HttpHelper.JsonToModel<Room>(result.message!)!;
             result = HttpHelper.Request("RoomType/SelectRoomTypeByRoomNo", null, pairs);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectRoomTypeByRoomNo+接口服务异常，请提交issue");
                 return;
             }
-            RoomType t = HttpHelper.JsonToModel<RoomType>(result.message);
+            RoomType t = HttpHelper.JsonToModel<RoomType>(result.message!)!;
             txtType.Text = t.RoomName;
             txtMoney.Text = r.RoomMoney.ToString();
             txtRoomPosition.Text = r.RoomPosition;
@@ -81,10 +69,12 @@ namespace EOM.TSHotelManager.FormUI
                 UIMessageTip.ShowError("SelectCustoAll+接口服务异常，请提交issue");
                 return;
             }
-            var ctos = HttpHelper.JsonToList<Custo>(result.message).Select(a => a.CustoNo).ToArray();
-            //List<Room> roms = new RoomService().SelectCanUseRoomAll();
-
-            txtCustoNo.AutoCompleteCustomSource.AddRange(ctos);
+            var custoList = HttpHelper.JsonToPageList<OSelectAllDto<Custo>>(result.message!);
+            if (custoList != null && custoList != null)
+            {
+                var ctos = custoList.listSource.Select(custo => custo.CustoNo).ToArray();
+                txtCustoNo.AutoCompleteCustomSource.AddRange(ctos);
+            }
             try
             {
                 txtCustoNo.Text = "";
@@ -93,9 +83,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 txtCustoNo.Text = ucRoom.rm_CustoNo;
             }
-
         }
-        #endregion
 
         #region 关闭窗口
         private void btnClose_Click(object sender, EventArgs e)
@@ -120,77 +108,77 @@ namespace EOM.TSHotelManager.FormUI
 
         private void txtCustoNo_Validated(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("VipRule/SelectVipRuleList", null, null);
+            try
+            {
+                ValidateAndUpdateCustomerInfo();
+            }
+            catch (Exception ex)
+            {
+                UIMessageTip.ShowError($"接口服务异常，请提交issue: {ex.Message}");
+            }
+        }
+
+        private void ValidateAndUpdateCustomerInfo()
+        {
+            // 获取会员规则列表
+            var result = HttpHelper.Request("VipRule/SelectVipRuleList", null, null);
             if (result.statusCode != 200)
             {
-                UIMessageTip.ShowError("SelectVipRuleList+接口服务异常，请提交issue");
-                return;
+                throw new Exception("SelectVipRuleList+接口服务异常");
             }
-            //在每次完成输入验证之后，对该用户的会员等级进行初始化或升级以及降级操作
-            var listVipRule = HttpHelper.JsonToList<VipRule>(result.message).OrderBy(a => a.rule_value).Distinct().ToList();
-            var new_type = 0;
-            //查询该用户以往的消费记录总额是否达到指定金额,不为空则为老客户
-            Dictionary<string, string> user = new Dictionary<string, string>();
-            user.Add("custoNo", txtCustoNo.Text.Trim());
+
+            var listVipRule = HttpHelper.JsonToList<VipRule>(result.message!)!
+                .OrderBy(a => a.rule_value)
+                .Distinct()
+                .ToList();
+
+            // 查询用户消费记录
+            var user = new Dictionary<string, string> { { "custoNo", txtCustoNo.Text.Trim() } };
             result = HttpHelper.Request("Spend/SeletHistorySpendInfoAll", null, user);
             if (result.statusCode != 200)
             {
-                UIMessageTip.ShowError("SeletHistorySpendInfoAll+接口服务异常，请提交issue");
-                return;
+                throw new Exception("SeletHistorySpendInfoAll+接口服务异常");
             }
-            var listCustoSpend = HttpHelper.JsonToList<Spend>(result.message);
+
+            var listCustoSpend = HttpHelper.JsonToList<Spend>(result.message!)!;
             if (!listCustoSpend.IsNullOrEmpty())
             {
                 var spendAmount = listCustoSpend.Sum(a => a.SpendMoney);
-                listVipRule.ForEach(vipRule =>
-                {
-                    if (spendAmount >= vipRule.rule_value)
-                    {
-                        new_type = vipRule.type_id;
-                    }
-                });
+                var new_type = listVipRule
+                    .Where(vipRule => spendAmount >= vipRule.rule_value)
+                    .OrderByDescending(vipRule => vipRule.rule_value)
+                    .FirstOrDefault()?.type_id ?? 0;
 
-                //不等于0即会员等级有变，需进行及时会员等级
+                // 如果会员等级有变，更新会员等级
                 if (new_type != 0)
                 {
-                    user = new Dictionary<string, string>();
-                    user.Add("custoNo", txtCustoNo.Text.Trim());
-                    user.Add("userType", new_type.ToString());
+                    user = new Dictionary<string, string>
+            {
+                { "custoNo", txtCustoNo.Text.Trim() },
+                { "userType", new_type.ToString() }
+            };
                     result = HttpHelper.Request("Custo/UpdCustomerTypeByCustoNo", null, user);
                     if (result.statusCode != 200)
                     {
-                        UIMessageTip.ShowError("UpdCustomerTypeByCustoNo+接口服务异常，请提交issue");
-                        return;
+                        throw new Exception("UpdCustomerTypeByCustoNo+接口服务异常");
                     }
                 }
-
             }
 
-            try
+            // 获取用户卡片信息
+            if (!string.IsNullOrEmpty(txtCustoNo.Text))
             {
-                if (string.IsNullOrEmpty(txtCustoNo.Text))
-                {
-                    return;
-                }
-                user = new Dictionary<string, string>();
-                user.Add("CustoNo", txtCustoNo.Text.Trim());
+                user = new Dictionary<string, string> { { "CustoNo", txtCustoNo.Text.Trim() } };
                 result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", null, user);
                 if (result.statusCode != 200)
                 {
-                    UIMessageTip.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交issue");
-                    return;
+                    throw new Exception("SelectCardInfoByCustoNo+接口服务异常");
                 }
 
-                Custo c = HttpHelper.JsonToModel<Custo>(result.message);
-                txtCustoName.Text = c.CustoName;
-                txtCustoTel.Text = c.CustoTel;
-                txtCustoType.Text = c.typeName;
-            }
-            catch
-            {
-                txtCustoName.Text = "";
-                txtCustoTel.Text = "";
-                txtCustoType.Text = "";
+                var custo = HttpHelper.JsonToModel<Custo>(result.message!);
+                txtCustoName.Text = custo?.CustoName ?? "";
+                txtCustoTel.Text = custo?.CustoTel ?? "";
+                txtCustoType.Text = custo?.typeName ?? "";
             }
         }
 
@@ -228,6 +216,7 @@ namespace EOM.TSHotelManager.FormUI
                         UIMessageBox.Show("登记入住成功！", "登记提示", UIStyle.Green);
                         txtCustoNo.Text = "";
                         FrmRoomManager.Reload("");
+                        FrmRoomManager._RefreshRoomCount();
                         #region 获取添加操作日志所需的信息
                         RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustoNo + "进行了入住操作！", 1);
                         #endregion

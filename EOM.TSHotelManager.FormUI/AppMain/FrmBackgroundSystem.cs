@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,31 @@
  */
 
 
-using EOM.TSHotelManager.Common.Core;
-using Sunny.UI;
 using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.AppFunction;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
+using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmBackgroundSystem : UIForm
     {
+        private FrmAdminEnter returnForm1 = null;
+
+        private LoadingProgress _loadingProgress;
+
         public delegate void UpdPwd();
 
         public static UpdPwd closeform;
 
         public static UpdPwd hideform;
 
-        public FrmBackgroundSystem()
+        public FrmBackgroundSystem(FrmAdminEnter F1, LoadingProgress loadingProgress)
         {
             InitializeComponent();
+            _loadingProgress = loadingProgress;
+
+            this.returnForm1 = F1;
 
             closeform = Closeform;
             hideform = HideWinform;
@@ -61,7 +63,8 @@ namespace EOM.TSHotelManager.FormUI
 
         private void FrmBackgroundSystem_Load(object sender, EventArgs e)
         {
-            this.Owner.Close();
+            this.Owner.Hide();
+
             //清除前台Token使其无效
             LoginInfo.UserToken = null;
 
@@ -82,6 +85,11 @@ namespace EOM.TSHotelManager.FormUI
                 uiLabel1.Text = "下午好," + AdminInfo.Name;
             }
 
+            if (_loadingProgress != null)
+            {
+                _loadingProgress.Close();
+            }
+
         }
 
         /// <summary>
@@ -94,6 +102,7 @@ namespace EOM.TSHotelManager.FormUI
 
         private void Aside_MenuItemClick(TreeNode node, NavMenuItem item, int pageIndex)
         {
+            _loadingProgress.Show();
             if (!node.Text.IsNullOrEmpty())
             {
                 switch (node.Text)
@@ -283,6 +292,7 @@ namespace EOM.TSHotelManager.FormUI
                         break;
 
                 }
+                _loadingProgress.Close();
             }
         }
 

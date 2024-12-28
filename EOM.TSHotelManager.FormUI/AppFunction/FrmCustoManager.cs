@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -22,16 +22,11 @@
  *
  */
 
-using EOM.TSHotelManager.Common.Core;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Data;
-using System.Linq;
-using System.ComponentModel;
 using AntdUI;
+using EOM.TSHotelManager.Common;
+using EOM.TSHotelManager.Common.Core;
 using jvncorelib.EntityLib;
+using System.Data;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -102,7 +97,7 @@ namespace EOM.TSHotelManager.FormUI
             result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
             if (result.statusCode != 200)
             {
-                AntdUI.Message.error(this,"SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
             }
             OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
@@ -183,7 +178,7 @@ namespace EOM.TSHotelManager.FormUI
                 result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    AntdUI.Message.error(this,"SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    AntdUI.Message.error(this, "SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
             }

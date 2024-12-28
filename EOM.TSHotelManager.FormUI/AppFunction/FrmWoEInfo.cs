@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,9 @@
  *
  */
 
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -61,7 +58,7 @@ namespace EOM.TSHotelManager.FormUI
         /// </summary>
         private void LoadWtiInfo()
         {
-            result = HttpHelper.Request("Wti/SelectWtiInfoAll");
+            result = HttpHelper.Request("HydroelectricPower/SelectWtiInfoAll");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectWtiInfoAll+接口服务异常，请提交issue");
@@ -87,7 +84,7 @@ namespace EOM.TSHotelManager.FormUI
                 Record = AdminInfo.Account,
                 datachg_usr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Wti/UpdateWtiInfo", HttpHelper.ModelToJson(wti));
+            result = HttpHelper.Request("HydroelectricPower/UpdateWtiInfo", HttpHelper.ModelToJson(wti));
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("UpdateWtiInfo+接口服务异常，请提交issue");

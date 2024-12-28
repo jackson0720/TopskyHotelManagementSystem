@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,9 @@
  */
 
 
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
 
 namespace EOM.TSHotelManager.FormUI
 {

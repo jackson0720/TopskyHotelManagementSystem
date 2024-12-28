@@ -28,1071 +28,1051 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCheckOutForm));
-            this.btnBalance = new Sunny.UI.UIButton();
-            this.lblVIPPrice = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.dgvSpendList = new Sunny.UI.UIDataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSpendNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblDay = new System.Windows.Forms.Label();
-            this.lable00 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.lblVIP = new System.Windows.Forms.Label();
-            this.dtpCheckTime = new Sunny.UI.UITextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtRoomNo = new Sunny.UI.UITextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.lblChange = new System.Windows.Forms.Label();
-            this.CustoNo = new Sunny.UI.UITextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.CustoName = new Sunny.UI.UITextBox();
-            this.lblGetReceipts = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cboCustoType = new Sunny.UI.UIComboBox();
-            this.cboPassportType = new Sunny.UI.UIComboBox();
-            this.cboCustoSex = new Sunny.UI.UIComboBox();
-            this.txtCustoNo = new Sunny.UI.UITextBox();
-            this.txtCustoName = new Sunny.UI.UITextBox();
-            this.txtPassportNum = new Sunny.UI.UITextBox();
-            this.txtTel = new Sunny.UI.UITextBox();
-            this.dtpBirth = new Sunny.UI.UIDatePicker();
-            this.txtAddress = new Sunny.UI.UITextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.dgvWti = new Sunny.UI.UIDataGridView();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clRoomNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clCustoNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clDealTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clWater = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clElectric = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clMarkUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uiTabControlMenu2 = new Sunny.UI.UITabControlMenu();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtReceipts = new Sunny.UI.UITextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSpendList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvWti)).BeginInit();
-            this.uiTabControlMenu2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.SuspendLayout();
+            btnBalance = new Sunny.UI.UIButton();
+            lblVIPPrice = new Label();
+            label15 = new Label();
+            dgvSpendList = new Sunny.UI.UIDataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            clPrice = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            clSpendNo = new DataGridViewTextBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column8 = new DataGridViewTextBoxColumn();
+            lblDay = new Label();
+            lable00 = new Label();
+            label29 = new Label();
+            lblVIP = new Label();
+            dtpCheckTime = new Sunny.UI.UITextBox();
+            label25 = new Label();
+            txtRoomNo = new Sunny.UI.UITextBox();
+            label27 = new Label();
+            label28 = new Label();
+            lblChange = new Label();
+            CustoNo = new Sunny.UI.UITextBox();
+            label21 = new Label();
+            CustoName = new Sunny.UI.UITextBox();
+            lblGetReceipts = new Label();
+            label1 = new Label();
+            label24 = new Label();
+            label17 = new Label();
+            label18 = new Label();
+            cboCustoType = new Sunny.UI.UIComboBox();
+            cboPassportType = new Sunny.UI.UIComboBox();
+            cboCustoSex = new Sunny.UI.UIComboBox();
+            txtCustoNo = new Sunny.UI.UITextBox();
+            txtCustoName = new Sunny.UI.UITextBox();
+            txtPassportNum = new Sunny.UI.UITextBox();
+            txtTel = new Sunny.UI.UITextBox();
+            dtpBirth = new Sunny.UI.UIDatePicker();
+            txtAddress = new Sunny.UI.UITextBox();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label16 = new Label();
+            label22 = new Label();
+            label30 = new Label();
+            label31 = new Label();
+            label32 = new Label();
+            dgvWti = new Sunny.UI.UIDataGridView();
+            uiTabControlMenu2 = new Sunny.UI.UITabControlMenu();
+            tabPage1 = new TabPage();
+            txtReceipts = new Sunny.UI.UITextBox();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
+            Column11 = new DataGridViewTextBoxColumn();
+            token = new DataGridViewTextBoxColumn();
+            clRoomNo = new DataGridViewTextBoxColumn();
+            clCustoNo = new DataGridViewTextBoxColumn();
+            clStartTime = new DataGridViewTextBoxColumn();
+            clDealTime = new DataGridViewTextBoxColumn();
+            clWater = new DataGridViewTextBoxColumn();
+            clElectric = new DataGridViewTextBoxColumn();
+            clMarkUser = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column6 = new DataGridViewTextBoxColumn();
+            Column7 = new DataGridViewTextBoxColumn();
+            Column9 = new DataGridViewTextBoxColumn();
+            Column10 = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvSpendList).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvWti).BeginInit();
+            uiTabControlMenu2.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            SuspendLayout();
             // 
             // btnBalance
             // 
-            this.btnBalance.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBalance.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnBalance.Location = new System.Drawing.Point(495, 485);
-            this.btnBalance.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnBalance.Name = "btnBalance";
-            this.btnBalance.Radius = 30;
-            this.btnBalance.Size = new System.Drawing.Size(162, 46);
-            this.btnBalance.Style = Sunny.UI.UIStyle.Custom;
-            this.btnBalance.TabIndex = 116;
-            this.btnBalance.Text = "结         算";
-            this.btnBalance.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnBalance.Click += new System.EventHandler(this.btnBalance_Click);
+            btnBalance.Cursor = Cursors.Hand;
+            btnBalance.Font = new Font("微软雅黑", 12F);
+            btnBalance.Location = new Point(459, 486);
+            btnBalance.MinimumSize = new Size(1, 1);
+            btnBalance.Name = "btnBalance";
+            btnBalance.Radius = 30;
+            btnBalance.Size = new Size(162, 46);
+            btnBalance.Style = Sunny.UI.UIStyle.Custom;
+            btnBalance.TabIndex = 116;
+            btnBalance.Text = "结         算";
+            btnBalance.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnBalance.Click += btnBalance_Click;
             // 
             // lblVIPPrice
             // 
-            this.lblVIPPrice.AutoSize = true;
-            this.lblVIPPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIPPrice.Location = new System.Drawing.Point(585, 388);
-            this.lblVIPPrice.Name = "lblVIPPrice";
-            this.lblVIPPrice.Size = new System.Drawing.Size(40, 20);
-            this.lblVIPPrice.TabIndex = 28;
-            this.lblVIPPrice.Text = "0.00";
+            lblVIPPrice.AutoSize = true;
+            lblVIPPrice.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblVIPPrice.Location = new Point(549, 389);
+            lblVIPPrice.Name = "lblVIPPrice";
+            lblVIPPrice.Size = new Size(40, 20);
+            lblVIPPrice.TabIndex = 28;
+            lblVIPPrice.Text = "0.00";
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.ForeColor = System.Drawing.Color.Red;
-            this.label15.Location = new System.Drawing.Point(7, 525);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(253, 17);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "Tips：请提醒客人不要忘记带齐行李哦~";
+            label15.AutoSize = true;
+            label15.Font = new Font("Microsoft Sans Serif", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label15.ForeColor = Color.Red;
+            label15.Location = new Point(7, 525);
+            label15.Name = "label15";
+            label15.Size = new Size(253, 17);
+            label15.TabIndex = 11;
+            label15.Text = "Tips：请提醒客人不要忘记带齐行李哦~";
             // 
             // dgvSpendList
             // 
-            this.dgvSpendList.AllowUserToAddRows = false;
-            this.dgvSpendList.AllowUserToDeleteRows = false;
-            this.dgvSpendList.AllowUserToResizeColumns = false;
-            this.dgvSpendList.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgvSpendList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvSpendList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSpendList.BackgroundColor = System.Drawing.Color.White;
-            this.dgvSpendList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSpendList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSpendList.ColumnHeadersHeight = 32;
-            this.dgvSpendList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvSpendList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.clPrice,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.clSpendNo,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column8});
-            this.dgvSpendList.EnableHeadersVisualStyles = false;
-            this.dgvSpendList.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.dgvSpendList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.dgvSpendList.Location = new System.Drawing.Point(10, 113);
-            this.dgvSpendList.Name = "dgvSpendList";
-            this.dgvSpendList.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSpendList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvSpendList.RowHeadersVisible = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dgvSpendList.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvSpendList.RowTemplate.Height = 29;
-            this.dgvSpendList.SelectedIndex = -1;
-            this.dgvSpendList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSpendList.ShowRowErrors = false;
-            this.dgvSpendList.Size = new System.Drawing.Size(648, 202);
-            this.dgvSpendList.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgvSpendList.Style = Sunny.UI.UIStyle.Custom;
-            this.dgvSpendList.TabIndex = 115;
+            dgvSpendList.AllowUserToAddRows = false;
+            dgvSpendList.AllowUserToDeleteRows = false;
+            dgvSpendList.AllowUserToResizeColumns = false;
+            dgvSpendList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(235, 243, 255);
+            dgvSpendList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvSpendList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSpendList.BackgroundColor = Color.White;
+            dgvSpendList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle2.Font = new Font("微软雅黑", 12F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvSpendList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvSpendList.ColumnHeadersHeight = 32;
+            dgvSpendList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvSpendList.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, clPrice, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, clSpendNo, Column1, Column2, Column3, Column4, Column8 });
+            dgvSpendList.EnableHeadersVisualStyles = false;
+            dgvSpendList.Font = new Font("微软雅黑", 12F);
+            dgvSpendList.GridColor = Color.FromArgb(80, 160, 255);
+            dgvSpendList.Location = new Point(10, 113);
+            dgvSpendList.Name = "dgvSpendList";
+            dgvSpendList.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle3.Font = new Font("微软雅黑", 12F);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvSpendList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvSpendList.RowHeadersVisible = false;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dgvSpendList.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvSpendList.RowTemplate.Height = 29;
+            dgvSpendList.SelectedIndex = -1;
+            dgvSpendList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvSpendList.ShowRowErrors = false;
+            dgvSpendList.Size = new Size(648, 202);
+            dgvSpendList.StripeOddColor = Color.FromArgb(235, 243, 255);
+            dgvSpendList.Style = Sunny.UI.UIStyle.Custom;
+            dgvSpendList.TabIndex = 115;
             // 
             // dataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "RoomNo";
-            this.dataGridViewTextBoxColumn1.FillWeight = 102.6831F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "房号";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.DataPropertyName = "RoomNo";
+            dataGridViewTextBoxColumn1.FillWeight = 102.6831F;
+            dataGridViewTextBoxColumn1.HeaderText = "房号";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // clPrice
             // 
-            this.clPrice.DataPropertyName = "SpendPriceStr";
-            this.clPrice.HeaderText = "单价(元)";
-            this.clPrice.Name = "clPrice";
-            this.clPrice.ReadOnly = true;
+            clPrice.DataPropertyName = "SpendPriceStr";
+            clPrice.HeaderText = "单价(元)";
+            clPrice.Name = "clPrice";
+            clPrice.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "CustoNo";
-            this.dataGridViewTextBoxColumn2.FillWeight = 102.6831F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "客户编号";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.DataPropertyName = "CustoNo";
+            dataGridViewTextBoxColumn2.FillWeight = 102.6831F;
+            dataGridViewTextBoxColumn2.HeaderText = "客户编号";
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "SpendName";
-            this.dataGridViewTextBoxColumn3.FillWeight = 102.6831F;
-            this.dataGridViewTextBoxColumn3.HeaderText = "商品";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.DataPropertyName = "SpendName";
+            dataGridViewTextBoxColumn3.FillWeight = 102.6831F;
+            dataGridViewTextBoxColumn3.HeaderText = "商品";
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "SpendAmount";
-            this.dataGridViewTextBoxColumn4.FillWeight = 60F;
-            this.dataGridViewTextBoxColumn4.HeaderText = "数量";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            dataGridViewTextBoxColumn4.DataPropertyName = "SpendAmount";
+            dataGridViewTextBoxColumn4.FillWeight = 60F;
+            dataGridViewTextBoxColumn4.HeaderText = "数量";
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "SpendPrice";
-            this.dataGridViewTextBoxColumn5.FillWeight = 102.6831F;
-            this.dataGridViewTextBoxColumn5.HeaderText = "单价(元)";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Visible = false;
+            dataGridViewTextBoxColumn5.DataPropertyName = "SpendPrice";
+            dataGridViewTextBoxColumn5.FillWeight = 102.6831F;
+            dataGridViewTextBoxColumn5.HeaderText = "单价(元)";
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
+            dataGridViewTextBoxColumn5.Visible = false;
             // 
             // dataGridViewTextBoxColumn6
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "SpendMoneyStr";
-            this.dataGridViewTextBoxColumn6.FillWeight = 102.6831F;
-            this.dataGridViewTextBoxColumn6.HeaderText = "总额";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            dataGridViewTextBoxColumn6.DataPropertyName = "SpendMoneyStr";
+            dataGridViewTextBoxColumn6.FillWeight = 102.6831F;
+            dataGridViewTextBoxColumn6.HeaderText = "总额";
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "SpendTime";
-            this.dataGridViewTextBoxColumn7.FillWeight = 102.6831F;
-            this.dataGridViewTextBoxColumn7.HeaderText = "消费时间";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            dataGridViewTextBoxColumn7.DataPropertyName = "SpendTime";
+            dataGridViewTextBoxColumn7.FillWeight = 102.6831F;
+            dataGridViewTextBoxColumn7.HeaderText = "消费时间";
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // clSpendNo
             // 
-            this.clSpendNo.DataPropertyName = "delete_mk";
-            this.clSpendNo.HeaderText = "Column1";
-            this.clSpendNo.Name = "clSpendNo";
-            this.clSpendNo.ReadOnly = true;
-            this.clSpendNo.Visible = false;
+            clSpendNo.DataPropertyName = "delete_mk";
+            clSpendNo.HeaderText = "Column1";
+            clSpendNo.Name = "clSpendNo";
+            clSpendNo.ReadOnly = true;
+            clSpendNo.Visible = false;
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "datains_usr";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
+            Column1.DataPropertyName = "datains_usr";
+            Column1.HeaderText = "Column1";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Visible = false;
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "datains_date";
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
+            Column2.DataPropertyName = "datains_date";
+            Column2.HeaderText = "Column2";
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Visible = false;
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "datachg_usr";
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Visible = false;
+            Column3.DataPropertyName = "datachg_usr";
+            Column3.HeaderText = "Column3";
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Visible = false;
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "datachg_date";
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Visible = false;
+            Column4.DataPropertyName = "datachg_date";
+            Column4.HeaderText = "Column4";
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Visible = false;
             // 
             // Column8
             // 
-            this.Column8.DataPropertyName = "MoneyState";
-            this.Column8.HeaderText = "Column8";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
+            Column8.DataPropertyName = "MoneyState";
+            Column8.HeaderText = "Column8";
+            Column8.Name = "Column8";
+            Column8.ReadOnly = true;
+            Column8.Visible = false;
             // 
             // lblDay
             // 
-            this.lblDay.AutoSize = true;
-            this.lblDay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDay.Location = new System.Drawing.Point(572, 76);
-            this.lblDay.Name = "lblDay";
-            this.lblDay.Size = new System.Drawing.Size(45, 25);
-            this.lblDay.TabIndex = 114;
-            this.lblDay.Text = "Null";
+            lblDay.AutoSize = true;
+            lblDay.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDay.Location = new Point(572, 76);
+            lblDay.Name = "lblDay";
+            lblDay.Size = new Size(45, 25);
+            lblDay.TabIndex = 114;
+            lblDay.Text = "Null";
             // 
             // lable00
             // 
-            this.lable00.AutoSize = true;
-            this.lable00.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lable00.Location = new System.Drawing.Point(492, 387);
-            this.lable00.Name = "lable00";
-            this.lable00.Size = new System.Drawing.Size(89, 20);
-            this.lable00.TabIndex = 26;
-            this.lable00.Text = "折后金额：";
+            lable00.AutoSize = true;
+            lable00.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lable00.Location = new Point(456, 388);
+            lable00.Name = "lable00";
+            lable00.Size = new Size(89, 20);
+            lable00.TabIndex = 26;
+            lable00.Text = "折后金额：";
             // 
             // label29
             // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label29.Location = new System.Drawing.Point(551, 24);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(88, 25);
-            this.label29.TabIndex = 113;
-            this.label29.Text = "已住天数";
+            label29.AutoSize = true;
+            label29.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label29.Location = new Point(551, 24);
+            label29.Name = "label29";
+            label29.Size = new Size(88, 25);
+            label29.TabIndex = 113;
+            label29.Text = "已住天数";
             // 
             // lblVIP
             // 
-            this.lblVIP.AutoSize = true;
-            this.lblVIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVIP.Location = new System.Drawing.Point(585, 360);
-            this.lblVIP.Name = "lblVIP";
-            this.lblVIP.Size = new System.Drawing.Size(73, 20);
-            this.lblVIP.TabIndex = 24;
-            this.lblVIP.Text = "不  打  折";
+            lblVIP.AutoSize = true;
+            lblVIP.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblVIP.Location = new Point(549, 361);
+            lblVIP.Name = "lblVIP";
+            lblVIP.Size = new Size(73, 20);
+            lblVIP.TabIndex = 24;
+            lblVIP.Text = "不  打  折";
             // 
             // dtpCheckTime
             // 
-            this.dtpCheckTime.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.dtpCheckTime.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dtpCheckTime.Location = new System.Drawing.Point(376, 18);
-            this.dtpCheckTime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtpCheckTime.MinimumSize = new System.Drawing.Size(1, 1);
-            this.dtpCheckTime.Name = "dtpCheckTime";
-            this.dtpCheckTime.Padding = new System.Windows.Forms.Padding(5);
-            this.dtpCheckTime.Radius = 20;
-            this.dtpCheckTime.ReadOnly = true;
-            this.dtpCheckTime.ShowText = false;
-            this.dtpCheckTime.Size = new System.Drawing.Size(168, 35);
-            this.dtpCheckTime.Style = Sunny.UI.UIStyle.Custom;
-            this.dtpCheckTime.StyleCustomMode = true;
-            this.dtpCheckTime.Symbol = 559683;
-            this.dtpCheckTime.TabIndex = 111;
-            this.dtpCheckTime.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dtpCheckTime.Watermark = "";
+            dtpCheckTime.Cursor = Cursors.IBeam;
+            dtpCheckTime.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            dtpCheckTime.Location = new Point(376, 18);
+            dtpCheckTime.Margin = new Padding(4, 5, 4, 5);
+            dtpCheckTime.MinimumSize = new Size(1, 1);
+            dtpCheckTime.Name = "dtpCheckTime";
+            dtpCheckTime.Padding = new Padding(5);
+            dtpCheckTime.Radius = 20;
+            dtpCheckTime.ReadOnly = true;
+            dtpCheckTime.ShowText = false;
+            dtpCheckTime.Size = new Size(168, 35);
+            dtpCheckTime.Style = Sunny.UI.UIStyle.Custom;
+            dtpCheckTime.StyleCustomMode = true;
+            dtpCheckTime.Symbol = 559683;
+            dtpCheckTime.TabIndex = 111;
+            dtpCheckTime.TextAlignment = ContentAlignment.MiddleLeft;
+            dtpCheckTime.Watermark = "";
             // 
             // label25
             // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(492, 358);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(89, 20);
-            this.label25.TabIndex = 23;
-            this.label25.Text = "会员折扣：";
+            label25.AutoSize = true;
+            label25.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label25.Location = new Point(456, 359);
+            label25.Name = "label25";
+            label25.Size = new Size(89, 20);
+            label25.TabIndex = 23;
+            label25.Text = "会员折扣：";
             // 
             // txtRoomNo
             // 
-            this.txtRoomNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRoomNo.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRoomNo.Location = new System.Drawing.Point(376, 70);
-            this.txtRoomNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRoomNo.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtRoomNo.Name = "txtRoomNo";
-            this.txtRoomNo.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRoomNo.Radius = 20;
-            this.txtRoomNo.ReadOnly = true;
-            this.txtRoomNo.ShowText = false;
-            this.txtRoomNo.Size = new System.Drawing.Size(168, 35);
-            this.txtRoomNo.Style = Sunny.UI.UIStyle.Custom;
-            this.txtRoomNo.StyleCustomMode = true;
-            this.txtRoomNo.TabIndex = 112;
-            this.txtRoomNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtRoomNo.Watermark = "";
+            txtRoomNo.Cursor = Cursors.IBeam;
+            txtRoomNo.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtRoomNo.Location = new Point(376, 70);
+            txtRoomNo.Margin = new Padding(4, 5, 4, 5);
+            txtRoomNo.MinimumSize = new Size(1, 1);
+            txtRoomNo.Name = "txtRoomNo";
+            txtRoomNo.Padding = new Padding(5);
+            txtRoomNo.Radius = 20;
+            txtRoomNo.ReadOnly = true;
+            txtRoomNo.ShowText = false;
+            txtRoomNo.Size = new Size(168, 35);
+            txtRoomNo.Style = Sunny.UI.UIStyle.Custom;
+            txtRoomNo.StyleCustomMode = true;
+            txtRoomNo.TabIndex = 112;
+            txtRoomNo.TextAlignment = ContentAlignment.MiddleLeft;
+            txtRoomNo.Watermark = "";
             // 
             // label27
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label27.Location = new System.Drawing.Point(285, 76);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(88, 25);
-            this.label27.TabIndex = 110;
-            this.label27.Text = "房间编号";
+            label27.AutoSize = true;
+            label27.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label27.Location = new Point(285, 76);
+            label27.Name = "label27";
+            label27.Size = new Size(88, 25);
+            label27.TabIndex = 110;
+            label27.Text = "房间编号";
             // 
             // label28
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label28.Location = new System.Drawing.Point(285, 24);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(88, 25);
-            this.label28.TabIndex = 109;
-            this.label28.Text = "入住时间";
+            label28.AutoSize = true;
+            label28.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label28.Location = new Point(285, 24);
+            label28.Name = "label28";
+            label28.Size = new Size(88, 25);
+            label28.TabIndex = 109;
+            label28.Text = "入住时间";
             // 
             // lblChange
             // 
-            this.lblChange.AutoSize = true;
-            this.lblChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChange.Location = new System.Drawing.Point(584, 444);
-            this.lblChange.Name = "lblChange";
-            this.lblChange.Size = new System.Drawing.Size(40, 20);
-            this.lblChange.TabIndex = 21;
-            this.lblChange.Text = "0.00";
+            lblChange.AutoSize = true;
+            lblChange.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblChange.Location = new Point(548, 445);
+            lblChange.Name = "lblChange";
+            lblChange.Size = new Size(40, 20);
+            lblChange.TabIndex = 21;
+            lblChange.Text = "0.00";
             // 
             // CustoNo
             // 
-            this.CustoNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.CustoNo.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CustoNo.Location = new System.Drawing.Point(117, 18);
-            this.CustoNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.CustoNo.MinimumSize = new System.Drawing.Size(1, 1);
-            this.CustoNo.Name = "CustoNo";
-            this.CustoNo.Padding = new System.Windows.Forms.Padding(5);
-            this.CustoNo.Radius = 20;
-            this.CustoNo.ReadOnly = true;
-            this.CustoNo.ShowText = false;
-            this.CustoNo.Size = new System.Drawing.Size(144, 35);
-            this.CustoNo.Style = Sunny.UI.UIStyle.Custom;
-            this.CustoNo.StyleCustomMode = true;
-            this.CustoNo.TabIndex = 107;
-            this.CustoNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CustoNo.Watermark = "";
+            CustoNo.Cursor = Cursors.IBeam;
+            CustoNo.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            CustoNo.Location = new Point(117, 18);
+            CustoNo.Margin = new Padding(4, 5, 4, 5);
+            CustoNo.MinimumSize = new Size(1, 1);
+            CustoNo.Name = "CustoNo";
+            CustoNo.Padding = new Padding(5);
+            CustoNo.Radius = 20;
+            CustoNo.ReadOnly = true;
+            CustoNo.ShowText = false;
+            CustoNo.Size = new Size(144, 35);
+            CustoNo.Style = Sunny.UI.UIStyle.Custom;
+            CustoNo.StyleCustomMode = true;
+            CustoNo.TabIndex = 107;
+            CustoNo.TextAlignment = ContentAlignment.MiddleLeft;
+            CustoNo.Watermark = "";
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(491, 445);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(89, 20);
-            this.label21.TabIndex = 20;
-            this.label21.Text = "找        零：";
+            label21.AutoSize = true;
+            label21.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label21.Location = new Point(455, 446);
+            label21.Name = "label21";
+            label21.Size = new Size(89, 20);
+            label21.TabIndex = 20;
+            label21.Text = "找        零：";
             // 
             // CustoName
             // 
-            this.CustoName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.CustoName.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CustoName.Location = new System.Drawing.Point(117, 70);
-            this.CustoName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.CustoName.MinimumSize = new System.Drawing.Size(1, 1);
-            this.CustoName.Name = "CustoName";
-            this.CustoName.Padding = new System.Windows.Forms.Padding(5);
-            this.CustoName.Radius = 20;
-            this.CustoName.ReadOnly = true;
-            this.CustoName.ShowText = false;
-            this.CustoName.Size = new System.Drawing.Size(144, 35);
-            this.CustoName.Style = Sunny.UI.UIStyle.Custom;
-            this.CustoName.StyleCustomMode = true;
-            this.CustoName.TabIndex = 108;
-            this.CustoName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CustoName.Watermark = "";
+            CustoName.Cursor = Cursors.IBeam;
+            CustoName.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            CustoName.Location = new Point(117, 70);
+            CustoName.Margin = new Padding(4, 5, 4, 5);
+            CustoName.MinimumSize = new Size(1, 1);
+            CustoName.Name = "CustoName";
+            CustoName.Padding = new Padding(5);
+            CustoName.Radius = 20;
+            CustoName.ReadOnly = true;
+            CustoName.ShowText = false;
+            CustoName.Size = new Size(144, 35);
+            CustoName.Style = Sunny.UI.UIStyle.Custom;
+            CustoName.StyleCustomMode = true;
+            CustoName.TabIndex = 108;
+            CustoName.TextAlignment = ContentAlignment.MiddleLeft;
+            CustoName.Watermark = "";
             // 
             // lblGetReceipts
             // 
-            this.lblGetReceipts.AutoSize = true;
-            this.lblGetReceipts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGetReceipts.Location = new System.Drawing.Point(584, 416);
-            this.lblGetReceipts.Name = "lblGetReceipts";
-            this.lblGetReceipts.Size = new System.Drawing.Size(40, 20);
-            this.lblGetReceipts.TabIndex = 19;
-            this.lblGetReceipts.Text = "0.00";
+            lblGetReceipts.AutoSize = true;
+            lblGetReceipts.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGetReceipts.Location = new Point(548, 417);
+            lblGetReceipts.Name = "lblGetReceipts";
+            lblGetReceipts.Size = new Size(40, 20);
+            lblGetReceipts.TabIndex = 19;
+            lblGetReceipts.Text = "0.00";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(26, 76);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 25);
-            this.label1.TabIndex = 106;
-            this.label1.Text = "客户姓名";
+            label1.AutoSize = true;
+            label1.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label1.Location = new Point(26, 76);
+            label1.Name = "label1";
+            label1.Size = new Size(88, 25);
+            label1.TabIndex = 106;
+            label1.Text = "客户姓名";
             // 
             // label24
             // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label24.Location = new System.Drawing.Point(26, 24);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(88, 25);
-            this.label24.TabIndex = 105;
-            this.label24.Text = "客户编号";
+            label24.AutoSize = true;
+            label24.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label24.Location = new Point(26, 24);
+            label24.Name = "label24";
+            label24.Size = new Size(88, 25);
+            label24.TabIndex = 105;
+            label24.Text = "客户编号";
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(491, 329);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(89, 20);
-            this.label17.TabIndex = 14;
-            this.label17.Text = "实收金额：";
+            label17.AutoSize = true;
+            label17.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label17.Location = new Point(455, 330);
+            label17.Name = "label17";
+            label17.Size = new Size(89, 20);
+            label17.TabIndex = 14;
+            label17.Text = "实收金额：";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(491, 416);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(89, 20);
-            this.label18.TabIndex = 15;
-            this.label18.Text = "应收金额：";
+            label18.AutoSize = true;
+            label18.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label18.Location = new Point(455, 417);
+            label18.Name = "label18";
+            label18.Size = new Size(89, 20);
+            label18.TabIndex = 15;
+            label18.Text = "应收金额：";
             // 
             // cboCustoType
             // 
-            this.cboCustoType.DataSource = null;
-            this.cboCustoType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cboCustoType.FillColor = System.Drawing.Color.White;
-            this.cboCustoType.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.cboCustoType.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cboCustoType.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cboCustoType.Location = new System.Drawing.Point(437, 19);
-            this.cboCustoType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboCustoType.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cboCustoType.Name = "cboCustoType";
-            this.cboCustoType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cboCustoType.Radius = 20;
-            this.cboCustoType.ReadOnly = true;
-            this.cboCustoType.Size = new System.Drawing.Size(203, 35);
-            this.cboCustoType.Style = Sunny.UI.UIStyle.Custom;
-            this.cboCustoType.SymbolSize = 24;
-            this.cboCustoType.TabIndex = 125;
-            this.cboCustoType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboCustoType.Watermark = "";
+            cboCustoType.DataSource = null;
+            cboCustoType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cboCustoType.FillColor = Color.White;
+            cboCustoType.Font = new Font("微软雅黑", 15.75F);
+            cboCustoType.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cboCustoType.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cboCustoType.Location = new Point(437, 19);
+            cboCustoType.Margin = new Padding(4, 5, 4, 5);
+            cboCustoType.MinimumSize = new Size(63, 0);
+            cboCustoType.Name = "cboCustoType";
+            cboCustoType.Padding = new Padding(0, 0, 30, 2);
+            cboCustoType.Radius = 20;
+            cboCustoType.ReadOnly = true;
+            cboCustoType.Size = new Size(203, 35);
+            cboCustoType.Style = Sunny.UI.UIStyle.Custom;
+            cboCustoType.SymbolSize = 24;
+            cboCustoType.TabIndex = 125;
+            cboCustoType.TextAlignment = ContentAlignment.MiddleLeft;
+            cboCustoType.Watermark = "";
             // 
             // cboPassportType
             // 
-            this.cboPassportType.DataSource = null;
-            this.cboPassportType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cboPassportType.FillColor = System.Drawing.Color.White;
-            this.cboPassportType.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.cboPassportType.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cboPassportType.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cboPassportType.Location = new System.Drawing.Point(437, 70);
-            this.cboPassportType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboPassportType.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cboPassportType.Name = "cboPassportType";
-            this.cboPassportType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cboPassportType.Radius = 20;
-            this.cboPassportType.ReadOnly = true;
-            this.cboPassportType.Size = new System.Drawing.Size(203, 35);
-            this.cboPassportType.Style = Sunny.UI.UIStyle.Custom;
-            this.cboPassportType.SymbolSize = 24;
-            this.cboPassportType.TabIndex = 124;
-            this.cboPassportType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboPassportType.Watermark = "";
+            cboPassportType.DataSource = null;
+            cboPassportType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cboPassportType.FillColor = Color.White;
+            cboPassportType.Font = new Font("微软雅黑", 15.75F);
+            cboPassportType.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cboPassportType.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cboPassportType.Location = new Point(437, 70);
+            cboPassportType.Margin = new Padding(4, 5, 4, 5);
+            cboPassportType.MinimumSize = new Size(63, 0);
+            cboPassportType.Name = "cboPassportType";
+            cboPassportType.Padding = new Padding(0, 0, 30, 2);
+            cboPassportType.Radius = 20;
+            cboPassportType.ReadOnly = true;
+            cboPassportType.Size = new Size(203, 35);
+            cboPassportType.Style = Sunny.UI.UIStyle.Custom;
+            cboPassportType.SymbolSize = 24;
+            cboPassportType.TabIndex = 124;
+            cboPassportType.TextAlignment = ContentAlignment.MiddleLeft;
+            cboPassportType.Watermark = "";
             // 
             // cboCustoSex
             // 
-            this.cboCustoSex.DataSource = null;
-            this.cboCustoSex.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cboCustoSex.FillColor = System.Drawing.Color.White;
-            this.cboCustoSex.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.cboCustoSex.ItemHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(200)))), ((int)(((byte)(255)))));
-            this.cboCustoSex.ItemSelectForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.cboCustoSex.Location = new System.Drawing.Point(134, 124);
-            this.cboCustoSex.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboCustoSex.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cboCustoSex.Name = "cboCustoSex";
-            this.cboCustoSex.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cboCustoSex.Radius = 20;
-            this.cboCustoSex.ReadOnly = true;
-            this.cboCustoSex.Size = new System.Drawing.Size(203, 35);
-            this.cboCustoSex.Style = Sunny.UI.UIStyle.Custom;
-            this.cboCustoSex.SymbolSize = 24;
-            this.cboCustoSex.TabIndex = 123;
-            this.cboCustoSex.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboCustoSex.Watermark = "";
+            cboCustoSex.DataSource = null;
+            cboCustoSex.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cboCustoSex.FillColor = Color.White;
+            cboCustoSex.Font = new Font("微软雅黑", 15.75F);
+            cboCustoSex.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cboCustoSex.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cboCustoSex.Location = new Point(134, 124);
+            cboCustoSex.Margin = new Padding(4, 5, 4, 5);
+            cboCustoSex.MinimumSize = new Size(63, 0);
+            cboCustoSex.Name = "cboCustoSex";
+            cboCustoSex.Padding = new Padding(0, 0, 30, 2);
+            cboCustoSex.Radius = 20;
+            cboCustoSex.ReadOnly = true;
+            cboCustoSex.Size = new Size(203, 35);
+            cboCustoSex.Style = Sunny.UI.UIStyle.Custom;
+            cboCustoSex.SymbolSize = 24;
+            cboCustoSex.TabIndex = 123;
+            cboCustoSex.TextAlignment = ContentAlignment.MiddleLeft;
+            cboCustoSex.Watermark = "";
             // 
             // txtCustoNo
             // 
-            this.txtCustoNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoNo.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoNo.Location = new System.Drawing.Point(134, 20);
-            this.txtCustoNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoNo.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoNo.Name = "txtCustoNo";
-            this.txtCustoNo.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoNo.Radius = 20;
-            this.txtCustoNo.ReadOnly = true;
-            this.txtCustoNo.ShowText = false;
-            this.txtCustoNo.Size = new System.Drawing.Size(203, 35);
-            this.txtCustoNo.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoNo.StyleCustomMode = true;
-            this.txtCustoNo.TabIndex = 122;
-            this.txtCustoNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCustoNo.Watermark = "";
+            txtCustoNo.Cursor = Cursors.IBeam;
+            txtCustoNo.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoNo.Location = new Point(134, 20);
+            txtCustoNo.Margin = new Padding(4, 5, 4, 5);
+            txtCustoNo.MinimumSize = new Size(1, 1);
+            txtCustoNo.Name = "txtCustoNo";
+            txtCustoNo.Padding = new Padding(5);
+            txtCustoNo.Radius = 20;
+            txtCustoNo.ReadOnly = true;
+            txtCustoNo.ShowText = false;
+            txtCustoNo.Size = new Size(203, 35);
+            txtCustoNo.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoNo.StyleCustomMode = true;
+            txtCustoNo.TabIndex = 122;
+            txtCustoNo.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoNo.Watermark = "";
             // 
             // txtCustoName
             // 
-            this.txtCustoName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoName.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoName.Location = new System.Drawing.Point(134, 72);
-            this.txtCustoName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoName.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoName.Name = "txtCustoName";
-            this.txtCustoName.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoName.Radius = 20;
-            this.txtCustoName.ReadOnly = true;
-            this.txtCustoName.ShowText = false;
-            this.txtCustoName.Size = new System.Drawing.Size(203, 35);
-            this.txtCustoName.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoName.StyleCustomMode = true;
-            this.txtCustoName.TabIndex = 121;
-            this.txtCustoName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCustoName.Watermark = "";
+            txtCustoName.Cursor = Cursors.IBeam;
+            txtCustoName.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoName.Location = new Point(134, 72);
+            txtCustoName.Margin = new Padding(4, 5, 4, 5);
+            txtCustoName.MinimumSize = new Size(1, 1);
+            txtCustoName.Name = "txtCustoName";
+            txtCustoName.Padding = new Padding(5);
+            txtCustoName.Radius = 20;
+            txtCustoName.ReadOnly = true;
+            txtCustoName.ShowText = false;
+            txtCustoName.Size = new Size(203, 35);
+            txtCustoName.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoName.StyleCustomMode = true;
+            txtCustoName.TabIndex = 121;
+            txtCustoName.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoName.Watermark = "";
             // 
             // txtPassportNum
             // 
-            this.txtPassportNum.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPassportNum.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtPassportNum.Location = new System.Drawing.Point(437, 121);
-            this.txtPassportNum.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtPassportNum.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtPassportNum.Name = "txtPassportNum";
-            this.txtPassportNum.Padding = new System.Windows.Forms.Padding(5);
-            this.txtPassportNum.Radius = 20;
-            this.txtPassportNum.ReadOnly = true;
-            this.txtPassportNum.ShowText = false;
-            this.txtPassportNum.Size = new System.Drawing.Size(203, 35);
-            this.txtPassportNum.Style = Sunny.UI.UIStyle.Custom;
-            this.txtPassportNum.StyleCustomMode = true;
-            this.txtPassportNum.TabIndex = 120;
-            this.txtPassportNum.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtPassportNum.Watermark = "";
+            txtPassportNum.Cursor = Cursors.IBeam;
+            txtPassportNum.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtPassportNum.Location = new Point(437, 121);
+            txtPassportNum.Margin = new Padding(4, 5, 4, 5);
+            txtPassportNum.MinimumSize = new Size(1, 1);
+            txtPassportNum.Name = "txtPassportNum";
+            txtPassportNum.Padding = new Padding(5);
+            txtPassportNum.Radius = 20;
+            txtPassportNum.ReadOnly = true;
+            txtPassportNum.ShowText = false;
+            txtPassportNum.Size = new Size(203, 35);
+            txtPassportNum.Style = Sunny.UI.UIStyle.Custom;
+            txtPassportNum.StyleCustomMode = true;
+            txtPassportNum.TabIndex = 120;
+            txtPassportNum.TextAlignment = ContentAlignment.MiddleLeft;
+            txtPassportNum.Watermark = "";
             // 
             // txtTel
             // 
-            this.txtTel.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTel.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtTel.Location = new System.Drawing.Point(437, 172);
-            this.txtTel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtTel.Name = "txtTel";
-            this.txtTel.Padding = new System.Windows.Forms.Padding(5);
-            this.txtTel.Radius = 20;
-            this.txtTel.ReadOnly = true;
-            this.txtTel.ShowText = false;
-            this.txtTel.Size = new System.Drawing.Size(203, 35);
-            this.txtTel.Style = Sunny.UI.UIStyle.Custom;
-            this.txtTel.StyleCustomMode = true;
-            this.txtTel.TabIndex = 119;
-            this.txtTel.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtTel.Watermark = "";
+            txtTel.Cursor = Cursors.IBeam;
+            txtTel.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtTel.Location = new Point(437, 172);
+            txtTel.Margin = new Padding(4, 5, 4, 5);
+            txtTel.MinimumSize = new Size(1, 1);
+            txtTel.Name = "txtTel";
+            txtTel.Padding = new Padding(5);
+            txtTel.Radius = 20;
+            txtTel.ReadOnly = true;
+            txtTel.ShowText = false;
+            txtTel.Size = new Size(203, 35);
+            txtTel.Style = Sunny.UI.UIStyle.Custom;
+            txtTel.StyleCustomMode = true;
+            txtTel.TabIndex = 119;
+            txtTel.TextAlignment = ContentAlignment.MiddleLeft;
+            txtTel.Watermark = "";
             // 
             // dtpBirth
             // 
-            this.dtpBirth.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.dtpBirth.FillColor = System.Drawing.Color.White;
-            this.dtpBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.dtpBirth.Location = new System.Drawing.Point(134, 176);
-            this.dtpBirth.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtpBirth.MaxLength = 10;
-            this.dtpBirth.MinimumSize = new System.Drawing.Size(63, 0);
-            this.dtpBirth.Name = "dtpBirth";
-            this.dtpBirth.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.dtpBirth.Radius = 20;
-            this.dtpBirth.ReadOnly = true;
-            this.dtpBirth.Size = new System.Drawing.Size(203, 31);
-            this.dtpBirth.Style = Sunny.UI.UIStyle.Custom;
-            this.dtpBirth.SymbolDropDown = 61555;
-            this.dtpBirth.SymbolNormal = 61555;
-            this.dtpBirth.SymbolSize = 24;
-            this.dtpBirth.TabIndex = 118;
-            this.dtpBirth.Text = "2020-11-24";
-            this.dtpBirth.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dtpBirth.Value = new System.DateTime(2020, 11, 24, 22, 50, 36, 791);
-            this.dtpBirth.Watermark = "";
+            dtpBirth.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            dtpBirth.FillColor = Color.White;
+            dtpBirth.Font = new Font("Microsoft Sans Serif", 15.75F);
+            dtpBirth.Location = new Point(134, 176);
+            dtpBirth.Margin = new Padding(4, 5, 4, 5);
+            dtpBirth.MaxLength = 10;
+            dtpBirth.MinimumSize = new Size(63, 0);
+            dtpBirth.Name = "dtpBirth";
+            dtpBirth.Padding = new Padding(0, 0, 30, 2);
+            dtpBirth.Radius = 20;
+            dtpBirth.ReadOnly = true;
+            dtpBirth.Size = new Size(203, 31);
+            dtpBirth.Style = Sunny.UI.UIStyle.Custom;
+            dtpBirth.SymbolDropDown = 61555;
+            dtpBirth.SymbolNormal = 61555;
+            dtpBirth.SymbolSize = 24;
+            dtpBirth.TabIndex = 118;
+            dtpBirth.Text = "2020-11-24";
+            dtpBirth.TextAlignment = ContentAlignment.MiddleLeft;
+            dtpBirth.Value = new DateTime(2020, 11, 24, 22, 50, 36, 791);
+            dtpBirth.Watermark = "";
             // 
             // txtAddress
             // 
-            this.txtAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAddress.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtAddress.Location = new System.Drawing.Point(132, 224);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtAddress.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Padding = new System.Windows.Forms.Padding(5);
-            this.txtAddress.Radius = 20;
-            this.txtAddress.ReadOnly = true;
-            this.txtAddress.ShowText = false;
-            this.txtAddress.Size = new System.Drawing.Size(508, 35);
-            this.txtAddress.Style = Sunny.UI.UIStyle.Custom;
-            this.txtAddress.StyleCustomMode = true;
-            this.txtAddress.TabIndex = 117;
-            this.txtAddress.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtAddress.Watermark = "";
+            txtAddress.Cursor = Cursors.IBeam;
+            txtAddress.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtAddress.Location = new Point(132, 224);
+            txtAddress.Margin = new Padding(4, 5, 4, 5);
+            txtAddress.MinimumSize = new Size(1, 1);
+            txtAddress.Name = "txtAddress";
+            txtAddress.Padding = new Padding(5);
+            txtAddress.Radius = 20;
+            txtAddress.ReadOnly = true;
+            txtAddress.ShowText = false;
+            txtAddress.Size = new Size(508, 35);
+            txtAddress.Style = Sunny.UI.UIStyle.Custom;
+            txtAddress.StyleCustomMode = true;
+            txtAddress.TabIndex = 117;
+            txtAddress.TextAlignment = ContentAlignment.MiddleLeft;
+            txtAddress.Watermark = "";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(25, 234);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 25);
-            this.label2.TabIndex = 115;
-            this.label2.Text = "居住地址";
+            label2.AutoSize = true;
+            label2.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label2.Location = new Point(25, 234);
+            label2.Name = "label2";
+            label2.Size = new Size(88, 25);
+            label2.TabIndex = 115;
+            label2.Text = "居住地址";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(344, 179);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 25);
-            this.label3.TabIndex = 114;
-            this.label3.Text = "联系方式";
+            label3.AutoSize = true;
+            label3.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label3.Location = new Point(344, 179);
+            label3.Name = "label3";
+            label3.Size = new Size(88, 25);
+            label3.TabIndex = 114;
+            label3.Text = "联系方式";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(344, 128);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 25);
-            this.label4.TabIndex = 113;
-            this.label4.Text = "证件号码";
+            label4.AutoSize = true;
+            label4.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label4.Location = new Point(344, 128);
+            label4.Name = "label4";
+            label4.Size = new Size(88, 25);
+            label4.TabIndex = 113;
+            label4.Text = "证件号码";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.Location = new System.Drawing.Point(344, 77);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 25);
-            this.label5.TabIndex = 112;
-            this.label5.Text = "证件类型";
+            label5.AutoSize = true;
+            label5.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label5.Location = new Point(344, 77);
+            label5.Name = "label5";
+            label5.Size = new Size(88, 25);
+            label5.TabIndex = 112;
+            label5.Text = "证件类型";
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(344, 26);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 25);
-            this.label16.TabIndex = 111;
-            this.label16.Text = "客户类型";
+            label16.AutoSize = true;
+            label16.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label16.Location = new Point(344, 26);
+            label16.Name = "label16";
+            label16.Size = new Size(88, 25);
+            label16.TabIndex = 111;
+            label16.Text = "客户类型";
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label22.Location = new System.Drawing.Point(27, 182);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(88, 25);
-            this.label22.TabIndex = 110;
-            this.label22.Text = "出生日期";
+            label22.AutoSize = true;
+            label22.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label22.Location = new Point(27, 182);
+            label22.Name = "label22";
+            label22.Size = new Size(88, 25);
+            label22.TabIndex = 110;
+            label22.Text = "出生日期";
             // 
             // label30
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label30.Location = new System.Drawing.Point(27, 130);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(86, 25);
-            this.label30.TabIndex = 109;
-            this.label30.Text = "性      别";
+            label30.AutoSize = true;
+            label30.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label30.Location = new Point(27, 130);
+            label30.Name = "label30";
+            label30.Size = new Size(86, 25);
+            label30.TabIndex = 109;
+            label30.Text = "性      别";
             // 
             // label31
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label31.Location = new System.Drawing.Point(27, 78);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(88, 25);
-            this.label31.TabIndex = 108;
-            this.label31.Text = "客户姓名";
+            label31.AutoSize = true;
+            label31.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label31.Location = new Point(27, 78);
+            label31.Name = "label31";
+            label31.Size = new Size(88, 25);
+            label31.TabIndex = 108;
+            label31.Text = "客户姓名";
             // 
             // label32
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label32.Location = new System.Drawing.Point(27, 26);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(88, 25);
-            this.label32.TabIndex = 107;
-            this.label32.Text = "客户编号";
+            label32.AutoSize = true;
+            label32.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label32.Location = new Point(27, 26);
+            label32.Name = "label32";
+            label32.Size = new Size(88, 25);
+            label32.TabIndex = 107;
+            label32.Text = "客户编号";
             // 
             // dgvWti
             // 
-            this.dgvWti.AllowUserToAddRows = false;
-            this.dgvWti.AllowUserToDeleteRows = false;
-            this.dgvWti.AllowUserToResizeColumns = false;
-            this.dgvWti.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgvWti.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvWti.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvWti.BackgroundColor = System.Drawing.Color.White;
-            this.dgvWti.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvWti.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvWti.ColumnHeadersHeight = 32;
-            this.dgvWti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvWti.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column11,
-            this.clRoomNo,
-            this.clCustoNo,
-            this.clStartTime,
-            this.clDealTime,
-            this.clWater,
-            this.clElectric,
-            this.clMarkUser,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column9,
-            this.Column10});
-            this.dgvWti.EnableHeadersVisualStyles = false;
-            this.dgvWti.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.dgvWti.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            this.dgvWti.Location = new System.Drawing.Point(3, 3);
-            this.dgvWti.Name = "dgvWti";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvWti.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvWti.RowHeadersVisible = false;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            this.dgvWti.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvWti.RowTemplate.Height = 29;
-            this.dgvWti.SelectedIndex = -1;
-            this.dgvWti.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvWti.Size = new System.Drawing.Size(656, 291);
-            this.dgvWti.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.dgvWti.Style = Sunny.UI.UIStyle.Custom;
-            this.dgvWti.TabIndex = 0;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "WtiNo";
-            this.Column11.HeaderText = "Column11";
-            this.Column11.Name = "Column11";
-            this.Column11.Visible = false;
-            // 
-            // clRoomNo
-            // 
-            this.clRoomNo.DataPropertyName = "RoomNo";
-            this.clRoomNo.HeaderText = "房间号";
-            this.clRoomNo.Name = "clRoomNo";
-            // 
-            // clCustoNo
-            // 
-            this.clCustoNo.DataPropertyName = "CustoNo";
-            this.clCustoNo.HeaderText = "客户编号";
-            this.clCustoNo.Name = "clCustoNo";
-            // 
-            // clStartTime
-            // 
-            this.clStartTime.DataPropertyName = "UseDate";
-            this.clStartTime.HeaderText = "开始时间";
-            this.clStartTime.Name = "clStartTime";
-            // 
-            // clDealTime
-            // 
-            this.clDealTime.DataPropertyName = "EndDate";
-            this.clDealTime.HeaderText = "结束时间";
-            this.clDealTime.Name = "clDealTime";
-            // 
-            // clWater
-            // 
-            this.clWater.DataPropertyName = "WaterUse";
-            this.clWater.HeaderText = "水费";
-            this.clWater.Name = "clWater";
-            // 
-            // clElectric
-            // 
-            this.clElectric.DataPropertyName = "PowerUse";
-            this.clElectric.HeaderText = "电费";
-            this.clElectric.Name = "clElectric";
-            // 
-            // clMarkUser
-            // 
-            this.clMarkUser.DataPropertyName = "Record";
-            this.clMarkUser.HeaderText = "记录员";
-            this.clMarkUser.Name = "clMarkUser";
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "delete_mk";
-            this.Column5.HeaderText = "Column5";
-            this.Column5.Name = "Column5";
-            this.Column5.Visible = false;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "datains_usr";
-            this.Column6.HeaderText = "Column6";
-            this.Column6.Name = "Column6";
-            this.Column6.Visible = false;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "datains_date";
-            this.Column7.HeaderText = "Column7";
-            this.Column7.Name = "Column7";
-            this.Column7.Visible = false;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "datachg_usr";
-            this.Column9.HeaderText = "Column9";
-            this.Column9.Name = "Column9";
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "datachg_date";
-            this.Column10.HeaderText = "Column10";
-            this.Column10.Name = "Column10";
-            this.Column10.Visible = false;
+            dgvWti.AllowUserToAddRows = false;
+            dgvWti.AllowUserToDeleteRows = false;
+            dgvWti.AllowUserToResizeColumns = false;
+            dgvWti.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(235, 243, 255);
+            dgvWti.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dgvWti.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvWti.BackgroundColor = Color.White;
+            dgvWti.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle6.Font = new Font("微软雅黑", 12F);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvWti.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dgvWti.ColumnHeadersHeight = 32;
+            dgvWti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvWti.Columns.AddRange(new DataGridViewColumn[] { Column11, token, clRoomNo, clCustoNo, clStartTime, clDealTime, clWater, clElectric, clMarkUser, Column5, Column6, Column7, Column9, Column10 });
+            dgvWti.EnableHeadersVisualStyles = false;
+            dgvWti.Font = new Font("微软雅黑", 12F);
+            dgvWti.GridColor = Color.FromArgb(80, 160, 255);
+            dgvWti.Location = new Point(3, 3);
+            dgvWti.Name = "dgvWti";
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(235, 243, 255);
+            dataGridViewCellStyle7.Font = new Font("微软雅黑", 12F);
+            dataGridViewCellStyle7.ForeColor = Color.FromArgb(48, 48, 48);
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(80, 160, 255);
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvWti.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dgvWti.RowHeadersVisible = false;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dgvWti.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dgvWti.RowTemplate.Height = 29;
+            dgvWti.SelectedIndex = -1;
+            dgvWti.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvWti.Size = new Size(656, 291);
+            dgvWti.StripeOddColor = Color.FromArgb(235, 243, 255);
+            dgvWti.Style = Sunny.UI.UIStyle.Custom;
+            dgvWti.TabIndex = 0;
             // 
             // uiTabControlMenu2
             // 
-            this.uiTabControlMenu2.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.uiTabControlMenu2.Controls.Add(this.tabPage1);
-            this.uiTabControlMenu2.Controls.Add(this.tabPage2);
-            this.uiTabControlMenu2.Controls.Add(this.tabPage3);
-            this.uiTabControlMenu2.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.uiTabControlMenu2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.uiTabControlMenu2.Location = new System.Drawing.Point(3, 38);
-            this.uiTabControlMenu2.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
-            this.uiTabControlMenu2.Multiline = true;
-            this.uiTabControlMenu2.Name = "uiTabControlMenu2";
-            this.uiTabControlMenu2.SelectedIndex = 0;
-            this.uiTabControlMenu2.Size = new System.Drawing.Size(865, 550);
-            this.uiTabControlMenu2.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.uiTabControlMenu2.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.uiTabControlMenu2.TabIndex = 15;
-            this.uiTabControlMenu2.TabSelectedColor = System.Drawing.Color.Snow;
+            uiTabControlMenu2.Alignment = TabAlignment.Left;
+            uiTabControlMenu2.Controls.Add(tabPage1);
+            uiTabControlMenu2.Controls.Add(tabPage2);
+            uiTabControlMenu2.Controls.Add(tabPage3);
+            uiTabControlMenu2.DrawMode = TabDrawMode.OwnerDrawFixed;
+            uiTabControlMenu2.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiTabControlMenu2.Location = new Point(3, 38);
+            uiTabControlMenu2.MenuStyle = Sunny.UI.UIMenuStyle.Custom;
+            uiTabControlMenu2.Multiline = true;
+            uiTabControlMenu2.Name = "uiTabControlMenu2";
+            uiTabControlMenu2.SelectedIndex = 0;
+            uiTabControlMenu2.Size = new Size(865, 550);
+            uiTabControlMenu2.SizeMode = TabSizeMode.Fixed;
+            uiTabControlMenu2.TabBackColor = Color.FromArgb(235, 243, 255);
+            uiTabControlMenu2.TabIndex = 15;
+            uiTabControlMenu2.TabSelectedColor = Color.Snow;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.txtReceipts);
-            this.tabPage1.Controls.Add(this.btnBalance);
-            this.tabPage1.Controls.Add(this.label24);
-            this.tabPage1.Controls.Add(this.lblVIPPrice);
-            this.tabPage1.Controls.Add(this.label18);
-            this.tabPage1.Controls.Add(this.label15);
-            this.tabPage1.Controls.Add(this.dgvSpendList);
-            this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.lblDay);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.lable00);
-            this.tabPage1.Controls.Add(this.lblGetReceipts);
-            this.tabPage1.Controls.Add(this.label29);
-            this.tabPage1.Controls.Add(this.CustoName);
-            this.tabPage1.Controls.Add(this.lblVIP);
-            this.tabPage1.Controls.Add(this.label21);
-            this.tabPage1.Controls.Add(this.dtpCheckTime);
-            this.tabPage1.Controls.Add(this.CustoNo);
-            this.tabPage1.Controls.Add(this.label25);
-            this.tabPage1.Controls.Add(this.lblChange);
-            this.tabPage1.Controls.Add(this.txtRoomNo);
-            this.tabPage1.Controls.Add(this.label28);
-            this.tabPage1.Controls.Add(this.label27);
-            this.tabPage1.Location = new System.Drawing.Point(201, 0);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(664, 550);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "退房结算";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(txtReceipts);
+            tabPage1.Controls.Add(btnBalance);
+            tabPage1.Controls.Add(label24);
+            tabPage1.Controls.Add(lblVIPPrice);
+            tabPage1.Controls.Add(label18);
+            tabPage1.Controls.Add(label15);
+            tabPage1.Controls.Add(dgvSpendList);
+            tabPage1.Controls.Add(label17);
+            tabPage1.Controls.Add(lblDay);
+            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(lable00);
+            tabPage1.Controls.Add(lblGetReceipts);
+            tabPage1.Controls.Add(label29);
+            tabPage1.Controls.Add(CustoName);
+            tabPage1.Controls.Add(lblVIP);
+            tabPage1.Controls.Add(label21);
+            tabPage1.Controls.Add(dtpCheckTime);
+            tabPage1.Controls.Add(CustoNo);
+            tabPage1.Controls.Add(label25);
+            tabPage1.Controls.Add(lblChange);
+            tabPage1.Controls.Add(txtRoomNo);
+            tabPage1.Controls.Add(label28);
+            tabPage1.Controls.Add(label27);
+            tabPage1.Location = new Point(201, 0);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(664, 550);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "退房结算";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtReceipts
             // 
-            this.txtReceipts.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtReceipts.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtReceipts.Location = new System.Drawing.Point(584, 328);
-            this.txtReceipts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtReceipts.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtReceipts.Name = "txtReceipts";
-            this.txtReceipts.Padding = new System.Windows.Forms.Padding(5);
-            this.txtReceipts.ShowText = false;
-            this.txtReceipts.Size = new System.Drawing.Size(74, 26);
-            this.txtReceipts.TabIndex = 117;
-            this.txtReceipts.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.txtReceipts.Watermark = "";
-            this.txtReceipts.TextChanged += new System.EventHandler(this.txtReceipts_TextChanged);
+            txtReceipts.Cursor = Cursors.IBeam;
+            txtReceipts.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtReceipts.Location = new Point(548, 329);
+            txtReceipts.Margin = new Padding(4, 5, 4, 5);
+            txtReceipts.MinimumSize = new Size(1, 16);
+            txtReceipts.Name = "txtReceipts";
+            txtReceipts.Padding = new Padding(5);
+            txtReceipts.ShowText = false;
+            txtReceipts.Size = new Size(74, 26);
+            txtReceipts.TabIndex = 117;
+            txtReceipts.TextAlignment = ContentAlignment.MiddleCenter;
+            txtReceipts.Watermark = "";
+            txtReceipts.TextChanged += txtReceipts_TextChanged;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.cboCustoType);
-            this.tabPage2.Controls.Add(this.label32);
-            this.tabPage2.Controls.Add(this.cboPassportType);
-            this.tabPage2.Controls.Add(this.label31);
-            this.tabPage2.Controls.Add(this.cboCustoSex);
-            this.tabPage2.Controls.Add(this.label30);
-            this.tabPage2.Controls.Add(this.txtCustoNo);
-            this.tabPage2.Controls.Add(this.label22);
-            this.tabPage2.Controls.Add(this.txtCustoName);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.txtPassportNum);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.txtTel);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.dtpBirth);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.txtAddress);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Location = new System.Drawing.Point(201, 0);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(664, 550);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "客户信息";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(cboCustoType);
+            tabPage2.Controls.Add(label32);
+            tabPage2.Controls.Add(cboPassportType);
+            tabPage2.Controls.Add(label31);
+            tabPage2.Controls.Add(cboCustoSex);
+            tabPage2.Controls.Add(label30);
+            tabPage2.Controls.Add(txtCustoNo);
+            tabPage2.Controls.Add(label22);
+            tabPage2.Controls.Add(txtCustoName);
+            tabPage2.Controls.Add(label16);
+            tabPage2.Controls.Add(txtPassportNum);
+            tabPage2.Controls.Add(label5);
+            tabPage2.Controls.Add(txtTel);
+            tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(dtpBirth);
+            tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(txtAddress);
+            tabPage2.Controls.Add(label2);
+            tabPage2.Location = new Point(201, 0);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Size = new Size(664, 550);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "客户信息";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.dgvWti);
-            this.tabPage3.Location = new System.Drawing.Point(201, 0);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(664, 550);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "历史水电情况";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            tabPage3.Controls.Add(dgvWti);
+            tabPage3.Location = new Point(201, 0);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(664, 550);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "历史水电情况";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // Column11
+            // 
+            Column11.DataPropertyName = "WtiNo";
+            Column11.HeaderText = "Column11";
+            Column11.Name = "Column11";
+            Column11.Visible = false;
+            // 
+            // token
+            // 
+            token.DataPropertyName = "user_token";
+            token.HeaderText = "token";
+            token.Name = "token";
+            token.Visible = false;
+            // 
+            // clRoomNo
+            // 
+            clRoomNo.DataPropertyName = "RoomNo";
+            clRoomNo.HeaderText = "房间号";
+            clRoomNo.Name = "clRoomNo";
+            // 
+            // clCustoNo
+            // 
+            clCustoNo.DataPropertyName = "CustoNo";
+            clCustoNo.HeaderText = "客户编号";
+            clCustoNo.Name = "clCustoNo";
+            // 
+            // clStartTime
+            // 
+            clStartTime.DataPropertyName = "UseDate";
+            clStartTime.HeaderText = "开始时间";
+            clStartTime.Name = "clStartTime";
+            // 
+            // clDealTime
+            // 
+            clDealTime.DataPropertyName = "EndDate";
+            clDealTime.HeaderText = "结束时间";
+            clDealTime.Name = "clDealTime";
+            // 
+            // clWater
+            // 
+            clWater.DataPropertyName = "WaterUse";
+            clWater.HeaderText = "水费";
+            clWater.Name = "clWater";
+            // 
+            // clElectric
+            // 
+            clElectric.DataPropertyName = "PowerUse";
+            clElectric.HeaderText = "电费";
+            clElectric.Name = "clElectric";
+            // 
+            // clMarkUser
+            // 
+            clMarkUser.DataPropertyName = "Record";
+            clMarkUser.HeaderText = "记录员";
+            clMarkUser.Name = "clMarkUser";
+            // 
+            // Column5
+            // 
+            Column5.DataPropertyName = "delete_mk";
+            Column5.HeaderText = "Column5";
+            Column5.Name = "Column5";
+            Column5.Visible = false;
+            // 
+            // Column6
+            // 
+            Column6.DataPropertyName = "datains_usr";
+            Column6.HeaderText = "Column6";
+            Column6.Name = "Column6";
+            Column6.Visible = false;
+            // 
+            // Column7
+            // 
+            Column7.DataPropertyName = "datains_date";
+            Column7.HeaderText = "Column7";
+            Column7.Name = "Column7";
+            Column7.Visible = false;
+            // 
+            // Column9
+            // 
+            Column9.DataPropertyName = "datachg_usr";
+            Column9.HeaderText = "Column9";
+            Column9.Name = "Column9";
+            Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            Column10.DataPropertyName = "datachg_date";
+            Column10.HeaderText = "Column10";
+            Column10.Name = "Column10";
+            Column10.Visible = false;
             // 
             // FrmCheckOutForm
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(873, 593);
-            this.Controls.Add(this.uiTabControlMenu2);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FrmCheckOutForm";
-            this.ShowTitleIcon = true;
-            this.Text = "退房结算";
-            this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 888, 603);
-            this.Load += new System.EventHandler(this.FrmCheckOutForm_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmCheckOutForm_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmCheckOutForm_MouseMove);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSpendList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvWti)).EndInit();
-            this.uiTabControlMenu2.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(235, 243, 255);
+            ClientSize = new Size(873, 593);
+            Controls.Add(uiTabControlMenu2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FrmCheckOutForm";
+            ShowTitleIcon = true;
+            Text = "退房结算";
+            ZoomScaleRect = new Rectangle(15, 15, 888, 603);
+            Load += FrmCheckOutForm_Load;
+            MouseDown += FrmCheckOutForm_MouseDown;
+            MouseMove += FrmCheckOutForm_MouseMove;
+            ((System.ComponentModel.ISupportInitialize)dgvSpendList).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvWti).EndInit();
+            uiTabControlMenu2.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -1151,23 +1131,24 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private Sunny.UI.UIDataGridView dgvWti;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clRoomNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clCustoNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clStartTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clDealTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clWater;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clElectric;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clMarkUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private Sunny.UI.UITabControlMenu uiTabControlMenu2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private Sunny.UI.UITextBox txtReceipts;
+        private DataGridViewTextBoxColumn Column11;
+        private DataGridViewTextBoxColumn token;
+        private DataGridViewTextBoxColumn clRoomNo;
+        private DataGridViewTextBoxColumn clCustoNo;
+        private DataGridViewTextBoxColumn clStartTime;
+        private DataGridViewTextBoxColumn clDealTime;
+        private DataGridViewTextBoxColumn clWater;
+        private DataGridViewTextBoxColumn clElectric;
+        private DataGridViewTextBoxColumn clMarkUser;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column6;
+        private DataGridViewTextBoxColumn Column7;
+        private DataGridViewTextBoxColumn Column9;
+        private DataGridViewTextBoxColumn Column10;
     }
 }

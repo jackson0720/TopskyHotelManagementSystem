@@ -1,11 +1,5 @@
 ﻿using AntdUI;
-using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.Common.Util;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 
@@ -17,15 +11,17 @@ namespace EOM.TSHotelManager.FormUI
 
         public TableComHelper()
         {
-            var xmlPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EOM.TSHotelManager.Common.Core.xml");
-
             try
             {
-                _xmlDoc = XDocument.Load(xmlPath);
+                var xmlContent = Properties.Resources.EOM_TSHotelManager_Common_Core;
+                using (StringReader stringReader = new StringReader(xmlContent))
+                {
+                    _xmlDoc = XDocument.Load(stringReader);
+                }
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException($"无法加载XML文件: {xmlPath}", ex);
+                throw new InvalidOperationException("无法加载嵌入的XML内容", ex);
             }
         }
 
@@ -162,7 +158,7 @@ namespace EOM.TSHotelManager.FormUI
 
             return tableColumns;
         }
-       
+
         /// <summary>
         /// 获取字段对应注释
         /// </summary>

@@ -1,6 +1,6 @@
 ﻿/*
  * MIT License
- *Copyright (c) 2021~2024 易开元(EOM)
+ *Copyright (c) 2021 易开元(EOM)
 
  *Permission is hereby granted, free of charge, to any person obtaining a copy
  *of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,9 @@
  */
 
 
+using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
-using EOM.TSHotelManager.Common;
-using System;
-using System.Collections.Generic;
 
 namespace EOM.TSHotelManager.FormUI.AppFunction
 {
@@ -57,7 +55,7 @@ namespace EOM.TSHotelManager.FormUI.AppFunction
             {
                 room = new ucRoom();
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", rooms[i].RoomName, rooms[i].RoomNo, rooms[i].CustoName);
-                room.lblMark = string.Empty;
+                room.lblMark = "Mark";
                 room.romRoomInfo = rooms[i];
                 flpRoom.Controls.Add(room);
             }
