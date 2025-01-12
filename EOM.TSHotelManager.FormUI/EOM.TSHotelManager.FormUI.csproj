@@ -14,6 +14,7 @@
 	  <ApplicationIcon>logo.ico</ApplicationIcon>
 	  <FodyWeavingTaskPath>$(SolutionDir)packages\Fody\build\Fody.targets</FodyWeavingTaskPath>
 	  <FodyDisabled>false</FodyDisabled>
+	  <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="AppFunction\FrmAboutUs.cs">
