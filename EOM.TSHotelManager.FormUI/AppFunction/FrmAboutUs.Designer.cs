@@ -29,49 +29,46 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAboutUs));
-            this.uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
-            this.SuspendLayout();
+            uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
+            SuspendLayout();
             // 
             // uiRichTextBox1
             // 
-            this.uiRichTextBox1.AutoWordSelection = true;
-            this.uiRichTextBox1.BulletIndent = 5;
-            this.uiRichTextBox1.FillColor = System.Drawing.Color.White;
-            this.uiRichTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiRichTextBox1.HideSelection = false;
-            this.uiRichTextBox1.Location = new System.Drawing.Point(6, 40);
-            this.uiRichTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.uiRichTextBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiRichTextBox1.Name = "uiRichTextBox1";
-            this.uiRichTextBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.uiRichTextBox1.Radius = 10;
-            this.uiRichTextBox1.ReadOnly = true;
-            this.uiRichTextBox1.Size = new System.Drawing.Size(539, 180);
-            this.uiRichTextBox1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiRichTextBox1.TabIndex = 0;
-            this.uiRichTextBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.uiRichTextBox1.WordWrap = true;
+            uiRichTextBox1.BulletIndent = 5;
+            uiRichTextBox1.FillColor = Color.White;
+            uiRichTextBox1.Font = new Font("微软雅黑", 12F);
+            uiRichTextBox1.HideSelection = false;
+            uiRichTextBox1.Location = new Point(4, 32);
+            uiRichTextBox1.Margin = new Padding(3, 4, 3, 4);
+            uiRichTextBox1.MinimumSize = new Size(1, 1);
+            uiRichTextBox1.Name = "uiRichTextBox1";
+            uiRichTextBox1.Padding = new Padding(1, 2, 1, 2);
+            uiRichTextBox1.Radius = 10;
+            uiRichTextBox1.ReadOnly = true;
+            uiRichTextBox1.ScrollBarStyleInherited = false;
+            uiRichTextBox1.ShowText = false;
+            uiRichTextBox1.Size = new Size(377, 146);
+            uiRichTextBox1.Style = Sunny.UI.UIStyle.Custom;
+            uiRichTextBox1.TabIndex = 0;
+            uiRichTextBox1.TextAlignment = ContentAlignment.MiddleCenter;
             // 
             // FrmAboutUs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(550, 228);
-            this.Controls.Add(this.uiRichTextBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FrmAboutUs";
-            this.ShowIcon = true;
-            this.ShowTitleIcon = true;
-            this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "关于我们";
-            this.Load += new System.EventHandler(this.FrmAboutUs_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmAboutUs_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmAboutUs_MouseMove);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(235, 243, 255);
+            ClientSize = new Size(390, 192);
+            Controls.Add(uiRichTextBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2, 2, 2, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FrmAboutUs";
+            Text = "关于我们";
+            Load += FrmAboutUs_Load;
+            MouseDown += FrmAboutUs_MouseDown;
+            MouseMove += FrmAboutUs_MouseMove;
+            ResumeLayout(false);
         }
 
         #endregion

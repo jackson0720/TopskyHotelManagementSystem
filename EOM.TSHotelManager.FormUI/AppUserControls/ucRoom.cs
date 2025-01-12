@@ -11,9 +11,11 @@ namespace EOM.TSHotelManager.FormUI
 {
     public partial class ucRoom : UserControl
     {
+        private LoadingProgress _loadingProgress;
         public ucRoom()
         {
             InitializeComponent();
+            _loadingProgress = new LoadingProgress();
         }
 
 
@@ -304,11 +306,12 @@ namespace EOM.TSHotelManager.FormUI
 
         private void tsmiCheckOut_Click(object sender, EventArgs e)
         {
+            _loadingProgress.Show();
             rm_CustoNo = romRoomInfo.CustoNo;
             rm_RoomNo = romRoomInfo.RoomNo;
             rm_RoomType = romRoomInfo.RoomName;
-            FrmCheckOutForm frm = new FrmCheckOutForm();
-            frm.Show();
+            FrmCheckOutForm frm = new FrmCheckOutForm(_loadingProgress);
+            frm.ShowDialog(this);
         }
 
         public static string? RoomNo;

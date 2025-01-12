@@ -48,9 +48,11 @@ namespace EOM.TSHotelManager.FormUI
         //定义委托类型的变量
         public static ReloadCustomerList ReloadCusto;
         TableComHelper tableComHelper = null;
+        private LoadingProgress _loadingProgress;
         public FrmCustoManager()
         {
             InitializeComponent();
+            _loadingProgress = new LoadingProgress();
             ReloadCusto = LoadCustomer;
             tableComHelper = new TableComHelper();
         }
@@ -221,55 +223,47 @@ namespace EOM.TSHotelManager.FormUI
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            //// 调用之前定义的导出方法
-            //ExportHelper exportHelper = new ExportHelper();
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //// 设置保存对话框的属性
-            //saveFileDialog.Filter = "2003~2007工作表*.xls|*.xls|2010及以上版本工作表*.xlsx|*.xlsx";
-            //saveFileDialog.Title = cbExportAll.Checked ? "导出Excel文件(导出全部)" : "导出Excel文件(导出当前页)";
-            //saveFileDialog.FileName = Convert.ToDateTime(DateTime.Now).ToString("yyyyMMddHHmmss") + "_" + "客户列表"; // 默认文件名
-            //saveFileDialog.CheckPathExists = true; // 检查目录是否存在
+            // 调用之前定义的导出方法
+            ExportHelper exportHelper = new ExportHelper();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // 设置保存对话框的属性
+            saveFileDialog.Filter = "2003~2007工作表*.xls|*.xls|2010及以上版本工作表*.xlsx|*.xlsx";
+            saveFileDialog.Title = "导出Excel文件";
+            saveFileDialog.FileName = Convert.ToDateTime(DateTime.Now).ToString("yyyyMMddHHmmss") + "_" + "客户列表"; // 默认文件名
+            saveFileDialog.CheckPathExists = true; // 检查目录是否存在
 
-            //if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    // 用户确认保存，获取选择的文件路径
-            //    string filePath = saveFileDialog.FileName;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 用户确认保存，获取选择的文件路径
+                string filePath = saveFileDialog.FileName;
 
-            //    try
-            //    {
-            //        if (cbExportAll.Checked)
-            //        {
-            //            dic = new Dictionary<string, string>()
-            //            {
-            //                { "pageIndex",null},
-            //                { "pageSize",null}
-            //            };
-            //            ResponseMsg response = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
-            //            if (response.statusCode != 200)
-            //            {
-            //                AntdUI.Message.error(this,"SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
-            //                return;
-            //            }
-            //            OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(response.message);
-            //            exportHelper.ExportDataToExcel(custos.listSource, filePath, new List<string> { "CustoSex", "PassportType", "CustoID", "CustoType", "delete_mk", "datains_usr", "datains_date", "datachg_usr", "datachg_date" });
-            //        }
-            //        else
-            //        {
-            //            exportHelper.ExportDataTableToExcel(ConvertDataGridViewToDataTable(dgvCustomerList.CopyData(dgvCustomerList.SelectedIndex), filePath, new List<string> { "Column1", "Column2", "Column3", "Column4" });
-            //        }
-            //        AntdUI.Message.success(this,"导出成功！");
-            //        System.Diagnostics.Process.Start("Explorer.exe", filePath);
-            //        #region 获取添加操作日志所需的信息
-            //        RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerName + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "导出了" + "后台用户信息!", 3);
-            //        #endregion
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // 处理可能发生的任何错误
-            //        AntdUI.Message.error(this, $"导出失败: {ex.Message}");
-            //    }
-            //}
-            //// 如果用户取消了保存，则不执行任何操作
+                try
+                {
+                    dic = new Dictionary<string, string>()
+                        {
+                            { "pageIndex",null},
+                            { "pageSize",null}
+                        };
+                    ResponseMsg response = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+                    if (response.statusCode != 200)
+                    {
+                        AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                        return;
+                    }
+                    OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(response.message);
+                    exportHelper.ExportDataToExcel(custos.listSource, filePath, new List<string> { "CustoSex", "PassportType", "CustoID", "CustoType", "delete_mk", "datains_usr", "datains_date", "datachg_usr", "datachg_date" });
+
+                    AntdUI.Message.success(this, "导出成功！");
+                    System.Diagnostics.Process.Start("Explorer.exe", filePath);
+                    #region 获取添加操作日志所需的信息
+                    RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerName + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "导出了" + "后台用户信息!", 3);
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    AntdUI.Message.error(this, $"导出失败: {ex.Message}");
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -311,7 +305,7 @@ namespace EOM.TSHotelManager.FormUI
             var dataCount = 0;
             dgvCustomerList.Spin("正在加载中...", () =>
             {
-                dgvCustomerList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount);
+                dgvCustomerList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount,cbOnlyVip.Checked);
                 btnPg.Total = dataCount;
             }, () =>
             {

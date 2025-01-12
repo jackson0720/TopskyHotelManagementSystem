@@ -42,10 +42,12 @@ namespace EOM.TSHotelManager.FormUI
         public static string co_CustoType;
         public static string co_CustoID;
         public static HydroelectricPower w;
+        private LoadingProgress _loadingProgress;
 
-        public FrmCheckOutForm()
+        public FrmCheckOutForm(LoadingProgress loadingProgress)
         {
             InitializeComponent();
+            _loadingProgress = loadingProgress;
         }
 
         ResponseMsg result = null;
@@ -296,6 +298,11 @@ namespace EOM.TSHotelManager.FormUI
                 lblVIPPrice.Text = Decimal.Parse(m.ToString()).ToString("#,##0.00");
                 lblVIP.Text = "不  打  折";
 
+            }
+
+            if (_loadingProgress != null)
+            {
+                _loadingProgress.Close();
             }
 
         }

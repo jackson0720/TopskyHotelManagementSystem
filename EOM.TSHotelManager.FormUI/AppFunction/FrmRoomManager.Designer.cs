@@ -52,7 +52,7 @@
             flpRoom.Location = new Point(265, 103);
             flpRoom.Margin = new Padding(4);
             flpRoom.Name = "flpRoom";
-            flpRoom.Size = new Size(804, 383);
+            flpRoom.Size = new Size(804, 516);
             flpRoom.TabIndex = 71;
             // 
             // pnlRoomInfo
@@ -71,7 +71,7 @@
             pnlRoomInfo.Location = new Point(2, 312);
             pnlRoomInfo.Margin = new Padding(4);
             pnlRoomInfo.Name = "pnlRoomInfo";
-            pnlRoomInfo.Size = new Size(255, 174);
+            pnlRoomInfo.Size = new Size(255, 307);
             pnlRoomInfo.TabIndex = 72;
             // 
             // lblRoomState
@@ -220,7 +220,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1072, 490);
+            ClientSize = new Size(1072, 623);
             Controls.Add(muRoomState);
             Controls.Add(flpRoomTypes);
             Controls.Add(pnlRoomInfo);

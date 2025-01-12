@@ -30,16 +30,27 @@ namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmCustomerManager : Form
     {
+        public static string cm_CustoNo;
+        public static string cm_CustoName;
+        public static int cm_CustoSex;
+        public static string cm_CustoTel;
+        public static int cm_PassportType;
+        public static string cm_CustoID;
+        public static string cm_CustoAddress;
+        public static DateTime cm_CustoBirth;
+        public static int cm_CustoType;
 
-        public delegate void ReloadCustomerList();
+        public delegate void ReloadCustomerList(bool onlyVip);
 
 
         //定义委托类型的变量
         public static ReloadCustomerList ReloadCustomer;
 
+        private LoadingProgress _loadingProgress;
         public FrmCustomerManager()
         {
             InitializeComponent();
+            _loadingProgress = new LoadingProgress();
             ReloadCustomer = LoadCustomer;
         }
 
@@ -57,70 +68,110 @@ namespace EOM.TSHotelManager.FormUI
         private static bool? onlyVip = null;
 
         #region 加载用户信息列表
-        private void LoadCustomer()
+        private void LoadCustomer(bool onlyVip = false)
+        {
+            var dataCount = 0;
+            btnPg.PageSizeOptions = new int[] { 15, 30, 50, 100 };
+            dgvCustomerList.Spin("正在加载中...", () =>
+            {
+                TableComHelper tableComHelper = new TableComHelper();
+                dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Custo>());
+                dgvCustomerList.DataSource = GetPageData(btnPg.Current, btnPg.PageSize, ref dataCount, onlyVip);
+                btnPg.PageSize = 15;
+                btnPg.Current = 1;
+                btnPg.Total = dataCount;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
+        }
+
+
+        object GetPageData(int current, int pageSize, ref int totalCount, bool onlyVip = false)
         {
             dic = new Dictionary<string, string>()
             {
-                { "pageIndex","1"},
-                { "pageSize","15"}
+                { "pageIndex",current <= 0 ? "1":current.ToString()},
+                { "pageSize",pageSize.ToString()}
             };
-            if (onlyVip != null && (bool)onlyVip)
+            if (onlyVip)
             {
                 dic.Add("onlyVip", onlyVip.ToString());
             }
             result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
+                AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                return null!;
             }
             OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
-            btnPg.TotalCount = custos.total;
-            this.dgvCustomerList.AutoGenerateColumns = false;
-            this.dgvCustomerList.DataSource = custos.listSource;
+            totalCount = custos.total;
+            var listTableSource = new List<AntdUI.AntItem[]>();
+
+            custos.listSource = custos.listSource.OrderBy(a => a.CustoNo).ThenBy(a => a.CustoName).ToList();
+
+            TableComHelper tableComHelper = new TableComHelper();
+            listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);
+
+            return listTableSource;
         }
+
         #endregion
 
         int count = 0;
         private void btnSerach_BtnClick(object sender, EventArgs e)
         {
-            dgvCustomerList.ClearRows();
-            dgvCustomerList.AutoGenerateColumns = false;
-            List<Custo> custos = new List<Custo>();
-            if (!txtCustoNo.Text.IsNullOrEmpty())
+            OSelectAllDto<Custo> custos = new OSelectAllDto<Custo>();
+            if (!txtCustoNo.Text.IsNullOrEmpty() || !txtCustoName.Text.IsNullOrEmpty())
             {
-                var custo = new Custo()
+                if (!txtCustoNo.Text.IsNullOrEmpty())
                 {
-                    CustoNo = txtCustoNo.Text.Trim()
-                };
-                result = HttpHelper.Request("Custo/SelectCustoByInfo", HttpHelper.ModelToJson(custo));
+                    dic = new Dictionary<string, string>
+                    {
+                        { "CustoNo", txtCustoNo.Text.Trim() }
+                    };
+                }
+                if (!txtCustoName.Text.IsNullOrEmpty())
+                {
+                    dic = new Dictionary<string, string>
+                    {
+                        { "CustoName",  txtCustoName.Text.Trim() }
+                    };
+                }
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    AntdUI.Message.error(this, "SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                custos = HttpHelper.JsonToList<Custo>(result.message);
-            }
-            else if (!txtCustoName.Text.IsNullOrEmpty())
-            {
-                var custo = new Custo()
-                {
-                    CustoName = txtCustoName.Text.Trim()
-                };
-                result = HttpHelper.Request("Custo/SelectCustoByInfo", HttpHelper.ModelToJson(custo));
-                if (result.statusCode != 200)
-                {
-                    UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                custos = HttpHelper.JsonToList<Custo>(result.message);
             }
             else
             {
                 result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=15");
-                var listSource = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
-                custos = listSource.listSource;
+                if (result.statusCode != 200)
+                {
+                    AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
             }
+
+            custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
+
+            var listTableSource = new List<AntdUI.AntItem[]>();
+
+            custos.listSource = custos.listSource.OrderBy(a => a.CustoNo).ThenBy(a => a.CustoName).ToList();
+
+            TableComHelper tableComHelper = new TableComHelper();
+            listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);
+
+            dgvCustomerList.Spin("正在加载中...", () =>
+            {
+                dgvCustomerList.DataSource = listTableSource;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
+
             dgvCustomerList.DataSource = custos;
         }
 
@@ -130,104 +181,96 @@ namespace EOM.TSHotelManager.FormUI
             frmInputs.ShowDialog();
         }
 
-        private void dgvCustomerList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvCustomerList.SelectedRows.Count == 1)
-            {
-                btnUpdCustomer.Enabled = true;
-                return;
-            }
-            btnUpdCustomer.Enabled = true;
-            return;
-        }
-
         private void btnUpdCustomer_Click(object sender, EventArgs e)
         {
-            if (dgvCustomerList.SelectedRows.Count == 1)
-            {
-                FrmCustoManager.cm_CustoNo = dgvCustomerList.SelectedRows[0].Cells["CustoNo"].Value.ToString();
-                FrmCustoManager.cm_CustoName = dgvCustomerList.SelectedRows[0].Cells["CustoName"].Value.ToString();
-                FrmCustoManager.cm_CustoAddress = dgvCustomerList.SelectedRows[0].Cells["CustoAdress"].Value == null ? "" : dgvCustomerList.SelectedRows[0].Cells["CustoAdress"].Value.ToString();
-                FrmCustoManager.cm_CustoType = Convert.ToInt32(dgvCustomerList.SelectedRows[0].Cells["Column2"].Value);
-                FrmCustoManager.cm_CustoSex = Convert.ToInt32(dgvCustomerList.SelectedRows[0].Cells["Column4"].Value);
-                FrmCustoManager.cm_PassportType = Convert.ToInt32(dgvCustomerList.SelectedRows[0].Cells["Column1"].Value);
-                FrmCustoManager.cm_CustoBirth = Convert.ToDateTime(dgvCustomerList.SelectedRows[0].Cells["CustoBirth"].Value.ToString());
-                FrmCustoManager.cm_CustoID = dgvCustomerList.SelectedRows[0].Cells["Column3"].Value.ToString();
-                FrmCustoManager.cm_CustoTel = dgvCustomerList.SelectedRows[0].Cells["CustoTel"].Value.ToString();
-                FrmEditInputs frmInputs = new FrmEditInputs();
-                frmInputs.Text = "修改客户信息";
-                frmInputs.ShowDialog();
-            }
-        }
 
-        private void btnPg_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPg_PageChanged(object sender, object pagingSource, int pageIndex, int count)
-        {
-            dic = new Dictionary<string, string>()
+            if (dgvCustomerList.SelectedIndex < 0)
             {
-                { "pageIndex",pageIndex.ToString()},
-                { "pageSize",count.ToString()}
-            };
-            if (onlyVip != null && (bool)onlyVip)
-            {
-                dic.Add("onlyVip", onlyVip.ToString());
-            }
-            result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Message.error(this, "未选中客户，无法继续操作！");
                 return;
             }
-            OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
-            this.btnPg.TotalCount = custos.total;
-            this.dgvCustomerList.AutoGenerateColumns = false;
-            this.dgvCustomerList.DataSource = custos.listSource;
+            FrmCustoManager.cm_CustoNo = cm_CustoNo;
+            FrmCustoManager.cm_CustoName = cm_CustoName;
+            FrmCustoManager.cm_CustoAddress = cm_CustoAddress.IsNullOrEmpty() ? "" : cm_CustoAddress.ToString();
+            FrmCustoManager.cm_CustoType = Convert.ToInt32(cm_CustoType);
+            FrmCustoManager.cm_CustoSex = Convert.ToInt32(cm_CustoSex);
+            FrmCustoManager.cm_PassportType = Convert.ToInt32(cm_PassportType);
+            FrmCustoManager.cm_CustoBirth = Convert.ToDateTime(cm_CustoBirth);
+            FrmCustoManager.cm_CustoID = cm_CustoID;
+            FrmCustoManager.cm_CustoTel = cm_CustoTel;
+            FrmEditInputs frmInputs = new FrmEditInputs();
+            frmInputs.Text = "修改客户信息";
+            frmInputs.ShowDialog();
         }
 
         private void tsmiCustoNo_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(dgvCustomerList.SelectedRows[0].Cells["CustoNo"].Value as string);
-            UIMessageTip.ShowOk("复制完成！", 1500);
+            if (!cm_CustoNo.IsNullOrEmpty())
+            {
+                Clipboard.SetText(cm_CustoNo);
+                AntdUI.Message.success(this, "复制完成！");
+            }
         }
 
-        private void cbOnlyVip_CheckedChanged(object sender, EventArgs e)
+        private void dgvCustomerList_CellClick(object sender, AntdUI.TableClickEventArgs e)
         {
-            if (sender is UICheckBox checkBox)
+            if (e.Record is IList<AntdUI.AntItem> data)
             {
-                if (checkBox.Checked)
-                {
-                    onlyVip = true;
-                    dic = new Dictionary<string, string>()
-                    {
-                        { "pageIndex","1"},
-                        { "pageSize","15"}
-                    };
-                    if (onlyVip != null && (bool)onlyVip)
-                    {
-                        dic.Add("onlyVip", onlyVip.ToString());
-                    }
-                    result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
-                    if (result.statusCode != 200)
-                    {
-                        UIMessageBox.ShowError("SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
-                    this.btnPg.TotalCount = custos.total;
-                    this.dgvCustomerList.AutoGenerateColumns = false;
-                    this.dgvCustomerList.DataSource = custos.listSource;
-                }
-                else
-                {
-                    onlyVip = false;
-                    LoadCustomer();
-                }
+                cm_CustoNo = data[0].value.ToString();
+                cm_CustoName = data[1].value.ToString();
+                cm_CustoSex = Convert.ToInt32(SexConstant.GetCodeByDescription(data[2].value.ToString()));
+                cm_CustoTel = data[3].value.ToString();
+                cm_CustoBirth = Convert.ToDateTime(data[4].value.ToString());
+                cm_CustoType = Convert.ToInt32(CustomTypeConstant.GetCodeByDescription(data[5].value.ToString()));
+                cm_PassportType = Convert.ToInt32(PassportConstant.GetCodeByDescription(data[6].value.ToString()));
+                cm_CustoID = data[7].value.ToString();
+                cm_CustoAddress = data[8].value.ToString();
+                btnUpdCustomer.Enabled = true;
             }
+        }
 
+        private void cbOnlyVip_CheckedChanged(object sender, AntdUI.BoolEventArgs e)
+        {
+            LoadCustomer(e.Value);
+        }
+
+        private string btnPg_ShowTotalChanged(object sender, AntdUI.PagePageEventArgs e)
+        {
+            return $"{e.PageSize} / {e.Total}条 共{e.PageTotal}页";
+        }
+
+        private void btnPg_ValueChanged(object sender, AntdUI.PagePageEventArgs e)
+        {
+            var dataCount = 0;
+            dgvCustomerList.Spin("正在加载中...", () =>
+            {
+                dgvCustomerList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount,cbOnlyVip.Checked);
+                btnPg.Total = dataCount;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
+        }
+
+        private void dgvCustomerList_CellDoubleClick(object sender, AntdUI.TableClickEventArgs e)
+        {
+            _loadingProgress.Show();
+            if (e.Record is IList<AntdUI.AntItem> data)
+            {
+                FrmCustoManager.cm_CustoNo = data[0].value.ToString();
+                FrmCustoManager.cm_CustoName = data[1].value.ToString();
+                FrmCustoManager.cm_CustoSex = Convert.ToInt32(SexConstant.GetCodeByDescription(data[2].value.ToString()));
+                FrmCustoManager.cm_CustoTel = data[3].value.ToString();
+                FrmCustoManager.cm_CustoBirth = Convert.ToDateTime(data[4].value.ToString());
+                FrmCustoManager.cm_CustoType = Convert.ToInt32(CustomTypeConstant.GetCodeByDescription(data[5].value.ToString()));
+                FrmCustoManager.cm_PassportType = Convert.ToInt32(PassportConstant.GetCodeByDescription(data[6].value.ToString()));
+                FrmCustoManager.cm_CustoID = data[7].value.ToString();
+                FrmCustoManager.cm_CustoAddress = data[8].value.ToString();
+
+                FrmEditInputs frmInputs = new FrmEditInputs(_loadingProgress);
+                frmInputs.Text = "修改客户信息";
+                frmInputs.ShowDialog();
+            }
         }
     }
 

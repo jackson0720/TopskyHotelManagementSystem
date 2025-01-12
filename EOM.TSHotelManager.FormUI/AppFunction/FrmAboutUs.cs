@@ -21,11 +21,12 @@
  *SOFTWARE.
  *
  */
+using AntdUI;
 using Sunny.UI;
 
 namespace EOM.TSHotelManager.FormUI
 {
-    public partial class FrmAboutUs : UIForm
+    public partial class FrmAboutUs : Window
     {
         public FrmAboutUs()
         {

@@ -30,9 +30,11 @@ namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmEditInputs : UIEditForm
     {
-        public FrmEditInputs()
+        private LoadingProgress? _loadingProgress;
+        public FrmEditInputs(LoadingProgress? loadingProgress = null)
         {
             InitializeComponent();
+            _loadingProgress = loadingProgress;
         }
 
         Dictionary<string, string> dic = null;
@@ -124,6 +126,10 @@ namespace EOM.TSHotelManager.FormUI
                 }
 
             }
+            if (_loadingProgress != null)
+            {
+                _loadingProgress.Close();
+            }
         }
 
         private void btnOK_UpdClick(object sender, EventArgs e)
@@ -160,7 +166,7 @@ namespace EOM.TSHotelManager.FormUI
             RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustoNo, 3);
             #endregion
             this.Close();
-            FrmCustomerManager.ReloadCustomer();
+            FrmCustomerManager.ReloadCustomer(false);
 
             foreach (Control Ctrol in this.Controls)
             {
@@ -203,7 +209,7 @@ namespace EOM.TSHotelManager.FormUI
             if (result.message.ToString().Equals("true"))
             {
                 UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
-                FrmCustomerManager.ReloadCustomer();
+                FrmCustomerManager.ReloadCustomer(false);
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustoNo, 3);
                 #endregion

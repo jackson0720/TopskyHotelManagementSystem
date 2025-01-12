@@ -43,7 +43,6 @@
             btnExport = new AntdUI.Button();
             btnUpdate = new AntdUI.Button();
             cbOnlyVip = new AntdUI.Checkbox();
-            cbExportAll = new AntdUI.Checkbox();
             divider1 = new AntdUI.Divider();
             cmsCustoManager.SuspendLayout();
             SuspendLayout();
@@ -81,7 +80,7 @@
             btnPg.Name = "btnPg";
             btnPg.PageSize = 15;
             btnPg.ShowSizeChanger = true;
-            btnPg.Size = new Size(405, 31);
+            btnPg.Size = new Size(530, 31);
             btnPg.TabIndex = 133;
             btnPg.Total = 100;
             btnPg.ValueChanged += btnPg_ValueChanged;
@@ -190,22 +189,12 @@
             // 
             cbOnlyVip.AutoCheck = true;
             cbOnlyVip.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            cbOnlyVip.Location = new Point(422, 538);
+            cbOnlyVip.Location = new Point(540, 538);
             cbOnlyVip.Name = "cbOnlyVip";
             cbOnlyVip.Size = new Size(120, 23);
             cbOnlyVip.TabIndex = 147;
             cbOnlyVip.Text = "仅查看会员";
             cbOnlyVip.CheckedChanged += cbOnlyVip_CheckedChanged;
-            // 
-            // cbExportAll
-            // 
-            cbExportAll.AutoCheck = true;
-            cbExportAll.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            cbExportAll.Location = new Point(559, 538);
-            cbExportAll.Name = "cbExportAll";
-            cbExportAll.Size = new Size(108, 23);
-            cbExportAll.TabIndex = 148;
-            cbExportAll.Text = "导出全部";
             // 
             // divider1
             // 
@@ -224,7 +213,6 @@
             ClientSize = new Size(1005, 623);
             ControlBox = false;
             Controls.Add(divider1);
-            Controls.Add(cbExportAll);
             Controls.Add(cbOnlyVip);
             Controls.Add(btnUpdate);
             Controls.Add(btnExport);
@@ -241,6 +229,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmCustoManager";
+            Resizable = false;
             Text = "客户信息管理";
             Load += FrmCustoManager_Load;
             cmsCustoManager.ResumeLayout(false);
@@ -262,7 +251,6 @@
         private AntdUI.Button btnExport;
         private AntdUI.Button btnUpdate;
         private AntdUI.Checkbox cbOnlyVip;
-        private AntdUI.Checkbox cbExportAll;
         private AntdUI.Divider divider1;
     }
 }
