@@ -26,7 +26,9 @@ using AntdUI;
 using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using EOM.TSHotelManager.FormUI.Properties;
+using jvncorelib.EntityLib;
 using Sunny.UI;
+using System.Windows.Forms;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -157,7 +159,7 @@ namespace EOM.TSHotelManager.FormUI
             _loadingProgress.Show();
             try
             {
-                if (CheckInput())//检验输入完整性
+                if (CheckInput())
                 {
                     Worker worker = new Worker() { WorkerId = txtWorkerId.Text.Trim(), WorkerPwd = txtWorkerPwd.Text.Trim() };
 
@@ -165,18 +167,18 @@ namespace EOM.TSHotelManager.FormUI
 
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.Show("账号或密码错误！", "来自小T提示", UIStyle.Red);
-                        txtWorkerPwd.Focus();//聚焦
+                        AntdUI.Modal.open(this, "系统提示", "账号或密码错误！",TType.Error);
+                        txtWorkerPwd.Focus();
                         return;
                     }
 
                     Worker w = HttpHelper.JsonToModel<Worker>(result.message);
 
-                    if (w != null)//判断员工编号是否存在
+                    if (!w.IsNullOrEmpty())
                     {
                         if (w.delete_mk == 1)
                         {
-                            UIMessageBox.Show("账号已禁用，请联系上级解封！", "来自小T提示", UIStyle.Red);
+                            AntdUI.Modal.open(this, "系统提示", "账号已禁用，请联系上级解封！", TType.Error);
                             return;
                         }
 
@@ -187,47 +189,28 @@ namespace EOM.TSHotelManager.FormUI
                         LoginInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
                         LoginInfo.UserToken = w.user_token;
                         FrmMain frm = new FrmMain(this, _loadingProgress);
-                        this.Hide();//隐藏登录窗体
-                        frm.ShowDialog(this);//打开主窗体
+                        this.Hide();
+                        frm.TopMost = true;
+                        frm.ShowDialog(this);
                     }
                     else
                     {
-                        UIMessageBox.Show("密码错误！", "来自小T提示", UIStyle.Red);
-                        txtWorkerPwd.Focus();//聚焦
+                        AntdUI.Modal.open(this, "系统提示", "密码错误！", TType.Error);
+                        txtWorkerPwd.Focus();
                     }
                 }
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex);
-                UIMessageBox.Show("服务器维护中，请稍后再试！", "温馨提示", UIStyle.Red);
-            }
-            finally
-            {
+                AntdUI.Modal.open(this, "系统提示", "服务器维护中，请稍后再试！", TType.Error);
             }
         }
         #endregion
 
         private void btnLoginBackSystem_Click(object sender, EventArgs e)
         {
-            FrmAdminEnter frmAdminEnter = new FrmAdminEnter();
+            FrmAdminEnter frmAdminEnter = new FrmAdminEnter(this);
             frmAdminEnter.ShowDialog(this);
-        }
-
-        private void picFormSize_MouseDown(object sender, MouseEventArgs e)
-        {
-            this.picFormSize.BackColor = System.Drawing.Color.RoyalBlue;
-        }
-
-        private void picFormSize_MouseHover(object sender, EventArgs e)
-        {
-            this.picFormSize.BackColor = System.Drawing.Color.RoyalBlue;
-        }
-
-        private void picFormSize_MouseLeave(object sender, EventArgs e)
-        {
-            this.picFormSize.BackColor = System.Drawing.Color.Transparent;
-            this.picFormSize.BackgroundImage = Resources.arrow_down_b;
         }
     }
 }

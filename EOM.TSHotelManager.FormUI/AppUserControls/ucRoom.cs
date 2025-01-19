@@ -226,7 +226,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "no", roomText[1] }
             };
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", string.Empty, getParam);
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo", getParam);
 
             if (result.statusCode != 200)
             {
@@ -355,7 +355,7 @@ namespace EOM.TSHotelManager.FormUI
                     {
                         {"no",r.RoomNo }
                     };
-                    result = HttpHelper.Request("Reser/SelectReserInfoByRoomNo", null, getParam);
+                    result = HttpHelper.Request("Reser/SelectReserInfoByRoomNo", getParam);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.Show("SelectReserInfoByRoomNo+接口服务异常！", "来自小T提示", UIStyle.Red);
@@ -367,7 +367,7 @@ namespace EOM.TSHotelManager.FormUI
                         {
                             ReserId = HttpHelper.JsonToModel<Reser>(result.message!)!.ReserId
                         };
-                        result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser), null);
+                        result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
                         if (result.statusCode != 200)
                         {
                             UIMessageBox.Show("DeleteReserInfo+接口服务异常！", "来自小T提示", UIStyle.Red);

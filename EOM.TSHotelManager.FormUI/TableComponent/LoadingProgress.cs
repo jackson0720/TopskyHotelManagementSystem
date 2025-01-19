@@ -21,7 +21,7 @@
         {
             if (_frmProgress != null && !_frmProgress.IsDisposed)
             {
-                _frmProgress.Invoke(new Action(() =>
+                _frmProgress.BeginInvoke(new Action(() =>
                 {
                     _frmProgress.Close();
                 }));

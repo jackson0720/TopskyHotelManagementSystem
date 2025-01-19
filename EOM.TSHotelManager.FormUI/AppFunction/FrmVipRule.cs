@@ -41,7 +41,7 @@ namespace EOM.TSHotelManager.FormUI
         private void FrmVipRule_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse", null, null);
+            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交issue");

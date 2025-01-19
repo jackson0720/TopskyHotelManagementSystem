@@ -135,7 +135,7 @@ namespace EOM.TSHotelManager.FormUI
                 { "no",txtRoomNo.Text.ToString()}
             };
 
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -156,7 +156,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "roomno",txtRoomNo.Text}
             };
-            result = HttpHelper.Request("Room/DayByRoomNo", null, dic);
+            result = HttpHelper.Request("Room/DayByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -182,7 +182,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "CustoNo",CustoNo.Text.ToString()}
             };
-            result = HttpHelper.Request("Custo​/SelectCardInfoByCustoNo", null, dic);
+            result = HttpHelper.Request("Custo​/SelectCardInfoByCustoNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -215,7 +215,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "RoomNo",RoomNo}
             };
-            result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", null, dic);
+            result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSpendInfoRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -235,7 +235,7 @@ namespace EOM.TSHotelManager.FormUI
                     { "roomno",RoomNo},
                     { "custono",CustoNo.Text.ToString()}
                 };
-                result = HttpHelper.Request("Spend/SelectMoneyByRoomNoAndTime", null, dic);
+                result = HttpHelper.Request("Spend/SelectMoneyByRoomNoAndTime", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("SelectMoneyByRoomNoAndTime+接口服务异常，请提交Issue或尝试更新版本！");
@@ -251,7 +251,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "roomno",txtRoomNo.Text.Trim()}
             };
-            result = HttpHelper.Request("HydroelectricPower/ListWtiInfoByRoomNo", null, dic);
+            result = HttpHelper.Request("HydroelectricPower/ListWtiInfoByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("ListWtiInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -354,7 +354,7 @@ namespace EOM.TSHotelManager.FormUI
                     {
                         { "no",txtRoomNo.Text}
                     };
-                    result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
+                    result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -368,7 +368,7 @@ namespace EOM.TSHotelManager.FormUI
                         {
                             { "room",txtRoomNo.Text}
                         };
-                        result = HttpHelper.Request("Room/UpdateRoomByRoomNo", null, dic);
+                        result = HttpHelper.Request("Room/UpdateRoomByRoomNo", dic);
                         if (result.statusCode != 200)
                         {
                             UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -405,7 +405,7 @@ namespace EOM.TSHotelManager.FormUI
                             { "roomno",txtRoomNo.Text},
                             { "checktime",checktime}
                         };
-                        result = HttpHelper.Request("Spend​/UpdateMoneyState", null, dic);
+                        result = HttpHelper.Request("Spend​/UpdateMoneyState", dic);
                         if (result.statusCode != 200)
                         {
                             UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue或尝试更新版本！");
@@ -417,7 +417,7 @@ namespace EOM.TSHotelManager.FormUI
                             {
                                 { "room",txtRoomNo.Text}
                             };
-                            result = HttpHelper.Request("Room/UpdateRoomByRoomNo", null, dic);
+                            result = HttpHelper.Request("Room/UpdateRoomByRoomNo", dic);
                             if (result.statusCode != 200)
                             {
                                 UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue或尝试更新版本！");

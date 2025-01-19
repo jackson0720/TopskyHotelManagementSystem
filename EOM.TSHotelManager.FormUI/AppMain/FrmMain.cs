@@ -29,7 +29,10 @@ using EOM.TSHotelManager.FormUI.AppUserControls;
 using EOM.TSHotelManager.FormUI.Properties;
 using Sunny.UI;
 using System.Diagnostics;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace EOM.TSHotelManager.FormUI
 {
@@ -274,25 +277,24 @@ namespace EOM.TSHotelManager.FormUI
             DateTime tmCur = Convert.ToDateTime(DateTime.Now);
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
-            {//晚上
+            {
                 label3.Text = "(*´▽｀)ノノ晚上好 " + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.月亮;
             }
             else if (tmCur.Hour > 8 && tmCur.Hour < 12)
-            {//上午
+            {
                 label3.Text = "(*´▽｀)ノノ上午好 " + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.早上;
             }
             else
-            {//下午
+            {
                 label3.Text = "(*´▽｀)ノノ下午好 " + LoginInfo.WorkerName;
                 btnHello.BackgroundImage = Resources.咖啡;
             }
-            //SetClassLong(this.Handle, GCL_STYLE, GetClassLong(this.Handle, GCL_STYLE) | CS_DropSHADOW); //API函数加载，实现窗体边框阴影效果
 
             Dictionary<string, string> user = new Dictionary<string, string>();
             user.Add("wkn", LoginInfo.WorkerNo);
-            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo", null, user);
+            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -405,7 +407,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "wkn", LoginInfo.WorkerNo }
             };
-            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo", null, user);
+            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo", user);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -418,7 +420,7 @@ namespace EOM.TSHotelManager.FormUI
                 linkLabel1.ForeColor = Color.Green;
                 linkLabel1.LinkColor = Color.Green;
                 pnlCheckInfo.Visible = true;
-                result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", null, user);
+                result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", user);
                 if (result.statusCode != 200)
                 {
                     UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -441,7 +443,7 @@ namespace EOM.TSHotelManager.FormUI
                         CheckTime = DateTime.Now,
                         datains_usr = LoginInfo.WorkerNo
                     };
-                    result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson(), null);
+                    result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson());
                     if (result.statusCode != 200)
                     {
                         UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -450,7 +452,7 @@ namespace EOM.TSHotelManager.FormUI
                     bool j = result.statusCode == 200 ? true : false;
                     if (j)
                     {
-                        result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", null, user);
+                        result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", user);
                         if (result.statusCode != 200)
                         {
                             UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -520,7 +522,8 @@ namespace EOM.TSHotelManager.FormUI
 
         private void cpUITheme_ValueChanged(object sender, ColorEventArgs e)
         {
-            AntdUI.Style.Db.SetPrimary(e.Value);
+            AntdUI.Style.SetPrimary(e.Value);
+            Settings.Default["ThemeColor"] = e.Value.ToArgb().ToString("X");
             Refresh();
         }
 

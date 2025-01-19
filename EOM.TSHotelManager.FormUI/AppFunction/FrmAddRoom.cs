@@ -48,7 +48,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "roomType", Convert.ToString(cboRoomType.SelectedValue.ToString())}
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypeByType", null, dic);
+            result = HttpHelper.Request("RoomType/SelectRoomTypeByType", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypeByType+接口服务异常，请提交Issue或尝试更新版本！");
@@ -109,7 +109,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "isDelete","0"}
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypesAll", null, dic);
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -117,6 +117,7 @@ namespace EOM.TSHotelManager.FormUI
             }
             cboRoomType.Items.AddRange(HttpHelper.JsonToList<RoomType>(result.message).Select(a => new SelectItem(a.RoomName, a.Roomtype)).ToArray());
             cboRoomType.SelectedIndex = 0;
+
         }
 
         public void LoadRoom()
@@ -145,7 +146,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "roomTypeId",cboRoomType.SelectedValue.ToString()}
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypeByType", null, dic);
+            result = HttpHelper.Request("RoomType/SelectRoomTypeByType", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypeByType+接口服务异常，请提交Issue或尝试更新版本！");
@@ -165,7 +166,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "no", RoomNo }
             };
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");

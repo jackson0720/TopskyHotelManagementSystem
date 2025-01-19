@@ -23,7 +23,7 @@ namespace EOM.TSHotelManager.Common
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("identityCard", code.Substring(0, 6));
-            ResponseMsg result = HttpHelper.Request("App/SelectCardCode", null, dic);
+            ResponseMsg result = HttpHelper.Request("App/SelectCardCode", dic);
             if (result.statusCode != 200)
             {
                 return new Card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };

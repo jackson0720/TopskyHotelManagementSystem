@@ -62,7 +62,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "wn",lblWorkerNo.Text}
             };
-            result = HttpHelper.Request("WorkerGoodBad/SelectAllGoodBadByWorkNo", null, dic);
+            result = HttpHelper.Request("WorkerGoodBad/SelectAllGoodBadByWorkNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectAllGoodBadByWorkNo+接口服务异常，请提交Issue或尝试更新版本！");

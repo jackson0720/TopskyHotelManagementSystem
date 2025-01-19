@@ -33,7 +33,6 @@
             tsmiCustoNo = new ToolStripMenuItem();
             dgvCustomerList = new AntdUI.Table();
             btnPg = new AntdUI.Pagination();
-            windowBar1 = new AntdUI.WindowBar();
             txtCustoNo = new AntdUI.Input();
             txtCustoName = new AntdUI.Input();
             label2 = new AntdUI.Label();
@@ -85,19 +84,6 @@
             btnPg.Total = 100;
             btnPg.ValueChanged += btnPg_ValueChanged;
             btnPg.ShowTotalChanged += btnPg_ShowTotalChanged;
-            // 
-            // windowBar1
-            // 
-            windowBar1.Font = new Font("Microsoft YaHei UI", 12F);
-            windowBar1.Icon = (Image)resources.GetObject("windowBar1.Icon");
-            windowBar1.IsMax = false;
-            windowBar1.Location = new Point(4, 3);
-            windowBar1.MaximizeBox = false;
-            windowBar1.MinimizeBox = false;
-            windowBar1.Name = "windowBar1";
-            windowBar1.Size = new Size(999, 40);
-            windowBar1.TabIndex = 138;
-            windowBar1.Text = "客户信息管理";
             // 
             // txtCustoNo
             // 
@@ -222,7 +208,6 @@
             Controls.Add(label2);
             Controls.Add(txtCustoName);
             Controls.Add(txtCustoNo);
-            Controls.Add(windowBar1);
             Controls.Add(btnPg);
             Controls.Add(dgvCustomerList);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -241,7 +226,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCustoNo;
         private AntdUI.Table dgvCustomerList;
         private AntdUI.Pagination btnPg;
-        private AntdUI.WindowBar windowBar1;
         private AntdUI.Input txtCustoNo;
         private AntdUI.Input txtCustoName;
         private AntdUI.Label label2;

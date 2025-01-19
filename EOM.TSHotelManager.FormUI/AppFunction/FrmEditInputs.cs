@@ -200,7 +200,7 @@ namespace EOM.TSHotelManager.FormUI
 
             };
 
-            result = HttpHelper.Request("Custo/InsertCustomerInfo", HttpHelper.ModelToJson<Custo>(custo), null);
+            result = HttpHelper.Request("Custo/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");

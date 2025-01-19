@@ -61,7 +61,7 @@ namespace EOM.TSHotelManager.FormUI
             //加载民族信息
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("delete_mk", "0");
-            result = HttpHelper.Request("Base/SelectNationAll", null, dic);
+            result = HttpHelper.Request("Base/SelectNationAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -73,7 +73,7 @@ namespace EOM.TSHotelManager.FormUI
             //加载职位信息
             dic = new Dictionary<string, string>();
             dic.Add("delete_mk", "0");
-            result = HttpHelper.Request("Base/SelectPositionAll", null, dic);
+            result = HttpHelper.Request("Base/SelectPositionAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -85,7 +85,7 @@ namespace EOM.TSHotelManager.FormUI
             //加载性别信息
             dic = new Dictionary<string, string>();
             dic.Add("delete_mk", "0");
-            result = HttpHelper.Request("Base/SelectSexTypeAll", null, dic);
+            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -97,7 +97,7 @@ namespace EOM.TSHotelManager.FormUI
             //加载学历信息
             dic = new Dictionary<string, string>();
             dic.Add("delete_mk", "0");
-            result = HttpHelper.Request("Base/SelectEducationAll", null, dic);
+            result = HttpHelper.Request("Base/SelectEducationAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectEducationAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -148,7 +148,7 @@ namespace EOM.TSHotelManager.FormUI
                 {
                     { "WorkerId", WorkerNo.Text.Trim() }
                 };
-                result = HttpHelper.Request("WorkerPicture/WorkerPic", null, dic);
+                result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
@@ -165,7 +165,7 @@ namespace EOM.TSHotelManager.FormUI
                 this.WorkerID.Validated -= new EventHandler(WorkerID_Validated);
                 dic = new Dictionary<string, string>();
                 dic.Add("wid", WorkerNo.Text.Trim());
-                result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", null, dic);
+                result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
@@ -222,7 +222,7 @@ namespace EOM.TSHotelManager.FormUI
 
                     dic = new Dictionary<string, string>();
                     dic.Add("WorkerId", WorkerNo.Text.Trim());
-                    result = HttpHelper.Request("WorkerPicture/WorkerPic", null, dic);
+                    result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
@@ -243,7 +243,7 @@ namespace EOM.TSHotelManager.FormUI
                     cboWorkerFace.ReadOnly = false;
                     dic = new Dictionary<string, string>();
                     dic.Add("wid", WorkerNo.Text.Trim());
-                    result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", null, dic);
+                    result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");

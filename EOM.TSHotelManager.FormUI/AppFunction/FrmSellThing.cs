@@ -38,6 +38,8 @@ namespace EOM.TSHotelManager.FormUI
         ResponseMsg result = null;
         Room r = null;
 
+        private static Spend spend = null;
+
         public FrmSellThing()
         {
             InitializeComponent();
@@ -46,17 +48,17 @@ namespace EOM.TSHotelManager.FormUI
         #region 窗体加载事件
         private void FrmSellThing_Load(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("Room/SelectRoomByStateAll");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectRoomByStateAll+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            List<Room> roms = HttpHelper.JsonToList<Room>(result.message);
-            for (int i = 0; i < roms.Count; i++)
-            {
-                txtRoomNo.AutoCompleteCustomSource.Add(roms[i].RoomNo);
-            }
+            //result = HttpHelper.Request("Room/SelectRoomByStateAll");
+            //if (result.statusCode != 200)
+            //{
+            //    UIMessageBox.ShowError("SelectRoomByStateAll+接口服务异常，请提交Issue或尝试更新版本！");
+            //    return;
+            //}
+            //List<Room> roms = HttpHelper.JsonToList<Room>(result.message);
+            //for (int i = 0; i < roms.Count; i++)
+            //{
+            //    txtRoomNo.AutoCompleteCustomSource.Add(roms[i].RoomNo);
+            //}
             LoadSellThingInfo();
 
         }
@@ -65,64 +67,109 @@ namespace EOM.TSHotelManager.FormUI
         #region 查询事件
         private void btnFind_Click(object sender, EventArgs e)
         {
-            LoadThingByName();
+            LoadThingByName(txtFind.Text);
         }
         #endregion
 
         #region 查询文本框更改事件
 
-        private void LoadThingByName()
+        private void LoadThingByName(string sellthing)
         {
             dic = new Dictionary<string, string>()
             {
-                { "SellNo",txtFind.Text.Trim()},
-                {"SellName", txtFind.Text.Trim()}
+                { "SellNo",sellthing.Trim()},
+                {"SellName", sellthing.Trim()}
             };
-            result = HttpHelper.Request("Sellthing/SelectSellThingAll", null, dic);
+            result = HttpHelper.Request("Sellthing/SelectSellThingAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<SellThing> lstSource = HttpHelper.JsonToList<SellThing>(result.message);
-            this.dgvSellthing.DataSource = lstSource;
-            this.dgvSellthing.AutoGenerateColumns = false;
+
+            var listTableSource = new List<AntdUI.AntItem[]>();
+
+            List<SellThing> lstSource = HttpHelper.JsonToList<SellThing>(result.message!) ?? new List<SellThing>();
+
+            TableComHelper tableComHelper = new TableComHelper();
+            listTableSource = tableComHelper.ConvertToAntdItems(lstSource);
+
+            dgvSellthing.Spin("正在加载中...", config =>
+            {
+                this.dgvSellthing.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<SellThing>());
+                this.dgvSellthing.DataSource = lstSource;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
         }
         #endregion
 
         #region 根据客户编号加载消费信息的方法
         private void LoadSpendInfoByRoomNo(string room)
         {
-            dic = new Dictionary<string, string>()
+            dgvRoomSell.Spin("正在加载中...", config =>
             {
-                { "No",room}
-            };
-            result = HttpHelper.Request("Spend/SelectSpendByRoomNo", null, dic);
-            if (result.statusCode != 200)
+                dic = new Dictionary<string, string>()
+                {
+                    { "No",room}
+                };
+                result = HttpHelper.Request("Spend/SelectSpendByRoomNo",dic);
+                if (result.statusCode != 200)
+                {
+                    UIMessageBox.ShowError("SelectSpendByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
+                List<Spend> lstSource = HttpHelper.JsonToList<Spend>(result.message!) ?? new List<Spend>();
+                TableComHelper tableComHelper = new TableComHelper();
+                dgvRoomSell.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Spend>());
+                dgvRoomSell.DataSource = tableComHelper.ConvertToAntdItems(lstSource);
+            }, () =>
             {
-                UIMessageBox.ShowError("SelectSpendByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            this.dgvRoomSell.AutoGenerateColumns = false;
-            List<Spend> lstSource = HttpHelper.JsonToList<Spend>(result.message);
-            this.dgvRoomSell.DataSource = lstSource;
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
         }
         #endregion
 
         #region 商品加载事件方法
         public void LoadSellThingInfo()
         {
+            var dataCount = 0;
+            btnPg.PageSizeOptions = new int[] { 15, 30, 50, 100 };
+            dgvSellthing.Spin("正在加载中...", config =>
+            {
+                TableComHelper tableComHelper = new TableComHelper();
+                dgvSellthing.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<SellThing>());
+                dgvSellthing.DataSource = GetPageData(btnPg.Current, btnPg.PageSize, ref dataCount);
+                btnPg.PageSize = 15;
+                btnPg.Current = 1;
+                btnPg.Total = dataCount;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
+
+        }
+
+        object GetPageData(int current, int pageSize, ref int totalCount)
+        {
             result = HttpHelper.Request("Sellthing/SelectSellThingAll");
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
+                AntdUI.Message.error(this, "SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
+                return null!;
             }
             List<SellThing> lstSource = HttpHelper.JsonToList<SellThing>(result.message);
-            this.dgvSellthing.AutoGenerateColumns = false;
-            this.dgvSellthing.DataSource = lstSource;
+            totalCount = lstSource.Count;
+            lstSource = lstSource.Skip((current - 1) * pageSize).Take(pageSize).ToList();
+            var listTableSource = new List<AntdUI.AntItem[]>();
 
+            TableComHelper tableComHelper = new TableComHelper();
+            listTableSource = tableComHelper.ConvertToAntdItems(lstSource);
+
+            return listTableSource;
         }
+
         #endregion
 
         #region 判断输入的完整性的方法
@@ -183,7 +230,7 @@ namespace EOM.TSHotelManager.FormUI
                     {
                         { "SellNo",txtSellNo.Text.Trim()}
                     };
-                    result = HttpHelper.Request("Sellthing/SelectSellThingAll", null, dic);
+                    result = HttpHelper.Request("Sellthing/SelectSellThingAll", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -194,7 +241,7 @@ namespace EOM.TSHotelManager.FormUI
                     {
                         { "no",txtRoomNo.Text.Trim()}
                     };
-                    result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
+                    result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -205,7 +252,7 @@ namespace EOM.TSHotelManager.FormUI
                     {
                         { "RoomNo",txtRoomNo.Text.Trim()}
                     };
-                    result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", null, dic);
+                    result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("SelectSpendInfoRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -359,32 +406,32 @@ namespace EOM.TSHotelManager.FormUI
                 UIMessageBox.Show("请先输入消费的房间！", "提示信息", UIStyle.Red);
                 return;
             }
-            if (dgvRoomSell.SelectedRows.Count > 0)
+            if (dgvRoomSell.SelectedIndex > 0)
             {
-                if (dgvRoomSell.SelectedRows[0].Cells["clSpendName"].Value.ToString().Contains("居住"))
+                if (spend.SpendName.Contains("居住"))
                 {
                     UIMessageBox.Show("此条消费记录为住房记录，无法删除！", "提示信息", UIStyle.Red);
                     return;
                 }
                 if (UIMessageDialog.ShowMessageDialog("你确定要删除该消费记录吗？", UILocalize.WarningTitle, true, Style))
                 {
-                    var spendTime = Convert.ToDateTime(dgvRoomSell.SelectedRows[0].Cells["clSpendTime"].Value.ToString());
-                    string custoNo = dgvRoomSell.SelectedRows[0].Cells["clCustoNo"].Value.ToString();
-                    string name = dgvRoomSell.SelectedRows[0].Cells["clSpendName"].Value.ToString();
-                    string price = dgvRoomSell.SelectedRows[0].Cells["clSpendPrice"].Value.ToString();
+                    var spendTime = spend.SpendTime;
+                    string custoNo = spend.CustoNo;
+                    string name = spend.SpendName;
+                    string price = spend.SpendPrice.ToString("#.00");
                     dic = new Dictionary<string, string>()
                     {
                         { "name",name},
                         { "price",price}
                     };
-                    result = HttpHelper.Request("Sellthing/SelectSellThingByNameAndPrice", null, dic);
+                    result = HttpHelper.Request("Sellthing/SelectSellThingByNameAndPrice", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("SelectSellThingByNameAndPrice+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
-                    SellThing s = HttpHelper.JsonToModel<SellThing>(result.message);
-                    decimal num = Convert.ToDecimal(dgvRoomSell.SelectedRows[0].Cells["clSpendAmount"].Value.ToString());
+                    SellThing s = HttpHelper.JsonToModel<SellThing>(result.message!)!;
+                    decimal num = Convert.ToDecimal(spend.SpendAmount);
                     string Stock = (s.Stock + num).ToString();
                     dic = new Dictionary<string, string>()
                     {
@@ -392,7 +439,7 @@ namespace EOM.TSHotelManager.FormUI
                         { "custoNo",custoNo},
                         { "sellName",name}
                     };
-                    result = HttpHelper.Request("Sellthing/DeleteSellThing", null, dic);
+                    result = HttpHelper.Request("Sellthing/DeleteSellThing", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("DeleteSellThing+接口服务异常，请提交Issue或尝试更新版本！");
@@ -435,14 +482,7 @@ namespace EOM.TSHotelManager.FormUI
 
         private void dgvSellthing_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (lblState.Visible == false)
-            {
-                UIMessageBox.Show("请先输入消费的房间！", "提示信息", UIStyle.Red);
-                return;
-            }
-            txtSellNo.Text = dgvSellthing.SelectedRows[0].Cells["clSellNo"].Value.ToString();
-            txtSellName.Text = dgvSellthing.SelectedRows[0].Cells["clSellName"].Value.ToString();
-            txtPrice.Text = dgvSellthing.SelectedRows[0].Cells["clSellPrice"].Value.ToString();
+
         }
 
 
@@ -476,7 +516,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "no",room}
             };
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -512,20 +552,38 @@ namespace EOM.TSHotelManager.FormUI
                     lblState.Text = "该房间不可消费";
                     lblState.ForeColor = Color.Red;
                     rs = 0;
-                    //LoadSpendInfo();
-                    //清空
                 }
             }
         }
 
-        private void lblState_Click(object sender, EventArgs e)
+        private void dgvSellthing_CellClick(object sender, AntdUI.TableClickEventArgs e)
         {
-
+            if (lblState.Visible == false)
+            {
+                UIMessageBox.Show("请先输入消费的房间！", "提示信息", UIStyle.Red);
+                return;
+            }
+            if (e.Record is IList<AntdUI.AntItem> data)
+            {
+                txtSellNo.Text = data[0].value.ToString();
+                txtSellName.Text = data[1].value.ToString();
+                txtPrice.Text = data[2].value.ToString(); ;
+            }
         }
 
-        private void FrmSellThing_Activated(object sender, EventArgs e)
+        private void dgvRoomSell_CellClick(object sender, AntdUI.TableClickEventArgs e)
         {
-
+            if (e.Record is IList<AntdUI.AntItem> data)
+            {
+                spend = new Spend();
+                spend.RoomNo = data[0].value.ToString();
+                spend.CustoNo = data[1].value.ToString();
+                spend.SpendName = data[2].value.ToString();
+                spend.SpendAmount = Convert.ToInt32(data[3].value);
+                spend.SpendPrice = Convert.ToDecimal(data[4].value);
+                spend.SpendMoney = Convert.ToDecimal(data[5].value);
+                spend.SpendTime = Convert.ToDateTime(data[6].value);
+            }
         }
     }
 }

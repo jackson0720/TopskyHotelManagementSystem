@@ -43,7 +43,7 @@
             txtDeposit = new AntdUI.InputNumber();
             label10 = new AntdUI.Label();
             btnAddRoom = new AntdUI.Button();
-            windowBar1 = new AntdUI.WindowBar();
+            //windowBar1 = new AntdUI.WindowBar();
             SuspendLayout();
             // 
             // flpRoom
@@ -177,15 +177,15 @@
             // 
             // windowBar1
             // 
-            windowBar1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
-            windowBar1.Icon = (System.Drawing.Image)resources.GetObject("windowBar1.Icon");
-            windowBar1.Location = new System.Drawing.Point(1, 3);
-            windowBar1.MaximizeBox = false;
-            windowBar1.MinimizeBox = false;
-            windowBar1.Name = "windowBar1";
-            windowBar1.Size = new System.Drawing.Size(999, 40);
-            windowBar1.TabIndex = 137;
-            windowBar1.Text = "新增客房";
+            //windowBar1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            //windowBar1.Icon = (System.Drawing.Image)resources.GetObject("windowBar1.Icon");
+            //windowBar1.Location = new System.Drawing.Point(1, 3);
+            //windowBar1.MaximizeBox = false;
+            //windowBar1.MinimizeBox = false;
+            //windowBar1.Name = "windowBar1";
+            //windowBar1.Size = new System.Drawing.Size(999, 40);
+            //windowBar1.TabIndex = 137;
+            //windowBar1.Text = "新增客房";
             // 
             // FrmAddRoom
             // 
@@ -194,7 +194,7 @@
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             ClientSize = new System.Drawing.Size(1001, 623);
             ControlBox = false;
-            Controls.Add(windowBar1);
+            //Controls.Add(windowBar1);
             Controls.Add(btnAddRoom);
             Controls.Add(txtDeposit);
             Controls.Add(label10);
@@ -230,6 +230,6 @@
         private AntdUI.InputNumber txtDeposit;
         private AntdUI.Label label10;
         private AntdUI.Button btnAddRoom;
-        private AntdUI.WindowBar windowBar1;
+        //private AntdUI.WindowBar windowBar1;
     }
 }

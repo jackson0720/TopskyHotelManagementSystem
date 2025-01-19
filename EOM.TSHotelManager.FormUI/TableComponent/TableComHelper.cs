@@ -72,25 +72,29 @@ namespace EOM.TSHotelManager.FormUI
 
                 foreach (var prop in properties)
                 {
-                    // 获取 UIDisplay 特性
                     var displayAttribute = prop.GetCustomAttribute<UIDisplayAttribute>();
 
-                    // 如果没有 UIDisplay 特性，则跳过
                     if (displayAttribute == null)
                     {
                         continue;
                     }
 
-                    var propName = prop.Name; // 获取属性名
-                    var propValue = prop.GetValue(data); // 获取属性值
-                    var propType = prop.PropertyType; // 获取属性的类型
+                    var propName = prop.Name;
+                    var propValue = prop.GetValue(data);
+                    var propType = prop.PropertyType;
 
-                    // 根据字段的类型做特定处理
                     if (propType == typeof(bool) || propType == typeof(int))
                     {
-                        var boolValue = Convert.ToBoolean(propValue);
-                        var cellTag = boolValue ? new AntdUI.CellTag("是", AntdUI.TTypeMini.Error) : new AntdUI.CellTag("否", AntdUI.TTypeMini.Success);
-                        antItems.Add(new AntdUI.AntItem(propName, cellTag));
+                        if (displayAttribute.IsNumber)
+                        {
+                            antItems.Add(new AntdUI.AntItem(propName, propValue?.ToString()));
+                        }
+                        else
+                        {
+                            var boolValue = Convert.ToBoolean(propValue);
+                            var cellTag = boolValue ? new AntdUI.CellTag("是", AntdUI.TTypeMini.Error) : new AntdUI.CellTag("否", AntdUI.TTypeMini.Success);
+                            antItems.Add(new AntdUI.AntItem(propName, cellTag));
+                        }
                     }
                     else if (propType == typeof(string))
                     {

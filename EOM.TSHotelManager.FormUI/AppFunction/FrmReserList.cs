@@ -39,7 +39,7 @@ namespace EOM.TSHotelManager.FormUI
 
         private void FrmReserList_Load(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("Reser/SelectReserAll", null, null);
+            result = HttpHelper.Request("Reser/SelectReserAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -49,7 +49,7 @@ namespace EOM.TSHotelManager.FormUI
             dgvReserList.DataSource = HttpHelper.JsonToList<Reser>(result.message);
 
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse", null, null);
+            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -64,7 +64,7 @@ namespace EOM.TSHotelManager.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse", null, null);
+            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -78,7 +78,7 @@ namespace EOM.TSHotelManager.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll", null, null);
+            result = HttpHelper.Request("Base/SelectSexTypeAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -89,11 +89,6 @@ namespace EOM.TSHotelManager.FormUI
             this.cbSex.DisplayMember = "sexName";
             this.cbSex.ValueMember = "sexId";
             #endregion
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -128,7 +123,7 @@ namespace EOM.TSHotelManager.FormUI
                     RoomStateId = 1,
                     RoomNo = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString()
                 };
-                result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(r), null);
+                result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(r));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -147,7 +142,7 @@ namespace EOM.TSHotelManager.FormUI
 
                 UIMessageBox.ShowSuccess("操作成功");
                 dgvReserList.AutoGenerateColumns = false;
-                result = HttpHelper.Request("Reser/SelectReserAll", null, null);
+                result = HttpHelper.Request("Reser/SelectReserAll");
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");

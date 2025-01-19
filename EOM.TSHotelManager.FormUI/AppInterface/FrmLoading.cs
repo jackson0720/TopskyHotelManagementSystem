@@ -21,6 +21,7 @@
  *SOFTWARE.
  *
  */
+using AntdUI;
 using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Newtonsoft.Json;
@@ -80,40 +81,40 @@ namespace EOM.TSHotelManager.FormUI
                             var isUpdated = await DownloadAndInstallUpdate(updateAsset.BrowserDownloadUrl, updateAsset.Name, new Progress<double>(ReportProgress));
                             if (isUpdated)
                             {
-                                UIMessageBox.ShowWarning("旧版已停止使用，稍后将自动下载最新发行版！");
+                                AntdUI.Modal.open(this,"系统提示", "旧版已停止使用，稍后将自动下载最新发行版！",TType.Warn);
                                 ExitApplication();
                             }
                             else
                             {
-                                UIMessageBox.ShowWarning("更新失败，请手动下载最新版本。");
+                                AntdUI.Modal.open(this, "系统提示", "更新失败，请手动下载最新版本。", TType.Warn);
                             }
                         }
                         else
                         {
-                            UIMessageBox.ShowWarning("最新版本中未找到可更新的 .exe 文件。");
+                            AntdUI.Modal.open(this, "系统提示", "最新版本中未找到可更新的 .exe 文件。", TType.Warn);
                         }
                     }
                     else
                     {
-                        UIMessageBox.ShowSuccess("当前已为最新版本，无需更新！");
+                        AntdUI.Modal.open(this, "系统提示", "当前已为最新版本，无需更新！", TType.Success);
                         await Task.Run(() => threadPro());
                     }
                 }
                 else
                 {
-                    UIMessageBox.Show("无法获取最新版本信息，请检查网络连接。");
+                    AntdUI.Modal.open(this, "系统提示", "无法获取最新版本信息，请检查网络连接。", TType.Info);
                     ExitApplication();
                 }
             }
             catch (OperationCanceledException)
             {
-                UIMessageBox.Show("网络连接超时，无法检查更新。即将跳转到网盘版本库");
+                AntdUI.Modal.open(this, "系统提示", "网络连接超时，无法检查更新。即将跳转到网盘版本库", TType.Info);
                 OpenFallbackUrl();
                 ExitApplication();
             }
             catch (Exception ex)
             {
-                UIMessageBox.Show($"检查更新时发生错误: {ex.Message}");
+                AntdUI.Modal.open(this, "系统提示", $"检查更新时发生错误: {ex.Message}", TType.Info);
             }
         }
 
@@ -175,12 +176,12 @@ namespace EOM.TSHotelManager.FormUI
             }
             catch (OperationCanceledException)
             {
-                UIMessageBox.Show("网络连接超时，无法下载更新。");
+                AntdUI.Modal.open(this, "系统提示", "网络连接超时，无法下载更新。", TType.Info);
                 OpenFallbackUrl();
             }
             catch (Exception ex)
             {
-                UIMessageBox.Show($"下载更新时发生错误: {ex.Message}");
+                AntdUI.Modal.open(this, "系统提示", $"下载更新时发生错误: {ex.Message}", TType.Info);
                 OpenFallbackUrl();
             }
             return false;

@@ -66,7 +66,7 @@ namespace EOM.TSHotelManager.FormUI
                 {"SellNo",txtFind.Text.Trim() },
                 { "SellName",txtFind.Text.Trim()}
             };
-            result = HttpHelper.Request("Sellthing/SelectSellThingAll", null, dic);
+            result = HttpHelper.Request("Sellthing/SelectSellThingAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -81,7 +81,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "sellNo",txtSellNo.Text.Trim()}
             };
-            result = HttpHelper.Request("Sellthing/DeleteSellThingBySellNo", null, dic);
+            result = HttpHelper.Request("Sellthing/DeleteSellThingBySellNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("DeleteSellThingBySellNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -133,7 +133,7 @@ namespace EOM.TSHotelManager.FormUI
                 {
                     { "SellNo",st.SellNo}
                 };
-                result = HttpHelper.Request("Sellthing/SelectSellInfoBySellNo", null, dic);
+                result = HttpHelper.Request("Sellthing/SelectSellInfoBySellNo", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("SelectSellInfoBySellNo+接口服务异常，请提交Issue或尝试更新版本！");

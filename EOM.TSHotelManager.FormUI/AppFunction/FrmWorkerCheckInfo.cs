@@ -46,7 +46,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "wid",FrmWorkerPanel.wk_WorkerNo}
             };
-            result = HttpHelper.Request("WorkerCheck/SelectCheckInfoByWorkerNo", null, dic);
+            result = HttpHelper.Request("WorkerCheck/SelectCheckInfoByWorkerNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectCheckInfoByWorkerNo+接口服务异常，请提交issue");

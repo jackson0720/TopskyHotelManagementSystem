@@ -92,7 +92,7 @@ namespace EOM.TSHotelManager.FormUI
                     { "Room/SelectReseredRoomAllByRoomState", (null, null) }
                 };
 
-                var results = HttpHelper.RaiseRequests(requests);
+                var results = HttpHelper.RaiseBatchRequest(requests);
 
                 if (results["Room/SelectCanUseRoomAllByRoomState"].statusCode != 200)
                 {
@@ -190,7 +190,7 @@ namespace EOM.TSHotelManager.FormUI
             try
             {
                 var dic = new Dictionary<string, string> { { "isDelete", "0" } };
-                var result = HttpHelper.Request("RoomType/SelectRoomTypesAll", null, dic);
+                var result = HttpHelper.Request("RoomType/SelectRoomTypesAll", dic);
                 if (result.statusCode != 200)
                 {
                     throw new Exception("SelectRoomTypesAll+接口服务异常");
@@ -269,7 +269,7 @@ namespace EOM.TSHotelManager.FormUI
                 {
                     { "TypeName",typeName}
                 };
-                result = HttpHelper.Request("Room/SelectRoomByTypeName", null, dic);
+                result = HttpHelper.Request("Room/SelectRoomByTypeName", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("SelectRoomByTypeName+接口服务异常，请提交Issue或尝试更新版本！");
@@ -301,7 +301,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "stateid",stateid.ToString()}
             };
-            result = HttpHelper.Request("Room/SelectRoomByRoomState", null, dic);
+            result = HttpHelper.Request("Room/SelectRoomByRoomState", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomByRoomState+接口服务异常，请提交Issue或尝试更新版本！");

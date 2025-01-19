@@ -113,7 +113,31 @@ namespace EOM.TSHotelManager.Common
         /// <param name="json"></param>
         /// <param name="dic"></param>
         /// <returns></returns>
-        public static ResponseMsg Request(string url, string? json = null, Dictionary<string, string>? dic = null)
+        public static ResponseMsg Request(string url)
+        {
+            ResponseMsg msg = new ResponseMsg();
+
+            //处理url
+            var sourceStr = url.Replace("​", string.Empty);
+
+            //解密原始URL
+            var api = encrypt.Decryption(apiUrl);
+
+            var requestUrl = api + sourceStr;
+
+            msg = DoGet(requestUrl);
+
+            return msg;
+        }
+
+        /// <summary>
+        /// 统一请求方法
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="json"></param>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        public static ResponseMsg Request(string url, string? json = null)
         {
             ResponseMsg msg = new ResponseMsg();
 
@@ -129,7 +153,34 @@ namespace EOM.TSHotelManager.Common
             {
                 msg = DoPost(requestUrl, json);
             }
-            else if (!dic.IsNullOrEmpty())
+            else
+            {
+                msg = DoGet(requestUrl);
+            }
+
+            return msg;
+        }
+
+        /// <summary>
+        /// 统一请求方法
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="json"></param>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        public static ResponseMsg Request(string url, Dictionary<string, string>? dic = null)
+        {
+            ResponseMsg msg = new ResponseMsg();
+
+            //处理url
+            var sourceStr = url.Replace("​", string.Empty);
+
+            //解密原始URL
+            var api = encrypt.Decryption(apiUrl);
+
+            var requestUrl = api + sourceStr;
+
+            if (!dic.IsNullOrEmpty())
             {
                 msg = DoGet(requestUrl, dic);
             }
@@ -146,14 +197,22 @@ namespace EOM.TSHotelManager.Common
         /// </summary>
         /// <param name="requests"></param>
         /// <returns></returns>
-        public static Dictionary<string, ResponseMsg> RaiseRequests(Dictionary<string, (string? json, Dictionary<string, string>? dic)> requests)
+        public static Dictionary<string, ResponseMsg> RaiseBatchRequest(Dictionary<string, (string? json, Dictionary<string, string>? dic)> requests)
         {
             var results = new Dictionary<string, ResponseMsg>();
 
             foreach (var (url, (json, dic)) in requests)
             {
-                var result = Request(url, json, dic);
-                results[url] = result;
+                var result = Request(url);
+                if (!json.IsNullOrEmpty())
+                {
+                    result = Request(url, json);
+                }
+                else if (!dic.IsNullOrEmpty())
+                {
+                    result = Request(url, dic);
+                }
+                results.Add(url, result);
             }
 
             return results;

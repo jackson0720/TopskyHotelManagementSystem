@@ -101,7 +101,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "CustoNo",txtCustoNo.Text.Trim() }
             };
-            result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", null, dic);
+            result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");

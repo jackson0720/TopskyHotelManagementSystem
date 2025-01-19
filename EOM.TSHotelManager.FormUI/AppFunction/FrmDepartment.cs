@@ -200,7 +200,7 @@ namespace EOM.TSHotelManager.FormUI
                 {
                     { "deptNo",txtDeptNo.Text.Trim()}
                 };
-                result = HttpHelper.Request("Worker/CheckWorkerBydepartment", null, dic);
+                result = HttpHelper.Request("Worker/CheckWorkerBydepartment", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("CheckWorkerBydepartment+接口服务异常，请提交Issue或尝试更新版本！");

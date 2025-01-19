@@ -29,17 +29,38 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProgress));
+            spin1 = new AntdUI.Spin();
             SuspendLayout();
+            // 
+            // spin1
+            // 
+            spin1.BackColor = Color.Transparent;
+            spin1.Location = new Point(7, 13);
+            spin1.Name = "spin1";
+            spin1.Size = new Size(141, 84);
+            spin1.TabIndex = 0;
+            spin1.Text = "正在加载中......";
             // 
             // FrmProgress
             // 
+            AutoHandDpi = false;
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(292, 39);
+            BackColor = Color.FromArgb(235, 243, 255);
+            ClientSize = new Size(155, 110);
+            Controls.Add(spin1);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmProgress";
+            Resizable = false;
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmProgress";
+            Text = "Loading...";
+            TopMost = true;
             Load += FrmProgress_Load;
             ResumeLayout(false);
         }
@@ -47,5 +68,6 @@
         #endregion
 
         private AntdUI.Label label1;
+        private AntdUI.Spin spin1;
     }
 }

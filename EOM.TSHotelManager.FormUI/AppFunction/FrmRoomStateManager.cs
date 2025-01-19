@@ -72,7 +72,7 @@ namespace EOM.TSHotelManager.FormUI
                         { "roomno",txtRoomNo.Text},
                         { "stateid",cboState.SelectedIndex.ToString()}
                     };
-                    result = HttpHelper.Request("Room/UpdateRoomStateByRoomNo", null, dic);
+                    result = HttpHelper.Request("Room/UpdateRoomStateByRoomNo", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("UpdateRoomStateByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");

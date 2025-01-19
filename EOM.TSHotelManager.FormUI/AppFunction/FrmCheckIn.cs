@@ -44,14 +44,14 @@ namespace EOM.TSHotelManager.FormUI
             txtRoomNo.Text = ucRoom.rm_RoomNo;
             Dictionary<string, string> pairs = new Dictionary<string, string>();
             pairs.Add("no", txtRoomNo.Text.Trim()!);
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, pairs);
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo", pairs);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectRoomByRoomNo+接口服务异常，请提交issue");
                 return;
             }
             Room r = HttpHelper.JsonToModel<Room>(result.message!)!;
-            result = HttpHelper.Request("RoomType/SelectRoomTypeByRoomNo", null, pairs);
+            result = HttpHelper.Request("RoomType/SelectRoomTypeByRoomNo", pairs);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectRoomTypeByRoomNo+接口服务异常，请提交issue");
@@ -63,7 +63,7 @@ namespace EOM.TSHotelManager.FormUI
             txtRoomPosition.Text = r.RoomPosition;
             txtState.Text = r.RoomState;
             txtDeposit.Text = r.RoomDeposit.ToString();
-            result = HttpHelper.Request("Custo/SelectCustoAll", null, null);
+            result = HttpHelper.Request("Custo/SelectCustoAll");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectCustoAll+接口服务异常，请提交issue");
@@ -121,7 +121,7 @@ namespace EOM.TSHotelManager.FormUI
         private void ValidateAndUpdateCustomerInfo()
         {
             // 获取会员规则列表
-            var result = HttpHelper.Request("VipRule/SelectVipRuleList", null, null);
+            var result = HttpHelper.Request("VipRule/SelectVipRuleList");
             if (result.statusCode != 200)
             {
                 throw new Exception("SelectVipRuleList+接口服务异常");
@@ -134,7 +134,7 @@ namespace EOM.TSHotelManager.FormUI
 
             // 查询用户消费记录
             var user = new Dictionary<string, string> { { "custoNo", txtCustoNo.Text.Trim() } };
-            result = HttpHelper.Request("Spend/SeletHistorySpendInfoAll", null, user);
+            result = HttpHelper.Request("Spend/SeletHistorySpendInfoAll", user);
             if (result.statusCode != 200)
             {
                 throw new Exception("SeletHistorySpendInfoAll+接口服务异常");
@@ -157,7 +157,7 @@ namespace EOM.TSHotelManager.FormUI
                 { "custoNo", txtCustoNo.Text.Trim() },
                 { "userType", new_type.ToString() }
             };
-                    result = HttpHelper.Request("Custo/UpdCustomerTypeByCustoNo", null, user);
+                    result = HttpHelper.Request("Custo/UpdCustomerTypeByCustoNo", user);
                     if (result.statusCode != 200)
                     {
                         throw new Exception("UpdCustomerTypeByCustoNo+接口服务异常");
@@ -169,7 +169,7 @@ namespace EOM.TSHotelManager.FormUI
             if (!string.IsNullOrEmpty(txtCustoNo.Text))
             {
                 user = new Dictionary<string, string> { { "CustoNo", txtCustoNo.Text.Trim() } };
-                result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", null, user);
+                result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", user);
                 if (result.statusCode != 200)
                 {
                     throw new Exception("SelectCardInfoByCustoNo+接口服务异常");
@@ -186,7 +186,7 @@ namespace EOM.TSHotelManager.FormUI
         {
             Dictionary<string, string> user = new Dictionary<string, string>();
             user.Add("CustoNo", txtCustoNo.Text.Trim());
-            result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", null, user);
+            result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", user);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交issue");
@@ -204,7 +204,7 @@ namespace EOM.TSHotelManager.FormUI
                         RoomNo = txtRoomNo.Text,
                         datachg_usr = LoginInfo.WorkerNo
                     };
-                    result = HttpHelper.Request("Room/UpdateRoomInfo", HttpHelper.ModelToJson(r), null);
+                    result = HttpHelper.Request("Room/UpdateRoomInfo", HttpHelper.ModelToJson(r));
                     if (result.statusCode != 200)
                     {
                         UIMessageTip.ShowError("UpdateRoomInfo+接口服务异常，请提交issue");

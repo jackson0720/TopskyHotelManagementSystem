@@ -40,7 +40,6 @@ namespace EOM.TSHotelManager.FormUI
 
         private void FrmAuthority_Load(object sender, EventArgs e)
         {
-
         }
 
         public void LoadAdminInfo()
@@ -49,7 +48,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "AdminAccount",txtAccount.Text.Trim() }
             };
-            result = HttpHelper.Request("Admin/GetAdminInfoByAdminAccount", null, dic);
+            result = HttpHelper.Request("Admin/GetAdminInfoByAdminAccount", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("GetAdminInfoByAdminAccount+接口服务异常，请提交Issue或尝试更新版本！");
@@ -124,7 +123,7 @@ namespace EOM.TSHotelManager.FormUI
                 { "AdminAccount",txtAccount.Text.Trim() }
             };
             var admin = new Admin { AdminAccount = txtAccount.Text.Trim() };
-            result = HttpHelper.Request("Module/GetAllModuleByAdmin", HttpHelper.ModelToJson(admin), null);
+            result = HttpHelper.Request("Module/GetAllModuleByAdmin", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("GetAllModuleByAdmin+接口服务异常，请提交Issue或尝试更新版本！");

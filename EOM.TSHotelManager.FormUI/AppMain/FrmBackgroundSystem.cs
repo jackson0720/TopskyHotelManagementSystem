@@ -42,10 +42,9 @@ namespace EOM.TSHotelManager.FormUI
 
         public static UpdPwd hideform;
 
-        public FrmBackgroundSystem(FrmAdminEnter F1, LoadingProgress loadingProgress)
+        public FrmBackgroundSystem(FrmAdminEnter F1)
         {
             InitializeComponent();
-            _loadingProgress = loadingProgress;
 
             this.returnForm1 = F1;
 
@@ -84,12 +83,6 @@ namespace EOM.TSHotelManager.FormUI
             {//下午
                 uiLabel1.Text = "下午好," + AdminInfo.Name;
             }
-
-            if (_loadingProgress != null)
-            {
-                _loadingProgress.Close();
-            }
-
         }
 
         /// <summary>
@@ -102,7 +95,6 @@ namespace EOM.TSHotelManager.FormUI
 
         private void Aside_MenuItemClick(TreeNode node, NavMenuItem item, int pageIndex)
         {
-            _loadingProgress.Show();
             if (!node.Text.IsNullOrEmpty())
             {
                 switch (node.Text)
@@ -165,7 +157,7 @@ namespace EOM.TSHotelManager.FormUI
                     case "监管统计":
                         break;
                     case "监管部门情况":
-                        if (AdminInfo.isAdmin == true || AdminInfo.Type.Equals("GeneralManager") || AdminInfo.Type.Equals("CheckGroup"))
+                        if (AdminInfo.isAdmin == true || AdminInfo.Type.Equals(AdminConstant.GeneralManager.Code) || AdminInfo.Type.Equals(AdminConstant.CheckGroup.Code))
                         {
                             pnlForm.Controls.Clear();
                             FrmCheckList frmCheckList = new FrmCheckList();
@@ -176,7 +168,7 @@ namespace EOM.TSHotelManager.FormUI
                         }
                         else
                         {
-                            UIMessageTip.ShowWarning("此模块只开放给超级管理员或总经理以及监管小组查看！");
+                            UIMessageTip.ShowWarning("此模块只开放特定权限人员查看！");
                             return;
                         }
                         break;
@@ -292,7 +284,6 @@ namespace EOM.TSHotelManager.FormUI
                         break;
 
                 }
-                _loadingProgress.Close();
             }
         }
 

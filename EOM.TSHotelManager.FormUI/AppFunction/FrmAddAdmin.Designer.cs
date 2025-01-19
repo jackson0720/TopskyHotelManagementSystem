@@ -42,7 +42,7 @@ namespace EOM.TSHotelManager.FormUI
             btnReset = new AntdUI.Button();
             dgvAdminList = new AntdUI.Table();
             pgnPageNavigate = new AntdUI.Pagination();
-            windowBar1 = new AntdUI.WindowBar();
+            pageHeader1 = new AntdUI.PageHeader();
             SuspendLayout();
             // 
             // label1
@@ -54,7 +54,6 @@ namespace EOM.TSHotelManager.FormUI
             label1.TabIndex = 122;
             label1.Text = "账      号";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.TooltipConfig = null;
             // 
             // txtAccount
             // 
@@ -85,7 +84,6 @@ namespace EOM.TSHotelManager.FormUI
             label2.TabIndex = 124;
             label2.Text = "账号密码";
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            label2.TooltipConfig = null;
             // 
             // label4
             // 
@@ -96,7 +94,6 @@ namespace EOM.TSHotelManager.FormUI
             label4.TabIndex = 126;
             label4.Text = "账户类型";
             label4.TextAlign = ContentAlignment.MiddleCenter;
-            label4.TooltipConfig = null;
             // 
             // cbAccountType
             // 
@@ -127,7 +124,6 @@ namespace EOM.TSHotelManager.FormUI
             label5.TabIndex = 128;
             label5.Text = "真实姓名";
             label5.TextAlign = ContentAlignment.MiddleCenter;
-            label5.TooltipConfig = null;
             // 
             // btnAdd
             // 
@@ -171,17 +167,16 @@ namespace EOM.TSHotelManager.FormUI
             pgnPageNavigate.ValueChanged += pgnPageNavigate_ValueChanged;
             pgnPageNavigate.ShowTotalChanged += pgnPageNavigate_ShowTotalChanged;
             // 
-            // windowBar1
+            // pageHeader1
             // 
-            windowBar1.Font = new Font("Microsoft YaHei UI", 12F);
-            windowBar1.IsMax = false;
-            windowBar1.Location = new Point(2, 3);
-            windowBar1.MaximizeBox = false;
-            windowBar1.MinimizeBox = false;
-            windowBar1.Name = "windowBar1";
-            windowBar1.Size = new Size(999, 40);
-            windowBar1.TabIndex = 133;
-            windowBar1.Text = "添加系统管理员";
+            pageHeader1.Font = new Font("Microsoft YaHei UI", 12F);
+            pageHeader1.Location = new Point(0, 3);
+            pageHeader1.Name = "pageHeader1";
+            pageHeader1.ShowButton = true;
+            pageHeader1.ShowIcon = true;
+            pageHeader1.Size = new Size(1002, 41);
+            pageHeader1.TabIndex = 133;
+            pageHeader1.Text = "系统管理员";
             // 
             // FrmAddAdmin
             // 
@@ -190,7 +185,7 @@ namespace EOM.TSHotelManager.FormUI
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(1001, 623);
             ControlBox = false;
-            Controls.Add(windowBar1);
+            Controls.Add(pageHeader1);
             Controls.Add(pgnPageNavigate);
             Controls.Add(dgvAdminList);
             Controls.Add(btnReset);
@@ -235,6 +230,7 @@ namespace EOM.TSHotelManager.FormUI
         private AntdUI.Button btnReset;
         private AntdUI.Table dgvAdminList;
         private AntdUI.Pagination pgnPageNavigate;
-        private AntdUI.WindowBar windowBar1;
+        private AntdUI.PageHeader pageHeader1;
+        //private AntdUI.WindowBar windowBar1;
     }
 }

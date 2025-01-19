@@ -52,7 +52,7 @@ namespace EOM.TSHotelManager.FormUI
         {
             pgnPageNavigate.PageSizeOptions = new int[] { 10, 30, 50, 100 };
             var dataCount = 0;
-            dgvAdminList.Spin("正在加载中...", () =>
+            dgvAdminList.Spin("正在加载中......", config =>
             {
                 TableComHelper tableComHelper = new TableComHelper();
                 dgvAdminList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Admin>());
@@ -136,7 +136,7 @@ namespace EOM.TSHotelManager.FormUI
         private void pgnPageNavigate_ValueChanged(object sender, PagePageEventArgs e)
         {
             var dataCount = 0;
-            dgvAdminList.Spin("正在加载中...", () =>
+            dgvAdminList.Spin("正在加载中...", config =>
             {
                 dgvAdminList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount);
                 pgnPageNavigate.PageSize = 10;

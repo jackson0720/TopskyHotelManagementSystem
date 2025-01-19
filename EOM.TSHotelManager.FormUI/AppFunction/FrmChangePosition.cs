@@ -53,7 +53,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "delete_mk","0"}
             };
-            result = HttpHelper.Request("Base/SelectPositionAll", null, dic);
+            result = HttpHelper.Request("Base/SelectPositionAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");

@@ -51,7 +51,7 @@ namespace EOM.TSHotelManager.FormUI
                 { "pageIndex","1"},
                 { "pageSize","15"}
             };
-            result = HttpHelper.Request("App/SelectOperationlogAll", null, dic);
+            result = HttpHelper.Request("App/SelectOperationlogAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -70,7 +70,7 @@ namespace EOM.TSHotelManager.FormUI
                 { "pageIndex",pageIndex.ToString()},
                 { "pageSize",count.ToString()}
             };
-            result = HttpHelper.Request("App/SelectOperationlogAll", null, dic);
+            result = HttpHelper.Request("App/SelectOperationlogAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectOperationlogAll+接口服务异常，请提交Issue或尝试更新版本！");

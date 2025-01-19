@@ -68,7 +68,6 @@ namespace EOM.TSHotelManager.FormUI
                 btnOK.Enabled = false;
                 btnOK.Text = "权限不足";
             }
-
         }
 
         private void LoadCashInfo()

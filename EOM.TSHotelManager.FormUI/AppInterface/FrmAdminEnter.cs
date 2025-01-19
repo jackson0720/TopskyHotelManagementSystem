@@ -32,11 +32,11 @@ namespace EOM.TSHotelManager.FormUI
 {
     public partial class FrmAdminEnter : UIForm
     {
-        private LoadingProgress _loadingProgress;
-        public FrmAdminEnter()
+        private FrmLogin returnForm1 = null;
+        public FrmAdminEnter(FrmLogin F1)
         {
             InitializeComponent();
-            _loadingProgress = new LoadingProgress();
+            this.returnForm1 = F1;
         }
 
         Dictionary<string, string> dic = null;
@@ -44,8 +44,6 @@ namespace EOM.TSHotelManager.FormUI
 
         private void btnCheckIn_Click(object sender, EventArgs e)
         {
-            _loadingProgress.Show();
-
             string account = txtAccount.Text.Trim();//获取超管账号
             string pass = txtPassword.Text.Trim();//获取超管密码
             if (!CheckInputString(account, pass))
@@ -79,7 +77,7 @@ namespace EOM.TSHotelManager.FormUI
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "版本登入了后台管理系统！", 3);
                 #endregion
-                FrmBackgroundSystem fm = new FrmBackgroundSystem(this, _loadingProgress);
+                FrmBackgroundSystem fm = new FrmBackgroundSystem(this);
                 this.Hide();//隐藏登录窗体
                 fm.ShowDialog(this);//打开主窗体
 

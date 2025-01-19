@@ -66,7 +66,7 @@ namespace EOM.TSHotelManager.FormUI
                 { "no",rno}
             };
 
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", null, dic);
+            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -82,10 +82,10 @@ namespace EOM.TSHotelManager.FormUI
                 datains_usr = LoginInfo.WorkerNo
             };
             dic = new Dictionary<string, string>()
-                {
-                    { "roomno",rno}
-                };
-            result = HttpHelper.Request("Room/DayByRoomNo", null, dic);
+            {
+                { "roomno",rno}
+            };
+            result = HttpHelper.Request("Room/DayByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -99,13 +99,13 @@ namespace EOM.TSHotelManager.FormUI
                 SpendName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
                 SpendAmount = Convert.ToInt32(result.message),
                 CustoNo = ucRoom.co_CustoNo,
-                SpendPrice = Convert.ToDecimal(sum),
+                SpendPrice = room.RoomMoney,
                 SpendMoney = Convert.ToDecimal(sum),
                 SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                 MoneyState = SpendConsts.UnSettle,
             };
 
-            result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(checkInRoom), null);
+            result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(checkInRoom));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("UpdateRoomInfo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -116,7 +116,7 @@ namespace EOM.TSHotelManager.FormUI
                 {
                     { "room",rno}
                 };
-            result = HttpHelper.Request("Room​/UpdateRoomByRoomNo", null, dic);
+            result = HttpHelper.Request("Room​/UpdateRoomByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -127,7 +127,7 @@ namespace EOM.TSHotelManager.FormUI
                 {
                     { "No",rno}
                 };
-            result = HttpHelper.Request("Spend​/SelectSpendByCustoNo", null, dic);
+            result = HttpHelper.Request("Spend​/SelectSpendByCustoNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSpendByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -179,7 +179,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 { "no",str}
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypeByRoomNo", null, dic);
+            result = HttpHelper.Request("RoomType/SelectRoomTypeByRoomNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypeByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");

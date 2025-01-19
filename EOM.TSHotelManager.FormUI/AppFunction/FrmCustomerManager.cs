@@ -60,8 +60,11 @@ namespace EOM.TSHotelManager.FormUI
         #region 用户管理界面加载事件方法
         private void FrmCustomerManager_Load(object sender, EventArgs e)
         {
-            this.btnPg.PageSize = 15;
-            LoadCustomer();
+            AntdUI.Spin.open(this, config =>
+            {
+                this.btnPg.PageSize = 15;
+                LoadCustomer();
+            });
         }
         #endregion
 
@@ -72,7 +75,7 @@ namespace EOM.TSHotelManager.FormUI
         {
             var dataCount = 0;
             btnPg.PageSizeOptions = new int[] { 15, 30, 50, 100 };
-            dgvCustomerList.Spin("正在加载中...", () =>
+            dgvCustomerList.Spin("正在加载中...", config =>
             {
                 TableComHelper tableComHelper = new TableComHelper();
                 dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Custo>());
@@ -98,7 +101,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 dic.Add("onlyVip", onlyVip.ToString());
             }
-            result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+            result = HttpHelper.Request("Custo/SelectCustoAll", dic);
             if (result.statusCode != 200)
             {
                 AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -138,7 +141,7 @@ namespace EOM.TSHotelManager.FormUI
                         { "CustoName",  txtCustoName.Text.Trim() }
                     };
                 }
-                result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", dic);
                 if (result.statusCode != 200)
                 {
                     AntdUI.Message.error(this, "SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -164,7 +167,7 @@ namespace EOM.TSHotelManager.FormUI
             TableComHelper tableComHelper = new TableComHelper();
             listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);
 
-            dgvCustomerList.Spin("正在加载中...", () =>
+            dgvCustomerList.Spin("正在加载中...", config =>
             {
                 dgvCustomerList.DataSource = listTableSource;
             }, () =>
@@ -242,7 +245,7 @@ namespace EOM.TSHotelManager.FormUI
         private void btnPg_ValueChanged(object sender, AntdUI.PagePageEventArgs e)
         {
             var dataCount = 0;
-            dgvCustomerList.Spin("正在加载中...", () =>
+            dgvCustomerList.Spin("正在加载中...", config =>
             {
                 dgvCustomerList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount,cbOnlyVip.Checked);
                 btnPg.Total = dataCount;

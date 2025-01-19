@@ -48,11 +48,9 @@ namespace EOM.TSHotelManager.FormUI
         //定义委托类型的变量
         public static ReloadCustomerList ReloadCusto;
         TableComHelper tableComHelper = null;
-        private LoadingProgress _loadingProgress;
         public FrmCustoManager()
         {
             InitializeComponent();
-            _loadingProgress = new LoadingProgress();
             ReloadCusto = LoadCustomer;
             tableComHelper = new TableComHelper();
         }
@@ -71,7 +69,7 @@ namespace EOM.TSHotelManager.FormUI
         {
             var dataCount = 0;
             btnPg.PageSizeOptions = new int[] { 15, 30, 50, 100 };
-            dgvCustomerList.Spin("正在加载中...", () =>
+            dgvCustomerList.Spin("正在加载中...", config =>
             {
                 TableComHelper tableComHelper = new TableComHelper();
                 dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Custo>());
@@ -96,7 +94,7 @@ namespace EOM.TSHotelManager.FormUI
             {
                 dic.Add("onlyVip", onlyVip.ToString());
             }
-            result = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+            result = HttpHelper.Request("Custo/SelectCustoAll", dic);
             if (result.statusCode != 200)
             {
                 AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -115,39 +113,6 @@ namespace EOM.TSHotelManager.FormUI
         }
 
         #endregion
-
-        /// <summary>
-        /// 将DataGridView里的数据转换成DataTable
-        /// </summary>
-        /// <param name="dgv"></param>
-        /// <returns></returns>
-        public DataTable ConvertDataGridViewToDataTable(DataGridView dgv)
-        {
-            // 创建一个新的DataTable对象
-            DataTable dt = new DataTable();
-
-            // 为DataTable添加列，列名与DataGridView的列名相同
-            foreach (DataGridViewColumn column in dgv.Columns)
-            {
-                dt.Columns.Add(column.Name, column.ValueType);
-            }
-
-            // 遍历DataGridView的每一行，并将其添加到DataTable中
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                if (!row.IsNewRow) // 排除新行（未绑定的行）
-                {
-                    DataRow dataRow = dt.NewRow();
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        dataRow[cell.OwningColumn.Name] = cell.Value;
-                    }
-                    dt.Rows.Add(dataRow);
-                }
-            }
-
-            return dt;
-        }
 
         private void tsmiCustoNo_Click(object sender, EventArgs e)
         {
@@ -177,7 +142,7 @@ namespace EOM.TSHotelManager.FormUI
                         { "CustoName",  txtCustoName.Text.Trim() }
                     };
                 }
-                result = HttpHelper.Request("Custo/SelectCustoByInfo", null, dic);
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", dic);
                 if (result.statusCode != 200)
                 {
                     AntdUI.Message.error(this, "SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -203,7 +168,7 @@ namespace EOM.TSHotelManager.FormUI
             TableComHelper tableComHelper = new TableComHelper();
             listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);
 
-            dgvCustomerList.Spin("正在加载中...", () =>
+            dgvCustomerList.Spin("正在加载中...", config =>
             {
                 dgvCustomerList.DataSource = listTableSource;
             }, () =>
@@ -240,11 +205,11 @@ namespace EOM.TSHotelManager.FormUI
                 try
                 {
                     dic = new Dictionary<string, string>()
-                        {
-                            { "pageIndex",null},
-                            { "pageSize",null}
-                        };
-                    ResponseMsg response = HttpHelper.Request("Custo/SelectCustoAll", null, dic);
+                    {
+                        { "pageIndex",null},
+                        { "pageSize",null}
+                    };
+                    ResponseMsg response = HttpHelper.Request("Custo/SelectCustoAll", dic);
                     if (response.statusCode != 200)
                     {
                         AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -303,7 +268,7 @@ namespace EOM.TSHotelManager.FormUI
         private void btnPg_ValueChanged(object sender, PagePageEventArgs e)
         {
             var dataCount = 0;
-            dgvCustomerList.Spin("正在加载中...", () =>
+            dgvCustomerList.Spin("正在加载中...", config =>
             {
                 dgvCustomerList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount,cbOnlyVip.Checked);
                 btnPg.Total = dataCount;

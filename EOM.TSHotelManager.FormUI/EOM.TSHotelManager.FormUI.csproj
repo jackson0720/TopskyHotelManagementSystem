@@ -203,7 +203,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="antdui" Version="1.6.6" />
+		<PackageReference Include="antdui" Version="1.8.4" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Costura.Fody" Version="5.7.0" PrivateAssets="All" />
 		<PackageReference Include="Fody" Version="6.6.0" PrivateAssets="All" />
@@ -247,7 +247,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Update="Properties\Settings.settings">
-	    <Generator>SettingsSingleFileGenerator</Generator>
+	    <Generator>PublicSettingsSingleFileGenerator</Generator>
 	    <LastGenOutput>Settings.Designer.cs</LastGenOutput>
 	  </None>
 	</ItemGroup>

@@ -41,7 +41,7 @@ namespace EOM.TSHotelManager.FormUI.AppFunction
 
         public void LoadRoomType()
         {
-            result = HttpHelper.Request("RoomType/SelectRoomTypesAll", null);
+            result = HttpHelper.Request("RoomType/SelectRoomTypesAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -63,7 +63,7 @@ namespace EOM.TSHotelManager.FormUI.AppFunction
             {
                 { "roomTypeId",txtRoomTypeId.IntValue.ToString()}
             };
-            var result = HttpHelper.Request("RoomType/SelectRoomTypeByType", null, dic);
+            var result = HttpHelper.Request("RoomType/SelectRoomTypeByType", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectRoomTypeByType+接口服务异常，请提交Issue或尝试更新版本！");
