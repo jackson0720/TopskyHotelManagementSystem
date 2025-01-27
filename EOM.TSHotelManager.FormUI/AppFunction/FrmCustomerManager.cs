@@ -60,11 +60,10 @@ namespace EOM.TSHotelManager.FormUI
         #region 用户管理界面加载事件方法
         private void FrmCustomerManager_Load(object sender, EventArgs e)
         {
-            AntdUI.Spin.open(this, config =>
-            {
-                this.btnPg.PageSize = 15;
-                LoadCustomer();
-            });
+            _loadingProgress.Show();
+            this.btnPg.PageSize = 15;
+            LoadCustomer();
+            _loadingProgress.Close();
         }
         #endregion
 

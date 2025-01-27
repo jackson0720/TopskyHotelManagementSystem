@@ -271,7 +271,7 @@
             // 
             dgvSellthing.AutoSizeColumnsMode = AntdUI.ColumnsMode.Fill;
             dgvSellthing.Bordered = true;
-            dgvSellthing.Font = new Font("微软雅黑", 12F);
+            dgvSellthing.Font = new Font("Microsoft YaHei UI", 9F);
             dgvSellthing.Location = new Point(4, 88);
             dgvSellthing.Name = "dgvSellthing";
             dgvSellthing.Size = new Size(487, 362);
@@ -316,7 +316,7 @@
             // 
             dgvRoomSell.AutoSizeColumnsMode = AntdUI.ColumnsMode.Fill;
             dgvRoomSell.Bordered = true;
-            dgvRoomSell.Font = new Font("微软雅黑", 12F);
+            dgvRoomSell.Font = new Font("Microsoft YaHei UI", 9F);
             dgvRoomSell.Location = new Point(497, 217);
             dgvRoomSell.Name = "dgvRoomSell";
             dgvRoomSell.Size = new Size(572, 270);

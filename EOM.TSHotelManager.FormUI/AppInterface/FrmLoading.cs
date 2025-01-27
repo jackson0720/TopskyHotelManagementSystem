@@ -38,7 +38,7 @@ namespace EOM.TSHotelManager.FormUI
         private string FileName { get; set; }
         private string CurrentExecutablePath => Application.ExecutablePath;
         private string CurrentExecutableName => Path.GetFileName(CurrentExecutablePath);
-        private string FallbackUrl = "https://pan.gkhive.com/TS%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%BA%93";
+        private string FallbackUrl = "https://pan.gkhive.com/%E6%9C%AC%E5%9C%B0%E7%A3%81%E7%9B%98/blog_files/TS%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%BA%93";
 
         private ProgressBar progressBar;
 
@@ -81,7 +81,7 @@ namespace EOM.TSHotelManager.FormUI
                             var isUpdated = await DownloadAndInstallUpdate(updateAsset.BrowserDownloadUrl, updateAsset.Name, new Progress<double>(ReportProgress));
                             if (isUpdated)
                             {
-                                AntdUI.Modal.open(this,"系统提示", "旧版已停止使用，稍后将自动下载最新发行版！",TType.Warn);
+                                AntdUI.Modal.open(this, "系统提示", "旧版已停止使用，稍后将自动下载最新发行版！", TType.Warn);
                                 ExitApplication();
                             }
                             else
@@ -115,6 +115,8 @@ namespace EOM.TSHotelManager.FormUI
             catch (Exception ex)
             {
                 AntdUI.Modal.open(this, "系统提示", $"检查更新时发生错误: {ex.Message}", TType.Info);
+                OpenFallbackUrl();
+                ExitApplication();
             }
         }
 

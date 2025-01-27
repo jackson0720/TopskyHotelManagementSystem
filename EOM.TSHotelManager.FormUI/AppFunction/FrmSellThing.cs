@@ -40,26 +40,19 @@ namespace EOM.TSHotelManager.FormUI
 
         private static Spend spend = null;
 
+        private LoadingProgress loadingProgress;
         public FrmSellThing()
         {
             InitializeComponent();
+            loadingProgress = new LoadingProgress();
         }
 
         #region 窗体加载事件
         private void FrmSellThing_Load(object sender, EventArgs e)
         {
-            //result = HttpHelper.Request("Room/SelectRoomByStateAll");
-            //if (result.statusCode != 200)
-            //{
-            //    UIMessageBox.ShowError("SelectRoomByStateAll+接口服务异常，请提交Issue或尝试更新版本！");
-            //    return;
-            //}
-            //List<Room> roms = HttpHelper.JsonToList<Room>(result.message);
-            //for (int i = 0; i < roms.Count; i++)
-            //{
-            //    txtRoomNo.AutoCompleteCustomSource.Add(roms[i].RoomNo);
-            //}
+            loadingProgress.Show();
             LoadSellThingInfo();
+            loadingProgress.Close();
 
         }
         #endregion
@@ -144,9 +137,6 @@ namespace EOM.TSHotelManager.FormUI
                 btnPg.PageSize = 15;
                 btnPg.Current = 1;
                 btnPg.Total = dataCount;
-            }, () =>
-            {
-                System.Diagnostics.Debug.WriteLine("加载结束");
             });
 
         }

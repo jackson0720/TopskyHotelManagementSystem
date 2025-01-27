@@ -45,9 +45,12 @@ namespace EOM.TSHotelManager.FormUI
         public static ReadRoomInfo ReadInfo;
         public static ReLoadRoomList Reload;
         public static RefreshRoomCount _RefreshRoomCount;
+
+        private LoadingProgress loadingProgress;
         public FrmRoomManager()
         {
             InitializeComponent();
+            loadingProgress = new LoadingProgress();
             ReadInfo = LoadRoomInfo;
             Reload = LoadData;
             _RefreshRoomCount = LoadRoomTypesAndStates;
@@ -66,10 +69,12 @@ namespace EOM.TSHotelManager.FormUI
         #region 房间加载事件方法
         private void FrmRoomManager_Load(object sender, EventArgs e)
         {
+            loadingProgress.Show();
             LoadRoomInfo();
             LoadRoomTypesAndStates();
             LoadRoomTypes();
             LoadData();
+            loadingProgress.Close();
         }
         #endregion
 

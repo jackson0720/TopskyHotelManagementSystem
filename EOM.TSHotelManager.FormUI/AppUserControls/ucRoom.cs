@@ -207,7 +207,7 @@ namespace EOM.TSHotelManager.FormUI
         private void tsmiReserRoom_Click(object sender, EventArgs e)
         {
             FrmReserManager frm = new FrmReserManager();
-            frm.Show();
+            frm.ShowDialog();
         }
         private void cmsMain_Opening(object sender, CancelEventArgs e)
         {
@@ -295,7 +295,7 @@ namespace EOM.TSHotelManager.FormUI
                     rm_RoomType = romRoomInfo.RoomName;
                     rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
                     FrmCheckIn frm = new FrmCheckIn();
-                    frm.Show();
+                    frm.ShowDialog();
                 }
             }
             else
@@ -328,7 +328,7 @@ namespace EOM.TSHotelManager.FormUI
                     CustoNo = romCustoInfo.CustoNo;
                     RoomState = romRoomInfo.RoomState;
                     FrmChangeRoom frm = new FrmChangeRoom();
-                    frm.Show();
+                    frm.ShowDialog();
                 }
             }
             else
@@ -341,7 +341,7 @@ namespace EOM.TSHotelManager.FormUI
         {
             rm_CustoNo = romCustoInfo.CustoNo;
             FrmSelectCustoInfo frm = new FrmSelectCustoInfo();
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private void tsmiChangeState_Click(object sender, EventArgs e)
