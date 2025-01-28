@@ -26,6 +26,7 @@ using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
 using Sunny.UI;
 using System.Transactions;
+using EOM.TSHotelManager.Shared;
 
 namespace EOM.TSHotelManager.FormUI
 {

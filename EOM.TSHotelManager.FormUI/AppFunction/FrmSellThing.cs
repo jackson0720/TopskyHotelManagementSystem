@@ -24,6 +24,7 @@
 
 using EOM.TSHotelManager.Common;
 using EOM.TSHotelManager.Common.Core;
+using EOM.TSHotelManager.Shared;
 using jvncorelib.EntityLib;
 using Sunny.UI;
 

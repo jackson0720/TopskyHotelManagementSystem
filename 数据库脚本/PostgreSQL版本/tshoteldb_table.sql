@@ -35,6 +35,7 @@ DROP TABLE IF EXISTS "public"."worker";
 DROP TABLE IF EXISTS "public"."workergoodbad";
 DROP TABLE IF EXISTS "public"."workerhistory";
 DROP TABLE IF EXISTS "public"."wtinfo";
+DROP TABLE IF EXISTS "public"."menu";
 CREATE TABLE "public"."admintype" ( 
   "Id" SERIAL,
   "type_id" VARCHAR NOT NULL,
@@ -492,3 +493,33 @@ CREATE TABLE "public"."wtinfo" (
   "WtiNo" SERIAL,
   CONSTRAINT "wtinfo_pkey" PRIMARY KEY ("WtiNo")
 );
+CREATE TABLE "public"."menu" (
+  "id" int4 NOT NULL GENERATED ALWAYS AS IDENTITY (
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 2147483647
+START 1
+CACHE 1
+),
+  "key" varchar(100) COLLATE "pg_catalog"."default",
+  "title" text COLLATE "pg_catalog"."default" NOT NULL,
+  "path" text COLLATE "pg_catalog"."default",
+  "parent" int4,
+  "delete_mk" int4,
+  "datains_usr" varchar(100) COLLATE "pg_catalog"."default",
+  "datains_date" date,
+  "datachg_usr" varchar(100) COLLATE "pg_catalog"."default",
+  "datachg_date" date
+);
+COMMENT ON COLUMN "public"."menu"."id" IS '自增长ID';
+COMMENT ON COLUMN "public"."menu"."key" IS '菜单键';
+COMMENT ON COLUMN "public"."menu"."title" IS '菜单标题';
+COMMENT ON COLUMN "public"."menu"."path" IS '菜单路径';
+COMMENT ON COLUMN "public"."menu"."parent" IS '父级ID';
+COMMENT ON COLUMN "public"."menu"."delete_mk" IS '删除标记';
+COMMENT ON COLUMN "public"."menu"."datains_usr" IS '资料创建人';
+COMMENT ON COLUMN "public"."menu"."datains_date" IS '资料创建时间';
+COMMENT ON COLUMN "public"."menu"."datachg_usr" IS '资料更新人';
+COMMENT ON COLUMN "public"."menu"."datachg_date" IS '资料更新时间';
+COMMENT ON TABLE "public"."menu" IS '菜单表';
+ALTER TABLE "public"."menu" ADD CONSTRAINT "menu_pkey" PRIMARY KEY ("id");

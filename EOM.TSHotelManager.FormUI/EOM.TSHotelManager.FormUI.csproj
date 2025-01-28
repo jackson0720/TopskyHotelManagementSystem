@@ -200,6 +200,7 @@
 		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
 		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
 		</ProjectReference>
+		<ProjectReference Include="..\topsky-hotel-manager-system-web-api\EOM.TSHotelManager.Shared\EOM.TSHotelManager.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
