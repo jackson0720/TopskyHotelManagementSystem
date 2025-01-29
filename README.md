@@ -1,14 +1,15 @@
 <h1 align="center"><img src="https://foruda.gitee.com/avatar/1677165732744604624/7158691_java-and-net_1677165732.png!avatar100" alt="Organization Logo.png" /></h1>
-<h1 align="center">TopskyHotelManagerSystem</h1>
+<h1 align="center">TopskyHotelManagementSystem</h1>
 <p align="center">
-	<a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/stargazers'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/star.svg?theme=white' alt='star'></img></a>
-        <a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/members'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/fork.svg?theme=white' alt='fork'></img></a>
+	<a href='https://gitee.com/java-and-net/TopskyHotelManagementSystem/stargazers'><img src='https://gitee.com/java-and-net/TopskyHotelManagementSystem/badge/star.svg?theme=white' alt='star'></img></a>
+        <a href='https://gitee.com/java-and-net/TopskyHotelManagementSystem/members'><img src='https://gitee.com/java-and-net/TopskyHotelManagementSystem/badge/fork.svg?theme=white' alt='fork'></img></a>
         <a href='https://img.shields.io/badge/license-MIT-000000.svg'><img src="https://img.shields.io/badge/license-MIT-000000.svg" alt=""></img></a>
         <a href='https://img.shields.io/badge/language-C#-red.svg'><img src="https://img.shields.io/badge/language-CSharp-red.svg" alt=""></img></a>
 </p>
 <div align="center">
 	<p>中文文档 | <a href="./README.en.md">English Document</a></p>
 </div>
+
 
 
 
@@ -42,7 +43,7 @@
 
 5、针对MySQL和PostgreSQL数据库的说明：
 
-		5.1、本地数据库若为MySQL，请拉取[MySQL专用分支](https://gitee.com/java-and-net/topsky-hotel-manager-system-web-api/tree/MySQL_Version/)。
+		5.1、本地数据库若为MySQL，请拉取[MySQL专用分支](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/tree/MySQL_Version/)。
 	
 		5.2、本地数据库若为PostgreSQL，则无需进行任何改动，只需要在Common层对HttpHelper里的pgsqlString常量数据库连接字符串进行配置。
 
@@ -70,16 +71,16 @@
 
 #  :open_file_folder: 系统结构：
 ```tree
-EOM.Client.TopSkyHotelManagerSystem
+EOM.Client.TopskyHotelManagementSystem
 ├─ .git
 ├─ .gitignore
-├─ EOM.Client.TopSkyHotelManagerSystem.sln
+├─ EOM.Client.TopskyHotelManagementSystem.sln
 ├─ FodyWeavers.xml
 ├─ LICENSE
 ├─ README.md
-├─ EOM.TSHotelManager.Common
-├─ EOM.TSHotelManager.Common.Core
-├─ EOM.TSHotelManager.FormUI
+├─ EOM.TopskyHotelManagementSystem.Common
+├─ EOM.TopskyHotelManagementSystem.Common.Core
+├─ EOM.TopskyHotelManagementSystem.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
 │    ├─ AppFunction
@@ -141,4 +142,4 @@ EOM.Client.TopSkyHotelManagerSystem
 
 **2、通过可视化管理工具打开：数据库脚本\PostgreSQL版本文件\db_file.sql进行数据表建立和数据导入。**
 
-[![java-and-net/TopskyHotelManagerSystem](https://gitee.com/java-and-net/TopskyHotelManagerSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
+[![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
