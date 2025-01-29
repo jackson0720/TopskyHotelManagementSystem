@@ -1,3 +1,3 @@
-[submodule "topsky-hotel-manager-system-web-api"]
-	path = topsky-hotel-manager-system-web-api
-	url = https://gitee.com/java-and-net/topsky-hotel-manager-system-web-api.git
+[submodule "topsky-hotel-management-system-web-api"]
+	path = topsky-hotel-management-system-web-api
+	url = https://gitee.com/java-and-net/topsky-hotel-management-system-web-api.git
