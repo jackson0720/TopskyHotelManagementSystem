@@ -1,14 +1,15 @@
 <h1 align="center"><img src="https://foruda.gitee.com/avatar/1677165732744604624/7158691_java-and-net_1677165732.png!avatar100" alt="Organization Logo.png" /></h1>
-<h1 align="center">TopskyHotelManagerSystem</h1>
+<h1 align="center">TopskyHotelManagementSystem</h1>
 <p align="center">
-	<a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/stargazers'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/star.svg?theme=white' alt='star'></img></a>
-        <a href='https://gitee.com/java-and-net/TopskyHotelManagerSystem/members'><img src='https://gitee.com/java-and-net/TopskyHotelManagerSystem/badge/fork.svg?theme=white' alt='fork'></img></a>
+	<a href='https://gitee.com/java-and-net/TopskyHotelManagementSystem/stargazers'><img src='https://gitee.com/java-and-net/TopskyHotelManagementSystem/badge/star.svg?theme=white' alt='star'></img></a>
+        <a href='https://gitee.com/java-and-net/TopskyHotelManagementSystem/members'><img src='https://gitee.com/java-and-net/TopskyHotelManagementSystem/badge/fork.svg?theme=white' alt='fork'></img></a>
         <a href='https://img.shields.io/badge/license-MIT-000000.svg'><img src="https://img.shields.io/badge/license-MIT-000000.svg" alt=""></img></a>
         <a href='https://img.shields.io/badge/language-C#-red.svg'><img src="https://img.shields.io/badge/language-CSharp-red.svg" alt=""></img></a>
 </p>
 <div align="center">
 	<p>中文文档 | <a href="./README.en.md">English Document</a></p>
 </div>
+
 
 
 
@@ -28,19 +29,21 @@
 
 4. ##### RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)
 
+5. ##### AntdUI——👚 基于 Ant Design 设计语言的 Winform 界面库。[AntdUI,Apache-2.0开源协议](https://gitee.com/antdui/AntdUI)
+
 #  :exclamation: 本项目说明：
 
-1、二次开发本项目时请遵照MIT开源协议,SunnyUI.Net框架采用的是GPL3.0开源协议、SQLSugarORM框架采用的是Apache2.0，需要用到时请务必在项目介绍加上对应声明。
+1、在对本项目进行二次开发时，请遵循 MIT 开源协议。所有引用的其他开源项目均采用其各自的开源协议。使用这些开源项目时，请务必在项目介绍中添加相应的声明，并按照各自的开源协议进行开源等操作。
 
 2、有bug欢迎提出issue！或进行评论
 
-3、本系统95%页面基于SunnyUI.Net控件库进行创建，在此特别声明！
+3、本系统UI框架主要基于Sunny.UI和AntdUI进行创建，在此特别声明！
 
 4、关于数据库脚本问题，请先移步至数据库脚本文件夹下，选择Mysql版本或PostgreSQL版本任意文件夹下载Data和Table两个文件，再数据库中先执行Table.sql，再执行Data.sql!
 
 5、针对MySQL和PostgreSQL数据库的说明：
 
-		5.1、本地数据库若为MySQL，则请将Application层里的业务逻辑类继承的Repository改为MysqlRepository，并在Common层对HttpHelper里的mysqlString常量数据库连接字符串进行配置。
+		5.1、本地数据库若为MySQL，请拉取[MySQL专用分支](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/tree/MySQL_Version/)。
 	
 		5.2、本地数据库若为PostgreSQL，则无需进行任何改动，只需要在Common层对HttpHelper里的pgsqlString常量数据库连接字符串进行配置。
 
@@ -68,16 +71,16 @@
 
 #  :open_file_folder: 系统结构：
 ```tree
-EOM.Client.TopSkyHotelManagerSystem
+EOM.Client.TopskyHotelManagementSystem
 ├─ .git
 ├─ .gitignore
-├─ EOM.Client.TopSkyHotelManagerSystem.sln
+├─ EOM.Client.TopskyHotelManagementSystem.sln
 ├─ FodyWeavers.xml
 ├─ LICENSE
 ├─ README.md
-├─ SYS.Common
-├─ SYS.Core
-├─ SYS.FormUI
+├─ EOM.TopskyHotelManagementSystem.Common
+├─ EOM.TopskyHotelManagementSystem.Common.Core
+├─ EOM.TopskyHotelManagementSystem.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
 │    ├─ AppFunction
@@ -139,4 +142,4 @@ EOM.Client.TopSkyHotelManagerSystem
 
 **2、通过可视化管理工具打开：数据库脚本\PostgreSQL版本文件\db_file.sql进行数据表建立和数据导入。**
 
-[![java-and-net/TopskyHotelManagerSystem](https://gitee.com/java-and-net/TopskyHotelManagerSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
+[![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
