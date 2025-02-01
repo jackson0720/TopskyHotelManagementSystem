@@ -41,7 +41,7 @@ namespace EOM.TSHotelManagement.FormUI
         public static string co_CustoAddress;
         public static string co_CustoType;
         public static string co_CustoID;
-        public static HydroelectricPower w;
+        public static Hydroelectricity w;
         private LoadingProgress _loadingProgress;
 
         public FrmCheckOutForm(LoadingProgress loadingProgress)
@@ -166,7 +166,7 @@ namespace EOM.TSHotelManagement.FormUI
             sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomMoney));
 
             lblDay.Text = Convert.ToString(Convert.ToInt32(result.message));
-            w = new HydroelectricPower()
+            w = new Hydroelectricity()
             {
                 CustoNo = txtCustoNo.Text,
                 EndDate = Convert.ToDateTime(DateTime.Parse(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss"))),
@@ -251,13 +251,13 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "roomno",txtRoomNo.Text.Trim()}
             };
-            result = HttpHelper.Request("HydroelectricPower/ListWtiInfoByRoomNo", dic);
+            result = HttpHelper.Request("Hydroelectricity/SelectWtiInfo", dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("ListWtiInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("SelectWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var listWti = HttpHelper.JsonToList<HydroelectricPower>(result.message);
+            var listWti = HttpHelper.JsonToList<Hydroelectricity>(result.message);
             dgvWti.DataSource = listWti;
             dgvWti.AutoGenerateColumns = false;
             #endregion

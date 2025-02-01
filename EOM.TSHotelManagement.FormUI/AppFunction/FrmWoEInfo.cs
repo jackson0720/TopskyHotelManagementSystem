@@ -65,14 +65,14 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             //将水电费信息加载到Dgv
-            dgvWti.DataSource = HttpHelper.JsonToList<HydroelectricPower>(result.message);
+            dgvWti.DataSource = HttpHelper.JsonToList<Hydroelectricity>(result.message);
             dgvWti.AutoGenerateColumns = false;
         }
         #endregion
 
         private void btnUpdWti_Click(object sender, EventArgs e)
         {
-            HydroelectricPower wti = new HydroelectricPower
+            Hydroelectricity wti = new Hydroelectricity
             {
                 WtiNo = Convert.ToInt16(txtRecordNo.Text.Trim()),
                 RoomNo = txtRoomNo.Text.Trim(),
