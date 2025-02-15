@@ -56,7 +56,7 @@ namespace EOM.TSHotelManagement.FormUI
                 ReserRoom = cboReserRoomNo.Text,
                 ReserDate = dtpBouDate.Value,
                 ReserEndDay = dtpEndDate.Value,
-                datains_usr = LoginInfo.WorkerNo
+                DataInsUsr = LoginInfo.WorkerNo
             };
             Room room = new Room()
             {

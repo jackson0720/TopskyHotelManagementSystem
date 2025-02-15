@@ -158,35 +158,35 @@
             // 
             // Column8
             // 
-            this.Column8.DataPropertyName = "delete_mk";
+            this.Column8.DataPropertyName = "IsDelete";
             this.Column8.HeaderText = "Column8";
             this.Column8.Name = "Column8";
             this.Column8.Visible = false;
             // 
             // Column9
             // 
-            this.Column9.DataPropertyName = "datains_usr";
+            this.Column9.DataPropertyName = "DataInsUsr";
             this.Column9.HeaderText = "Column9";
             this.Column9.Name = "Column9";
             this.Column9.Visible = false;
             // 
             // Column10
             // 
-            this.Column10.DataPropertyName = "datains_date";
+            this.Column10.DataPropertyName = "DataInsDate";
             this.Column10.HeaderText = "Column10";
             this.Column10.Name = "Column10";
             this.Column10.Visible = false;
             // 
             // Column11
             // 
-            this.Column11.DataPropertyName = "datachg_usr";
+            this.Column11.DataPropertyName = "DataChgUsr";
             this.Column11.HeaderText = "Column11";
             this.Column11.Name = "Column11";
             this.Column11.Visible = false;
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "datachg_date";
+            this.Column1.DataPropertyName = "DataChgDate";
             this.Column1.HeaderText = "Column1";
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;

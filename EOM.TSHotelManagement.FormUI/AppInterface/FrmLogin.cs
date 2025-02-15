@@ -176,7 +176,7 @@ namespace EOM.TSHotelManagement.FormUI
 
                     if (!w.IsNullOrEmpty())
                     {
-                        if (w.delete_mk == 1)
+                        if (w.IsDelete == 1)
                         {
                             AntdUI.Modal.open(this, "系统提示", "账号已禁用，请联系上级解封！", TType.Error);
                             return;
@@ -187,7 +187,7 @@ namespace EOM.TSHotelManagement.FormUI
                         LoginInfo.WorkerClub = w.ClubName;
                         LoginInfo.WorkerPosition = w.PositionName;
                         LoginInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
-                        LoginInfo.UserToken = w.user_token;
+                        LoginInfo.UserToken = w.UserToken;
                         FrmMain frm = new FrmMain(this, _loadingProgress);
                         this.Hide();
                         frm.TopMost = true;

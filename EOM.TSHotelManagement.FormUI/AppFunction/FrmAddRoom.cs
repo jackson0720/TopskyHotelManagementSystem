@@ -67,7 +67,7 @@ namespace EOM.TSHotelManagement.FormUI
                 RoomPosition = txtRoomPosition.Text,
                 RoomStateId = 0,
                 RoomDeposit = Convert.ToDecimal(txtDeposit.Text),
-                datains_usr = AdminInfo.Account
+                DataInsUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(rn))
             {

@@ -128,7 +128,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
 
             var listVipRule = HttpHelper.JsonToList<VipRule>(result.message!)!
-                .OrderBy(a => a.rule_value)
+                .OrderBy(a => a.RuleValue)
                 .Distinct()
                 .ToList();
 
@@ -145,9 +145,9 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 var spendAmount = listCustoSpend.Sum(a => a.SpendMoney);
                 var new_type = listVipRule
-                    .Where(vipRule => spendAmount >= vipRule.rule_value)
-                    .OrderByDescending(vipRule => vipRule.rule_value)
-                    .FirstOrDefault()?.type_id ?? 0;
+                    .Where(vipRule => spendAmount >= vipRule.RuleValue)
+                    .OrderByDescending(vipRule => vipRule.RuleValue)
+                    .FirstOrDefault()?.TypeId ?? 0;
 
                 // 如果会员等级有变，更新会员等级
                 if (new_type != 0)
@@ -202,7 +202,7 @@ namespace EOM.TSHotelManagement.FormUI
                         CustoNo = txtCustoNo.Text,
                         RoomStateId = 1,
                         RoomNo = txtRoomNo.Text,
-                        datachg_usr = LoginInfo.WorkerNo
+                        DataChgUsr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("Room/UpdateRoomInfo", HttpHelper.ModelToJson(r));
                     if (result.statusCode != 200)

@@ -179,7 +179,7 @@
             // 
             // clSpendNo
             // 
-            this.clSpendNo.DataPropertyName = "delete_mk";
+            this.clSpendNo.DataPropertyName = "IsDelete";
             this.clSpendNo.HeaderText = "Column1";
             this.clSpendNo.Name = "clSpendNo";
             this.clSpendNo.ReadOnly = true;
@@ -202,7 +202,7 @@
             // 
             // Column6
             // 
-            this.Column6.DataPropertyName = "datains_usr";
+            this.Column6.DataPropertyName = "DataInsUsr";
             this.Column6.HeaderText = "Column6";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
@@ -210,7 +210,7 @@
             // 
             // Column7
             // 
-            this.Column7.DataPropertyName = "datains_date";
+            this.Column7.DataPropertyName = "DataInsDate";
             this.Column7.HeaderText = "Column7";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
@@ -218,7 +218,7 @@
             // 
             // Column9
             // 
-            this.Column9.DataPropertyName = "datachg_usr";
+            this.Column9.DataPropertyName = "DataChgUsr";
             this.Column9.HeaderText = "Column9";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
@@ -226,7 +226,7 @@
             // 
             // Column10
             // 
-            this.Column10.DataPropertyName = "datachg_date";
+            this.Column10.DataPropertyName = "DataChgDate";
             this.Column10.HeaderText = "Column10";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;

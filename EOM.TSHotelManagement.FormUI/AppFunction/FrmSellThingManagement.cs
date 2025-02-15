@@ -125,7 +125,7 @@ namespace EOM.TSHotelManagement.FormUI
                 SellPrice = string.IsNullOrWhiteSpace(txtSellPrice.Text) ? 0 : Convert.ToDecimal(txtSellPrice.Text),
                 format = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
                 Stock = txtStock.Value == 0 ? 0 : Convert.ToInt32(txtStock.Value),
-                datains_usr = AdminInfo.Account,
+                DataInsUsr = AdminInfo.Account,
             };
             if (CheckInput(st))
             {
@@ -200,7 +200,7 @@ namespace EOM.TSHotelManagement.FormUI
                 SellPrice = string.IsNullOrWhiteSpace(txtSellPrice.Text) ? 0 : Convert.ToDecimal(txtSellPrice.Text),
                 format = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
                 Stock = txtStock.Value == 0 ? 0 : Convert.ToInt32(txtStock.Value),
-                datachg_usr = AdminInfo.Account,
+                DataChgUsr = AdminInfo.Account,
             };
             if (CheckInput(st))
             {

@@ -259,7 +259,7 @@ namespace EOM.TSHotelManagement.FormUI
                 Worker worker = new Worker
                 {
                     WorkerId = wk_WorkerNo,
-                    delete_mk = 0
+                    IsDelete = 0
                 };
                 result = HttpHelper.Request("Worker​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
@@ -278,7 +278,7 @@ namespace EOM.TSHotelManagement.FormUI
                 Worker worker = new Worker
                 {
                     WorkerId = wk_WorkerNo,
-                    delete_mk = 1
+                    IsDelete = 1
                 };
                 result = HttpHelper.Request("Worker​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)

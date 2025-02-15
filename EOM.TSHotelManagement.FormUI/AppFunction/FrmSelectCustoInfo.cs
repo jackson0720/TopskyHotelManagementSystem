@@ -83,7 +83,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?delete_mk=0");
+            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -108,7 +108,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             Custo c = HttpHelper.JsonToModel<Custo>(result.message);
-            txtCustoAdress.Text = c.CustoAdress;
+            txtCustoAdress.Text = c.CustoAddress;
             txtCustoName.Text = c.CustoName;
             txtCardID.Text = c.CustoID;
             txtCustoTel.Text = c.CustoTel;

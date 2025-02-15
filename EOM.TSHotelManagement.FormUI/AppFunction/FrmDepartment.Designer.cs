@@ -178,7 +178,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "delete_mk";
+            this.Column1.DataPropertyName = "IsDelete";
             this.Column1.HeaderText = "Column1";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -186,7 +186,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "datains_usr";
+            this.Column2.DataPropertyName = "DataInsUsr";
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -194,7 +194,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // Column3
             // 
-            this.Column3.DataPropertyName = "datains_date";
+            this.Column3.DataPropertyName = "DataInsDate";
             this.Column3.HeaderText = "Column3";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -202,7 +202,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "datachg_usr";
+            this.Column4.DataPropertyName = "DataChgUsr";
             this.Column4.HeaderText = "Column4";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -210,7 +210,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // Column5
             // 
-            this.Column5.DataPropertyName = "datachg_date";
+            this.Column5.DataPropertyName = "DataChgDate";
             this.Column5.HeaderText = "Column5";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;

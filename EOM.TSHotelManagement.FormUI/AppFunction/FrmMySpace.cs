@@ -44,7 +44,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             //加载民族信息
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
+            dic.Add("IsDelete", "0");
             var result = HttpHelper.Request("Base/SelectNationAll", dic);
             if (result.statusCode != 200)
             {
@@ -56,7 +56,7 @@ namespace EOM.TSHotelManagement.FormUI
             cbWorkerNation.ValueMember = "nation_no";
             //加载性别信息
             dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
+            dic.Add("IsDelete", "0");
             result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
             if (result.statusCode != 200)
             {
@@ -78,7 +78,7 @@ namespace EOM.TSHotelManagement.FormUI
             cboWorkerClub.ValueMember = "dept_no";
             //加载职位信息
             dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
+            dic.Add("IsDelete", "0");
             result = HttpHelper.Request("Base/SelectPositionAll", dic);
             if (result.statusCode != 200)
             {
@@ -266,7 +266,7 @@ namespace EOM.TSHotelManagement.FormUI
                 WorkerNation = cbWorkerNation.SelectedValue.ToString(),
                 WorkerTel = txtTel.Text.Trim(),
                 WorkerAddress = txtAddress.Text.Trim(),
-                datachg_usr = LoginInfo.WorkerNo
+                DataChgUsr = LoginInfo.WorkerNo
             };
 
             if (CheckInput(worker))

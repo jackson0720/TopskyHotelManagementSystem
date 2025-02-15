@@ -46,7 +46,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnUpdPwd_Click(object sender, EventArgs e)
         {
-            Admin admin = new Admin() { AdminAccount = AdminInfo.Account, AdminPassword = txtNewPwd.Text.Trim(), datachg_usr = AdminInfo.Account };
+            Admin admin = new Admin() { AdminAccount = AdminInfo.Account, AdminPassword = txtNewPwd.Text.Trim(), DataChgUsr = AdminInfo.Account };
             result = HttpHelper.Request("Admin​/UpdateNewPwdByOldPwd", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {

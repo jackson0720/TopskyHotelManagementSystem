@@ -112,7 +112,7 @@ namespace EOM.TSHotelManagement.FormUI
                 dept_parent = cboDeptParent.SelectedValue.ToString(),
                 dept_date = Convert.ToDateTime(DateTime.Now),
                 dept_leader = cboDeptLeader.SelectedValue.ToString(),
-                datains_usr = AdminInfo.Account
+                DataInsUsr = AdminInfo.Account
             };
             if (CheckInput(dept))
             {
@@ -159,7 +159,7 @@ namespace EOM.TSHotelManagement.FormUI
                 dept_desc = txtDeptDesc.Text.Trim(),
                 dept_parent = cboDeptParent.SelectedValue == null ? "" : cboDeptParent.ToString(),
                 dept_leader = cboDeptLeader.SelectedValue == null ? "" : cboDeptLeader.SelectedValue.ToString(),
-                datachg_usr = AdminInfo.Account,
+                DataChgUsr = AdminInfo.Account,
             };
             if (CheckInput(dept))
             {
@@ -216,8 +216,8 @@ namespace EOM.TSHotelManagement.FormUI
                 Dept dept = new Dept()
                 {
                     dept_no = txtDeptNo.Text.Trim(),
-                    delete_mk = 1,
-                    datachg_usr = AdminInfo.Account,
+                    IsDelete = 1,
+                    DataChgUsr = AdminInfo.Account,
                 };
                 result = HttpHelper.Request("Base/DelDept", HttpHelper.ModelToJson(dept));
                 if (result.statusCode != 200)

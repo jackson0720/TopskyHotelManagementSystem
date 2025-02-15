@@ -79,8 +79,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 nation_no = txtNationNo.Text.Trim(),
                 nation_name = txtNationName.Text.Trim(),
-                delete_mk = 0,
-                datains_usr = AdminInfo.Account,
+                IsDelete = 0,
+                DataInsUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/AddNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -107,7 +107,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 nation_no = txtNationNo.Text.Trim(),
                 nation_name = txtNationName.Text.Trim(),
-                datachg_usr = AdminInfo.Account,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/UpdNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -128,8 +128,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 nation_no = txtNationNo.Text.Trim(),
                 nation_name = txtNationName.Text.Trim(),
-                delete_mk = 1,
-                datachg_usr = AdminInfo.Account,
+                IsDelete = 1,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/DelNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -165,8 +165,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 nation_no = txtNationNo.Text.Trim(),
                 nation_name = txtNationName.Text.Trim(),
-                delete_mk = 0,
-                datachg_usr = AdminInfo.Account,
+                IsDelete = 0,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/UpdNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))

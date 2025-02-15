@@ -81,8 +81,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
-                delete_mk = 0,
-                datains_usr = AdminInfo.Account
+                IsDelete = 0,
+                DataInsUsr = AdminInfo.Account
             };
             result = HttpHelper.Request("Base​/AddEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -110,7 +110,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
-                datachg_usr = AdminInfo.Account,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/UpdEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -132,8 +132,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
-                delete_mk = 1,
-                datachg_usr = AdminInfo.Account,
+                IsDelete = 1,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/DelEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -169,8 +169,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 education_no = txtEducationNo.Text.Trim(),
                 education_name = txtEducationName.Text.Trim(),
-                delete_mk = 0,
-                datachg_usr = AdminInfo.Account,
+                IsDelete = 0,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/UpdEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))

@@ -63,7 +63,7 @@ namespace EOM.TSHotelManagement.FormUI
             if (a != null)//判断超管是否存在
             {
                 //判断当前管理员是否被禁用
-                if (a.DeleteMk == 1)
+                if (a.IsDelete == 1)
                 {
                     UIMessageBox.ShowError("当前管理员已被禁用，请联系超级管理员进行解除！");
                     return;
@@ -73,7 +73,7 @@ namespace EOM.TSHotelManagement.FormUI
                 AdminInfo.Account = a.AdminAccount;
                 AdminInfo.isAdmin = a.IsAdmin == 0 ? false : true;
                 AdminInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
-                AdminInfo.UserToken = a.user_token;
+                AdminInfo.UserToken = a.UserToken;
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "版本登入了后台管理系统！", 3);
                 #endregion

@@ -266,7 +266,7 @@ namespace EOM.TSHotelManagement.FormUI
                                 SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value) + listSource.FirstOrDefault(a => a.SpendName.Equals(txtSellName.Text.Trim())).SpendMoney,
                                 SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                                 MoneyState = SpendConsts.UnSettle,
-                                datachg_usr = LoginInfo.WorkerNo
+                                DataChgUsr = LoginInfo.WorkerNo
                             };
                             result = HttpHelper.Request("Spend/UpdSpenInfo", HttpHelper.ModelToJson(s));
                             if (result.statusCode != 200)
@@ -304,7 +304,7 @@ namespace EOM.TSHotelManagement.FormUI
                                 SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value),
                                 SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                                 MoneyState = SpendConsts.UnSettle,
-                                datains_usr = LoginInfo.WorkerNo,
+                                DataInsUsr = LoginInfo.WorkerNo,
                             };
                             result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(s));
                             if (result.statusCode != 200)

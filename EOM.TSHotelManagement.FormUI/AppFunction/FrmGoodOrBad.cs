@@ -106,7 +106,7 @@ namespace EOM.TSHotelManagement.FormUI
                 GBInfo = RtbGBInfo.Text,
                 GBOperation = AdminInfo.Account,
                 GBTime = DtpDate.Value,
-                datains_usr = AdminInfo.Account,
+                DataInsUsr = AdminInfo.Account,
             };
             if (CheckInput(goodBad))
             {

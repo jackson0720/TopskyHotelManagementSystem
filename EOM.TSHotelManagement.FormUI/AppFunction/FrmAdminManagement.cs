@@ -61,8 +61,8 @@ namespace EOM.TSHotelManagement.FormUI
                 Admin admin = new Admin()
                 {
                     Id = Convert.ToInt32(dgvAdminList.SelectedRows[0].Cells["clId"].Value),
-                    DeleteMk = Convert.ToInt32(dgvAdminList.SelectedRows[0].Cells["Column1"].Value),
-                    datachg_usr = AdminInfo.Account
+                    IsDelete = Convert.ToInt32(dgvAdminList.SelectedRows[0].Cells["Column1"].Value),
+                    DataChgUsr = AdminInfo.Account
                 };
                 result = HttpHelper.Request("Admin/UpdAccount", HttpHelper.ModelToJson(admin));
                 if (result.statusCode != 200)
@@ -75,7 +75,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     UIMessageBox.ShowSuccess("操作成功！");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用/启用管理账号操作！新增值为：" + admin.DeleteMk, 2);
+                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用/启用管理账号操作！新增值为：" + admin.IsDelete, 2);
                     #endregion
                     LoadAdminList();
                     return;

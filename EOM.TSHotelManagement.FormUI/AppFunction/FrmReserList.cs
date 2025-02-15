@@ -103,11 +103,11 @@ namespace EOM.TSHotelManagement.FormUI
                     CustoTel = txtTel.Text.Trim(),
                     PassportType = cbPassportType.SelectedIndex,
                     CustoID = txtCardID.Text.Trim(),
-                    CustoAdress = txtCustoAdress.Text.Trim(),
+                    CustoAddress = txtCustoAdress.Text.Trim(),
                     CustoBirth = dtpBirthday.Value,
                     CustoType = cbCustoType.SelectedIndex,
-                    delete_mk = 0,
-                    datains_usr = LoginInfo.WorkerNo
+                    IsDelete = 0,
+                    DataInsUsr = LoginInfo.WorkerNo
                 };
                 result = HttpHelper.Request("Custo​/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
                 if (result.statusCode != 200)

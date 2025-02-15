@@ -180,7 +180,7 @@ namespace EOM.TSHotelManagement.FormUI
                 us_CustoBirthday = romCustoInfo.CustoBirth == default ? "" : Convert.ToDateTime(romCustoInfo.CustoBirth).ToString();
                 us_CustoPassportType = romCustoInfo.PassportType;
                 us_CustoType = romCustoInfo.CustoType;
-                us_CustoAddress = romCustoInfo.CustoAdress;
+                us_CustoAddress = romCustoInfo.CustoAddress;
             }
             switch (romRoomInfo.RoomStateId)
             {

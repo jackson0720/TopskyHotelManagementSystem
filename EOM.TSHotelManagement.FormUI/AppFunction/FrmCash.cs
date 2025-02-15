@@ -93,7 +93,7 @@ namespace EOM.TSHotelManagement.FormUI
                 CashTime = dtpDate.Value,
                 CashSource = txtFrom.Text.Trim(),
                 CashPerson = cboCashPerson.SelectedValue.ToString(),
-                datains_usr = AdminInfo.Account
+                DataInsUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(cash))
             {

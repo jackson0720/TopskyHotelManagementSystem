@@ -112,8 +112,8 @@ namespace EOM.TSHotelManagement.FormUI
                 AdminName = txtName.Text.Trim(),
                 AdminType = cbAccountType.SelectedValue.ToString(),
                 IsAdmin = cbAccountType.SelectedValue.ToString() == "超级管理员" ? 1 : 0,
-                DeleteMk = 0,
-                datains_usr = AdminInfo.Account
+                IsDelete = 0,
+                DataInsUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(admin))
             {

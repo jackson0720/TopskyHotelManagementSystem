@@ -60,7 +60,7 @@ namespace EOM.TSHotelManagement.FormUI
             cboClub.ValueMember = "dept_no";
             //加载民族信息
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
+            dic.Add("IsDelete", "0");
             result = HttpHelper.Request("Base/SelectNationAll", dic);
             if (result.statusCode != 200)
             {
@@ -72,7 +72,7 @@ namespace EOM.TSHotelManagement.FormUI
             cbWorkerNation.ValueMember = "nation_no";
             //加载职位信息
             dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
+            dic.Add("IsDelete", "0");
             result = HttpHelper.Request("Base/SelectPositionAll", dic);
             if (result.statusCode != 200)
             {
@@ -84,7 +84,7 @@ namespace EOM.TSHotelManagement.FormUI
             cboWorkerPosition.ValueMember = "position_no";
             //加载性别信息
             dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
+            dic.Add("IsDelete", "0");
             result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
             if (result.statusCode != 200)
             {
@@ -96,7 +96,7 @@ namespace EOM.TSHotelManagement.FormUI
             cboSex.ValueMember = "sexId";
             //加载学历信息
             dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
+            dic.Add("IsDelete", "0");
             result = HttpHelper.Request("Base/SelectEducationAll", dic);
             if (result.statusCode != 200)
             {
@@ -284,7 +284,7 @@ namespace EOM.TSHotelManagement.FormUI
                     WorkerFace = cboWorkerFace.SelectedValue.ToString(),
                     WorkerEducation = cboEducation.SelectedValue.ToString(),
                     WorkerBirthday = dtpBirthday.Value,
-                    datachg_usr = AdminInfo.Account
+                    DataChgUsr = AdminInfo.Account
                 };
                 var result = HttpHelper.Request("Worker/UpdateWorker", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
@@ -418,7 +418,7 @@ namespace EOM.TSHotelManagement.FormUI
                 WorkerTime = dtpTime.Value,
                 WorkerFace = cboWorkerFace.Text,
                 WorkerEducation = cboEducation.SelectedValue.ToString(),
-                datains_usr = AdminInfo.Account
+                DataInsUsr = AdminInfo.Account
             };
             try
             {

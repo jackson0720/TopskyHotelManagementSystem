@@ -80,7 +80,7 @@ namespace EOM.TSHotelManagement.FormUI
                 CustoNo = ucRoom.co_CustoNo,
                 RoomStateId = 1,
                 CheckTime = Convert.ToDateTime(DateTime.Now),
-                datains_usr = LoginInfo.WorkerNo
+                DataInsUsr = LoginInfo.WorkerNo
             };
             dic = new Dictionary<string, string>()
             {

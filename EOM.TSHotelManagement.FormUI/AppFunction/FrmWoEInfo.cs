@@ -82,7 +82,7 @@ namespace EOM.TSHotelManagement.FormUI
                 PowerUse = string.IsNullOrEmpty(txtTInfo.Text.Trim()) ? 0 : Convert.ToDecimal(txtTInfo.Text.Trim()),
                 WaterUse = string.IsNullOrEmpty(txtWInfo.Text.Trim()) ? 0 : Convert.ToDecimal(txtWInfo.Text.Trim()),
                 Record = AdminInfo.Account,
-                datachg_usr = AdminInfo.Account,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("HydroelectricPower/UpdateWtiInfo", HttpHelper.ModelToJson(wti));
             if (result.statusCode != 200)

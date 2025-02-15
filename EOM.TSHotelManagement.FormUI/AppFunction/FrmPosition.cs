@@ -80,8 +80,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 position_no = txtPositionNo.Text.Trim(),
                 position_name = txtPositionName.Text.Trim(),
-                delete_mk = 0,
-                datains_usr = AdminInfo.Account
+                IsDelete = 0,
+                DataInsUsr = AdminInfo.Account
             };
             result = HttpHelper.Request("Base​/AddPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -108,7 +108,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 position_no = txtPositionNo.Text.Trim(),
                 position_name = txtPositionName.Text.Trim(),
-                datachg_usr = AdminInfo.Account,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/UpdPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -129,8 +129,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 position_no = txtPositionNo.Text.Trim(),
                 position_name = txtPositionName.Text.Trim(),
-                delete_mk = 1,
-                datachg_usr = AdminInfo.Account,
+                IsDelete = 1,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/DelPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
@@ -173,8 +173,8 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 position_no = txtPositionNo.Text.Trim(),
                 position_name = txtPositionName.Text.Trim(),
-                delete_mk = 0,
-                datachg_usr = AdminInfo.Account,
+                IsDelete = 0,
+                DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("Base​/UpdPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))

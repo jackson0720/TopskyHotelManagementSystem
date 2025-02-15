@@ -112,7 +112,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?delete_mk=0");
+            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -194,7 +194,7 @@ namespace EOM.TSHotelManagement.FormUI
                 CustoName.Text = cto.CustoName;
                 txtCustoName.Text = cto.CustoName;
                 txtTel.Text = cto.CustoTel;
-                cboCustoSex.SelectedIndex = cto.CustoSex;
+                cboCustoSex.SelectedIndex = cto.CustoSex ?? 0;
                 cboCustoType.SelectedIndex = cto.CustoType;
                 cboPassportType.SelectedIndex = cto.PassportType;
                 dtpBirth.Value = Convert.ToDateTime(cto.CustoBirth);

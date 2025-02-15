@@ -216,7 +216,7 @@ namespace EOM.TSHotelManagement.FormUI
                         return;
                     }
                     OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(response.message);
-                    exportHelper.ExportDataToExcel(custos.listSource, filePath, new List<string> { "CustoSex", "PassportType", "CustoID", "CustoType", "delete_mk", "datains_usr", "datains_date", "datachg_usr", "datachg_date" });
+                    exportHelper.ExportDataToExcel(custos.listSource, filePath, new List<string> { "CustoSex", "PassportType", "CustoID", "CustoType", "IsDelete", "DataInsUsr", "DataInsDate", "DataChgUsr", "DataChgDate" });
 
                     AntdUI.Message.success(this, "导出成功！");
                     System.Diagnostics.Process.Start("Explorer.exe", filePath);

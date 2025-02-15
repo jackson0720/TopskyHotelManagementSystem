@@ -85,8 +85,8 @@ namespace EOM.TSHotelManagement.FormUI.AppFunction
                 RoomName = txtRoomTypeName.Text.Trim(),
                 RoomRent = Convert.ToDecimal(dudRent.Value),
                 RoomDeposit = Convert.ToDecimal(dudDeposit.Value),
-                delete_mk = 0,
-                datains_usr = AdminInfo.Account
+                IsDelete = 0,
+                DataInsUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(roomType))
             {
@@ -117,8 +117,8 @@ namespace EOM.TSHotelManagement.FormUI.AppFunction
                 RoomName = txtRoomTypeName.Text.Trim(),
                 RoomRent = Convert.ToDecimal(dudRent.Value),
                 RoomDeposit = Convert.ToDecimal(dudDeposit.Value),
-                delete_mk = 0,
-                datachg_usr = AdminInfo.Account
+                IsDelete = 0,
+                DataChgUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(roomType))
             {
@@ -150,8 +150,8 @@ namespace EOM.TSHotelManagement.FormUI.AppFunction
                 RoomName = txtRoomTypeName.Text.Trim(),
                 RoomRent = Convert.ToDecimal(dudRent.Value),
                 RoomDeposit = Convert.ToDecimal(dudDeposit.Value),
-                delete_mk = deleteMk == 0 ? 1 : 0,
-                datachg_usr = AdminInfo.Account
+                IsDelete = deleteMk == 0 ? 1 : 0,
+                DataChgUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(roomType))
             {

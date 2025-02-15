@@ -74,9 +74,9 @@ namespace EOM.TSHotelManagement.FormUI
             listVipTypes.ForEach(vipType =>
             {
                 ucVipType ucVipType = new ucVipType();
-                ucVipType.picVip.BackgroundImage = vipType.type_id == 0 ? Resources.普通会员
-                : vipType.type_id == 1 ? Resources.钻石会员 : vipType.type_id == 2 ? Resources.白金会员 : Resources.黄金会员;
-                ucVipType.lblValue.Text = vipType.type_name;
+                ucVipType.picVip.BackgroundImage = vipType.TypeId == 0 ? Resources.普通会员
+                : vipType.TypeId == 1 ? Resources.钻石会员 : vipType.TypeId == 2 ? Resources.白金会员 : Resources.黄金会员;
+                ucVipType.lblValue.Text = vipType.TypeName;
                 flpVipType.Add(ucVipType);
             });
 
@@ -91,12 +91,12 @@ namespace EOM.TSHotelManagement.FormUI
         {
             VipRule vipRule1 = new VipRule
             {
-                rule_id = vipRule.rule_id,
-                rule_name = vipRule.rule_name,
-                rule_value = vipRule.rule_value,
-                type_id = vipRule.type_id,
-                delete_mk = 0,
-                datains_usr = AdminInfo.Account
+                RuleId = vipRule.RuleId,
+                RuleName = vipRule.RuleName,
+                RuleValue = vipRule.RuleValue,
+                TypeName = vipRule.TypeName,
+                IsDelete = 0,
+                DataInsUsr = AdminInfo.Account
             };
             result = HttpHelper.Request("VipRule/AddVipRule", HttpHelper.ModelToJson(vipRule1));
             if (result.statusCode != 200)
@@ -114,17 +114,17 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 VipRule vipRule1 = new VipRule
                 {
-                    rule_id = txtRuleId.Text.Trim(),
-                    rule_name = txtRuleName.Text.Trim(),
-                    rule_value = Convert.ToDecimal(dudSpendAmount.Value),
-                    type_id = Convert.ToInt32(cboCustoType.SelectedValue),
-                    datains_usr = AdminInfo.Account
+                    RuleId = txtRuleId.Text.Trim(),
+                    RuleName = txtRuleName.Text.Trim(),
+                    RuleValue = Convert.ToDecimal(dudSpendAmount.Value),
+                    TypeId = Convert.ToInt32(cboCustoType.SelectedValue),
+                    DataInsUsr = AdminInfo.Account
                 };
                 if (InsertVipRule(vipRule1))
                 {
                     UIMessageBox.ShowSuccess("录入成功！");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加会员规则操作！新增值为：" + vipRule1.rule_id, 2);
+                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加会员规则操作！新增值为：" + vipRule1.RuleId, 2);
                     #endregion
                     LoadVipType();
                     return;

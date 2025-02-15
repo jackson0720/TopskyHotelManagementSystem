@@ -51,7 +51,7 @@ namespace EOM.TSHotelManagement.FormUI
             //获取所有职位信息
             dic = new Dictionary<string, string>()
             {
-                { "delete_mk","0"}
+                { "IsDelete","0"}
             };
             result = HttpHelper.Request("Base/SelectPositionAll", dic);
             if (result.statusCode != 200)
@@ -92,7 +92,7 @@ namespace EOM.TSHotelManagement.FormUI
                 WorkerClub = cboNewClub.SelectedValue.ToString(),
                 WorkerPosition = cboNewPosition.SelectedValue.ToString(),
                 WorkerId = txtworkerId.Text,
-                datachg_usr = AdminInfo.Account
+                DataChgUsr = AdminInfo.Account
             };
             result = HttpHelper.Request("Worker​/UpdateWorkerPositionAndClub", HttpHelper.ModelToJson(worker));
             if (result.statusCode != 200)

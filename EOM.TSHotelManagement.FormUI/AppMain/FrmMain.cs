@@ -436,7 +436,7 @@ namespace EOM.TSHotelManagement.FormUI
                         WorkerNo = LoginInfo.WorkerNo,
                         CheckWay = "系统界面",
                         CheckTime = DateTime.Now,
-                        datains_usr = LoginInfo.WorkerNo
+                        DataInsUsr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson());
                     if (result.statusCode != 200)

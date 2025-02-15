@@ -88,7 +88,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?delete_mk=0");
+            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -144,14 +144,14 @@ namespace EOM.TSHotelManagement.FormUI
                 PassportType = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
                 CustoID = txtCardID.Text,
                 CustoTel = txtTel.Text,
-                CustoAdress = txtCustoAdress.Text,
-                datachg_usr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
+                CustoAddress = txtCustoAdress.Text,
+                DataChgUsr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
             };
 
-            result = HttpHelper.Request("Custo/UpdCustomerInfoByCustoNo", HttpHelper.ModelToJson(custo));
+            result = HttpHelper.Request("Custo/UpdCustomerInfo", HttpHelper.ModelToJson(custo));
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("UpdCustomerInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("UpdCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             bool t = result.message.ToString().Equals("true") ? true : false;
@@ -195,8 +195,8 @@ namespace EOM.TSHotelManagement.FormUI
                 PassportType = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
                 CustoID = txtCardID.Text,
                 CustoTel = txtTel.Text,
-                CustoAdress = txtCustoAdress.Text,
-                datains_usr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
+                CustoAddress = txtCustoAdress.Text,
+                DataInsUsr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
 
             };
 

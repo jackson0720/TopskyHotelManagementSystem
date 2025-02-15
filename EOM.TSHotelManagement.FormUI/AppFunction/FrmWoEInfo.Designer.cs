@@ -200,7 +200,7 @@
             // 
             // Column7
             // 
-            this.Column7.DataPropertyName = "delete_mk";
+            this.Column7.DataPropertyName = "IsDelete";
             this.Column7.HeaderText = "Column7";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
@@ -208,7 +208,7 @@
             // 
             // Column8
             // 
-            this.Column8.DataPropertyName = "datains_usr";
+            this.Column8.DataPropertyName = "DataInsUsr";
             this.Column8.HeaderText = "Column8";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
@@ -216,7 +216,7 @@
             // 
             // Column9
             // 
-            this.Column9.DataPropertyName = "datains_date";
+            this.Column9.DataPropertyName = "DataInsDate";
             this.Column9.HeaderText = "Column9";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
@@ -224,7 +224,7 @@
             // 
             // Column10
             // 
-            this.Column10.DataPropertyName = "datachg_usr";
+            this.Column10.DataPropertyName = "DataChgUsr";
             this.Column10.HeaderText = "Column10";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
@@ -232,7 +232,7 @@
             // 
             // Column11
             // 
-            this.Column11.DataPropertyName = "datachg_date";
+            this.Column11.DataPropertyName = "DataChgDate";
             this.Column11.HeaderText = "Column11";
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
