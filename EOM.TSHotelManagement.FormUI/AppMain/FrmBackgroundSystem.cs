@@ -300,17 +300,17 @@ namespace EOM.TSHotelManagement.FormUI
         /// </summary>
         public void LoadModule()
         {
-            Admin admin = new Admin() { AdminAccount = AdminInfo.Account };
+            Administrator admin = new Administrator() { Account = AdminInfo.Account };
             result = HttpHelper.Request("Module/GetAllModuleByAdmin", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("GetAllModuleByAdmin+接口服务异常，请提交issue");
                 return;
             }
-            List<ModuleZero> moduleZeros = HttpHelper.JsonToList<ModuleZero>(result.message);
+            List<ModulePermission> moduleZeros = HttpHelper.JsonToList<ModulePermission>(result.message);
             for (int i = 0; i <= Aside.Nodes.Count; i++)
             {
-                var moduleZero = moduleZeros.FirstOrDefault(a => a.module_name.Split('|', '|').FirstOrDefault().Equals(Aside.Nodes[i].Name.ToString()));
+                var moduleZero = moduleZeros.FirstOrDefault(a => a.ModuleName.Split('|', '|').FirstOrDefault().Equals(Aside.Nodes[i].Name.ToString()));
                 if (moduleZero == null)
                 {
                     Aside.Nodes[i].Remove();

@@ -20,7 +20,7 @@ namespace EOM.TSHotelManagement.Common
                 OperationTime = Convert.ToDateTime(DateTime.Now),
                 LogContent = operationLog,
                 OperationAccount = LoginInfo.WorkerNo + AdminInfo.Account,
-                OperationLevel = level == 1 ? RecordLevel.Normal : level == 2 ? RecordLevel.Warning : RecordLevel.Danger,
+                LogLevel = level == 1 ? LogLevel.Normal : level == 2 ? LogLevel.Warning : LogLevel.Critical,
                 SoftwareVersion = AdminInfo.SoftwareVersion + LoginInfo.SoftwareVersion,
                 IsDelete = 0,
                 DataInsUsr = AdminInfo.Account + LoginInfo.WorkerNo,

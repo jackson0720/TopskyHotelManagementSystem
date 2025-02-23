@@ -256,38 +256,38 @@ namespace EOM.TSHotelManagement.FormUI
             //根据员工账号状态确定是否禁用或启用
             if (wk_WorkerStatus.Equals("1"))
             {
-                Worker worker = new Worker
+                Employee worker = new Employee
                 {
-                    WorkerId = wk_WorkerNo,
+                    EmployeeId = wk_WorkerNo,
                     IsDelete = 0
                 };
-                result = HttpHelper.Request("Worker​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
+                result = HttpHelper.Request("Employee​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("ManagerWorkerAccount+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "启用员工账号操作！新增值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "启用员工账号操作！新增值为：" + worker.EmployeeId, 2);
                 #endregion
                 this.Close();
                 FrmWorkerManager.Reload();
             }
             else
             {
-                Worker worker = new Worker
+                Employee worker = new Employee
                 {
-                    WorkerId = wk_WorkerNo,
+                    EmployeeId = wk_WorkerNo,
                     IsDelete = 1
                 };
-                result = HttpHelper.Request("Worker​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
+                result = HttpHelper.Request("Employee​/ManagerWorkerAccount", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("ManagerWorkerAccount+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用员工账号操作！新增值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "禁用员工账号操作！新增值为：" + worker.EmployeeId, 2);
                 #endregion
                 this.Close();
                 FrmWorkerManager.Reload();

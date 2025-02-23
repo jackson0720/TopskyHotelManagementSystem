@@ -53,7 +53,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "IsDelete","0"}
             };
-            result = HttpHelper.Request("Base/SelectPositionAll", dic);
+            result = HttpHelper.Request("SystemInformation/SelectPositionAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -63,13 +63,13 @@ namespace EOM.TSHotelManagement.FormUI
             cboNewPosition.DisplayMember = "position_name";
             cboNewPosition.ValueMember = "position_no";
             //获取所有部门信息
-            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboNewClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
+            cboNewClub.DataSource = HttpHelper.JsonToList<Department>(result.message);
             cboNewClub.DisplayMember = "dept_name";
             cboNewClub.ValueMember = "dept_no";
         }
@@ -87,14 +87,14 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Worker worker = new Worker()
+            Employee worker = new Employee()
             {
-                WorkerClub = cboNewClub.SelectedValue.ToString(),
-                WorkerPosition = cboNewPosition.SelectedValue.ToString(),
-                WorkerId = txtworkerId.Text,
+                Department = cboNewClub.SelectedValue.ToString(),
+                Position = cboNewPosition.SelectedValue.ToString(),
+                EmployeeId = txtworkerId.Text,
                 DataChgUsr = AdminInfo.Account
             };
-            result = HttpHelper.Request("Worker​/UpdateWorkerPositionAndClub", HttpHelper.ModelToJson(worker));
+            result = HttpHelper.Request("Employee​/UpdateWorkerPositionAndClub", HttpHelper.ModelToJson(worker));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("UpdateWorkerPositionAndClub+接口服务异常，请提交Issue或尝试更新版本！");
@@ -105,7 +105,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 UIMessageBox.ShowSuccess("任命已生效!");
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "职位任命操作！任命值为：" + worker.WorkerId, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "职位任命操作！任命值为：" + worker.EmployeeId, 2);
                 #endregion
                 FrmWorkerManager.Reload();
                 this.Close();

@@ -56,7 +56,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             txtNationNo.Text = ApplicationUtil.GetListNewId("N", 3, 1, "-").FirstOrDefault();
 
-            result = HttpHelper.Request("Base/SelectNationAll");
+            result = HttpHelper.Request("SystemInformation/SelectNationAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -77,12 +77,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var nat = new Nation()
             {
-                nation_no = txtNationNo.Text.Trim(),
-                nation_name = txtNationName.Text.Trim(),
+                NationNumber = txtNationNo.Text.Trim(),
+                NationName = txtNationName.Text.Trim(),
                 IsDelete = 0,
                 DataInsUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/AddNation", HttpHelper.ModelToJson(nat));
+            result = HttpHelper.Request("SystemInformation​/AddNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("AddNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -90,7 +90,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             UIMessageTip.ShowOk("添加民族成功！", 1500);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增民族类型操作！新增值为：" + nat.nation_no, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增民族类型操作！新增值为：" + nat.NationNumber, 2);
             #endregion
             ReloadNationList();
             return;
@@ -105,11 +105,11 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var nat = new Nation()
             {
-                nation_no = txtNationNo.Text.Trim(),
-                nation_name = txtNationName.Text.Trim(),
+                NationNumber = txtNationNo.Text.Trim(),
+                NationName = txtNationName.Text.Trim(),
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/UpdNation", HttpHelper.ModelToJson(nat));
+            result = HttpHelper.Request("SystemInformation​/UpdNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("UpdNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -126,12 +126,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var nat = new Nation()
             {
-                nation_no = txtNationNo.Text.Trim(),
-                nation_name = txtNationName.Text.Trim(),
+                NationNumber = txtNationNo.Text.Trim(),
+                NationName = txtNationName.Text.Trim(),
                 IsDelete = 1,
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/DelNation", HttpHelper.ModelToJson(nat));
+            result = HttpHelper.Request("SystemInformation​/DelNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("DelNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -163,12 +163,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var nat = new Nation()
             {
-                nation_no = txtNationNo.Text.Trim(),
-                nation_name = txtNationName.Text.Trim(),
+                NationNumber = txtNationNo.Text.Trim(),
+                NationName = txtNationName.Text.Trim(),
                 IsDelete = 0,
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/UpdNation", HttpHelper.ModelToJson(nat));
+            result = HttpHelper.Request("SystemInformation​/UpdNation", HttpHelper.ModelToJson(nat));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("UpdNation+接口服务异常，请提交Issue或尝试更新版本！", 1500);

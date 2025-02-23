@@ -41,7 +41,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmGoodOrBad_Load(object sender, EventArgs e)
         {
             LoadGoodBadInfo();
-            result = HttpHelper.Request("Base/SelectGBTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectGBTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectGBTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -62,35 +62,35 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "wn",lblWorkerNo.Text}
             };
-            result = HttpHelper.Request("WorkerGoodBad/SelectAllGoodBadByWorkNo", dic);
+            result = HttpHelper.Request("EmployeeRewardPunishment/SelectAllGoodBadByWorkNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectAllGoodBadByWorkNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             DgvGoodBadList.AutoGenerateColumns = false;
-            DgvGoodBadList.DataSource = HttpHelper.JsonToList<WorkerGoodBad>(result.message);
+            DgvGoodBadList.DataSource = HttpHelper.JsonToList<EmployeeRewardPunishment>(result.message);
         }
 
-        public bool CheckInput(WorkerGoodBad workerGoodBad)
+        public bool CheckInput(EmployeeRewardPunishment workerGoodBad)
         {
-            if (string.IsNullOrWhiteSpace(workerGoodBad.WorkNo))
+            if (string.IsNullOrWhiteSpace(workerGoodBad.EmployeeId))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(workerGoodBad.GBType + ""))
+            if (string.IsNullOrWhiteSpace(workerGoodBad.RewardPunishmentType + ""))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(workerGoodBad.GBInfo))
+            if (string.IsNullOrWhiteSpace(workerGoodBad.RewardPunishmentInformation))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(workerGoodBad.GBTime + ""))
+            if (string.IsNullOrWhiteSpace(workerGoodBad.RewardPunishmentTime + ""))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(workerGoodBad.GBOperation))
+            if (string.IsNullOrWhiteSpace(workerGoodBad.RewardPunishmentOperator))
             {
                 return false;
             }
@@ -99,13 +99,13 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            WorkerGoodBad goodBad = new WorkerGoodBad()
+            EmployeeRewardPunishment goodBad = new EmployeeRewardPunishment()
             {
-                WorkNo = lblWorkerNo.Text,
-                GBType = (int)CboType.SelectedValue,
-                GBInfo = RtbGBInfo.Text,
-                GBOperation = AdminInfo.Account,
-                GBTime = DtpDate.Value,
+                EmployeeId = lblWorkerNo.Text,
+                RewardPunishmentType = (int)CboType.SelectedValue,
+                RewardPunishmentInformation = RtbGBInfo.Text,
+                RewardPunishmentOperator = AdminInfo.Account,
+                RewardPunishmentTime = DtpDate.Value,
                 DataInsUsr = AdminInfo.Account,
             };
             if (CheckInput(goodBad))
@@ -113,7 +113,7 @@ namespace EOM.TSHotelManagement.FormUI
                 bool dr = UIMessageBox.Show("确定录入？一旦录入后将无法修改及删除，或会影响员工的晋升！", "录入警告", UIStyle.Orange, UIMessageBoxButtons.OKCancel);
                 if (dr)
                 {
-                    result = HttpHelper.Request("WorkerGoodBad​/AddGoodBad", HttpHelper.ModelToJson(goodBad));
+                    result = HttpHelper.Request("EmployeeRewardPunishment​/AddGoodBad", HttpHelper.ModelToJson(goodBad));
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("AddGoodBad+接口服务异常，请提交Issue或尝试更新版本！");
@@ -124,7 +124,7 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         UIMessageBox.Show("新增成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "录入员工奖惩操作！新增值为：" + goodBad.GBInfo, 2);
+                        RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "录入员工奖惩操作！新增值为：" + goodBad.RewardPunishmentInformation, 2);
                         #endregion
                         LoadGoodBadInfo();
                     }

@@ -45,7 +45,7 @@ namespace EOM.TSHotelManagement.FormUI
             //加载民族信息
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("IsDelete", "0");
-            var result = HttpHelper.Request("Base/SelectNationAll", dic);
+            var result = HttpHelper.Request("SystemInformation/SelectNationAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -57,29 +57,29 @@ namespace EOM.TSHotelManagement.FormUI
             //加载性别信息
             dic = new Dictionary<string, string>();
             dic.Add("IsDelete", "0");
-            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
+            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboSex.DataSource = HttpHelper.JsonToList<SexType>(result.message);
+            cboSex.DataSource = HttpHelper.JsonToList<GenderType>(result.message);
             cboSex.DisplayMember = "sexName";
             cboSex.ValueMember = "sexId";
             //加载部门信息
-            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboWorkerClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
+            cboWorkerClub.DataSource = HttpHelper.JsonToList<Department>(result.message);
             cboWorkerClub.DisplayMember = "dept_name";
             cboWorkerClub.ValueMember = "dept_no";
             //加载职位信息
             dic = new Dictionary<string, string>();
             dic.Add("IsDelete", "0");
-            result = HttpHelper.Request("Base/SelectPositionAll", dic);
+            result = HttpHelper.Request("SystemInformation/SelectPositionAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -100,41 +100,41 @@ namespace EOM.TSHotelManagement.FormUI
         {
             var dic = new Dictionary<string, string>();
             dic.Add("workerId", LoginInfo.WorkerNo);
-            var result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerId", dic);
+            var result = HttpHelper.Request("Employee/SelectWorkerInfoByWorkerId", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectWorkerInfoByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            Worker worker = HttpHelper.JsonToModel<Worker>(result.message);
+            Employee worker = HttpHelper.JsonToModel<Employee>(result.message);
             if (!worker.IsNullOrEmpty())
             {
-                txtWorkerNo.Text = worker.WorkerId;
-                txtWorkerName.Text = worker.WorkerName;
-                cboSex.SelectedIndex = worker.WorkerSex;
+                txtWorkerNo.Text = worker.EmployeeId;
+                txtWorkerName.Text = worker.EmployeeName;
+                cboSex.SelectedIndex = worker.Gender;
                 cboWorkerPosition.Text = worker.PositionName;
-                cboWorkerPosition.SelectedValue = worker.WorkerPosition;
-                cboWorkerClub.Text = worker.ClubName;
-                cboWorkerClub.SelectedValue = worker.WorkerClub;
-                cbWorkerNation.Text = worker.NationName;
-                cbWorkerNation.SelectedValue = worker.WorkerNation;
-                txtAddress.Text = worker.WorkerAddress;
-                txtTel.Text = worker.WorkerTel;
+                cboWorkerPosition.SelectedValue = worker.Position;
+                cboWorkerClub.Text = worker.DepartmentName;
+                cboWorkerClub.SelectedValue = worker.Department;
+                cbWorkerNation.Text = worker.EthnicityName;
+                cbWorkerNation.SelectedValue = worker.Ethnicity;
+                txtAddress.Text = worker.Address;
+                txtTel.Text = worker.PhoneNumber;
             }
             dic = new Dictionary<string, string>();
             dic.Add("WorkerId", LoginInfo.WorkerNo);
-            result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
+            result = HttpHelper.Request("WorkerPicture/EmployeePhoto", dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("EmployeePhoto+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
-            if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.Pic))
+            var workerPicSource = HttpHelper.JsonToModel<EmployeePhoto>(result.message);
+            if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
             {
                 EncryptLib encryptLib = new EncryptLib();
                 picWorkerPic.BackgroundImage = null;
-                picWorkerPic.LoadAsync(encryptLib.Decryption(HttpHelper.baseUrl) + workerPicSource.Pic);
+                picWorkerPic.LoadAsync(encryptLib.Decryption(HttpHelper.baseUrl) + workerPicSource.PhotoPath);
             }
         }
 
@@ -150,14 +150,14 @@ namespace EOM.TSHotelManagement.FormUI
         private void txtOldPwd_Validated(object sender, EventArgs e)
         {
             //校验旧密码是否正确
-            Worker worker = new Worker() { WorkerId = LoginInfo.WorkerNo, WorkerPwd = txtOldPwd.Text.Trim() };
-            var result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
+            Employee worker = new Employee() { EmployeeId = LoginInfo.WorkerNo, Password = txtOldPwd.Text.Trim() };
+            var result = HttpHelper.Request("Employee/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectWorkerInfoByWorkerIdAndWorkerPwd+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            worker = HttpHelper.JsonToModel<Worker>(result.message);
+            worker = HttpHelper.JsonToModel<Employee>(result.message);
             if (worker != null)
             {
                 lgCheckOldPwd.Visible = true;
@@ -205,7 +205,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnUpdPwd_Click(object sender, EventArgs e)
         {
-            var result = HttpHelper.Request("Worker/UpdWorkerPwdByWorkNo", HttpHelper.ModelToJson(new Worker { WorkerId = LoginInfo.WorkerNo, WorkerPwd = txtNewPwd.Text.Trim() }));
+            var result = HttpHelper.Request("Employee/UpdWorkerPwdByWorkNo", HttpHelper.ModelToJson(new Employee { EmployeeId = LoginInfo.WorkerNo, Password = txtNewPwd.Text.Trim() }));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("UpdWorkerPwdByWorkNo+接口服务异常，请提交Issue或尝试更新版本！");
@@ -227,29 +227,29 @@ namespace EOM.TSHotelManagement.FormUI
             return;
         }
 
-        public bool CheckInput(Worker worker)
+        public bool CheckInput(Employee worker)
         {
-            if (string.IsNullOrWhiteSpace(worker.WorkerId))
+            if (string.IsNullOrWhiteSpace(worker.EmployeeId))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerName))
+            if (string.IsNullOrWhiteSpace(worker.EmployeeName))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerSex + ""))
+            if (string.IsNullOrWhiteSpace(worker.Gender + ""))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerNation))
+            if (string.IsNullOrWhiteSpace(worker.Ethnicity))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerTel))
+            if (string.IsNullOrWhiteSpace(worker.PhoneNumber))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerAddress))
+            if (string.IsNullOrWhiteSpace(worker.Address))
             {
                 return false;
             }
@@ -258,20 +258,20 @@ namespace EOM.TSHotelManagement.FormUI
         ResponseMsg result = new ResponseMsg();
         private void btnUpdWorker_Click(object sender, EventArgs e)
         {
-            Worker worker = new Worker()
+            Employee worker = new Employee()
             {
-                WorkerId = txtWorkerNo.Text.Trim(),
-                WorkerName = txtWorkerName.Text.Trim(),
-                WorkerSex = cboSex.Text == "男" ? 1 : 0,
-                WorkerNation = cbWorkerNation.SelectedValue.ToString(),
-                WorkerTel = txtTel.Text.Trim(),
-                WorkerAddress = txtAddress.Text.Trim(),
+                EmployeeId = txtWorkerNo.Text.Trim(),
+                EmployeeName = txtWorkerName.Text.Trim(),
+                Gender = cboSex.Text == "男" ? 1 : 0,
+                Ethnicity = cbWorkerNation.SelectedValue.ToString(),
+                PhoneNumber = txtTel.Text.Trim(),
+                Address = txtAddress.Text.Trim(),
                 DataChgUsr = LoginInfo.WorkerNo
             };
 
             if (CheckInput(worker))
             {
-                result = HttpHelper.Request("Worker/UpdateWorker", HttpHelper.ModelToJson(worker));
+                result = HttpHelper.Request("Employee/UpdateWorker", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("UpdateWorker+接口服务异常，请提交Issue或尝试更新版本！");
@@ -303,21 +303,21 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void openPic_FileOk(object sender, CancelEventArgs e)
         {
-            WorkerPic workerPic = null;
+            EmployeePhoto workerPic = null;
             //查询当前账号是否已存在对应的图片，如果已存在则移除旧图片
-            workerPic = new WorkerPic
+            workerPic = new EmployeePhoto
             {
-                WorkerId = txtWorkerNo.Text.Trim(),
+                EmployeeId = txtWorkerNo.Text.Trim(),
             };
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("WorkerId", txtWorkerNo.Text.Trim());
-            result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
+            result = HttpHelper.Request("WorkerPicture/EmployeePhoto", dic);
             if (result.statusCode != 200)
             {
-                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("EmployeePhoto+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var source = HttpHelper.JsonToModel<WorkerPic>(result.message);
+            var source = HttpHelper.JsonToModel<EmployeePhoto>(result.message);
             if (!source.IsNullOrEmpty())
             {
                 result = HttpHelper.Request("WorkerPicture/DeleteWorkerPic", HttpHelper.ModelToJson(workerPic));
@@ -343,10 +343,10 @@ namespace EOM.TSHotelManagement.FormUI
             var serverPath = encryptLib.Decryption(HttpHelper.postUrl);
             //var serverPath = ConfigurationManager.AppSettings["post"].ToString();
             var result = HttpHelper.UpLoadFile(openPic.FileName, serverPath);
-            var workerPic = new WorkerPic
+            var workerPic = new EmployeePhoto
             {
-                WorkerId = txtWorkerNo.Text.Trim(),
-                Pic = result.Trim(),
+                EmployeeId = txtWorkerNo.Text.Trim(),
+                PhotoPath = result.Trim(),
             };
             var requestResult = HttpHelper.Request("WorkerPicture/InsertWorkerPic", HttpHelper.ModelToJson(workerPic));
             if (requestResult.statusCode != 200)

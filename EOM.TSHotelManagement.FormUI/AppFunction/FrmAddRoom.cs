@@ -61,10 +61,10 @@ namespace EOM.TSHotelManagement.FormUI
 
             rn = new Room()
             {
-                RoomNo = txtRoomNo.Text,
+                RoomNumber = txtRoomNo.Text,
                 RoomType = cboRoomType.SelectedIndex,
-                RoomMoney = Convert.ToDecimal(txtMoney.Text),
-                RoomPosition = txtRoomPosition.Text,
+                RoomRent = Convert.ToDecimal(txtMoney.Text),
+                RoomLocation = txtRoomPosition.Text,
                 RoomStateId = 0,
                 RoomDeposit = Convert.ToDecimal(txtDeposit.Text),
                 DataInsUsr = AdminInfo.Account
@@ -115,7 +115,7 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.ShowError("SelectRoomTypesAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboRoomType.Items.AddRange(HttpHelper.JsonToList<RoomType>(result.message).Select(a => new SelectItem(a.RoomName, a.Roomtype)).ToArray());
+            cboRoomType.Items.AddRange(HttpHelper.JsonToList<RoomType>(result.message).Select(a => new SelectItem(a.RoomTypeId, a.RoomTypeName)).ToArray());
             cboRoomType.SelectedIndex = 0;
 
         }
@@ -133,7 +133,7 @@ namespace EOM.TSHotelManagement.FormUI
             for (int i = 0; i < rooms.Count; i++)
             {
                 room = new ucRoom();
-                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", rooms[i].RoomName, rooms[i].RoomNo, rooms[i].CustoName);
+                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", rooms[i].RoomName, rooms[i].RoomNumber, rooms[i].CustomerName);
                 room.lblMark = "Mark"; //=Mark时，判断为房态图，禁用右键菜单
                 room.romRoomInfo = rooms[i];
                 flpRoom.Controls.Add(room);
@@ -173,7 +173,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return ret;
             }
             var room = HttpHelper.JsonToModel<Room>(result.message);
-            if (room.RoomNo != null)
+            if (room.RoomNumber != null)
             {
                 ret = true;
             }

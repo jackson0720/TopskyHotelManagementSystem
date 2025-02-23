@@ -104,7 +104,7 @@ namespace EOM.TSHotelManagement.FormUI
             treeNode9.Text = "水电管理";
             treeNode10.Name = "节点3";
             treeNode10.Text = "监管部门情况";
-            treeNode11.Name = "CheckInfo";
+            treeNode11.Name = "SupervisionStatistics";
             treeNode11.Text = "监管统计";
             treeNode12.Name = "节点6";
             treeNode12.Text = "房态图一览";
@@ -173,7 +173,7 @@ namespace EOM.TSHotelManagement.FormUI
             uiLabel1.Size = new Size(217, 35);
             uiLabel1.Style = Sunny.UI.UIStyle.Custom;
             uiLabel1.TabIndex = 32;
-            uiLabel1.Text = "早上好，Admin";
+            uiLabel1.Text = "早上好，Administrator";
             uiLabel1.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblScroll
@@ -200,7 +200,7 @@ namespace EOM.TSHotelManagement.FormUI
             lbTime.Size = new Size(229, 35);
             lbTime.Style = Sunny.UI.UIStyle.Custom;
             lbTime.TabIndex = 34;
-            lbTime.Text = "早上好，Admin";
+            lbTime.Text = "早上好，Administrator";
             lbTime.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // timer1

@@ -194,7 +194,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // Column2
             // 
-            this.Column2.DataPropertyName = "AdminType";
+            this.Column2.DataPropertyName = "AdministratorType";
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;

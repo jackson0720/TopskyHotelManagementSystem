@@ -41,23 +41,23 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmCash_Load(object sender, EventArgs e)
         {
             //获取所有部门信息
-            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
+            cboClub.DataSource = HttpHelper.JsonToList<Department>(result.message);
             cboClub.DisplayMember = "dept_name";
             cboClub.ValueMember = "dept_no";
             //获取所有员工信息
-            result = HttpHelper.Request("Worker/SelectWorkerAll");
+            result = HttpHelper.Request("Employee/SelectWorkerAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectWorkerAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboCashPerson.DataSource = HttpHelper.JsonToList<Worker>(result.message);
+            cboCashPerson.DataSource = HttpHelper.JsonToList<Employee>(result.message);
             cboCashPerson.DisplayMember = "WorkerName";
             cboCashPerson.ValueMember = "WorkerId";
 
@@ -79,20 +79,20 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.ShowError("SelectCashInfoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            dgvCashList.DataSource = HttpHelper.JsonToList<Cash>(result.message);
+            dgvCashList.DataSource = HttpHelper.JsonToList<Asset>(result.message);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Cash cash = new Cash()
+            Asset cash = new Asset()
             {
-                CashNo = txtCashNo.Text.Trim(),
-                CashName = txtCashName.Text.Trim(),
-                CashPrice = txtCashMoney.Text == null ? 0 : Convert.ToDecimal(txtCashMoney.Text),
-                CashClub = cboClub.SelectedValue.ToString(),
-                CashTime = dtpDate.Value,
-                CashSource = txtFrom.Text.Trim(),
-                CashPerson = cboCashPerson.SelectedValue.ToString(),
+                AssetNumber = txtCashNo.Text.Trim(),
+                AssetName = txtCashName.Text.Trim(),
+                AssetValue = txtCashMoney.Text == null ? 0 : Convert.ToDecimal(txtCashMoney.Text),
+                DepartmentCode = cboClub.SelectedValue.ToString(),
+                AcquisitionDate = dtpDate.Value,
+                AssetSource = txtFrom.Text.Trim(),
+                AcquiredByEmployeeId = cboCashPerson.SelectedValue.ToString(),
                 DataInsUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(cash))

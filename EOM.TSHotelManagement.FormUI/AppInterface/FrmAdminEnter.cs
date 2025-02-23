@@ -52,14 +52,14 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
 
-            Admin admin = new Admin() { AdminAccount = account, AdminPassword = new EncryptLib().Encryption(pass, EncryptionLevel.Enhanced) };
-            result = HttpHelper.Request("Admin/SelectManagerByPass", HttpHelper.ModelToJson(admin));
+            Administrator admin = new Administrator() { Account = account, Password = new EncryptLib().Encryption(pass, EncryptionLevel.Enhanced) };
+            result = HttpHelper.Request("Administrator/SelectManagerByPass", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectMangerByPass+接口服务异常，请提交issue");
                 return;
             }
-            Admin a = HttpHelper.JsonToModel<Admin>(result.message);
+            Administrator a = HttpHelper.JsonToModel<Administrator>(result.message);
             if (a != null)//判断超管是否存在
             {
                 //判断当前管理员是否被禁用
@@ -68,10 +68,10 @@ namespace EOM.TSHotelManagement.FormUI
                     UIMessageBox.ShowError("当前管理员已被禁用，请联系超级管理员进行解除！");
                     return;
                 }
-                AdminInfo.Type = a.AdminType;
-                AdminInfo.Name = a.AdminName;
-                AdminInfo.Account = a.AdminAccount;
-                AdminInfo.isAdmin = a.IsAdmin == 0 ? false : true;
+                AdminInfo.Type = a.Type;
+                AdminInfo.Name = a.Name;
+                AdminInfo.Account = a.Account;
+                AdminInfo.isAdmin = a.IsSuperAdmin == 0 ? false : true;
                 AdminInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
                 AdminInfo.UserToken = a.UserToken;
                 #region 获取添加操作日志所需的信息

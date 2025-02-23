@@ -83,7 +83,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmCheckOutForm_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -98,13 +98,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
+            List<PassportType> passPorts = HttpHelper.JsonToList<PassportType>(result.message);
             this.cboPassportType.DataSource = passPorts;
             this.cboPassportType.DisplayMember = "PassportName";
             this.cboPassportType.ValueMember = "PassportId";
@@ -112,13 +112,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
+            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
+            List<GenderType> listSexType = HttpHelper.JsonToList<GenderType>(result.message);
             this.cboCustoSex.DataSource = listSexType;
             this.cboCustoSex.DisplayMember = "sexName";
             this.cboCustoSex.ValueMember = "sexId";
@@ -144,13 +144,13 @@ namespace EOM.TSHotelManagement.FormUI
 
             Room room = HttpHelper.JsonToModel<Room>(result.message);
 
-            if (room.CheckTime == null)
+            if (room.LastCheckInTime == null)
             {
                 dtpCheckTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd");
             }
             else
             {
-                dtpCheckTime.Text = Convert.ToDateTime(room.CheckTime).ToString("yyyy-MM-dd");
+                dtpCheckTime.Text = Convert.ToDateTime(room.LastCheckInTime).ToString("yyyy-MM-dd");
             }
             dic = new Dictionary<string, string>()
             {
@@ -163,18 +163,18 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
 
-            sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomMoney));
+            sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomRent));
 
             lblDay.Text = Convert.ToString(Convert.ToInt32(result.message));
             w = new Hydroelectricity()
             {
-                CustoNo = txtCustoNo.Text,
+                CustomerNumber = txtCustoNo.Text,
                 EndDate = Convert.ToDateTime(DateTime.Parse(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss"))),
-                PowerUse = Convert.ToDecimal(Convert.ToInt32(result.message) * 3 * 1),
-                WaterUse = Convert.ToDecimal(Convert.ToDouble(result.message) * 80 * 0.002),
-                RoomNo = txtRoomNo.Text,
-                Record = "admin",
-                UseDate = Convert.ToDateTime(DateTime.Parse(dtpCheckTime.Text)),
+                PowerUsage = Convert.ToDecimal(Convert.ToInt32(result.message) * 3 * 1),
+                WaterUsage = Convert.ToDecimal(Convert.ToDouble(result.message) * 80 * 0.002),
+                RoomNumber = txtRoomNo.Text,
+                Recorder = "admin",
+                StartDate = Convert.ToDateTime(DateTime.Parse(dtpCheckTime.Text)),
             };
 
             #region 加载客户信息
@@ -188,17 +188,17 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            Custo cto = HttpHelper.JsonToModel<Custo>(result.message);
+            Customer cto = HttpHelper.JsonToModel<Customer>(result.message);
             try
             {
-                CustoName.Text = cto.CustoName;
-                txtCustoName.Text = cto.CustoName;
-                txtTel.Text = cto.CustoTel;
-                cboCustoSex.SelectedIndex = cto.CustoSex ?? 0;
-                cboCustoType.SelectedIndex = cto.CustoType;
+                CustoName.Text = cto.CustomerName;
+                txtCustoName.Text = cto.CustomerName;
+                txtTel.Text = cto.CustomerPhoneNumber;
+                cboCustoSex.SelectedIndex = cto.CustomerGender ?? 0;
+                cboCustoType.SelectedIndex = cto.CustomerType;
                 cboPassportType.SelectedIndex = cto.PassportType;
-                dtpBirth.Value = Convert.ToDateTime(cto.CustoBirth);
-                txtPassportNum.Text = cto.CustoID;
+                dtpBirth.Value = Convert.ToDateTime(cto.DateOfBirth);
+                txtPassportNum.Text = cto.PassportID;
             }
             catch
             {
@@ -361,7 +361,7 @@ namespace EOM.TSHotelManagement.FormUI
                         return;
                     }
                     Room r = HttpHelper.JsonToModel<Room>(result.message);//根据房间编号查询房间信息
-                    string checktime = r.CheckTime.ToString();//获取入住时间
+                    string checktime = r.LastCheckInTime.ToString();//获取入住时间
                     if (dgvSpendList.Rows.Count == 0)
                     {
                         dic = new Dictionary<string, string>()

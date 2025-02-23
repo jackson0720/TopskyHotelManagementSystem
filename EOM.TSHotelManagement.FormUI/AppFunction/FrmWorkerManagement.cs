@@ -63,14 +63,14 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void LoadWorker()
         {
-            result = HttpHelper.Request("Worker/SelectWorkerAll");
+            result = HttpHelper.Request("Employee/SelectWorkerAll");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectWorkerAll+接口服务异常，请提交issue");
                 return;
             }
             dgvWorkerList.AutoGenerateColumns = false;
-            dgvWorkerList.DataSource = HttpHelper.JsonToList<Worker>(result.message);
+            dgvWorkerList.DataSource = HttpHelper.JsonToList<Employee>(result.message);
         }
 
         private void FrmTopChange_Load(object sender, EventArgs e)

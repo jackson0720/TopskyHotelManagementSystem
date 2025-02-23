@@ -39,14 +39,14 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmCashList_Load(object sender, EventArgs e)
         {
-            var result = HttpHelper.Request("CheckInfo/SelectCheckInfoAll");
+            var result = HttpHelper.Request("SupervisionStatistics/SelectCheckInfoAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCheckInfoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvCheckInfo.AutoGenerateColumns = false;
-            dgvCheckInfo.DataSource = HttpHelper.JsonToList<CheckInfo>(result.message);
+            dgvCheckInfo.DataSource = HttpHelper.JsonToList<SupervisionStatistics>(result.message);
         }
     }
 }

@@ -152,7 +152,7 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
-        List<Fonts> fonts = null;
+        List<PromotionContent> fonts = null;
         int fontn = 0;
         private void LoadFonts()
         {
@@ -163,7 +163,7 @@ namespace EOM.TSHotelManagement.FormUI
                 fonts = null;
             }
 
-            fonts = HttpHelper.JsonToList<Fonts>(result.message);
+            fonts = HttpHelper.JsonToList<PromotionContent>(result.message);
             #endregion
         }
 
@@ -180,7 +180,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 fontn = 0;
             }
-            lblScroll.Text = fonts[fontn].FontsMess;
+            lblScroll.Text = fonts[fontn].PromotionContentMessage;
         }
         #endregion
 
@@ -234,9 +234,9 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     menuItem = new MenuItem
                     {
-                        Text = item.nav_name
+                        Text = item.NavigationBarName
                     };
-                    switch (item.nav_name)
+                    switch (item.NavigationBarName)
                     {
                         case "客房管理":
                             menuItem.Icon = Resources.picRoom_Image;
@@ -294,7 +294,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             Dictionary<string, string> user = new Dictionary<string, string>();
             user.Add("wkn", LoginInfo.WorkerNo);
-            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo");
+            result = HttpHelper.Request("EmployeeCheck/SelectToDayCheckInfoByWorkerNo");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -332,26 +332,26 @@ namespace EOM.TSHotelManagement.FormUI
         #region 检查软件更新版本事件方法
         private void tsmiCheckUpdate_Click(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("Base/GetBase");
+            result = HttpHelper.Request("SystemInformation/GetBase");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("接口服务异常，请重试");
                 return;
             }
 
-            Base _base = HttpHelper.JsonToModel<Base>(result.message);
+            Common.Core.SystemInformation _base = HttpHelper.JsonToModel<Common.Core.SystemInformation>(result.message);
             //调用系统默认的浏览器
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Process.Start(new ProcessStartInfo(_base.url_addr) { UseShellExecute = true });
+                Process.Start(new ProcessStartInfo(_base.UrlAddress) { UseShellExecute = true });
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                Process.Start("xdg-open", _base.url_addr);
+                Process.Start("xdg-open", _base.UrlAddress);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                Process.Start("open", _base.url_addr);
+                Process.Start("open", _base.UrlAddress);
             }
             else
             {
@@ -402,7 +402,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "wkn", LoginInfo.WorkerNo }
             };
-            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo", user);
+            result = HttpHelper.Request("EmployeeCheck/SelectToDayCheckInfoByWorkerNo", user);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -415,7 +415,7 @@ namespace EOM.TSHotelManagement.FormUI
                 linkLabel1.ForeColor = Color.Green;
                 linkLabel1.LinkColor = Color.Green;
                 pnlCheckInfo.Visible = true;
-                result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", user);
+                result = HttpHelper.Request("EmployeeCheck/SelectWorkerCheckDaySumByWorkerNo", user);
                 if (result.statusCode != 200)
                 {
                     UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -431,14 +431,14 @@ namespace EOM.TSHotelManagement.FormUI
                 bool dr = UIMessageBox.Show("你今天还未打卡哦，请先打卡吧！", "打卡提醒", UIStyle.Blue, UIMessageBoxButtons.OK);
                 if (dr == true)
                 {
-                    WorkerCheck workerCheck = new()
+                    EmployeeCheck workerCheck = new()
                     {
-                        WorkerNo = LoginInfo.WorkerNo,
-                        CheckWay = "系统界面",
+                        EmployeeId = LoginInfo.WorkerNo,
+                        CheckMethod = "系统界面",
                         CheckTime = DateTime.Now,
                         DataInsUsr = LoginInfo.WorkerNo
                     };
-                    result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson());
+                    result = HttpHelper.Request("EmployeeCheck/AddCheckInfo", workerCheck.ModelToJson());
                     if (result.statusCode != 200)
                     {
                         UIMessageTip.ShowError("打卡接口异常，请提交issue");
@@ -447,7 +447,7 @@ namespace EOM.TSHotelManagement.FormUI
                     bool j = result.statusCode == 200 ? true : false;
                     if (j)
                     {
-                        result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", user);
+                        result = HttpHelper.Request("EmployeeCheck/SelectWorkerCheckDaySumByWorkerNo", user);
                         if (result.statusCode != 200)
                         {
                             UIMessageTip.ShowError("打卡接口异常，请提交issue");

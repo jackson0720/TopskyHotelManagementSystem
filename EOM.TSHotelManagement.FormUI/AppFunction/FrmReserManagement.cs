@@ -49,18 +49,18 @@ namespace EOM.TSHotelManagement.FormUI
             string reserid = ApplicationUtil.GetListNewId("R", 3, 1, "-").FirstOrDefault();
             Reser reser = new Reser()
             {
-                ReserId = reserid,
-                CustoName = txtCustoName.Text.Trim(),
-                CustoTel = txtCustoTel.Text.Trim(),
-                ReserWay = cboReserWay.Text,
-                ReserRoom = cboReserRoomNo.Text,
-                ReserDate = dtpBouDate.Value,
-                ReserEndDay = dtpEndDate.Value,
+                ReservationId = reserid,
+                CustomerName = txtCustoName.Text.Trim(),
+                ReservationPhoneNumber = txtCustoTel.Text.Trim(),
+                ReservationChannel = cboReserWay.Text,
+                ReservationRoomNumber = cboReserRoomNo.Text,
+                ReservationStartDate = dtpBouDate.Value,
+                ReservationEndDate = dtpEndDate.Value,
                 DataInsUsr = LoginInfo.WorkerNo
             };
             Room room = new Room()
             {
-                RoomNo = cboReserRoomNo.Text,
+                RoomNumber = cboReserRoomNo.Text,
                 RoomStateId = 4
             };
             result = HttpHelper.Request("Reser​/InserReserInfo", HttpHelper.ModelToJson(reser));

@@ -81,8 +81,8 @@ namespace EOM.TSHotelManagement.FormUI.AppFunction
             }
             roomType = new RoomType
             {
-                Roomtype = txtRoomTypeId.IntValue,
-                RoomName = txtRoomTypeName.Text.Trim(),
+                RoomTypeId = txtRoomTypeId.IntValue,
+                RoomTypeName = txtRoomTypeName.Text.Trim(),
                 RoomRent = Convert.ToDecimal(dudRent.Value),
                 RoomDeposit = Convert.ToDecimal(dudDeposit.Value),
                 IsDelete = 0,
@@ -113,8 +113,8 @@ namespace EOM.TSHotelManagement.FormUI.AppFunction
         {
             var roomType = new RoomType
             {
-                Roomtype = txtRoomTypeId.IntValue,
-                RoomName = txtRoomTypeName.Text.Trim(),
+                RoomTypeId = txtRoomTypeId.IntValue,
+                RoomTypeName = txtRoomTypeName.Text.Trim(),
                 RoomRent = Convert.ToDecimal(dudRent.Value),
                 RoomDeposit = Convert.ToDecimal(dudDeposit.Value),
                 IsDelete = 0,
@@ -146,8 +146,8 @@ namespace EOM.TSHotelManagement.FormUI.AppFunction
             var deleteMk = Convert.ToInt32(dgvRoomTypeList.SelectedRows[0].Cells["clDeleteMark"].Value);
             var roomType = new RoomType
             {
-                Roomtype = txtRoomTypeId.IntValue,
-                RoomName = txtRoomTypeName.Text.Trim(),
+                RoomTypeId = txtRoomTypeId.IntValue,
+                RoomTypeName = txtRoomTypeName.Text.Trim(),
                 RoomRent = Convert.ToDecimal(dudRent.Value),
                 RoomDeposit = Convert.ToDecimal(dudDeposit.Value),
                 IsDelete = deleteMk == 0 ? 1 : 0,

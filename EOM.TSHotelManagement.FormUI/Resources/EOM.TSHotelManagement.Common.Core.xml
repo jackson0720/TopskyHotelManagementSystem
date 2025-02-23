@@ -4,27 +4,27 @@
         <name>EOM.TSHotelManagement.Common.Core</name>
     </assembly>
     <members>
-        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDTO.DataInsUsr">
+        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDto.DataInsUsr">
             <summary>
             资料创建人
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDTO.DataInsDate">
+        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDto.DataInsDate">
             <summary>
             资料创建时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDTO.DataChgUsr">
+        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDto.DataChgUsr">
             <summary>
             资料更新人
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDTO.DataChgDate">
+        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDto.DataChgDate">
             <summary>
             资料更新时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDTO.user_token">
+        <member name="P:EOM.TSHotelManagement.Common.Core.BaseDto.user_token">
             <summary>
             Token
             </summary>
@@ -194,22 +194,22 @@
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.PassPortType">
+        <member name="T:EOM.TSHotelManagement.Common.Core.PassportType">
             <summary>
             证件类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.PassPortType.PassportId">
+        <member name="P:EOM.TSHotelManagement.Common.Core.PassportType.PassportId">
             <summary>
             证件类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.PassPortType.PassportName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.PassportType.PassportName">
             <summary>
             证件名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.PassPortType.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.PassportType.IsDelete">
             <summary>
             删除标记
             </summary>
@@ -640,52 +640,52 @@
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.Applicationversion">
+        <member name="T:EOM.TSHotelManagement.Common.Core.ApplicationVersion">
             <summary>
             应用版本
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Applicationversion.base_versionId">
+        <member name="P:EOM.TSHotelManagement.Common.Core.ApplicationVersion.base_versionId">
             <summary>
             流水号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Applicationversion.base_version">
+        <member name="P:EOM.TSHotelManagement.Common.Core.ApplicationVersion.base_version">
             <summary>
             版本号
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.Cardcodes">
+        <member name="T:EOM.TSHotelManagement.Common.Core.CardCode">
             <summary>
             卡片代码
             </summary>
         </member>
-        <member name="M:EOM.TSHotelManagement.Common.Core.Cardcodes.#ctor">
+        <member name="M:EOM.TSHotelManagement.Common.Core.CardCode.#ctor">
             <summary>
             卡片代码
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Cardcodes.id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.CardCode.id">
             <summary>
             编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Cardcodes.Province">
+        <member name="P:EOM.TSHotelManagement.Common.Core.CardCode.Province">
             <summary>
             省份
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Cardcodes.City">
+        <member name="P:EOM.TSHotelManagement.Common.Core.CardCode.City">
             <summary>
             城市
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Cardcodes.District">
+        <member name="P:EOM.TSHotelManagement.Common.Core.CardCode.District">
             <summary>
             地区
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Cardcodes.bm">
+        <member name="P:EOM.TSHotelManagement.Common.Core.CardCode.bm">
             <summary>
             地区识别码
             </summary>
@@ -780,457 +780,457 @@
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.Worker">
+        <member name="T:EOM.TSHotelManagement.Common.Core.Employee">
             <summary>
             员工信息
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerId">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerId">
             <summary>
             员工账号/工号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerName">
             <summary>
             员工姓名
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerBirthday">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerBirthday">
             <summary>
             出生日期
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerSex">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerSex">
             <summary>
             员工性别
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerSexName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerSexName">
             <summary>
             员工性别(名称描述)
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerNation">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerNation">
             <summary>
             民族类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.NationName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.NationName">
             <summary>
             民族名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerTel">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerTel">
             <summary>
             员工电话
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerClub">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerClub">
             <summary>
             所属部门
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.ClubName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.ClubName">
             <summary>
             部门名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerAddress">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerAddress">
             <summary>
             居住地址
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerPosition">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerPosition">
             <summary>
             员工职位
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.PositionName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.PositionName">
             <summary>
             职位名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.CardId">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.CardId">
             <summary>
             证件号码
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerPwd">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerPwd">
             <summary>
             员工密码
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerTime">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerTime">
             <summary>
             员工入职时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerFace">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerFace">
             <summary>
             员工面貌
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.FaceName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.FaceName">
             <summary>
             群众面貌描述
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.WorkerEducation">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.WorkerEducation">
             <summary>
             教育程度
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.EducationName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.EducationName">
             <summary>
             教育程度名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Worker.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Employee.IsDelete">
             <summary>
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.WorkerCheck">
+        <member name="T:EOM.TSHotelManagement.Common.Core.EmployeeCheck">
             <summary>
             员工打卡考勤
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerCheck.Id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeCheck.Id">
             <summary>
             编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerCheck.WorkerNo">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeCheck.WorkerNo">
             <summary>
             工号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerCheck.CheckTime">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeCheck.CheckTime">
             <summary>
             打卡时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerCheck.CheckWay">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeCheck.CheckWay">
             <summary>
             打卡方式
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerCheck.CheckState">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeCheck.CheckState">
             <summary>
             打卡状态
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerCheck.CheckStateNm">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeCheck.CheckStateNm">
             <summary>
             打卡状态
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerCheck.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeCheck.IsDelete">
             <summary>
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.WorkerGoodBad">
+        <member name="T:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment">
             <summary>
             员工奖罚
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.Id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.Id">
             <summary>
             编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.WorkNo">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.WorkNo">
             <summary>
             工号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.GBInfo">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.GBInfo">
             <summary>
             奖惩信息
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.GBType">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.GBType">
             <summary>
             奖惩类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.GBOperation">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.GBOperation">
             <summary>
             奖惩操作人
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.OperationName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.OperationName">
             <summary>
             奖惩操作人
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.GBTime">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.GBTime">
             <summary>
             奖惩时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.TypeName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.TypeName">
             <summary>
             类型名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerGoodBad.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeRewardPunishment.IsDelete">
             <summary>
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.WorkerHistory">
+        <member name="T:EOM.TSHotelManagement.Common.Core.EmployeeHistory">
             <summary>
             员工履历
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerHistory.Id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeHistory.Id">
             <summary>
             编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerHistory.WorkerId">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeHistory.WorkerId">
             <summary>
             工号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerHistory.StartDate">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeHistory.StartDate">
             <summary>
             开始时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerHistory.EndDate">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeHistory.EndDate">
             <summary>
             结束时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerHistory.Position">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeHistory.Position">
             <summary>
             职位
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerHistory.Company">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeHistory.Company">
             <summary>
             公司
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerHistory.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeeHistory.IsDelete">
             <summary>
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.WorkerPic">
+        <member name="T:EOM.TSHotelManagement.Common.Core.EmployeePhoto">
             <summary>
             员工照片
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerPic.Id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeePhoto.Id">
             <summary>
             自增长流水号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerPic.WorkerId">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeePhoto.WorkerId">
             <summary>
             工号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.WorkerPic.Pic">
+        <member name="P:EOM.TSHotelManagement.Common.Core.EmployeePhoto.Pic">
             <summary>
             照片路径
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.Admin">
+        <member name="T:EOM.TSHotelManagement.Common.Core.Administrator">
             <summary>
             管理员实体类
             </summary>
         </member>
-        <member name="M:EOM.TSHotelManagement.Common.Core.Admin.#ctor">
+        <member name="M:EOM.TSHotelManagement.Common.Core.Administrator.#ctor">
             <summary>
             构造函数
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.Id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.Id">
             <summary>
             编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.AdminAccount">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.AdminAccount">
             <summary>
             管理员账号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.AdminPassword">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.AdminPassword">
             <summary>
             管理员密码
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.AdminType">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.AdministratorType">
             <summary>
             管理员类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.AdminName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.AdminName">
             <summary>
             管理员名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.IsAdmin">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.IsAdmin">
             <summary>
             是否为超级管理员
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.DeleteMk">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.DeleteMk">
             <summary>
             删除标记
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.IsAdminNm">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.IsAdminNm">
             <summary>
             管理员类型描述
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.TypeName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.TypeName">
             <summary>
             管理员类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Admin.DeleteNm">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Administrator.DeleteNm">
             <summary>
             删除标记描述
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.AdminType">
+        <member name="T:EOM.TSHotelManagement.Common.Core.AdministratorType">
             <summary>
             管理员类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.AdminType.Id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AdministratorType.Id">
             <summary>
             编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.AdminType.type_id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AdministratorType.type_id">
             <summary>
             管理员类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.AdminType.type_name">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AdministratorType.type_name">
             <summary>
             类型名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.AdminType.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AdministratorType.IsDelete">
             <summary>
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.Base">
+        <member name="T:EOM.TSHotelManagement.Common.Core.SystemInformation">
             <summary>
             系统信息
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Base.url_no">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SystemInformation.url_no">
             <summary>
             地址编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Base.url_addr">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SystemInformation.url_addr">
             <summary>
             地址
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.CheckInfo">
+        <member name="T:EOM.TSHotelManagement.Common.Core.SupervisionStatistics">
             <summary>
             监管统计
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.CheckNo">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.CheckNo">
             <summary>
             监管统计编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.CheckClub">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.CheckClub">
             <summary>
             监管部门
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.CheckProgres">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.CheckProgres">
             <summary>
             监管进度
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.CheckCash">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.CheckCash">
             <summary>
             
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.CheckScore">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.CheckScore">
             <summary>
             
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.CheckPerson">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.CheckPerson">
             <summary>
             
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.CheckAdvice">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.CheckAdvice">
             <summary>
             
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.CheckInfo.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.SupervisionStatistics.IsDelete">
             <summary>
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.Dept">
+        <member name="T:EOM.TSHotelManagement.Common.Core.Department">
             <summary>
             部门表
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.dept_no">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.dept_no">
             <summary>
             部门编号
             </summary>  
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.dept_name">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.dept_name">
             <summary>
             部门名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.dept_desc">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.dept_desc">
             <summary>
             部门描述
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.dept_date">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.dept_date">
             <summary>
             创建时间(部门)
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.dept_leader">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.dept_leader">
             <summary>
             部门主管
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.leader_name">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.leader_name">
             <summary>
             部门主管
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.dept_parent">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.dept_parent">
             <summary>
             上级部门
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.parent_name">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.parent_name">
             <summary>
             上级部门
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Dept.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.Department.IsDelete">
             <summary>
             删除标记
             </summary>
@@ -1366,7 +1366,7 @@
             水电管理
             </summary>
         </member>
-        <member name="F:EOM.TSHotelManagement.Common.Core.ModuleConsts.CheckInfo">
+        <member name="F:EOM.TSHotelManagement.Common.Core.ModuleConsts.SupervisionStatistics">
             <summary>
             监管统计
             </summary>
@@ -1401,27 +1401,27 @@
             系统管理
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.ModuleZero">
+        <member name="T:EOM.TSHotelManagement.Common.Core.ModulePermission">
             <summary>
             模块权限表
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.ModuleZero.module_id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.ModulePermission.module_id">
             <summary>
             模块ID
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.ModuleZero.admin_account">
+        <member name="P:EOM.TSHotelManagement.Common.Core.ModulePermission.admin_account">
             <summary>
             管理员账号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.ModuleZero.module_name">
+        <member name="P:EOM.TSHotelManagement.Common.Core.ModulePermission.module_name">
             <summary>
             模块名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.ModuleZero.module_enable">
+        <member name="P:EOM.TSHotelManagement.Common.Core.ModulePermission.module_enable">
             <summary>
             是否开启
             </summary>
@@ -1446,47 +1446,47 @@
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.Notice">
+        <member name="T:EOM.TSHotelManagement.Common.Core.AppointmentNotice">
             <summary>
             任命公告
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.NoticeNo">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.NoticeNo">
             <summary>
             公告编号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.Noticetheme">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.Noticetheme">
             <summary>
             公告主题
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.NoticeType">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.NoticeType">
             <summary>
             公告类型
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.NoticeTypeName">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.NoticeTypeName">
             <summary>
             公告类型(描述)
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.NoticeTime">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.NoticeTime">
             <summary>
             公告时间
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.NoticeContent">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.NoticeContent">
             <summary>
             公告正文
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.NoticeClub">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.NoticeClub">
             <summary>
             发文部门
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.Notice.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.AppointmentNotice.IsDelete">
             <summary>
             删除标记
             </summary>
@@ -1511,42 +1511,42 @@
             删除标记
             </summary>
         </member>
-        <member name="T:EOM.TSHotelManagement.Common.Core.VipRule">
+        <member name="T:EOM.TSHotelManagement.Common.Core.VipLevelRule">
             <summary>
             会员等级规则类
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.VipRule.id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.VipLevelRule.id">
             <summary>
             索引ID
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.VipRule.rule_id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.VipLevelRule.rule_id">
             <summary>
             会员规则流水号
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.VipRule.rule_name">
+        <member name="P:EOM.TSHotelManagement.Common.Core.VipLevelRule.rule_name">
             <summary>
             会员规则名称
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.VipRule.rule_value">
+        <member name="P:EOM.TSHotelManagement.Common.Core.VipLevelRule.rule_value">
             <summary>
             预设数值(历史消费总额)
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.VipRule.type_id">
+        <member name="P:EOM.TSHotelManagement.Common.Core.VipLevelRule.type_id">
             <summary>
             会员等级
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.VipRule.IsDelete">
+        <member name="P:EOM.TSHotelManagement.Common.Core.VipLevelRule.IsDelete">
             <summary>
             删除标识
             </summary>
         </member>
-        <member name="P:EOM.TSHotelManagement.Common.Core.VipRule.type_name">
+        <member name="P:EOM.TSHotelManagement.Common.Core.VipLevelRule.type_name">
             <summary>
             会员等级描述
             </summary>

@@ -54,7 +54,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmSelectCustoInfo_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -69,13 +69,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
+            List<PassportType> passPorts = HttpHelper.JsonToList<PassportType>(result.message);
             this.cbPassportType.DataSource = passPorts;
             this.cbPassportType.DisplayMember = "PassportName";
             this.cbPassportType.ValueMember = "PassportId";
@@ -83,13 +83,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
+            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
+            List<GenderType> listSexType = HttpHelper.JsonToList<GenderType>(result.message);
             this.cbSex.DataSource = listSexType;
             this.cbSex.DisplayMember = "sexName";
             this.cbSex.ValueMember = "sexId";
@@ -107,15 +107,15 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            Custo c = HttpHelper.JsonToModel<Custo>(result.message);
-            txtCustoAdress.Text = c.CustoAddress;
-            txtCustoName.Text = c.CustoName;
-            txtCardID.Text = c.CustoID;
-            txtCustoTel.Text = c.CustoTel;
-            cbSex.Text = c.CustoSex == 1 ? "男" : "女";
-            cbCustoType.SelectedIndex = c.CustoType;
+            Customer c = HttpHelper.JsonToModel<Customer>(result.message);
+            txtCustoAdress.Text = c.CustomerAddress;
+            txtCustoName.Text = c.CustomerName;
+            txtCardID.Text = c.PassportID;
+            txtCustoTel.Text = c.CustomerPhoneNumber;
+            cbSex.Text = c.CustomerGender == 1 ? "男" : "女";
+            cbCustoType.SelectedIndex = c.CustomerType;
             cbPassportType.SelectedIndex = c.PassportType;
-            dtpBirthday.Value = Convert.ToDateTime(c.CustoBirth);
+            dtpBirthday.Value = Convert.ToDateTime(c.DateOfBirth);
         }
     }
 }

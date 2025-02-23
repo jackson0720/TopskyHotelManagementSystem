@@ -51,8 +51,8 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             cboRoomList.DataSource = HttpHelper.JsonToList<Room>(result.message);
-            cboRoomList.DisplayMember = nameof(Room.RoomNo);
-            cboRoomList.ValueMember = nameof(Room.RoomNo);
+            cboRoomList.DisplayMember = nameof(Room.RoomNumber);
+            cboRoomList.ValueMember = nameof(Room.RoomNumber);
             firstLoad = false;
         }
 
@@ -76,10 +76,10 @@ namespace EOM.TSHotelManagement.FormUI
             Room room = HttpHelper.JsonToModel<Room>(result.message);
             Room checkInRoom = new Room()
             {
-                RoomNo = nrno,
-                CustoNo = ucRoom.co_CustoNo,
+                RoomNumber = nrno,
+                CustomerNumber = ucRoom.co_CustoNo,
                 RoomStateId = 1,
-                CheckTime = Convert.ToDateTime(DateTime.Now),
+                LastCheckInTime = Convert.ToDateTime(DateTime.Now),
                 DataInsUsr = LoginInfo.WorkerNo
             };
             dic = new Dictionary<string, string>()
@@ -92,18 +92,18 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomMoney));
+            sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomRent));
 
             Spend s = new Spend()
             {
-                RoomNo = cboRoomList.Text,
-                SpendName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
-                SpendAmount = Convert.ToInt32(result.message),
-                CustoNo = ucRoom.co_CustoNo,
-                SpendPrice = room.RoomMoney,
-                SpendMoney = Convert.ToDecimal(sum),
-                SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                MoneyState = SpendConsts.UnSettle,
+                RoomNumber = cboRoomList.Text,
+                ProductName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
+                ConsumptionQuantity = Convert.ToInt32(result.message),
+                CustomerNumber = ucRoom.co_CustoNo,
+                ProductPrice = room.RoomRent,
+                ConsumptionAmount = Convert.ToDecimal(sum),
+                ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                SettlementStatus = SpendConsts.UnSettle,
             };
 
             result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(checkInRoom));
@@ -137,7 +137,7 @@ namespace EOM.TSHotelManagement.FormUI
             var result3 = HttpHelper.JsonToList<Spend>(result.message);
             if (result3.Count != 0)
             {
-                Spend spend = new Spend() { RoomNo = nrno, CustoNo = ucRoom.CustoNo };
+                Spend spend = new Spend() { RoomNumber = nrno, CustomerNumber = ucRoom.CustoNo };
                 result = HttpHelper.Request("Spend​/UpdateSpendInfoByRoomNo", HttpHelper.ModelToJson(spend));
                 if (result.statusCode != 200)
                 {
@@ -187,7 +187,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             RoomType roomType = HttpHelper.JsonToModel<RoomType>(result.message);
-            lblRoomType.Text = roomType.RoomName;
+            lblRoomType.Text = roomType.RoomTypeName;
         }
     }
 }

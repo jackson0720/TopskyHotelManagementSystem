@@ -57,7 +57,7 @@ namespace EOM.TSHotelManagement.FormUI
         #region 实例化房态图的房间信息
         public string romTypeName;
         public Room romRoomInfo { get; set; }
-        public Custo romCustoInfo { get; set; }
+        public Customer romCustoInfo { get; set; }
         #endregion
 
         public string lblMark { get; set; }
@@ -154,12 +154,12 @@ namespace EOM.TSHotelManagement.FormUI
 
         public void LoadRoomInfo()
         {
-            co_RoomNo = romRoomInfo.RoomNo;
-            co_CustoNo = romCustoInfo.CustoNo;
-            co_CustoName = romCustoInfo.CustoName;
+            co_RoomNo = romRoomInfo.RoomNumber;
+            co_CustoNo = romCustoInfo.CustomerNumber;
+            co_CustoName = romCustoInfo.CustomerName;
             romTypeName = romRoomInfo.RoomName;
-            co_CheckTime = romRoomInfo.CheckTime;
-            co_RoomPosition = romRoomInfo.RoomPosition;
+            co_CheckTime = romRoomInfo.LastCheckInTime;
+            co_RoomPosition = romRoomInfo.RoomLocation;
             co_RoomState = romRoomInfo.RoomState;
 
         }
@@ -172,15 +172,15 @@ namespace EOM.TSHotelManagement.FormUI
             this.Region = new Region(GetRoundRectPath(new RectangleF(0, 0, this.Width, this.Height), 6f));
             if (romCustoInfo != null)
             {
-                us_CustoNo = romCustoInfo.CustoNo;
-                us_CustoName = romCustoInfo.CustoName;
-                us_CustoSex = romCustoInfo.CustoSex == 1 ? "男" : "女";
-                us_CustoTel = romCustoInfo.CustoTel;
-                us_CustoID = romCustoInfo.CustoID;
-                us_CustoBirthday = romCustoInfo.CustoBirth == default ? "" : Convert.ToDateTime(romCustoInfo.CustoBirth).ToString();
+                us_CustoNo = romCustoInfo.CustomerNumber;
+                us_CustoName = romCustoInfo.CustomerName;
+                us_CustoSex = romCustoInfo.CustomerGender == 1 ? "男" : "女";
+                us_CustoTel = romCustoInfo.CustomerPhoneNumber;
+                us_CustoID = romCustoInfo.PassportID;
+                us_CustoBirthday = romCustoInfo.DateOfBirth == default ? "" : Convert.ToDateTime(romCustoInfo.DateOfBirth).ToString();
                 us_CustoPassportType = romCustoInfo.PassportType;
-                us_CustoType = romCustoInfo.CustoType;
-                us_CustoAddress = romCustoInfo.CustoAddress;
+                us_CustoType = romCustoInfo.CustomerType;
+                us_CustoAddress = romCustoInfo.CustomerAddress;
             }
             switch (romRoomInfo.RoomStateId)
             {
@@ -278,10 +278,10 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 if (r.RoomStateId == 4)
                 {
-                    rm_CustoNo = romCustoInfo.CustoNo;
-                    rm_RoomNo = romRoomInfo.RoomNo;
+                    rm_CustoNo = romCustoInfo.CustomerNumber;
+                    rm_RoomNo = romRoomInfo.RoomNumber;
                     rm_RoomType = romRoomInfo.RoomName;
-                    rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
+                    rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomRent).ToString();
                     rm_RoomStateId = 4;
                     UIMessageBox.ShowInfo("欢迎入住，请先注册客户信息！");
                     FrmReserList frm = new FrmReserList();
@@ -290,10 +290,10 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 else
                 {
-                    rm_CustoNo = romCustoInfo.CustoNo;
-                    rm_RoomNo = romRoomInfo.RoomNo;
+                    rm_CustoNo = romCustoInfo.CustomerNumber;
+                    rm_RoomNo = romRoomInfo.RoomNumber;
                     rm_RoomType = romRoomInfo.RoomName;
-                    rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomMoney).ToString();
+                    rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomRent).ToString();
                     FrmCheckIn frm = new FrmCheckIn();
                     frm.ShowDialog();
                 }
@@ -307,8 +307,8 @@ namespace EOM.TSHotelManagement.FormUI
         private void tsmiCheckOut_Click(object sender, EventArgs e)
         {
             _loadingProgress.Show();
-            rm_CustoNo = romRoomInfo.CustoNo;
-            rm_RoomNo = romRoomInfo.RoomNo;
+            rm_CustoNo = romRoomInfo.CustomerNumber;
+            rm_RoomNo = romRoomInfo.RoomNumber;
             rm_RoomType = romRoomInfo.RoomName;
             FrmCheckOutForm frm = new FrmCheckOutForm(_loadingProgress);
             frm.ShowDialog(this);
@@ -324,8 +324,8 @@ namespace EOM.TSHotelManagement.FormUI
                 bool tf = UIMessageBox.Show("确定要进行转房吗？", "来自小T的提醒", UIStyle.Orange, UIMessageBoxButtons.OKCancel);
                 if (tf)
                 {
-                    RoomNo = romRoomInfo.RoomNo;
-                    CustoNo = romCustoInfo.CustoNo;
+                    RoomNo = romRoomInfo.RoomNumber;
+                    CustoNo = romCustoInfo.CustomerNumber;
                     RoomState = romRoomInfo.RoomState;
                     FrmChangeRoom frm = new FrmChangeRoom();
                     frm.ShowDialog();
@@ -339,7 +339,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void tsmiSelectUserInfo_Click(object sender, EventArgs e)
         {
-            rm_CustoNo = romCustoInfo.CustoNo;
+            rm_CustoNo = romCustoInfo.CustomerNumber;
             FrmSelectCustoInfo frm = new FrmSelectCustoInfo();
             frm.ShowDialog();
         }
@@ -353,7 +353,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     getParam = new Dictionary<string, string>()
                     {
-                        {"no",r.RoomNo }
+                        {"no",r.RoomNumber }
                     };
                     result = HttpHelper.Request("Reser/SelectReserInfoByRoomNo", getParam);
                     if (result.statusCode != 200)
@@ -365,7 +365,7 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         var reser = new Reser
                         {
-                            ReserId = HttpHelper.JsonToModel<Reser>(result.message!)!.ReserId
+                            ReservationId = HttpHelper.JsonToModel<Reser>(result.message!)!.ReservationId
                         };
                         result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
                         if (result.statusCode != 200)
@@ -379,7 +379,7 @@ namespace EOM.TSHotelManagement.FormUI
             if (romCustoInfo != null && romRoomInfo != null)
             {
                 rm_RoomStateId = romRoomInfo.RoomStateId;
-                rm_RoomNo = romRoomInfo.RoomNo;
+                rm_RoomNo = romRoomInfo.RoomNumber;
                 FrmRoomStateManager frsm = new FrmRoomStateManager();
                 frsm.ShowDialog();
             }

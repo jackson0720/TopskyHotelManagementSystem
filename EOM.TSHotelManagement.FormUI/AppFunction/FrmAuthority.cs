@@ -48,13 +48,13 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "AdminAccount",txtAccount.Text.Trim() }
             };
-            result = HttpHelper.Request("Admin/GetAdminInfoByAdminAccount", dic);
+            result = HttpHelper.Request("Administrator/GetAdminInfoByAdminAccount", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("GetAdminInfoByAdminAccount+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var adminInfo = HttpHelper.JsonToModel<Admin>(result.message);
+            var adminInfo = HttpHelper.JsonToModel<Administrator>(result.message);
             if (adminInfo.IsNullOrEmpty())
             {
                 UIMessageTip.ShowError("找不到对应的管理员，请检查是否输入有误！");
@@ -63,17 +63,17 @@ namespace EOM.TSHotelManagement.FormUI
                 txtAccount.Text = "";
                 return;
             }
-            txtAccount.Text = adminInfo.AdminAccount;
-            txtName.Text = adminInfo.AdminName;
+            txtAccount.Text = adminInfo.Account;
+            txtName.Text = adminInfo.Name;
             cbAccountType.Text = adminInfo.TypeName;
         }
 
         public void LoadAllMyModule()
         {
             tfModuleZero.ItemsLeft.Clear();
-            var admin = new Admin
+            var admin = new Administrator
             {
-                AdminAccount = txtAccount.Text.Trim(),
+                Account = txtAccount.Text.Trim(),
             };
 
             result = HttpHelper.Request("Module/GetAllModuleByAdmin", HttpHelper.ModelToJson(admin));
@@ -85,7 +85,7 @@ namespace EOM.TSHotelManagement.FormUI
             var listMyModule = HttpHelper.JsonToList<Module>(result.message);
             listMyModule.ForEach(myModule =>
             {
-                tfModuleZero.ItemsRight.Add(myModule.module_name);
+                tfModuleZero.ItemsRight.Add(myModule.ModuleName);
             });
             result = HttpHelper.Request("Module/GetAllModule");
             if (result.statusCode != 200)
@@ -96,10 +96,10 @@ namespace EOM.TSHotelManagement.FormUI
             var listModules = HttpHelper.JsonToList<Module>(result.message);
             listModules.ForEach(module =>
             {
-                var myModule = listMyModule.FirstOrDefault(a => a.module_name.Equals(module.module_name));
+                var myModule = listMyModule.FirstOrDefault(a => a.ModuleName.Equals(module.ModuleName));
                 if (myModule == null)
                 {
-                    tfModuleZero.ItemsLeft.Add(module.module_name);
+                    tfModuleZero.ItemsLeft.Add(module.ModuleName);
                 }
             });
         }
@@ -122,7 +122,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "AdminAccount",txtAccount.Text.Trim() }
             };
-            var admin = new Admin { AdminAccount = txtAccount.Text.Trim() };
+            var admin = new Administrator { Account = txtAccount.Text.Trim() };
             result = HttpHelper.Request("Module/GetAllModuleByAdmin", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
@@ -130,10 +130,10 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             var listExsitModule = HttpHelper.JsonToList<Module>(result.message);
-            var listAddModule = new List<ModuleZero>();
+            var listAddModule = new List<ModulePermission>();
             if (listExsitModule != null)
             {
-                ModuleZero moduleZero = new ModuleZero() { admin_account = txtAccount.Text.Trim() };
+                ModulePermission moduleZero = new ModulePermission() { AdministratorAccount = txtAccount.Text.Trim() };
                 result = HttpHelper.Request("Module/DelModuleZeroList", HttpHelper.ModelToJson(moduleZero));
                 if (result.statusCode != 200)
                 {
@@ -143,7 +143,7 @@ namespace EOM.TSHotelManagement.FormUI
                 for (int i = 0; i < tfModuleZero.ItemsRight.Count; i++)
                 {
                     var newModule = tfModuleZero.ItemsRight[i].ToString();
-                    listAddModule.Add(new ModuleZero() { admin_account = txtAccount.Text.Trim(), module_name = newModule, module_enable = 1 });
+                    listAddModule.Add(new ModulePermission() { AdministratorAccount = txtAccount.Text.Trim(), ModuleName = newModule, ModuleEnabled = 1 });
                 }
             }
             if (!listAddModule.IsNullOrEmpty())

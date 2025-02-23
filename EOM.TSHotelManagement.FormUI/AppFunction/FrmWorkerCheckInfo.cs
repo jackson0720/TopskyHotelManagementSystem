@@ -46,14 +46,14 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "wid",FrmWorkerPanel.wk_WorkerNo}
             };
-            result = HttpHelper.Request("WorkerCheck/SelectCheckInfoByWorkerNo", dic);
+            result = HttpHelper.Request("EmployeeCheck/SelectCheckInfoByWorkerNo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectCheckInfoByWorkerNo+接口服务异常，请提交issue");
                 return;
             }
             DgvCheckInfoList.AutoGenerateColumns = false;
-            DgvCheckInfoList.DataSource = HttpHelper.JsonToList<WorkerCheck>(result.message);
+            DgvCheckInfoList.DataSource = HttpHelper.JsonToList<EmployeeCheck>(result.message);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

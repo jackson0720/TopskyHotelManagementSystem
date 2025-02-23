@@ -59,7 +59,7 @@ namespace EOM.TSHotelManagement.FormUI
             txtCustoNo.Text = cardId;
 
             #region 加载客户类型信息
-            var result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            var result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -74,13 +74,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
+            List<PassportType> passPorts = HttpHelper.JsonToList<PassportType>(result.message);
             this.cbPassportType.DataSource = passPorts;
             this.cbPassportType.DisplayMember = "PassportName";
             this.cbPassportType.ValueMember = "PassportId";
@@ -88,13 +88,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
+            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
+            List<GenderType> listSexType = HttpHelper.JsonToList<GenderType>(result.message);
             this.cbSex.DataSource = listSexType;
             this.cbSex.DisplayMember = "sexName";
             this.cbSex.ValueMember = "sexId";
@@ -134,17 +134,17 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnOK_UpdClick(object sender, EventArgs e)
         {
-            Custo custo = new Custo()
+            Customer custo = new Customer()
             {
-                CustoNo = txtCustoNo.Text,
-                CustoName = txtCustoName.Text,
-                CustoSex = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                CustoBirth = dtpBirthday.Value,
-                CustoType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
+                CustomerNumber = txtCustoNo.Text,
+                CustomerName = txtCustoName.Text,
+                CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
+                DateOfBirth = dtpBirthday.Value,
+                CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
                 PassportType = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
-                CustoID = txtCardID.Text,
-                CustoTel = txtTel.Text,
-                CustoAddress = txtCustoAdress.Text,
+                PassportID = txtCardID.Text,
+                CustomerPhoneNumber = txtTel.Text,
+                CustomerAddress = txtCustoAdress.Text,
                 DataChgUsr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
             };
 
@@ -163,7 +163,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             UIMessageBox.Show("修改成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustoNo, 3);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustomerNumber, 3);
             #endregion
             this.Close();
             FrmCustomerManager.ReloadCustomer(false);
@@ -185,17 +185,17 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmEditInputs_ButtonOkClick(object sender, EventArgs e)
         {
-            Custo custo = new Custo()
+            Customer custo = new Customer()
             {
-                CustoNo = txtCustoNo.Text,
-                CustoName = txtCustoName.Text,
-                CustoSex = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                CustoBirth = dtpBirthday.Value,
-                CustoType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
+                CustomerNumber = txtCustoNo.Text,
+                CustomerName = txtCustoName.Text,
+                CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
+                DateOfBirth = dtpBirthday.Value,
+                CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
                 PassportType = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
-                CustoID = txtCardID.Text,
-                CustoTel = txtTel.Text,
-                CustoAddress = txtCustoAdress.Text,
+                PassportID = txtCardID.Text,
+                CustomerPhoneNumber = txtTel.Text,
+                CustomerAddress = txtCustoAdress.Text,
                 DataInsUsr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
 
             };
@@ -211,7 +211,7 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 FrmCustomerManager.ReloadCustomer(false);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustoNo, 3);
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, 3);
                 #endregion
                 this.Close();
             }

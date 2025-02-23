@@ -55,7 +55,7 @@ namespace EOM.TSHotelManagement.FormUI
             dgvAdminList.Spin("正在加载中......", config =>
             {
                 TableComHelper tableComHelper = new TableComHelper();
-                dgvAdminList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Admin>());
+                dgvAdminList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Administrator>());
                 dgvAdminList.DataSource = GetPageData(pgnPageNavigate.Current, pgnPageNavigate.PageSize, ref dataCount);
                 pgnPageNavigate.PageSize = 10;
                 pgnPageNavigate.Total = dataCount;
@@ -67,13 +67,13 @@ namespace EOM.TSHotelManagement.FormUI
 
         object GetPageData(int current, int pageSize, ref int totalCount)
         {
-            result = HttpHelper.Request("Admin/GetAllAdmin");
+            result = HttpHelper.Request("Administrator/GetAllAdmin");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("GetAllAdmin+接口服务异常，请提交Issue或尝试更新版本！");
                 return null;
             }
-            var listDataSource = HttpHelper.JsonToList<Admin>(result.message);
+            var listDataSource = HttpHelper.JsonToList<Administrator>(result.message);
             totalCount = listDataSource.Count;
             var listTableSource = new List<AntdUI.AntItem[]>();
 
@@ -86,14 +86,14 @@ namespace EOM.TSHotelManagement.FormUI
 
         public void LoadAdminType()
         {
-            result = HttpHelper.Request("Admin/GetAllAdminTypes");
+            result = HttpHelper.Request("Administrator/GetAllAdminTypes");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("GetAllAdminTypes+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
-            cbAccountType.Items.AddRange(HttpHelper.JsonToList<AdminType>(result.message).Select(a => new SelectItem(a.type_name, a.type_id)).ToArray());
+            cbAccountType.Items.AddRange(HttpHelper.JsonToList<AdministratorType>(result.message).Select(a => new SelectItem(a.TypeName, a.TypeId)).ToArray());
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -105,19 +105,19 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var admin = new Admin
+            var admin = new Administrator
             {
-                AdminAccount = txtAccount.Text.Trim(),
-                AdminPassword = txtPassword.Text.Trim(),
-                AdminName = txtName.Text.Trim(),
-                AdminType = cbAccountType.SelectedValue.ToString(),
-                IsAdmin = cbAccountType.SelectedValue.ToString() == "超级管理员" ? 1 : 0,
+                Account = txtAccount.Text.Trim(),
+                Password = txtPassword.Text.Trim(),
+                Name = txtName.Text.Trim(),
+                Type = cbAccountType.SelectedValue.ToString(),
+                IsSuperAdmin = cbAccountType.SelectedValue.ToString() == "超级管理员" ? 1 : 0,
                 IsDelete = 0,
                 DataInsUsr = AdminInfo.Account
             };
             if (ValidateHelper.Validate(admin))
             {
-                result = HttpHelper.Request("Admin​/AddAdmin", HttpHelper.ModelToJson(admin));
+                result = HttpHelper.Request("Administrator​/AddAdmin", HttpHelper.ModelToJson(admin));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("AddAdmin+接口服务异常，请提交Issue或尝试更新版本！");

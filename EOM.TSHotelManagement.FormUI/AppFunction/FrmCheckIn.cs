@@ -58,9 +58,9 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             RoomType t = HttpHelper.JsonToModel<RoomType>(result.message!)!;
-            txtType.Text = t.RoomName;
-            txtMoney.Text = r.RoomMoney.ToString();
-            txtRoomPosition.Text = r.RoomPosition;
+            txtType.Text = t.RoomTypeName;
+            txtMoney.Text = r.RoomRent.ToString();
+            txtRoomPosition.Text = r.RoomLocation;
             txtState.Text = r.RoomState;
             txtDeposit.Text = r.RoomDeposit.ToString();
             result = HttpHelper.Request("Custo/SelectCustoAll");
@@ -69,10 +69,10 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageTip.ShowError("SelectCustoAll+接口服务异常，请提交issue");
                 return;
             }
-            var custoList = HttpHelper.JsonToPageList<OSelectAllDto<Custo>>(result.message!);
+            var custoList = HttpHelper.JsonToPageList<OSelectAllDto<Customer>>(result.message!);
             if (custoList != null && custoList != null)
             {
-                var ctos = custoList.listSource.Select(custo => custo.CustoNo).ToArray();
+                var ctos = custoList.listSource.Select(custo => custo.CustomerNumber).ToArray();
                 txtCustoNo.AutoCompleteCustomSource.AddRange(ctos);
             }
             try
@@ -121,13 +121,13 @@ namespace EOM.TSHotelManagement.FormUI
         private void ValidateAndUpdateCustomerInfo()
         {
             // 获取会员规则列表
-            var result = HttpHelper.Request("VipRule/SelectVipRuleList");
+            var result = HttpHelper.Request("VipLevelRule/SelectVipRuleList");
             if (result.statusCode != 200)
             {
                 throw new Exception("SelectVipRuleList+接口服务异常");
             }
 
-            var listVipRule = HttpHelper.JsonToList<VipRule>(result.message!)!
+            var listVipRule = HttpHelper.JsonToList<VipLevelRule>(result.message!)!
                 .OrderBy(a => a.RuleValue)
                 .Distinct()
                 .ToList();
@@ -143,20 +143,20 @@ namespace EOM.TSHotelManagement.FormUI
             var listCustoSpend = HttpHelper.JsonToList<Spend>(result.message!)!;
             if (!listCustoSpend.IsNullOrEmpty())
             {
-                var spendAmount = listCustoSpend.Sum(a => a.SpendMoney);
+                var spendAmount = listCustoSpend.Sum(a => a.ConsumptionAmount);
                 var new_type = listVipRule
                     .Where(vipRule => spendAmount >= vipRule.RuleValue)
                     .OrderByDescending(vipRule => vipRule.RuleValue)
-                    .FirstOrDefault()?.TypeId ?? 0;
+                    .FirstOrDefault()?.VipLevelId ?? 0;
 
                 // 如果会员等级有变，更新会员等级
                 if (new_type != 0)
                 {
                     user = new Dictionary<string, string>
-            {
-                { "custoNo", txtCustoNo.Text.Trim() },
-                { "userType", new_type.ToString() }
-            };
+                    {
+                        { "custoNo", txtCustoNo.Text.Trim() },
+                        { "userType", new_type.ToString() }
+                    };
                     result = HttpHelper.Request("Custo/UpdCustomerTypeByCustoNo", user);
                     if (result.statusCode != 200)
                     {
@@ -175,10 +175,10 @@ namespace EOM.TSHotelManagement.FormUI
                     throw new Exception("SelectCardInfoByCustoNo+接口服务异常");
                 }
 
-                var custo = HttpHelper.JsonToModel<Custo>(result.message!);
-                txtCustoName.Text = custo?.CustoName ?? "";
-                txtCustoTel.Text = custo?.CustoTel ?? "";
-                txtCustoType.Text = custo?.typeName ?? "";
+                var custo = HttpHelper.JsonToModel<Customer>(result.message!);
+                txtCustoName.Text = custo?.CustomerNumber ?? "";
+                txtCustoTel.Text = custo?.CustomerPhoneNumber ?? "";
+                txtCustoType.Text = custo?.CustomerTypeName ?? "";
             }
         }
 
@@ -198,10 +198,10 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     Room r = new Room()
                     {
-                        CheckTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                        CustoNo = txtCustoNo.Text,
+                        LastCheckInTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                        CustomerNumber = txtCustoNo.Text,
                         RoomStateId = 1,
-                        RoomNo = txtRoomNo.Text,
+                        RoomNumber = txtRoomNo.Text,
                         DataChgUsr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("Room/UpdateRoomInfo", HttpHelper.ModelToJson(r));
@@ -218,7 +218,7 @@ namespace EOM.TSHotelManagement.FormUI
                         FrmRoomManager.Reload("");
                         FrmRoomManager._RefreshRoomCount();
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustoNo + "进行了入住操作！", 1);
+                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustomerNumber + "进行了入住操作！", 1);
                         #endregion
                         scope.Complete();
                         this.Close();

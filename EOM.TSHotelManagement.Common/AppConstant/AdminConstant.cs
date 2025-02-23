@@ -9,7 +9,7 @@ namespace EOM.TSHotelManagement.Common
     public class AdminConstant : Constant<AdminConstant>
     {
         // 超级管理员
-        public static readonly AdminConstant Admin = new AdminConstant("Admin", "超级管理员");
+        public static readonly AdminConstant Administrator = new AdminConstant("Administrator", "超级管理员");
         // 财务经理
         public static readonly AdminConstant FinanceManager = new AdminConstant("FinanceManager", "财务经理");
         // 总经理

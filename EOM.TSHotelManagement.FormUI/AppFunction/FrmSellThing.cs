@@ -253,19 +253,19 @@ namespace EOM.TSHotelManagement.FormUI
                     Spend s = null;
                     if (!listSource.IsNullOrEmpty())
                     {
-                        var sellthing = listSource.FirstOrDefault(a => a.SpendName.Equals(txtSellName.Text));
+                        var sellthing = listSource.FirstOrDefault(a => a.ProductName.Equals(txtSellName.Text));
                         if (!sellthing.IsNullOrEmpty())
                         {
                             s = new Spend()
                             {
-                                RoomNo = txtRoomNo.Text,
-                                SpendName = txtSellName.Text,
-                                SpendAmount = (int)nudNum.Value + listSource.FirstOrDefault(a => a.SpendName.Equals(txtSellName.Text.Trim())).SpendAmount,
-                                CustoNo = r.CustoNo,
-                                SpendPrice = Convert.ToDecimal(txtPrice.Text),
-                                SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value) + listSource.FirstOrDefault(a => a.SpendName.Equals(txtSellName.Text.Trim())).SpendMoney,
-                                SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                                MoneyState = SpendConsts.UnSettle,
+                                RoomNumber = txtRoomNo.Text,
+                                ProductName = txtSellName.Text,
+                                ConsumptionQuantity = (int)nudNum.Value + listSource.FirstOrDefault(a => a.ProductName.Equals(txtSellName.Text.Trim())).ConsumptionQuantity,
+                                CustomerNumber = r.CustomerNumber,
+                                ProductPrice = Convert.ToDecimal(txtPrice.Text),
+                                ConsumptionAmount = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value) + listSource.FirstOrDefault(a => a.ProductName.Equals(txtSellName.Text.Trim())).ConsumptionAmount,
+                                ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                                SettlementStatus = SpendConsts.UnSettle,
                                 DataChgUsr = LoginInfo.WorkerNo
                             };
                             result = HttpHelper.Request("Spend/UpdSpenInfo", HttpHelper.ModelToJson(s));
@@ -277,7 +277,7 @@ namespace EOM.TSHotelManagement.FormUI
                             if (result.message.ToString().Equals("true"))
                             {
                                 var stock = (st.First().Stock - (decimal)nudNum.Value);
-                                var sellThing = new SellThing { SellName = st.First().SellName, SellPrice = st.First().SellPrice, Stock = stock, SellNo = st.First().SellNo, format = st.First().format };
+                                var sellThing = new SellThing { ProductName = st.First().ProductName, ProductPrice = st.First().ProductPrice, Stock = stock, ProductNumber = st.First().ProductNumber, Specification = st.First().Specification };
                                 result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
                                 if (result.statusCode != 200)
                                 {
@@ -285,10 +285,10 @@ namespace EOM.TSHotelManagement.FormUI
                                     return;
                                 }
                                 UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK, true);
-                                LoadSpendInfoByRoomNo(r.RoomNo);
+                                LoadSpendInfoByRoomNo(r.RoomNumber);
                                 LoadSellThingInfo();
                                 #region 获取添加操作日志所需的信息
-                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
                                 #endregion
                             }
                         }
@@ -296,14 +296,14 @@ namespace EOM.TSHotelManagement.FormUI
                         {
                             s = new Spend()
                             {
-                                RoomNo = txtRoomNo.Text,
-                                SpendName = txtSellName.Text,
-                                SpendAmount = (int)nudNum.Value,
-                                CustoNo = r.CustoNo,
-                                SpendPrice = Convert.ToDecimal(txtPrice.Text),
-                                SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value),
-                                SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                                MoneyState = SpendConsts.UnSettle,
+                                RoomNumber = txtRoomNo.Text,
+                                ProductName = txtSellName.Text,
+                                ConsumptionQuantity = (int)nudNum.Value,
+                                CustomerNumber = r.CustomerNumber,
+                                ProductPrice = Convert.ToDecimal(txtPrice.Text),
+                                ConsumptionAmount = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value),
+                                ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                                SettlementStatus = SpendConsts.UnSettle,
                                 DataInsUsr = LoginInfo.WorkerNo,
                             };
                             result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(s));
@@ -316,7 +316,7 @@ namespace EOM.TSHotelManagement.FormUI
                             if (m)
                             {
                                 var stock = (st.First().Stock - (decimal)nudNum.Value);
-                                var sellThing = new SellThing { SellName = st.First().SellName, SellPrice = st.First().SellPrice, Stock = stock, SellNo = st.First().SellNo, format = st.First().format };
+                                var sellThing = new SellThing { ProductName = st.First().ProductName, ProductPrice = st.First().ProductPrice, Stock = stock, ProductNumber = st.First().ProductNumber, Specification = st.First().Specification };
                                 result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
                                 if (result.statusCode != 200)
                                 {
@@ -324,10 +324,10 @@ namespace EOM.TSHotelManagement.FormUI
                                     return;
                                 }
                                 UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK, true);
-                                LoadSpendInfoByRoomNo(r.RoomNo);
+                                LoadSpendInfoByRoomNo(r.RoomNumber);
                                 LoadSellThingInfo();
                                 #region 获取添加操作日志所需的信息
-                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
                                 #endregion
                                 nudNum.Value = 0;
                                 return;
@@ -343,14 +343,14 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         s = new Spend()
                         {
-                            RoomNo = txtRoomNo.Text,
-                            SpendName = txtSellName.Text,
-                            SpendAmount = (int)nudNum.Value,
-                            CustoNo = r.CustoNo,
-                            SpendPrice = Convert.ToDecimal(txtPrice.Text),
-                            SpendMoney = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value),
-                            SpendTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                            MoneyState = SpendConsts.UnSettle,
+                            RoomNumber = txtRoomNo.Text,
+                            ProductName = txtSellName.Text,
+                            ConsumptionQuantity = (int)nudNum.Value,
+                            CustomerNumber = r.CustomerNumber,
+                            ProductPrice = Convert.ToDecimal(txtPrice.Text),
+                            ConsumptionAmount = Convert.ToDecimal(Convert.ToDouble(txtPrice.Text) * nudNum.Value),
+                            ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                            SettlementStatus = SpendConsts.UnSettle,
                         };
                         result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(s));
                         if (result.statusCode != 200)
@@ -362,7 +362,7 @@ namespace EOM.TSHotelManagement.FormUI
                         if (m)
                         {
                             var stock = (st.First().Stock - (decimal)nudNum.Value);
-                            var sellThing = new SellThing { SellName = st.First().SellName, SellPrice = st.First().SellPrice, Stock = stock, SellNo = st.First().SellNo, format = st.First().format };
+                            var sellThing = new SellThing { ProductName = st.First().ProductName, ProductPrice = st.First().ProductPrice, Stock = stock, ProductNumber = st.First().ProductNumber, Specification = st.First().Specification };
                             result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
                             if (result.statusCode != 200)
                             {
@@ -370,10 +370,10 @@ namespace EOM.TSHotelManagement.FormUI
                                 return;
                             }
                             UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK, true);
-                            LoadSpendInfoByRoomNo(r.RoomNo);
+                            LoadSpendInfoByRoomNo(r.RoomNumber);
                             LoadSellThingInfo();
                             #region 获取添加操作日志所需的信息
-                            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustoNo + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + s.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
                             #endregion
                             nudNum.Value = 0;
                             return;
@@ -399,17 +399,17 @@ namespace EOM.TSHotelManagement.FormUI
             }
             if (dgvRoomSell.SelectedIndex > 0)
             {
-                if (spend.SpendName.Contains("居住"))
+                if (spend.ProductName.Contains("居住"))
                 {
                     UIMessageBox.Show("此条消费记录为住房记录，无法删除！", "提示信息", UIStyle.Red);
                     return;
                 }
                 if (UIMessageDialog.ShowMessageDialog("你确定要删除该消费记录吗？", UILocalize.WarningTitle, true, Style))
                 {
-                    var spendTime = spend.SpendTime;
-                    string custoNo = spend.CustoNo;
-                    string name = spend.SpendName;
-                    string price = spend.SpendPrice.ToString("#.00");
+                    var spendTime = spend.ConsumptionTime;
+                    string custoNo = spend.CustomerNumber;
+                    string name = spend.ProductName;
+                    string price = spend.ProductPrice.ToString("#.00");
                     dic = new Dictionary<string, string>()
                     {
                         { "name",name},
@@ -422,7 +422,7 @@ namespace EOM.TSHotelManagement.FormUI
                         return;
                     }
                     SellThing s = HttpHelper.JsonToModel<SellThing>(result.message!)!;
-                    decimal num = Convert.ToDecimal(spend.SpendAmount);
+                    decimal num = Convert.ToDecimal(spend.ConsumptionQuantity);
                     string Stock = (s.Stock + num).ToString();
                     dic = new Dictionary<string, string>()
                     {
@@ -438,7 +438,7 @@ namespace EOM.TSHotelManagement.FormUI
                     }
                     if (result.message.ToString().Equals("true"))
                     {
-                        var sellThing = new SellThing { SellName = s.SellName, SellPrice = s.SellPrice, Stock = s.Stock, SellNo = s.SellNo, format = s.format };
+                        var sellThing = new SellThing { ProductName = s.ProductName, ProductPrice = s.ProductPrice, Stock = s.Stock, ProductNumber = s.ProductNumber, Specification = s.Specification };
                         result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
                         if (result.statusCode != 200)
                         {
@@ -567,13 +567,13 @@ namespace EOM.TSHotelManagement.FormUI
             if (e.Record is IList<AntdUI.AntItem> data)
             {
                 spend = new Spend();
-                spend.RoomNo = data[0].value.ToString();
-                spend.CustoNo = data[1].value.ToString();
-                spend.SpendName = data[2].value.ToString();
-                spend.SpendAmount = Convert.ToInt32(data[3].value);
-                spend.SpendPrice = Convert.ToDecimal(data[4].value);
-                spend.SpendMoney = Convert.ToDecimal(data[5].value);
-                spend.SpendTime = Convert.ToDateTime(data[6].value);
+                spend.RoomNumber = data[0].value.ToString();
+                spend.CustomerNumber = data[1].value.ToString();
+                spend.ProductName = data[2].value.ToString();
+                spend.ConsumptionQuantity = Convert.ToInt32(data[3].value);
+                spend.ProductPrice = Convert.ToDecimal(data[4].value);
+                spend.ConsumptionAmount = Convert.ToDecimal(data[5].value);
+                spend.ConsumptionTime = Convert.ToDateTime(data[6].value);
             }
         }
     }

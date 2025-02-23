@@ -77,7 +77,7 @@ namespace EOM.TSHotelManagement.FormUI
             dgvCustomerList.Spin("正在加载中...", config =>
             {
                 TableComHelper tableComHelper = new TableComHelper();
-                dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Custo>());
+                dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Customer>());
                 dgvCustomerList.DataSource = GetPageData(btnPg.Current, btnPg.PageSize, ref dataCount, onlyVip);
                 btnPg.PageSize = 15;
                 btnPg.Current = 1;
@@ -106,11 +106,11 @@ namespace EOM.TSHotelManagement.FormUI
                 AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
             }
-            OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
+            OSelectAllDto<Customer> custos = HttpHelper.JsonToModel<OSelectAllDto<Customer>>(result.message);
             totalCount = custos.total;
             var listTableSource = new List<AntdUI.AntItem[]>();
 
-            custos.listSource = custos.listSource.OrderBy(a => a.CustoNo).ThenBy(a => a.CustoName).ToList();
+            custos.listSource = custos.listSource.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
             listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);
@@ -123,7 +123,7 @@ namespace EOM.TSHotelManagement.FormUI
         int count = 0;
         private void btnSerach_BtnClick(object sender, EventArgs e)
         {
-            OSelectAllDto<Custo> custos = new OSelectAllDto<Custo>();
+            OSelectAllDto<Customer> custos = new OSelectAllDto<Customer>();
             if (!txtCustoNo.Text.IsNullOrEmpty() || !txtCustoName.Text.IsNullOrEmpty())
             {
                 if (!txtCustoNo.Text.IsNullOrEmpty())
@@ -157,11 +157,11 @@ namespace EOM.TSHotelManagement.FormUI
                 }
             }
 
-            custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
+            custos = HttpHelper.JsonToModel<OSelectAllDto<Customer>>(result.message);
 
             var listTableSource = new List<AntdUI.AntItem[]>();
 
-            custos.listSource = custos.listSource.OrderBy(a => a.CustoNo).ThenBy(a => a.CustoName).ToList();
+            custos.listSource = custos.listSource.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
             listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);

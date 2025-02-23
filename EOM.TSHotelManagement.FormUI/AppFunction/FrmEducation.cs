@@ -58,7 +58,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             //flpInformation.Controls.Clear();
             txtEducationNo.Text = ApplicationUtil.GetListNewId("E", 3, 1, "-").FirstOrDefault();
-            result = HttpHelper.Request("Base/SelectEducationAll");
+            result = HttpHelper.Request("SystemInformation/SelectEducationAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectEducationAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -79,12 +79,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var edu = new Education()
             {
-                education_no = txtEducationNo.Text.Trim(),
-                education_name = txtEducationName.Text.Trim(),
+                EducationNumber = txtEducationNo.Text.Trim(),
+                EducationName = txtEducationName.Text.Trim(),
                 IsDelete = 0,
                 DataInsUsr = AdminInfo.Account
             };
-            result = HttpHelper.Request("Base​/AddEducation", HttpHelper.ModelToJson(edu));
+            result = HttpHelper.Request("SystemInformation​/AddEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("AddEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -92,7 +92,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             UIMessageTip.ShowOk("添加学历成功！", 1500);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增学历类型操作！新增值为：" + edu.education_no, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增学历类型操作！新增值为：" + edu.EducationNumber, 2);
             #endregion
             ReloadEducationList();
             return;
@@ -108,11 +108,11 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var edu = new Education()
             {
-                education_no = txtEducationNo.Text.Trim(),
-                education_name = txtEducationName.Text.Trim(),
+                EducationNumber = txtEducationNo.Text.Trim(),
+                EducationName = txtEducationName.Text.Trim(),
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/UpdEducation", HttpHelper.ModelToJson(edu));
+            result = HttpHelper.Request("SystemInformation​/UpdEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("UpdEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -130,12 +130,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var edu = new Education()
             {
-                education_no = txtEducationNo.Text.Trim(),
-                education_name = txtEducationName.Text.Trim(),
+                EducationNumber = txtEducationNo.Text.Trim(),
+                EducationName = txtEducationName.Text.Trim(),
                 IsDelete = 1,
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/DelEducation", HttpHelper.ModelToJson(edu));
+            result = HttpHelper.Request("SystemInformation​/DelEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("DelEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -167,12 +167,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var edu = new Education()
             {
-                education_no = txtEducationNo.Text.Trim(),
-                education_name = txtEducationName.Text.Trim(),
+                EducationNumber = txtEducationNo.Text.Trim(),
+                EducationName = txtEducationName.Text.Trim(),
                 IsDelete = 0,
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/UpdEducation", HttpHelper.ModelToJson(edu));
+            result = HttpHelper.Request("SystemInformation​/UpdEducation", HttpHelper.ModelToJson(edu));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("UpdEducation+接口服务异常，请提交Issue或尝试更新版本！", 1500);

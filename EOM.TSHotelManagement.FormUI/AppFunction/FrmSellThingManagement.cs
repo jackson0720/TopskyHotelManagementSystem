@@ -89,7 +89,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             UIMessageBox.ShowSuccess("删除商品成功!");
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除商品操作！删除值为：" + st.SellNo, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除商品操作！删除值为：" + st.ProductNumber, 2);
             #endregion
             LoadData();
             return;
@@ -97,15 +97,15 @@ namespace EOM.TSHotelManagement.FormUI
 
         public bool CheckInput(SellThing sellThing)
         {
-            if (string.IsNullOrWhiteSpace(sellThing.SellNo))
+            if (string.IsNullOrWhiteSpace(sellThing.ProductNumber))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(sellThing.SellName))
+            if (string.IsNullOrWhiteSpace(sellThing.ProductName))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(sellThing.SellPrice + ""))
+            if (string.IsNullOrWhiteSpace(sellThing.ProductPrice + ""))
             {
                 return false;
             }
@@ -120,10 +120,10 @@ namespace EOM.TSHotelManagement.FormUI
         {
             st = new SellThing()
             {
-                SellNo = txtSellNo.Text,
-                SellName = string.IsNullOrWhiteSpace(txtSellName.Text) ? "" : txtSellName.Text,
-                SellPrice = string.IsNullOrWhiteSpace(txtSellPrice.Text) ? 0 : Convert.ToDecimal(txtSellPrice.Text),
-                format = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
+                ProductNumber = txtSellNo.Text,
+                ProductName = string.IsNullOrWhiteSpace(txtSellName.Text) ? "" : txtSellName.Text,
+                ProductPrice = string.IsNullOrWhiteSpace(txtSellPrice.Text) ? 0 : Convert.ToDecimal(txtSellPrice.Text),
+                Specification = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
                 Stock = txtStock.Value == 0 ? 0 : Convert.ToInt32(txtStock.Value),
                 DataInsUsr = AdminInfo.Account,
             };
@@ -131,7 +131,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 dic = new Dictionary<string, string>()
                 {
-                    { "SellNo",st.SellNo}
+                    { "SellNo",st.ProductNumber}
                 };
                 result = HttpHelper.Request("Sellthing/SelectSellInfoBySellNo", dic);
                 if (result.statusCode != 200)
@@ -140,7 +140,7 @@ namespace EOM.TSHotelManagement.FormUI
                     return;
                 }
                 var SellThing = HttpHelper.JsonToModel<SellThing>(result.message);
-                if (SellThing != null && SellThing.SellName.Equals(st.SellName) && SellThing.format.Equals(st.format))
+                if (SellThing != null && SellThing.ProductNumber.Equals(st.ProductNumber) && SellThing.Specification.Equals(st.Specification))
                 {
                     UIMessageBox.ShowError("信息已存在，请检查！");
                     return;
@@ -158,7 +158,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 UIMessageBox.Show("添加商品成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增商品操作！新增值为：" + st.SellNo, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增商品操作！新增值为：" + st.ProductNumber, 2);
                 #endregion
                 LoadData();
                 string SellId = ApplicationUtil.GetListNewId("ST", 3, 1, "-").FirstOrDefault();
@@ -195,10 +195,10 @@ namespace EOM.TSHotelManagement.FormUI
         {
             st = new SellThing()
             {
-                SellNo = txtSellNo.Text,
-                SellName = string.IsNullOrWhiteSpace(txtSellName.Text) ? "" : txtSellName.Text,
-                SellPrice = string.IsNullOrWhiteSpace(txtSellPrice.Text) ? 0 : Convert.ToDecimal(txtSellPrice.Text),
-                format = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
+                ProductNumber = txtSellNo.Text,
+                ProductName = string.IsNullOrWhiteSpace(txtSellName.Text) ? "" : txtSellName.Text,
+                ProductPrice = string.IsNullOrWhiteSpace(txtSellPrice.Text) ? 0 : Convert.ToDecimal(txtSellPrice.Text),
+                Specification = string.IsNullOrWhiteSpace(txtformat.Text) ? "" : Convert.ToString(txtformat.Text),
                 Stock = txtStock.Value == 0 ? 0 : Convert.ToInt32(txtStock.Value),
                 DataChgUsr = AdminInfo.Account,
             };
@@ -217,7 +217,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 UIMessageBox.Show("修改商品成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改商品操作！修改值为：" + st.SellNo, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改商品操作！修改值为：" + st.ProductNumber, 2);
                 #endregion
                 LoadData();
             }

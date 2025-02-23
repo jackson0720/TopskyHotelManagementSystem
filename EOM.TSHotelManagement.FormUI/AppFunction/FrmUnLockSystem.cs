@@ -75,16 +75,16 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "account",AdminInfo.Account.Trim()}
             };
-            result = HttpHelper.Request("Admin/SelectAdminPwdByAccount", dic);
+            result = HttpHelper.Request("Administrator/SelectAdminPwdByAccount", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectAdminPwdByAccount+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var account = HttpHelper.JsonToModel<Admin>(result.message);
+            var account = HttpHelper.JsonToModel<Administrator>(result.message);
             if (account != null)
             {
-                if (account.AdminPassword != txtUnLockPwd.Text.Trim())
+                if (account.Password != txtUnLockPwd.Text.Trim())
                 {
                     UIMessageBox.ShowError("密码错误! 请输入当前超管密码解锁!");
                     txtUnLockPwd.Text = "";

@@ -74,14 +74,14 @@ namespace EOM.TSHotelManagement.FormUI
         {
             Hydroelectricity wti = new Hydroelectricity
             {
-                WtiNo = Convert.ToInt16(txtRecordNo.Text.Trim()),
-                RoomNo = txtRoomNo.Text.Trim(),
-                CustoNo = txtCustoNo.Text.Trim(),
-                UseDate = dtpStartDate.Value,
+                InformationId = Convert.ToInt16(txtRecordNo.Text.Trim()),
+                RoomNumber = txtRoomNo.Text.Trim(),
+                CustomerNumber = txtCustoNo.Text.Trim(),
+                StartDate = dtpStartDate.Value,
                 EndDate = dtpEndDate.Value,
-                PowerUse = string.IsNullOrEmpty(txtTInfo.Text.Trim()) ? 0 : Convert.ToDecimal(txtTInfo.Text.Trim()),
-                WaterUse = string.IsNullOrEmpty(txtWInfo.Text.Trim()) ? 0 : Convert.ToDecimal(txtWInfo.Text.Trim()),
-                Record = AdminInfo.Account,
+                PowerUsage = string.IsNullOrEmpty(txtTInfo.Text.Trim()) ? 0 : Convert.ToDecimal(txtTInfo.Text.Trim()),
+                WaterUsage = string.IsNullOrEmpty(txtWInfo.Text.Trim()) ? 0 : Convert.ToDecimal(txtWInfo.Text.Trim()),
+                Recorder = AdminInfo.Account,
                 DataChgUsr = AdminInfo.Account,
             };
             result = HttpHelper.Request("HydroelectricPower/UpdateWtiInfo", HttpHelper.ModelToJson(wti));

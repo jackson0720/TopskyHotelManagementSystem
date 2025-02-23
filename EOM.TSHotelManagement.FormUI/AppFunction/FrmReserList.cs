@@ -49,7 +49,7 @@ namespace EOM.TSHotelManagement.FormUI
             dgvReserList.DataSource = HttpHelper.JsonToList<Reser>(result.message);
 
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -64,13 +64,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
+            List<PassportType> passPorts = HttpHelper.JsonToList<PassportType>(result.message);
             this.cbPassportType.DataSource = passPorts;
             this.cbPassportType.DisplayMember = "PassportName";
             this.cbPassportType.ValueMember = "PassportId";
@@ -78,13 +78,13 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll");
+            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
+            List<GenderType> listSexType = HttpHelper.JsonToList<GenderType>(result.message);
             this.cbSex.DataSource = listSexType;
             this.cbSex.DisplayMember = "sexName";
             this.cbSex.ValueMember = "sexId";
@@ -95,17 +95,17 @@ namespace EOM.TSHotelManagement.FormUI
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                Custo custo = new Custo()
+                Customer custo = new Customer()
                 {
-                    CustoNo = txtCustoNo.Text.Trim(),
-                    CustoName = txtCustoName.Text.Trim(),
-                    CustoSex = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                    CustoTel = txtTel.Text.Trim(),
+                    CustomerNumber = txtCustoNo.Text.Trim(),
+                    CustomerName = txtCustoName.Text.Trim(),
+                    CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
+                    CustomerPhoneNumber = txtTel.Text.Trim(),
                     PassportType = cbPassportType.SelectedIndex,
-                    CustoID = txtCardID.Text.Trim(),
-                    CustoAddress = txtCustoAdress.Text.Trim(),
-                    CustoBirth = dtpBirthday.Value,
-                    CustoType = cbCustoType.SelectedIndex,
+                    PassportID = txtCardID.Text.Trim(),
+                    CustomerAddress = txtCustoAdress.Text.Trim(),
+                    DateOfBirth = dtpBirthday.Value,
+                    CustomerType = cbCustoType.SelectedIndex,
                     IsDelete = 0,
                     DataInsUsr = LoginInfo.WorkerNo
                 };
@@ -118,10 +118,10 @@ namespace EOM.TSHotelManagement.FormUI
 
                 Room r = new Room()
                 {
-                    CheckTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                    CustoNo = custo.CustoNo,
+                    LastCheckInTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                    CustomerNumber = custo.CustomerNumber,
                     RoomStateId = 1,
-                    RoomNo = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString()
+                    RoomNumber = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString()
                 };
                 result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(r));
                 if (result.statusCode != 200)
@@ -131,7 +131,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 var reser = new Reser
                 {
-                    ReserId = dgvReserList.SelectedRows[0].Cells["clReserNo"].Value.ToString()
+                    ReservationId = dgvReserList.SelectedRows[0].Cells["clReserNo"].Value.ToString()
                 };
                 result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
                 if (result.statusCode != 200)

@@ -161,9 +161,9 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 if (CheckInput())
                 {
-                    Worker worker = new Worker() { WorkerId = txtWorkerId.Text.Trim(), WorkerPwd = txtWorkerPwd.Text.Trim() };
+                    Employee worker = new Employee() { EmployeeId = txtWorkerId.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
 
-                    result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
+                    result = HttpHelper.Request("Employee/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
 
                     if (result.statusCode != 200)
                     {
@@ -172,7 +172,7 @@ namespace EOM.TSHotelManagement.FormUI
                         return;
                     }
 
-                    Worker w = HttpHelper.JsonToModel<Worker>(result.message);
+                    Employee w = HttpHelper.JsonToModel<Employee>(result.message);
 
                     if (!w.IsNullOrEmpty())
                     {
@@ -182,9 +182,9 @@ namespace EOM.TSHotelManagement.FormUI
                             return;
                         }
 
-                        LoginInfo.WorkerNo = w.WorkerId;
-                        LoginInfo.WorkerName = w.WorkerName;
-                        LoginInfo.WorkerClub = w.ClubName;
+                        LoginInfo.WorkerNo = w.EmployeeId;
+                        LoginInfo.WorkerName = w.EmployeeName;
+                        LoginInfo.WorkerClub = w.DepartmentName;
                         LoginInfo.WorkerPosition = w.PositionName;
                         LoginInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
                         LoginInfo.UserToken = w.UserToken;

@@ -57,7 +57,7 @@ namespace EOM.TSHotelManagement.FormUI
         public void ReloadPositionList()
         {
             txtPositionNo.Text = ApplicationUtil.GetListNewId("P", 3, 1, "-").FirstOrDefault();
-            result = HttpHelper.Request("Base/SelectPositionAll");
+            result = HttpHelper.Request("SystemInformation/SelectPositionAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -78,12 +78,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var pos = new Position()
             {
-                position_no = txtPositionNo.Text.Trim(),
-                position_name = txtPositionName.Text.Trim(),
+                PositionNumber = txtPositionNo.Text.Trim(),
+                PositionName = txtPositionName.Text.Trim(),
                 IsDelete = 0,
                 DataInsUsr = AdminInfo.Account
             };
-            result = HttpHelper.Request("Base​/AddPosition", HttpHelper.ModelToJson(pos));
+            result = HttpHelper.Request("SystemInformation​/AddPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("AddPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -91,7 +91,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             UIMessageTip.ShowOk("添加职位成功！", 1500);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增职位类型操作！新增值为：" + pos.position_no, 2);
+            RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "新增职位类型操作！新增值为：" + pos.PositionNumber, 2);
             #endregion
             ReloadPositionList();
             return;
@@ -106,11 +106,11 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var pos = new Position()
             {
-                position_no = txtPositionNo.Text.Trim(),
-                position_name = txtPositionName.Text.Trim(),
+                PositionNumber = txtPositionNo.Text.Trim(),
+                PositionName = txtPositionName.Text.Trim(),
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/UpdPosition", HttpHelper.ModelToJson(pos));
+            result = HttpHelper.Request("SystemInformation​/UpdPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("UpdPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -127,12 +127,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var pos = new Position()
             {
-                position_no = txtPositionNo.Text.Trim(),
-                position_name = txtPositionName.Text.Trim(),
+                PositionNumber = txtPositionNo.Text.Trim(),
+                PositionName = txtPositionName.Text.Trim(),
                 IsDelete = 1,
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/DelPosition", HttpHelper.ModelToJson(pos));
+            result = HttpHelper.Request("SystemInformation​/DelPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("DelPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);
@@ -171,12 +171,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var pos = new Position()
             {
-                position_no = txtPositionNo.Text.Trim(),
-                position_name = txtPositionName.Text.Trim(),
+                PositionNumber = txtPositionNo.Text.Trim(),
+                PositionName = txtPositionName.Text.Trim(),
                 IsDelete = 0,
                 DataChgUsr = AdminInfo.Account,
             };
-            result = HttpHelper.Request("Base​/UpdPosition", HttpHelper.ModelToJson(pos));
+            result = HttpHelper.Request("SystemInformation​/UpdPosition", HttpHelper.ModelToJson(pos));
             if (result.statusCode != 200 || result.message.ToString().Equals("false"))
             {
                 UIMessageTip.ShowError("UpdPosition+接口服务异常，请提交Issue或尝试更新版本！", 1500);

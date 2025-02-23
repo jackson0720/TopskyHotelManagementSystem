@@ -46,8 +46,8 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnUpdPwd_Click(object sender, EventArgs e)
         {
-            Admin admin = new Admin() { AdminAccount = AdminInfo.Account, AdminPassword = txtNewPwd.Text.Trim(), DataChgUsr = AdminInfo.Account };
-            result = HttpHelper.Request("Admin​/UpdateNewPwdByOldPwd", HttpHelper.ModelToJson(admin));
+            Administrator admin = new Administrator() { Account = AdminInfo.Account, Password = txtNewPwd.Text.Trim(), DataChgUsr = AdminInfo.Account };
+            result = HttpHelper.Request("Administrator​/UpdateNewPwdByOldPwd", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("UpdateNewPwdByOldPwd+接口服务异常，请提交Issue或尝试更新版本！");
@@ -77,14 +77,14 @@ namespace EOM.TSHotelManagement.FormUI
         private void txtOldPwd_Validated(object sender, EventArgs e)
         {
             //校验旧密码是否正确
-            Admin admin = new Admin() { AdminAccount = AdminInfo.Account, AdminPassword = txtOldPwd.Text.Trim() };
-            result = HttpHelper.Request("Admin​/SelectMangerByPass", HttpHelper.ModelToJson(admin));
+            Administrator admin = new Administrator() { Account = AdminInfo.Account, Password = txtOldPwd.Text.Trim() };
+            result = HttpHelper.Request("Administrator​/SelectMangerByPass", HttpHelper.ModelToJson(admin));
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectMangerByPass+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var source = HttpHelper.JsonToModel<Admin>(result.message);
+            var source = HttpHelper.JsonToModel<Administrator>(result.message);
             if (!source.IsNullOrEmpty())
             {
                 lgCheckOldPwd.Visible = true;

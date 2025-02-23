@@ -49,53 +49,53 @@ namespace EOM.TSHotelManagement.FormUI
         public void ReloadDeptList()
         {
             txtDeptNo.Text = ApplicationUtil.GetListNewId("D", 3, 1, "-").FirstOrDefault();
-            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvDeptList.AutoGenerateColumns = false;
-            dgvDeptList.DataSource = HttpHelper.JsonToList<Dept>(result.message);
+            dgvDeptList.DataSource = HttpHelper.JsonToList<Department>(result.message);
         }
 
         public void LoadDept()
         {
-            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboDeptParent.DataSource = HttpHelper.JsonToList<Dept>(result.message);
+            cboDeptParent.DataSource = HttpHelper.JsonToList<Department>(result.message);
             cboDeptParent.DisplayMember = "dept_name";
             cboDeptParent.ValueMember = "dept_no";
         }
 
         public void LoadLeader()
         {
-            result = HttpHelper.Request("Worker/SelectWorkerAll");
+            result = HttpHelper.Request("Employee/SelectWorkerAll");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectWorkerAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboDeptLeader.DataSource = HttpHelper.JsonToList<Worker>(result.message);
+            cboDeptLeader.DataSource = HttpHelper.JsonToList<Employee>(result.message);
             cboDeptLeader.DisplayMember = "WorkerName";
             cboDeptLeader.ValueMember = "WorkerId";
         }
 
-        public bool CheckInput(Dept dept)
+        public bool CheckInput(Department dept)
         {
-            if (string.IsNullOrWhiteSpace(dept.dept_no))
+            if (string.IsNullOrWhiteSpace(dept.DepartmentNumber))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(dept.dept_name))
+            if (string.IsNullOrWhiteSpace(dept.DepartmentName))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(dept.dept_desc))
+            if (string.IsNullOrWhiteSpace(dept.DepartmentDescription))
             {
                 return false;
             }
@@ -104,19 +104,19 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnAddDept_Click(object sender, EventArgs e)
         {
-            Dept dept = new Dept()
+            Department dept = new Department()
             {
-                dept_no = txtDeptNo.Text.Trim(),
-                dept_name = txtDeptName.Text.Trim(),
-                dept_desc = txtDeptDesc.Text.Trim(),
-                dept_parent = cboDeptParent.SelectedValue.ToString(),
-                dept_date = Convert.ToDateTime(DateTime.Now),
-                dept_leader = cboDeptLeader.SelectedValue.ToString(),
+                DepartmentNumber = txtDeptNo.Text.Trim(),
+                DepartmentName = txtDeptName.Text.Trim(),
+                DepartmentDescription = txtDeptDesc.Text.Trim(),
+                ParentDepartmentNumber = cboDeptParent.SelectedValue.ToString(),
+                DepartmentCreationDate = Convert.ToDateTime(DateTime.Now),
+                DepartmentLeader = cboDeptLeader.SelectedValue.ToString(),
                 DataInsUsr = AdminInfo.Account
             };
             if (CheckInput(dept))
             {
-                result = HttpHelper.Request("Base/AddDept", HttpHelper.ModelToJson(dept));
+                result = HttpHelper.Request("SystemInformation/AddDept", HttpHelper.ModelToJson(dept));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("AddDept+接口服务异常，请提交Issue或尝试更新版本！");
@@ -130,7 +130,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 UIMessageBox.Show("添加成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加部门类型操作！新增值为：" + dept.dept_no, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加部门类型操作！新增值为：" + dept.DepartmentNumber, 2);
                 #endregion                
                 txtDeptName.Text = "";
                 txtDeptDesc.Text = "";
@@ -152,18 +152,18 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnUpdateDept_Click(object sender, EventArgs e)
         {
-            Dept dept = new Dept()
+            Department dept = new Department()
             {
-                dept_no = txtDeptNo.Text.Trim(),
-                dept_name = txtDeptName.Text.Trim(),
-                dept_desc = txtDeptDesc.Text.Trim(),
-                dept_parent = cboDeptParent.SelectedValue == null ? "" : cboDeptParent.ToString(),
-                dept_leader = cboDeptLeader.SelectedValue == null ? "" : cboDeptLeader.SelectedValue.ToString(),
+                DepartmentNumber = txtDeptNo.Text.Trim(),
+                DepartmentName = txtDeptName.Text.Trim(),
+                DepartmentDescription = txtDeptDesc.Text.Trim(),
+                ParentDepartmentNumber = cboDeptParent.SelectedValue == null ? "" : cboDeptParent.ToString(),
+                DepartmentLeader = cboDeptLeader.SelectedValue == null ? "" : cboDeptLeader.SelectedValue.ToString(),
                 DataChgUsr = AdminInfo.Account,
             };
             if (CheckInput(dept))
             {
-                result = HttpHelper.Request("Base/UpdDept", HttpHelper.ModelToJson(dept));
+                result = HttpHelper.Request("SystemInformation/UpdDept", HttpHelper.ModelToJson(dept));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("UpdDept+接口服务异常，请提交Issue或尝试更新版本！");
@@ -177,7 +177,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 UIMessageBox.Show("修改成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改部门类型操作！修改值为：" + dept.dept_no, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改部门类型操作！修改值为：" + dept.DepartmentNumber, 2);
                 #endregion   
                 txtDeptName.Text = "";
                 txtDeptDesc.Text = "";
@@ -200,7 +200,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     { "deptNo",txtDeptNo.Text.Trim()}
                 };
-                result = HttpHelper.Request("Worker/CheckWorkerBydepartment", dic);
+                result = HttpHelper.Request("Employee/CheckWorkerBydepartment", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("CheckWorkerBydepartment+接口服务异常，请提交Issue或尝试更新版本！");
@@ -213,13 +213,13 @@ namespace EOM.TSHotelManagement.FormUI
                     return;
                 }
 
-                Dept dept = new Dept()
+                Department dept = new Department()
                 {
-                    dept_no = txtDeptNo.Text.Trim(),
+                    DepartmentNumber = txtDeptNo.Text.Trim(),
                     IsDelete = 1,
                     DataChgUsr = AdminInfo.Account,
                 };
-                result = HttpHelper.Request("Base/DelDept", HttpHelper.ModelToJson(dept));
+                result = HttpHelper.Request("SystemInformation/DelDept", HttpHelper.ModelToJson(dept));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("DelDept+接口服务异常，请提交Issue或尝试更新版本！");
@@ -233,7 +233,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 UIMessageBox.Show("删除成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除部门类型操作！删除值为：" + dept.dept_no, 2);
+                RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "删除部门类型操作！删除值为：" + dept.DepartmentNumber, 2);
                 #endregion   
                 txtDeptName.Text = "";
                 txtDeptDesc.Text = "";

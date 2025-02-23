@@ -214,7 +214,7 @@ namespace EOM.TSHotelManagement.FormUI
                 AddRoomTypeButton("全部房间", "btnAll", btnAll_Click);
                 foreach (var type in listRoomTypes)
                 {
-                    AddRoomTypeButton(type.RoomName, Convert.ToString(type.Roomtype), btnRoomType_Click);
+                    AddRoomTypeButton(type.RoomTypeName, Convert.ToString(type.RoomTypeName), btnRoomType_Click);
                 }
             }
             catch (Exception ex)
@@ -285,10 +285,10 @@ namespace EOM.TSHotelManagement.FormUI
             for (int i = 0; i < romsty.Count; i++)
             {
                 room = new ucRoom();
-                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNo, romsty[i].CustoName ?? "      ");
+                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName ?? "      ");
                 room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new Custo { CustoNo = romsty[i].CustoNo, CustoName = romsty[i].CustoName };
+                room.romCustoInfo = new Customer { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
@@ -316,10 +316,10 @@ namespace EOM.TSHotelManagement.FormUI
             for (int i = 0; i < romsty.Count; i++)
             {
                 room = new ucRoom();
-                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNo, romsty[i].CustoName);
+                room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName);
                 room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new Custo { CustoNo = romsty[i].CustoNo, CustoName = romsty[i].CustoName };
+                room.romCustoInfo = new Customer { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";

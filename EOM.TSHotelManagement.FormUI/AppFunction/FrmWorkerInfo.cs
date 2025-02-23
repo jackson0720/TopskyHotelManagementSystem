@@ -48,20 +48,20 @@ namespace EOM.TSHotelManagement.FormUI
         ucHistory ucHistory = null;
         private void FrmAddWorker_Load(object sender, EventArgs e)
         {
-            var result = HttpHelper.Request("Base/SelectDeptAllCanUse");
+            var result = HttpHelper.Request("SystemInformation/SelectDeptAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             //加载部门信息
-            cboClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
+            cboClub.DataSource = HttpHelper.JsonToList<Department>(result.message);
             cboClub.DisplayMember = "dept_name";
             cboClub.ValueMember = "dept_no";
             //加载民族信息
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("IsDelete", "0");
-            result = HttpHelper.Request("Base/SelectNationAll", dic);
+            result = HttpHelper.Request("SystemInformation/SelectNationAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -73,7 +73,7 @@ namespace EOM.TSHotelManagement.FormUI
             //加载职位信息
             dic = new Dictionary<string, string>();
             dic.Add("IsDelete", "0");
-            result = HttpHelper.Request("Base/SelectPositionAll", dic);
+            result = HttpHelper.Request("SystemInformation/SelectPositionAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -85,19 +85,19 @@ namespace EOM.TSHotelManagement.FormUI
             //加载性别信息
             dic = new Dictionary<string, string>();
             dic.Add("IsDelete", "0");
-            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
+            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboSex.DataSource = HttpHelper.JsonToList<SexType>(result.message);
+            cboSex.DataSource = HttpHelper.JsonToList<GenderType>(result.message);
             cboSex.DisplayMember = "sexName";
             cboSex.ValueMember = "sexId";
             //加载学历信息
             dic = new Dictionary<string, string>();
             dic.Add("IsDelete", "0");
-            result = HttpHelper.Request("Base/SelectEducationAll", dic);
+            result = HttpHelper.Request("SystemInformation/SelectEducationAll", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectEducationAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -148,30 +148,30 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     { "WorkerId", WorkerNo.Text.Trim() }
                 };
-                result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
+                result = HttpHelper.Request("WorkerPicture/EmployeePhoto", dic);
                 if (result.statusCode != 200)
                 {
-                    UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError("EmployeePhoto+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
-                if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.Pic))
+                var workerPicSource = HttpHelper.JsonToModel<EmployeePhoto>(result.message);
+                if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
                 {
                     EncryptLib encryptLib = new EncryptLib();
                     picWorkerPic.Enabled = false;
                     picWorkerPic.BackgroundImage = null;
-                    picWorkerPic.LoadAsync(encryptLib.Decryption(HttpHelper.baseUrl) + workerPicSource.Pic);
+                    picWorkerPic.LoadAsync(encryptLib.Decryption(HttpHelper.baseUrl) + workerPicSource.PhotoPath);
                 }
                 this.WorkerID.Validated -= new EventHandler(WorkerID_Validated);
                 dic = new Dictionary<string, string>();
                 dic.Add("wid", WorkerNo.Text.Trim());
-                result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", dic);
+                result = HttpHelper.Request("EmployeeHistory/SelectHistoryByWorkerId", dic);
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                List<WorkerHistory> workerHistories = HttpHelper.JsonToList<WorkerHistory>(result.message);
+                List<EmployeeHistory> workerHistories = HttpHelper.JsonToList<EmployeeHistory>(result.message);
                 for (int i = 0; i < workerHistories.Count; i++)
                 {
                     ucHistory = new ucHistory();
@@ -222,17 +222,17 @@ namespace EOM.TSHotelManagement.FormUI
 
                     dic = new Dictionary<string, string>();
                     dic.Add("WorkerId", WorkerNo.Text.Trim());
-                    result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
+                    result = HttpHelper.Request("WorkerPicture/EmployeePhoto", dic);
                     if (result.statusCode != 200)
                     {
-                        UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                        UIMessageBox.ShowError("EmployeePhoto+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
-                    var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
-                    if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.Pic))
+                    var workerPicSource = HttpHelper.JsonToModel<EmployeePhoto>(result.message);
+                    if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
                     {
                         picWorkerPic.BackgroundImage = null;
-                        picWorkerPic.LoadAsync(workerPicSource.Pic);
+                        picWorkerPic.LoadAsync(workerPicSource.PhotoPath);
                     }
                     //this.WorkerID.Validated -= new EventHandler(WorkerID_Validated);
                     btnOK.Text = "修改";
@@ -243,13 +243,13 @@ namespace EOM.TSHotelManagement.FormUI
                     cboWorkerFace.ReadOnly = false;
                     dic = new Dictionary<string, string>();
                     dic.Add("wid", WorkerNo.Text.Trim());
-                    result = HttpHelper.Request("WorkerHistory/SelectHistoryByWorkerId", dic);
+                    result = HttpHelper.Request("EmployeeHistory/SelectHistoryByWorkerId", dic);
                     if (result.statusCode != 200)
                     {
                         UIMessageBox.ShowError("SelectHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
-                    List<WorkerHistory> workerHistories = HttpHelper.JsonToList<WorkerHistory>(result.message);
+                    List<EmployeeHistory> workerHistories = HttpHelper.JsonToList<EmployeeHistory>(result.message);
                     for (int i = 0; i < workerHistories.Count; i++)
                     {
                         ucHistory = new ucHistory();
@@ -273,20 +273,20 @@ namespace EOM.TSHotelManagement.FormUI
             if (dr)
             {
                 #region 员工信息代码块
-                Worker worker = new Worker
+                Employee worker = new Employee
                 {
-                    WorkerId = WorkerNo.Text.Trim(),
-                    WorkerName = WorkerName.Text.Trim(),
-                    WorkerNation = cbWorkerNation.SelectedValue.ToString(),
-                    WorkerTel = WorkerTel.Text.Trim(),
-                    CardId = WorkerID.Text.Trim(),
-                    WorkerAddress = txtAddress.Text.Trim(),
-                    WorkerFace = cboWorkerFace.SelectedValue.ToString(),
-                    WorkerEducation = cboEducation.SelectedValue.ToString(),
-                    WorkerBirthday = dtpBirthday.Value,
+                    EmployeeId = WorkerNo.Text.Trim(),
+                    EmployeeName = WorkerName.Text.Trim(),
+                    EthnicityName = cbWorkerNation.SelectedValue.ToString(),
+                    PhoneNumber = WorkerTel.Text.Trim(),
+                    IdCardNumber = WorkerID.Text.Trim(),
+                    Address = txtAddress.Text.Trim(),
+                    PoliticalAffiliation = cboWorkerFace.SelectedValue.ToString(),
+                    EducationLevel = cboEducation.SelectedValue.ToString(),
+                    DateOfBirth = dtpBirthday.Value,
                     DataChgUsr = AdminInfo.Account
                 };
-                var result = HttpHelper.Request("Worker/UpdateWorker", HttpHelper.ModelToJson(worker));
+                var result = HttpHelper.Request("Employee/UpdateWorker", HttpHelper.ModelToJson(worker));
                 if (result.statusCode != 200)
                 {
                     UIMessageBox.ShowError("UpdateWorker+接口服务异常，请提交Issue或尝试更新版本！");
@@ -297,7 +297,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     UIMessageBox.ShowSuccess("信息修改成功！");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改员工操作！修改值为：" + worker.WorkerId, 2);
+                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "修改员工操作！修改值为：" + worker.EmployeeId, 2);
                     #endregion
                     this.Close();
                     FrmWorkerManager.Reload();
@@ -383,10 +383,10 @@ namespace EOM.TSHotelManagement.FormUI
         {
             var serverPath = encryptLib.Decryption(HttpHelper.postUrl);
             var result = HttpHelper.UpLoadFile(openPic.FileName, serverPath);
-            WorkerPic workerPic = new WorkerPic
+            EmployeePhoto workerPic = new EmployeePhoto
             {
-                WorkerId = WorkerNo.Text.Trim(),
-                Pic = result.Trim(),
+                EmployeeId = WorkerNo.Text.Trim(),
+                PhotoPath = result.Trim(),
             };
 
             var response = HttpHelper.Request("WorkerPicture/InsertWorkerPic", HttpHelper.ModelToJson(workerPic));
@@ -403,27 +403,27 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmAddWorker_ButtonOkClick(object sender, EventArgs e)
         {
-            Worker worker = new Worker
+            Employee worker = new Employee
             {
-                WorkerId = WorkerNo.Text.Trim(),
-                WorkerName = WorkerName.Text.Trim(),
-                WorkerBirthday = dtpBirthday.Value,
-                WorkerSex = (int)cboSex.SelectedValue,
-                WorkerNation = cbWorkerNation.SelectedValue.ToString(),
-                WorkerTel = WorkerTel.Text,
-                WorkerClub = cboClub.SelectedValue.ToString(),
-                WorkerAddress = txtAddress.Text,
-                WorkerPosition = cboWorkerPosition.SelectedValue.ToString(),
-                CardId = WorkerID.Text,
-                WorkerTime = dtpTime.Value,
-                WorkerFace = cboWorkerFace.Text,
-                WorkerEducation = cboEducation.SelectedValue.ToString(),
+                EmployeeId = WorkerNo.Text.Trim(),
+                EmployeeName = WorkerName.Text.Trim(),
+                DateOfBirth = dtpBirthday.Value,
+                Gender = (int)cboSex.SelectedValue,
+                EthnicityName = cbWorkerNation.SelectedValue.ToString(),
+                PhoneNumber = WorkerTel.Text,
+                Department = cboClub.SelectedValue.ToString(),
+                Address = txtAddress.Text,
+                Position = cboWorkerPosition.SelectedValue.ToString(),
+                IdCardNumber = WorkerID.Text,
+                HireDate = dtpTime.Value,
+                PoliticalAffiliation = cboWorkerFace.Text,
+                EducationLevel = cboEducation.SelectedValue.ToString(),
                 DataInsUsr = AdminInfo.Account
             };
             try
             {
                 #region 员工信息添加代码块
-                var response = HttpHelper.Request("Worker/AddWorker", HttpHelper.ModelToJson(worker));
+                var response = HttpHelper.Request("Employee/AddWorker", HttpHelper.ModelToJson(worker));
                 if (response.statusCode != 200)
                 {
                     UIMessageBox.ShowError("AddWorker+接口服务异常，请提交Issue或尝试更新版本！");
@@ -435,16 +435,16 @@ namespace EOM.TSHotelManagement.FormUI
                 if (ucHistory.txtCompany != null && ucHistory.txtPosition != null && ucHistory.dtpStartDate.Value != null && ucHistory.dtpEndDate.Value != null)
                 {
                     #region 履历添加代码块
-                    WorkerHistory workerHistory = new WorkerHistory
+                    EmployeeHistory workerHistory = new EmployeeHistory
                     {
                         StartDate = ucHistory.dtpStartDate.Value,
                         EndDate = ucHistory.dtpEndDate.Value,
                         Position = ucHistory.txtPosition.Text,
                         Company = ucHistory.txtCompany.Text,
-                        WorkerId = WorkerNo.Text.Trim()
+                        EmployeeId = WorkerNo.Text.Trim()
                     };
 
-                    response = HttpHelper.Request("WorkerHistory/AddHistoryByWorkerId", HttpHelper.ModelToJson(workerHistory));
+                    response = HttpHelper.Request("EmployeeHistory/AddHistoryByWorkerId", HttpHelper.ModelToJson(workerHistory));
                     if (response.statusCode != 200)
                     {
                         UIMessageBox.ShowError("AddHistoryByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
@@ -460,7 +460,7 @@ namespace EOM.TSHotelManagement.FormUI
                         this.Close();
                         FrmWorkerManager.Reload();
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加员工操作！新增值为：" + worker.WorkerId, 2);
+                        RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加员工操作！新增值为：" + worker.EmployeeId, 2);
                         #endregion
                     }
                     else

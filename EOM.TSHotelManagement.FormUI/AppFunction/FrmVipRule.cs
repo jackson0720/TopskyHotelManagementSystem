@@ -41,7 +41,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmVipRule_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交issue");
@@ -64,19 +64,19 @@ namespace EOM.TSHotelManagement.FormUI
         public void LoadVipType()
         {
             flpVipType.Clear();
-            result = HttpHelper.Request("VipRule/SelectVipRuleList");
+            result = HttpHelper.Request("VipLevelRule/SelectVipRuleList");
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("SelectVipRuleList+接口服务异常，请提交issue");
                 return;
             }
-            var listVipTypes = HttpHelper.JsonToList<VipRule>(result.message);
+            var listVipTypes = HttpHelper.JsonToList<VipLevelRule>(result.message);
             listVipTypes.ForEach(vipType =>
             {
                 ucVipType ucVipType = new ucVipType();
-                ucVipType.picVip.BackgroundImage = vipType.TypeId == 0 ? Resources.普通会员
-                : vipType.TypeId == 1 ? Resources.钻石会员 : vipType.TypeId == 2 ? Resources.白金会员 : Resources.黄金会员;
-                ucVipType.lblValue.Text = vipType.TypeName;
+                ucVipType.picVip.BackgroundImage = vipType.VipLevelId == 0 ? Resources.普通会员
+                : vipType.VipLevelId == 1 ? Resources.钻石会员 : vipType.VipLevelId == 2 ? Resources.白金会员 : Resources.黄金会员;
+                ucVipType.lblValue.Text = vipType.VipLevelName;
                 flpVipType.Add(ucVipType);
             });
 
@@ -87,18 +87,18 @@ namespace EOM.TSHotelManagement.FormUI
         /// </summary>
         /// <param name="vipRule"></param>
         /// <returns></returns>
-        public bool InsertVipRule(VipRule vipRule)
+        public bool InsertVipRule(VipLevelRule vipRule)
         {
-            VipRule vipRule1 = new VipRule
+            VipLevelRule vipRule1 = new VipLevelRule
             {
-                RuleId = vipRule.RuleId,
+                RuleSerialNumber = vipRule.RuleSerialNumber,
                 RuleName = vipRule.RuleName,
                 RuleValue = vipRule.RuleValue,
-                TypeName = vipRule.TypeName,
+                VipLevelName = vipRule.VipLevelName,
                 IsDelete = 0,
                 DataInsUsr = AdminInfo.Account
             };
-            result = HttpHelper.Request("VipRule/AddVipRule", HttpHelper.ModelToJson(vipRule1));
+            result = HttpHelper.Request("VipLevelRule/AddVipRule", HttpHelper.ModelToJson(vipRule1));
             if (result.statusCode != 200)
             {
                 UIMessageTip.ShowError("AddVipRule+接口服务异常，请提交issue");
@@ -112,19 +112,19 @@ namespace EOM.TSHotelManagement.FormUI
             if (!txtRuleId.Text.Trim().IsNullOrEmpty() && !txtRuleName.Text.Trim().IsNullOrEmpty()
                 && !dudSpendAmount.Value.IsZero())
             {
-                VipRule vipRule1 = new VipRule
+                VipLevelRule vipRule1 = new VipLevelRule
                 {
-                    RuleId = txtRuleId.Text.Trim(),
+                    RuleSerialNumber = txtRuleId.Text.Trim(),
                     RuleName = txtRuleName.Text.Trim(),
                     RuleValue = Convert.ToDecimal(dudSpendAmount.Value),
-                    TypeId = Convert.ToInt32(cboCustoType.SelectedValue),
+                    VipLevelId = Convert.ToInt32(cboCustoType.SelectedValue),
                     DataInsUsr = AdminInfo.Account
                 };
                 if (InsertVipRule(vipRule1))
                 {
                     UIMessageBox.ShowSuccess("录入成功！");
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加会员规则操作！新增值为：" + vipRule1.RuleId, 2);
+                    RecordHelper.Record(AdminInfo.Account + "-" + AdminInfo.Name + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + AdminInfo.SoftwareVersion + "执行：" + "添加会员规则操作！新增值为：" + vipRule1.RuleSerialNumber, 2);
                     #endregion
                     LoadVipType();
                     return;
