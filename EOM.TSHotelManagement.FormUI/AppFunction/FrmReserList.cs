@@ -101,7 +101,7 @@ namespace EOM.TSHotelManagement.FormUI
                     CustomerName = txtCustoName.Text.Trim(),
                     CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
                     CustomerPhoneNumber = txtTel.Text.Trim(),
-                    PassportType = cbPassportType.SelectedIndex,
+                    PassportType = cbPassportType.SelectedValue.ToString(),
                     PassportID = txtCardID.Text.Trim(),
                     CustomerAddress = txtCustoAdress.Text.Trim(),
                     DateOfBirth = dtpBirthday.Value,

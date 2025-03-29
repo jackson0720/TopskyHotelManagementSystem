@@ -114,7 +114,7 @@ namespace EOM.TSHotelManagement.FormUI
             txtCustoTel.Text = c.CustomerPhoneNumber;
             cbSex.Text = c.CustomerGender == 1 ? "男" : "女";
             cbCustoType.SelectedIndex = c.CustomerType;
-            cbPassportType.SelectedIndex = c.PassportType;
+            cbPassportType.SelectedValue = c.PassportType;
             dtpBirthday.Value = Convert.ToDateTime(c.DateOfBirth);
         }
     }

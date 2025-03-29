@@ -41,7 +41,7 @@ namespace EOM.TSHotelManagement.FormUI
         public static string co_CustoAddress;
         public static string co_CustoType;
         public static string co_CustoID;
-        public static Hydroelectricity w;
+        public static EnergyManagement w;
         private LoadingProgress _loadingProgress;
 
         public FrmCheckOutForm(LoadingProgress loadingProgress)
@@ -83,7 +83,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmCheckOutForm_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
+            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -98,7 +98,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -112,7 +112,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll?IsDelete=0");
+            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -166,7 +166,7 @@ namespace EOM.TSHotelManagement.FormUI
             sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomRent));
 
             lblDay.Text = Convert.ToString(Convert.ToInt32(result.message));
-            w = new Hydroelectricity()
+            w = new EnergyManagement()
             {
                 CustomerNumber = txtCustoNo.Text,
                 EndDate = Convert.ToDateTime(DateTime.Parse(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss"))),
@@ -196,7 +196,7 @@ namespace EOM.TSHotelManagement.FormUI
                 txtTel.Text = cto.CustomerPhoneNumber;
                 cboCustoSex.SelectedIndex = cto.CustomerGender ?? 0;
                 cboCustoType.SelectedIndex = cto.CustomerType;
-                cboPassportType.SelectedIndex = cto.PassportType;
+                cboPassportType.SelectedValue = cto.PassportType;
                 dtpBirth.Value = Convert.ToDateTime(cto.DateOfBirth);
                 txtPassportNum.Text = cto.PassportID;
             }
@@ -251,13 +251,13 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { "roomno",txtRoomNo.Text.Trim()}
             };
-            result = HttpHelper.Request("Hydroelectricity/SelectWtiInfo", dic);
+            result = HttpHelper.Request("EnergyManagement/SelectWtiInfo", dic);
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var listWti = HttpHelper.JsonToList<Hydroelectricity>(result.message);
+            var listWti = HttpHelper.JsonToList<EnergyManagement>(result.message);
             dgvWti.DataSource = listWti;
             dgvWti.AutoGenerateColumns = false;
             #endregion

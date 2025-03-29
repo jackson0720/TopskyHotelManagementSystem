@@ -59,7 +59,7 @@ namespace EOM.TSHotelManagement.FormUI
             txtCustoNo.Text = cardId;
 
             #region 加载客户类型信息
-            var result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
+            var result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -74,7 +74,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
@@ -88,7 +88,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll?IsDelete=0");
+            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
             if (result.statusCode != 200)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
@@ -103,16 +103,16 @@ namespace EOM.TSHotelManagement.FormUI
 
             if (this.Text.Equals("修改客户信息"))
             {
-                txtCustoNo.Text = FrmCustoManager.cm_CustoNo;
-                txtCustoName.Text = FrmCustoManager.cm_CustoName;
-                txtCustoAdress.Text = FrmCustoManager.cm_CustoAddress;
-                cbCustoType.SelectedIndex = FrmCustoManager.cm_CustoType;
-                cbSex.SelectedIndex = FrmCustoManager.cm_CustoSex;
-                cbPassportType.SelectedIndex = FrmCustoManager.cm_PassportType;
-                dtpBirthday.Value = FrmCustoManager.cm_CustoBirth;
-                txtCardID.Text = FrmCustoManager.cm_CustoID;
-                txtCustoAdress.Text = FrmCustoManager.cm_CustoAddress;
-                txtTel.Text = FrmCustoManager.cm_CustoTel;
+                txtCustoNo.Text = FrmCustomerManager.cm_CustoNo;
+                txtCustoName.Text = FrmCustomerManager.cm_CustoName;
+                txtCustoAdress.Text = FrmCustomerManager.cm_CustoAddress;
+                cbCustoType.SelectedIndex = FrmCustomerManager.cm_CustoType;
+                cbSex.SelectedIndex = FrmCustomerManager.cm_CustoSex;
+                cbPassportType.SelectedIndex = FrmCustomerManager.cm_PassportType;
+                dtpBirthday.Value = FrmCustomerManager.cm_CustoBirth;
+                txtCardID.Text = FrmCustomerManager.cm_CustoID;
+                txtCustoAdress.Text = FrmCustomerManager.cm_CustoAddress;
+                txtTel.Text = FrmCustomerManager.cm_CustoTel;
                 btnOK.Text = "修改";
 
                 this.ButtonOkClick -= new EventHandler(FrmEditInputs_ButtonOkClick);
@@ -141,7 +141,7 @@ namespace EOM.TSHotelManagement.FormUI
                 CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
                 DateOfBirth = dtpBirthday.Value,
                 CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
-                PassportType = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
+                PassportType = cbPassportType.SelectedValue.ToString(),
                 PassportID = txtCardID.Text,
                 CustomerPhoneNumber = txtTel.Text,
                 CustomerAddress = txtCustoAdress.Text,
@@ -192,7 +192,7 @@ namespace EOM.TSHotelManagement.FormUI
                 CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
                 DateOfBirth = dtpBirthday.Value,
                 CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
-                PassportType = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
+                PassportType = cbPassportType.SelectedValue.ToString(),
                 PassportID = txtCardID.Text,
                 CustomerPhoneNumber = txtTel.Text,
                 CustomerAddress = txtCustoAdress.Text,

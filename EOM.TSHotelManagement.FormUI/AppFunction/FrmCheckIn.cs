@@ -24,6 +24,7 @@
 
 
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using Sunny.UI;
 using System.Transactions;
@@ -69,7 +70,7 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageTip.ShowError("SelectCustoAll+接口服务异常，请提交issue");
                 return;
             }
-            var custoList = HttpHelper.JsonToPageList<OSelectAllDto<Customer>>(result.message!);
+            var custoList = HttpHelper.JsonToPageList<ListOutputDto<Customer>>(result.message!);
             if (custoList != null && custoList != null)
             {
                 var ctos = custoList.listSource.Select(custo => custo.CustomerNumber).ToArray();
@@ -169,10 +170,10 @@ namespace EOM.TSHotelManagement.FormUI
             if (!string.IsNullOrEmpty(txtCustoNo.Text))
             {
                 user = new Dictionary<string, string> { { "CustoNo", txtCustoNo.Text.Trim() } };
-                result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", user);
+                result = HttpHelper.Request("Custo/SelectCustoByInfo", user);
                 if (result.statusCode != 200)
                 {
-                    throw new Exception("SelectCardInfoByCustoNo+接口服务异常");
+                    throw new Exception("SelectCustoByInfo+接口服务异常");
                 }
 
                 var custo = HttpHelper.JsonToModel<Customer>(result.message!);

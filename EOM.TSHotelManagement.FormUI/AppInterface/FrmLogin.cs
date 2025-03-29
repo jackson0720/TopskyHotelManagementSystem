@@ -207,10 +207,5 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
-        private void btnLoginBackSystem_Click(object sender, EventArgs e)
-        {
-            FrmAdminEnter frmAdminEnter = new FrmAdminEnter(this);
-            frmAdminEnter.ShowDialog(this);
-        }
     }
 }

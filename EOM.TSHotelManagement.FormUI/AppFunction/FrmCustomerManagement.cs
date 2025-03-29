@@ -23,6 +23,7 @@
  */
 
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using Sunny.UI;
 
@@ -106,7 +107,7 @@ namespace EOM.TSHotelManagement.FormUI
                 AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
             }
-            OSelectAllDto<Customer> custos = HttpHelper.JsonToModel<OSelectAllDto<Customer>>(result.message);
+            ListOutputDto<Customer> custos = HttpHelper.JsonToModel<ListOutputDto<Customer>>(result.message);
             totalCount = custos.total;
             var listTableSource = new List<AntdUI.AntItem[]>();
 
@@ -123,7 +124,7 @@ namespace EOM.TSHotelManagement.FormUI
         int count = 0;
         private void btnSerach_BtnClick(object sender, EventArgs e)
         {
-            OSelectAllDto<Customer> custos = new OSelectAllDto<Customer>();
+            ListOutputDto<Customer> custos = new ListOutputDto<Customer>();
             if (!txtCustoNo.Text.IsNullOrEmpty() || !txtCustoName.Text.IsNullOrEmpty())
             {
                 if (!txtCustoNo.Text.IsNullOrEmpty())
@@ -157,7 +158,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
             }
 
-            custos = HttpHelper.JsonToModel<OSelectAllDto<Customer>>(result.message);
+            custos = HttpHelper.JsonToModel<ListOutputDto<Customer>>(result.message);
 
             var listTableSource = new List<AntdUI.AntItem[]>();
 
@@ -191,15 +192,15 @@ namespace EOM.TSHotelManagement.FormUI
                 AntdUI.Message.error(this, "未选中客户，无法继续操作！");
                 return;
             }
-            FrmCustoManager.cm_CustoNo = cm_CustoNo;
-            FrmCustoManager.cm_CustoName = cm_CustoName;
-            FrmCustoManager.cm_CustoAddress = cm_CustoAddress.IsNullOrEmpty() ? "" : cm_CustoAddress.ToString();
-            FrmCustoManager.cm_CustoType = Convert.ToInt32(cm_CustoType);
-            FrmCustoManager.cm_CustoSex = Convert.ToInt32(cm_CustoSex);
-            FrmCustoManager.cm_PassportType = Convert.ToInt32(cm_PassportType);
-            FrmCustoManager.cm_CustoBirth = Convert.ToDateTime(cm_CustoBirth);
-            FrmCustoManager.cm_CustoID = cm_CustoID;
-            FrmCustoManager.cm_CustoTel = cm_CustoTel;
+            cm_CustoNo = cm_CustoNo;
+            cm_CustoName = cm_CustoName;
+            cm_CustoAddress = cm_CustoAddress.IsNullOrEmpty() ? "" : cm_CustoAddress.ToString();
+            cm_CustoType = Convert.ToInt32(cm_CustoType);
+            cm_CustoSex = Convert.ToInt32(cm_CustoSex);
+            cm_PassportType = Convert.ToInt32(cm_PassportType);
+            cm_CustoBirth = Convert.ToDateTime(cm_CustoBirth);
+            cm_CustoID = cm_CustoID;
+            cm_CustoTel = cm_CustoTel;
             FrmEditInputs frmInputs = new FrmEditInputs();
             frmInputs.Text = "修改客户信息";
             frmInputs.ShowDialog();
@@ -259,15 +260,15 @@ namespace EOM.TSHotelManagement.FormUI
             _loadingProgress.Show();
             if (e.Record is IList<AntdUI.AntItem> data)
             {
-                FrmCustoManager.cm_CustoNo = data[0].value.ToString();
-                FrmCustoManager.cm_CustoName = data[1].value.ToString();
-                FrmCustoManager.cm_CustoSex = Convert.ToInt32(SexConstant.GetCodeByDescription(data[2].value.ToString()));
-                FrmCustoManager.cm_CustoTel = data[3].value.ToString();
-                FrmCustoManager.cm_CustoBirth = Convert.ToDateTime(data[4].value.ToString());
-                FrmCustoManager.cm_CustoType = Convert.ToInt32(CustomTypeConstant.GetCodeByDescription(data[5].value.ToString()));
-                FrmCustoManager.cm_PassportType = Convert.ToInt32(PassportConstant.GetCodeByDescription(data[6].value.ToString()));
-                FrmCustoManager.cm_CustoID = data[7].value.ToString();
-                FrmCustoManager.cm_CustoAddress = data[8].value.ToString();
+                cm_CustoNo = data[0].value.ToString();
+                cm_CustoName = data[1].value.ToString();
+                cm_CustoSex = Convert.ToInt32(SexConstant.GetCodeByDescription(data[2].value.ToString()));
+                cm_CustoTel = data[3].value.ToString();
+                cm_CustoBirth = Convert.ToDateTime(data[4].value.ToString());
+                cm_CustoType = Convert.ToInt32(CustomTypeConstant.GetCodeByDescription(data[5].value.ToString()));
+                cm_PassportType = Convert.ToInt32(PassportConstant.GetCodeByDescription(data[6].value.ToString()));
+                cm_CustoID = data[7].value.ToString();
+                cm_CustoAddress = data[8].value.ToString();
 
                 FrmEditInputs frmInputs = new FrmEditInputs(_loadingProgress);
                 frmInputs.Text = "修改客户信息";

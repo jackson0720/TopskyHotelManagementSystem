@@ -178,7 +178,7 @@ namespace EOM.TSHotelManagement.FormUI
                 us_CustoTel = romCustoInfo.CustomerPhoneNumber;
                 us_CustoID = romCustoInfo.PassportID;
                 us_CustoBirthday = romCustoInfo.DateOfBirth == default ? "" : Convert.ToDateTime(romCustoInfo.DateOfBirth).ToString();
-                us_CustoPassportType = romCustoInfo.PassportType;
+                us_CustoPassportType = Convert.ToInt32(romCustoInfo.PassportType);
                 us_CustoType = romCustoInfo.CustomerType;
                 us_CustoAddress = romCustoInfo.CustomerAddress;
             }
