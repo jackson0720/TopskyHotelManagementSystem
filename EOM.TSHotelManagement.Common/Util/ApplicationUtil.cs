@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using EOM.TSHotelManagement.Common.Contract;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 
@@ -21,15 +22,21 @@ namespace EOM.TSHotelManagement.Common
         /// <returns></returns>
         public static Card searchCode(string code)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("identityCard", code.Substring(0, 6));
-            ResponseMsg result = HttpHelper.Request("App/SelectCardCode", dic);
-            if (result.statusCode != 200)
+            Dictionary<string, string> dic = new Dictionary<string, string>()
+            {
+                { nameof(ReadCardCodeInputDto.IdentityCardNumber), code.Substring(0,6) }
+            };
+            var input = new ReadCardCodeInputDto
+            {
+                IdentityCardNumber = code.Substring(0, 6)
+            };
+            ResponseMsg result = HttpHelper.Request("Utility/SelectCardCode", input.ModelToJson());
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadCardCodeOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 return new Card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };
             }
-            var addrResult = result.message;
-            var address = addrResult.Replace(",", "").ToString();
+            var address = $"{response.Source.Province}{response.Source.City}{response.Source.District}";
             var birthday = code.Substring(6, 4) + "-" + code.Substring(10, 2) + "-" + code.Substring(12, 2);
             var sex = code.Substring(14, 3);
             //性别代码为偶数是女性奇数为男性

@@ -1,0 +1,348 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EOM.TSHotelManagement.Common.Contract</name>
+    </assembly>
+    <members>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseDto.UserToken">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseInputDto.IsDelete">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseInputDto.DataInsUsr">
+            <summary>
+            资料创建人
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseInputDto.DataInsDate">
+            <summary>
+            资料创建时间
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseInputDto.DataChgUsr">
+            <summary>
+            资料更新人
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseInputDto.DataChgDate">
+            <summary>
+            资料更新时间
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseOutputDto.StatusCode">
+            <summary>
+            状态码，例如 200 表示成功，500 表示服务器错误，400 表示客户端错误等
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.BaseOutputDto.Message">
+            <summary>
+            返回消息，用于描述请求结果
+            </summary>
+        </member>
+        <member name="M:EOM.TSHotelManagement.Common.Contract.BaseOutputDto.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EOM.TSHotelManagement.Common.Contract.BaseOutputDto.#ctor(System.Int32,System.String)">
+            <summary>
+            带状态码和消息的构造函数
+            </summary>
+            <param name="statusCode">状态码</param>
+            <param name="message">消息</param>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ListInputDto.Page">
+            <summary>
+            页数
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ListInputDto.PageSize">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ListInputDto.IgnorePaging">
+            <summary>
+            忽略分页
+            </summary>
+        </member>
+        <member name="T:EOM.TSHotelManagement.Common.Contract.ListOutputDto`1">
+            <summary>
+            带总数的列表输出Dto
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ListOutputDto`1.listSource">
+            <summary>
+            数据源
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ListOutputDto`1.total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.SingleOutputDto`1.Source">
+            <summary>
+            数据源
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateCustoTypeInputDto.CustomerType">
+            <summary>
+            客户类型 (Customer Type)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateCustoTypeInputDto.CustomerTypeName">
+            <summary>
+            客户类型名称 (Customer Type Name)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateEmployeeCheckInputDto.CheckNumber">
+            <summary>
+            打卡编号 (Check-in/Check-out Number)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateEmployeeCheckInputDto.EmployeeId">
+            <summary>
+            员工工号 (Employee ID)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateEmployeeCheckInputDto.CheckTime">
+            <summary>
+            打卡时间 (Check-in/Check-out Time)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateEmployeeCheckInputDto.CheckMethod">
+            <summary>
+            打卡方式 (Check-in/Check-out Method)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateEmployeeCheckInputDto.CheckStatus">
+            <summary>
+            打卡状态 (Check-in/Check-out Status)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadAdministratorOutputDto.IsSuperAdminDescription">
+            <summary>
+            是否为超级管理员描述 (Is Super Administrator Description)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadAdministratorOutputDto.TypeName">
+            <summary>
+            管理员类型名称 (Administrator Type Name)
+            </summary>
+        </member>
+        <member name="T:EOM.TSHotelManagement.Common.Contract.Menu.MenuViewModel">
+            <summary>
+            菜单视图模型 (Menu View Model)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.Menu.MenuViewModel.Key">
+            <summary>
+            菜单主键 (Menu Key)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.Menu.MenuViewModel.Title">
+            <summary>
+            菜单标题 (Menu Title)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.Menu.MenuViewModel.Path">
+            <summary>
+            菜单路径 (Menu Path)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.Menu.MenuViewModel.Children">
+            <summary>
+            子菜单 (Child Menus)
+            </summary>
+        </member>
+        <member name="T:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts">
+            <summary>
+            系统模块常量类
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.BaseInfo">
+            <summary>
+            基础信息
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.CashInfo">
+            <summary>
+            财务信息
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.WtiInfo">
+            <summary>
+            水电管理
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.SupervisionStatistics">
+            <summary>
+            监管统计
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.RoomManager">
+            <summary>
+            客房管理
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.CustomerManager">
+            <summary>
+            客户管理
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.HumanResourcesManager">
+            <summary>
+            人事管理
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.MaterialManager">
+            <summary>
+            物资管理
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.OperationLogManager">
+            <summary>
+            员工操作日志
+            </summary>
+        </member>
+        <member name="F:EOM.TSHotelManagement.Common.Contract.Menu.ModuleConsts.AdminManager">
+            <summary>
+            系统管理
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadModulePermissionOutputDto.ModuleId">
+            <summary>
+            模块ID (Module ID)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadModulePermissionOutputDto.AdministratorAccount">
+            <summary>
+            管理员账号 (Administrator Account)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadModulePermissionOutputDto.ModuleName">
+            <summary>
+            模块名称 (Module Name)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadModulePermissionOutputDto.ModuleEnabled">
+            <summary>
+            是否开启 (Is Enabled)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateRoleInputDto.RoleNumber">
+             <summary>
+             备  注:角色编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateRoleInputDto.RoleName">
+             <summary>
+             备  注:角色名字
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.CreateRoleInputDto.RoleDescription">
+             <summary>
+             备  注:角色描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.DeleteRoleInputDto.RoleNumber">
+             <summary>
+             备  注:角色编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadRoleInputDto.RoleNumber">
+             <summary>
+             备  注:角色编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadRoleInputDto.RoleName">
+             <summary>
+             备  注:角色名字
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadRoleInputDto.RoleDescription">
+             <summary>
+             备  注:角色描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadRoleOutputDto.RoleNumber">
+             <summary>
+             备  注:角色编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadRoleOutputDto.RoleName">
+             <summary>
+             备  注:角色名字
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadRoleOutputDto.RoleDescription">
+             <summary>
+             备  注:角色描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.UpdateRoleInputDto.RoleNumber">
+             <summary>
+             备  注:角色编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.UpdateRoleInputDto.RoleName">
+             <summary>
+             备  注:角色名字
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.UpdateRoleInputDto.RoleDescription">
+             <summary>
+             备  注:角色描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadOperationLogOutputDto.RequestPath">
+            <summary>
+            请求路径 (Request Path)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadOperationLogOutputDto.ElapsedTime">
+            <summary>
+            响应时间 (Elapsed Time)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadOperationLogOutputDto.HttpMethod">
+            <summary>
+            请求方法 (Http Method)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadOperationLogOutputDto.StatusCode">
+            <summary>
+            状态码 (Status Code)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadOperationLogOutputDto.ExceptionMessage">
+            <summary>
+            异常消息 (Exception Message)
+            </summary>
+        </member>
+        <member name="P:EOM.TSHotelManagement.Common.Contract.ReadOperationLogOutputDto.ExceptionStackTrace">
+            <summary>
+            异常堆栈 (Exception Stack Trace)
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -23,6 +23,7 @@
  */
 
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using Sunny.UI;
 
@@ -54,68 +55,73 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmSelectCustoInfo_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
+            if (customerTypes.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
-            this.cbCustoType.DataSource = lstSourceGrid;
-            this.cbCustoType.DisplayMember = "TypeName";
-            this.cbCustoType.ValueMember = "UserType";
+            this.cbCustoType.DataSource = customerTypes.listSource;
+            this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
+            this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
             this.cbCustoType.SelectedIndex = 0;
             this.cbCustoType.ReadOnly = true;
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
+            if (passportTypes.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassportType> passPorts = HttpHelper.JsonToList<PassportType>(result.message);
-            this.cbPassportType.DataSource = passPorts;
-            this.cbPassportType.DisplayMember = "PassportName";
-            this.cbPassportType.ValueMember = "PassportId";
+            this.cbPassportType.DataSource = passportTypes.listSource;
+            this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
+            this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
             this.cbPassportType.SelectedIndex = 0;
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll?IsDelete=0");
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>()
+            {
+                { nameof(ReadGenderTypeInputDto.IsDelete),"0" },
+                { nameof(ReadGenderTypeInputDto.IgnorePaging), "true" }
+            };
+            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
+            var dataSources = HttpHelper.JsonToModel<ListOutputDto<ReadGenderTypeOutputDto>>(result.message);
+            if (dataSources.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<GenderType> listSexType = HttpHelper.JsonToList<GenderType>(result.message);
-            this.cbSex.DataSource = listSexType;
-            this.cbSex.DisplayMember = "sexName";
-            this.cbSex.ValueMember = "sexId";
+            this.cbSex.DataSource = dataSources.listSource;
+            this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
+            this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
             this.cbSex.SelectedIndex = 0;
             #endregion
 
             txtCustoNo.Text = ucRoom.rm_CustoNo;
             dic = new Dictionary<string, string>()
             {
-                { "CustoNo",txtCustoNo.Text.Trim() }
+                { nameof(ReadCustomerInputDto.CustomerNumber),txtCustoNo.Text.ToString() }
             };
-            result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", dic);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request("Customer/SelectCustoByInfo", dic);
+            var c = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message);
+            if (c.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            Customer c = HttpHelper.JsonToModel<Customer>(result.message);
-            txtCustoAdress.Text = c.CustomerAddress;
-            txtCustoName.Text = c.CustomerName;
-            txtCardID.Text = c.PassportID;
-            txtCustoTel.Text = c.CustomerPhoneNumber;
-            cbSex.Text = c.CustomerGender == 1 ? "男" : "女";
-            cbCustoType.SelectedIndex = c.CustomerType;
-            cbPassportType.SelectedValue = c.PassportType;
-            dtpBirthday.Value = Convert.ToDateTime(c.DateOfBirth);
+            txtCustoAdress.Text = c.Source.CustomerAddress;
+            txtCustoName.Text = c.Source.CustomerName;
+            txtCardID.Text = c.Source.IdCardNumber;
+            txtCustoTel.Text = c.Source.CustomerPhoneNumber;
+            cbSex.Text = c.Source.CustomerGender == 1 ? "男" : "女";
+            cbCustoType.SelectedValue = c.Source.CustomerType;
+            cbPassportType.SelectedValue = c.Source.PassportId;
+            dtpBirthday.Value = Convert.ToDateTime(c.Source.DateOfBirth);
         }
     }
 }

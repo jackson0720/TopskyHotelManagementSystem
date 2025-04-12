@@ -24,9 +24,11 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.FormUI.AppUserControls;
 using EOM.TSHotelManagement.FormUI.Properties;
+using EOM.TSHotelManagement.Shared;
 using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -59,7 +61,7 @@ namespace EOM.TSHotelManagement.FormUI
         Dictionary<string, string> dic = null;
         ResponseMsg result = null;
 
-        List<Room> romsty = null;
+        List<ReadRoomOutputDto> romsty = null;
         ucRoom room = null;
         string EmptyCount;
         string OccupiedCount;
@@ -141,7 +143,15 @@ namespace EOM.TSHotelManagement.FormUI
         {
             muRoomState.Items.Clear();
 
-            var stateList = RoomStateConstant.GetAll().ToList();
+            var stateList = Enum.GetValues(typeof(RoomState))
+            .Cast<RoomState>()
+            .Select(e => new EnumDto
+            {
+                Id = (int)e,
+                Name = e.ToString(),
+                Description = new EnumHelper().GetEnumDescription(e)
+            })
+            .ToList();
             MenuItem? menuItem = null;
             if (!stateList.IsNullOrEmpty())
             {
@@ -149,11 +159,11 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     menuItem = new MenuItem
                     {
-                        Text = item.Description + GetRoomCountText(item.Code),
-                        Tag = item.Code
+                        Text = item.Description + GetRoomCountText(item.Name),
+                        ID = item.Id.ToString(),
                     };
 
-                    var roomState = RoomStateConstant.GetConstantByCode(item.Code);
+                    var roomState = RoomStateConstant.GetConstantByCode(item.Id.ToString());
                     if (roomState != null)
                     {
                         menuItem.Icon = GetRoomCountIcon(roomState.Code);
@@ -168,11 +178,11 @@ namespace EOM.TSHotelManagement.FormUI
         {
             return code switch
             {
-                var c when c == RoomStateConstant.Empty.Code => $"({EmptyCount})",
-                var c when c == RoomStateConstant.Occupied.Code => $"({OccupiedCount})",
-                var c when c == RoomStateConstant.UnderRepair.Code => $"({UnderRepairCount})",
-                var c when c == RoomStateConstant.Dirty.Code => $"({DirtyCount})",
-                var c when c == RoomStateConstant.Reserved.Code => $"({ReservedCount})",
+                var c when c == RoomState.Vacant.ToString() => $"({EmptyCount})",
+                var c when c == RoomState.Occupied.ToString() => $"({OccupiedCount})",
+                var c when c == RoomState.Maintenance.ToString() => $"({UnderRepairCount})",
+                var c when c == RoomState.Dirty.ToString() => $"({DirtyCount})",
+                var c when c == RoomState.Reserved.ToString() => $"({ReservedCount})",
                 _ => string.Empty
             };
         }
@@ -181,11 +191,11 @@ namespace EOM.TSHotelManagement.FormUI
         {
             return code switch
             {
-                var c when c == RoomStateConstant.Empty.Code => Resources.可住状态,
-                var c when c == RoomStateConstant.Occupied.Code => Resources.已住状态,
-                var c when c == RoomStateConstant.UnderRepair.Code => Resources.维修状态,
-                var c when c == RoomStateConstant.Dirty.Code => Resources.脏房状态,
-                var c when c == RoomStateConstant.Reserved.Code => Resources.预约状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Vacant).ToString() => Resources.可住状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Occupied).ToString() => Resources.已住状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Maintenance).ToString() => Resources.维修状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Dirty).ToString() => Resources.脏房状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Reserved).ToString() => Resources.预约状态,
                 _ => null
             };
         }
@@ -194,14 +204,19 @@ namespace EOM.TSHotelManagement.FormUI
         {
             try
             {
-                var dic = new Dictionary<string, string> { { "isDelete", "0" } };
+                var dic = new Dictionary<string, string> 
+                {
+                    { nameof(ReadRoomTypeInputDto.IsDelete), "0" },
+                    { nameof(ReadRoomTypeInputDto.IgnorePaging), "true"}
+                };
                 var result = HttpHelper.Request("RoomType/SelectRoomTypesAll", dic);
-                if (result.statusCode != 200)
+                var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomTypeOutputDto>>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
                     throw new Exception("SelectRoomTypesAll+接口服务异常");
                 }
 
-                var listRoomTypes = HttpHelper.JsonToList<RoomType>(result.message!);
+                var listRoomTypes = response.listSource;
 
                 if (listRoomTypes == null)
                 {
@@ -260,27 +275,36 @@ namespace EOM.TSHotelManagement.FormUI
             flpRoom.Controls.Clear();
             if (string.IsNullOrEmpty(typeName))
             {
-                result = HttpHelper.Request("Room/SelectRoomAll");
-                if (result.statusCode != 200)
+                dic = new Dictionary<string, string> 
+                {
+                    { nameof(ReadRoomInputDto.IsDelete), "0" },
+                    { nameof(ReadRoomInputDto.IgnorePaging), "true" }
+                };
+                result = HttpHelper.Request("Room/SelectRoomAll", dic);
+                var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
                     UIMessageBox.ShowError("SelectRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                romsty = HttpHelper.JsonToList<Room>(result.message!)!;
+                romsty = response.listSource;
             }
             else
             {
-                dic = new Dictionary<string, string>()
+                dic = new Dictionary<string, string>
                 {
-                    { "TypeName",typeName}
+                    { nameof(ReadRoomInputDto.IsDelete), "0" },
+                    { nameof(ReadRoomInputDto.IgnorePaging), "true" },
+                    { nameof(ReadRoomInputDto.RoomTypeName), typeName }
                 };
                 result = HttpHelper.Request("Room/SelectRoomByTypeName", dic);
-                if (result.statusCode != 200)
+                var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
                     UIMessageBox.ShowError("SelectRoomByTypeName+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                romsty = HttpHelper.JsonToList<Room>(result.message!)!;
+                romsty = response.listSource;
             }
             for (int i = 0; i < romsty.Count; i++)
             {
@@ -288,7 +312,7 @@ namespace EOM.TSHotelManagement.FormUI
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName ?? "      ");
                 room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new Customer { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
+                room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
@@ -302,24 +326,27 @@ namespace EOM.TSHotelManagement.FormUI
         private void LoadRoomByState(int stateid)
         {
             flpRoom.Controls.Clear();
-            dic = new Dictionary<string, string>()
+            dic = new Dictionary<string, string>
             {
-                { "stateid",stateid.ToString()}
+                { nameof(ReadRoomInputDto.IsDelete), "0" },
+                { nameof(ReadRoomInputDto.IgnorePaging), "true" },
+                { nameof(ReadRoomInputDto.RoomStateId), stateid.ToString() }
             };
             result = HttpHelper.Request("Room/SelectRoomByRoomState", dic);
-            if (result.statusCode != 200)
+            var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectRoomByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            romsty = HttpHelper.JsonToList<Room>(result.message!)!;
+            romsty = response.listSource;
             for (int i = 0; i < romsty.Count; i++)
             {
                 room = new ucRoom();
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName);
                 room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];
-                room.romCustoInfo = new Customer { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
+                room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
             }
             lblRoomNo.Text = "";
@@ -333,26 +360,26 @@ namespace EOM.TSHotelManagement.FormUI
         {
             flpRoom.Controls.Clear();
 
-            var roomState = RoomStateConstant.GetConstantByCode(e.Value.Tag as string);
+            var roomState = RoomStateConstant.GetConstantByCode(e.Value.ID);
 
             if (roomState != null)
             {
                 switch (roomState.Code)
                 {
-                    case var code when code == RoomStateConstant.Empty.Code:
-                        LoadRoomByState(0);
-                        break;
-                    case var code when code == RoomStateConstant.Occupied.Code:
+                    case var code when code == RoomStateConstant.Vacant.Code:
                         LoadRoomByState(1);
                         break;
-                    case var code when code == RoomStateConstant.UnderRepair.Code:
+                    case var code when code == RoomStateConstant.Occupied.Code:
                         LoadRoomByState(2);
                         break;
-                    case var code when code == RoomStateConstant.Dirty.Code:
+                    case var code when code == RoomStateConstant.Maintenance.Code:
                         LoadRoomByState(3);
                         break;
-                    case var code when code == RoomStateConstant.Reserved.Code:
+                    case var code when code == RoomStateConstant.Dirty.Code:
                         LoadRoomByState(4);
+                        break;
+                    case var code when code == RoomStateConstant.Reserved.Code:
+                        LoadRoomByState(5);
                         break;
                 }
             }

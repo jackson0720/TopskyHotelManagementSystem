@@ -1,4 +1,5 @@
 ﻿using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.EntityLib;
@@ -56,8 +57,8 @@ namespace EOM.TSHotelManagement.FormUI
 
         #region 实例化房态图的房间信息
         public string romTypeName;
-        public Room romRoomInfo { get; set; }
-        public Customer romCustoInfo { get; set; }
+        public ReadRoomOutputDto romRoomInfo { get; set; }
+        public ReadCustomerOutputDto romCustoInfo { get; set; }
         #endregion
 
         public string lblMark { get; set; }
@@ -176,27 +177,27 @@ namespace EOM.TSHotelManagement.FormUI
                 us_CustoName = romCustoInfo.CustomerName;
                 us_CustoSex = romCustoInfo.CustomerGender == 1 ? "男" : "女";
                 us_CustoTel = romCustoInfo.CustomerPhoneNumber;
-                us_CustoID = romCustoInfo.PassportID;
+                us_CustoID = romCustoInfo.IdCardNumber;
                 us_CustoBirthday = romCustoInfo.DateOfBirth == default ? "" : Convert.ToDateTime(romCustoInfo.DateOfBirth).ToString();
-                us_CustoPassportType = Convert.ToInt32(romCustoInfo.PassportType);
+                us_CustoPassportType = Convert.ToInt32(romCustoInfo.PassportId);
                 us_CustoType = romCustoInfo.CustomerType;
                 us_CustoAddress = romCustoInfo.CustomerAddress;
             }
             switch (romRoomInfo.RoomStateId)
             {
-                case 0:
+                case 1:
                     btnRoom.BackgroundImage = Resources.可住状态;
                     break;
-                case 1:
+                case 2:
                     btnRoom.BackgroundImage = Resources.已住状态;
                     break;
-                case 2:
+                case 3:
                     btnRoom.BackgroundImage = Resources.维修状态;
                     break;
-                case 3:
+                case 4:
                     btnRoom.BackgroundImage = Resources.脏房状态;
                     break;
-                case 4:
+                case 5:
                     btnRoom.BackgroundImage = Resources.预约状态;
                     break;
             }

@@ -22,7 +22,9 @@
  *
  */
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Shared;
 using Sunny.UI;
 using System.Transactions;
 
@@ -95,46 +97,54 @@ namespace EOM.TSHotelManagement.FormUI
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                Customer custo = new Customer()
+                var custo = new CreateCustomerInputDto()
                 {
                     CustomerNumber = txtCustoNo.Text.Trim(),
                     CustomerName = txtCustoName.Text.Trim(),
                     CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
                     CustomerPhoneNumber = txtTel.Text.Trim(),
-                    PassportType = cbPassportType.SelectedValue.ToString(),
-                    PassportID = txtCardID.Text.Trim(),
+                    PassportId = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
+                    IdCardNumber = txtCardID.Text.Trim(),
                     CustomerAddress = txtCustoAdress.Text.Trim(),
                     DateOfBirth = dtpBirthday.Value,
                     CustomerType = cbCustoType.SelectedIndex,
                     IsDelete = 0,
                     DataInsUsr = LoginInfo.WorkerNo
                 };
-                result = HttpHelper.Request("Custo​/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
-                if (result.statusCode != 200)
+                result = HttpHelper.Request("Customer​/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
+                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
                     UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
 
-                Room r = new Room()
+                UpdateRoomInputDto r = new UpdateRoomInputDto()
                 {
-                    LastCheckInTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                    LastCheckInTime = DateTime.Now,
                     CustomerNumber = custo.CustomerNumber,
-                    RoomStateId = 1,
-                    RoomNumber = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString()
+                    RoomStateId = new EnumHelper().GetEnumValue(RoomState.Reserved),
+                    RoomNumber = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString(),
+                    DataChgDate = DateTime.Now,
+                    DataChgUsr = LoginInfo.WorkerNo
                 };
                 result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(r));
-                if (result.statusCode != 200)
+                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError("UpdateRoomInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                var reser = new Reser
+                var reser = new DeleteReserInputDto
                 {
-                    ReservationId = dgvReserList.SelectedRows[0].Cells["clReserNo"].Value.ToString()
+                    ReservationId = dgvReserList.SelectedRows[0].Cells["clReserNo"].Value.ToString(),
+                    IsDelete = 1,
+                    DataChgUsr = LoginInfo.WorkerNo,
+                    DataChgDate = DateTime.Now
                 };
                 result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
-                if (result.statusCode != 200)
+                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
                     UIMessageBox.ShowError("DeleteReserInfo+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
@@ -142,13 +152,19 @@ namespace EOM.TSHotelManagement.FormUI
 
                 UIMessageBox.ShowSuccess("操作成功");
                 dgvReserList.AutoGenerateColumns = false;
-                result = HttpHelper.Request("Reser/SelectReserAll");
-                if (result.statusCode != 200)
+                Dictionary<string, string> dic = new Dictionary<string, string>() 
+                {
+                    { nameof(ReadReserInputDto.IsDelete), "0"},
+                    { nameof(ReadReserInputDto.IgnorePaging), "true"}
+                };
+                result = HttpHelper.Request("Reser/SelectReserAll",dic);
+                var reserDataSources = HttpHelper.JsonToModel<ListOutputDto<ReadReserOutputDto>>(result.message);
+                if (reserDataSources.StatusCode != StatusCodeConstants.Success)
                 {
                     UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                dgvReserList.DataSource = HttpHelper.JsonToList<Reser>(result.message);
+                dgvReserList.DataSource = reserDataSources.listSource;
                 FrmRoomManager.Reload("");
                 scope.Complete();
                 this.Close();

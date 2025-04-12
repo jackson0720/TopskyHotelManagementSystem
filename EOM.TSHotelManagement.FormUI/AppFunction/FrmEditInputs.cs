@@ -23,7 +23,9 @@
  */
 
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using jvncorelib.CodeLib;
 using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -40,64 +42,59 @@ namespace EOM.TSHotelManagement.FormUI
         Dictionary<string, string> dic = null;
         ResponseMsg result = null;
 
-        protected override bool CheckData()
-        {
-            return CheckEmpty(txtCustoNo, "请输入客户ID")
-                   && CheckEmpty(txtCustoName, "请输入姓名")
-                   && CheckEmpty(cbCustoType, "请选择客户类型")
-                   && CheckEmpty(cbPassportType, "请选择证件类型")
-                   && CheckEmpty(cbSex, "请选择客户性别")
-                   && CheckEmpty(dtpBirthday, "请选择客户生日")
-                   && CheckEmpty(txtCardID, "请输入证件号码")
-                   && CheckEmpty(txtTel, "输入11位手机号码")
-                   && CheckEmpty(txtCustoAdress, "请填写居住地址");
-        }
-
         private void FrmEditInputs_Load(object sender, EventArgs e)
         {
-            string cardId = ApplicationUtil.GetListNewId("TS", 3, 1, "-").FirstOrDefault();
+            string cardId = new UniqueCode().GetNewId("TS");
             txtCustoNo.Text = cardId;
 
             #region 加载客户类型信息
             var result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
-            if (result.statusCode != 200)
+            var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
+            if (customerTypes.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
+            var lstSourceGrid = customerTypes.listSource;
             this.cbCustoType.DataSource = lstSourceGrid;
-            this.cbCustoType.DisplayMember = "TypeName";
-            this.cbCustoType.ValueMember = "UserType";
+            this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
+            this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
             this.cbCustoType.SelectedIndex = 0;
             this.cbCustoType.ReadOnly = true;
             #endregion
 
             #region 加载证件类型信息
             result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
-            if (result.statusCode != 200)
+            var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
+            if (passportTypes.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassportType> passPorts = HttpHelper.JsonToList<PassportType>(result.message);
+            var passPorts = passportTypes.listSource;
             this.cbPassportType.DataSource = passPorts;
-            this.cbPassportType.DisplayMember = "PassportName";
-            this.cbPassportType.ValueMember = "PassportId";
+            this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
+            this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
             this.cbPassportType.SelectedIndex = 0;
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?IsDelete=0");
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>()
+            {
+                { nameof(ReadGenderTypeInputDto.IsDelete), "0" },
+                { nameof(ReadGenderTypeInputDto.IgnorePaging), "true" }
+            };
+            result = HttpHelper.Request("Base/SelectSexTypeAll",dic);
+            var genderTypes = HttpHelper.JsonToModel<ListOutputDto<ReadGenderTypeOutputDto>>(result.message);
+            if (genderTypes.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<GenderType> listSexType = HttpHelper.JsonToList<GenderType>(result.message);
+            var listSexType = genderTypes.listSource;
             this.cbSex.DataSource = listSexType;
-            this.cbSex.DisplayMember = "sexName";
-            this.cbSex.ValueMember = "sexId";
+            this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
+            this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
             this.cbSex.SelectedIndex = 0;
             #endregion
 
@@ -106,9 +103,9 @@ namespace EOM.TSHotelManagement.FormUI
                 txtCustoNo.Text = FrmCustomerManager.cm_CustoNo;
                 txtCustoName.Text = FrmCustomerManager.cm_CustoName;
                 txtCustoAdress.Text = FrmCustomerManager.cm_CustoAddress;
-                cbCustoType.SelectedIndex = FrmCustomerManager.cm_CustoType;
-                cbSex.SelectedIndex = FrmCustomerManager.cm_CustoSex;
-                cbPassportType.SelectedIndex = FrmCustomerManager.cm_PassportType;
+                cbCustoType.SelectedValue = FrmCustomerManager.cm_CustoType;
+                cbSex.SelectedValue = FrmCustomerManager.cm_CustoSex;
+                cbPassportType.SelectedValue = FrmCustomerManager.cm_PassportType;
                 dtpBirthday.Value = FrmCustomerManager.cm_CustoBirth;
                 txtCardID.Text = FrmCustomerManager.cm_CustoID;
                 txtCustoAdress.Text = FrmCustomerManager.cm_CustoAddress;
@@ -134,28 +131,24 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnOK_UpdClick(object sender, EventArgs e)
         {
-            Customer custo = new Customer()
+            UpdateCustomerInputDto custo = new UpdateCustomerInputDto()
             {
                 CustomerNumber = txtCustoNo.Text,
                 CustomerName = txtCustoName.Text,
                 CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                DateOfBirth = dtpBirthday.Value,
+                DateOfBirth = dtpBirthday.Value.Date,
                 CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
-                PassportType = cbPassportType.SelectedValue.ToString(),
-                PassportID = txtCardID.Text,
+                PassportId = Convert.ToInt32(cbPassportType.SelectedValue),
+                IdCardNumber = txtCardID.Text,
                 CustomerPhoneNumber = txtTel.Text,
                 CustomerAddress = txtCustoAdress.Text,
-                DataChgUsr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
+                IsDelete = 0,
+                DataChgUsr = LoginInfo.WorkerNo,
             };
 
-            result = HttpHelper.Request("Custo/UpdCustomerInfo", HttpHelper.ModelToJson(custo));
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("UpdCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            bool t = result.message.ToString().Equals("true") ? true : false;
-            if (!t)
+            result = HttpHelper.Request("Customer/UpdCustomerInfo", HttpHelper.ModelToJson(custo));
+            var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.Show("修改失败", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
                 return;
@@ -185,41 +178,35 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmEditInputs_ButtonOkClick(object sender, EventArgs e)
         {
-            Customer custo = new Customer()
+            CreateCustomerInputDto custo = new CreateCustomerInputDto()
             {
+                DataInsDate = DateTime.Now,
                 CustomerNumber = txtCustoNo.Text,
                 CustomerName = txtCustoName.Text,
                 CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                DateOfBirth = dtpBirthday.Value,
+                DateOfBirth = dtpBirthday.Value.Date,
                 CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
-                PassportType = cbPassportType.SelectedValue.ToString(),
-                PassportID = txtCardID.Text,
+                PassportId = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
+                IdCardNumber = txtCardID.Text,
                 CustomerPhoneNumber = txtTel.Text,
                 CustomerAddress = txtCustoAdress.Text,
-                DataInsUsr = LoginInfo.WorkerNo == null ? AdminInfo.Account : LoginInfo.WorkerNo,
-
+                DataInsUsr = LoginInfo.WorkerNo,
+                IsDelete = 0
             };
 
-            result = HttpHelper.Request("Custo/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
-            if (result.statusCode != 200)
+            result = HttpHelper.Request("Customer/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
+            var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.Show($"添加失败\n{response.Message}", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
                 return;
             }
-            if (result.message.ToString().Equals("true"))
-            {
-                UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
-                FrmCustomerManager.ReloadCustomer(false);
-                #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, 3);
-                #endregion
-                this.Close();
-            }
-            else
-            {
-                UIMessageBox.Show("添加失败", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
-                return;
-            }
+            UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
+            FrmCustomerManager.ReloadCustomer(false);
+            #region 获取添加操作日志所需的信息
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, 3);
+            #endregion
+            this.Close();
 
 
             foreach (Control Ctrol in this.Controls)
@@ -248,7 +235,7 @@ namespace EOM.TSHotelManagement.FormUI
             //获取得到输入的身份证号码
             string identityCard = txtCardID.Text.Trim();
 
-            if (!cbPassportType.SelectedText.ToString().Contains("身份证"))
+            if (!cbPassportType.Text.ToString().Contains("身份证"))
             {
                 dtpBirthday.Enabled = true;
                 dtpBirthday.ReadOnly = false;

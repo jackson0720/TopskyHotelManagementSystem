@@ -23,6 +23,7 @@
  */
 
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using Sunny.UI;
 using System.Transactions;
@@ -180,25 +181,25 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载客户信息
             dic = new Dictionary<string, string>()
             {
-                { "CustoNo",CustoNo.Text.ToString()}
+                { nameof(ReadCustomerInputDto.CustomerNumber),CustoNo.Text.ToString() }
             };
-            result = HttpHelper.Request("Custo​/SelectCardInfoByCustoNo", dic);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request("Customer​/SelectCustoByInfo", dic);
+            SingleOutputDto<ReadCustomerOutputDto> customer = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message);
+            if (customer?.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            Customer cto = HttpHelper.JsonToModel<Customer>(result.message);
             try
             {
-                CustoName.Text = cto.CustomerName;
-                txtCustoName.Text = cto.CustomerName;
-                txtTel.Text = cto.CustomerPhoneNumber;
-                cboCustoSex.SelectedIndex = cto.CustomerGender ?? 0;
-                cboCustoType.SelectedIndex = cto.CustomerType;
-                cboPassportType.SelectedValue = cto.PassportType;
-                dtpBirth.Value = Convert.ToDateTime(cto.DateOfBirth);
-                txtPassportNum.Text = cto.PassportID;
+                CustoName.Text = customer?.Source.CustomerName;
+                txtCustoName.Text = customer?.Source.CustomerName;
+                txtTel.Text = customer?.Source.CustomerPhoneNumber;
+                cboCustoSex.SelectedValue = customer?.Source.CustomerGender ?? 0;
+                cboCustoType.SelectedValue = customer.Source.CustomerType;
+                cboPassportType.SelectedValue = customer.Source.PassportId;
+                dtpBirth.Value = Convert.ToDateTime(customer.Source.DateOfBirth);
+                txtPassportNum.Text = customer.Source.IdCardNumber;
             }
             catch
             {

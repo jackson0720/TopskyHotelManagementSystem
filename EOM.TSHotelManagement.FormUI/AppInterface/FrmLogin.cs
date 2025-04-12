@@ -24,6 +24,7 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.EntityLib;
@@ -119,8 +120,8 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.Owner.Hide();
-            txtWorkerId.Text = "WK010";
-            txtWorkerPwd.Text = "admin";
+            txtWorkerId.Text = "W7944015872";
+            txtWorkerPwd.Text = "Vd;7p(97U_I9";
         }
         #endregion
 
@@ -156,27 +157,28 @@ namespace EOM.TSHotelManagement.FormUI
         #region 登录图片点击事件
         private void picLogin_Click(object sender, EventArgs e)
         {
-            _loadingProgress.Show();
             try
             {
                 if (CheckInput())
                 {
-                    Employee worker = new Employee() { EmployeeId = txtWorkerId.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
+                    var worker = new ReadEmployeeInputDto() { EmployeeId = txtWorkerId.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
 
-                    result = HttpHelper.Request("Employee/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
+                    result = HttpHelper.Request("Employee/SelectEmployeeInfoByEmployeeIdAndEmployeePwd", HttpHelper.ModelToJson(worker));
 
-                    if (result.statusCode != 200)
+                    var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
+
+                    if (response.StatusCode != StatusCodeConstants.Success)
                     {
                         AntdUI.Modal.open(this, "系统提示", "账号或密码错误！",TType.Error);
                         txtWorkerPwd.Focus();
                         return;
                     }
 
-                    Employee w = HttpHelper.JsonToModel<Employee>(result.message);
+                    ReadEmployeeOutputDto w = response.Source;
 
                     if (!w.IsNullOrEmpty())
                     {
-                        if (w.IsDelete == 1)
+                        if (w.IsEnable == 0)
                         {
                             AntdUI.Modal.open(this, "系统提示", "账号已禁用，请联系上级解封！", TType.Error);
                             return;
@@ -188,7 +190,7 @@ namespace EOM.TSHotelManagement.FormUI
                         LoginInfo.WorkerPosition = w.PositionName;
                         LoginInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
                         LoginInfo.UserToken = w.UserToken;
-                        FrmMain frm = new FrmMain(this, _loadingProgress);
+                        FrmMain frm = new FrmMain(this);
                         this.Hide();
                         frm.TopMost = true;
                         frm.ShowDialog(this);

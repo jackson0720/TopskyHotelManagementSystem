@@ -114,11 +114,6 @@
 		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
 		</ProjectReference>
 		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Contract\EOM.TSHotelManagement.Common.Contract.csproj" />
-		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Core\EOM.TSHotelManagement.Common.Core.csproj">
-		  <Private>True</Private>
-		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
-		  <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
-		</ProjectReference>
 		<ProjectReference Include="..\topsky-hotel-management-system-web-api\EOM.TSHotelManagement.Common.Util\EOM.TSHotelManagement.Common.Util.csproj">
 		  <Private>True</Private>
 		  <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
@@ -154,6 +149,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="FodyWeavers.xml" />
+	  <None Remove="Resources\EOM.TSHotelManagement.Common.Contract.xml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="logo.ico" />
@@ -162,6 +158,11 @@
 	  <Content Include="FodyWeavers.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\EOM.TSHotelManagement.Common.Contract.xml">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Properties\Resources.resx">

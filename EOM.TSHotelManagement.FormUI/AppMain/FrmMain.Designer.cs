@@ -126,14 +126,14 @@
             cmsMain.Items.AddRange(new ToolStripItem[] { tsmiChangeUser, tsmiMySpace, tsmiExChange, toolStripSeparator3, tsmiLockScreen, toolStripSeparator4, tsmiLoginBackSystem, toolStripSeparator2, tsmiCheckUpdate, tsmiAboutUs, tsmiExitSystem });
             cmsMain.Name = "cmsMain";
             cmsMain.RenderMode = ToolStripRenderMode.Professional;
-            cmsMain.Size = new Size(208, 214);
+            cmsMain.Size = new Size(314, 214);
             // 
             // tsmiChangeUser
             // 
             tsmiChangeUser.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             tsmiChangeUser.Image = Properties.Resources.切换账号;
             tsmiChangeUser.Name = "tsmiChangeUser";
-            tsmiChangeUser.Size = new Size(207, 24);
+            tsmiChangeUser.Size = new Size(313, 24);
             tsmiChangeUser.Text = "切换用户";
             tsmiChangeUser.Click += tsmiChangeUser_Click;
             // 
@@ -142,7 +142,7 @@
             tsmiMySpace.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             tsmiMySpace.Image = Properties.Resources.个人中心;
             tsmiMySpace.Name = "tsmiMySpace";
-            tsmiMySpace.Size = new Size(207, 24);
+            tsmiMySpace.Size = new Size(313, 24);
             tsmiMySpace.Text = "个人中心";
             tsmiMySpace.Click += tsmiMySpace_Click;
             // 
@@ -150,27 +150,28 @@
             // 
             tsmiExChange.Font = new Font("Microsoft Sans Serif", 12F);
             tsmiExChange.Name = "tsmiExChange";
-            tsmiExChange.Size = new Size(207, 24);
+            tsmiExChange.Size = new Size(313, 24);
             tsmiExChange.Text = "换班";
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(204, 6);
+            toolStripSeparator3.Size = new Size(310, 6);
             // 
             // tsmiLockScreen
             // 
+            tsmiLockScreen.Enabled = false;
             tsmiLockScreen.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             tsmiLockScreen.Image = Properties.Resources.锁屏;
             tsmiLockScreen.Name = "tsmiLockScreen";
-            tsmiLockScreen.Size = new Size(207, 24);
-            tsmiLockScreen.Text = "快速锁屏";
+            tsmiLockScreen.Size = new Size(313, 24);
+            tsmiLockScreen.Text = "快速锁屏(功能重构中，暂不开放)";
             tsmiLockScreen.Click += tsmiLockScreen_Click;
             // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(204, 6);
+            toolStripSeparator4.Size = new Size(310, 6);
             // 
             // tsmiLoginBackSystem
             // 
@@ -178,21 +179,21 @@
             tsmiLoginBackSystem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             tsmiLoginBackSystem.Image = Properties.Resources.系统管理员;
             tsmiLoginBackSystem.Name = "tsmiLoginBackSystem";
-            tsmiLoginBackSystem.Size = new Size(207, 24);
+            tsmiLoginBackSystem.Size = new Size(313, 24);
             tsmiLoginBackSystem.Text = "进入后台管理系统";
             tsmiLoginBackSystem.Click += tsmiLoginBackSystem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(204, 6);
+            toolStripSeparator2.Size = new Size(310, 6);
             // 
             // tsmiCheckUpdate
             // 
             tsmiCheckUpdate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             tsmiCheckUpdate.Image = Properties.Resources.检查更新__1_;
             tsmiCheckUpdate.Name = "tsmiCheckUpdate";
-            tsmiCheckUpdate.Size = new Size(207, 24);
+            tsmiCheckUpdate.Size = new Size(313, 24);
             tsmiCheckUpdate.Text = "检查更新";
             tsmiCheckUpdate.Click += tsmiCheckUpdate_Click;
             // 
@@ -201,7 +202,7 @@
             tsmiAboutUs.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             tsmiAboutUs.Image = Properties.Resources.关于我们;
             tsmiAboutUs.Name = "tsmiAboutUs";
-            tsmiAboutUs.Size = new Size(207, 24);
+            tsmiAboutUs.Size = new Size(313, 24);
             tsmiAboutUs.Text = "关于我们";
             tsmiAboutUs.Click += tsmiAboutUs_Click;
             // 
@@ -210,7 +211,7 @@
             tsmiExitSystem.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             tsmiExitSystem.Image = Properties.Resources.注销;
             tsmiExitSystem.Name = "tsmiExitSystem";
-            tsmiExitSystem.Size = new Size(207, 24);
+            tsmiExitSystem.Size = new Size(313, 24);
             tsmiExitSystem.Text = "退出系统";
             tsmiExitSystem.Click += tsmiExitSystem_Click;
             // 
