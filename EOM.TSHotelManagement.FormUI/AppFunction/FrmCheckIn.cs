@@ -26,6 +26,7 @@
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using jvncorelib.EntityLib;
 using Sunny.UI;
 using System.Transactions;
 
@@ -43,37 +44,47 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmCheckIn_Load(object sender, EventArgs e)
         {
             txtRoomNo.Text = ucRoom.rm_RoomNo;
-            Dictionary<string, string> pairs = new Dictionary<string, string>();
-            pairs.Add("no", txtRoomNo.Text.Trim()!);
+            Dictionary<string, string> pairs = new Dictionary<string, string>
+            {
+                { nameof(ReadRoomInputDto.RoomNumber), txtRoomNo.Text.Trim()! }
+            };
             result = HttpHelper.Request("Room/SelectRoomByRoomNo", pairs);
-            if (result.statusCode != 200)
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message!);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageTip.ShowError("SelectRoomByRoomNo+接口服务异常，请提交issue");
                 return;
             }
-            Room r = HttpHelper.JsonToModel<Room>(result.message!)!;
+            ReadRoomOutputDto r = response.Source;
             result = HttpHelper.Request("RoomType/SelectRoomTypeByRoomNo", pairs);
-            if (result.statusCode != 200)
+            var roomTypeResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomTypeOutputDto>>(result.message!);
+            if (roomTypeResponse.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageTip.ShowError("SelectRoomTypeByRoomNo+接口服务异常，请提交issue");
                 return;
             }
-            RoomType t = HttpHelper.JsonToModel<RoomType>(result.message!)!;
+            ReadRoomTypeOutputDto t = roomTypeResponse.Source;
             txtType.Text = t.RoomTypeName;
             txtMoney.Text = r.RoomRent.ToString();
             txtRoomPosition.Text = r.RoomLocation;
             txtState.Text = r.RoomState;
             txtDeposit.Text = r.RoomDeposit.ToString();
-            result = HttpHelper.Request("Custo/SelectCustoAll");
-            if (result.statusCode != 200)
+            pairs = new Dictionary<string, string>
+            {
+                { nameof(ReadCustomerInputDto.IgnorePaging) , "true" },
+                { nameof(ReadCustomerInputDto.IsDelete) , "0" }
+            };
+            result = HttpHelper.Request("Customer/SelectCustoAll", pairs);
+            var customerResponse = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message!);
+            if (customerResponse.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageTip.ShowError("SelectCustoAll+接口服务异常，请提交issue");
                 return;
             }
-            var custoList = HttpHelper.JsonToPageList<ListOutputDto<Customer>>(result.message!);
+            var custoList = customerResponse.listSource;
             if (custoList != null && custoList != null)
             {
-                var ctos = custoList.listSource.Select(custo => custo.CustomerNumber).ToArray();
+                var ctos = custoList.Select(custo => custo.CustomerNumber).ToArray();
                 txtCustoNo.AutoCompleteCustomSource.AddRange(ctos);
             }
             try
@@ -86,27 +97,6 @@ namespace EOM.TSHotelManagement.FormUI
             }
         }
 
-        #region 关闭窗口
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        #endregion
-
-        #region 入住按钮点击事件方法
-        private void btnCheckIn_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
-        #region 客户编号输入框的值发生改变时候的事件方法
-        private void txtCustoNo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
         private void txtCustoNo_Validated(object sender, EventArgs e)
         {
             try
@@ -115,33 +105,40 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                UIMessageTip.ShowError($"接口服务异常，请提交issue: {ex.Message}");
+                UIMessageTip.ShowError($"接口服务异常，请提交issue: {ex.Message}", 3000);
             }
         }
 
         private void ValidateAndUpdateCustomerInfo()
         {
             // 获取会员规则列表
-            var result = HttpHelper.Request("VipLevelRule/SelectVipRuleList");
-            if (result.statusCode != 200)
+            var dic = new Dictionary<string, string> 
             {
-                throw new Exception("SelectVipRuleList+接口服务异常");
+                { nameof(ReadVipLevelRuleInputDto.IgnorePaging), "true" },
+                { nameof(ReadVipLevelRuleInputDto.IsDelete), "0" }
+            };
+            var result = HttpHelper.Request("VipLevelRule/SelectVipRuleList", dic);
+            var response = HttpHelper.JsonToModel<ListOutputDto<ReadVipLevelRuleOutputDto>>(result.message!);
+            if (response.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageTip.ShowError($"SelectVipRuleList+接口服务异常，请提交issue: {response.Message}",3000);
             }
 
-            var listVipRule = HttpHelper.JsonToList<VipLevelRule>(result.message!)!
+            var listVipRule = response.listSource
                 .OrderBy(a => a.RuleValue)
                 .Distinct()
                 .ToList();
 
             // 查询用户消费记录
-            var user = new Dictionary<string, string> { { "custoNo", txtCustoNo.Text.Trim() } };
+            var user = new Dictionary<string, string> { { nameof(ReadSpendInputDto.CustomerNumber), txtCustoNo.Text.Trim() } };
             result = HttpHelper.Request("Spend/SeletHistorySpendInfoAll", user);
-            if (result.statusCode != 200)
+            var customerSpends = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message!);
+            if (customerSpends.StatusCode != StatusCodeConstants.Success)
             {
-                throw new Exception("SeletHistorySpendInfoAll+接口服务异常");
+                UIMessageTip.ShowError($"SeletHistorySpendInfoAll+接口服务异常，请提交issue: {response.Message}", 3000);
             }
 
-            var listCustoSpend = HttpHelper.JsonToList<Spend>(result.message!)!;
+            var listCustoSpend = customerSpends.listSource;
             if (!listCustoSpend.IsNullOrEmpty())
             {
                 var spendAmount = listCustoSpend.Sum(a => a.ConsumptionAmount);
@@ -155,11 +152,12 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     user = new Dictionary<string, string>
                     {
-                        { "custoNo", txtCustoNo.Text.Trim() },
-                        { "userType", new_type.ToString() }
+                        { nameof(UpdateCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim() },
+                        { nameof(UpdateCustomerInputDto.CustomerType), new_type.ToString() }
                     };
-                    result = HttpHelper.Request("Custo/UpdCustomerTypeByCustoNo", user);
-                    if (result.statusCode != 200)
+                    result = HttpHelper.Request("Customer/UpdCustomerTypeByCustoNo", user);
+                    var updateResponse = HttpHelper.JsonToModel<BaseOutputDto>(result.message!);
+                    if (updateResponse.StatusCode != StatusCodeConstants.Success)
                     {
                         throw new Exception("UpdCustomerTypeByCustoNo+接口服务异常");
                     }
@@ -169,14 +167,15 @@ namespace EOM.TSHotelManagement.FormUI
             // 获取用户卡片信息
             if (!string.IsNullOrEmpty(txtCustoNo.Text))
             {
-                user = new Dictionary<string, string> { { "CustoNo", txtCustoNo.Text.Trim() } };
-                result = HttpHelper.Request("Custo/SelectCustoByInfo", user);
-                if (result.statusCode != 200)
+                user = new Dictionary<string, string> { { nameof(ReadCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim() } };
+                result = HttpHelper.Request("Customer/SelectCustoByInfo", user);
+                var customerResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message!);
+                if (customerResponse.StatusCode != StatusCodeConstants.Success)
                 {
                     throw new Exception("SelectCustoByInfo+接口服务异常");
                 }
 
-                var custo = HttpHelper.JsonToModel<Customer>(result.message!);
+                var custo = customerResponse.Source;
                 txtCustoName.Text = custo?.CustomerNumber ?? "";
                 txtCustoTel.Text = custo?.CustomerPhoneNumber ?? "";
                 txtCustoType.Text = custo?.CustomerTypeName ?? "";
@@ -185,56 +184,50 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmCheckIn_ButtonOkClick(object sender, EventArgs e)
         {
-            Dictionary<string, string> user = new Dictionary<string, string>();
-            user.Add("CustoNo", txtCustoNo.Text.Trim());
-            result = HttpHelper.Request("Custo/SelectCardInfoByCustoNo", user);
-            if (result.statusCode != 200)
+            var user = new Dictionary<string, string> { { nameof(ReadCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim() } };
+            result = HttpHelper.Request("Customer/SelectCustoByInfo", user);
+            var customerResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message!);
+            if (customerResponse.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageTip.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交issue");
-                return;
+                throw new Exception("SelectCustoByInfo+接口服务异常");
             }
-            if (!result.message.IsNullOrEmpty())
+
+            var custo = customerResponse.Source;
+            if (!custo.IsNullOrEmpty())
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
-                    Room r = new Room()
+                    UpdateRoomInputDto r = new UpdateRoomInputDto()
                     {
                         LastCheckInTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                         CustomerNumber = txtCustoNo.Text,
-                        RoomStateId = 1,
+                        RoomStateId = (int)RoomState.Occupied,
                         RoomNumber = txtRoomNo.Text,
                         DataChgUsr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request("Room/UpdateRoomInfo", HttpHelper.ModelToJson(r));
-                    if (result.statusCode != 200)
+                    var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message!);
+                    if (response.StatusCode != StatusCodeConstants.Success)
                     {
                         UIMessageTip.ShowError("UpdateRoomInfo+接口服务异常，请提交issue");
-                        return;
-                    }
-                    bool n = result.message.Equals("true") ? true : false;
-                    if (n)
-                    {
-                        UIMessageBox.Show("登记入住成功！", "登记提示", UIStyle.Green);
-                        txtCustoNo.Text = "";
-                        FrmRoomManager.Reload("");
-                        FrmRoomManager._RefreshRoomCount();
-                        #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustomerNumber + "进行了入住操作！", 1);
-                        #endregion
-                        scope.Complete();
-                        this.Close();
-                        return;
-                    }
-                    else
-                    {
                         UIMessageBox.Show("登记入住失败！", "登记提示", UIStyle.Red);
                         return;
                     }
+                    UIMessageBox.Show("登记入住成功！", "登记提示", UIStyle.Green);
+                    txtCustoNo.Text = "";
+                    FrmRoomManager.Reload("");
+                    FrmRoomManager._RefreshRoomCount();
+                    #region 获取添加操作日志所需的信息
+                    RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustomerNumber + "进行了入住操作！", 1);
+                    #endregion
+                    scope.Complete();
+                    this.Close();
+                    return;
                 }
             }
             else
             {
-                UIMessageBox.Show("客户编号不存在！", "来自小T的提示", UIStyle.Red);
+                UIMessageBox.Show("所选客户不存在！", "系统提示", UIStyle.Red);
             }
         }
 

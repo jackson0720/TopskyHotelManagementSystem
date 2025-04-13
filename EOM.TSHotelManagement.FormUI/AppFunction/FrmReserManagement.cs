@@ -22,8 +22,11 @@
  *
  */
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using jvncorelib.CodeLib;
 using Sunny.UI;
+using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -45,52 +48,49 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnReser_Click(object sender, EventArgs e)
         {
-            Random random = new Random();
-            string reserid = ApplicationUtil.GetListNewId("R", 3, 1, "-").FirstOrDefault();
-            Reser reser = new Reser()
+            using (TransactionScope scope = new TransactionScope())
             {
-                ReservationId = reserid,
-                CustomerName = txtCustoName.Text.Trim(),
-                ReservationPhoneNumber = txtCustoTel.Text.Trim(),
-                ReservationChannel = cboReserWay.Text,
-                ReservationRoomNumber = cboReserRoomNo.Text,
-                ReservationStartDate = dtpBouDate.Value,
-                ReservationEndDate = dtpEndDate.Value,
-                DataInsUsr = LoginInfo.WorkerNo
-            };
-            Room room = new Room()
-            {
-                RoomNumber = cboReserRoomNo.Text,
-                RoomStateId = 4
-            };
-            result = HttpHelper.Request("Reser​/InserReserInfo", HttpHelper.ModelToJson(reser));
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("InserReserInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            bool result1 = result.message.ToString().Equals("true");
-            result = HttpHelper.Request("Room​/UpdateRoomInfoWithReser", HttpHelper.ModelToJson(room));
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("UpdateRoomInfoWithReser+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            bool result2 = result.message.ToString().Equals("true");
-
-            if (result1 && result2)
-            {
+                string reserid = new UniqueCode().GetNewId("R-");
+                CreateReserInputDto reser = new CreateReserInputDto()
+                {
+                    ReservationId = reserid,
+                    CustomerName = txtCustoName.Text.Trim(),
+                    ReservationPhoneNumber = txtCustoTel.Text.Trim(),
+                    ReservationChannel = cboReserWay.Text,
+                    ReservationRoomNumber = cboReserRoomNo.Text,
+                    ReservationStartDate = dtpBookDate.Value,
+                    ReservationEndDate = dtpEndDate.Value,
+                    DataInsUsr = LoginInfo.WorkerNo,
+                    DataInsDate = DateTime.Now
+                };
+                UpdateRoomInputDto room = new UpdateRoomInputDto()
+                {
+                    RoomNumber = cboReserRoomNo.Text,
+                    RoomStateId = (int)RoomState.Reserved,
+                    DataInsDate = DateTime.Now,
+                    DataInsUsr = LoginInfo.WorkerNo
+                };
+                result = HttpHelper.Request("Reser​/InserReserInfo", HttpHelper.ModelToJson(reser));
+                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
+                {
+                    UIMessageBox.ShowError("InserReserInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
+                result = HttpHelper.Request("Room​/UpdateRoomInfoWithReser", HttpHelper.ModelToJson(room));
+                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
+                {
+                    UIMessageBox.ShowError("UpdateRoomInfoWithReser+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
+                }
                 UIMessageBox.ShowSuccess("预约成功！请在指定时间内进行登记入住");
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", 1);
                 #endregion
+                scope.Complete();
                 FrmRoomManager.Reload("");
                 this.Close();
-            }
-            else
-            {
-                UIMessageBox.ShowError("预约失败！服务器繁忙");
-                return;
             }
         }
 
@@ -98,37 +98,23 @@ namespace EOM.TSHotelManagement.FormUI
         {
             cboReserWay.SelectedIndex = 0;
             result = HttpHelper.Request("Room/SelectCanUseRoomAll");
-            if (result.statusCode != 200)
+            var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboReserRoomNo.DataSource = HttpHelper.JsonToList<Room>(result.message);
-            cboReserRoomNo.DisplayMember = "RoomNo";
-            cboReserRoomNo.ValueMember = "RoomNo";
+            cboReserRoomNo.DataSource = response.listSource;
+            cboReserRoomNo.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
+            cboReserRoomNo.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
             cboReserRoomNo.Text = ucRoom.co_RoomNo;
-            dtpBouDate.Value = Convert.ToDateTime(DateTime.Now);
+            dtpBookDate.Value = Convert.ToDateTime(DateTime.Now);
         }
 
         private void btnReserList_Click(object sender, EventArgs e)
         {
             FrmReserList frm = new FrmReserList();
             frm.Show();
-        }
-
-        private void dtpBouDate_ValueChanged(object sender, DateTime value)
-        {
-            dtpEndDate.Value = dtpBouDate.Value.AddDays(3);
-        }
-
-        private void dtpBouDate_TextChanged(object sender, EventArgs e)
-        {
-            dtpEndDate.Value = dtpBouDate.Value.AddDays(3);
-        }
-
-        private void dtpBouDate_Validated(object sender, EventArgs e)
-        {
-            dtpEndDate.Value = dtpBouDate.Value.AddDays(3);
         }
     }
 }

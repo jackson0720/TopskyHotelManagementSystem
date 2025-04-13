@@ -316,10 +316,12 @@ namespace EOM.TSHotelManagement.FormUI
             notifyIcon1.Text = "TS酒店管理系统-" + LoginInfo.WorkerName + "-版本号：" + ApplicationUtil.GetApplicationVersion();
             wk_WorkerName = LoginInfo.WorkerName;
 
-            if (_loadingProgress != null)
+            FrmRoomManager frmRoomManager = new FrmRoomManager
             {
-                _loadingProgress.Close();
-            }
+                TopLevel = false
+            };
+            pnlMID.Controls.Add(frmRoomManager);
+            frmRoomManager.Show();
 
         }
         #endregion

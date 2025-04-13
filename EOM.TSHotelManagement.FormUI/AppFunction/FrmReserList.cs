@@ -25,6 +25,7 @@ using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.Shared;
+using jvncorelib.CodeLib;
 using Sunny.UI;
 using System.Transactions;
 
@@ -38,58 +39,73 @@ namespace EOM.TSHotelManagement.FormUI
         }
 
         ResponseMsg result = new ResponseMsg();
+        Dictionary<string, string> dic = null;
 
         private void FrmReserList_Load(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("Reser/SelectReserAll");
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>
+            {
+                { nameof(ReadReserInputDto.IsDelete), "0"},
+                { nameof(ReadReserInputDto.IgnorePaging), "true" }
+            };
+            result = HttpHelper.Request("Reser/SelectReserAll", dic);
+            var reserDataSources = HttpHelper.JsonToModel<ListOutputDto<ReadReserOutputDto>>(result.message);
+            if (reserDataSources.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvReserList.AutoGenerateColumns = false;
-            dgvReserList.DataSource = HttpHelper.JsonToList<Reser>(result.message);
+            dgvReserList.DataSource = reserDataSources.listSource;
 
             #region 加载客户类型信息
-            result = HttpHelper.Request("SystemInformation/SelectCustoTypeAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            var customerTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
+            if (customerTypeDataSource.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
+            List<ReadCustoTypeOutputDto> lstSourceGrid = customerTypeDataSource.listSource;
             this.cbCustoType.DataSource = lstSourceGrid;
-            this.cbCustoType.DisplayMember = "TypeName";
-            this.cbCustoType.ValueMember = "UserType";
+            this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
+            this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
             this.cbCustoType.SelectedIndex = 0;
             this.cbCustoType.ReadOnly = true;
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("SystemInformation/SelectPassPortTypeAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            var passportDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
+            if (passportDataSource.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassportType> passPorts = HttpHelper.JsonToList<PassportType>(result.message);
+            List<ReadPassportTypeOutputDto> passPorts = passportDataSource.listSource;
             this.cbPassportType.DataSource = passPorts;
-            this.cbPassportType.DisplayMember = "PassportName";
-            this.cbPassportType.ValueMember = "PassportId";
+            this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
+            this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
             this.cbPassportType.SelectedIndex = 0;
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("SystemInformation/SelectSexTypeAll");
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>
+            {
+                { nameof(ReadGenderTypeInputDto.IsDelete), "0"},
+                { nameof(ReadGenderTypeInputDto.IgnorePaging), "true" }
+            };
+            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
+            var genderTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadGenderTypeOutputDto>>(result.message);
+            if (genderTypeDataSource.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<GenderType> listSexType = HttpHelper.JsonToList<GenderType>(result.message);
+            List<ReadGenderTypeOutputDto> listSexType = genderTypeDataSource.listSource;
             this.cbSex.DataSource = listSexType;
-            this.cbSex.DisplayMember = "sexName";
-            this.cbSex.ValueMember = "sexId";
+            this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
+            this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
             #endregion
         }
 
@@ -109,7 +125,8 @@ namespace EOM.TSHotelManagement.FormUI
                     DateOfBirth = dtpBirthday.Value,
                     CustomerType = cbCustoType.SelectedIndex,
                     IsDelete = 0,
-                    DataInsUsr = LoginInfo.WorkerNo
+                    DataInsUsr = LoginInfo.WorkerNo,
+                    DataInsDate = DateTime.Now,
                 };
                 result = HttpHelper.Request("Customer​/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
                 var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
@@ -123,7 +140,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     LastCheckInTime = DateTime.Now,
                     CustomerNumber = custo.CustomerNumber,
-                    RoomStateId = new EnumHelper().GetEnumValue(RoomState.Reserved),
+                    RoomStateId = new EnumHelper().GetEnumValue(RoomState.Occupied),
                     RoomNumber = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString(),
                     DataChgDate = DateTime.Now,
                     DataChgUsr = LoginInfo.WorkerNo
@@ -173,7 +190,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void dgvReserList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string custoNo = ApplicationUtil.GetListNewId("TS", 2, 1, "-").FirstOrDefault();
+            string custoNo = new UniqueCode().GetNewId("TS-");
             txtCustoNo.Text = custoNo;
             txtCustoName.Text = dgvReserList.SelectedRows[0].Cells["clCustoNm"].Value.ToString();
             txtTel.Text = dgvReserList.SelectedRows[0].Cells["clTel"].Value.ToString();

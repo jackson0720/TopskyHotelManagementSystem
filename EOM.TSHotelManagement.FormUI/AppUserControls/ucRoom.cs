@@ -2,7 +2,9 @@
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.FormUI.Properties;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
+using NPOI.SS.Formula.Functions;
 using Sunny.UI;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
@@ -185,26 +187,26 @@ namespace EOM.TSHotelManagement.FormUI
             }
             switch (romRoomInfo.RoomStateId)
             {
-                case 1:
+                case (int)Common.Core.RoomState.Vacant:
                     btnRoom.BackgroundImage = Resources.可住状态;
                     break;
-                case 2:
+                case (int)Common.Core.RoomState.Occupied:
                     btnRoom.BackgroundImage = Resources.已住状态;
                     break;
-                case 3:
+                case (int)Common.Core.RoomState.Maintenance:
                     btnRoom.BackgroundImage = Resources.维修状态;
                     break;
-                case 4:
+                case (int)Common.Core.RoomState.Dirty:
                     btnRoom.BackgroundImage = Resources.脏房状态;
                     break;
-                case 5:
+                case (int)Common.Core.RoomState.Reserved:
                     btnRoom.BackgroundImage = Resources.预约状态;
                     break;
             }
             btnRoom.BackgroundImageLayout = AntdUI.TFit.Cover;
         }
 
-        Room r;
+        ReadRoomOutputDto r;
         private void tsmiReserRoom_Click(object sender, EventArgs e)
         {
             FrmReserManager frm = new FrmReserManager();
@@ -225,17 +227,18 @@ namespace EOM.TSHotelManagement.FormUI
             }
             getParam = new Dictionary<string, string>
             {
-                { "no", roomText[1] }
+                { nameof(ReadRoomInputDto.RoomNumber), roomText[1] }
             };
             result = HttpHelper.Request("Room/SelectRoomByRoomNo", getParam);
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
 
-            if (result.statusCode != 200)
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.Show("接口服务异常！", "来自小T提示", UIStyle.Red);
                 return;
             }
-            r = HttpHelper.JsonToModel<Room>(result.message!)!;
-            if (r.RoomStateId == 1)
+            r = response.Source;
+            if (r.RoomStateId == (int)Common.Core.RoomState.Vacant)
             {
                 tsmiCheckIn.Enabled = false;
                 tsmiCheckOut.Enabled = true;
@@ -244,7 +247,7 @@ namespace EOM.TSHotelManagement.FormUI
                 tsmiChangeRoom.Enabled = true;
                 tsmiReserRoom.Enabled = false;
             }
-            else if (r.RoomStateId == 2 || r.RoomStateId == 3)
+            else if (r.RoomStateId == (int)Common.Core.RoomState.Occupied || r.RoomStateId == (int)Common.Core.RoomState.Maintenance)
             {
                 tsmiCheckIn.Enabled = false;
                 tsmiCheckOut.Enabled = false;
@@ -253,7 +256,7 @@ namespace EOM.TSHotelManagement.FormUI
                 tsmiChangeRoom.Enabled = false;
                 tsmiReserRoom.Enabled = false;
             }
-            else if (r.RoomStateId == 4)
+            else if (r.RoomStateId == (int)Common.Core.RoomState.Dirty)
             {
                 tsmiCheckIn.Enabled = true;
                 tsmiCheckOut.Enabled = false;
@@ -277,13 +280,13 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (romCustoInfo != null && romRoomInfo != null)
             {
-                if (r.RoomStateId == 4)
+                if (r.RoomStateId == new EnumHelper().GetEnumValue(Common.Core.RoomState.Reserved))
                 {
                     rm_CustoNo = romCustoInfo.CustomerNumber;
                     rm_RoomNo = romRoomInfo.RoomNumber;
                     rm_RoomType = romRoomInfo.RoomName;
                     rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomRent).ToString();
-                    rm_RoomStateId = 4;
+                    rm_RoomStateId = (int)Common.Core.RoomState.Reserved;
                     UIMessageBox.ShowInfo("欢迎入住，请先注册客户信息！");
                     FrmReserList frm = new FrmReserList();
                     frm.ShowDialog();
@@ -347,29 +350,31 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void tsmiChangeState_Click(object sender, EventArgs e)
         {
-            if (r.RoomStateId == 4)
+            if (r.RoomStateId == (int)Common.Core.RoomState.Reserved)
             {
                 bool tf = UIMessageBox.Show("当前房间已被预约，确认更改状态后将会删除原本预约状态及信息，你确定吗？", "来自小T的提醒", UIStyle.Red, UIMessageBoxButtons.OKCancel);
                 if (tf)
                 {
                     getParam = new Dictionary<string, string>()
                     {
-                        {"no",r.RoomNumber }
+                        { nameof(ReadReserInputDto.ReservationRoomNumber) , r.RoomNumber }
                     };
                     result = HttpHelper.Request("Reser/SelectReserInfoByRoomNo", getParam);
-                    if (result.statusCode != 200)
+                    var reserResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadReserOutputDto>>(result.message);
+                    if (reserResponse.StatusCode != StatusCodeConstants.Success)
                     {
                         UIMessageBox.Show("SelectReserInfoByRoomNo+接口服务异常！", "来自小T提示", UIStyle.Red);
                         return;
                     }
                     else
                     {
-                        var reser = new Reser
+                        var reser = new DeleteReserInputDto
                         {
-                            ReservationId = HttpHelper.JsonToModel<Reser>(result.message!)!.ReservationId
+                            ReservationId = reserResponse.Source!.ReservationId
                         };
                         result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
-                        if (result.statusCode != 200)
+                        var reserResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                        if (reserResult.StatusCode != StatusCodeConstants.Success)
                         {
                             UIMessageBox.Show("DeleteReserInfo+接口服务异常！", "来自小T提示", UIStyle.Red);
                             return;
