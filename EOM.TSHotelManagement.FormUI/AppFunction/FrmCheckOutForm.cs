@@ -24,7 +24,6 @@
 
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
 using jvncorelib.CodeLib;
 using Sunny.UI;
 using System.Transactions;

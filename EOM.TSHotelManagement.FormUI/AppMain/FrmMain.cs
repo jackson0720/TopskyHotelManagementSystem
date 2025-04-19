@@ -25,17 +25,11 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.FormUI.AppUserControls;
 using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.CodeLib;
 using Sunny.UI;
-using System.CodeDom;
 using System.Diagnostics;
-using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -268,7 +262,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.Owner.Hide();
-            
+
             lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + "_V" + ApplicationUtil.GetApplicationVersion();
 
             tmrDate.Enabled = true;

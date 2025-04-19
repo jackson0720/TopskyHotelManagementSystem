@@ -15,7 +15,7 @@ namespace EOM.TSHotelManagement.Common
         /// <param name="level"></param>
         public static void Record(string operationLog, int level)
         {
-            string api = "Utility/AddLog";
+            string api = ApiConstants.Utility_AddLog;
             var logDetail = new CreateOperationLogInputDto
             {
                 OperationTime = Convert.ToDateTime(DateTime.Now),

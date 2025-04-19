@@ -1,10 +1,7 @@
 ﻿using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.FormUI.Properties;
 using EOM.TSHotelManagement.Shared;
-using jvncorelib.EntityLib;
-using NPOI.SS.Formula.Functions;
 using Sunny.UI;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;

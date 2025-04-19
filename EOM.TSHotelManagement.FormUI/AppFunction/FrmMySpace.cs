@@ -24,13 +24,10 @@
 
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
 using jvncorelib.EncryptorLib;
 using jvncorelib.EntityLib;
 using Sunny.UI;
 using System.ComponentModel;
-using System.Net.Http.Headers;
-using System.Text.RegularExpressions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -149,7 +146,7 @@ namespace EOM.TSHotelManagement.FormUI
             if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
             {
                 picWorkerPic.BackgroundImage = null;
-                if(!string.IsNullOrEmpty(workerPicSource.PhotoPath)) picWorkerPic.LoadAsync(workerPicSource.PhotoPath);
+                if (!string.IsNullOrEmpty(workerPicSource.PhotoPath)) picWorkerPic.LoadAsync(workerPicSource.PhotoPath);
             }
         }
 
@@ -257,7 +254,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         public void PicHandler()
         {
-            Dictionary<string,string> additionalParams = new Dictionary<string, string>
+            Dictionary<string, string> additionalParams = new Dictionary<string, string>
             {
                 { nameof(CreateEmployeePhotoInputDto.EmployeeId), txtWorkerNo.Text.Trim() }
             };
@@ -267,7 +264,7 @@ namespace EOM.TSHotelManagement.FormUI
                 EmployeeId = txtWorkerNo.Text.Trim(),
                 PhotoUrl = null,
             };
-            var requestResult = HttpHelper.UploadFile(ApiConstants.EmployeePhoto_InsertWorkerPhoto,openPic.FileName, additionalParams);
+            var requestResult = HttpHelper.UploadFile(ApiConstants.EmployeePhoto_InsertWorkerPhoto, openPic.FileName, additionalParams);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(requestResult.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {

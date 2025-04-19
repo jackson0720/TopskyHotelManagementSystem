@@ -21,7 +21,6 @@
  *SOFTWARE.
  *
  */
-using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
@@ -276,7 +275,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             if (identityCard.Length == 18)
             {
-                var result = ApplicationUtil.searchCode(identityCard);
+                var result = ApplicationUtil.SearchCode(identityCard);
                 if (result.message.IsNullOrEmpty()) //如果没有错误消息输出，则代表成功
                 {
                     try

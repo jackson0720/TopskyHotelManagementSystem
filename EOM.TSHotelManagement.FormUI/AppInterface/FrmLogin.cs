@@ -25,11 +25,8 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.EntityLib;
 using Sunny.UI;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -169,7 +166,7 @@ namespace EOM.TSHotelManagement.FormUI
 
                     if (response.StatusCode != StatusCodeConstants.Success)
                     {
-                        AntdUI.Modal.open(this, "系统提示", "账号或密码错误！",TType.Error);
+                        AntdUI.Modal.open(this, "系统提示", "账号或密码错误！", TType.Error);
                         txtWorkerPwd.Focus();
                         return;
                     }
@@ -201,7 +198,7 @@ namespace EOM.TSHotelManagement.FormUI
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 AntdUI.Modal.open(this, "系统提示", "服务器维护中，请稍后再试！", TType.Error);
             }

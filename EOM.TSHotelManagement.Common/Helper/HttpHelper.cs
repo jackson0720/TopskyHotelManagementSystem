@@ -1,10 +1,7 @@
-﻿using jvncorelib.EncryptorLib;
-using jvncorelib.EntityLib;
+﻿using jvncorelib.EntityLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using System.Net;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;

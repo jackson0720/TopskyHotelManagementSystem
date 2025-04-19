@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EOM.TSHotelManagement.Common
+﻿namespace EOM.TSHotelManagement.Common
 {
     public static class ApiConstants
     {
@@ -98,5 +92,6 @@ namespace EOM.TSHotelManagement.Common
 
         // Utility
         public const string Utility_SelectCardCode = "Utility/SelectCardCode";
+        public const string Utility_AddLog = "Utility/AddLog";
     }
 }

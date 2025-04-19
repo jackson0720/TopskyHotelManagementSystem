@@ -35,7 +35,7 @@ namespace EOM.TSHotelManagement.FormUI
 {
     public partial class FrmRoomManager : Form
     {
-        
+
 
         public delegate void ReLoadRoomList(string typeName);
 
@@ -221,7 +221,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             try
             {
-                var dic = new Dictionary<string, string> 
+                var dic = new Dictionary<string, string>
                 {
                     { nameof(ReadRoomTypeInputDto.IsDelete), "0" },
                     { nameof(ReadRoomTypeInputDto.IgnorePaging), "true"}
@@ -292,7 +292,7 @@ namespace EOM.TSHotelManagement.FormUI
             flpRoom.Controls.Clear();
             if (string.IsNullOrEmpty(typeName))
             {
-                dic = new Dictionary<string, string> 
+                dic = new Dictionary<string, string>
                 {
                     { nameof(ReadRoomInputDto.IsDelete), "0" },
                     { nameof(ReadRoomInputDto.IgnorePaging), "true" }

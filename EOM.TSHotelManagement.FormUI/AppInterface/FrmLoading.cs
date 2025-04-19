@@ -23,11 +23,9 @@
  */
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
 using Newtonsoft.Json;
 using Sunny.UI;
 using System.Diagnostics;
-using System.Reflection;
 
 namespace EOM.TSHotelManagement.FormUI
 {

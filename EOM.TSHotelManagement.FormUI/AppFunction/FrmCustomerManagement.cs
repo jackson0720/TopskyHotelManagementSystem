@@ -24,8 +24,6 @@
 
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.Shared;
 using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -157,7 +155,7 @@ namespace EOM.TSHotelManagement.FormUI
             listTableSource = tableComHelper.ConvertToAntdItems(custos);
 
             dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<ReadCustomerOutputDto>());
-            dgvCustomerList.DataSource =  listTableSource;
+            dgvCustomerList.DataSource = listTableSource;
         }
 
         private void btnAddCusto_BtnClick(object sender, EventArgs e)
@@ -201,7 +199,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (e.Record is IList<AntdUI.AntItem> data)
             {
-                cm_CustoNo = helper.GetValue(data,nameof(ReadCustomerOutputDto.CustomerNumber));
+                cm_CustoNo = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerNumber));
                 cm_CustoName = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerName));
                 cm_CustoSex = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerGender)));
                 cm_CustoTel = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerPhoneNumber));

@@ -112,7 +112,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void ValidateAndUpdateCustomerInfo()
         {
             // 获取会员规则列表
-            var dic = new Dictionary<string, string> 
+            var dic = new Dictionary<string, string>
             {
                 { nameof(ReadVipLevelRuleInputDto.IgnorePaging), "true" },
                 { nameof(ReadVipLevelRuleInputDto.IsDelete), "0" }
@@ -121,7 +121,7 @@ namespace EOM.TSHotelManagement.FormUI
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadVipLevelRuleOutputDto>>(result.message!);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageTip.ShowError($"{ApiConstants.VipLevelRule_SelectVipRuleList}+接口服务异常，请提交issue: {response.Message}",3000);
+                UIMessageTip.ShowError($"{ApiConstants.VipLevelRule_SelectVipRuleList}+接口服务异常，请提交issue: {response.Message}", 3000);
             }
 
             var listVipRule = response.listSource

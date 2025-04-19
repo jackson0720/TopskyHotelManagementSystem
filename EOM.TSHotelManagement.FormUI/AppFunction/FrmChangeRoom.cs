@@ -23,11 +23,11 @@
  */
 
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Shared;
 using Sunny.UI;
 using System.Transactions;
-using EOM.TSHotelManagement.Shared;
-using EOM.TSHotelManagement.Common.Contract;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -63,7 +63,7 @@ namespace EOM.TSHotelManagement.FormUI
             string lbu = LoginInfo.WorkerName;
             string rno = ucRoom.co_RoomNo.ToString();
             string nrno = cboRoomList.Text;
-            
+
             using (TransactionScope scope = new TransactionScope())
             {
                 try

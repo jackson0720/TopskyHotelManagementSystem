@@ -1,7 +1,5 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common.Util;
-using EOM.TSHotelManagement.FormUI.Properties;
-using jvncorelib.EntityLib;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
@@ -214,7 +212,7 @@ namespace EOM.TSHotelManagement.FormUI
         /// </summary>
         public class TableColumn
         {
-            public TableColumn(string field, string description,bool visible = true)
+            public TableColumn(string field, string description, bool visible = true)
             {
                 Field = field;
                 Description = description;

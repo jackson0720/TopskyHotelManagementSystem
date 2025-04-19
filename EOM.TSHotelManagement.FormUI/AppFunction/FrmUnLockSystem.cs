@@ -23,7 +23,6 @@
  */
 
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
 using Sunny.UI;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
