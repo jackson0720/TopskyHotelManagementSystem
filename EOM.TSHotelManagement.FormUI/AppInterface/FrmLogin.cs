@@ -163,7 +163,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     var worker = new ReadEmployeeInputDto() { EmployeeId = txtWorkerId.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
 
-                    result = HttpHelper.Request("Employee/SelectEmployeeInfoByEmployeeIdAndEmployeePwd", HttpHelper.ModelToJson(worker));
+                    result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd, HttpHelper.ModelToJson(worker));
 
                     var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
 
@@ -192,7 +192,6 @@ namespace EOM.TSHotelManagement.FormUI
                         LoginInfo.UserToken = w.UserToken;
                         FrmMain frm = new FrmMain(this);
                         this.Hide();
-                        frm.TopMost = true;
                         frm.ShowDialog(this);
                     }
                     else

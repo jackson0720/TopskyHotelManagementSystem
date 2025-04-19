@@ -78,11 +78,11 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadSellThingInputDto.ProductName) , sellthing.Trim() },
                 { nameof(ReadSellThingInputDto.Specification) , sellthing.Trim() }
             };
-            result = HttpHelper.Request("Sellthing/SelectSellThingAll", dic);
+            result = HttpHelper.Request(ApiConstants.Sellthing_SelectSellThingAll, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadSellThingOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Sellthing_SelectSellThingAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
@@ -113,11 +113,11 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     { nameof(ReadSpendInputDto.RoomNumber), room }
                 };
-                result = HttpHelper.Request("Spend/SelectSpendByRoomNo",dic);
+                result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByRoomNo, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
                 if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("SelectSpendByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 List<ReadSpendOutputDto> lstSource = response.listSource;
@@ -156,11 +156,11 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadSellThingInputDto.PageSize), pageSize.ToString() },
                 { nameof(ReadSellThingInputDto.IsDelete), "0"}
             };
-            result = HttpHelper.Request("Sellthing/SelectSellThingAll", dic);
+            result = HttpHelper.Request(ApiConstants.Sellthing_SelectSellThingAll, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadSellThingOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                AntdUI.Message.error(this, "SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Message.error(this, $"{ApiConstants.Sellthing_SelectSellThingAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
             }
             List<ReadSellThingOutputDto> lstSource = response.listSource;
@@ -233,11 +233,11 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         { nameof(ReadSellThingInputDto.ProductNumber) , txtSellNo.Text.Trim()}
                     };
-                    result = HttpHelper.Request("Sellthing/SelectSellThingAll", dic);
+                    result = HttpHelper.Request(ApiConstants.Sellthing_SelectSellThingAll, dic);
                     var sellthings = HttpHelper.JsonToModel<ListOutputDto<ReadSellThingOutputDto>>(result.message);
                     if (sellthings.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageBox.ShowError("SelectSellThingAll+接口服务异常，请提交Issue或尝试更新版本！");
+                        UIMessageBox.ShowError($"{ApiConstants.Sellthing_SelectSellThingAll}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     List<ReadSellThingOutputDto> st = sellthings.listSource;
@@ -245,11 +245,11 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text.Trim()}
                     };
-                    result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
+                    result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
                     var room = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
                     if (room.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                        UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     r = room.Source;
@@ -259,11 +259,11 @@ namespace EOM.TSHotelManagement.FormUI
                         { nameof(ReadSpendInputDto.IsDelete) , "0" },
                         { nameof(ReadSpendInputDto.IgnorePaging) , "true" }
                     };
-                    result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", dic);
+                    result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByRoomNo, dic);
                     var spends = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
                     if (spends.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageBox.ShowError("SelectSpendInfoRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                        UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     var listSource = spends.listSource;
@@ -288,20 +288,20 @@ namespace EOM.TSHotelManagement.FormUI
                                     IsDelete = 0,
                                     DataChgUsr = LoginInfo.WorkerNo
                                 };
-                                result = HttpHelper.Request("Spend/UpdSpenInfo", HttpHelper.ModelToJson(updateSpend));
+                                result = HttpHelper.Request(ApiConstants.Spend_UpdSpenInfo, HttpHelper.ModelToJson(updateSpend));
                                 var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                                 if (response.StatusCode != StatusCodeConstants.Success)
                                 {
-                                    UIMessageBox.ShowError("UpdSpenInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                                    UIMessageBox.ShowError($"{ApiConstants.Spend_UpdSpenInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                                     return;
                                 }
                                 var stock = (st.First().Stock - (decimal)nudNum.Value);
                                 var sellThing = new UpdateSellThingInputDto { ProductName = st.First().ProductName, ProductPrice = st.First().ProductPrice, Stock = stock, ProductNumber = st.First().ProductNumber, Specification = st.First().Specification };
-                                result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
+                                result = HttpHelper.Request(ApiConstants.Sellthing_UpdateSellthingInfo, HttpHelper.ModelToJson(sellThing));
                                 response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                                 if (response.StatusCode != StatusCodeConstants.Success)
                                 {
-                                    UIMessageBox.ShowError("UpdateSellthingInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                                    UIMessageBox.ShowError($"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                                     return;
                                 }
                                 UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK, true);
@@ -332,20 +332,20 @@ namespace EOM.TSHotelManagement.FormUI
                                     DataInsUsr = LoginInfo.WorkerNo,
                                     DataInsDate = DateTime.Now,
                                 };
-                                result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(insertSpend));
+                                result = HttpHelper.Request(ApiConstants.Spend_InsertSpendInfo, HttpHelper.ModelToJson(insertSpend));
                                 var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                                 if (response.StatusCode != StatusCodeConstants.Success)
                                 {
-                                    UIMessageBox.ShowError("InsertSpendInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                                    UIMessageBox.ShowError($"{ApiConstants.Spend_InsertSpendInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                                     return;
                                 }
                                 var stock = (st.First().Stock - (decimal)nudNum.Value);
                                 var sellThing = new UpdateSellThingInputDto { ProductName = st.First().ProductName, ProductPrice = st.First().ProductPrice, Stock = stock, ProductNumber = st.First().ProductNumber, Specification = st.First().Specification };
-                                result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
+                                result = HttpHelper.Request(ApiConstants.Sellthing_UpdateSellthingInfo, HttpHelper.ModelToJson(sellThing));
                                 response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                                 if (response.StatusCode != StatusCodeConstants.Success)
                                 {
-                                    UIMessageBox.ShowError("UpdateSellthingInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                                    UIMessageBox.ShowError($"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                                     return;
                                 }
                                 UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK, true);
@@ -377,20 +377,20 @@ namespace EOM.TSHotelManagement.FormUI
                                 ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
                                 SettlementStatus = SpendConsts.UnSettle,
                             };
-                            result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(spend));
+                            result = HttpHelper.Request(ApiConstants.Spend_InsertSpendInfo, HttpHelper.ModelToJson(spend));
                             var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                             if (response.StatusCode != StatusCodeConstants.Success)
                             {
-                                UIMessageBox.ShowError("InsertSpendInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                                UIMessageBox.ShowError($"{ApiConstants.Spend_InsertSpendInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                                 return;
                             }
                             var stock = (st.First().Stock - (decimal)nudNum.Value);
                             var sellThing = new UpdateSellThingInputDto { ProductName = st.First().ProductName, ProductPrice = st.First().ProductPrice, Stock = stock, ProductNumber = st.First().ProductNumber, Specification = st.First().Specification };
-                            result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
+                            result = HttpHelper.Request(ApiConstants.Sellthing_UpdateSellthingInfo, HttpHelper.ModelToJson(sellThing));
                             response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                             if (response.StatusCode != StatusCodeConstants.Success)
                             {
-                                UIMessageBox.ShowError("UpdateSellthingInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                                UIMessageBox.ShowError($"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                                 return;
                             }
                             UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK, true);
@@ -435,31 +435,31 @@ namespace EOM.TSHotelManagement.FormUI
                             { nameof(ReadSellThingInputDto.ProductName) , spend.ProductName },
                             { nameof(ReadSellThingInputDto.ProductPrice) , Decimal.Parse(spend.ProductPrice.ToString()).ToString("#,##0.00").ToString() }
                         };
-                        result = HttpHelper.Request("Sellthing/SelectSellThingByNameAndPrice", dic);
+                        result = HttpHelper.Request(ApiConstants.Sellthing_SelectSellThingByNameAndPrice, dic);
                         var response = HttpHelper.JsonToModel<SingleOutputDto<ReadSellThingOutputDto>>(result.message);
                         if (response.StatusCode != StatusCodeConstants.Success)
                         {
-                            UIMessageBox.ShowError("SelectSellThingByNameAndPrice+接口服务异常，请提交Issue或尝试更新版本！");
+                            UIMessageBox.ShowError($"{ApiConstants.Sellthing_SelectSellThingByNameAndPrice}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         ReadSellThingOutputDto s = response.Source;
                         decimal num = Convert.ToDecimal(spend.ConsumptionQuantity);
                         decimal inboundStock = (s.Stock + num);
-                        result = HttpHelper.Request("Spend/UndoCustomerSpend", HttpHelper.ModelToJson(new UpdateSpendInputDto { SpendNumber = spend.SpendNumber }));
+                        result = HttpHelper.Request(ApiConstants.Spend_UndoCustomerSpend, HttpHelper.ModelToJson(new UpdateSpendInputDto { SpendNumber = spend.SpendNumber }));
                         var undoSpendResponse = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (undoSpendResponse.StatusCode != StatusCodeConstants.Success)
                         {
-                            UIMessageBox.ShowError("UndoCustomerSpend+接口服务异常，请提交Issue或尝试更新版本！");
+                            UIMessageBox.ShowError($"{ApiConstants.Spend_UndoCustomerSpend}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         var sellThing = new UpdateSellThingInputDto { ProductName = s.ProductName, ProductPrice = s.ProductPrice, Stock = inboundStock, ProductNumber = s.ProductNumber, Specification = s.Specification };
-                        result = HttpHelper.Request("Sellthing/UpdateSellthingInfo", HttpHelper.ModelToJson(sellThing));
+                        result = HttpHelper.Request(ApiConstants.Sellthing_UpdateSellthingInfo, HttpHelper.ModelToJson(sellThing));
                         var updateResponse = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (updateResponse.StatusCode != StatusCodeConstants.Success)
                         {
                             UIMessageTip.ShowError("撤销失败！", 1000);
                             RecordHelper.Record($"接口异常。Message：\n{updateResponse.Message}", 3);
-                            UIMessageBox.ShowError("UpdateSellthingInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                            UIMessageBox.ShowError($"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         UIMessageTip.ShowOk("撤销成功！", 1000);
@@ -514,11 +514,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadRoomInputDto.RoomNumber) , room}
             };
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
+            result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
             var checkResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
             if (checkResponse.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             ReadRoomOutputDto r = checkResponse.Source;

@@ -70,18 +70,18 @@ namespace EOM.TSHotelManagement.FormUI
                     DataInsDate = DateTime.Now,
                     DataInsUsr = LoginInfo.WorkerNo
                 };
-                result = HttpHelper.Request("Reser​/InserReserInfo", HttpHelper.ModelToJson(reser));
+                result = HttpHelper.Request(ApiConstants.Reser_InsertReserInfo, HttpHelper.ModelToJson(reser));
                 var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                 if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("InserReserInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                result = HttpHelper.Request("Room​/UpdateRoomInfoWithReser", HttpHelper.ModelToJson(room));
+                result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfoWithReser, HttpHelper.ModelToJson(room));
                 response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                 if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("UpdateRoomInfoWithReser+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 UIMessageBox.ShowSuccess("预约成功！请在指定时间内进行登记入住");
@@ -97,11 +97,11 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmRoomManager_Load(object sender, EventArgs e)
         {
             cboReserWay.SelectedIndex = 0;
-            result = HttpHelper.Request("Room/SelectCanUseRoomAll");
+            result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboReserRoomNo.DataSource = response.listSource;

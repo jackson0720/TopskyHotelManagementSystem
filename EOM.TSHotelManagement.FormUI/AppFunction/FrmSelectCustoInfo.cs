@@ -55,11 +55,11 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmSelectCustoInfo_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
             if (customerTypes.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             this.cbCustoType.DataSource = customerTypes.listSource;
@@ -70,11 +70,11 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
             var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
             if (passportTypes.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             this.cbPassportType.DataSource = passportTypes.listSource;
@@ -84,21 +84,21 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            dic = new Dictionary<string, string>()
+            dic = new Dictionary<string, string>
             {
-                { nameof(ReadGenderTypeInputDto.IsDelete),"0" },
-                { nameof(ReadGenderTypeInputDto.IgnorePaging), "true" }
+                { nameof(ReadGenderTypeInputDto.IsDelete) , "0" },
+                { nameof(ReadGenderTypeInputDto.IgnorePaging) , "true" }
             };
-            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
-            var dataSources = HttpHelper.JsonToModel<ListOutputDto<ReadGenderTypeOutputDto>>(result.message);
-            if (dataSources.StatusCode != StatusCodeConstants.Success)
+            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
+            var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
+            if (genderTypes.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            this.cbSex.DataSource = dataSources.listSource;
-            this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
-            this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
+            this.cbSex.DataSource = genderTypes.listSource;
+            this.cbSex.DisplayMember = nameof(EnumDto.Description);
+            this.cbSex.ValueMember = nameof(EnumDto.Id);
             this.cbSex.SelectedIndex = 0;
             #endregion
 
@@ -107,11 +107,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadCustomerInputDto.CustomerNumber),txtCustoNo.Text.ToString() }
             };
-            result = HttpHelper.Request("Customer/SelectCustoByInfo", dic);
+            result = HttpHelper.Request(ApiConstants.Customer_SelectCustoByInfo, dic);
             var c = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message);
             if (c.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Customer_SelectCustoByInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             txtCustoAdress.Text = c.Source.CustomerAddress;

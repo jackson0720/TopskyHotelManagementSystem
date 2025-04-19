@@ -396,9 +396,10 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // picWorkerPic
             // 
-            picWorkerPic.Location = new Point(286, 62);
+            picWorkerPic.BackgroundImageLayout = ImageLayout.Stretch;
+            picWorkerPic.Location = new Point(257, 150);
             picWorkerPic.Name = "picWorkerPic";
-            picWorkerPic.Size = new Size(157, 179);
+            picWorkerPic.Size = new Size(215, 246);
             picWorkerPic.TabIndex = 0;
             picWorkerPic.TabStop = false;
             picWorkerPic.Click += picWorkerPic_Click;

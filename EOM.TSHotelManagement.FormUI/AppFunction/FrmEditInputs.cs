@@ -48,11 +48,11 @@ namespace EOM.TSHotelManagement.FormUI
             txtCustoNo.Text = cardId;
 
             #region 加载客户类型信息
-            var result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            var result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
             if (customerTypes.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var lstSourceGrid = customerTypes.listSource;
@@ -64,11 +64,11 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
             var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
             if (passportTypes.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var passPorts = passportTypes.listSource;
@@ -79,16 +79,16 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载性别信息
-            dic = new Dictionary<string, string>()
+            dic = new Dictionary<string, string>
             {
-                { nameof(ReadGenderTypeInputDto.IsDelete), "0" },
-                { nameof(ReadGenderTypeInputDto.IgnorePaging), "true" }
+                { nameof(ReadGenderTypeInputDto.IsDelete) , "0" },
+                { nameof(ReadGenderTypeInputDto.IgnorePaging) , "true" }
             };
-            result = HttpHelper.Request("Base/SelectSexTypeAll",dic);
-            var genderTypes = HttpHelper.JsonToModel<ListOutputDto<ReadGenderTypeOutputDto>>(result.message);
+            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
+            var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
             if (genderTypes.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listSexType = genderTypes.listSource;
@@ -146,7 +146,7 @@ namespace EOM.TSHotelManagement.FormUI
                 DataChgUsr = LoginInfo.WorkerNo,
             };
 
-            result = HttpHelper.Request("Customer/UpdCustomerInfo", HttpHelper.ModelToJson(custo));
+            result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerInfo, HttpHelper.ModelToJson(custo));
             var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
@@ -194,7 +194,7 @@ namespace EOM.TSHotelManagement.FormUI
                 IsDelete = 0
             };
 
-            result = HttpHelper.Request("Customer/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
+            result = HttpHelper.Request(ApiConstants.Customer_InsertCustomerInfo, HttpHelper.ModelToJson(custo));
             var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {

@@ -63,12 +63,14 @@ namespace EOM.TSHotelManagement.FormUI
 
         List<ReadRoomOutputDto> romsty = null;
         ucRoom room = null;
-        string EmptyCount;
-        string OccupiedCount;
-        string UnderRepairCount;
-        string ReservedCount;
-        string DirtyCount;
-        #region 房间加载事件方法
+
+
+        public static int EmptyCount = 0;
+        public static int OccupiedCount = 0;
+        public static int DirtyCount = 0;
+        public static int UnderRepairCount = 0;
+        public static int ReservedCount = 0;
+
         private void FrmRoomManager_Load(object sender, EventArgs e)
         {
             loadingProgress.Show();
@@ -78,58 +80,73 @@ namespace EOM.TSHotelManagement.FormUI
             LoadData();
             loadingProgress.Close();
         }
-        #endregion
-
         private void LoadRoomTypesAndStates()
         {
             try
             {
-                EmptyCount = "0";
-                OccupiedCount = "0";
-                DirtyCount = "0";
-                UnderRepairCount =  "0";
-                ReservedCount = "0";
+                EmptyCount = 0;
+                OccupiedCount = 0;
+                DirtyCount = 0;
+                UnderRepairCount = 0;
+                ReservedCount = 0;
 
-                var requests = new Dictionary<string, (string? json, Dictionary<string, string>? parameters)>
+                var statusCounts = new Dictionary<string, int>
                 {
-                    { "Room/SelectCanUseRoomAllByRoomState", (null, null) },
-                    { "Room/SelectNotUseRoomAllByRoomState", (null, null) },
-                    { "Room/SelectNotClearRoomAllByRoomState", (null, null) },
-                    { "Room/SelectFixingRoomAllByRoomState", (null, null) },
-                    { "Room/SelectReseredRoomAllByRoomState", (null, null) }
+                    [nameof(EmptyCount)] = 0,
+                    [nameof(OccupiedCount)] = 0,
+                    [nameof(DirtyCount)] = 0,
+                    [nameof(UnderRepairCount)] = 0,
+                    [nameof(ReservedCount)] = 0
                 };
 
-                var results = HttpHelper.RaiseBatchRequest(requests);
-
-                if (results["Room/SelectCanUseRoomAllByRoomState"].statusCode != 200)
+                var requestConfigs = new[]
                 {
-                    throw new Exception("SelectCanUseRoomAllByRoomState+接口服务异常");
-                }
-                EmptyCount = results["Room/SelectCanUseRoomAllByRoomState"].message!;
+                    (ApiConstants.Room_SelectCanUseRoomAllByRoomState, nameof(RoomState.Vacant), nameof(EmptyCount)),
+                    (ApiConstants.Room_SelectNotUseRoomAllByRoomState, nameof(RoomState.Occupied), nameof(OccupiedCount)),
+                    (ApiConstants.Room_SelectNotClearRoomAllByRoomState, nameof(RoomState.Dirty), nameof(DirtyCount)),
+                    (ApiConstants.Room_SelectFixingRoomAllByRoomState, nameof(RoomState.Maintenance), nameof(UnderRepairCount)),
+                    (ApiConstants.Room_SelectReservedRoomAllByRoomState, nameof(RoomState.Reserved), nameof(ReservedCount))
+                };
 
-                if (results["Room/SelectNotUseRoomAllByRoomState"].statusCode != 200)
+                foreach (var (url, propertyName, targetVar) in requestConfigs)
                 {
-                    throw new Exception("SelectNotUseRoomAllByRoomState+接口服务异常");
-                }
-                OccupiedCount = results["Room/SelectNotUseRoomAllByRoomState"].message!;
+                    try
+                    {
+                        var httpResponse = HttpHelper.Request(url);
 
-                if (results["Room/SelectNotClearRoomAllByRoomState"].statusCode != 200)
-                {
-                    throw new Exception("SelectNotClearRoomAllByRoomState+接口服务异常");
-                }
-                DirtyCount = results["Room/SelectNotClearRoomAllByRoomState"].message!;
+                        var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(httpResponse.message);
 
-                if (results["Room/SelectFixingRoomAllByRoomState"].statusCode != 200)
-                {
-                    throw new Exception("SelectFixingRoomAllByRoomState+接口服务异常");
-                }
-                UnderRepairCount = results["Room/SelectFixingRoomAllByRoomState"].message!;
+                        if (response.StatusCode != StatusCodeConstants.Success)
+                        {
+                            throw new HttpRequestException($"{url} 请求失败，状态码：{response.StatusCode}");
+                        }
 
-                if (results["Room/SelectReseredRoomAllByRoomState"].statusCode != 200)
-                {
-                    throw new Exception("SelectReseredRoomAllByRoomState+接口服务异常");
+                        var propertyInfo = typeof(ReadRoomOutputDto).GetProperty(propertyName);
+                        if (propertyInfo == null)
+                        {
+                            throw new MissingFieldException($"ReadRoomOutputDto 中未找到 {propertyName} 属性");
+                        }
+
+                        if (propertyInfo.GetValue(response.Source) is int countValue)
+                        {
+                            statusCounts[targetVar] = countValue;
+                        }
+                        else
+                        {
+                            throw new InvalidCastException($"{propertyName} 值类型不匹配");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new AggregateException($"处理 {url} 时发生错误", ex);
+                    }
                 }
-                ReservedCount = results["Room/SelectReseredRoomAllByRoomState"].message!;
+
+                EmptyCount = statusCounts[nameof(EmptyCount)];
+                OccupiedCount = statusCounts[nameof(OccupiedCount)];
+                DirtyCount = statusCounts[nameof(DirtyCount)];
+                UnderRepairCount = statusCounts[nameof(UnderRepairCount)];
+                ReservedCount = statusCounts[nameof(ReservedCount)];
 
                 LoadRoomState();
             }
@@ -163,10 +180,10 @@ namespace EOM.TSHotelManagement.FormUI
                         ID = item.Id.ToString(),
                     };
 
-                    var roomState = RoomStateConstant.GetConstantByCode(item.Id.ToString());
+                    var roomState = new EnumHelper().GetEnumValue(item.Id);
                     if (roomState != null)
                     {
-                        menuItem.Icon = GetRoomCountIcon(roomState.Code);
+                        menuItem.Icon = GetRoomCountIcon(roomState);
                     }
 
                     muRoomState.Items.Add(menuItem);
@@ -187,15 +204,15 @@ namespace EOM.TSHotelManagement.FormUI
             };
         }
 
-        private Bitmap? GetRoomCountIcon(string code)
+        private Bitmap? GetRoomCountIcon(int code)
         {
             return code switch
             {
-                var c when c == new EnumHelper().GetEnumValue(RoomState.Vacant).ToString() => Resources.可住状态,
-                var c when c == new EnumHelper().GetEnumValue(RoomState.Occupied).ToString() => Resources.已住状态,
-                var c when c == new EnumHelper().GetEnumValue(RoomState.Maintenance).ToString() => Resources.维修状态,
-                var c when c == new EnumHelper().GetEnumValue(RoomState.Dirty).ToString() => Resources.脏房状态,
-                var c when c == new EnumHelper().GetEnumValue(RoomState.Reserved).ToString() => Resources.预约状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Vacant) => Resources.可住状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Occupied) => Resources.已住状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Maintenance) => Resources.维修状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Dirty) => Resources.脏房状态,
+                var c when c == new EnumHelper().GetEnumValue(RoomState.Reserved) => Resources.预约状态,
                 _ => null
             };
         }
@@ -209,11 +226,11 @@ namespace EOM.TSHotelManagement.FormUI
                     { nameof(ReadRoomTypeInputDto.IsDelete), "0" },
                     { nameof(ReadRoomTypeInputDto.IgnorePaging), "true"}
                 };
-                var result = HttpHelper.Request("RoomType/SelectRoomTypesAll", dic);
+                var result = HttpHelper.Request(ApiConstants.RoomType_SelectRoomTypesAll, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomTypeOutputDto>>(result.message);
                 if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    throw new Exception("SelectRoomTypesAll+接口服务异常");
+                    throw new Exception($"{ApiConstants.RoomType_SelectRoomTypesAll}+接口服务异常");
                 }
 
                 var listRoomTypes = response.listSource;
@@ -280,11 +297,11 @@ namespace EOM.TSHotelManagement.FormUI
                     { nameof(ReadRoomInputDto.IsDelete), "0" },
                     { nameof(ReadRoomInputDto.IgnorePaging), "true" }
                 };
-                result = HttpHelper.Request("Room/SelectRoomAll", dic);
+                result = HttpHelper.Request(ApiConstants.Room_SelectRoomAll, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
                 if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("SelectRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = response.listSource;
@@ -297,11 +314,11 @@ namespace EOM.TSHotelManagement.FormUI
                     { nameof(ReadRoomInputDto.IgnorePaging), "true" },
                     { nameof(ReadRoomInputDto.RoomTypeName), typeName }
                 };
-                result = HttpHelper.Request("Room/SelectRoomByTypeName", dic);
+                result = HttpHelper.Request(ApiConstants.Room_SelectRoomByTypeName, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
                 if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("SelectRoomByTypeName+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByTypeName}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = response.listSource;
@@ -332,11 +349,11 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadRoomInputDto.IgnorePaging), "true" },
                 { nameof(ReadRoomInputDto.RoomStateId), stateid.ToString() }
             };
-            result = HttpHelper.Request("Room/SelectRoomByRoomState", dic);
+            result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomState, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectRoomByRoomState+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomState}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             romsty = response.listSource;
@@ -360,26 +377,26 @@ namespace EOM.TSHotelManagement.FormUI
         {
             flpRoom.Controls.Clear();
 
-            var roomState = RoomStateConstant.GetConstantByCode(e.Value.ID);
+            var roomState = new EnumHelper().GetEnumValue(Convert.ToInt32(e.Value.ID));
 
             if (roomState != null)
             {
-                switch (roomState.Code)
+                switch (roomState)
                 {
-                    case var code when code == RoomStateConstant.Vacant.Code:
-                        LoadRoomByState(1);
+                    case var code when code == (int)RoomState.Vacant:
+                        LoadRoomByState((int)RoomState.Vacant);
                         break;
-                    case var code when code == RoomStateConstant.Occupied.Code:
-                        LoadRoomByState(2);
+                    case var code when code == (int)RoomState.Occupied:
+                        LoadRoomByState((int)RoomState.Occupied);
                         break;
-                    case var code when code == RoomStateConstant.Maintenance.Code:
-                        LoadRoomByState(3);
+                    case var code when code == (int)RoomState.Maintenance:
+                        LoadRoomByState((int)RoomState.Maintenance);
                         break;
-                    case var code when code == RoomStateConstant.Dirty.Code:
-                        LoadRoomByState(4);
+                    case var code when code == (int)RoomState.Dirty:
+                        LoadRoomByState((int)RoomState.Dirty);
                         break;
-                    case var code when code == RoomStateConstant.Reserved.Code:
-                        LoadRoomByState(5);
+                    case var code when code == (int)RoomState.Reserved:
+                        LoadRoomByState((int)RoomState.Reserved);
                         break;
                 }
             }

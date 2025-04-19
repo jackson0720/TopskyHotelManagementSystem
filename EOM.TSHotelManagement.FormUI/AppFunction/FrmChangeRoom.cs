@@ -27,6 +27,7 @@ using EOM.TSHotelManagement.Common.Core;
 using Sunny.UI;
 using System.Transactions;
 using EOM.TSHotelManagement.Shared;
+using EOM.TSHotelManagement.Common.Contract;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -43,16 +44,16 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmChangeRoom_Load(object sender, EventArgs e)
         {
-            //string rno = cboRoomList.Text;
-            result = HttpHelper.Request("Room/SelectCanUseRoomAll");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
+            var datas = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
+            if (datas.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCanUseRoomAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboRoomList.DataSource = HttpHelper.JsonToList<Room>(result.message);
-            cboRoomList.DisplayMember = nameof(Room.RoomNumber);
-            cboRoomList.ValueMember = nameof(Room.RoomNumber);
+            cboRoomList.DataSource = datas;
+            cboRoomList.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
+            cboRoomList.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
             firstLoad = false;
         }
 
@@ -62,102 +63,100 @@ namespace EOM.TSHotelManagement.FormUI
             string lbu = LoginInfo.WorkerName;
             string rno = ucRoom.co_RoomNo.ToString();
             string nrno = cboRoomList.Text;
-            dic = new Dictionary<string, string>()
-            {
-                { "no",rno}
-            };
-
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            Room room = HttpHelper.JsonToModel<Room>(result.message);
-            Room checkInRoom = new Room()
-            {
-                RoomNumber = nrno,
-                CustomerNumber = ucRoom.co_CustoNo,
-                RoomStateId = 1,
-                LastCheckInTime = Convert.ToDateTime(DateTime.Now),
-                DataInsUsr = LoginInfo.WorkerNo
-            };
-            dic = new Dictionary<string, string>()
-            {
-                { "roomno",rno}
-            };
-            result = HttpHelper.Request("Room/DayByRoomNo", dic);
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomRent));
-
-            Spend s = new Spend()
-            {
-                RoomNumber = cboRoomList.Text,
-                ProductName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
-                ConsumptionQuantity = Convert.ToInt32(result.message),
-                CustomerNumber = ucRoom.co_CustoNo,
-                ProductPrice = room.RoomRent,
-                ConsumptionAmount = Convert.ToDecimal(sum),
-                ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                SettlementStatus = SpendConsts.UnSettle,
-            };
-
-            result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(checkInRoom));
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("UpdateRoomInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            bool result1 = result.message.ToString().Equals("true");
-            dic = new Dictionary<string, string>()
-                {
-                    { "room",rno}
-                };
-            result = HttpHelper.Request("Room​/UpdateRoomByRoomNo", dic);
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            bool result2 = result.message.ToString().Equals("true");
-            dic = new Dictionary<string, string>()
-                {
-                    { "No",rno}
-                };
-            result = HttpHelper.Request("Spend​/SelectSpendByCustoNo", dic);
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectSpendByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            var result3 = HttpHelper.JsonToList<Spend>(result.message);
-            if (result3.Count != 0)
-            {
-                Spend spend = new Spend() { RoomNumber = nrno, CustomerNumber = ucRoom.CustoNo };
-                result = HttpHelper.Request("Spend​/UpdateSpendInfoByRoomNo", HttpHelper.ModelToJson(spend));
-                if (result.statusCode != 200)
-                {
-                    UIMessageBox.ShowError("UpdateSpendInfoByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                bool result4 = result.message.ToString().Equals("true");
-            }
+            
             using (TransactionScope scope = new TransactionScope())
             {
-                if (result1 && result2)
+                try
                 {
-                    UIMessageBox.ShowSuccess("转房成功");
-                    result = HttpHelper.Request("Spend​/InsertSpendInfo", HttpHelper.ModelToJson(s));
-                    if (result.statusCode != 200)
+                    #region 发起转房和转移消费以及添加消费的请求
+
+                    dic = new Dictionary<string, string>()
                     {
-                        UIMessageBox.ShowError("InsertSpendInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                        { nameof(ReadRoomInputDto.RoomNumber) , rno }
+                    };
+
+                    result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
+                    var data = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
+                    if (data.StatusCode != StatusCodeConstants.Success)
+                    {
+                        UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
-                    bool m = result.message.ToString().Equals("true");
+                    var room = data.Source;
+                    var checkInRoom = new UpdateRoomInputDto()
+                    {
+                        RoomNumber = nrno,
+                        CustomerNumber = ucRoom.co_CustoNo,
+                        RoomStateId = (int)RoomState.Occupied,
+                        LastCheckInTime = Convert.ToDateTime(DateTime.Now),
+                        DataChgUsr = LoginInfo.WorkerNo,
+                        DataChgDate = DateTime.Now
+                    };
+                    result = HttpHelper.Request(ApiConstants.Room_DayByRoomNo, dic);
+                    data = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
+                    if (data.StatusCode != StatusCodeConstants.Success)
+                    {
+                        UIMessageBox.ShowError($"{ApiConstants.Room_DayByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                        return;
+                    }
+                    sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(data.Source.StayDays) * room.RoomRent));
+
+                    var insertSpend = new CreateSpendInputDto()
+                    {
+                        RoomNumber = cboRoomList.Text,
+                        ProductName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
+                        ConsumptionQuantity = Convert.ToInt32(result.message),
+                        CustomerNumber = ucRoom.co_CustoNo,
+                        ProductPrice = room.RoomRent,
+                        ConsumptionAmount = Convert.ToDecimal(sum),
+                        ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                        SettlementStatus = SpendConsts.UnSettle,
+                    };
+
+                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfo, HttpHelper.ModelToJson(checkInRoom));
+                    var httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                    if (httpResult.StatusCode != StatusCodeConstants.Success)
+                    {
+                        UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfo}+接口服务异常，请提交Issue或尝试更新版本！");
+                        return;
+                    }
+                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomByRoomNo, dic);
+                    httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                    if (httpResult.StatusCode != StatusCodeConstants.Success)
+                    {
+                        UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                        return;
+                    }
+                    result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByCustoNo, dic);
+                    var datas = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
+                    if (datas.StatusCode != StatusCodeConstants.Success)
+                    {
+                        UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByCustoNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                        return;
+                    }
+                    var result3 = datas.listSource;
+                    if (result3.Count != 0)
+                    {
+                        var spend = new UpdateSpendInputDto() { RoomNumber = nrno, CustomerNumber = ucRoom.CustoNo };
+                        result = HttpHelper.Request(ApiConstants.Spend_UpdateSpendInfoByRoomNo, HttpHelper.ModelToJson(spend));
+                        httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                        if (httpResult.StatusCode != StatusCodeConstants.Success)
+                        {
+                            UIMessageBox.ShowError($"{ApiConstants.Spend_UpdateSpendInfoByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                            return;
+                        }
+                    }
+
+                    #endregion
+
+                    UIMessageBox.ShowSuccess("转房成功");
+                    result = HttpHelper.Request(ApiConstants.Spend_InsertSpendInfo, HttpHelper.ModelToJson(insertSpend));
+                    httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                    if (httpResult.StatusCode != StatusCodeConstants.Success)
+                    {
+                        UIMessageBox.ShowError($"{ApiConstants.Spend_InsertSpendInfo}+接口服务异常，请提交Issue或尝试更新版本！");
+                        return;
+                    }
                     FrmRoomManager.Reload("");
                     FrmRoomManager._RefreshRoomCount();
                     #region 获取添加操作日志所需的信息
@@ -166,7 +165,7 @@ namespace EOM.TSHotelManagement.FormUI
                     scope.Complete();
                     this.Close();
                 }
-                else
+                catch (Exception)
                 {
                     UIMessageBox.ShowError("转房失败");
                 }
@@ -178,15 +177,16 @@ namespace EOM.TSHotelManagement.FormUI
             string str = firstLoad ? ucRoom.RoomNo.ToString() : cboRoomList.SelectedValue.ToString();
             dic = new Dictionary<string, string>()
             {
-                { "no",str}
+                { nameof(ReadRoomTypeInputDto.RoomNumber) , str }
             };
-            result = HttpHelper.Request("RoomType/SelectRoomTypeByRoomNo", dic);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.RoomType_SelectRoomTypeByRoomNo, dic);
+            var data = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomTypeOutputDto>>(result.message);
+            if (data.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectRoomTypeByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.RoomType_SelectRoomTypeByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            RoomType roomType = HttpHelper.JsonToModel<RoomType>(result.message);
+            var roomType = data.Source;
             lblRoomType.Text = roomType.RoomTypeName;
         }
     }

@@ -85,7 +85,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmCheckOutForm_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
+            result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
             if (customerTypes.StatusCode != StatusCodeConstants.Success)
             {
@@ -101,7 +101,7 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
+            result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
             var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
             if (passportTypes.StatusCode != StatusCodeConstants.Success)
             {
@@ -121,17 +121,17 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadGenderTypeInputDto.IsDelete) , "0" },
                 { nameof(ReadGenderTypeInputDto.IgnorePaging) , "true" }
             };
-            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
-            var genderTypes = HttpHelper.JsonToModel<ListOutputDto<ReadGenderTypeOutputDto>>(result.message);
+            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
+            var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
             if (genderTypes.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<ReadGenderTypeOutputDto> listSexType = genderTypes.listSource;
+            var listSexType = genderTypes.listSource;
             this.cboCustoSex.DataSource = listSexType;
-            this.cboCustoSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
-            this.cboCustoSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
+            this.cboCustoSex.DisplayMember = nameof(EnumDto.Description);
+            this.cboCustoSex.ValueMember = nameof(EnumDto.Id);
             this.cboCustoSex.SelectedIndex = 0;
             #endregion
 
@@ -145,7 +145,7 @@ namespace EOM.TSHotelManagement.FormUI
                 { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text.ToString()}
             };
 
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
+            result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
             var roomInfo = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
             if (roomInfo.StatusCode != StatusCodeConstants.Success)
             {
@@ -167,7 +167,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text}
             };
-            result = HttpHelper.Request("Room/DayByRoomNo", dic);
+            result = HttpHelper.Request(ApiConstants.Room_DayByRoomNo, dic);
             var stayDays = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
             if (stayDays.StatusCode != 200)
             {
@@ -199,7 +199,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadCustomerInputDto.CustomerNumber),CustoNo.Text.ToString() }
             };
-            result = HttpHelper.Request("Customer​/SelectCustoByInfo", dic);
+            result = HttpHelper.Request(ApiConstants.Customer_SelectCustoByInfo, dic);
             SingleOutputDto<ReadCustomerOutputDto> customer = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message);
             if (customer?.StatusCode != StatusCodeConstants.Success)
             {
@@ -232,11 +232,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadSpendInputDto.RoomNumber) , RoomNo }
             };
-            result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", dic);
+            result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByRoomNo, dic);
             var spendInfo = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
             if (spendInfo.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectSpendInfoRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             dgvSpendList.AutoGenerateColumns = false;
@@ -253,11 +253,11 @@ namespace EOM.TSHotelManagement.FormUI
                     { nameof(ReadSpendInputDto.RoomNumber) , RoomNo },
                     { nameof(ReadSpendInputDto.CustomerNumber) , CustoNo.Text.ToString() }
                 };
-                result = HttpHelper.Request("Spend/SumConsumptionAmount", dic);
+                result = HttpHelper.Request(ApiConstants.Spend_SumConsumptionAmount, dic);
                 var consumptionAmount = HttpHelper.JsonToModel<SingleOutputDto<ReadSpendOutputDto>>(result.message);
                 if (consumptionAmount.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("consumptionAmount+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Spend_SumConsumptionAmount}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 total = Convert.ToDouble(consumptionAmount.Source.ConsumptionAmount);
@@ -270,11 +270,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadEnergyManagementInputDto.RoomNo),txtRoomNo.Text.Trim()}
             };
-            result = HttpHelper.Request("EnergyManagement/SelectEnergyManagementInfo", dic);
+            result = HttpHelper.Request(ApiConstants.EnergyManagement_SelectEnergyManagementInfo, dic);
             var energyManagements = HttpHelper.JsonToModel<ListOutputDto<ReadEnergyManagementOutputDto>>(result.message);
             if (energyManagements.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectEnergyManagementInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.EnergyManagement_SelectEnergyManagementInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listWti = energyManagements.listSource;
@@ -366,7 +366,7 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text}
                     };
-                    result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
+                    result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
                     var roomInfo = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
                     if (roomInfo.StatusCode != StatusCodeConstants.Success)
                     {
@@ -381,7 +381,7 @@ namespace EOM.TSHotelManagement.FormUI
                         {
                             { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text }
                         };
-                        result = HttpHelper.Request("Room/UpdateRoomByRoomNo", dic);
+                        result = HttpHelper.Request(ApiConstants.Room_UpdateRoomByRoomNo, dic);
                         var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (response.StatusCode != StatusCodeConstants.Success)
                         {
@@ -389,7 +389,7 @@ namespace EOM.TSHotelManagement.FormUI
                             return;
                         }
 
-                        result = HttpHelper.Request("EnergyManagement​/InsertEnergyManagementInfo", HttpHelper.ModelToJson(w));
+                        result = HttpHelper.Request(ApiConstants.EnergyManagement_InsertEnergyManagementInfo, HttpHelper.ModelToJson(w));
                         response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (response.StatusCode != StatusCodeConstants.Success)
                         {
@@ -413,7 +413,7 @@ namespace EOM.TSHotelManagement.FormUI
                             { nameof(UpdateSpendInputDto.RoomNumber) , txtRoomNo.Text },
                             { nameof(UpdateSpendInputDto.ConsumptionTime) , checktime}
                         };
-                        result = HttpHelper.Request("Spend​/UpdateMoneyState", dic);
+                        result = HttpHelper.Request(ApiConstants.Spend_UpdateMoneyState, dic);
                         var spendInfo = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (spendInfo.StatusCode != StatusCodeConstants.Success)
                         {
@@ -425,14 +425,14 @@ namespace EOM.TSHotelManagement.FormUI
                         {
                             { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text }
                         };
-                        result = HttpHelper.Request("Room/UpdateRoomByRoomNo", dic);
+                        result = HttpHelper.Request(ApiConstants.Room_UpdateRoomByRoomNo, dic);
                         var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (response.StatusCode != StatusCodeConstants.Success)
                         {
                             UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
-                        result = HttpHelper.Request("EnergyManagement​/InsertEnergyManagementInfo", HttpHelper.ModelToJson(w));
+                        result = HttpHelper.Request(ApiConstants.EnergyManagement_InsertEnergyManagementInfo, HttpHelper.ModelToJson(w));
                         response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (response.StatusCode != StatusCodeConstants.Success)
                         {

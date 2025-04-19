@@ -44,13 +44,14 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmRoomStateManager_Load(object sender, EventArgs e)
         {
             txtRoomNo.Text = ucRoom.rm_RoomNo;
-            result = HttpHelper.Request("Base/SelectRoomStateAll");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Base_SelectRoomStateAll);
+            var datas = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
+            if (datas.StatusCode != 200)
             {
-                UIMessageBox.ShowError("SelectRoomStateAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectRoomStateAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboState.DataSource = HttpHelper.JsonToList<EnumDto>(result.message);
+            cboState.DataSource = datas.listSource;
             cboState.DisplayMember = nameof(EnumDto.Description);
             cboState.ValueMember = nameof(EnumDto.Id);
             cboState.SelectedIndex = 0;
@@ -75,11 +76,11 @@ namespace EOM.TSHotelManagement.FormUI
                         { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text },
                         { nameof(ReadRoomInputDto.RoomStateId) , cboState.SelectedValue.ToString() }
                     };
-                    result = HttpHelper.Request("Room/UpdateRoomStateByRoomNo", dic);
+                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomStateByRoomNo, dic);
                     var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                     if (response.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageBox.ShowError("UpdateRoomStateByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
+                        UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomStateByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
                     UIMessageBox.Show("房间" + txtRoomNo.Text + "成功修改为" + cboState.Text, "修改提示", UIStyle.Green);

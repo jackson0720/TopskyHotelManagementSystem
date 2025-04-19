@@ -444,8 +444,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoValidate = AutoValidate.Disable;
             BackColor = Color.FromArgb(235, 243, 255);
             BackgroundImageLayout = ImageLayout.Stretch;
+            CausesValidation = false;
             ClientSize = new Size(1080, 721);
             Controls.Add(cpUITheme);
             Controls.Add(lblScroll);

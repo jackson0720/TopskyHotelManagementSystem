@@ -160,13 +160,14 @@ namespace EOM.TSHotelManagement.FormUI
         private void LoadFonts()
         {
             #region 从数据库读取文字滚动的内容
-            result = HttpHelper.Request("Fonts/SelectPromotionContentAll");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Fonts_SelectPromotionContentAll);
+            var response = HttpHelper.JsonToModel<ListOutputDto<ReadPromotionContentOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 fonts = null;
             }
 
-            fonts = HttpHelper.JsonToModel<ListOutputDto<ReadPromotionContentOutputDto>>(result.message);
+            fonts = response;
             #endregion
         }
 
@@ -221,7 +222,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             var listSource = new List<ReadNavBarOutputDto>();
             #region 菜单导航代码块
-            result = HttpHelper.Request("NavBar/NavBarList");
+            result = HttpHelper.Request(ApiConstants.NavBar_NavBarList);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadNavBarOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
@@ -300,11 +301,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadEmployeeCheckInputDto.EmployeeId), LoginInfo.WorkerNo}
             };
-            result = HttpHelper.Request("EmployeeCheck/SelectToDayCheckInfoByWorkerNo", user);
+            result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo, user);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageTip.ShowError($"打卡接口异常：{response.Message}");
+                UIMessageTip.ShowError($"{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}打卡接口异常：{response.Message}");
                 return;
             }
             if (response.Source.IsChecked)
@@ -336,11 +337,11 @@ namespace EOM.TSHotelManagement.FormUI
         #region 检查软件更新版本事件方法
         private void tsmiCheckUpdate_Click(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("Base/GetBase");
+            result = HttpHelper.Request(ApiConstants.Base_GetBase);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadSystemInformationOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError($"接口服务异常，请重试。{response.Message}");
+                UIMessageBox.ShowError($"{ApiConstants.Base_GetBase}+接口服务异常，请重试。{response.Message}");
                 return;
             }
 
@@ -407,11 +408,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadEmployeeCheckInputDto.EmployeeId), LoginInfo.WorkerNo}
             };
-            result = HttpHelper.Request("EmployeeCheck/SelectToDayCheckInfoByWorkerNo", user);
+            result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo, user);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageTip.ShowError($"打卡接口异常：{response.Message}");
+                UIMessageTip.ShowError($"打卡接口:{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}异常：{response.Message}");
                 return;
             }
             if (response.Source.IsChecked)
@@ -420,11 +421,11 @@ namespace EOM.TSHotelManagement.FormUI
                 linkLabel1.ForeColor = Color.Green;
                 linkLabel1.LinkColor = Color.Green;
                 pnlCheckInfo.Visible = true;
-                result = HttpHelper.Request("EmployeeCheck/SelectWorkerCheckDaySumByEmployeeId", user);
+                result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId, user);
                 response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
                 if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageTip.ShowError($"打卡天数接口异常：{response.Message}");
+                    UIMessageTip.ShowError($"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
                     return;
                 }
                 lblCheckDay.Text = Convert.ToString(response.Source.CheckDay);
@@ -448,18 +449,18 @@ namespace EOM.TSHotelManagement.FormUI
                         CheckTime = DateTime.Now,
                         DataInsUsr = LoginInfo.WorkerNo
                     };
-                    result = HttpHelper.Request("EmployeeCheck/AddCheckInfo", workerCheck.ModelToJson());
+                    result = HttpHelper.Request(ApiConstants.EmployeeCheck_AddCheckInfo, workerCheck.ModelToJson());
                     var checkResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                     if (checkResult.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageTip.ShowError($"打卡接口异常：{checkResult.Message}");
+                        UIMessageTip.ShowError($"打卡接口{ApiConstants.EmployeeCheck_AddCheckInfo}异常：{checkResult.Message}");
                         return;
                     }
-                    result = HttpHelper.Request("EmployeeCheck/SelectWorkerCheckDaySumByEmployeeId", user);
+                    result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId, user);
                     response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
                     if (response.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageTip.ShowError($"打卡天数接口异常：{response.Message}");
+                        UIMessageTip.ShowError($"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
                         return;
                     }
                     lblCheckDay.Text = Convert.ToString(response.Source.CheckDay);
@@ -487,7 +488,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             FrmMySpace frmMySpace = new FrmMySpace();
             frmMySpace.Text = LoginInfo.WorkerName + "的个人中心";
-            frmMySpace.ShowDialog();
+            frmMySpace.Show();
         }
 
         public void CloseMine()

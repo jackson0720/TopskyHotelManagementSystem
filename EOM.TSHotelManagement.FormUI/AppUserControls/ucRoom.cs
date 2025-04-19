@@ -229,12 +229,12 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 { nameof(ReadRoomInputDto.RoomNumber), roomText[1] }
             };
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", getParam);
+            result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, getParam);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
 
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.Show("接口服务异常！", "来自小T提示", UIStyle.Red);
+                UIMessageBox.Show($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常！", "来自小T提示", UIStyle.Red);
                 return;
             }
             r = response.Source;
@@ -359,11 +359,11 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         { nameof(ReadReserInputDto.ReservationRoomNumber) , r.RoomNumber }
                     };
-                    result = HttpHelper.Request("Reser/SelectReserInfoByRoomNo", getParam);
+                    result = HttpHelper.Request(ApiConstants.Reser_SelectReserInfoByRoomNo, getParam);
                     var reserResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadReserOutputDto>>(result.message);
                     if (reserResponse.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageBox.Show("SelectReserInfoByRoomNo+接口服务异常！", "来自小T提示", UIStyle.Red);
+                        UIMessageBox.Show($"{ApiConstants.Reser_SelectReserInfoByRoomNo}+接口服务异常！", "来自小T提示", UIStyle.Red);
                         return;
                     }
                     else
@@ -372,11 +372,11 @@ namespace EOM.TSHotelManagement.FormUI
                         {
                             ReservationId = reserResponse.Source!.ReservationId
                         };
-                        result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
+                        result = HttpHelper.Request(ApiConstants.Reser_DeleteReserInfo, HttpHelper.ModelToJson(reser));
                         var reserResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                         if (reserResult.StatusCode != StatusCodeConstants.Success)
                         {
-                            UIMessageBox.Show("DeleteReserInfo+接口服务异常！", "来自小T提示", UIStyle.Red);
+                            UIMessageBox.Show($"{ApiConstants.Reser_DeleteReserInfo}+接口服务异常！", "来自小T提示", UIStyle.Red);
                             return;
                         }
                     }
