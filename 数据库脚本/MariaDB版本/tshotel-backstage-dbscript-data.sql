@@ -1,11 +1,5 @@
 INSERT INTO `administrator` (`id`, `admin_number`, `admin_account`, `admin_password`, `admin_type`, `admin_name`, `is_admin`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (1, '1263785187301658678', 'admin', 'clUKFMeIUWp6YflZweR0Cw==·#c0fbb?;*$>#;^b%$?>#%%<?%%%aeae^', 'Admin', '阿杰', 1, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `administrator_type` (`id`, `type_id`, `type_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (1, 'Admin', '超级管理员', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `administrator_type` (`id`, `type_id`, `type_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (2, 'FinanceManager', '财务经理', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `administrator_type` (`id`, `type_id`, `type_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (3, 'GeneralManager', '总经理', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `administrator_type` (`id`, `type_id`, `type_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (4, 'HotelManager', '酒店经理', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `administrator_type` (`id`, `type_id`, `type_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (5, 'HRManager', '人力资源经理', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `administrator_type` (`id`, `type_id`, `type_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (6, 'LogisticsManager', '后勤经理', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `administrator_type` (`id`, `type_id`, `type_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (7, 'CheckGroup', '监管小组', 0, NULL, NULL, NULL, NULL);
 INSERT INTO `card_code` (`id`, `province`, `city`, `district`, `district_code`) VALUES (1, '北京市', NULL, '东城区', '110101');
 INSERT INTO `card_code` (`id`, `province`, `city`, `district`, `district_code`) VALUES (2, '北京市', NULL, '西城区', '110102');
 INSERT INTO `card_code` (`id`, `province`, `city`, `district`, `district_code`) VALUES (3, '北京市', NULL, '崇文区', '110103');
@@ -4494,8 +4488,6 @@ INSERT INTO `card_code` (`id`, `province`, `city`, `district`, `district_code`) 
 INSERT INTO `card_code` (`id`, `province`, `city`, `district`, `district_code`) VALUES (4486, '中华人民共和国香港特别行政区', NULL, NULL, '810000');
 INSERT INTO `card_code` (`id`, `province`, `city`, `district`, `district_code`) VALUES (4487, '中华人民共和国澳门特别行政区', NULL, NULL, '820000');
 INSERT INTO `card_code` (`id`, `province`, `city`, `district`, `district_code`) VALUES (4488, '台湾省', NULL, NULL, '710000');
-INSERT INTO `gender_type` (`id`, `gender_number`, `gender_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (1, 0, '女', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `gender_type` (`id`, `gender_number`, `gender_name`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (2, 1, '男', 0, NULL, NULL, NULL, NULL);
 INSERT INTO `menu` (`id`, `key`, `title`, `path`, `parent`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (1, 'home', '首页', '/', NULL, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `menu` (`id`, `key`, `title`, `path`, `parent`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (2, 'basic', '基础信息管理', '/', NULL, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `menu` (`id`, `key`, `title`, `path`, `parent`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (3, 'position', '职位管理', '/position', 2, 0, NULL, NULL, NULL, NULL);
@@ -4530,8 +4522,8 @@ INSERT INTO `menu` (`id`, `key`, `title`, `path`, `parent`, `delete_mk`, `datain
 INSERT INTO `menu` (`id`, `key`, `title`, `path`, `parent`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (32, 'passport', '证件类型管理', '/passport', 2, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `menu` (`id`, `key`, `title`, `path`, `parent`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (33, 'resermanagement', '预约管理', '/resermanagement', 12, 0, NULL, NULL, NULL, NULL);
 INSERT INTO `menu` (`id`, `key`, `title`, `path`, `parent`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (34, 'rolemanagement', '角色管理', '/rolemanagement', 26, 0, NULL, NULL, NULL, NULL);
-INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (1, 0, '空房', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (2, 1, '已住', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (3, 2, '维修中', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (4, 3, '脏房', 0, NULL, NULL, NULL, NULL);
-INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (5, 4, '已预约', 0, NULL, NULL, NULL, NULL);
+INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (1, 1, '空房', 0, NULL, NULL, NULL, NULL);
+INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (2, 2, '已住', 0, NULL, NULL, NULL, NULL);
+INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (3, 3, '维修', 0, NULL, NULL, NULL, NULL);
+INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (4, 4, '脏房', 0, NULL, NULL, NULL, NULL);
+INSERT INTO `room_state` (`id`, `room_state_number`, `room_state`, `delete_mk`, `datains_usr`, `datains_date`, `datachg_usr`, `datachg_date`) VALUES (5, 5, '预约', 0, NULL, NULL, NULL, NULL);

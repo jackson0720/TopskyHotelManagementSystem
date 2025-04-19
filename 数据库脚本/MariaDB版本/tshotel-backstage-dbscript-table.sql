@@ -352,22 +352,6 @@ CREATE TABLE `energy_management`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '水电费信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for gender_type
--- ----------------------------
-DROP TABLE IF EXISTS `gender_type`;
-CREATE TABLE `gender_type`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `gender_number` int(11) NOT NULL COMMENT '性别ID',
-  `gender_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '性别名称',
-  `delete_mk` int(11) NOT NULL COMMENT '删除标记',
-  `datains_usr` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资料创建人',
-  `datains_date` datetime NULL DEFAULT NULL COMMENT '资料创建时间',
-  `datachg_usr` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资料更新人',
-  `datachg_date` datetime NULL DEFAULT NULL COMMENT '资料更新时间',
-  PRIMARY KEY (`id`, `gender_number`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '性别类型表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
 -- Table structure for menu
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
