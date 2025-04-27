@@ -1,9 +1,7 @@
-﻿using jvncorelib.EncryptorLib;
-using jvncorelib.EntityLib;
+﻿using jvncorelib.EntityLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -15,30 +13,12 @@ namespace EOM.TSHotelManagement.Common
     /// </summary>
     public static class HttpHelper
     {
-        static EncryptLib encrypt = new EncryptLib();
-
         #region 受限于打包插件的限制才放在这，个人开发时建议统一在App.Config进行配置
 
         /// <summary>
-        /// 数据库配置连接
+        /// WebApi URL
         /// </summary>
-        public const string mysqlString = "server = localhost; user id = softuser; password = .; database = tshoteldb;";
-        /// <summary>
-        /// 照片文件配置URL
-        /// </summary>
-        public const string baseUrl = "";
-        /// <summary>
-        /// 上传照片URL
-        /// </summary>
-        public const string postUrl = "";
-        /// <summary>
-        /// WebApi URL(release)
-        /// </summary>
-        public const string apiUrl = "";
-        /// <summary>
-        /// WebApi URL(debug)
-        /// </summary>
-        //public const string apiUrl = "1/F8hHIvdiAzWpBv3RqANkv1On8CAw01xgL+WewjgIA=·0*%#^f<a#$^b;d>*a0d?d*#0<<b$^<a^";
+        public const string apiUrl = "http://localhost:63001/api/";
 
         #endregion
 
@@ -87,23 +67,66 @@ namespace EOM.TSHotelManagement.Common
         }
 
         /// <summary>
-        /// WebClient上传文件至服务器
+        /// 使用 RestSharp 上传文件（multipart/form-data）
         /// </summary>
-        /// <param name="fileNamePath">文件名，全路径格式</param>
-        /// <param name="uriString">服务器文件夹路径</param>
-        public static string UpLoadFile(string fileNamePath, string uriString)
+        /// <param name="url">API地址</param>
+        /// <param name="filePath">本地文件路径</param>
+        /// <param name="additionalParams">其他参数</param>
+        /// <param name="dicHeaders">自定义Headers</param>
+        /// <returns>响应结果</returns>
+        public static ResponseMsg UploadFile(
+            string url,
+            string filePath,
+            Dictionary<string, string>? additionalParams = null,
+            Dictionary<string, string>? dicHeaders = null)
         {
-            using HttpClient client = new HttpClient();
-            using MultipartFormDataContent content = new MultipartFormDataContent();
-            using FileStream fs = new FileStream(fileNamePath, FileMode.Open, FileAccess.Read);
-            using StreamContent streamContent = new StreamContent(fs);
-            content.Add(streamContent, "file", Path.GetFileName(fileNamePath));
+            var sourceStr = url.Replace("​", string.Empty);
 
-            HttpResponseMessage response = client.PostAsync(uriString, content).Result;
-            response.EnsureSuccessStatusCode();
-            string responseData = response.Content.ReadAsStringAsync().Result;
+            var requestUrl = apiUrl + sourceStr;
 
-            return responseData.Replace('\"', ' ');
+            var client = new RestClient(requestUrl);
+            var request = new RestRequest();
+
+
+            request.AddHeader("Content-Type", "multipart/form-data");
+            request.AddHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36");
+
+
+            if (!string.IsNullOrEmpty(LoginInfo.UserToken))
+            {
+                request.AddHeader("Authorization", $"Bearer {LoginInfo.UserToken}");
+            }
+
+
+            if (dicHeaders != null)
+            {
+                foreach (var key in dicHeaders.Keys)
+                {
+                    request.AddHeader(key, dicHeaders[key]);
+                }
+            }
+
+            if (additionalParams != null)
+            {
+                foreach (var kv in additionalParams)
+                {
+                    request.AddParameter(kv.Key, kv.Value, ParameterType.GetOrPost);
+                }
+            }
+
+            request.AddFile(
+                name: "file",
+                path: filePath,
+                contentType: GetMimeType(filePath)
+            );
+
+            var response = client.ExecutePost(request);
+
+            return new ResponseMsg
+            {
+                statusCode = (int)response.StatusCode,
+                message = response.Content
+            };
         }
 
         /// <summary>
@@ -120,10 +143,7 @@ namespace EOM.TSHotelManagement.Common
             //处理url
             var sourceStr = url.Replace("​", string.Empty);
 
-            //解密原始URL
-            var api = encrypt.Decryption(apiUrl);
-
-            var requestUrl = api + sourceStr;
+            var requestUrl = apiUrl + sourceStr;
 
             msg = DoGet(requestUrl);
 
@@ -144,10 +164,7 @@ namespace EOM.TSHotelManagement.Common
             //处理url
             var sourceStr = url.Replace("​", string.Empty);
 
-            //解密原始URL
-            var api = encrypt.Decryption(apiUrl);
-
-            var requestUrl = api + sourceStr;
+            var requestUrl = apiUrl + sourceStr;
 
             if (!json.IsNullOrEmpty())
             {
@@ -175,10 +192,7 @@ namespace EOM.TSHotelManagement.Common
             //处理url
             var sourceStr = url.Replace("​", string.Empty);
 
-            //解密原始URL
-            var api = encrypt.Decryption(apiUrl);
-
-            var requestUrl = api + sourceStr;
+            var requestUrl = apiUrl + sourceStr;
 
             if (!dic.IsNullOrEmpty())
             {
@@ -190,32 +204,6 @@ namespace EOM.TSHotelManagement.Common
             }
 
             return msg;
-        }
-
-        /// <summary>
-        /// 批量请求
-        /// </summary>
-        /// <param name="requests"></param>
-        /// <returns></returns>
-        public static Dictionary<string, ResponseMsg> RaiseBatchRequest(Dictionary<string, (string? json, Dictionary<string, string>? dic)> requests)
-        {
-            var results = new Dictionary<string, ResponseMsg>();
-
-            foreach (var (url, (json, dic)) in requests)
-            {
-                var result = Request(url);
-                if (!json.IsNullOrEmpty())
-                {
-                    result = Request(url, json);
-                }
-                else if (!dic.IsNullOrEmpty())
-                {
-                    result = Request(url, dic);
-                }
-                results.Add(url, result);
-            }
-
-            return results;
         }
 
         /// <summary>
@@ -271,7 +259,7 @@ namespace EOM.TSHotelManagement.Common
                     }
                 }
 
-                var token = LoginInfo.UserToken.IsNullOrEmpty() ? AdminInfo.UserToken : LoginInfo.UserToken;
+                var token = LoginInfo.UserToken;
 
                 request.AddHeader("Authorization", string.Format("Bearer {0}", token));
                 rsp = client.ExecuteGet(request);
@@ -283,7 +271,7 @@ namespace EOM.TSHotelManagement.Common
                 throw;
             }
 
-            return new ResponseMsg() { statusCode = (int)rsp.StatusCode, message = resultContent };
+            return new ResponseMsg() { message = resultContent };
         }
 
         /// <summary>
@@ -332,7 +320,7 @@ namespace EOM.TSHotelManagement.Common
 
             request.AddBody(jsonParam!);
 
-            var token = LoginInfo.UserToken.IsNullOrEmpty() ? AdminInfo.UserToken : LoginInfo.UserToken;
+            var token = LoginInfo.UserToken;
 
             request.AddHeader("Authorization", string.Format("Bearer {0}", token));
 
@@ -340,7 +328,24 @@ namespace EOM.TSHotelManagement.Common
 
             var responseString = reponse.Content;
 
-            return new ResponseMsg() { statusCode = (int)reponse.StatusCode, message = responseString };
+            return new ResponseMsg() { message = responseString };
+        }
+
+        /// <summary>
+        /// 获取文件的MIME类型
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetMimeType(string fileName)
+        {
+            var extension = Path.GetExtension(fileName).ToLowerInvariant();
+            return extension switch
+            {
+                ".jpg" => "image/jpeg",
+                ".jpeg" => "image/jpeg",
+                ".png" => "image/png",
+                _ => "application/octet-stream"
+            };
         }
 
         /// <summary>
@@ -437,7 +442,7 @@ namespace EOM.TSHotelManagement.Common
         {
             try
             {
-                return Newtonsoft.Json.JsonConvert.SerializeObject(input, new JsonSerializerSettings
+                return JsonConvert.SerializeObject(input, new JsonSerializerSettings
                 {
                     Converters = { new IgnoreNullValuesConverter(true) },
                     Formatting = Formatting.Indented // 如果需要格式化输出

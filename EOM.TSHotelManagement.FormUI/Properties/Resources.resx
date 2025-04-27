@@ -127,9 +127,6 @@
   <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EOM.TSHotelManagement.Common.Core" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EOM.TSHotelManagement.Common.Core.xml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="jpg_auto_04N58PICPw2s58PICaP4M8cef_PIC2018.jpg!w1024_new_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\jpg_auto_04N58PICPw2s58PICaP4M8cef_PIC2018.jpg!w1024_new_small.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -165,9 +162,6 @@
   </data>
   <data name="settings2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TableColumns" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EOM.TSHotelManagement.Common.Core.xml;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="上传照片" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\上传照片.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

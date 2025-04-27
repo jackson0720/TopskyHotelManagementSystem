@@ -24,15 +24,12 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.FormUI.AppUserControls;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.FormUI.Properties;
+using jvncorelib.CodeLib;
 using Sunny.UI;
 using System.Diagnostics;
-using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -41,10 +38,10 @@ namespace EOM.TSHotelManagement.FormUI
         private FrmLogin returnForm1 = null;
         private LoadingProgress _loadingProgress;
 
-        public FrmMain(FrmLogin F1, LoadingProgress loadingProgress)
+        public FrmMain(FrmLogin F1)
         {
             InitializeComponent();
-            _loadingProgress = loadingProgress;
+            _loadingProgress = new LoadingProgress();
 
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
@@ -152,35 +149,35 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
-        List<Fonts> fonts = null;
+        ListOutputDto<ReadPromotionContentOutputDto> fonts = null;
         int fontn = 0;
         private void LoadFonts()
         {
             #region 从数据库读取文字滚动的内容
-            result = HttpHelper.Request("Fonts/SelectFontAll");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Fonts_SelectPromotionContentAll);
+            var response = HttpHelper.JsonToModel<ListOutputDto<ReadPromotionContentOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
                 fonts = null;
             }
 
-            fonts = HttpHelper.JsonToList<Fonts>(result.message);
+            fonts = response;
             #endregion
         }
 
         #region 定时器：文字滚动间隔
         private void tmrFont_Tick(object sender, EventArgs e)
         {
-            if (fonts.IsNullOrEmpty())
+            if (fonts.listSource.IsNullOrEmpty())
             {
-                lblScroll.Text = "接口服务异常";
                 return;
             }
             fontn++;
-            if (fontn == fonts.Count)
+            if (fontn == fonts.total)
             {
                 fontn = 0;
             }
-            lblScroll.Text = fonts[fontn].FontsMess;
+            lblScroll.Text = fonts.listSource[fontn].PromotionContentMessage;
         }
         #endregion
 
@@ -217,26 +214,28 @@ namespace EOM.TSHotelManagement.FormUI
         /// </summary>
         private void LoadNavBar()
         {
-            var listSource = new List<NavBar>();
+            var listSource = new List<ReadNavBarOutputDto>();
             #region 菜单导航代码块
-            result = HttpHelper.Request("NavBar/NavBarList");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.NavBar_NavBarList);
+            var response = HttpHelper.JsonToModel<ListOutputDto<ReadNavBarOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
+                AntdUI.Message.error(this, "服务器维护中，请过会再试");
                 listSource = null;
                 return;
             }
-            muNavBar.Controls.Clear();
-            listSource = HttpHelper.JsonToList<NavBar>(result.message);
+            listSource = response.listSource;
             MenuItem menuItem = null;
+            muNavBar.Controls.Clear();
             if (!listSource.IsNullOrEmpty())
             {
                 foreach (var item in listSource)
                 {
                     menuItem = new MenuItem
                     {
-                        Text = item.nav_name
+                        Text = item.NavigationBarName
                     };
-                    switch (item.nav_name)
+                    switch (item.NavigationBarName)
                     {
                         case "客房管理":
                             menuItem.Icon = Resources.picRoom_Image;
@@ -263,7 +262,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.Owner.Hide();
-            
+
             lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + "_V" + ApplicationUtil.GetApplicationVersion();
 
             tmrDate.Enabled = true;
@@ -292,16 +291,18 @@ namespace EOM.TSHotelManagement.FormUI
                 btnHello.BackgroundImage = Resources.咖啡;
             }
 
-            Dictionary<string, string> user = new Dictionary<string, string>();
-            user.Add("wkn", LoginInfo.WorkerNo);
-            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo");
-            if (result.statusCode != 200)
+            Dictionary<string, string> user = new Dictionary<string, string>()
             {
-                UIMessageTip.ShowError("打卡接口异常，请提交issue");
+                { nameof(ReadEmployeeCheckInputDto.EmployeeId), LoginInfo.WorkerNo}
+            };
+            result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo, user);
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageTip.ShowError($"{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}打卡接口异常：{response.Message}");
                 return;
             }
-            int n = Convert.ToInt32(result.message);
-            if (n > 0)
+            if (response.Source.IsChecked)
             {
                 linkLabel1.Text = "已打卡";
                 linkLabel1.ForeColor = Color.Green;
@@ -310,16 +311,14 @@ namespace EOM.TSHotelManagement.FormUI
             notifyIcon1.Text = "TS酒店管理系统-" + LoginInfo.WorkerName + "-版本号：" + ApplicationUtil.GetApplicationVersion();
             wk_WorkerName = LoginInfo.WorkerName;
 
-            if (_loadingProgress != null)
+            FrmRoomManager frmRoomManager = new FrmRoomManager
             {
-                _loadingProgress.Close();
-            }
+                TopLevel = false
+            };
+            pnlMID.Controls.Add(frmRoomManager);
+            frmRoomManager.Show();
 
         }
-        #endregion
-
-        #region 计算后台系统的入口点击事件方法
-        int i = 0;
         #endregion
 
         #region 调用系统锁屏方法
@@ -332,26 +331,27 @@ namespace EOM.TSHotelManagement.FormUI
         #region 检查软件更新版本事件方法
         private void tsmiCheckUpdate_Click(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("Base/GetBase");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Base_GetBase);
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadSystemInformationOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("接口服务异常，请重试");
+                UIMessageBox.ShowError($"{ApiConstants.Base_GetBase}+接口服务异常，请重试。{response.Message}");
                 return;
             }
 
-            Base _base = HttpHelper.JsonToModel<Base>(result.message);
+            var _base = response.Source;
             //调用系统默认的浏览器
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                Process.Start(new ProcessStartInfo(_base.url_addr) { UseShellExecute = true });
+                Process.Start(new ProcessStartInfo(_base.UrlAddress) { UseShellExecute = true });
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                Process.Start("xdg-open", _base.url_addr);
+                Process.Start("xdg-open", _base.UrlAddress);
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                Process.Start("open", _base.url_addr);
+                Process.Start("open", _base.UrlAddress);
             }
             else
             {
@@ -398,30 +398,31 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Dictionary<string, string> user = new()
+            Dictionary<string, string> user = new Dictionary<string, string>()
             {
-                { "wkn", LoginInfo.WorkerNo }
+                { nameof(ReadEmployeeCheckInputDto.EmployeeId), LoginInfo.WorkerNo}
             };
-            result = HttpHelper.Request("WorkerCheck/SelectToDayCheckInfoByWorkerNo", user);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo, user);
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageTip.ShowError("打卡接口异常，请提交issue");
+                UIMessageTip.ShowError($"打卡接口:{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}异常：{response.Message}");
                 return;
             }
-            int n = Convert.ToInt32(result.message);
-            if (n > 0)
+            if (response.Source.IsChecked)
             {
                 linkLabel1.Text = "已打卡";
                 linkLabel1.ForeColor = Color.Green;
                 linkLabel1.LinkColor = Color.Green;
                 pnlCheckInfo.Visible = true;
-                result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", user);
-                if (result.statusCode != 200)
+                result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId, user);
+                response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageTip.ShowError("打卡接口异常，请提交issue");
+                    UIMessageTip.ShowError($"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
                     return;
                 }
-                lblCheckDay.Text = Convert.ToString(result.message);
+                lblCheckDay.Text = Convert.ToString(response.Source.CheckDay);
             }
             else
             {
@@ -431,42 +432,38 @@ namespace EOM.TSHotelManagement.FormUI
                 bool dr = UIMessageBox.Show("你今天还未打卡哦，请先打卡吧！", "打卡提醒", UIStyle.Blue, UIMessageBoxButtons.OK);
                 if (dr == true)
                 {
-                    WorkerCheck workerCheck = new()
+                    CreateEmployeeCheckInputDto workerCheck = new()
                     {
-                        WorkerNo = LoginInfo.WorkerNo,
-                        CheckWay = "系统界面",
+                        CheckNumber = new UniqueCode().GetNewId("CK"),
+                        DataInsDate = DateTime.Now,
+                        IsDelete = 0,
+                        CheckStatus = 0,
+                        EmployeeId = LoginInfo.WorkerNo,
+                        CheckMethod = "系统界面",
                         CheckTime = DateTime.Now,
-                        datains_usr = LoginInfo.WorkerNo
+                        DataInsUsr = LoginInfo.WorkerNo
                     };
-                    result = HttpHelper.Request("WorkerCheck/AddCheckInfo", workerCheck.ModelToJson());
-                    if (result.statusCode != 200)
+                    result = HttpHelper.Request(ApiConstants.EmployeeCheck_AddCheckInfo, workerCheck.ModelToJson());
+                    var checkResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                    if (checkResult.StatusCode != StatusCodeConstants.Success)
                     {
-                        UIMessageTip.ShowError("打卡接口异常，请提交issue");
+                        UIMessageTip.ShowError($"打卡接口{ApiConstants.EmployeeCheck_AddCheckInfo}异常：{checkResult.Message}");
                         return;
                     }
-                    bool j = result.statusCode == 200 ? true : false;
-                    if (j)
+                    result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId, user);
+                    response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
+                    if (response.StatusCode != StatusCodeConstants.Success)
                     {
-                        result = HttpHelper.Request("WorkerCheck/SelectWorkerCheckDaySumByWorkerNo", user);
-                        if (result.statusCode != 200)
-                        {
-                            UIMessageTip.ShowError("打卡接口异常，请提交issue");
-                            return;
-                        }
-                        lblCheckDay.Text = Convert.ToString(result.message);
-                        UIMessageBox.Show("打卡成功！你已共打卡" + lblCheckDay.Text + "天，再接再厉吧！", "打卡提醒", UIStyle.Green, UIMessageBoxButtons.OK);
-                        linkLabel1.Text = "已打卡";
-                        linkLabel1.ForeColor = Color.Green;
-                        linkLabel1.LinkColor = Color.Green;
-                        pnlCheckInfo.Visible = true;
-                        return;
-
-                    }
-                    else
-                    {
-                        UIMessageBox.Show("服务器错误，请稍后再试！", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
+                        UIMessageTip.ShowError($"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
                         return;
                     }
+                    lblCheckDay.Text = Convert.ToString(response.Source.CheckDay);
+                    UIMessageBox.Show("打卡成功！你已共打卡" + lblCheckDay.Text + "天，再接再厉吧！", "打卡提醒", UIStyle.Green, UIMessageBoxButtons.OK);
+                    linkLabel1.Text = "已打卡";
+                    linkLabel1.ForeColor = Color.Green;
+                    linkLabel1.LinkColor = Color.Green;
+                    pnlCheckInfo.Visible = true;
+                    return;
                 }
             }
         }
@@ -485,7 +482,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             FrmMySpace frmMySpace = new FrmMySpace();
             frmMySpace.Text = LoginInfo.WorkerName + "的个人中心";
-            frmMySpace.ShowDialog();
+            frmMySpace.Show();
         }
 
         public void CloseMine()

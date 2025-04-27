@@ -23,12 +23,11 @@
  */
 
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.EncryptorLib;
 using jvncorelib.EntityLib;
 using Sunny.UI;
 using System.ComponentModel;
-using System.Text.RegularExpressions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -43,213 +42,137 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmMySpace_Load(object sender, EventArgs e)
         {
             //加载民族信息
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
-            var result = HttpHelper.Request("Base/SelectNationAll", dic);
-            if (result.statusCode != 200)
+            Dictionary<string, string> dic = new Dictionary<string, string>
             {
-                UIMessageBox.ShowError("SelectNationAll+接口服务异常，请提交Issue或尝试更新版本！");
+                { nameof(ReadNationInputDto.IsDelete), "0" },
+                { nameof(ReadNationInputDto.IgnorePaging), "true" }
+            };
+            var result = HttpHelper.Request(ApiConstants.Base_SelectNationAll, dic);
+            var nations = HttpHelper.JsonToModel<ListOutputDto<ReadNationOutputDto>>(result.message);
+            if (nations.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectNationAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cbWorkerNation.DataSource = HttpHelper.JsonToList<Nation>(result.message);
-            cbWorkerNation.DisplayMember = "nation_name";
-            cbWorkerNation.ValueMember = "nation_no";
+            cbWorkerNation.DataSource = nations.listSource;
+            cbWorkerNation.DisplayMember = nameof(ReadNationOutputDto.NationName);
+            cbWorkerNation.ValueMember = nameof(ReadNationOutputDto.NationNumber);
             //加载性别信息
-            dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
-            result = HttpHelper.Request("Base/SelectSexTypeAll", dic);
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
+                { nameof(ReadGenderTypeInputDto.IsDelete) , "0" },
+                { nameof(ReadGenderTypeInputDto.IgnorePaging) , "true" }
+            };
+            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
+            var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
+            if (genderTypes.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboSex.DataSource = HttpHelper.JsonToList<SexType>(result.message);
-            cboSex.DisplayMember = "sexName";
-            cboSex.ValueMember = "sexId";
+            cboSex.DataSource = genderTypes.listSource;
+            cboSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
+            cboSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
             //加载部门信息
-            result = HttpHelper.Request("Base/SelectDeptAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Base_SelectDeptAllCanUse);
+            var depts = HttpHelper.JsonToModel<ListOutputDto<ReadDepartmentOutputDto>>(result.message);
+            if (depts.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectDeptAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectDeptAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboWorkerClub.DataSource = HttpHelper.JsonToList<Dept>(result.message);
-            cboWorkerClub.DisplayMember = "dept_name";
-            cboWorkerClub.ValueMember = "dept_no";
+            cboWorkerClub.DataSource = depts.listSource;
+            cboWorkerClub.DisplayMember = nameof(ReadDepartmentOutputDto.DepartmentName);
+            cboWorkerClub.ValueMember = nameof(ReadDepartmentOutputDto.DepartmentNumber);
             //加载职位信息
-            dic = new Dictionary<string, string>();
-            dic.Add("delete_mk", "0");
-            result = HttpHelper.Request("Base/SelectPositionAll", dic);
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>
             {
-                UIMessageBox.ShowError("SelectPositionAll+接口服务异常，请提交Issue或尝试更新版本！");
+                { nameof(ReadPositionInputDto.IsDelete), "0" },
+                { nameof(ReadPositionInputDto.IgnorePaging), "true" }
+            };
+            result = HttpHelper.Request(ApiConstants.Base_SelectPositionAll, dic);
+            var positions = HttpHelper.JsonToModel<ListOutputDto<ReadPositionOutputDto>>(result.message);
+            if (positions.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectPositionAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboWorkerPosition.DataSource = HttpHelper.JsonToList<Position>(result.message);
-            cboWorkerPosition.DisplayMember = "position_name";
-            cboWorkerPosition.ValueMember = "position_no";
+            cboWorkerPosition.DataSource = positions.listSource;
+            cboWorkerPosition.DisplayMember = nameof(ReadPositionOutputDto.PositionName);
+            cboWorkerPosition.ValueMember = nameof(ReadPositionOutputDto.PositionNumber);
             LoadData();
-        }
-
-        private void tpSecurity_Click(object sender, EventArgs e)
-        {
-
         }
 
         public void LoadData()
         {
-            var dic = new Dictionary<string, string>();
-            dic.Add("workerId", LoginInfo.WorkerNo);
-            var result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerId", dic);
-            if (result.statusCode != 200)
+            var dic = new Dictionary<string, string>
             {
-                UIMessageBox.ShowError("SelectWorkerInfoByWorkerId+接口服务异常，请提交Issue或尝试更新版本！");
+                { nameof(ReadEmployeeInputDto.EmployeeId) , LoginInfo.WorkerNo }
+            };
+            var result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeId, dic);
+            var employees = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
+            if (employees.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeId}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            Worker worker = HttpHelper.JsonToModel<Worker>(result.message);
+            ReadEmployeeOutputDto worker = employees.Source;
             if (!worker.IsNullOrEmpty())
             {
-                txtWorkerNo.Text = worker.WorkerId;
-                txtWorkerName.Text = worker.WorkerName;
-                cboSex.SelectedIndex = worker.WorkerSex;
+                txtWorkerNo.Text = worker.EmployeeId;
+                txtWorkerName.Text = worker.EmployeeName;
+                cboSex.SelectedIndex = worker.Gender;
                 cboWorkerPosition.Text = worker.PositionName;
-                cboWorkerPosition.SelectedValue = worker.WorkerPosition;
-                cboWorkerClub.Text = worker.ClubName;
-                cboWorkerClub.SelectedValue = worker.WorkerClub;
-                cbWorkerNation.Text = worker.NationName;
-                cbWorkerNation.SelectedValue = worker.WorkerNation;
-                txtAddress.Text = worker.WorkerAddress;
-                txtTel.Text = worker.WorkerTel;
+                cboWorkerPosition.SelectedValue = worker.Position;
+                cboWorkerClub.Text = worker.DepartmentName;
+                cboWorkerClub.SelectedValue = worker.Department;
+                cbWorkerNation.Text = worker.EthnicityName;
+                cbWorkerNation.SelectedValue = worker.Ethnicity;
+                txtAddress.Text = worker.Address;
+                txtTel.Text = worker.PhoneNumber;
             }
-            dic = new Dictionary<string, string>();
-            dic.Add("WorkerId", LoginInfo.WorkerNo);
-            result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>
             {
-                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                { nameof(ReadEmployeePhotoInputDto.EmployeeId) , LoginInfo.WorkerNo }
+            };
+            result = HttpHelper.Request(ApiConstants.EmployeePhoto_EmployeePhoto, dic);
+            var workerPic = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(result.message);
+            if (workerPic.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_EmployeePhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var workerPicSource = HttpHelper.JsonToModel<WorkerPic>(result.message);
-            if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.Pic))
+            var workerPicSource = workerPic.Source;
+            if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
             {
-                EncryptLib encryptLib = new EncryptLib();
                 picWorkerPic.BackgroundImage = null;
-                picWorkerPic.LoadAsync(encryptLib.Decryption(HttpHelper.baseUrl) + workerPicSource.Pic);
+                if (!string.IsNullOrEmpty(workerPicSource.PhotoPath)) picWorkerPic.LoadAsync(workerPicSource.PhotoPath);
             }
         }
 
-        private void txtOldPwd_TextChanged(object sender, EventArgs e)
+        public bool CheckInput(UpdateEmployeeInputDto worker)
         {
-            if (txtOldPwd.TextLength < 6)
-            {
-                lgCheckOldPwd.Visible = true;
-                lgCheckOldPwd.OnColor = Color.Red;
-            }
-        }
-
-        private void txtOldPwd_Validated(object sender, EventArgs e)
-        {
-            //校验旧密码是否正确
-            Worker worker = new Worker() { WorkerId = LoginInfo.WorkerNo, WorkerPwd = txtOldPwd.Text.Trim() };
-            var result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectWorkerInfoByWorkerIdAndWorkerPwd+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            worker = HttpHelper.JsonToModel<Worker>(result.message);
-            if (worker != null)
-            {
-                lgCheckOldPwd.Visible = true;
-                lgCheckOldPwd.OnColor = Color.Green;
-                lblOldMsg.ForeColor = Color.Green;
-                lblOldMsg.Text = "旧密码符合，请继续填写新密码！";
-                txtNewPwd.ReadOnly = false;
-                txtNewPwd.Validated += new EventHandler(txtNewPwd_Validated);
-            }
-            else
-            {
-                lgCheckOldPwd.Visible = true;
-                lgCheckOldPwd.OnColor = Color.Red;
-                lblOldMsg.ForeColor = Color.Red;
-                lblOldMsg.Text = "旧密码有误，请重试！";
-                txtNewPwd.ReadOnly = true;
-                txtNewPwd.Validated -= new EventHandler(txtNewPwd_Validated);
-
-            }
-        }
-
-        private void txtNewPwd_Validated(object sender, EventArgs e)
-        {
-            string pattern = @"^[A-Za-z0-9]+$";
-            Regex regex = new Regex(pattern);
-            if (regex.IsMatch(txtNewPwd.Text.Trim()) && txtNewPwd.TextLength > 8)
-            {
-                lblNewMsg.ForeColor = Color.Green;
-                lblNewMsg.Text = "密码长度及格式符合要求！";
-                lgCheckNewPwd.Visible = true;
-                lgCheckNewPwd.OnColor = Color.Green;
-                return;
-
-            }
-            else
-            {
-                lblNewMsg.ForeColor = Color.Red;
-                lblNewMsg.Text = "密码长度及格式不符合要求，请检查！";
-                lgCheckNewPwd.Visible = true;
-                txtNewPwd.Focus();
-                lgCheckNewPwd.OnColor = Color.Red;
-                return;
-            }
-        }
-
-        private void btnUpdPwd_Click(object sender, EventArgs e)
-        {
-            var result = HttpHelper.Request("Worker/UpdWorkerPwdByWorkNo", HttpHelper.ModelToJson(new Worker { WorkerId = LoginInfo.WorkerNo, WorkerPwd = txtNewPwd.Text.Trim() }));
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("UpdWorkerPwdByWorkNo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            bool tf = result.message.ToString().Equals("true") ? true : false;
-            if (!tf)
-            {
-                UIMessageBox.Show("服务器繁忙，修改失败！", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
-                return;
-            }
-
-            UIMessageBox.Show("修改成功，系统将在稍后退出，请使用新密码进行登录系统！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
-            #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改密码操作！", 2);
-            #endregion
-            FrmMain.CloseMy();
-            this.Close();
-            return;
-        }
-
-        public bool CheckInput(Worker worker)
-        {
-            if (string.IsNullOrWhiteSpace(worker.WorkerId))
+            if (string.IsNullOrWhiteSpace(worker.EmployeeId))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerName))
+            if (string.IsNullOrWhiteSpace(worker.EmployeeName))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerSex + ""))
+            if (string.IsNullOrWhiteSpace(worker.Gender + ""))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerNation))
+            if (string.IsNullOrWhiteSpace(worker.Ethnicity))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerTel))
+            if (string.IsNullOrWhiteSpace(worker.PhoneNumber))
             {
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(worker.WorkerAddress))
+            if (string.IsNullOrWhiteSpace(worker.Address))
             {
                 return false;
             }
@@ -258,29 +181,25 @@ namespace EOM.TSHotelManagement.FormUI
         ResponseMsg result = new ResponseMsg();
         private void btnUpdWorker_Click(object sender, EventArgs e)
         {
-            Worker worker = new Worker()
+            UpdateEmployeeInputDto worker = new UpdateEmployeeInputDto()
             {
-                WorkerId = txtWorkerNo.Text.Trim(),
-                WorkerName = txtWorkerName.Text.Trim(),
-                WorkerSex = cboSex.Text == "男" ? 1 : 0,
-                WorkerNation = cbWorkerNation.SelectedValue.ToString(),
-                WorkerTel = txtTel.Text.Trim(),
-                WorkerAddress = txtAddress.Text.Trim(),
-                datachg_usr = LoginInfo.WorkerNo
+                EmployeeId = txtWorkerNo.Text.Trim(),
+                EmployeeName = txtWorkerName.Text.Trim(),
+                Gender = cboSex.Text == "男" ? 1 : 0,
+                Ethnicity = cbWorkerNation.SelectedValue.ToString(),
+                PhoneNumber = txtTel.Text.Trim(),
+                Address = txtAddress.Text.Trim(),
+                DataChgUsr = LoginInfo.WorkerNo,
+                DataChgDate = DateTime.Now
             };
 
             if (CheckInput(worker))
             {
-                result = HttpHelper.Request("Worker/UpdateWorker", HttpHelper.ModelToJson(worker));
-                if (result.statusCode != 200)
+                result = HttpHelper.Request(ApiConstants.Employee_UpdateEmployee, HttpHelper.ModelToJson(worker));
+                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("UpdateWorker+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                bool tf = result.message.ToString().Equals("true") ? true : false;
-                if (!tf)
-                {
-                    UIMessageBox.Show("修改失败！服务器处于繁忙，请稍后再试！", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
+                    UIMessageBox.ShowError($"{ApiConstants.Employee_UpdateEmployee}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 UIMessageBox.Show("修改成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
@@ -303,33 +222,28 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void openPic_FileOk(object sender, CancelEventArgs e)
         {
-            WorkerPic workerPic = null;
-            //查询当前账号是否已存在对应的图片，如果已存在则移除旧图片
-            workerPic = new WorkerPic
+            var dic = new Dictionary<string, string>
             {
-                WorkerId = txtWorkerNo.Text.Trim(),
+                { nameof(ReadEmployeePhotoInputDto.EmployeeId) , LoginInfo.WorkerNo }
             };
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("WorkerId", txtWorkerNo.Text.Trim());
-            result = HttpHelper.Request("WorkerPicture/WorkerPic", dic);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.EmployeePhoto_EmployeePhoto, dic);
+            var workerPic = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(result.message);
+            if (workerPic.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("WorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_EmployeePhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var source = HttpHelper.JsonToModel<WorkerPic>(result.message);
-            if (!source.IsNullOrEmpty())
+            var workerPicSource = workerPic.Source;
+            if (!workerPicSource.IsNullOrEmpty() && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
             {
-                result = HttpHelper.Request("WorkerPicture/DeleteWorkerPic", HttpHelper.ModelToJson(workerPic));
-                if (result.statusCode != 200)
+                result = HttpHelper.Request(ApiConstants.EmployeePhoto_DeleteWorkerPhoto, HttpHelper.ModelToJson(workerPic));
+                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("DeleteWorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_DeleteWorkerPhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                if (result.message.ToString().Equals("true"))
-                {
-                    PicHandler();
-                }
+                PicHandler();
             }
             else
             {
@@ -340,25 +254,25 @@ namespace EOM.TSHotelManagement.FormUI
 
         public void PicHandler()
         {
-            var serverPath = encryptLib.Decryption(HttpHelper.postUrl);
-            //var serverPath = ConfigurationManager.AppSettings["post"].ToString();
-            var result = HttpHelper.UpLoadFile(openPic.FileName, serverPath);
-            var workerPic = new WorkerPic
+            Dictionary<string, string> additionalParams = new Dictionary<string, string>
             {
-                WorkerId = txtWorkerNo.Text.Trim(),
-                Pic = result.Trim(),
+                { nameof(CreateEmployeePhotoInputDto.EmployeeId), txtWorkerNo.Text.Trim() }
             };
-            var requestResult = HttpHelper.Request("WorkerPicture/InsertWorkerPic", HttpHelper.ModelToJson(workerPic));
-            if (requestResult.statusCode != 200)
+
+            var workerPic = new CreateEmployeePhotoInputDto
             {
-                UIMessageBox.ShowError("InsertWorkerPic+接口服务异常，请提交Issue或尝试更新版本！");
+                EmployeeId = txtWorkerNo.Text.Trim(),
+                PhotoUrl = null,
+            };
+            var requestResult = HttpHelper.UploadFile(ApiConstants.EmployeePhoto_InsertWorkerPhoto, openPic.FileName, additionalParams);
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(requestResult.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_InsertWorkerPhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            picWorkerPic.BackgroundImage = null;
-            picWorkerPic.LoadAsync(encryptLib.Decryption(HttpHelper.baseUrl) + result.Trim());
+            picWorkerPic.LoadAsync(response.Source.PhotoPath);
             UIMessageTip.ShowOk("头像上传成功！稍等将会加载头像哦..");
-            //picWorkerPic.LoadAsync(ConfigurationManager.AppSettings["FileSite"] + result.Trim());
         }
-
     }
 }

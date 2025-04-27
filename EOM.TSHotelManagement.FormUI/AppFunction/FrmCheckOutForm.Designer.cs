@@ -269,7 +269,7 @@
             // 
             // clSpendNo
             // 
-            clSpendNo.DataPropertyName = "delete_mk";
+            clSpendNo.DataPropertyName = "IsDelete";
             clSpendNo.HeaderText = "Column1";
             clSpendNo.Name = "clSpendNo";
             clSpendNo.ReadOnly = true;
@@ -277,7 +277,7 @@
             // 
             // Column1
             // 
-            Column1.DataPropertyName = "datains_usr";
+            Column1.DataPropertyName = "DataInsUsr";
             Column1.HeaderText = "Column1";
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
@@ -285,7 +285,7 @@
             // 
             // Column2
             // 
-            Column2.DataPropertyName = "datains_date";
+            Column2.DataPropertyName = "DataInsDate";
             Column2.HeaderText = "Column2";
             Column2.Name = "Column2";
             Column2.ReadOnly = true;
@@ -293,7 +293,7 @@
             // 
             // Column3
             // 
-            Column3.DataPropertyName = "datachg_usr";
+            Column3.DataPropertyName = "DataChgUsr";
             Column3.HeaderText = "Column3";
             Column3.Name = "Column3";
             Column3.ReadOnly = true;
@@ -301,7 +301,7 @@
             // 
             // Column4
             // 
-            Column4.DataPropertyName = "datachg_date";
+            Column4.DataPropertyName = "DataChgDate";
             Column4.HeaderText = "Column4";
             Column4.Name = "Column4";
             Column4.ReadOnly = true;
@@ -1015,35 +1015,35 @@
             // 
             // Column5
             // 
-            Column5.DataPropertyName = "delete_mk";
+            Column5.DataPropertyName = "IsDelete";
             Column5.HeaderText = "Column5";
             Column5.Name = "Column5";
             Column5.Visible = false;
             // 
             // Column6
             // 
-            Column6.DataPropertyName = "datains_usr";
+            Column6.DataPropertyName = "DataInsUsr";
             Column6.HeaderText = "Column6";
             Column6.Name = "Column6";
             Column6.Visible = false;
             // 
             // Column7
             // 
-            Column7.DataPropertyName = "datains_date";
+            Column7.DataPropertyName = "DataInsDate";
             Column7.HeaderText = "Column7";
             Column7.Name = "Column7";
             Column7.Visible = false;
             // 
             // Column9
             // 
-            Column9.DataPropertyName = "datachg_usr";
+            Column9.DataPropertyName = "DataChgUsr";
             Column9.HeaderText = "Column9";
             Column9.Name = "Column9";
             Column9.Visible = false;
             // 
             // Column10
             // 
-            Column10.DataPropertyName = "datachg_date";
+            Column10.DataPropertyName = "DataChgDate";
             Column10.HeaderText = "Column10";
             Column10.Name = "Column10";
             Column10.Visible = false;

@@ -23,7 +23,6 @@
  */
 
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
 using Sunny.UI;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -71,30 +70,6 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnUnLock_Click(object sender, EventArgs e)
         {
-            dic = new Dictionary<string, string>()
-            {
-                { "account",AdminInfo.Account.Trim()}
-            };
-            result = HttpHelper.Request("Admin/SelectAdminPwdByAccount", dic);
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectAdminPwdByAccount+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            var account = HttpHelper.JsonToModel<Admin>(result.message);
-            if (account != null)
-            {
-                if (account.AdminPassword != txtUnLockPwd.Text.Trim())
-                {
-                    UIMessageBox.ShowError("密码错误! 请输入当前超管密码解锁!");
-                    txtUnLockPwd.Text = "";
-                    txtUnLockPwd.Focus();
-                    return;
-                }
-                this.Close();
-                string regPath = System.Windows.Forms.Application.StartupPath + @"\启用任务管理器.reg";
-                ExecuteReg(regPath);
-            }
 
         }
 

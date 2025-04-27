@@ -22,7 +22,10 @@
  *
  */
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Shared;
+using jvncorelib.CodeLib;
 using Sunny.UI;
 using System.Transactions;
 
@@ -36,131 +39,209 @@ namespace EOM.TSHotelManagement.FormUI
         }
 
         ResponseMsg result = new ResponseMsg();
+        Dictionary<string, string> dic = null;
+
+        public static string RoomNumber { get; set; } = string.Empty;
+        public static string ReservationId { get; set; } = string.Empty;
+
+        TableComHelper helper = new TableComHelper();
+
+        private void LoadReserData()
+        {
+            var dataCount = 0;
+            btnPg.PageSizeOptions = new int[] { 15, 30, 50, 100 };
+            dgvReserList.Spin("正在加载中...", config =>
+            {
+                TableComHelper tableComHelper = new TableComHelper();
+                dgvReserList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<ReadReserOutputDto>());
+                dgvReserList.DataSource = GetPageData(btnPg.Current, btnPg.PageSize, ref dataCount);
+                btnPg.PageSize = 15;
+                btnPg.Current = 1;
+                btnPg.Total = dataCount;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
+        }
+
+        object GetPageData(int current, int pageSize, ref int totalCount)
+        {
+            dic = new Dictionary<string, string>()
+            {
+                { nameof(ReadReserInputDto.Page), current <= 0 ? "1":current.ToString() },
+                { nameof(ReadReserInputDto.PageSize), pageSize.ToString() },
+                { nameof(ReadReserInputDto.IsDelete), "0" }
+            };
+            result = HttpHelper.Request(ApiConstants.Reser_SelectReserAll, dic);
+            var resers = HttpHelper.JsonToModel<ListOutputDto<ReadReserOutputDto>>(result.message);
+            if (resers.StatusCode != StatusCodeConstants.Success)
+            {
+                AntdUI.Message.error(this, $"{ApiConstants.Reser_SelectReserAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                return null!;
+            }
+            List<ReadReserOutputDto> reserDataSource = resers.listSource;
+            totalCount = resers.total;
+            var listTableSource = new List<AntdUI.AntItem[]>();
+
+            reserDataSource = reserDataSource.OrderBy(a => a.ReservationId).ThenBy(a => a.CustomerName).ToList();
+
+            TableComHelper tableComHelper = new TableComHelper();
+            listTableSource = tableComHelper.ConvertToAntdItems(reserDataSource);
+
+            return listTableSource;
+        }
+
+        private string btnPg_ShowTotalChanged(object sender, AntdUI.PagePageEventArgs e)
+        {
+            return $"{e.PageSize} / {e.Total}条 共{e.PageTotal}页";
+        }
+
+        private void btnPg_ValueChanged(object sender, AntdUI.PagePageEventArgs e)
+        {
+            var dataCount = 0;
+            dgvReserList.Spin("正在加载中...", config =>
+            {
+                dgvReserList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount);
+                btnPg.Total = dataCount;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
+        }
 
         private void FrmReserList_Load(object sender, EventArgs e)
         {
-            result = HttpHelper.Request("Reser/SelectReserAll");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            dgvReserList.AutoGenerateColumns = false;
-            dgvReserList.DataSource = HttpHelper.JsonToList<Reser>(result.message);
+            LoadReserData();
 
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
+            var customerTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
+            if (customerTypeDataSource.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
+            List<ReadCustoTypeOutputDto> lstSourceGrid = customerTypeDataSource.listSource;
             this.cbCustoType.DataSource = lstSourceGrid;
-            this.cbCustoType.DisplayMember = "TypeName";
-            this.cbCustoType.ValueMember = "UserType";
+            this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
+            this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
             this.cbCustoType.SelectedIndex = 0;
             this.cbCustoType.ReadOnly = true;
             #endregion
 
             #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
+            var passportDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
+            if (passportDataSource.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
+            List<ReadPassportTypeOutputDto> passPorts = passportDataSource.listSource;
             this.cbPassportType.DataSource = passPorts;
-            this.cbPassportType.DisplayMember = "PassportName";
-            this.cbPassportType.ValueMember = "PassportId";
+            this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
+            this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
             this.cbPassportType.SelectedIndex = 0;
             #endregion
 
             #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll");
-            if (result.statusCode != 200)
+            dic = new Dictionary<string, string>
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
+                { nameof(ReadGenderTypeInputDto.IsDelete), "0"},
+                { nameof(ReadGenderTypeInputDto.IgnorePaging), "true" }
+            };
+            result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
+            var genderTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
+            if (genderTypeDataSource.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
+            List<EnumDto> listSexType = genderTypeDataSource.listSource;
             this.cbSex.DataSource = listSexType;
-            this.cbSex.DisplayMember = "sexName";
-            this.cbSex.ValueMember = "sexId";
+            this.cbSex.DisplayMember = nameof(EnumDto.Description);
+            this.cbSex.ValueMember = nameof(EnumDto.Id);
             #endregion
+        }
+
+        private void dgvReserList_CellClick(object sender, AntdUI.TableClickEventArgs e)
+        {
+            if (e.Record is IList<AntdUI.AntItem> data)
+            {
+                ReservationId = helper.GetValue(data, nameof(ReadReserOutputDto.ReservationId));
+                RoomNumber = helper.GetValue(data, nameof(ReadReserOutputDto.ReservationRoomNumber));
+                string custoNo = new UniqueCode().GetNewId("TS-");
+                txtCustoNo.Text = custoNo;
+                txtCustoName.Text = helper.GetValue(data, nameof(ReadReserOutputDto.CustomerName));
+                txtTel.Text = helper.GetValue(data, nameof(ReadReserOutputDto.ReservationPhoneNumber));
+            }
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
             using (TransactionScope scope = new TransactionScope())
             {
-                Custo custo = new Custo()
+                var custo = new CreateCustomerInputDto()
                 {
-                    CustoNo = txtCustoNo.Text.Trim(),
-                    CustoName = txtCustoName.Text.Trim(),
-                    CustoSex = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                    CustoTel = txtTel.Text.Trim(),
-                    PassportType = cbPassportType.SelectedIndex,
-                    CustoID = txtCardID.Text.Trim(),
-                    CustoAdress = txtCustoAdress.Text.Trim(),
-                    CustoBirth = dtpBirthday.Value,
-                    CustoType = cbCustoType.SelectedIndex,
-                    delete_mk = 0,
-                    datains_usr = LoginInfo.WorkerNo
+                    CustomerNumber = txtCustoNo.Text.Trim(),
+                    CustomerName = txtCustoName.Text.Trim(),
+                    CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
+                    CustomerPhoneNumber = txtTel.Text.Trim(),
+                    PassportId = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
+                    IdCardNumber = txtCardID.Text.Trim(),
+                    CustomerAddress = txtCustoAdress.Text.Trim(),
+                    DateOfBirth = dtpBirthday.Value,
+                    CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
+                    IsDelete = 0,
+                    DataInsUsr = LoginInfo.WorkerNo,
+                    DataInsDate = DateTime.Now,
                 };
-                result = HttpHelper.Request("Custo​/InsertCustomerInfo", HttpHelper.ModelToJson(custo));
-                if (result.statusCode != 200)
+                result = HttpHelper.Request(ApiConstants.Customer_InsertCustomerInfo, HttpHelper.ModelToJson(custo));
+                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Customer_InsertCustomerInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
 
-                Room r = new Room()
+                UpdateRoomInputDto r = new UpdateRoomInputDto()
                 {
-                    CheckTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                    CustoNo = custo.CustoNo,
-                    RoomStateId = 1,
-                    RoomNo = dgvReserList.SelectedRows[0].Cells["clRoomNo"].Value.ToString()
+                    LastCheckInTime = DateTime.Now,
+                    CustomerNumber = custo.CustomerNumber,
+                    RoomStateId = new EnumHelper().GetEnumValue(RoomState.Occupied),
+                    RoomNumber = RoomNumber,
+                    DataChgDate = DateTime.Now,
+                    DataChgUsr = LoginInfo.WorkerNo
                 };
-                result = HttpHelper.Request("Room​/UpdateRoomInfo", HttpHelper.ModelToJson(r));
-                if (result.statusCode != 200)
+                result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfo, HttpHelper.ModelToJson(r));
+                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("InsertCustomerInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                var reser = new Reser
+                var reser = new DeleteReserInputDto
                 {
-                    ReserId = dgvReserList.SelectedRows[0].Cells["clReserNo"].Value.ToString()
+                    ReservationId = ReservationId,
+                    IsDelete = 1,
+                    DataChgUsr = LoginInfo.WorkerNo,
+                    DataChgDate = DateTime.Now
                 };
-                result = HttpHelper.Request("Reser/DeleteReserInfo", HttpHelper.ModelToJson(reser));
-                if (result.statusCode != 200)
+                result = HttpHelper.Request(ApiConstants.Reser_DeleteReserInfo, HttpHelper.ModelToJson(reser));
+                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("DeleteReserInfo+接口服务异常，请提交Issue或尝试更新版本！");
+                    UIMessageBox.ShowError($"{ApiConstants.Reser_DeleteReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
 
                 UIMessageBox.ShowSuccess("操作成功");
-                dgvReserList.AutoGenerateColumns = false;
-                result = HttpHelper.Request("Reser/SelectReserAll");
-                if (result.statusCode != 200)
-                {
-                    UIMessageBox.ShowError("SelectReserAll+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                dgvReserList.DataSource = HttpHelper.JsonToList<Reser>(result.message);
+                LoadReserData();
                 FrmRoomManager.Reload("");
+                FrmRoomManager._RefreshRoomCount();
                 scope.Complete();
                 this.Close();
             }
-        }
-
-        private void dgvReserList_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string custoNo = ApplicationUtil.GetListNewId("TS", 2, 1, "-").FirstOrDefault();
-            txtCustoNo.Text = custoNo;
-            txtCustoName.Text = dgvReserList.SelectedRows[0].Cells["clCustoNm"].Value.ToString();
-            txtTel.Text = dgvReserList.SelectedRows[0].Cells["clTel"].Value.ToString();
         }
 
         private void txtCardID_Validated(object sender, EventArgs e)
@@ -194,7 +275,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             if (identityCard.Length == 18)
             {
-                var result = ApplicationUtil.searchCode(identityCard);
+                var result = ApplicationUtil.SearchCode(identityCard);
                 if (result.message.IsNullOrEmpty()) //如果没有错误消息输出，则代表成功
                 {
                     try

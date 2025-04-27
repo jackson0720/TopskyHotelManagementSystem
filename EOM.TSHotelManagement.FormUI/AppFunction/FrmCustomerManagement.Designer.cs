@@ -38,7 +38,6 @@
             btnUpdCustomer = new AntdUI.Button();
             dgvCustomerList = new AntdUI.Table();
             btnPg = new AntdUI.Pagination();
-            cbOnlyVip = new AntdUI.Checkbox();
             label1 = new AntdUI.Label();
             label2 = new AntdUI.Label();
             txtCustoName = new AntdUI.Input();
@@ -138,17 +137,6 @@
             btnPg.ValueChanged += btnPg_ValueChanged;
             btnPg.ShowTotalChanged += btnPg_ShowTotalChanged;
             // 
-            // cbOnlyVip
-            // 
-            cbOnlyVip.AutoCheck = true;
-            cbOnlyVip.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            cbOnlyVip.Location = new Point(630, 412);
-            cbOnlyVip.Name = "cbOnlyVip";
-            cbOnlyVip.Size = new Size(120, 23);
-            cbOnlyVip.TabIndex = 148;
-            cbOnlyVip.Text = "仅查看会员";
-            cbOnlyVip.CheckedChanged += cbOnlyVip_CheckedChanged;
-            // 
             // label1
             // 
             label1.Font = new Font("Microsoft YaHei UI", 12.5F);
@@ -158,7 +146,6 @@
             label1.TabIndex = 152;
             label1.Text = "客户姓名";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.TooltipConfig = null;
             // 
             // label2
             // 
@@ -169,7 +156,6 @@
             label2.TabIndex = 151;
             label2.Text = "客户编号";
             label2.TextAlign = ContentAlignment.MiddleCenter;
-            label2.TooltipConfig = null;
             // 
             // txtCustoName
             // 
@@ -199,7 +185,6 @@
             Controls.Add(label2);
             Controls.Add(txtCustoName);
             Controls.Add(txtCustoNo);
-            Controls.Add(cbOnlyVip);
             Controls.Add(btnPg);
             Controls.Add(dgvCustomerList);
             Controls.Add(btnUpdCustomer);
@@ -226,7 +211,6 @@
         private AntdUI.Button btnUpdCustomer;
         private AntdUI.Table dgvCustomerList;
         private AntdUI.Pagination btnPg;
-        private AntdUI.Checkbox cbOnlyVip;
         private AntdUI.Label label1;
         private AntdUI.Label label2;
         private AntdUI.Input txtCustoName;

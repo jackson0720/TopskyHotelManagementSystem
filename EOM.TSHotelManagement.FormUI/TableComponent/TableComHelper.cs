@@ -1,6 +1,7 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common.Util;
 using System.Reflection;
+using System.Text;
 using System.Xml.Linq;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -13,11 +14,23 @@ namespace EOM.TSHotelManagement.FormUI
         {
             try
             {
-                var xmlContent = Properties.Resources.TableColumns;
-                using (var memoryStream = new MemoryStream(xmlContent))
-                using (var stringReader = new StreamReader(memoryStream))
+                var assembly = Assembly.GetExecutingAssembly();
+
+                var resourceName = assembly.GetManifestResourceNames()
+                    .FirstOrDefault(name => name.EndsWith("EOM.TSHotelManagement.Common.Contract.xml"));
+
+                if (string.IsNullOrEmpty(resourceName))
+                    throw new FileNotFoundException("未找到嵌入的XML资源");
+
+                using (var stream = assembly.GetManifestResourceStream(resourceName))
                 {
-                    _xmlDoc = XDocument.Load(stringReader);
+                    if (stream == null)
+                        throw new FileNotFoundException("无法加载资源流");
+
+                    using (var reader = new StreamReader(stream, Encoding.UTF8))
+                    {
+                        _xmlDoc = XDocument.Load(reader);
+                    }
                 }
             }
             catch (Exception ex)
@@ -44,7 +57,7 @@ namespace EOM.TSHotelManagement.FormUI
                     ColumnAlign.Center                // 对齐方式
                 )
                 {
-                    Visible = true,
+                    Visible = tableColumn.Visible,
                     SortOrder = true,
                     Align = ColumnAlign.Center,
                     ColAlign = ColumnAlign.Center,
@@ -127,6 +140,16 @@ namespace EOM.TSHotelManagement.FormUI
             return listTableSource;
         }
 
+        public string GetValue(IList<AntdUI.AntItem> items, string key)
+        {
+            var item = items.SingleOrDefault(x => x.key == key);
+            if (item == null || item.value == null)
+            {
+                return string.Empty;
+            }
+            return item.value?.ToString() ?? string.Empty;
+        }
+
         /// <summary>
         /// 获取实体字段名
         /// </summary>
@@ -159,7 +182,7 @@ namespace EOM.TSHotelManagement.FormUI
                     comment = $"注释获取失败: {ex.Message}";
                 }
 
-                tableColumns.Add(new TableColumn(propertyName, displayAttribute.DisplayName ?? comment));
+                tableColumns.Add(new TableColumn(propertyName, displayAttribute.DisplayName ?? comment, displayAttribute.IsVisible));
             }
 
             return tableColumns;
@@ -189,14 +212,16 @@ namespace EOM.TSHotelManagement.FormUI
         /// </summary>
         public class TableColumn
         {
-            public TableColumn(string field, string description)
+            public TableColumn(string field, string description, bool visible = true)
             {
                 Field = field;
                 Description = description;
+                Visible = visible;
             }
 
             public string Field { get; set; }
             public string Description { get; set; }
+            public bool Visible { get; set; } = true;
         }
     }
 }

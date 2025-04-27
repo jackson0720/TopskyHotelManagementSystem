@@ -23,7 +23,7 @@
  */
 
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Common.Contract;
 using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -57,6 +57,8 @@ namespace EOM.TSHotelManagement.FormUI
         Dictionary<string, string> dic = null;
         ResponseMsg result = null;
 
+        TableComHelper helper = new TableComHelper();
+
         #region 用户管理界面加载事件方法
         private void FrmCustomerManager_Load(object sender, EventArgs e)
         {
@@ -67,8 +69,6 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
-        private static bool? onlyVip = null;
-
         #region 加载用户信息列表
         private void LoadCustomer(bool onlyVip = false)
         {
@@ -77,8 +77,8 @@ namespace EOM.TSHotelManagement.FormUI
             dgvCustomerList.Spin("正在加载中...", config =>
             {
                 TableComHelper tableComHelper = new TableComHelper();
-                dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<Custo>());
-                dgvCustomerList.DataSource = GetPageData(btnPg.Current, btnPg.PageSize, ref dataCount, onlyVip);
+                dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<ReadCustomerOutputDto>());
+                dgvCustomerList.DataSource = GetPageData(btnPg.Current, btnPg.PageSize, ref dataCount);
                 btnPg.PageSize = 15;
                 btnPg.Current = 1;
                 btnPg.Total = dataCount;
@@ -89,31 +89,29 @@ namespace EOM.TSHotelManagement.FormUI
         }
 
 
-        object GetPageData(int current, int pageSize, ref int totalCount, bool onlyVip = false)
+        object GetPageData(int current, int pageSize, ref int totalCount)
         {
             dic = new Dictionary<string, string>()
             {
-                { "pageIndex",current <= 0 ? "1":current.ToString()},
-                { "pageSize",pageSize.ToString()}
+                { nameof(ReadCustomerInputDto.Page), current <= 0 ? "1":current.ToString() },
+                { nameof(ReadCustomerInputDto.PageSize), pageSize.ToString() },
+                { nameof(ReadCustomerInputDto.IsDelete), "0" }
             };
-            if (onlyVip)
+            result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
+            var customers = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
+            if (customers.StatusCode != StatusCodeConstants.Success)
             {
-                dic.Add("onlyVip", onlyVip.ToString());
-            }
-            result = HttpHelper.Request("Custo/SelectCustoAll", dic);
-            if (result.statusCode != 200)
-            {
-                AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Message.error(this, "SelectCustomers+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
             }
-            OSelectAllDto<Custo> custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
-            totalCount = custos.total;
+            List<ReadCustomerOutputDto> custos = customers.listSource;
+            totalCount = customers.total;
             var listTableSource = new List<AntdUI.AntItem[]>();
 
-            custos.listSource = custos.listSource.OrderBy(a => a.CustoNo).ThenBy(a => a.CustoName).ToList();
+            custos = custos.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
-            listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);
+            listTableSource = tableComHelper.ConvertToAntdItems(custos);
 
             return listTableSource;
         }
@@ -123,58 +121,41 @@ namespace EOM.TSHotelManagement.FormUI
         int count = 0;
         private void btnSerach_BtnClick(object sender, EventArgs e)
         {
-            OSelectAllDto<Custo> custos = new OSelectAllDto<Custo>();
-            if (!txtCustoNo.Text.IsNullOrEmpty() || !txtCustoName.Text.IsNullOrEmpty())
+            var custos = new List<ReadCustomerOutputDto>();
+            var response = new ListOutputDto<ReadCustomerOutputDto>();
+            dic = new Dictionary<string, string>
             {
-                if (!txtCustoNo.Text.IsNullOrEmpty())
-                {
-                    dic = new Dictionary<string, string>
-                    {
-                        { "CustoNo", txtCustoNo.Text.Trim() }
-                    };
-                }
-                if (!txtCustoName.Text.IsNullOrEmpty())
-                {
-                    dic = new Dictionary<string, string>
-                    {
-                        { "CustoName",  txtCustoName.Text.Trim() }
-                    };
-                }
-                result = HttpHelper.Request("Custo/SelectCustoByInfo", dic);
-                if (result.statusCode != 200)
-                {
-                    AntdUI.Message.error(this, "SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
+                { nameof(ReadCustomerInputDto.Page), "1" },
+                { nameof(ReadCustomerInputDto.PageSize), "15" },
+                { nameof(ReadCustomerInputDto.IsDelete), "0" }
+            };
+            if (!txtCustoNo.Text.IsNullOrEmpty())
+            {
+                dic.Add(nameof(ReadCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim());
             }
-            else
+            if (!txtCustoName.Text.IsNullOrEmpty())
             {
-                result = HttpHelper.Request("Custo/SelectCustoAll?pageIndex=1&pageSize=15");
-                if (result.statusCode != 200)
-                {
-                    AntdUI.Message.error(this, "SelectCustoAll+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
+                dic.Add(nameof(ReadCustomerInputDto.CustomerName), txtCustoName.Text.Trim());
+            }
+            result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
+            response = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
+            {
+                AntdUI.Message.error(this, $"{ApiConstants.Customer_SelectCustomers}+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
             }
 
-            custos = HttpHelper.JsonToModel<OSelectAllDto<Custo>>(result.message);
-
+            custos = response.listSource;
+            var totalCount = response.total;
             var listTableSource = new List<AntdUI.AntItem[]>();
 
-            custos.listSource = custos.listSource.OrderBy(a => a.CustoNo).ThenBy(a => a.CustoName).ToList();
+            custos = custos.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
-            listTableSource = tableComHelper.ConvertToAntdItems(custos.listSource);
+            listTableSource = tableComHelper.ConvertToAntdItems(custos);
 
-            dgvCustomerList.Spin("正在加载中...", config =>
-            {
-                dgvCustomerList.DataSource = listTableSource;
-            }, () =>
-            {
-                System.Diagnostics.Debug.WriteLine("加载结束");
-            });
-
-            dgvCustomerList.DataSource = custos;
+            dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<ReadCustomerOutputDto>());
+            dgvCustomerList.DataSource = listTableSource;
         }
 
         private void btnAddCusto_BtnClick(object sender, EventArgs e)
@@ -191,15 +172,15 @@ namespace EOM.TSHotelManagement.FormUI
                 AntdUI.Message.error(this, "未选中客户，无法继续操作！");
                 return;
             }
-            FrmCustoManager.cm_CustoNo = cm_CustoNo;
-            FrmCustoManager.cm_CustoName = cm_CustoName;
-            FrmCustoManager.cm_CustoAddress = cm_CustoAddress.IsNullOrEmpty() ? "" : cm_CustoAddress.ToString();
-            FrmCustoManager.cm_CustoType = Convert.ToInt32(cm_CustoType);
-            FrmCustoManager.cm_CustoSex = Convert.ToInt32(cm_CustoSex);
-            FrmCustoManager.cm_PassportType = Convert.ToInt32(cm_PassportType);
-            FrmCustoManager.cm_CustoBirth = Convert.ToDateTime(cm_CustoBirth);
-            FrmCustoManager.cm_CustoID = cm_CustoID;
-            FrmCustoManager.cm_CustoTel = cm_CustoTel;
+            cm_CustoNo = cm_CustoNo;
+            cm_CustoName = cm_CustoName;
+            cm_CustoAddress = cm_CustoAddress.IsNullOrEmpty() ? "" : cm_CustoAddress.ToString();
+            cm_CustoType = Convert.ToInt32(cm_CustoType);
+            cm_CustoSex = Convert.ToInt32(cm_CustoSex);
+            cm_PassportType = Convert.ToInt32(cm_PassportType);
+            cm_CustoBirth = Convert.ToDateTime(cm_CustoBirth);
+            cm_CustoID = cm_CustoID;
+            cm_CustoTel = cm_CustoTel;
             FrmEditInputs frmInputs = new FrmEditInputs();
             frmInputs.Text = "修改客户信息";
             frmInputs.ShowDialog();
@@ -218,22 +199,17 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (e.Record is IList<AntdUI.AntItem> data)
             {
-                cm_CustoNo = data[0].value.ToString();
-                cm_CustoName = data[1].value.ToString();
-                cm_CustoSex = Convert.ToInt32(SexConstant.GetCodeByDescription(data[2].value.ToString()));
-                cm_CustoTel = data[3].value.ToString();
-                cm_CustoBirth = Convert.ToDateTime(data[4].value.ToString());
-                cm_CustoType = Convert.ToInt32(CustomTypeConstant.GetCodeByDescription(data[5].value.ToString()));
-                cm_PassportType = Convert.ToInt32(PassportConstant.GetCodeByDescription(data[6].value.ToString()));
-                cm_CustoID = data[7].value.ToString();
-                cm_CustoAddress = data[8].value.ToString();
+                cm_CustoNo = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerNumber));
+                cm_CustoName = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerName));
+                cm_CustoSex = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerGender)));
+                cm_CustoTel = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerPhoneNumber));
+                cm_CustoBirth = Convert.ToDateTime(helper.GetValue(data, nameof(ReadCustomerOutputDto.DateOfBirth)));
+                cm_CustoType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerType)));
+                cm_PassportType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.PassportId)));
+                cm_CustoID = helper.GetValue(data, nameof(ReadCustomerOutputDto.IdCardNumber));
+                cm_CustoAddress = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerAddress));
                 btnUpdCustomer.Enabled = true;
             }
-        }
-
-        private void cbOnlyVip_CheckedChanged(object sender, AntdUI.BoolEventArgs e)
-        {
-            LoadCustomer(e.Value);
         }
 
         private string btnPg_ShowTotalChanged(object sender, AntdUI.PagePageEventArgs e)
@@ -246,7 +222,7 @@ namespace EOM.TSHotelManagement.FormUI
             var dataCount = 0;
             dgvCustomerList.Spin("正在加载中...", config =>
             {
-                dgvCustomerList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount,cbOnlyVip.Checked);
+                dgvCustomerList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount);
                 btnPg.Total = dataCount;
             }, () =>
             {
@@ -259,15 +235,15 @@ namespace EOM.TSHotelManagement.FormUI
             _loadingProgress.Show();
             if (e.Record is IList<AntdUI.AntItem> data)
             {
-                FrmCustoManager.cm_CustoNo = data[0].value.ToString();
-                FrmCustoManager.cm_CustoName = data[1].value.ToString();
-                FrmCustoManager.cm_CustoSex = Convert.ToInt32(SexConstant.GetCodeByDescription(data[2].value.ToString()));
-                FrmCustoManager.cm_CustoTel = data[3].value.ToString();
-                FrmCustoManager.cm_CustoBirth = Convert.ToDateTime(data[4].value.ToString());
-                FrmCustoManager.cm_CustoType = Convert.ToInt32(CustomTypeConstant.GetCodeByDescription(data[5].value.ToString()));
-                FrmCustoManager.cm_PassportType = Convert.ToInt32(PassportConstant.GetCodeByDescription(data[6].value.ToString()));
-                FrmCustoManager.cm_CustoID = data[7].value.ToString();
-                FrmCustoManager.cm_CustoAddress = data[8].value.ToString();
+                cm_CustoNo = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerNumber));
+                cm_CustoName = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerName));
+                cm_CustoSex = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerGender)));
+                cm_CustoTel = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerPhoneNumber));
+                cm_CustoBirth = Convert.ToDateTime(helper.GetValue(data, nameof(ReadCustomerOutputDto.DateOfBirth)));
+                cm_CustoType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerType)));
+                cm_PassportType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.PassportId)));
+                cm_CustoID = helper.GetValue(data, nameof(ReadCustomerOutputDto.IdCardNumber));
+                cm_CustoAddress = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerAddress));
 
                 FrmEditInputs frmInputs = new FrmEditInputs(_loadingProgress);
                 frmInputs.Text = "修改客户信息";
