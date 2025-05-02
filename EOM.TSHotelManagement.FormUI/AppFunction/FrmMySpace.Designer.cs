@@ -53,6 +53,7 @@ namespace EOM.TSHotelManagement.FormUI
             tabPage2 = new TabPage();
             label3 = new AntdUI.Label();
             tabPage3 = new TabPage();
+            label4 = new AntdUI.Label();
             picWorkerPic = new PictureBox();
             uiTabControlMenu2.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -386,6 +387,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(label4);
             tabPage3.Controls.Add(picWorkerPic);
             tabPage3.Location = new Point(201, 0);
             tabPage3.Name = "tabPage3";
@@ -394,12 +396,22 @@ namespace EOM.TSHotelManagement.FormUI
             tabPage3.Text = "账号头像";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            label4.Location = new Point(257, 416);
+            label4.Name = "label4";
+            label4.Size = new Size(215, 23);
+            label4.TabIndex = 1;
+            label4.Text = "Tips:头像大小不能超过1MB";
+            // 
             // picWorkerPic
             // 
+            picWorkerPic.BackgroundImage = Properties.Resources.账号;
             picWorkerPic.BackgroundImageLayout = ImageLayout.Stretch;
             picWorkerPic.Location = new Point(257, 150);
             picWorkerPic.Name = "picWorkerPic";
             picWorkerPic.Size = new Size(215, 246);
+            picWorkerPic.SizeMode = PictureBoxSizeMode.StretchImage;
             picWorkerPic.TabIndex = 0;
             picWorkerPic.TabStop = false;
             picWorkerPic.Click += picWorkerPic_Click;
@@ -451,5 +463,6 @@ namespace EOM.TSHotelManagement.FormUI
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.PictureBox picWorkerPic;
         private AntdUI.Label label3;
+        private AntdUI.Label label4;
     }
 }

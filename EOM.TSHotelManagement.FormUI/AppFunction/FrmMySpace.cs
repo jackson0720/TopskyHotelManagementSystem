@@ -71,8 +71,8 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             cboSex.DataSource = genderTypes.listSource;
-            cboSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
-            cboSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
+            cboSex.DisplayMember = nameof(ReadGenderTypeOutputDto.Description);
+            cboSex.ValueMember = nameof(ReadGenderTypeOutputDto.Id);
             //加载部门信息
             result = HttpHelper.Request(ApiConstants.Base_SelectDeptAllCanUse);
             var depts = HttpHelper.JsonToModel<ListOutputDto<ReadDepartmentOutputDto>>(result.message);
@@ -146,7 +146,7 @@ namespace EOM.TSHotelManagement.FormUI
             if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
             {
                 picWorkerPic.BackgroundImage = null;
-                if (!string.IsNullOrEmpty(workerPicSource.PhotoPath)) picWorkerPic.LoadAsync(workerPicSource.PhotoPath);
+                if (!string.IsNullOrEmpty(workerPicSource.PhotoPath)) picWorkerPic.Load(workerPicSource.PhotoPath);
             }
         }
 
@@ -268,11 +268,11 @@ namespace EOM.TSHotelManagement.FormUI
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(requestResult.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_InsertWorkerPhoto}+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError($"{response.Message}:{ApiConstants.EmployeePhoto_InsertWorkerPhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            picWorkerPic.LoadAsync(response.Source.PhotoPath);
             UIMessageTip.ShowOk("头像上传成功！稍等将会加载头像哦..");
+            picWorkerPic.Load(response.Source.PhotoPath);
         }
     }
 }

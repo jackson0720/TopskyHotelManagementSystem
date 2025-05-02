@@ -1,4 +1,5 @@
 ﻿using EOM.TSHotelManagement.Common.Contract;
+using jvncorelib.EntityLib;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -30,19 +31,25 @@ namespace EOM.TSHotelManagement.Common
             {
                 return new Card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };
             }
-            var address = $"{response.Source.Province}{response.Source.City}{response.Source.District}";
-            var birthday = code.Substring(6, 4) + "-" + code.Substring(10, 2) + "-" + code.Substring(12, 2);
-            var sex = code.Substring(14, 3);
-            //性别代码为偶数是女性奇数为男性
-            if (int.Parse(sex) % 2 == 0)
+
+            if (!response.Source.IsNullOrEmpty())
             {
-                sex = "女";
+                var address = $"{response.Source.Province}{response.Source.City}{response.Source.District}";
+                var birthday = code.Substring(6, 4) + "-" + code.Substring(10, 2) + "-" + code.Substring(12, 2);
+                var sex = code.Substring(14, 3);
+                //性别代码为偶数是女性奇数为男性
+                if (int.Parse(sex) % 2 == 0)
+                {
+                    sex = "女";
+                }
+                else
+                {
+                    sex = "男";
+                }
+                return new Card { message = string.Empty, sex = sex, address = address, birthday = birthday };
             }
-            else
-            {
-                sex = "男";
-            }
-            return new Card { message = string.Empty, sex = sex, address = address, birthday = birthday };
+
+            return new Card();
         }
 
         /// <summary>

@@ -274,7 +274,7 @@
             dgvSellthing.Font = new Font("Microsoft YaHei UI", 9F);
             dgvSellthing.Location = new Point(4, 88);
             dgvSellthing.Name = "dgvSellthing";
-            dgvSellthing.Size = new Size(487, 362);
+            dgvSellthing.Size = new Size(487, 351);
             dgvSellthing.TabIndex = 131;
             dgvSellthing.CellClick += dgvSellthing_CellClick;
             // 
@@ -282,7 +282,7 @@
             // 
             btnPg.Current = 0;
             btnPg.Font = new Font("微软雅黑", 12F);
-            btnPg.Location = new Point(4, 456);
+            btnPg.Location = new Point(4, 448);
             btnPg.Name = "btnPg";
             btnPg.PageSize = 15;
             btnPg.ShowSizeChanger = true;
@@ -319,7 +319,7 @@
             dgvRoomSell.Font = new Font("Microsoft YaHei UI", 9F);
             dgvRoomSell.Location = new Point(497, 217);
             dgvRoomSell.Name = "dgvRoomSell";
-            dgvRoomSell.Size = new Size(572, 270);
+            dgvRoomSell.Size = new Size(572, 262);
             dgvRoomSell.TabIndex = 138;
             dgvRoomSell.CellClick += dgvRoomSell_CellClick;
             // 
@@ -327,7 +327,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(235, 243, 255);
-            ClientSize = new Size(1072, 494);
+            ClientSize = new Size(1072, 486);
             Controls.Add(dgvRoomSell);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);

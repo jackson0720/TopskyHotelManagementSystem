@@ -26,6 +26,7 @@ using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.Shared;
+using jvncorelib.CodeLib;
 using Sunny.UI;
 using System.Transactions;
 
@@ -51,7 +52,7 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboRoomList.DataSource = datas;
+            cboRoomList.DataSource = datas.listSource;
             cboRoomList.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
             cboRoomList.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
             firstLoad = false;
@@ -59,116 +60,42 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnChangeRoom_Click(object sender, EventArgs e)
         {
-            double sum = 0;
-            string lbu = LoginInfo.WorkerName;
             string rno = ucRoom.co_RoomNo.ToString();
             string nrno = cboRoomList.Text;
 
-            using (TransactionScope scope = new TransactionScope())
+            try
             {
-                try
+                #region 发起转房和转移消费以及添加消费的请求
+
+                var transferRoom = new TransferRoomDto
                 {
-                    #region 发起转房和转移消费以及添加消费的请求
-
-                    dic = new Dictionary<string, string>()
-                    {
-                        { nameof(ReadRoomInputDto.RoomNumber) , rno }
-                    };
-
-                    result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
-                    var data = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
-                    if (data.StatusCode != StatusCodeConstants.Success)
-                    {
-                        UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    var room = data.Source;
-                    var checkInRoom = new UpdateRoomInputDto()
-                    {
-                        RoomNumber = nrno,
-                        CustomerNumber = ucRoom.co_CustoNo,
-                        RoomStateId = (int)RoomState.Occupied,
-                        LastCheckInTime = Convert.ToDateTime(DateTime.Now),
-                        DataChgUsr = LoginInfo.WorkerNo,
-                        DataChgDate = DateTime.Now
-                    };
-                    result = HttpHelper.Request(ApiConstants.Room_DayByRoomNo, dic);
-                    data = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
-                    if (data.StatusCode != StatusCodeConstants.Success)
-                    {
-                        UIMessageBox.ShowError($"{ApiConstants.Room_DayByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(data.Source.StayDays) * room.RoomRent));
-
-                    var insertSpend = new CreateSpendInputDto()
-                    {
-                        RoomNumber = cboRoomList.Text,
-                        ProductName = "居住" + rno + "共" + Convert.ToInt32(result.message) + "天",
-                        ConsumptionQuantity = Convert.ToInt32(result.message),
-                        CustomerNumber = ucRoom.co_CustoNo,
-                        ProductPrice = room.RoomRent,
-                        ConsumptionAmount = Convert.ToDecimal(sum),
-                        ConsumptionTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
-                        SettlementStatus = SpendConsts.UnSettle,
-                    };
-
-                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfo, HttpHelper.ModelToJson(checkInRoom));
-                    var httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                    if (httpResult.StatusCode != StatusCodeConstants.Success)
-                    {
-                        UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfo}+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomByRoomNo, dic);
-                    httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                    if (httpResult.StatusCode != StatusCodeConstants.Success)
-                    {
-                        UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByCustoNo, dic);
-                    var datas = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
-                    if (datas.StatusCode != StatusCodeConstants.Success)
-                    {
-                        UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByCustoNo}+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    var result3 = datas.listSource;
-                    if (result3.Count != 0)
-                    {
-                        var spend = new UpdateSpendInputDto() { RoomNumber = nrno, CustomerNumber = ucRoom.CustoNo };
-                        result = HttpHelper.Request(ApiConstants.Spend_UpdateSpendInfoByRoomNo, HttpHelper.ModelToJson(spend));
-                        httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                        if (httpResult.StatusCode != StatusCodeConstants.Success)
-                        {
-                            UIMessageBox.ShowError($"{ApiConstants.Spend_UpdateSpendInfoByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
-                            return;
-                        }
-                    }
-
-                    #endregion
-
-                    UIMessageBox.ShowSuccess("转房成功");
-                    result = HttpHelper.Request(ApiConstants.Spend_InsertSpendInfo, HttpHelper.ModelToJson(insertSpend));
-                    httpResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                    if (httpResult.StatusCode != StatusCodeConstants.Success)
-                    {
-                        UIMessageBox.ShowError($"{ApiConstants.Spend_InsertSpendInfo}+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    FrmRoomManager.Reload("");
-                    FrmRoomManager._RefreshRoomCount();
-                    #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + ucRoom.CustoNo + "于" + Convert.ToDateTime(DateTime.Now) + "进行了换房！", 2);
-                    #endregion
-                    scope.Complete();
-                    this.Close();
-                }
-                catch (Exception)
+                    OriginalRoomNumber = rno,
+                    TargetRoomNumber = nrno,
+                    CustomerNumber = ucRoom.CustoNo,
+                    DataChgUsr = LoginInfo.WorkerNo,
+                    DataChgDate = Convert.ToDateTime(DateTime.Now)
+                };
+                result = HttpHelper.Request(ApiConstants.Room_TransferRoom, HttpHelper.ModelToJson(transferRoom));
+                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message!);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    UIMessageBox.ShowError("转房失败");
+                    UIMessageBox.ShowError($"{ApiConstants.Room_TransferRoom}+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
                 }
+
+                #endregion
+
+                FrmRoomManager.Reload("");
+                FrmRoomManager._RefreshRoomCount();
+                #region 获取添加操作日志所需的信息
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + transferRoom.DataChgDate + "位于" + LoginInfo.SoftwareVersion + "执行：" + transferRoom.CustomerNumber + "于" + transferRoom.DataChgDate + "进行了换房！", 2);
+                #endregion
+                UIMessageBox.ShowSuccess("转房成功");
+                this.Close();
+            }
+            catch (Exception)
+            {
+                UIMessageBox.ShowError("转房失败");
             }
         }
 

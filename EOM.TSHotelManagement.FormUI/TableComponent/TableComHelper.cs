@@ -79,7 +79,7 @@ namespace EOM.TSHotelManagement.FormUI
         public List<AntdUI.AntItem[]> ConvertToAntdItems<T>(List<T> datas)
         {
             var listTableSource = new List<AntdUI.AntItem[]>();
-            var properties = typeof(T).GetProperties(); // 获取泛型实体T的所有属性
+            var properties = typeof(T).GetProperties();
 
             foreach (var data in datas)
             {
@@ -128,14 +128,18 @@ namespace EOM.TSHotelManagement.FormUI
                             antItems.Add(new AntdUI.AntItem(propName, dateValue.ToString("yyyy-MM-dd HH:mm:ss")));
                         }
                     }
+                    else if (propType == typeof(decimal))
+                    {
+                        var decimalValue = Convert.ToDecimal(propValue);
+                        antItems.Add(new AntdUI.AntItem(propName, Math.Round(decimalValue, 2)));
+                    }
                     else
                     {
-                        // 对于其他类型，默认显示字段名和字段值
                         antItems.Add(new AntdUI.AntItem(propName, propValue?.ToString()));
                     }
                 }
 
-                listTableSource.Add(antItems.ToArray()); // 添加处理后的AntdItem数组到结果集中
+                listTableSource.Add(antItems.ToArray());
             }
             return listTableSource;
         }

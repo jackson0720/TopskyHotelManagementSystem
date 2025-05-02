@@ -240,7 +240,7 @@ namespace EOM.TSHotelManagement.FormUI
                         case "客房管理":
                             menuItem.Icon = Resources.picRoom_Image;
                             break;
-                        case "用户管理":
+                        case "客户管理":
                             menuItem.Icon = Resources.picCustomer_Image;
                             break;
                         case "商品消费":
@@ -521,7 +521,6 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void muNavBar_SelectChanged(object sender, MenuSelectEventArgs e)
         {
-            _loadingProgress.Show();
             switch (e.Value.Text)
             {
                 case "客房管理":
@@ -533,7 +532,7 @@ namespace EOM.TSHotelManagement.FormUI
                     pnlMID.Controls.Add(frmRoomManager);
                     frmRoomManager.Show();
                     break;
-                case "用户管理":
+                case "客户管理":
                     pnlMID.Controls.Clear();
                     FrmCustomerManager frmCustomerManager = new()
                     {
@@ -552,7 +551,6 @@ namespace EOM.TSHotelManagement.FormUI
                     frmSellThing.Show();
                     break;
             }
-            _loadingProgress.Close();
 
         }
     }

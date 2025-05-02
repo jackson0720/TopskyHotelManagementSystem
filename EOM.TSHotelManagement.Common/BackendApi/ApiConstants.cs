@@ -31,7 +31,7 @@
         public const string Room_SelectRoomAll = "Room/SelectRoomAll";
         public const string Room_SelectRoomByRoomNo = "Room/SelectRoomByRoomNo";
         public const string Room_DayByRoomNo = "Room/DayByRoomNo";
-        public const string Room_UpdateRoomByRoomNo = "Room/UpdateRoomByRoomNo";
+        public const string Room_CheckoutRoomByRoomNo = "Room/CheckoutRoomByRoomNo";
         public const string Room_SelectCanUseRoomAll = "Room/SelectCanUseRoomAll";
         public const string Room_UpdateRoomInfo = "Room​/UpdateRoomInfo";
         public const string Room_UpdateRoomInfoWithReser = "Room​/UpdateRoomInfoWithReser";
@@ -43,6 +43,8 @@
         public const string Room_SelectNotClearRoomAllByRoomState = "Room/SelectNotClearRoomAllByRoomState";
         public const string Room_SelectFixingRoomAllByRoomState = "Room/SelectFixingRoomAllByRoomState";
         public const string Room_SelectReservedRoomAllByRoomState = "Room/SelectReservedRoomAllByRoomState";
+        public const string Room_TransferRoom = "Room/TransferRoom";
+        public const string Room_CheckoutRoom = "Room/CheckoutRoom";
 
         // Reser URLs
         public const string Reser_SelectReserAll = "Reser/SelectReserAll";
@@ -83,7 +85,7 @@
         public const string NavBar_NavBarList = "NavBar/NavBarList";
 
         // VipLevelRule URLs
-        public const string VipLevelRule_SelectVipRuleList = "VipLevelRule/SelectVipRuleList";
+        public const string VipLevelRule_SelectVipRuleList = "VipRule/SelectVipRuleList";
 
         // SellThing
         public const string Sellthing_SelectSellThingAll = "Sellthing/SelectSellThingAll";
