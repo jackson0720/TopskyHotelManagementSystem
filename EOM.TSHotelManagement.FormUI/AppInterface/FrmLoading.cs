@@ -60,7 +60,6 @@ namespace EOM.TSHotelManagement.FormUI
             client.DefaultRequestHeaders.Add("User-Agent", await GetDefaultUserAgentAsync());
             try
             {
-                // Gitee 优先检查
                 var giteeResponse = await client.GetAsync(GiteeRepoUrl);
                 if (giteeResponse.IsSuccessStatusCode)
                 {
@@ -70,7 +69,6 @@ namespace EOM.TSHotelManagement.FormUI
                     return;
                 }
 
-                // GitHub 回退检查
                 var githubResponse = await client.GetAsync(GithubRepoUrl);
                 if (githubResponse.IsSuccessStatusCode)
                 {
@@ -87,7 +85,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             finally
             {
-                progressBar.Visible = false;
+                progressBar.Visible = true;
             }
         }
 
@@ -96,18 +94,38 @@ namespace EOM.TSHotelManagement.FormUI
                 List<TAsset> assets,
                 bool isGitee) where TAsset : class
         {
-            dynamic executableAsset = assets.FirstOrDefault(a =>
-                ((dynamic)a).Name?.EndsWith(".exe") == true ||
-                ((dynamic)a).FileName?.EndsWith(".exe") == true
-            );
+            var version = tagName.Replace("v", string.Empty);
+            lbInternetSoftwareVersion.Text = version;
+            lbInternetSoftwareVersion.Refresh();
+            if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
+            {
+                AntdUI.Modal.open(this, "系统提示", "当前已是最新版本，无需更新！", TType.Info);
+                Task.Run(() => threadPro());
+                return;
+            }
 
-            if (executableAsset == null) return;
+            string downloadUrl = string.Empty;
+            if (isGitee)
+            {
+                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).FileName?.EndsWith(".exe") == true);
 
-            string downloadUrl = isGitee ?
-                executableAsset.DownloadUrl :
-                executableAsset.BrowserDownloadUrl;
+                if (executableAsset == null) return;
 
-            DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统", new Progress<double>(ReportProgress));
+                downloadUrl = executableAsset.DownloadUrl;
+            }
+            else
+            {
+                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).Name?.EndsWith(".exe") == true);
+
+                if (executableAsset == null) return;
+
+                downloadUrl = executableAsset.BrowserDownloadUrl;
+            }
+
+            
+
+            DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress));
+            lblTips.Text = "安装包正在下载中，请稍等...";
         }
 
         private async Task<string> GetDefaultUserAgentAsync()
@@ -143,7 +161,7 @@ namespace EOM.TSHotelManagement.FormUI
                 int bytesRead;
 
                 AntdUI.Modal.open(this, "下载提示",
-                    $"已通过浏览器发起下载，请查看浏览器的下载列表。\n文件名称: {fileName}",
+                    $"已开始下载，请稍等。\n文件名称: {fileName}",
                     TType.Info);
 
                 while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
@@ -213,7 +231,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmLoading_Load(object sender, EventArgs e)
         {
-            lblSoftwareVersion.Text = ApplicationUtil.GetApplicationVersion().ToString();
+            lblLocalSoftwareVersion.Text = ApplicationUtil.GetApplicationVersion().ToString();
             CheckForUpdate();
         }
 
@@ -263,7 +281,7 @@ namespace EOM.TSHotelManagement.FormUI
             public string TagName { get; set; }
 
             [JsonProperty("name")]
-            public string Name { get; set; }
+            public string FileName { get; set; }
 
             [JsonProperty("body")]
             public string Body { get; set; }
