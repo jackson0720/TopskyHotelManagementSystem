@@ -30,7 +30,9 @@
         {
             lblTips = new Sunny.UI.UILabel();
             uiTitlePanel1 = new Sunny.UI.UITitlePanel();
-            lblSoftwareVersion = new Sunny.UI.UILabel();
+            lbInternetSoftwareVersion = new Sunny.UI.UILabel();
+            uiLabel4 = new Sunny.UI.UILabel();
+            lblLocalSoftwareVersion = new Sunny.UI.UILabel();
             uiLabel2 = new Sunny.UI.UILabel();
             uiTitlePanel1.SuspendLayout();
             SuspendLayout();
@@ -48,7 +50,9 @@
             // 
             // uiTitlePanel1
             // 
-            uiTitlePanel1.Controls.Add(lblSoftwareVersion);
+            uiTitlePanel1.Controls.Add(lbInternetSoftwareVersion);
+            uiTitlePanel1.Controls.Add(uiLabel4);
+            uiTitlePanel1.Controls.Add(lblLocalSoftwareVersion);
             uiTitlePanel1.Controls.Add(uiLabel2);
             uiTitlePanel1.Font = new Font("微软雅黑", 12F);
             uiTitlePanel1.ForeColor = Color.White;
@@ -59,21 +63,42 @@
             uiTitlePanel1.Padding = new Padding(0, 25, 0, 0);
             uiTitlePanel1.ShowCollapse = true;
             uiTitlePanel1.ShowText = false;
-            uiTitlePanel1.Size = new Size(247, 66);
+            uiTitlePanel1.Size = new Size(247, 86);
             uiTitlePanel1.TabIndex = 2;
             uiTitlePanel1.Text = "软件版本信息";
             uiTitlePanel1.TextAlignment = ContentAlignment.MiddleCenter;
             uiTitlePanel1.TitleHeight = 25;
             // 
-            // lblSoftwareVersion
+            // lbInternetSoftwareVersion
             // 
-            lblSoftwareVersion.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            lblSoftwareVersion.ForeColor = Color.FromArgb(48, 48, 48);
-            lblSoftwareVersion.Location = new Point(123, 33);
-            lblSoftwareVersion.Name = "lblSoftwareVersion";
-            lblSoftwareVersion.Size = new Size(110, 23);
-            lblSoftwareVersion.TabIndex = 6;
-            lblSoftwareVersion.TextAlign = ContentAlignment.MiddleLeft;
+            lbInternetSoftwareVersion.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            lbInternetSoftwareVersion.ForeColor = Color.FromArgb(48, 48, 48);
+            lbInternetSoftwareVersion.Location = new Point(122, 57);
+            lbInternetSoftwareVersion.Name = "lbInternetSoftwareVersion";
+            lbInternetSoftwareVersion.Size = new Size(110, 23);
+            lbInternetSoftwareVersion.TabIndex = 8;
+            lbInternetSoftwareVersion.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // uiLabel4
+            // 
+            uiLabel4.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
+            uiLabel4.Location = new Point(14, 57);
+            uiLabel4.Name = "uiLabel4";
+            uiLabel4.Size = new Size(110, 23);
+            uiLabel4.TabIndex = 7;
+            uiLabel4.Text = "联网程序版本号：";
+            uiLabel4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblLocalSoftwareVersion
+            // 
+            lblLocalSoftwareVersion.Font = new Font("微软雅黑", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            lblLocalSoftwareVersion.ForeColor = Color.FromArgb(48, 48, 48);
+            lblLocalSoftwareVersion.Location = new Point(123, 33);
+            lblLocalSoftwareVersion.Name = "lblLocalSoftwareVersion";
+            lblLocalSoftwareVersion.Size = new Size(110, 23);
+            lblLocalSoftwareVersion.TabIndex = 6;
+            lblLocalSoftwareVersion.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // uiLabel2
             // 
@@ -90,7 +115,7 @@
             // 
             AllowShowTitle = false;
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(335, 180);
+            ClientSize = new Size(335, 186);
             Controls.Add(uiTitlePanel1);
             Controls.Add(lblTips);
             Name = "FrmLoading";
@@ -107,8 +132,10 @@
         private Sunny.UI.UILabel lblTips;
         private Sunny.UI.UITitlePanel uiTitlePanel1;
         private Sunny.UI.UILabel lblDllVersion;
-        private Sunny.UI.UILabel lblSoftwareVersion;
+        private Sunny.UI.UILabel lblLocalSoftwareVersion;
         private Sunny.UI.UILabel uiLabel3;
         private Sunny.UI.UILabel uiLabel2;
+        private Sunny.UI.UILabel lbInternetSoftwareVersion;
+        private Sunny.UI.UILabel uiLabel4;
     }
 }

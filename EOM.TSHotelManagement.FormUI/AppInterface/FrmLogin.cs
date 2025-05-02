@@ -117,8 +117,6 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.Owner.Hide();
-            txtWorkerId.Text = "W428989222912";
-            txtWorkerPwd.Text = "U.aX]Wj}U4Aw";
         }
         #endregion
 

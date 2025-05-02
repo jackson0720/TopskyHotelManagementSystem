@@ -26,6 +26,7 @@ using EOM.TSHotelManagement.Common;
 using Newtonsoft.Json;
 using Sunny.UI;
 using System.Diagnostics;
+using System.Text;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -33,6 +34,7 @@ namespace EOM.TSHotelManagement.FormUI
     {
         private string CurrentVersion => ApplicationUtil.GetApplicationVersion().ToString();
         private string GithubRepoUrl = "https://api.github.com/repos/easy-open-meta/TopskyHotelManagerSystem/releases/latest";
+        private string GiteeRepoUrl = "https://gitee.com/api/v5/repos/java-and-net/TopskyHotelManagerSystem/releases/latest";
         private string FileName { get; set; }
         private string CurrentExecutablePath => Application.ExecutablePath;
         private string CurrentExecutableName => Path.GetFileName(CurrentExecutablePath);
@@ -54,68 +56,76 @@ namespace EOM.TSHotelManagement.FormUI
 
         private async void CheckForUpdate()
         {
+            using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+            client.DefaultRequestHeaders.Add("User-Agent", await GetDefaultUserAgentAsync());
             try
             {
-                using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
-                client.DefaultRequestHeaders.Add("User-Agent", await GetDefaultUserAgentAsync());
-                var response = await client.GetAsync(GithubRepoUrl);
-
-                if (response.IsSuccessStatusCode)
+                var giteeResponse = await client.GetAsync(GiteeRepoUrl);
+                if (giteeResponse.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsStringAsync();
-                    var release = JsonConvert.DeserializeObject<GitHubRelease>(result);
-
-                    var latestVersion = release!.TagName.Replace("v", "", StringComparison.OrdinalIgnoreCase);
-                    var currentVersion = CurrentVersion.Replace("v", "", StringComparison.OrdinalIgnoreCase);
-
-                    var versionCompareResult = string.Compare(latestVersion, currentVersion, StringComparison.OrdinalIgnoreCase);
-
-                    if (versionCompareResult > 0)
-                    {
-                        var updateAsset = release.Assets.FirstOrDefault(a => a.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase));
-                        if (updateAsset != null)
-                        {
-                            FileName = $"{updateAsset.Name}_{DateTime.Now.ToString("yyyyMMddHHmmsss")}";
-                            var isUpdated = await DownloadAndInstallUpdate(updateAsset.BrowserDownloadUrl, updateAsset.Name, new Progress<double>(ReportProgress));
-                            if (isUpdated)
-                            {
-                                AntdUI.Modal.open(this, "系统提示", "旧版已停止使用，稍后将自动下载最新发行版！", TType.Warn);
-                                ExitApplication();
-                            }
-                            else
-                            {
-                                AntdUI.Modal.open(this, "系统提示", "更新失败，请手动下载最新版本。", TType.Warn);
-                            }
-                        }
-                        else
-                        {
-                            AntdUI.Modal.open(this, "系统提示", "最新版本中未找到可更新的 .exe 文件。", TType.Warn);
-                        }
-                    }
-                    else
-                    {
-                        AntdUI.Modal.open(this, "系统提示", "当前已为最新版本，无需更新！", TType.Success);
-                        await Task.Run(() => threadPro());
-                    }
+                    var giteeResult = await giteeResponse.Content.ReadAsStringAsync();
+                    var giteeRelease = JsonConvert.DeserializeObject<GiteeRelease>(giteeResult);
+                    HandleReleaseInfo<GiteeAsset>(giteeRelease.TagName, giteeRelease.Assets, isGitee: true);
+                    return;
                 }
-                else
+
+                var githubResponse = await client.GetAsync(GithubRepoUrl);
+                if (githubResponse.IsSuccessStatusCode)
                 {
-                    AntdUI.Modal.open(this, "系统提示", "无法获取最新版本信息，请检查网络连接。", TType.Info);
-                    ExitApplication();
+                    var githubResult = await githubResponse.Content.ReadAsStringAsync();
+                    var githubRelease = JsonConvert.DeserializeObject<GitHubRelease>(githubResult);
+                    HandleReleaseInfo<GitHubAsset>(githubRelease.TagName, githubRelease.Assets, isGitee: false);
+                    return;
                 }
-            }
-            catch (OperationCanceledException)
-            {
-                AntdUI.Modal.open(this, "系统提示", "网络连接超时，无法检查更新。即将跳转到网盘版本库", TType.Info);
-                OpenFallbackUrl();
-                ExitApplication();
             }
             catch (Exception ex)
             {
                 AntdUI.Modal.open(this, "系统提示", $"检查更新时发生错误: {ex.Message}", TType.Info);
                 OpenFallbackUrl();
-                ExitApplication();
             }
+            finally
+            {
+                progressBar.Visible = true;
+            }
+        }
+
+        private void HandleReleaseInfo<TAsset>(
+                string tagName,
+                List<TAsset> assets,
+                bool isGitee) where TAsset : class
+        {
+            var version = tagName.Replace("v", string.Empty);
+            lbInternetSoftwareVersion.Text = version;
+            lbInternetSoftwareVersion.Refresh();
+            if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
+            {
+                AntdUI.Modal.open(this, "系统提示", "当前已是最新版本，无需更新！", TType.Info);
+                Task.Run(() => threadPro());
+                return;
+            }
+
+            string downloadUrl = string.Empty;
+            if (isGitee)
+            {
+                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).FileName?.EndsWith(".exe") == true);
+
+                if (executableAsset == null) return;
+
+                downloadUrl = executableAsset.DownloadUrl;
+            }
+            else
+            {
+                dynamic executableAsset = assets.SingleOrDefault(a => ((dynamic)a).Name?.EndsWith(".exe") == true);
+
+                if (executableAsset == null) return;
+
+                downloadUrl = executableAsset.BrowserDownloadUrl;
+            }
+
+            
+
+            DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress));
+            lblTips.Text = "安装包正在下载中，请稍等...";
         }
 
         private async Task<string> GetDefaultUserAgentAsync()
@@ -149,6 +159,10 @@ namespace EOM.TSHotelManagement.FormUI
                 var totalBytesRead = 0L;
                 var buffer = new byte[8192];
                 int bytesRead;
+
+                AntdUI.Modal.open(this, "下载提示",
+                    $"已开始下载，请稍等。\n文件名称: {fileName}",
+                    TType.Info);
 
                 while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
                 {
@@ -217,7 +231,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmLoading_Load(object sender, EventArgs e)
         {
-            lblSoftwareVersion.Text = ApplicationUtil.GetApplicationVersion().ToString();
+            lblLocalSoftwareVersion.Text = ApplicationUtil.GetApplicationVersion().ToString();
             CheckForUpdate();
         }
 
@@ -259,6 +273,45 @@ namespace EOM.TSHotelManagement.FormUI
 
             [JsonProperty("browser_download_url")]
             public string BrowserDownloadUrl { get; set; }
+        }
+
+        public class GiteeRelease
+        {
+            [JsonProperty("tag_name")]
+            public string TagName { get; set; }
+
+            [JsonProperty("name")]
+            public string FileName { get; set; }
+
+            [JsonProperty("body")]
+            public string Body { get; set; }
+
+            [JsonProperty("assets")]
+            public List<GiteeAsset> Assets { get; set; }
+
+            [JsonProperty("author")]
+            public GiteeAuthor Author { get; set; }
+
+            [JsonProperty("created_at")]
+            public DateTime CreatedAt { get; set; }
+        }
+
+        public class GiteeAsset
+        {
+            [JsonProperty("browser_download_url")]
+            public string DownloadUrl { get; set; }
+
+            [JsonProperty("name")]
+            public string FileName { get; set; }
+        }
+
+        public class GiteeAuthor
+        {
+            [JsonProperty("login")]
+            public string Login { get; set; }
+
+            [JsonProperty("avatar_url")]
+            public string AvatarUrl { get; set; }
         }
     }
 }
