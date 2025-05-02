@@ -9,10 +9,6 @@
 <div align="center">
 	<p>中文文档 | <a href="./README.en.md">English Document</a></p>
 </div>
-
-
-
-
 #  :exclamation: 重要说明：
 
  **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
@@ -41,11 +37,15 @@
 
 4、关于数据库脚本问题，请先移步至数据库脚本文件夹下，选择Mysql版本或PostgreSQL版本任意文件夹下载Data和Table两个文件，再数据库中先执行Table.sql，再执行Data.sql!
 
-5、针对MySQL和PostgreSQL数据库的说明：
+5、本项目已基于SQL Sugar框架支持多数据库(主流)，以下是目前已通过测试的数据库表格：
 
-		5.1、本地数据库若为MySQL，请拉取[MySQL专用分支](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/tree/MySQL_Version/)。
-	
-		5.2、本地数据库若为PostgreSQL，则无需进行任何改动，只需要在Common层对HttpHelper里的pgsqlString常量数据库连接字符串进行配置。
+| 数据库     | 版本             | 支持建库建表(Y/N) | 通过(Y/N)                                            |
+| ---------- | ---------------- | ----------------- | ---------------------------------------------------- |
+| MariaDB    | 10.11.10-MariaDB | Y                 | Y                                                    |
+| PostgreSQL | 130020           | Y                 | Y                                                    |
+| MySQL      | 5.7+             | Y                 | Y                                                    |
+| SQL Server | 2022             | Y                 | Y                                                    |
+| Oracle     | Unknown          | N                 | 请参照SQLSugar文档([果糖网](https://www.donet5.com)) |
 
 #  :thought_balloon: 开发目的：
 
@@ -57,7 +57,7 @@
 
 开发工具：Microsoft Visual Studio 2022(系统最新版本)
 
-数据库：PostgreSql16(强烈推荐！)
+数据库：MariaDB(强烈推荐！)
 
 数据库管理工具：Dbgate
 
@@ -79,7 +79,6 @@ EOM.Client.TopskyHotelManagementSystem
 ├─ LICENSE
 ├─ README.md
 ├─ EOM.TopskyHotelManagementSystem.Common
-├─ EOM.TopskyHotelManagementSystem.Common.Core
 ├─ EOM.TopskyHotelManagementSystem.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
@@ -104,23 +103,11 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :books: 系统功能模块汇总：
 
-| 功能汇总       |              |              |               |              |              |              |
-| -------------- | ------------ | ------------ | ------------- | ------------ | ------------ | ------------ |
-| (前台)客房管理 | 预约房间     | 入住房间     | 结算退房      | 转换房间     | 查看用户信息 | 修改房间状态 |
-| (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户      |              |              |              |
-| (前台)商品消费 | 商品列表     | 搜索商品信息 | 商品消费      | 消费信息     |              |              |
-| (前台)扩展功能 | 无           |              |               |              |              |              |
-| (后台)基础信息 | 职位类型维护 | 民族类型维护 | 学历类型维护  | 部门信息维护 |              |              |
-| (后台)财务信息 | 员工工资账单 | 内部财务账单 | 酒店盈利情况  |              |              |              |
-| (后台)水电管理 | 水电信息     |              |               |              |              |              |
-| (后台)监管统计 | 监管部门情况 |              |               |              |              |              |
-| (后台)客房管理 | 房态图一览   | 新增客房     |               |              |              |              |
-| (后台)客户管理 | 客户信息管理 | 顾客消费账单 |               |              |              |              |
-| 功能汇总(续)   |              |              |               |              |              |              |
-| (后台)人事管理 | 员工管理     | 公告日志     | 上传公告日志  |              |              |              |
-| (后台)物资管理 | 商品管理     | 仓库物资     |               |              |              |              |
-| 员工操作日志   |              |              |               |              |              |              |
-| 系统管理       | 添加管理员   | 权限分配     | 启/禁用管理员 |              |              |              |
+| 功能汇总       |              |              |          |          |              |              |
+| -------------- | ------------ | ------------ | -------- | -------- | ------------ | ------------ |
+| (前台)客房管理 | 预约房间     | 入住房间     | 结算退房 | 转换房间 | 查看用户信息 | 修改房间状态 |
+| (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户 |          |              |              |
+| (前台)商品消费 | 商品列表     | 搜索商品信息 | 商品消费 | 消费信息 |              |              |
 
 
 #  :family: 项目作者：
@@ -136,10 +123,10 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :inbox_tray: 数据库运行部署(本地)：
 
-**作者及开发团队强烈建议使用PostgreSQL数据库，安装PostgreSQL数据库并开启服务，通过可视化管理工具对数据库进行建立，可通过打开执行数据库脚本文件夹内的.sql后缀格式文件进行快速建立数据表和导入数据，执行步骤(以PostgreSQL数据库为例)：**
+**作者及开发团队强烈建议使用MariaDB数据库，安装MariaDB数据库并开启服务，通过可视化管理工具对数据库进行建立，可通过打开执行数据库脚本文件夹内的.sql后缀格式文件进行快速建立数据表和导入数据，执行步骤(以MariaDB数据库为例)：**
 
-**1、通过可视化管理工具链接PostgreSQL数据库，随后新建名为‘tshoteldb’数据库。**
+**1、通过可视化管理工具链接MariaDB数据库，随后新建名为‘tshoteldb’数据库。**
 
-**2、通过可视化管理工具打开：数据库脚本\PostgreSQL版本文件\db_file.sql进行数据表建立和数据导入。**
+**2、通过可视化管理工具打开：数据库脚本\MariaDB版本\MDB_tshotel_script_table.sql以及数据库脚本\MariaDB版本\MDB_tshotel_script_data.sql进行数据表建立和数据导入。**
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)

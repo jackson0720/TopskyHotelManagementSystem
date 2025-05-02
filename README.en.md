@@ -10,8 +10,6 @@
 	<p><a href="./README.md">中文文档</a> | English Document</p>
 </div>
 
-
-
 # :exclamation: Important Notice:
 
 **Note: The master branch changes with the v2.x version, which significantly differs from the v1.x version. Those interested in the v1.x version can move to the v1.x branch address**: https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/
@@ -40,11 +38,15 @@
 
 4. Regarding the database script issue, please first go to the database script folder, choose either the MySQL version or PostgreSQL version folder to download the Data and Table files. In the database, execute the Table.sql first, then the Data.sql!
 
-5. For MySQL and PostgreSQL databases:
+5. This project has implemented multi-database support (mainstream) based on the SQL Sugar framework. Below is the list of currently tested and verified database compatibility tables:
 
-        5.1 If your local database is MySQL, please pull the [MySQL special branch](https://gitee.com/java-and-net/topsky-hotel-manager-system-web-api/tree/MySQL_Version/).
-        
-        5.2 If the local database is PostgreSQL, no changes are needed, just configure the pgsqlString constant database connection string in the Common layer’s HttpHelper.
+    | Database   | Version          | Support Create  Table(Y/N) | Pass(Y/N)                                                    |
+    | ---------- | ---------------- | -------------------------- | ------------------------------------------------------------ |
+    | MariaDB    | 10.11.10-MariaDB | Y                          | Y                                                            |
+    | PostgreSQL | 130020           | Y                          | Y                                                            |
+    | MySQL      | 5.7+             | Y                          | Y                                                            |
+    | SQL Server | 2022             | Y                          | Y                                                            |
+    | Oracle     | Unknown          | N                          | Reference SQLSugar Document([SQLSugar](https://www.donet5.com)) |
 
 # :thought_balloon: Development Purpose:
 
@@ -56,7 +58,7 @@ Operating System: Windows 11(x64)
 
 Development Tools: Microsoft Visual Studio 2022 (latest version of the system)
 
-Database: PostgreSQL16 (highly recommended!)
+Database: MariaDB (highly recommended!)
 
 Database Management Tools: DbGate
 
@@ -79,7 +81,6 @@ EOM.Client.TopSkyHotelManagerSystem
 ├─ LICENSE
 ├─ README.md
 ├─ EOM.TSHotelManager.Common
-├─ EOM.TSHotelManager.Common.Core
 ├─ EOM.TSHotelManager.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
@@ -105,23 +106,11 @@ EOM.Client.TopSkyHotelManagerSystem
 
 # :books: Summary of System Function Modules:
 
-| Function Summary                         |                                  |                            |                              |                                    |                    |                    |
-| ---------------------------------------- | -------------------------------- | -------------------------- | ---------------------------- | ---------------------------------- | ------------------ | ------------------ |
-| (Front Desk) Room Management             | Reserve Room                     | Check-in Room              | Checkout Room                | Switch Room                        | View Customer Info | Modify Room Status |
-| (Front Desk) Customer Management         | Display Customer Info            | Search Customer Info       | Add Customer                 |                                    |                    |                    |
-| (Front Desk) Product Consumption         | Product List                     | Search Product Info        | Product Consumption          | Consumption Info                   |                    |                    |
-| (Front Desk) Additional Features         | None                             |                            |                              |                                    |                    |                    |
-| (Back Office) Basic Information          | Position Type Maintenance        | Ethnicity Type Maintenance | Education Type Maintenance   | Department Information Maintenance |                    |                    |
-| (Back Office) Financial Information      | Employee Salary Bills            | Internal Financial Bills   | Hotel Profit Situation       |                                    |                    |                    |
-| (Back Office) Utilities Management       | Utilities Info                   |                            |                              |                                    |                    |                    |
-| (Back Office) Supervision and Statistics | Supervision Department Situation |                            |                              |                                    |                    |                    |
-| (Back Office) Room Management            | Room Status Overview             | Add New Room               |                              |                                    |                    |                    |
-| (Back Office) Customer Management        | Customer Information Management  | Customer Consumption Bills |                              |                                    |                    |                    |
-| Function Summary (Continued)             |                                  |                            |                              |                                    |                    |                    |
-| (Back Office) HR Management              | Employee Management              | Announcement Logs          | Upload Announcement Logs     |                                    |                    |                    |
-| (Back Office) Material Management        | Product Management               | Warehouse Supplies         |                              |                                    |                    |                    |
-| Employee Operation Logs                  |                                  |                            |                              |                                    |                    |                    |
-| System Management                        | Add Administrator                | Permission Assignment      | Enable/Disable Administrator |                                    |                    |                    |
+| Function Summary                 |                       |                      |                     |                  |                    |                    |
+| -------------------------------- | --------------------- | -------------------- | ------------------- | ---------------- | ------------------ | ------------------ |
+| (Front Desk) Room Management     | Reserve Room          | Check-in Room        | Checkout Room       | Switch Room      | View Customer Info | Modify Room Status |
+| (Front Desk) Customer Management | Display Customer Info | Search Customer Info | Add Customer        |                  |                    |                    |
+| (Front Desk) Product Consumption | Product List          | Search Product Info  | Product Consumption | Consumption Info |                    |                    |
 
 # :family: Project Authors:
 
@@ -141,3 +130,5 @@ EOM.Client.TopSkyHotelManagerSystem
 **1. Link to the PostgreSQL database through a visualization management tool, then create a new database named ‘tshoteldb’.**
 
 **2. Open the db_file.sql in the database script\PostgreSQL version folder through the visualization management tool for data table creation and data import.**
+
+[![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
