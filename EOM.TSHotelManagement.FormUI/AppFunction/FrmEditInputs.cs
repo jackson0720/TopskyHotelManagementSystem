@@ -92,8 +92,8 @@ namespace EOM.TSHotelManagement.FormUI
             }
             var listSexType = genderTypes.listSource;
             this.cbSex.DataSource = listSexType;
-            this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.GenderName);
-            this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.GenderId);
+            this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.Description);
+            this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.Id);
             this.cbSex.SelectedIndex = 0;
             #endregion
 
@@ -121,10 +121,6 @@ namespace EOM.TSHotelManagement.FormUI
                     return;
                 }
 
-            }
-            if (_loadingProgress != null)
-            {
-                _loadingProgress.Close();
             }
         }
 
@@ -271,9 +267,18 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     try
                     {
-                        cbSex.Text = result.sex;
-                        txtCustoAdress.Text = result.address;
-                        dtpBirthday.Value = Convert.ToDateTime(result.birthday);
+                        cbSex.Text = result.sex ?? string.Empty;
+                        txtCustoAdress.Text = result.address ?? string.Empty;
+
+                        if (DateTime.TryParse(result.birthday, out DateTime parsedDate))
+                        {
+                            dtpBirthday.Value = parsedDate;
+                        }
+                        else
+                        {
+                            UIMessageBox.ShowError("请正确输入证件号码！");
+                            return;
+                        }
                     }
                     catch
                     {

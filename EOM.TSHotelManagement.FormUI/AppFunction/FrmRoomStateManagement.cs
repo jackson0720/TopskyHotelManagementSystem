@@ -71,12 +71,8 @@ namespace EOM.TSHotelManagement.FormUI
                 case (int)RoomState.Maintenance:
                 case (int)RoomState.Dirty:
                 case (int)RoomState.Reserved:
-                    dic = new Dictionary<string, string>()
-                    {
-                        { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text },
-                        { nameof(ReadRoomInputDto.RoomStateId) , cboState.SelectedValue.ToString() }
-                    };
-                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomStateByRoomNo, dic);
+                    var updateRoom = new UpdateRoomInputDto { RoomNumber = txtRoomNo.Text.Trim(), RoomStateId = Convert.ToInt32(cboState.SelectedValue) };
+                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomStateByRoomNo, updateRoom.ModelToJson());
                     var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
                     if (response.StatusCode != StatusCodeConstants.Success)
                     {

@@ -62,10 +62,8 @@ namespace EOM.TSHotelManagement.FormUI
         #region 用户管理界面加载事件方法
         private void FrmCustomerManager_Load(object sender, EventArgs e)
         {
-            _loadingProgress.Show();
             this.btnPg.PageSize = 15;
             LoadCustomer();
-            _loadingProgress.Close();
         }
         #endregion
 
@@ -232,7 +230,6 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void dgvCustomerList_CellDoubleClick(object sender, AntdUI.TableClickEventArgs e)
         {
-            _loadingProgress.Show();
             if (e.Record is IList<AntdUI.AntItem> data)
             {
                 cm_CustoNo = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerNumber));

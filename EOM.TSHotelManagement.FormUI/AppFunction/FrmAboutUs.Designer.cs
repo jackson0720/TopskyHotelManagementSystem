@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAboutUs));
             uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
+            btnOk = new AntdUI.Button();
             SuspendLayout();
             // 
             // uiRichTextBox1
@@ -38,7 +39,7 @@
             uiRichTextBox1.FillColor = Color.White;
             uiRichTextBox1.Font = new Font("微软雅黑", 12F);
             uiRichTextBox1.HideSelection = false;
-            uiRichTextBox1.Location = new Point(4, 32);
+            uiRichTextBox1.Location = new Point(3, 2);
             uiRichTextBox1.Margin = new Padding(3, 4, 3, 4);
             uiRichTextBox1.MinimumSize = new Size(1, 1);
             uiRichTextBox1.Name = "uiRichTextBox1";
@@ -47,10 +48,21 @@
             uiRichTextBox1.ReadOnly = true;
             uiRichTextBox1.ScrollBarStyleInherited = false;
             uiRichTextBox1.ShowText = false;
-            uiRichTextBox1.Size = new Size(377, 146);
+            uiRichTextBox1.Size = new Size(385, 146);
             uiRichTextBox1.Style = Sunny.UI.UIStyle.Custom;
             uiRichTextBox1.TabIndex = 0;
             uiRichTextBox1.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // btnOk
+            // 
+            btnOk.Font = new Font("Microsoft YaHei UI", 12F);
+            btnOk.Location = new Point(145, 152);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(93, 36);
+            btnOk.TabIndex = 129;
+            btnOk.Text = "知道了！";
+            btnOk.Type = AntdUI.TTypeMini.Primary;
+            btnOk.Click += btnOk_Click;
             // 
             // FrmAboutUs
             // 
@@ -58,12 +70,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(390, 192);
+            Controls.Add(btnOk);
             Controls.Add(uiRichTextBox1);
+            FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 2, 2, 2);
-            MaximizeBox = false;
-            MinimizeBox = false;
+            Margin = new Padding(2);
             Name = "FrmAboutUs";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "关于我们";
             Load += FrmAboutUs_Load;
             MouseDown += FrmAboutUs_MouseDown;
@@ -74,5 +87,6 @@
         #endregion
 
         private Sunny.UI.UIRichTextBox uiRichTextBox1;
+        private AntdUI.Button btnOk;
     }
 }

@@ -30,93 +30,93 @@
         {
             components = new System.ComponentModel.Container();
             btnRoom = new AntdUI.Button();
-            cmsMain = new System.Windows.Forms.ContextMenuStrip(components);
-            tsmiReserRoom = new System.Windows.Forms.ToolStripMenuItem();
-            tsmiCheckIn = new System.Windows.Forms.ToolStripMenuItem();
-            tsmiCheckOut = new System.Windows.Forms.ToolStripMenuItem();
-            tsmiChangeRoom = new System.Windows.Forms.ToolStripMenuItem();
-            tsmiSelectUserInfo = new System.Windows.Forms.ToolStripMenuItem();
-            tsmiChangeState = new System.Windows.Forms.ToolStripMenuItem();
+            cmsMain = new ContextMenuStrip(components);
+            tsmiReserRoom = new ToolStripMenuItem();
+            tsmiCheckIn = new ToolStripMenuItem();
+            tsmiCheckOut = new ToolStripMenuItem();
+            tsmiChangeRoom = new ToolStripMenuItem();
+            tsmiSelectUserInfo = new ToolStripMenuItem();
+            tsmiChangeState = new ToolStripMenuItem();
             cmsMain.SuspendLayout();
             SuspendLayout();
             // 
             // btnRoom
             // 
             btnRoom.AutoEllipsis = true;
-            btnRoom.BackColor = System.Drawing.Color.Transparent;
+            btnRoom.BackColor = Color.Transparent;
             btnRoom.BackgroundImage = Properties.Resources.可住状态;
             btnRoom.BackgroundImageLayout = AntdUI.TFit.Cover;
             btnRoom.ContextMenuStrip = cmsMain;
-            btnRoom.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnRoom.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             btnRoom.Ghost = true;
             btnRoom.IconRatio = 0.5F;
             btnRoom.JoinLeft = true;
             btnRoom.JoinRight = true;
-            btnRoom.Location = new System.Drawing.Point(0, 0);
+            btnRoom.Location = new Point(0, 0);
             btnRoom.Name = "btnRoom";
             btnRoom.Radius = 12;
-            btnRoom.Size = new System.Drawing.Size(122, 102);
+            btnRoom.Size = new Size(122, 102);
             btnRoom.TabIndex = 0;
-            btnRoom.Text = "总统套房\r\n\r\nBS001\r\n\r\n梁静茹";
+            btnRoom.Text = "总统套房\r\n\r\nBS001\r\n\r\n小T呀";
             btnRoom.Click += btnRoom_Click;
             // 
             // cmsMain
             // 
-            cmsMain.ImageScalingSize = new System.Drawing.Size(28, 28);
-            cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsmiReserRoom, tsmiCheckIn, tsmiCheckOut, tsmiChangeRoom, tsmiSelectUserInfo, tsmiChangeState });
+            cmsMain.ImageScalingSize = new Size(28, 28);
+            cmsMain.Items.AddRange(new ToolStripItem[] { tsmiReserRoom, tsmiCheckIn, tsmiCheckOut, tsmiChangeRoom, tsmiSelectUserInfo, tsmiChangeState });
             cmsMain.Name = "cmsMain";
-            cmsMain.Size = new System.Drawing.Size(149, 136);
+            cmsMain.Size = new Size(149, 136);
             cmsMain.Opening += cmsMain_Opening;
             // 
             // tsmiReserRoom
             // 
             tsmiReserRoom.Name = "tsmiReserRoom";
-            tsmiReserRoom.Size = new System.Drawing.Size(148, 22);
+            tsmiReserRoom.Size = new Size(148, 22);
             tsmiReserRoom.Text = "预约房间";
             tsmiReserRoom.Click += tsmiReserRoom_Click;
             // 
             // tsmiCheckIn
             // 
             tsmiCheckIn.Name = "tsmiCheckIn";
-            tsmiCheckIn.Size = new System.Drawing.Size(148, 22);
+            tsmiCheckIn.Size = new Size(148, 22);
             tsmiCheckIn.Text = "入住房间";
             tsmiCheckIn.Click += tsmiCheckIn_Click;
             // 
             // tsmiCheckOut
             // 
             tsmiCheckOut.Name = "tsmiCheckOut";
-            tsmiCheckOut.Size = new System.Drawing.Size(148, 22);
+            tsmiCheckOut.Size = new Size(148, 22);
             tsmiCheckOut.Text = "结算退房";
             tsmiCheckOut.Click += tsmiCheckOut_Click;
             // 
             // tsmiChangeRoom
             // 
             tsmiChangeRoom.Name = "tsmiChangeRoom";
-            tsmiChangeRoom.Size = new System.Drawing.Size(148, 22);
+            tsmiChangeRoom.Size = new Size(148, 22);
             tsmiChangeRoom.Text = "转换房间";
             tsmiChangeRoom.Click += tsmiChangeRoom_Click;
             // 
             // tsmiSelectUserInfo
             // 
             tsmiSelectUserInfo.Name = "tsmiSelectUserInfo";
-            tsmiSelectUserInfo.Size = new System.Drawing.Size(148, 22);
+            tsmiSelectUserInfo.Size = new Size(148, 22);
             tsmiSelectUserInfo.Text = "查看用户信息";
             tsmiSelectUserInfo.Click += tsmiSelectUserInfo_Click;
             // 
             // tsmiChangeState
             // 
             tsmiChangeState.Name = "tsmiChangeState";
-            tsmiChangeState.Size = new System.Drawing.Size(148, 22);
+            tsmiChangeState.Size = new Size(148, 22);
             tsmiChangeState.Text = "修改房间状态";
             tsmiChangeState.Click += tsmiChangeState_Click;
             // 
             // ucRoom
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(btnRoom);
             Name = "ucRoom";
-            Size = new System.Drawing.Size(122, 102);
+            Size = new Size(122, 102);
             Load += ucRoom_Load;
             cmsMain.ResumeLayout(false);
             ResumeLayout(false);

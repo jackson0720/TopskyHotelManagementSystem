@@ -237,6 +237,15 @@ namespace EOM.TSHotelManagement.FormUI
             r = response.Source;
             if (r.RoomStateId == (int)Common.Core.RoomState.Vacant)
             {
+                tsmiCheckIn.Enabled = true;
+                tsmiCheckOut.Enabled = false;
+                tsmiSelectUserInfo.Enabled = false;
+                tsmiChangeState.Enabled = true;
+                tsmiChangeRoom.Enabled = false;
+                tsmiReserRoom.Enabled = true;
+            }
+            else if (r.RoomStateId == (int)Common.Core.RoomState.Occupied)
+            {
                 tsmiCheckIn.Enabled = false;
                 tsmiCheckOut.Enabled = true;
                 tsmiSelectUserInfo.Enabled = true;
@@ -244,18 +253,9 @@ namespace EOM.TSHotelManagement.FormUI
                 tsmiChangeRoom.Enabled = true;
                 tsmiReserRoom.Enabled = false;
             }
-            else if (r.RoomStateId == (int)Common.Core.RoomState.Occupied || r.RoomStateId == (int)Common.Core.RoomState.Maintenance)
+            else if (r.RoomStateId == (int)Common.Core.RoomState.Dirty || r.RoomStateId == (int)Common.Core.RoomState.Maintenance)
             {
                 tsmiCheckIn.Enabled = false;
-                tsmiCheckOut.Enabled = false;
-                tsmiSelectUserInfo.Enabled = false;
-                tsmiChangeState.Enabled = true;
-                tsmiChangeRoom.Enabled = false;
-                tsmiReserRoom.Enabled = false;
-            }
-            else if (r.RoomStateId == (int)Common.Core.RoomState.Dirty)
-            {
-                tsmiCheckIn.Enabled = true;
                 tsmiCheckOut.Enabled = false;
                 tsmiSelectUserInfo.Enabled = false;
                 tsmiChangeState.Enabled = true;
@@ -269,7 +269,7 @@ namespace EOM.TSHotelManagement.FormUI
                 tsmiSelectUserInfo.Enabled = false;
                 tsmiChangeState.Enabled = true;
                 tsmiChangeRoom.Enabled = false;
-                tsmiReserRoom.Enabled = true;
+                tsmiReserRoom.Enabled = false;
             }
         }
 
@@ -307,7 +307,6 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void tsmiCheckOut_Click(object sender, EventArgs e)
         {
-            _loadingProgress.Show();
             rm_CustoNo = romRoomInfo.CustomerNumber;
             rm_RoomNo = romRoomInfo.RoomNumber;
             rm_RoomType = romRoomInfo.RoomName;

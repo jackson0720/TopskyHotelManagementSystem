@@ -73,12 +73,10 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmRoomManager_Load(object sender, EventArgs e)
         {
-            loadingProgress.Show();
             LoadRoomInfo();
             LoadRoomTypesAndStates();
             LoadRoomTypes();
             LoadData();
-            loadingProgress.Close();
         }
         private void LoadRoomTypesAndStates()
         {

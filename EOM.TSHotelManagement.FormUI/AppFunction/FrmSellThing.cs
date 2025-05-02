@@ -53,9 +53,7 @@ namespace EOM.TSHotelManagement.FormUI
         #region 窗体加载事件
         private void FrmSellThing_Load(object sender, EventArgs e)
         {
-            loadingProgress.Show();
             LoadSellThingInfo();
-            loadingProgress.Close();
 
         }
         #endregion
@@ -211,7 +209,11 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
-        #region 添加消费事件
+        /// <summary>
+        /// 添加消费事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (lblState.Visible == false)
@@ -365,6 +367,8 @@ namespace EOM.TSHotelManagement.FormUI
                         {
                             var spend = new CreateSpendInputDto()
                             {
+                                ProductNumber = txtSellNo.Text.Trim(),
+                                SpendNumber = new UniqueCode().GetNewId("SP-"),
                                 DataInsDate = DateTime.Now,
                                 DataInsUsr = LoginInfo.WorkerNo,
                                 RoomNumber = txtRoomNo.Text,
@@ -399,17 +403,20 @@ namespace EOM.TSHotelManagement.FormUI
                             RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
                             #endregion
                             nudNum.Value = 0;
-                            return;
 
                             scope.Complete();
+                            return;
                         }
                     }
                 }
             }
         }
-        #endregion
 
-        #region 撤回消费事件
+        /// <summary>
+        /// 撤回消费事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             if (lblState.Visible == false)
@@ -417,7 +424,7 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.Show("请先输入消费的房间！", "提示信息", UIStyle.Red);
                 return;
             }
-            if (dgvRoomSell.SelectedIndex > 0)
+            if (!spend.IsNullOrEmpty())
             {
                 if (spend.ProductName.Contains("居住"))
                 {
@@ -469,6 +476,12 @@ namespace EOM.TSHotelManagement.FormUI
                         LoadSellThingInfo();
                         nudNum.Value = 0;
                         scope.Complete();
+                        dgvRoomSell.SelectedIndex = 0;
+                        spend = null;
+                        txtSellNo.Text = string.Empty;
+                        txtSellName.Text = string.Empty;
+                        txtPrice.Text = string.Empty;
+                        nudNum.Value = 0;
                     }
                 }
                 else
@@ -481,8 +494,7 @@ namespace EOM.TSHotelManagement.FormUI
                 UIMessageBox.Show("请选择要删除的消费记录！", "提示信息", UIStyle.Red);
             }
         }
-        #endregion
-
+        
         private void nudNum_ValueChanged(object sender, double value)
         {
             if (nudNum.Value < 0)
@@ -569,14 +581,19 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (e.Record is IList<AntdUI.AntItem> data)
             {
-                spend = new ReadSpendOutputDto();
-                spend.RoomNumber = helper.GetValue(data, nameof(ReadSpendOutputDto.RoomNumber));
-                spend.CustomerNumber = helper.GetValue(data, nameof(ReadSpendOutputDto.CustomerNumber));
-                spend.ProductName = helper.GetValue(data, nameof(ReadSpendOutputDto.ProductName));
-                spend.ConsumptionQuantity = Convert.ToInt32(helper.GetValue(data, nameof(ReadSpendOutputDto.ConsumptionQuantity)));
-                spend.ProductPrice = Convert.ToDecimal(helper.GetValue(data, nameof(ReadSpendOutputDto.ProductPrice)));
-                spend.ConsumptionAmount = Convert.ToDecimal(helper.GetValue(data, nameof(ReadSpendOutputDto.ConsumptionAmount)));
-                spend.ConsumptionTime = Convert.ToDateTime(helper.GetValue(data, nameof(ReadSpendOutputDto.ConsumptionTime)));
+                spend = new ReadSpendOutputDto
+                {
+                    ProductNumber = helper.GetValue(data, nameof(ReadSpendOutputDto.ProductNumber)),
+                    SettlementStatus = helper.GetValue(data, nameof(ReadSpendOutputDto.SettlementStatus)),
+                    SpendNumber = helper.GetValue(data, nameof(ReadSpendOutputDto.SpendNumber)),
+                    RoomNumber = helper.GetValue(data, nameof(ReadSpendOutputDto.RoomNumber)),
+                    CustomerNumber = helper.GetValue(data, nameof(ReadSpendOutputDto.CustomerNumber)),
+                    ProductName = helper.GetValue(data, nameof(ReadSpendOutputDto.ProductName)),
+                    ConsumptionQuantity = Convert.ToInt32(helper.GetValue(data, nameof(ReadSpendOutputDto.ConsumptionQuantity))),
+                    ProductPrice = Convert.ToDecimal(helper.GetValue(data, nameof(ReadSpendOutputDto.ProductPrice))),
+                    ConsumptionAmount = Convert.ToDecimal(helper.GetValue(data, nameof(ReadSpendOutputDto.ConsumptionAmount))),
+                    ConsumptionTime = Convert.ToDateTime(helper.GetValue(data, nameof(ReadSpendOutputDto.ConsumptionTime)))
+                };
             }
         }
     }

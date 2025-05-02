@@ -150,12 +150,7 @@ namespace EOM.TSHotelManagement.FormUI
                 // 如果会员等级有变，更新会员等级
                 if (new_type != 0)
                 {
-                    user = new Dictionary<string, string>
-                    {
-                        { nameof(UpdateCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim() },
-                        { nameof(UpdateCustomerInputDto.CustomerType), new_type.ToString() }
-                    };
-                    result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerTypeByCustoNo, user);
+                    result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerTypeByCustoNo, HttpHelper.ModelToJson(new UpdateCustomerInputDto { CustomerNumber = txtCustoNo.Text.Trim(), CustomerType = new_type }));
                     var updateResponse = HttpHelper.JsonToModel<BaseOutputDto>(result.message!);
                     if (updateResponse.StatusCode != StatusCodeConstants.Success)
                     {

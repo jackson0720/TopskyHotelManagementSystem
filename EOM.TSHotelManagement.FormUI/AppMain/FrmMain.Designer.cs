@@ -244,7 +244,7 @@
             lblScroll.Radius = 0;
             lblScroll.RectSides = ToolStripStatusLabelBorderSides.None;
             lblScroll.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
-            lblScroll.Size = new Size(597, 33);
+            lblScroll.Size = new Size(739, 33);
             lblScroll.TabIndex = 0;
             // 
             // tmrFont
