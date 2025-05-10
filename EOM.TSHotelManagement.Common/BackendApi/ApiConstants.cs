@@ -16,6 +16,7 @@
         public const string Employee_SelectEmployeeInfoByEmployeeId = "Employee/SelectEmployeeInfoByEmployeeId";
         public const string Employee_UpdateEmployee = "Employee/UpdateEmployee";
         public const string Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd = "Employee/SelectEmployeeInfoByEmployeeIdAndEmployeePwd";
+        public const string Employee_UpdateEmployeeAccountPassword= "Employee/UpdateEmployeeAccountPassword";
 
         // EmployeePhoto URLs
         public const string EmployeePhoto_EmployeePhoto = "EmployeePhoto/EmployeePhoto";

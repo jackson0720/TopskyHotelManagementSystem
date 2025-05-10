@@ -309,7 +309,7 @@ namespace EOM.TSHotelManagement.FormUI
                                 LoadSpendInfoByRoomNo(r.RoomNumber);
                                 LoadSellThingInfo();
                                 #region 获取添加操作日志所需的信息
-                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + updateSpend.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + updateSpend.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", Common.Core.LogLevel.Warning);
                                 #endregion
 
                                 scope.Complete();
@@ -353,7 +353,7 @@ namespace EOM.TSHotelManagement.FormUI
                                 LoadSpendInfoByRoomNo(r.RoomNumber);
                                 LoadSellThingInfo();
                                 #region 获取添加操作日志所需的信息
-                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + insertSpend.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + insertSpend.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", Common.Core.LogLevel.Warning);
                                 #endregion
                                 nudNum.Value = 0;
 
@@ -400,7 +400,7 @@ namespace EOM.TSHotelManagement.FormUI
                             LoadSpendInfoByRoomNo(r.RoomNumber);
                             LoadSellThingInfo();
                             #region 获取添加操作日志所需的信息
-                            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", 2);
+                            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "进行了消费商品:" + txtSellName.Text + "操作！", Common.Core.LogLevel.Warning);
                             #endregion
                             nudNum.Value = 0;
 
@@ -464,13 +464,13 @@ namespace EOM.TSHotelManagement.FormUI
                         if (updateResponse.StatusCode != StatusCodeConstants.Success)
                         {
                             UIMessageTip.ShowError("撤销失败！", 1000);
-                            RecordHelper.Record($"接口异常。Message：\n{updateResponse.Message}", 3);
+                            RecordHelper.Record($"接口异常。Message：\n{updateResponse.Message}", Common.Core.LogLevel.Critical);
                             UIMessageBox.ShowError($"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         UIMessageTip.ShowOk("撤销成功！", 1000);
                         #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "撤销了消费商品:" + txtSellName.Text + "操作！", 2);
+                        RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "撤销了消费商品:" + txtSellName.Text + "操作！", Common.Core.LogLevel.Warning);
                         #endregion
                         LoadSpendInfoByRoomNo(txtRoomNo.Text);
                         LoadSellThingInfo();

@@ -23,14 +23,13 @@
  */
 using AntdUI;
 using EOM.TSHotelManagement.Common;
+using EOM.TSHotelManagement.Common.Util;
 using Newtonsoft.Json;
-using Sunny.UI;
 using System.Diagnostics;
-using System.Text;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmLoading : UIForm
+    public partial class FrmLoading : Window
     {
         private string CurrentVersion => ApplicationUtil.GetApplicationVersion().ToString();
         private string GithubRepoUrl = "https://api.github.com/repos/easy-open-meta/TopskyHotelManagerSystem/releases/latest";
@@ -65,7 +64,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     var giteeResult = await giteeResponse.Content.ReadAsStringAsync();
                     var giteeRelease = JsonConvert.DeserializeObject<GiteeRelease>(giteeResult);
-                    HandleReleaseInfo<GiteeAsset>(giteeRelease.TagName, giteeRelease.Assets, isGitee: true);
+                    HandleReleaseInfo<GiteeAsset>(giteeRelease.TagName, giteeRelease.Body, giteeRelease.Assets, isGitee: true);
                     return;
                 }
 
@@ -74,7 +73,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     var githubResult = await githubResponse.Content.ReadAsStringAsync();
                     var githubRelease = JsonConvert.DeserializeObject<GitHubRelease>(githubResult);
-                    HandleReleaseInfo<GitHubAsset>(githubRelease.TagName, githubRelease.Assets, isGitee: false);
+                    HandleReleaseInfo<GitHubAsset>(githubRelease.TagName, githubRelease.Body, githubRelease.Assets, isGitee: false);
                     return;
                 }
             }
@@ -91,14 +90,18 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void HandleReleaseInfo<TAsset>(
                 string tagName,
+                string releaseBody,
                 List<TAsset> assets,
                 bool isGitee) where TAsset : class
         {
             var version = tagName.Replace("v", string.Empty);
+            lblReleaseLog.Text = $"{releaseBody}";
+            lblReleaseLog.Refresh();
             lbInternetSoftwareVersion.Text = version;
             lbInternetSoftwareVersion.Refresh();
             if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
             {
+                LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
                 AntdUI.Modal.open(this, "系统提示", "当前已是最新版本，无需更新！", TType.Info);
                 Task.Run(() => threadPro());
                 return;
@@ -225,7 +228,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                UIMessageBox.Show($"打开浏览器时发生错误: {ex.Message}");
+                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"An error occurred while opening the browser: {ex.Message}", $"打开浏览器时发生错误: {ex.Message}"), TType.Error);
             }
         }
 
@@ -261,6 +264,9 @@ namespace EOM.TSHotelManagement.FormUI
         {
             [JsonProperty("tag_name")]
             public string TagName { get; set; }
+
+            [JsonProperty("body")]
+            public string Body { get; set; }
 
             [JsonProperty("assets")]
             public List<GitHubAsset> Assets { get; set; }

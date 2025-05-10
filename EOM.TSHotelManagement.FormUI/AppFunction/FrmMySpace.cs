@@ -22,8 +22,10 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Common.Util;
 using jvncorelib.EncryptorLib;
 using jvncorelib.EntityLib;
 using Sunny.UI;
@@ -100,6 +102,11 @@ namespace EOM.TSHotelManagement.FormUI
             cboWorkerPosition.DataSource = positions.listSource;
             cboWorkerPosition.DisplayMember = nameof(ReadPositionOutputDto.PositionName);
             cboWorkerPosition.ValueMember = nameof(ReadPositionOutputDto.PositionNumber);
+
+            lblEmployeeId.Text = LoginInfo.WorkerNo;
+            txtOldPassword.PlaceholderText = LocalizationHelper.GetLocalizedString("Please input old password", "请输入旧密码");
+            txtNewPassword.PlaceholderText = LocalizationHelper.GetLocalizedString("Please input new password", "请输入新密码");
+
             LoadData();
         }
 
@@ -204,7 +211,7 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 UIMessageBox.Show("修改成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", 2);
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", Common.Core.LogLevel.Warning);
                 #endregion
                 LoadData();
                 return;
@@ -273,6 +280,32 @@ namespace EOM.TSHotelManagement.FormUI
             }
             UIMessageTip.ShowOk("头像上传成功！稍等将会加载头像哦..");
             picWorkerPic.Load(response.Source.PhotoPath);
+        }
+
+        private void btnUpdatePassword_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtOldPassword.Text) || string.IsNullOrEmpty(txtNewPassword.Text))
+            {
+                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Please input new password or old password", "请输入旧密码或新密码"), TType.Error);
+                return;
+            }
+
+            var request = HttpHelper.Request(ApiConstants.Employee_UpdateEmployeeAccountPassword, HttpHelper.ModelToJson(new UpdateEmployeeInputDto
+            {
+                EmployeeId = LoginInfo.WorkerNo,
+                OldPassword = txtOldPassword.Text.Trim(),
+                Password = txtNewPassword.Text.Trim(),
+                DataChgDate = DateTime.Now,
+                DataChgUsr = LoginInfo.WorkerNo
+            }));
+            var response = HttpHelper.JsonToModel<BaseOutputDto>(request.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
+            {
+                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+Interface service exception, please submit an issue or try updating the version!", $"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+接口服务异常，请提交Issue或尝试更新版本！"));
+                return;
+            }
+            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Update password success", "更新密码成功"), TType.Success);
+            return;
         }
     }
 }

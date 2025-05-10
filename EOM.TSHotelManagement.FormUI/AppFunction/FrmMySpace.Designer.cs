@@ -51,7 +51,13 @@ namespace EOM.TSHotelManagement.FormUI
             uiTabControlMenu2 = new Sunny.UI.UITabControlMenu();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
-            label3 = new AntdUI.Label();
+            avatar3 = new AntdUI.Avatar();
+            txtOldPassword = new AntdUI.Input();
+            lblEmployeeId = new AntdUI.Label();
+            avatar2 = new AntdUI.Avatar();
+            avatar1 = new AntdUI.Avatar();
+            btnUpdatePassword = new AntdUI.Button();
+            txtNewPassword = new AntdUI.Input();
             tabPage3 = new TabPage();
             label4 = new AntdUI.Label();
             picWorkerPic = new PictureBox();
@@ -369,7 +375,13 @@ namespace EOM.TSHotelManagement.FormUI
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(avatar3);
+            tabPage2.Controls.Add(txtOldPassword);
+            tabPage2.Controls.Add(lblEmployeeId);
+            tabPage2.Controls.Add(avatar2);
+            tabPage2.Controls.Add(avatar1);
+            tabPage2.Controls.Add(btnUpdatePassword);
+            tabPage2.Controls.Add(txtNewPassword);
             tabPage2.Location = new Point(201, 0);
             tabPage2.Name = "tabPage2";
             tabPage2.Size = new Size(728, 546);
@@ -377,13 +389,83 @@ namespace EOM.TSHotelManagement.FormUI
             tabPage2.Text = "账号安全";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // avatar3
             // 
-            label3.Location = new Point(210, 255);
-            label3.Name = "label3";
-            label3.Size = new Size(308, 36);
-            label3.TabIndex = 0;
-            label3.Text = "功能升级，重置密码需联系管理员进行！";
+            avatar3.Image = (Image)resources.GetObject("avatar3.Image");
+            avatar3.ImageFit = AntdUI.TFit.None;
+            avatar3.Location = new Point(224, 204);
+            avatar3.Name = "avatar3";
+            avatar3.Size = new Size(45, 43);
+            avatar3.TabIndex = 47;
+            avatar3.Text = "a";
+            // 
+            // txtOldPassword
+            // 
+            txtOldPassword.BackColor = Color.White;
+            txtOldPassword.Font = new Font("Microsoft YaHei UI", 14F);
+            txtOldPassword.Location = new Point(267, 201);
+            txtOldPassword.Name = "txtOldPassword";
+            txtOldPassword.PasswordChar = '*';
+            txtOldPassword.PasswordCopy = true;
+            txtOldPassword.PlaceholderColorExtend = "";
+            txtOldPassword.PlaceholderText = "";
+            txtOldPassword.Size = new Size(238, 52);
+            txtOldPassword.TabIndex = 46;
+            // 
+            // lblEmployeeId
+            // 
+            lblEmployeeId.Location = new Point(267, 131);
+            lblEmployeeId.Name = "lblEmployeeId";
+            lblEmployeeId.Size = new Size(238, 43);
+            lblEmployeeId.TabIndex = 45;
+            lblEmployeeId.Text = "";
+            lblEmployeeId.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // avatar2
+            // 
+            avatar2.Image = (Image)resources.GetObject("avatar2.Image");
+            avatar2.ImageFit = AntdUI.TFit.None;
+            avatar2.Location = new Point(224, 284);
+            avatar2.Name = "avatar2";
+            avatar2.Size = new Size(45, 43);
+            avatar2.TabIndex = 44;
+            avatar2.Text = "a";
+            // 
+            // avatar1
+            // 
+            avatar1.Image = (Image)resources.GetObject("avatar1.Image");
+            avatar1.ImageFit = AntdUI.TFit.None;
+            avatar1.Location = new Point(224, 131);
+            avatar1.Name = "avatar1";
+            avatar1.Size = new Size(45, 43);
+            avatar1.TabIndex = 43;
+            avatar1.Text = "a";
+            // 
+            // btnUpdatePassword
+            // 
+            btnUpdatePassword.Font = new Font("Microsoft YaHei UI", 12F);
+            btnUpdatePassword.Location = new Point(277, 358);
+            btnUpdatePassword.Name = "btnUpdatePassword";
+            btnUpdatePassword.Radius = 8;
+            btnUpdatePassword.Shape = AntdUI.TShape.Round;
+            btnUpdatePassword.Size = new Size(191, 57);
+            btnUpdatePassword.TabIndex = 42;
+            btnUpdatePassword.Text = "修改密码";
+            btnUpdatePassword.Type = AntdUI.TTypeMini.Primary;
+            btnUpdatePassword.Click += btnUpdatePassword_Click;
+            // 
+            // txtNewPassword
+            // 
+            txtNewPassword.BackColor = Color.White;
+            txtNewPassword.Font = new Font("Microsoft YaHei UI", 14F);
+            txtNewPassword.Location = new Point(267, 280);
+            txtNewPassword.Name = "txtNewPassword";
+            txtNewPassword.PasswordChar = '*';
+            txtNewPassword.PasswordCopy = true;
+            txtNewPassword.PlaceholderColorExtend = "";
+            txtNewPassword.PlaceholderText = "";
+            txtNewPassword.Size = new Size(238, 52);
+            txtNewPassword.TabIndex = 41;
             // 
             // tabPage3
             // 
@@ -462,7 +544,13 @@ namespace EOM.TSHotelManagement.FormUI
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.PictureBox picWorkerPic;
-        private AntdUI.Label label3;
         private AntdUI.Label label4;
+        private AntdUI.Label lblEmployeeId;
+        private AntdUI.Avatar avatar2;
+        private AntdUI.Avatar avatar1;
+        private AntdUI.Button btnUpdatePassword;
+        private AntdUI.Input txtNewPassword;
+        private AntdUI.Avatar avatar3;
+        private AntdUI.Input txtOldPassword;
     }
 }
