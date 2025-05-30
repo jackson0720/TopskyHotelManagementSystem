@@ -79,8 +79,8 @@
         public const string EnergyManagement_SelectEnergyManagementInfo = "EnergyManagement/SelectEnergyManagementInfo";
         public const string EnergyManagement_InsertEnergyManagementInfo = "EnergyManagement/InsertEnergyManagementInfo";
 
-        // Fonts
-        public const string Fonts_SelectPromotionContentAll = "Fonts/SelectPromotionContentAll";
+        // PromotionContent
+        public const string PromotionContent_SelectPromotionContents = "PromotionContent/SelectPromotionContents";
 
         // NavBar
         public const string NavBar_NavBarList = "NavBar/NavBarList";

@@ -131,7 +131,7 @@ namespace EOM.TSHotelManagement.FormUI
                 CustomerNumber = txtCustoNo.Text,
                 CustomerName = txtCustoName.Text,
                 CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                DateOfBirth = dtpBirthday.Value.Date,
+                DateOfBirth = DateOnly.FromDateTime(dtpBirthday.Value.Date),
                 CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
                 PassportId = Convert.ToInt32(cbPassportType.SelectedValue),
                 IdCardNumber = txtCardID.Text,

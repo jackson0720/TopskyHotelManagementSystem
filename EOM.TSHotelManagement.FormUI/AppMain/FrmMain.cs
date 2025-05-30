@@ -156,7 +156,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void LoadFonts()
         {
             #region 从数据库读取文字滚动的内容
-            result = HttpHelper.Request(ApiConstants.Fonts_SelectPromotionContentAll);
+            result = HttpHelper.Request(ApiConstants.PromotionContent_SelectPromotionContents);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadPromotionContentOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
@@ -170,12 +170,12 @@ namespace EOM.TSHotelManagement.FormUI
         #region 定时器：文字滚动间隔
         private void tmrFont_Tick(object sender, EventArgs e)
         {
-            if (fonts.listSource.IsNullOrEmpty())
+            if (fonts.listSource == null || fonts.listSource.Count == 0)
             {
                 return;
             }
             fontn++;
-            if (fontn == fonts.total)
+            if (fontn >= fonts.listSource.Count)
             {
                 fontn = 0;
             }
@@ -413,7 +413,7 @@ namespace EOM.TSHotelManagement.FormUI
                         CheckNumber = new UniqueCode().GetNewId("CK"),
                         DataInsDate = DateTime.Now,
                         IsDelete = 0,
-                        CheckStatus = 0,
+                        CheckStatus = btnHello.BackgroundImage == Resources.早上 ? 0 : 1,
                         EmployeeId = LoginInfo.WorkerNo,
                         CheckMethod = "系统界面",
                         CheckTime = DateTime.Now,
