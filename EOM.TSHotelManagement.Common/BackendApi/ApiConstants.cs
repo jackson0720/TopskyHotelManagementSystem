@@ -16,6 +16,7 @@
         public const string Employee_SelectEmployeeInfoByEmployeeId = "Employee/SelectEmployeeInfoByEmployeeId";
         public const string Employee_UpdateEmployee = "Employee/UpdateEmployee";
         public const string Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd = "Employee/SelectEmployeeInfoByEmployeeIdAndEmployeePwd";
+        public const string Employee_UpdateEmployeeAccountPassword= "Employee/UpdateEmployeeAccountPassword";
 
         // EmployeePhoto URLs
         public const string EmployeePhoto_EmployeePhoto = "EmployeePhoto/EmployeePhoto";
@@ -78,8 +79,8 @@
         public const string EnergyManagement_SelectEnergyManagementInfo = "EnergyManagement/SelectEnergyManagementInfo";
         public const string EnergyManagement_InsertEnergyManagementInfo = "EnergyManagement/InsertEnergyManagementInfo";
 
-        // Fonts
-        public const string Fonts_SelectPromotionContentAll = "Fonts/SelectPromotionContentAll";
+        // PromotionContent
+        public const string PromotionContent_SelectPromotionContents = "PromotionContent/SelectPromotionContents";
 
         // NavBar
         public const string NavBar_NavBarList = "NavBar/NavBarList";

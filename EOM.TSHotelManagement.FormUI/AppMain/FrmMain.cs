@@ -25,11 +25,13 @@
 using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.CodeLib;
 using Sunny.UI;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -55,7 +57,7 @@ namespace EOM.TSHotelManagement.FormUI
             // 接受Form1对象
             this.returnForm1 = F1;
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", 3);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "版本登入了系统！", Common.Core.LogLevel.Critical);
             #endregion
             Stop = StopUseExit;
             Start = StartUseExit;
@@ -154,7 +156,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void LoadFonts()
         {
             #region 从数据库读取文字滚动的内容
-            result = HttpHelper.Request(ApiConstants.Fonts_SelectPromotionContentAll);
+            result = HttpHelper.Request(ApiConstants.PromotionContent_SelectPromotionContents);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadPromotionContentOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
@@ -168,12 +170,12 @@ namespace EOM.TSHotelManagement.FormUI
         #region 定时器：文字滚动间隔
         private void tmrFont_Tick(object sender, EventArgs e)
         {
-            if (fonts.listSource.IsNullOrEmpty())
+            if (fonts.listSource == null || fonts.listSource.Count == 0)
             {
                 return;
             }
             fontn++;
-            if (fontn == fonts.total)
+            if (fontn >= fonts.listSource.Count)
             {
                 fontn = 0;
             }
@@ -331,32 +333,6 @@ namespace EOM.TSHotelManagement.FormUI
         #region 检查软件更新版本事件方法
         private void tsmiCheckUpdate_Click(object sender, EventArgs e)
         {
-            result = HttpHelper.Request(ApiConstants.Base_GetBase);
-            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadSystemInformationOutputDto>>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
-            {
-                UIMessageBox.ShowError($"{ApiConstants.Base_GetBase}+接口服务异常，请重试。{response.Message}");
-                return;
-            }
-
-            var _base = response.Source;
-            //调用系统默认的浏览器
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                Process.Start(new ProcessStartInfo(_base.UrlAddress) { UseShellExecute = true });
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                Process.Start("xdg-open", _base.UrlAddress);
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                Process.Start("open", _base.UrlAddress);
-            }
-            else
-            {
-                throw new PlatformNotSupportedException("This OS is not supported");
-            }
         }
         #endregion
 
@@ -437,7 +413,7 @@ namespace EOM.TSHotelManagement.FormUI
                         CheckNumber = new UniqueCode().GetNewId("CK"),
                         DataInsDate = DateTime.Now,
                         IsDelete = 0,
-                        CheckStatus = 0,
+                        CheckStatus = btnHello.BackgroundImage == Resources.早上 ? 0 : 1,
                         EmployeeId = LoginInfo.WorkerNo,
                         CheckMethod = "系统界面",
                         CheckTime = DateTime.Now,
@@ -552,6 +528,11 @@ namespace EOM.TSHotelManagement.FormUI
                     break;
             }
 
+        }
+
+        private void tsmiUpdateLog_Click(object sender, EventArgs e)
+        {
+            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("Update log", "更新日志"), LoginInfo.SoftwareReleaseLog, TType.Info);
         }
     }
 }

@@ -131,7 +131,7 @@ namespace EOM.TSHotelManagement.FormUI
                 CustomerNumber = txtCustoNo.Text,
                 CustomerName = txtCustoName.Text,
                 CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                DateOfBirth = dtpBirthday.Value.Date,
+                DateOfBirth = DateOnly.FromDateTime(dtpBirthday.Value.Date),
                 CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
                 PassportId = Convert.ToInt32(cbPassportType.SelectedValue),
                 IdCardNumber = txtCardID.Text,
@@ -151,7 +151,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             UIMessageBox.Show("修改成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustomerNumber, 3);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustomerNumber, Common.Core.LogLevel.Critical);
             #endregion
             this.Close();
             FrmCustomerManager.ReloadCustomer(false);
@@ -199,7 +199,7 @@ namespace EOM.TSHotelManagement.FormUI
             UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
             FrmCustomerManager.ReloadCustomer(false);
             #region 获取添加操作日志所需的信息
-            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, 3);
+            RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, Common.Core.LogLevel.Critical);
             #endregion
             this.Close();
 

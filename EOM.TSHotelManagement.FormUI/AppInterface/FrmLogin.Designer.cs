@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             label2 = new Label();
-            txtWorkerId = new AntdUI.Input();
+            txtAccount = new AntdUI.Input();
             txtWorkerPwd = new AntdUI.Input();
             picLogin = new AntdUI.Button();
             picFormSize = new AntdUI.Button();
@@ -52,15 +52,15 @@
             label2.TabIndex = 5;
             label2.Text = "  ";
             // 
-            // txtWorkerId
+            // txtAccount
             // 
-            txtWorkerId.BackColor = Color.White;
-            txtWorkerId.Font = new Font("Microsoft YaHei UI", 14F);
-            txtWorkerId.Location = new Point(648, 190);
-            txtWorkerId.Name = "txtWorkerId";
-            txtWorkerId.Size = new Size(238, 52);
-            txtWorkerId.TabIndex = 32;
-            txtWorkerId.Text = "WK010";
+            txtAccount.BackColor = Color.White;
+            txtAccount.Font = new Font("Microsoft YaHei UI", 14F);
+            txtAccount.Location = new Point(648, 190);
+            txtAccount.Name = "txtAccount";
+            txtAccount.PlaceholderText = "";
+            txtAccount.Size = new Size(238, 52);
+            txtAccount.TabIndex = 32;
             // 
             // txtWorkerPwd
             // 
@@ -70,9 +70,10 @@
             txtWorkerPwd.Name = "txtWorkerPwd";
             txtWorkerPwd.PasswordChar = '*';
             txtWorkerPwd.PasswordCopy = true;
+            txtWorkerPwd.PlaceholderColorExtend = "";
+            txtWorkerPwd.PlaceholderText = "";
             txtWorkerPwd.Size = new Size(238, 52);
             txtWorkerPwd.TabIndex = 33;
-            txtWorkerPwd.Text = "admin";
             // 
             // picLogin
             // 
@@ -156,7 +157,7 @@
             Controls.Add(picFormSize);
             Controls.Add(picLogin);
             Controls.Add(txtWorkerPwd);
-            Controls.Add(txtWorkerId);
+            Controls.Add(txtAccount);
             Controls.Add(label2);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -164,7 +165,6 @@
             Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TS酒店管理系统";
-            FormClosing += FrmLogin_FormClosing;
             Load += FrmLogin_Load;
             MouseDown += FrmLogin_MouseDown;
             MouseMove += FrmLogin_MouseMove;
@@ -174,7 +174,7 @@
 
         #endregion
         private System.Windows.Forms.Label label2;
-        private AntdUI.Input txtWorkerId;
+        private AntdUI.Input txtAccount;
         private AntdUI.Input txtWorkerPwd;
         private AntdUI.Button picLogin;
         private AntdUI.Button picFormSize;

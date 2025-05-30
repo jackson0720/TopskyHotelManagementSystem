@@ -194,7 +194,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     UpdateRoomInputDto r = new UpdateRoomInputDto()
                     {
-                        LastCheckInTime = Convert.ToDateTime(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss")),
+                        LastCheckInTime = DateOnly.FromDateTime(DateTime.Now),
                         CustomerNumber = txtCustoNo.Text,
                         RoomStateId = (int)RoomState.Occupied,
                         RoomNumber = txtRoomNo.Text,
@@ -213,7 +213,7 @@ namespace EOM.TSHotelManagement.FormUI
                     FrmRoomManager.Reload("");
                     FrmRoomManager._RefreshRoomCount();
                     #region 获取添加操作日志所需的信息
-                    RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustomerNumber + "进行了入住操作！", 1);
+                    RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + r.CustomerNumber + "进行了入住操作！", Common.Core.LogLevel.Normal);
                     #endregion
                     scope.Complete();
                     this.Close();

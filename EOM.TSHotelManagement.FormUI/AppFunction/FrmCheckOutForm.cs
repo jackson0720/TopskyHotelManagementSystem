@@ -296,7 +296,7 @@ namespace EOM.TSHotelManagement.FormUI
                 FrmRoomManager._RefreshRoomCount();
 
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustomerNumber.Text + "进行了退房结算操作！", 3);
+                RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustomerNumber.Text + "进行了退房结算操作！", Common.Core.LogLevel.Critical);
                 #endregion
                 this.Close();
             }

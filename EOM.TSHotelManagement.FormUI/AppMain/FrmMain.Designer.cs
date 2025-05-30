@@ -44,7 +44,7 @@
             toolStripSeparator4 = new ToolStripSeparator();
             tsmiLoginBackSystem = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
-            tsmiCheckUpdate = new ToolStripMenuItem();
+            tsmiUpdateLog = new ToolStripMenuItem();
             tsmiAboutUs = new ToolStripMenuItem();
             tsmiExitSystem = new ToolStripMenuItem();
             linkLabel1 = new LinkLabel();
@@ -123,7 +123,7 @@
             // cmsMain
             // 
             cmsMain.Font = new Font("Microsoft YaHei UI Light", 12F, FontStyle.Italic, GraphicsUnit.Point, 134);
-            cmsMain.Items.AddRange(new ToolStripItem[] { tsmiChangeUser, tsmiMySpace, tsmiExChange, toolStripSeparator3, tsmiLockScreen, toolStripSeparator4, tsmiLoginBackSystem, toolStripSeparator2, tsmiCheckUpdate, tsmiAboutUs, tsmiExitSystem });
+            cmsMain.Items.AddRange(new ToolStripItem[] { tsmiChangeUser, tsmiMySpace, tsmiExChange, toolStripSeparator3, tsmiLockScreen, toolStripSeparator4, tsmiLoginBackSystem, toolStripSeparator2, tsmiUpdateLog, tsmiAboutUs, tsmiExitSystem });
             cmsMain.Name = "cmsMain";
             cmsMain.RenderMode = ToolStripRenderMode.Professional;
             cmsMain.Size = new Size(314, 214);
@@ -188,14 +188,13 @@
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(310, 6);
             // 
-            // tsmiCheckUpdate
+            // tsmiUpdateLog
             // 
-            tsmiCheckUpdate.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            tsmiCheckUpdate.Image = Properties.Resources.检查更新__1_;
-            tsmiCheckUpdate.Name = "tsmiCheckUpdate";
-            tsmiCheckUpdate.Size = new Size(313, 24);
-            tsmiCheckUpdate.Text = "检查更新";
-            tsmiCheckUpdate.Click += tsmiCheckUpdate_Click;
+            tsmiUpdateLog.Font = new Font("Microsoft Sans Serif", 12F);
+            tsmiUpdateLog.Name = "tsmiUpdateLog";
+            tsmiUpdateLog.Size = new Size(313, 24);
+            tsmiUpdateLog.Text = "查看更新日志";
+            tsmiUpdateLog.Click += tsmiUpdateLog_Click;
             // 
             // tsmiAboutUs
             // 
@@ -519,5 +518,6 @@
         private AntdUI.Button btnFormSize;
         private AntdUI.Button btnSetting;
         private AntdUI.ColorPicker cpUITheme;
+        private ToolStripMenuItem tsmiUpdateLog;
     }
 }
