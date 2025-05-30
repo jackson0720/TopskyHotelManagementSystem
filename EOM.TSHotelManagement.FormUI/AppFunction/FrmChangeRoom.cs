@@ -88,7 +88,7 @@ namespace EOM.TSHotelManagement.FormUI
                 FrmRoomManager.Reload("");
                 FrmRoomManager._RefreshRoomCount();
                 #region 获取添加操作日志所需的信息
-                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + transferRoom.DataChgDate + "位于" + LoginInfo.SoftwareVersion + "执行：" + transferRoom.CustomerNumber + "于" + transferRoom.DataChgDate + "进行了换房！", 2);
+                RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + transferRoom.DataChgDate + "位于" + LoginInfo.SoftwareVersion + "执行：" + transferRoom.CustomerNumber + "于" + transferRoom.DataChgDate + "进行了换房！", Common.Core.LogLevel.Warning);
                 #endregion
                 UIMessageBox.ShowSuccess("转房成功");
                 this.Close();

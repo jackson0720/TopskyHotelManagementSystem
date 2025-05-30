@@ -206,7 +206,7 @@ namespace EOM.TSHotelManagement.FormUI
 
                 UpdateRoomInputDto r = new UpdateRoomInputDto()
                 {
-                    LastCheckInTime = DateTime.Now,
+                    LastCheckInTime = DateOnly.FromDateTime(DateTime.Now),
                     CustomerNumber = custo.CustomerNumber,
                     RoomStateId = new EnumHelper().GetEnumValue(RoomState.Occupied),
                     RoomNumber = RoomNumber,
