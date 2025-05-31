@@ -123,10 +123,6 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :inbox_tray: 数据库运行部署(本地)：
 
-**作者及开发团队强烈建议使用MariaDB数据库，安装MariaDB数据库并开启服务，通过可视化管理工具对数据库进行建立，可通过打开执行数据库脚本文件夹内的.sql后缀格式文件进行快速建立数据表和导入数据，执行步骤(以MariaDB数据库为例)：**
-
-**1、通过可视化管理工具链接MariaDB数据库，随后新建名为‘tshoteldb’数据库。**
-
-**2、通过可视化管理工具打开：数据库脚本\MariaDB版本\MDB_tshotel_script_table.sql以及数据库脚本\MariaDB版本\MDB_tshotel_script_data.sql进行数据表建立和数据导入。**
+**略，本项目不包含后台业务逻辑。详情请查看：[业务逻辑项目](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.md)**
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)

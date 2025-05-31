@@ -125,10 +125,6 @@ EOM.Client.TopSkyHotelManagerSystem
 
 # :inbox_tray: Database Setup and Deployment (Local):
 
-**The author and development team strongly recommend using the PostgreSQL database. Install the PostgreSQL database and start the service, establish the database through a visualization management tool, and quickly create data tables and import data by opening the .sql format files within the database script folder. Steps (using PostgreSQL database as an example):**
-
-**1. Link to the PostgreSQL database through a visualization management tool, then create a new database named ‘tshoteldb’.**
-
-**2. Open the db_file.sql in the database script\PostgreSQL version folder through the visualization management tool for data table creation and data import.**
+**Omitted. This project does not include backend business logic. For details, please refer to: [Business Logic Project](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.en.md)**
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
