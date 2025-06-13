@@ -25,23 +25,27 @@
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using Sunny.UI;
+using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.FormUI
 {
     public partial class FrmCustomerManager : Form
     {
+        public static int cm_CustoId;
         public static string cm_CustoNo;
         public static string cm_CustoName;
         public static int cm_CustoSex;
         public static string cm_CustoTel;
         public static int cm_PassportType;
-        public static string cm_CustoID;
+        public static string cm_CustoIdCardNumber;
         public static string cm_CustoAddress;
         public static DateTime cm_CustoBirth;
         public static int cm_CustoType;
 
         public delegate void ReloadCustomerList(bool onlyVip);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern IntPtr SetClipboardData(uint uFormat, IntPtr hMem);
 
         //定义委托类型的变量
         public static ReloadCustomerList ReloadCustomer;
@@ -170,15 +174,16 @@ namespace EOM.TSHotelManagement.FormUI
                 AntdUI.Message.error(this, "未选中客户，无法继续操作！");
                 return;
             }
-            cm_CustoNo = cm_CustoNo;
-            cm_CustoName = cm_CustoName;
-            cm_CustoAddress = cm_CustoAddress.IsNullOrEmpty() ? "" : cm_CustoAddress.ToString();
-            cm_CustoType = Convert.ToInt32(cm_CustoType);
-            cm_CustoSex = Convert.ToInt32(cm_CustoSex);
-            cm_PassportType = Convert.ToInt32(cm_PassportType);
-            cm_CustoBirth = Convert.ToDateTime(cm_CustoBirth);
-            cm_CustoID = cm_CustoID;
-            cm_CustoTel = cm_CustoTel;
+            //cm_CustoId = cm_CustoId;
+            //cm_CustoNo = cm_CustoNo;
+            //cm_CustoName = cm_CustoName;
+            //cm_CustoAddress = cm_CustoAddress.IsNullOrEmpty() ? "" : cm_CustoAddress.ToString();
+            //cm_CustoType = Convert.ToInt32(cm_CustoType);
+            //cm_CustoSex = Convert.ToInt32(cm_CustoSex);
+            //cm_PassportType = Convert.ToInt32(cm_PassportType);
+            //cm_CustoBirth = Convert.ToDateTime(cm_CustoBirth);
+            //cm_CustoID = cm_CustoID;
+            //cm_CustoTel = cm_CustoTel;
             FrmEditInputs frmInputs = new FrmEditInputs();
             frmInputs.Text = "修改客户信息";
             frmInputs.ShowDialog();
@@ -188,7 +193,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (!cm_CustoNo.IsNullOrEmpty())
             {
-                Clipboard.SetText(cm_CustoNo);
+                ClipboardHelper.SetTextToClipboard(cm_CustoNo);
                 AntdUI.Message.success(this, "复制完成！");
             }
         }
@@ -197,6 +202,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (e.Record is IList<AntdUI.AntItem> data)
             {
+                cm_CustoId = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.Id)));
                 cm_CustoNo = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerNumber));
                 cm_CustoName = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerName));
                 cm_CustoSex = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerGender)));
@@ -204,7 +210,7 @@ namespace EOM.TSHotelManagement.FormUI
                 cm_CustoBirth = Convert.ToDateTime(helper.GetValue(data, nameof(ReadCustomerOutputDto.DateOfBirth)));
                 cm_CustoType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerType)));
                 cm_PassportType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.PassportId)));
-                cm_CustoID = helper.GetValue(data, nameof(ReadCustomerOutputDto.IdCardNumber));
+                cm_CustoIdCardNumber = helper.GetValue(data, nameof(ReadCustomerOutputDto.IdCardNumber));
                 cm_CustoAddress = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerAddress));
                 btnUpdCustomer.Enabled = true;
             }
@@ -232,6 +238,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (e.Record is IList<AntdUI.AntItem> data)
             {
+                cm_CustoId = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.Id)));
                 cm_CustoNo = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerNumber));
                 cm_CustoName = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerName));
                 cm_CustoSex = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerGender)));
@@ -239,7 +246,7 @@ namespace EOM.TSHotelManagement.FormUI
                 cm_CustoBirth = Convert.ToDateTime(helper.GetValue(data, nameof(ReadCustomerOutputDto.DateOfBirth)));
                 cm_CustoType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerType)));
                 cm_PassportType = Convert.ToInt32(helper.GetValue(data, nameof(ReadCustomerOutputDto.PassportId)));
-                cm_CustoID = helper.GetValue(data, nameof(ReadCustomerOutputDto.IdCardNumber));
+                cm_CustoIdCardNumber = helper.GetValue(data, nameof(ReadCustomerOutputDto.IdCardNumber));
                 cm_CustoAddress = helper.GetValue(data, nameof(ReadCustomerOutputDto.CustomerAddress));
 
                 FrmEditInputs frmInputs = new FrmEditInputs(_loadingProgress);

@@ -125,7 +125,7 @@ namespace EOM.TSHotelManagement.FormUI
                 downloadUrl = executableAsset.BrowserDownloadUrl;
             }
 
-            
+
 
             DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress));
             lblTips.Text = "安装包正在下载中，请稍等...";

@@ -25,7 +25,7 @@ namespace EOM.TSHotelManagement.Common
             {
                 IdentityCardNumber = code.Substring(0, 6)
             };
-            ResponseMsg result = HttpHelper.Request("Utility/SelectCardCode", input.ModelToJson());
+            ResponseMsg result = HttpHelper.Request(ApiConstants.Utility_SelectCardCode, input.ModelToJson());
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadCardCodeOutputDto>>(result.message);
             if (response.StatusCode != StatusCodeConstants.Success)
             {
@@ -48,8 +48,10 @@ namespace EOM.TSHotelManagement.Common
                 }
                 return new Card { message = string.Empty, sex = sex, address = address, birthday = birthday };
             }
-
-            return new Card();
+            else
+            {
+                return new Card() { message = "未配置号码表" };
+            }
         }
 
         /// <summary>

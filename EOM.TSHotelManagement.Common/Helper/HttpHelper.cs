@@ -13,14 +13,17 @@ namespace EOM.TSHotelManagement.Common
     /// </summary>
     public static class HttpHelper
     {
-        #region 受限于打包插件的限制才放在这，个人开发时建议统一在App.Config进行配置
-
+#if DEBUG
         /// <summary>
         /// WebApi URL
         /// </summary>
         public const string apiUrl = "http://localhost:63001/api/";
-
-        #endregion
+#elif RELEASE
+        /// <summary>
+        /// WebApi URL
+        /// </summary>
+        public const string apiUrl = "https://tshotel-api.oscode.top/api/";
+#endif
 
         public class IgnoreNullValuesConverter : JsonConverter
         {

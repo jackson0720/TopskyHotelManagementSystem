@@ -23,11 +23,8 @@
  */
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
 using Sunny.UI;
-using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -179,69 +176,38 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            using (TransactionScope scope = new TransactionScope())
+            var reser = new CheckinRoomByReservationDto
             {
-                var custo = new CreateCustomerInputDto()
-                {
-                    CustomerNumber = txtCustoNo.Text.Trim(),
-                    CustomerName = txtCustoName.Text.Trim(),
-                    CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                    CustomerPhoneNumber = txtTel.Text.Trim(),
-                    PassportId = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
-                    IdCardNumber = txtCardID.Text.Trim(),
-                    CustomerAddress = txtCustoAdress.Text.Trim(),
-                    DateOfBirth = dtpBirthday.Value,
-                    CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
-                    IsDelete = 0,
-                    DataInsUsr = LoginInfo.WorkerNo,
-                    DataInsDate = DateTime.Now,
-                };
-                result = HttpHelper.Request(ApiConstants.Customer_InsertCustomerInfo, HttpHelper.ModelToJson(custo));
-                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
-                {
-                    UIMessageBox.ShowError($"{ApiConstants.Customer_InsertCustomerInfo}+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-
-                UpdateRoomInputDto r = new UpdateRoomInputDto()
-                {
-                    LastCheckInTime = DateOnly.FromDateTime(DateTime.Now),
-                    CustomerNumber = custo.CustomerNumber,
-                    RoomStateId = new EnumHelper().GetEnumValue(RoomState.Occupied),
-                    RoomNumber = RoomNumber,
-                    DataChgDate = DateTime.Now,
-                    DataChgUsr = LoginInfo.WorkerNo
-                };
-                result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfo, HttpHelper.ModelToJson(r));
-                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
-                {
-                    UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfo}+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                var reser = new DeleteReserInputDto
-                {
-                    ReservationId = ReservationId,
-                    IsDelete = 1,
-                    DataChgUsr = LoginInfo.WorkerNo,
-                    DataChgDate = DateTime.Now
-                };
-                result = HttpHelper.Request(ApiConstants.Reser_DeleteReserInfo, HttpHelper.ModelToJson(reser));
-                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
-                {
-                    UIMessageBox.ShowError($"{ApiConstants.Reser_DeleteReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-
-                UIMessageBox.ShowSuccess("操作成功");
-                LoadReserData();
-                FrmRoomManager.Reload("");
-                FrmRoomManager._RefreshRoomCount();
-                scope.Complete();
-                this.Close();
+                ReservationId = ReservationId,
+                RoomNumber = RoomNumber,
+                CustomerNumber = txtCustoNo.Text.Trim(),
+                CustomerName = txtCustoName.Text.Trim(),
+                CustomerType = Convert.ToInt32(cbCustoType.SelectedValue),
+                CustomerPhoneNumber = txtTel.Text.Trim(),
+                CustomerAddress = txtCustoAdress.Text.Trim(),
+                IdCardNumber = txtCardID.Text.Trim(),
+                PassportId = Convert.ToInt32(cbPassportType.SelectedValue),
+                CustomerGender = Convert.ToInt32(cbSex.SelectedValue),
+                DateOfBirth = DateOnly.FromDateTime(dtpBirthday.Value),
+                IsDelete = 0,
+                DataInsUsr = LoginInfo.WorkerNo,
+                DataChgUsr = LoginInfo.WorkerNo,
+                DataInsDate = DateTime.Now,
+                DataChgDate = DateTime.Now
+            };
+            result = HttpHelper.Request(ApiConstants.Room_CheckinRoomByReservation, HttpHelper.ModelToJson(reser));
+            var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.Room_CheckinRoomByReservation}+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
             }
+
+            UIMessageBox.ShowSuccess("操作成功");
+            LoadReserData();
+            FrmRoomManager.Reload("");
+            FrmRoomManager._RefreshRoomCount();
+            this.Close();
         }
 
         private void txtCardID_Validated(object sender, EventArgs e)

@@ -16,6 +16,8 @@
 
 **Effective immediately, version numbers will follow the format x.x.x.x. First digit: program version, second: framework version, third: major updates, fourth: bug fixes. For example, version 2.0 on .NET 8 is 2.8.0.0. On .NET 9, it will be 2.9.0.0, and so on.**
 
+**Effective immediately, this project officially enters the maintenance phase and will no longer incorporate any new features. Simultaneously, we are pleased to announce the commencement of mobile development for the TopSkyHotelManagementSystem. The repository address is: [TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui). This project is being developed using .NET 8's MAUI framework, with initial development focused exclusively on the Android platform. Expansion to other platforms is not currently feasible.**
+
 # :pray: Open Source Projects Referenced:
 
 1. ##### Fody—Packs all dlls into an exe application. [Fody, MIT License](https://github.com/Fody/Fody)

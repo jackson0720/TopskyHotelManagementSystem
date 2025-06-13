@@ -106,7 +106,7 @@ namespace EOM.TSHotelManagement.FormUI
                 cbSex.SelectedValue = FrmCustomerManager.cm_CustoSex;
                 cbPassportType.SelectedValue = FrmCustomerManager.cm_PassportType;
                 dtpBirthday.Value = FrmCustomerManager.cm_CustoBirth;
-                txtCardID.Text = FrmCustomerManager.cm_CustoID;
+                txtCardID.Text = FrmCustomerManager.cm_CustoIdCardNumber;
                 txtCustoAdress.Text = FrmCustomerManager.cm_CustoAddress;
                 txtTel.Text = FrmCustomerManager.cm_CustoTel;
                 btnOK.Text = "修改";
@@ -128,6 +128,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             UpdateCustomerInputDto custo = new UpdateCustomerInputDto()
             {
+                Id = FrmCustomerManager.cm_CustoId,
                 CustomerNumber = txtCustoNo.Text,
                 CustomerName = txtCustoName.Text,
                 CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
