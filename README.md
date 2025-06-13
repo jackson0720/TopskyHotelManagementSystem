@@ -9,6 +9,7 @@
 <div align="center">
 	<p>中文文档 | <a href="./README.en.md">English Document</a></p>
 </div>
+
 #  :exclamation: 重要说明：
 
  **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
@@ -125,6 +126,6 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :inbox_tray: 数据库运行部署(本地)：
 
-**略，本项目不包含后台业务逻辑。详情请查看：[业务逻辑项目](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.md)**
+**略，本项目不包含后台业务逻辑。详情请查看：[业务逻辑项目](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%90%E8%A1%8C%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0)**
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
