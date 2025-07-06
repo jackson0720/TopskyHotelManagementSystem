@@ -112,6 +112,14 @@ EOM.Client.TopskyHotelManagementSystem
 | (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户 |          |              |              |
 | (前台)商品消费 | 商品列表     | 搜索商品信息 | 商品消费 | 消费信息 |              |              |
 
+#  :books: 多平台代码仓库汇总：
+
+| 平台  | 仓库地址                                                               | 仓库简介                                     | 开源协议        | 依赖项目        |
+|-----|--------------------------------------------------------------------|------------------------------------------|-------------|-------------|
+| PC端 | https://gitee.com/java-and-net/TopskyHotelManagementSystem         | 基于Net8 WinForm平台开发(无业务逻辑)，针对中小型酒店设计的管理系统 | [MIT License](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)|
+| 网页端 | https://gitee.com/java-and-net/topsky-hotel-management-system-vue3 | 基于Vue3开发的针对中小型酒店设计的管理系统                  | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api) |
+| 安卓端 | https://gitee.com/java-and-net/topsky-hotel-management-system-maui | 基于Net8 MAUI平台开发的移动端项目                    | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-maui/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api) |
+| 服务端 | https://gitee.com/java-and-net/topsky-hotel-management-system-web-api | 基于.Net8搭配SQLSugar框架构建的TS酒店管理系统后端API项目，主要服务于Client、Web、Android端    | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/LICENSE) |
 
 #  :family: 项目作者：
 
