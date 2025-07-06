@@ -114,6 +114,14 @@ EOM.Client.TopSkyHotelManagerSystem
 | (Front Desk) Customer Management | Display Customer Info | Search Customer Info | Add Customer        |                  |                    |                    |
 | (Front Desk) Product Consumption | Product List          | Search Product Info  | Product Consumption | Consumption Info |                    |                    |
 
+# :books: Summary of Multi-Platform Code Repositories:
+| Platform | Repository URL                                                        | Repository Description                                                                                                   | License     | Dependency |
+|----------|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|-------------|------------|
+| PC       | https://gitee.com/java-and-net/TopskyHotelManagementSystem            | .NET 8 WinForm-based solution (UI layer without business logic) designed for small/medium-sized hotel management systems | [MIT License](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)     |
+| Web      | https://gitee.com/java-and-net/topsky-hotel-management-system-vue3    | Vue 3-based frontend designed for small/medium-sized hotel management systems                                            | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)     |
+| Android  | https://gitee.com/java-and-net/topsky-hotel-management-system-maui    | .NET 8 MAUI-based mobile application project                                                                             | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-maui/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)     |
+| Backend  | https://gitee.com/java-and-net/topsky-hotel-management-system-web-api | .NET 8 backend API project for TS Hotel Management System built with SQLSugar ORM, serving PC/Web/Android clients        | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/LICENSE) |            |
+
 # :family: Project Authors:
 
 **Original Team: Jackson, Benjamin, Bin, Jonathan**
