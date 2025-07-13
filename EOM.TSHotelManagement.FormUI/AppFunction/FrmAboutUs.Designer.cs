@@ -29,28 +29,40 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAboutUs));
-            uiRichTextBox1 = new Sunny.UI.UIRichTextBox();
+            rtbAboutUs = new Sunny.UI.UIRichTextBox();
+            btnOk = new AntdUI.Button();
             SuspendLayout();
             // 
-            // uiRichTextBox1
+            // rtbAboutUs
             // 
-            uiRichTextBox1.BulletIndent = 5;
-            uiRichTextBox1.FillColor = Color.White;
-            uiRichTextBox1.Font = new Font("微软雅黑", 12F);
-            uiRichTextBox1.HideSelection = false;
-            uiRichTextBox1.Location = new Point(4, 32);
-            uiRichTextBox1.Margin = new Padding(3, 4, 3, 4);
-            uiRichTextBox1.MinimumSize = new Size(1, 1);
-            uiRichTextBox1.Name = "uiRichTextBox1";
-            uiRichTextBox1.Padding = new Padding(1, 2, 1, 2);
-            uiRichTextBox1.Radius = 10;
-            uiRichTextBox1.ReadOnly = true;
-            uiRichTextBox1.ScrollBarStyleInherited = false;
-            uiRichTextBox1.ShowText = false;
-            uiRichTextBox1.Size = new Size(377, 146);
-            uiRichTextBox1.Style = Sunny.UI.UIStyle.Custom;
-            uiRichTextBox1.TabIndex = 0;
-            uiRichTextBox1.TextAlignment = ContentAlignment.MiddleCenter;
+            rtbAboutUs.BulletIndent = 5;
+            rtbAboutUs.FillColor = Color.White;
+            rtbAboutUs.Font = new Font("微软雅黑", 12F);
+            rtbAboutUs.HideSelection = false;
+            rtbAboutUs.Location = new Point(3, 2);
+            rtbAboutUs.Margin = new Padding(3, 4, 3, 4);
+            rtbAboutUs.MinimumSize = new Size(1, 1);
+            rtbAboutUs.Name = "rtbAboutUs";
+            rtbAboutUs.Padding = new Padding(1, 2, 1, 2);
+            rtbAboutUs.Radius = 10;
+            rtbAboutUs.ReadOnly = true;
+            rtbAboutUs.ScrollBarStyleInherited = false;
+            rtbAboutUs.ShowText = false;
+            rtbAboutUs.Size = new Size(385, 146);
+            rtbAboutUs.Style = Sunny.UI.UIStyle.Custom;
+            rtbAboutUs.TabIndex = 0;
+            rtbAboutUs.TextAlignment = ContentAlignment.MiddleCenter;
+            // 
+            // btnOk
+            // 
+            btnOk.Font = new Font("Microsoft YaHei UI", 12F);
+            btnOk.Location = new Point(145, 152);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(93, 36);
+            btnOk.TabIndex = 129;
+            btnOk.Text = "知道了！";
+            btnOk.Type = AntdUI.TTypeMini.Primary;
+            btnOk.Click += btnOk_Click;
             // 
             // FrmAboutUs
             // 
@@ -58,12 +70,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(390, 192);
-            Controls.Add(uiRichTextBox1);
+            Controls.Add(btnOk);
+            Controls.Add(rtbAboutUs);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(2, 2, 2, 2);
-            MaximizeBox = false;
-            MinimizeBox = false;
+            Margin = new Padding(2);
             Name = "FrmAboutUs";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "关于我们";
             Load += FrmAboutUs_Load;
             MouseDown += FrmAboutUs_MouseDown;
@@ -73,6 +86,7 @@
 
         #endregion
 
-        private Sunny.UI.UIRichTextBox uiRichTextBox1;
+        private Sunny.UI.UIRichTextBox rtbAboutUs;
+        private AntdUI.Button btnOk;
     }
 }

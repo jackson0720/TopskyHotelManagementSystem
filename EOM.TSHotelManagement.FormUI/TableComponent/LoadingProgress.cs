@@ -11,8 +11,13 @@
                 _frmProgress = new FrmProgress();
             }
 
-            Task.Run(() => _frmProgress.ShowDialog());
+            if (!_frmProgress.Visible)
+            {
+                _frmProgress.Visible = false;
+                Task.Run(() => _frmProgress.ShowDialog());
+            }
         }
+
 
         public void Close()
         {

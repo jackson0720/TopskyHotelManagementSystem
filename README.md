@@ -10,14 +10,13 @@
 	<p>中文文档 | <a href="./README.en.md">English Document</a></p>
 </div>
 
-
-
-
 #  :exclamation: 重要说明：
 
  **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
 
  **即日起，程序版本号规范将固定为x.x.x.x，第一位为当前程序版本，第二位为当前程序框架版本，第三位为功能大变更版本，第四位为日常修复版本，例如：基于.NET 8框架的2.0版本，对应的版本号是2.8.0.0，往后的.NET 9将会是2.9.0.0，并以此类推**
+
+**即日起，该项目正式进入维护阶段，不再新增任何功能。同时，我们很高兴地宣布，TopSkyHotelManagementSystem的移动端开发工作正式启动，具体仓库地址为：[TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui)，该项目基于.NET 8的MAUI进行开发，目前仅考虑安卓端，其他暂不具备条件。**
 
 #  :pray: 引用的开源项目：
 
@@ -27,7 +26,7 @@
 
 3. ##### SunnyUI——SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。[SunnyUI.Net,GPL3.0开源协议](https://gitee.com/yhuse/SunnyUI)
 
-4. ##### RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)
+4. ##### **RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)**
 
 5. ##### AntdUI——👚 基于 Ant Design 设计语言的 Winform 界面库。[AntdUI,Apache-2.0开源协议](https://gitee.com/antdui/AntdUI)
 
@@ -41,11 +40,15 @@
 
 4、关于数据库脚本问题，请先移步至数据库脚本文件夹下，选择Mysql版本或PostgreSQL版本任意文件夹下载Data和Table两个文件，再数据库中先执行Table.sql，再执行Data.sql!
 
-5、针对MySQL和PostgreSQL数据库的说明：
+5、本项目已基于SQL Sugar框架支持多数据库(主流)，以下是目前已通过测试的数据库表格：
 
-		5.1、本地数据库若为MySQL，请拉取[MySQL专用分支](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/tree/MySQL_Version/)。
-	
-		5.2、本地数据库若为PostgreSQL，则无需进行任何改动，只需要在Common层对HttpHelper里的pgsqlString常量数据库连接字符串进行配置。
+| 数据库     | 版本             | 支持建库建表(Y/N) | 通过(Y/N)                                            |
+| ---------- | ---------------- | ----------------- | ---------------------------------------------------- |
+| MariaDB    | 10.11.10-MariaDB | Y                 | Y                                                    |
+| PostgreSQL | 130020           | Y                 | Y                                                    |
+| MySQL      | 5.7+             | Y                 | Y                                                    |
+| SQL Server | 2022             | Y                 | Y                                                    |
+| Oracle     | Unknown          | N                 | 请参照SQLSugar文档([果糖网](https://www.donet5.com)) |
 
 #  :thought_balloon: 开发目的：
 
@@ -57,7 +60,7 @@
 
 开发工具：Microsoft Visual Studio 2022(系统最新版本)
 
-数据库：PostgreSql16(强烈推荐！)
+数据库：MariaDB(强烈推荐！)
 
 数据库管理工具：Dbgate
 
@@ -79,7 +82,6 @@ EOM.Client.TopskyHotelManagementSystem
 ├─ LICENSE
 ├─ README.md
 ├─ EOM.TopskyHotelManagementSystem.Common
-├─ EOM.TopskyHotelManagementSystem.Common.Core
 ├─ EOM.TopskyHotelManagementSystem.FormUI
 │    ├─ .gitignore
 │    ├─ App.config
@@ -104,24 +106,20 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :books: 系统功能模块汇总：
 
-| 功能汇总       |              |              |               |              |              |              |
-| -------------- | ------------ | ------------ | ------------- | ------------ | ------------ | ------------ |
-| (前台)客房管理 | 预约房间     | 入住房间     | 结算退房      | 转换房间     | 查看用户信息 | 修改房间状态 |
-| (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户      |              |              |              |
-| (前台)商品消费 | 商品列表     | 搜索商品信息 | 商品消费      | 消费信息     |              |              |
-| (前台)扩展功能 | 无           |              |               |              |              |              |
-| (后台)基础信息 | 职位类型维护 | 民族类型维护 | 学历类型维护  | 部门信息维护 |              |              |
-| (后台)财务信息 | 员工工资账单 | 内部财务账单 | 酒店盈利情况  |              |              |              |
-| (后台)水电管理 | 水电信息     |              |               |              |              |              |
-| (后台)监管统计 | 监管部门情况 |              |               |              |              |              |
-| (后台)客房管理 | 房态图一览   | 新增客房     |               |              |              |              |
-| (后台)客户管理 | 客户信息管理 | 顾客消费账单 |               |              |              |              |
-| 功能汇总(续)   |              |              |               |              |              |              |
-| (后台)人事管理 | 员工管理     | 公告日志     | 上传公告日志  |              |              |              |
-| (后台)物资管理 | 商品管理     | 仓库物资     |               |              |              |              |
-| 员工操作日志   |              |              |               |              |              |              |
-| 系统管理       | 添加管理员   | 权限分配     | 启/禁用管理员 |              |              |              |
+| 功能汇总       |              |              |          |          |              |              |
+| -------------- | ------------ | ------------ | -------- | -------- | ------------ | ------------ |
+| (前台)客房管理 | 预约房间     | 入住房间     | 结算退房 | 转换房间 | 查看用户信息 | 修改房间状态 |
+| (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户 |          |              |              |
+| (前台)商品消费 | 商品列表     | 搜索商品信息 | 商品消费 | 消费信息 |              |              |
 
+#  :books: 多平台代码仓库汇总：
+
+| 平台  | 仓库地址                                                               | 仓库简介                                     | 开源协议        | 依赖项目        |
+|-----|--------------------------------------------------------------------|------------------------------------------|-------------|-------------|
+| PC端 | https://gitee.com/java-and-net/TopskyHotelManagementSystem         | 基于Net8 WinForm平台开发(无业务逻辑)，针对中小型酒店设计的管理系统 | [MIT License](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)|
+| 网页端 | https://gitee.com/java-and-net/topsky-hotel-management-system-vue3 | 基于Vue3开发的针对中小型酒店设计的管理系统                  | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api) |
+| 安卓端 | https://gitee.com/java-and-net/topsky-hotel-management-system-maui | 基于Net8 MAUI平台开发的移动端项目                    | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-maui/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api) |
+| 服务端 | https://gitee.com/java-and-net/topsky-hotel-management-system-web-api | 基于.Net8搭配SQLSugar框架构建的TS酒店管理系统后端API项目，主要服务于Client、Web、Android端    | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/LICENSE) |
 
 #  :family: 项目作者：
 
@@ -136,10 +134,6 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :inbox_tray: 数据库运行部署(本地)：
 
-**作者及开发团队强烈建议使用PostgreSQL数据库，安装PostgreSQL数据库并开启服务，通过可视化管理工具对数据库进行建立，可通过打开执行数据库脚本文件夹内的.sql后缀格式文件进行快速建立数据表和导入数据，执行步骤(以PostgreSQL数据库为例)：**
-
-**1、通过可视化管理工具链接PostgreSQL数据库，随后新建名为‘tshoteldb’数据库。**
-
-**2、通过可视化管理工具打开：数据库脚本\PostgreSQL版本文件\db_file.sql进行数据表建立和数据导入。**
+**略，本项目不包含后台业务逻辑。详情请查看：[业务逻辑项目](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%90%E8%A1%8C%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0)**
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)

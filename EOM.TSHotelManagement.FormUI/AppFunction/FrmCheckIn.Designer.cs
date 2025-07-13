@@ -29,419 +29,410 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCheckIn));
-            this.txtRoomPosition = new Sunny.UI.UITextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtType = new Sunny.UI.UIComboBox();
-            this.txtRoomNo = new Sunny.UI.UITextBox();
-            this.txtState = new Sunny.UI.UITextBox();
-            this.txtMoney = new Sunny.UI.UITextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtCustoNo = new Sunny.UI.UITextBox();
-            this.txtCustoName = new Sunny.UI.UITextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtCustoTel = new Sunny.UI.UITextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtCustoType = new Sunny.UI.UITextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtDeposit = new Sunny.UI.UITextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnlBtm.SuspendLayout();
-            this.SuspendLayout();
+            txtRoomPosition = new Sunny.UI.UITextBox();
+            label3 = new Label();
+            txtType = new Sunny.UI.UIComboBox();
+            txtRoomNo = new Sunny.UI.UITextBox();
+            txtState = new Sunny.UI.UITextBox();
+            txtMoney = new Sunny.UI.UITextBox();
+            label13 = new Label();
+            label15 = new Label();
+            label19 = new Label();
+            label20 = new Label();
+            txtCustoNo = new Sunny.UI.UITextBox();
+            txtCustoName = new Sunny.UI.UITextBox();
+            label18 = new Label();
+            label16 = new Label();
+            txtCustoTel = new Sunny.UI.UITextBox();
+            label14 = new Label();
+            txtCustoType = new Sunny.UI.UITextBox();
+            label12 = new Label();
+            txtDeposit = new Sunny.UI.UITextBox();
+            label1 = new Label();
+            pnlBtm.SuspendLayout();
+            SuspendLayout();
             // 
             // pnlBtm
             // 
-            this.pnlBtm.Location = new System.Drawing.Point(1, 328);
-            this.pnlBtm.Size = new System.Drawing.Size(859, 53);
-            this.pnlBtm.Style = Sunny.UI.UIStyle.Custom;
+            pnlBtm.Location = new Point(1, 328);
+            pnlBtm.Size = new Size(859, 53);
+            pnlBtm.Style = Sunny.UI.UIStyle.Custom;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(731, 12);
-            this.btnCancel.Style = Sunny.UI.UIStyle.Custom;
+            btnCancel.Location = new Point(731, 12);
+            btnCancel.Style = Sunny.UI.UIStyle.Custom;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(616, 12);
-            this.btnOK.Style = Sunny.UI.UIStyle.Custom;
+            btnOK.Location = new Point(616, 12);
+            btnOK.Style = Sunny.UI.UIStyle.Custom;
             // 
             // txtRoomPosition
             // 
-            this.txtRoomPosition.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRoomPosition.FillColor = System.Drawing.Color.White;
-            this.txtRoomPosition.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRoomPosition.Location = new System.Drawing.Point(170, 163);
-            this.txtRoomPosition.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRoomPosition.Maximum = 2147483647D;
-            this.txtRoomPosition.Minimum = -2147483648D;
-            this.txtRoomPosition.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtRoomPosition.Name = "txtRoomPosition";
-            this.txtRoomPosition.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRoomPosition.Radius = 20;
-            this.txtRoomPosition.ReadOnly = true;
-            this.txtRoomPosition.Size = new System.Drawing.Size(251, 35);
-            this.txtRoomPosition.Style = Sunny.UI.UIStyle.Custom;
-            this.txtRoomPosition.StyleCustomMode = true;
-            this.txtRoomPosition.TabIndex = 150;
-            this.txtRoomPosition.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtRoomPosition.Cursor = Cursors.IBeam;
+            txtRoomPosition.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtRoomPosition.Location = new Point(170, 163);
+            txtRoomPosition.Margin = new Padding(4, 5, 4, 5);
+            txtRoomPosition.MinimumSize = new Size(1, 1);
+            txtRoomPosition.Name = "txtRoomPosition";
+            txtRoomPosition.Padding = new Padding(5);
+            txtRoomPosition.Radius = 20;
+            txtRoomPosition.ReadOnly = true;
+            txtRoomPosition.ShowText = false;
+            txtRoomPosition.Size = new Size(251, 35);
+            txtRoomPosition.Style = Sunny.UI.UIStyle.Custom;
+            txtRoomPosition.StyleCustomMode = true;
+            txtRoomPosition.TabIndex = 150;
+            txtRoomPosition.TextAlignment = ContentAlignment.MiddleLeft;
+            txtRoomPosition.Watermark = "";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(63, 168);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 25);
-            this.label3.TabIndex = 149;
-            this.label3.Text = "房间位置";
+            label3.AutoSize = true;
+            label3.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label3.Location = new Point(63, 168);
+            label3.Name = "label3";
+            label3.Size = new Size(88, 25);
+            label3.TabIndex = 149;
+            label3.Text = "房间位置";
             // 
             // txtType
             // 
-            this.txtType.DataSource = null;
-            this.txtType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.txtType.FillColor = System.Drawing.Color.White;
-            this.txtType.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.txtType.Location = new System.Drawing.Point(547, 55);
-            this.txtType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtType.MinimumSize = new System.Drawing.Size(63, 0);
-            this.txtType.Name = "txtType";
-            this.txtType.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.txtType.Radius = 20;
-            this.txtType.ReadOnly = true;
-            this.txtType.Size = new System.Drawing.Size(250, 35);
-            this.txtType.Style = Sunny.UI.UIStyle.Custom;
-            this.txtType.TabIndex = 148;
-            this.txtType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtType.Watermark = "";
+            txtType.DataSource = null;
+            txtType.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            txtType.FillColor = Color.White;
+            txtType.Font = new Font("微软雅黑", 15.75F);
+            txtType.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            txtType.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            txtType.Location = new Point(547, 55);
+            txtType.Margin = new Padding(4, 5, 4, 5);
+            txtType.MinimumSize = new Size(63, 0);
+            txtType.Name = "txtType";
+            txtType.Padding = new Padding(0, 0, 30, 2);
+            txtType.Radius = 20;
+            txtType.ReadOnly = true;
+            txtType.Size = new Size(250, 35);
+            txtType.Style = Sunny.UI.UIStyle.Custom;
+            txtType.SymbolSize = 24;
+            txtType.TabIndex = 148;
+            txtType.TextAlignment = ContentAlignment.MiddleLeft;
+            txtType.Watermark = "";
             // 
             // txtRoomNo
             // 
-            this.txtRoomNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRoomNo.FillColor = System.Drawing.Color.White;
-            this.txtRoomNo.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRoomNo.Location = new System.Drawing.Point(171, 55);
-            this.txtRoomNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRoomNo.Maximum = 2147483647D;
-            this.txtRoomNo.Minimum = -2147483648D;
-            this.txtRoomNo.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtRoomNo.Name = "txtRoomNo";
-            this.txtRoomNo.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRoomNo.Radius = 20;
-            this.txtRoomNo.ReadOnly = true;
-            this.txtRoomNo.Size = new System.Drawing.Size(250, 35);
-            this.txtRoomNo.Style = Sunny.UI.UIStyle.Custom;
-            this.txtRoomNo.StyleCustomMode = true;
-            this.txtRoomNo.TabIndex = 147;
-            this.txtRoomNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtRoomNo.Cursor = Cursors.IBeam;
+            txtRoomNo.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtRoomNo.Location = new Point(171, 55);
+            txtRoomNo.Margin = new Padding(4, 5, 4, 5);
+            txtRoomNo.MinimumSize = new Size(1, 1);
+            txtRoomNo.Name = "txtRoomNo";
+            txtRoomNo.Padding = new Padding(5);
+            txtRoomNo.Radius = 20;
+            txtRoomNo.ReadOnly = true;
+            txtRoomNo.ShowText = false;
+            txtRoomNo.Size = new Size(250, 35);
+            txtRoomNo.Style = Sunny.UI.UIStyle.Custom;
+            txtRoomNo.StyleCustomMode = true;
+            txtRoomNo.TabIndex = 147;
+            txtRoomNo.TextAlignment = ContentAlignment.MiddleLeft;
+            txtRoomNo.Watermark = "";
             // 
             // txtState
             // 
-            this.txtState.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtState.FillColor = System.Drawing.Color.White;
-            this.txtState.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtState.Location = new System.Drawing.Point(171, 110);
-            this.txtState.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtState.Maximum = 2147483647D;
-            this.txtState.Minimum = -2147483648D;
-            this.txtState.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtState.Name = "txtState";
-            this.txtState.Padding = new System.Windows.Forms.Padding(5);
-            this.txtState.Radius = 20;
-            this.txtState.ReadOnly = true;
-            this.txtState.Size = new System.Drawing.Size(250, 35);
-            this.txtState.Style = Sunny.UI.UIStyle.Custom;
-            this.txtState.StyleCustomMode = true;
-            this.txtState.TabIndex = 146;
-            this.txtState.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtState.Cursor = Cursors.IBeam;
+            txtState.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtState.Location = new Point(171, 110);
+            txtState.Margin = new Padding(4, 5, 4, 5);
+            txtState.MinimumSize = new Size(1, 1);
+            txtState.Name = "txtState";
+            txtState.Padding = new Padding(5);
+            txtState.Radius = 20;
+            txtState.ReadOnly = true;
+            txtState.ShowText = false;
+            txtState.Size = new Size(250, 35);
+            txtState.Style = Sunny.UI.UIStyle.Custom;
+            txtState.StyleCustomMode = true;
+            txtState.TabIndex = 146;
+            txtState.TextAlignment = ContentAlignment.MiddleLeft;
+            txtState.Watermark = "";
             // 
             // txtMoney
             // 
-            this.txtMoney.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMoney.FillColor = System.Drawing.Color.White;
-            this.txtMoney.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtMoney.Location = new System.Drawing.Point(547, 111);
-            this.txtMoney.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMoney.Maximum = 2147483647D;
-            this.txtMoney.Minimum = -2147483648D;
-            this.txtMoney.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtMoney.Name = "txtMoney";
-            this.txtMoney.Padding = new System.Windows.Forms.Padding(5);
-            this.txtMoney.Radius = 20;
-            this.txtMoney.ReadOnly = true;
-            this.txtMoney.Size = new System.Drawing.Size(250, 35);
-            this.txtMoney.Style = Sunny.UI.UIStyle.Custom;
-            this.txtMoney.StyleCustomMode = true;
-            this.txtMoney.TabIndex = 145;
-            this.txtMoney.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtMoney.Cursor = Cursors.IBeam;
+            txtMoney.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtMoney.Location = new Point(547, 111);
+            txtMoney.Margin = new Padding(4, 5, 4, 5);
+            txtMoney.MinimumSize = new Size(1, 1);
+            txtMoney.Name = "txtMoney";
+            txtMoney.Padding = new Padding(5);
+            txtMoney.Radius = 20;
+            txtMoney.ReadOnly = true;
+            txtMoney.ShowText = false;
+            txtMoney.Size = new Size(250, 35);
+            txtMoney.Style = Sunny.UI.UIStyle.Custom;
+            txtMoney.StyleCustomMode = true;
+            txtMoney.TabIndex = 145;
+            txtMoney.TextAlignment = ContentAlignment.MiddleLeft;
+            txtMoney.Watermark = "";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(443, 114);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 25);
-            this.label13.TabIndex = 144;
-            this.label13.Text = "房间单价";
+            label13.AutoSize = true;
+            label13.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label13.Location = new Point(443, 114);
+            label13.Name = "label13";
+            label13.Size = new Size(88, 25);
+            label13.TabIndex = 144;
+            label13.Text = "房间单价";
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(443, 62);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(88, 25);
-            this.label15.TabIndex = 143;
-            this.label15.Text = "房间类型";
+            label15.AutoSize = true;
+            label15.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label15.Location = new Point(443, 62);
+            label15.Name = "label15";
+            label15.Size = new Size(88, 25);
+            label15.TabIndex = 143;
+            label15.Text = "房间类型";
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(64, 114);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(88, 25);
-            this.label19.TabIndex = 142;
-            this.label19.Text = "房间状态";
+            label19.AutoSize = true;
+            label19.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label19.Location = new Point(64, 114);
+            label19.Name = "label19";
+            label19.Size = new Size(88, 25);
+            label19.TabIndex = 142;
+            label19.Text = "房间状态";
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(64, 62);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(88, 25);
-            this.label20.TabIndex = 141;
-            this.label20.Text = "房间编号";
+            label20.AutoSize = true;
+            label20.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label20.Location = new Point(64, 62);
+            label20.Name = "label20";
+            label20.Size = new Size(88, 25);
+            label20.TabIndex = 141;
+            label20.Text = "房间编号";
             // 
             // txtCustoNo
             // 
-            this.txtCustoNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtCustoNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtCustoNo.BackColor = System.Drawing.Color.Transparent;
-            this.txtCustoNo.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoNo.FillColor = System.Drawing.Color.White;
-            this.txtCustoNo.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoNo.Location = new System.Drawing.Point(170, 218);
-            this.txtCustoNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoNo.Maximum = 2147483647D;
-            this.txtCustoNo.Minimum = -2147483648D;
-            this.txtCustoNo.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoNo.Name = "txtCustoNo";
-            this.txtCustoNo.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoNo.Radius = 20;
-            this.txtCustoNo.Size = new System.Drawing.Size(250, 35);
-            this.txtCustoNo.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoNo.StyleCustomMode = true;
-            this.txtCustoNo.TabIndex = 143;
-            this.txtCustoNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtCustoNo.Validated += new System.EventHandler(this.txtCustoNo_Validated);
-            this.txtCustoNo.TextChanged += new System.EventHandler(this.txtCustoNo_TextChanged);
+            txtCustoNo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            txtCustoNo.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            txtCustoNo.BackColor = Color.Transparent;
+            txtCustoNo.Cursor = Cursors.IBeam;
+            txtCustoNo.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoNo.Location = new Point(170, 218);
+            txtCustoNo.Margin = new Padding(4, 5, 4, 5);
+            txtCustoNo.MinimumSize = new Size(1, 1);
+            txtCustoNo.Name = "txtCustoNo";
+            txtCustoNo.Padding = new Padding(5);
+            txtCustoNo.Radius = 20;
+            txtCustoNo.ShowText = false;
+            txtCustoNo.Size = new Size(250, 35);
+            txtCustoNo.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoNo.StyleCustomMode = true;
+            txtCustoNo.TabIndex = 143;
+            txtCustoNo.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoNo.Watermark = "";
+            txtCustoNo.Validated += txtCustoNo_Validated;
             // 
             // txtCustoName
             // 
-            this.txtCustoName.BackColor = System.Drawing.Color.Transparent;
-            this.txtCustoName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoName.FillColor = System.Drawing.Color.White;
-            this.txtCustoName.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoName.Location = new System.Drawing.Point(546, 218);
-            this.txtCustoName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoName.Maximum = 2147483647D;
-            this.txtCustoName.Minimum = -2147483648D;
-            this.txtCustoName.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoName.Name = "txtCustoName";
-            this.txtCustoName.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoName.Radius = 20;
-            this.txtCustoName.ReadOnly = true;
-            this.txtCustoName.Size = new System.Drawing.Size(250, 35);
-            this.txtCustoName.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoName.StyleCustomMode = true;
-            this.txtCustoName.TabIndex = 144;
-            this.txtCustoName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtCustoName.BackColor = Color.Transparent;
+            txtCustoName.Cursor = Cursors.IBeam;
+            txtCustoName.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoName.Location = new Point(546, 218);
+            txtCustoName.Margin = new Padding(4, 5, 4, 5);
+            txtCustoName.MinimumSize = new Size(1, 1);
+            txtCustoName.Name = "txtCustoName";
+            txtCustoName.Padding = new Padding(5);
+            txtCustoName.Radius = 20;
+            txtCustoName.ReadOnly = true;
+            txtCustoName.ShowText = false;
+            txtCustoName.Size = new Size(250, 35);
+            txtCustoName.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoName.StyleCustomMode = true;
+            txtCustoName.TabIndex = 144;
+            txtCustoName.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoName.Watermark = "";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(63, 225);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(88, 25);
-            this.label18.TabIndex = 137;
-            this.label18.Text = "客户编号";
+            label18.AutoSize = true;
+            label18.BackColor = Color.Transparent;
+            label18.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label18.Location = new Point(63, 225);
+            label18.Name = "label18";
+            label18.Size = new Size(88, 25);
+            label18.TabIndex = 137;
+            label18.Text = "客户编号";
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(63, 277);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 25);
-            this.label16.TabIndex = 138;
-            this.label16.Text = "客户电话";
+            label16.AutoSize = true;
+            label16.BackColor = Color.Transparent;
+            label16.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label16.Location = new Point(63, 277);
+            label16.Name = "label16";
+            label16.Size = new Size(88, 25);
+            label16.TabIndex = 138;
+            label16.Text = "客户电话";
             // 
             // txtCustoTel
             // 
-            this.txtCustoTel.BackColor = System.Drawing.Color.Transparent;
-            this.txtCustoTel.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoTel.FillColor = System.Drawing.Color.White;
-            this.txtCustoTel.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoTel.Location = new System.Drawing.Point(170, 273);
-            this.txtCustoTel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoTel.Maximum = 2147483647D;
-            this.txtCustoTel.Minimum = -2147483648D;
-            this.txtCustoTel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoTel.Name = "txtCustoTel";
-            this.txtCustoTel.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoTel.Radius = 20;
-            this.txtCustoTel.ReadOnly = true;
-            this.txtCustoTel.Size = new System.Drawing.Size(250, 35);
-            this.txtCustoTel.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoTel.StyleCustomMode = true;
-            this.txtCustoTel.TabIndex = 142;
-            this.txtCustoTel.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtCustoTel.BackColor = Color.Transparent;
+            txtCustoTel.Cursor = Cursors.IBeam;
+            txtCustoTel.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoTel.Location = new Point(170, 273);
+            txtCustoTel.Margin = new Padding(4, 5, 4, 5);
+            txtCustoTel.MinimumSize = new Size(1, 1);
+            txtCustoTel.Name = "txtCustoTel";
+            txtCustoTel.Padding = new Padding(5);
+            txtCustoTel.Radius = 20;
+            txtCustoTel.ReadOnly = true;
+            txtCustoTel.ShowText = false;
+            txtCustoTel.Size = new Size(250, 35);
+            txtCustoTel.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoTel.StyleCustomMode = true;
+            txtCustoTel.TabIndex = 142;
+            txtCustoTel.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoTel.Watermark = "";
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(442, 225);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(88, 25);
-            this.label14.TabIndex = 139;
-            this.label14.Text = "客户姓名";
+            label14.AutoSize = true;
+            label14.BackColor = Color.Transparent;
+            label14.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label14.Location = new Point(442, 225);
+            label14.Name = "label14";
+            label14.Size = new Size(88, 25);
+            label14.TabIndex = 139;
+            label14.Text = "客户姓名";
             // 
             // txtCustoType
             // 
-            this.txtCustoType.BackColor = System.Drawing.Color.Transparent;
-            this.txtCustoType.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoType.FillColor = System.Drawing.Color.White;
-            this.txtCustoType.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoType.Location = new System.Drawing.Point(546, 274);
-            this.txtCustoType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoType.Maximum = 2147483647D;
-            this.txtCustoType.Minimum = -2147483648D;
-            this.txtCustoType.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoType.Name = "txtCustoType";
-            this.txtCustoType.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoType.Radius = 20;
-            this.txtCustoType.ReadOnly = true;
-            this.txtCustoType.Size = new System.Drawing.Size(250, 35);
-            this.txtCustoType.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoType.StyleCustomMode = true;
-            this.txtCustoType.TabIndex = 141;
-            this.txtCustoType.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtCustoType.BackColor = Color.Transparent;
+            txtCustoType.Cursor = Cursors.IBeam;
+            txtCustoType.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoType.Location = new Point(546, 274);
+            txtCustoType.Margin = new Padding(4, 5, 4, 5);
+            txtCustoType.MinimumSize = new Size(1, 1);
+            txtCustoType.Name = "txtCustoType";
+            txtCustoType.Padding = new Padding(5);
+            txtCustoType.Radius = 20;
+            txtCustoType.ReadOnly = true;
+            txtCustoType.ShowText = false;
+            txtCustoType.Size = new Size(250, 35);
+            txtCustoType.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoType.StyleCustomMode = true;
+            txtCustoType.TabIndex = 141;
+            txtCustoType.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoType.Watermark = "";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(442, 277);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(88, 25);
-            this.label12.TabIndex = 140;
-            this.label12.Text = "会员等级";
+            label12.AutoSize = true;
+            label12.BackColor = Color.Transparent;
+            label12.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label12.Location = new Point(442, 277);
+            label12.Name = "label12";
+            label12.Size = new Size(88, 25);
+            label12.TabIndex = 140;
+            label12.Text = "会员等级";
             // 
             // txtDeposit
             // 
-            this.txtDeposit.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDeposit.FillColor = System.Drawing.Color.White;
-            this.txtDeposit.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtDeposit.Location = new System.Drawing.Point(547, 163);
-            this.txtDeposit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtDeposit.Maximum = 2147483647D;
-            this.txtDeposit.Minimum = -2147483648D;
-            this.txtDeposit.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtDeposit.Name = "txtDeposit";
-            this.txtDeposit.Padding = new System.Windows.Forms.Padding(5);
-            this.txtDeposit.Radius = 20;
-            this.txtDeposit.ReadOnly = true;
-            this.txtDeposit.Size = new System.Drawing.Size(250, 35);
-            this.txtDeposit.Style = Sunny.UI.UIStyle.Custom;
-            this.txtDeposit.StyleCustomMode = true;
-            this.txtDeposit.TabIndex = 152;
-            this.txtDeposit.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtDeposit.Cursor = Cursors.IBeam;
+            txtDeposit.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtDeposit.Location = new Point(547, 163);
+            txtDeposit.Margin = new Padding(4, 5, 4, 5);
+            txtDeposit.MinimumSize = new Size(1, 1);
+            txtDeposit.Name = "txtDeposit";
+            txtDeposit.Padding = new Padding(5);
+            txtDeposit.Radius = 20;
+            txtDeposit.ReadOnly = true;
+            txtDeposit.ShowText = false;
+            txtDeposit.Size = new Size(250, 35);
+            txtDeposit.Style = Sunny.UI.UIStyle.Custom;
+            txtDeposit.StyleCustomMode = true;
+            txtDeposit.TabIndex = 152;
+            txtDeposit.TextAlignment = ContentAlignment.MiddleLeft;
+            txtDeposit.Watermark = "";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(443, 168);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 25);
-            this.label1.TabIndex = 151;
-            this.label1.Text = "房间押金";
+            label1.AutoSize = true;
+            label1.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label1.Location = new Point(443, 168);
+            label1.Name = "label1";
+            label1.Size = new Size(88, 25);
+            label1.TabIndex = 151;
+            label1.Text = "房间押金";
             // 
             // FrmCheckIn
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(861, 384);
-            this.ControlBox = false;
-            this.Controls.Add(this.txtDeposit);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCustoNo);
-            this.Controls.Add(this.txtCustoName);
-            this.Controls.Add(this.txtRoomPosition);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.txtType);
-            this.Controls.Add(this.txtCustoTel);
-            this.Controls.Add(this.txtRoomNo);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.txtState);
-            this.Controls.Add(this.txtCustoType);
-            this.Controls.Add(this.txtMoney);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label20);
-            this.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.IsForbidAltF4 = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FrmCheckIn";
-            this.ShowIcon = true;
-            this.ShowTitleIcon = true;
-            this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "房间入住";
-            this.ButtonOkClick += new System.EventHandler(this.FrmCheckIn_ButtonOkClick);
-            this.ButtonCancelClick += new System.EventHandler(this.FrmCheckIn_ButtonCancelClick);
-            this.Load += new System.EventHandler(this.FrmCheckIn_Load);
-            this.Controls.SetChildIndex(this.label20, 0);
-            this.Controls.SetChildIndex(this.label19, 0);
-            this.Controls.SetChildIndex(this.label15, 0);
-            this.Controls.SetChildIndex(this.label13, 0);
-            this.Controls.SetChildIndex(this.label12, 0);
-            this.Controls.SetChildIndex(this.txtMoney, 0);
-            this.Controls.SetChildIndex(this.txtCustoType, 0);
-            this.Controls.SetChildIndex(this.txtState, 0);
-            this.Controls.SetChildIndex(this.label14, 0);
-            this.Controls.SetChildIndex(this.txtRoomNo, 0);
-            this.Controls.SetChildIndex(this.txtCustoTel, 0);
-            this.Controls.SetChildIndex(this.txtType, 0);
-            this.Controls.SetChildIndex(this.label16, 0);
-            this.Controls.SetChildIndex(this.label3, 0);
-            this.Controls.SetChildIndex(this.label18, 0);
-            this.Controls.SetChildIndex(this.txtRoomPosition, 0);
-            this.Controls.SetChildIndex(this.txtCustoName, 0);
-            this.Controls.SetChildIndex(this.txtCustoNo, 0);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.txtDeposit, 0);
-            this.Controls.SetChildIndex(this.pnlBtm, 0);
-            this.pnlBtm.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(235, 243, 255);
+            ClientSize = new Size(861, 384);
+            ControlBox = false;
+            Controls.Add(txtDeposit);
+            Controls.Add(label1);
+            Controls.Add(txtCustoNo);
+            Controls.Add(txtCustoName);
+            Controls.Add(txtRoomPosition);
+            Controls.Add(label18);
+            Controls.Add(label3);
+            Controls.Add(label16);
+            Controls.Add(txtType);
+            Controls.Add(txtCustoTel);
+            Controls.Add(txtRoomNo);
+            Controls.Add(label14);
+            Controls.Add(txtState);
+            Controls.Add(txtCustoType);
+            Controls.Add(txtMoney);
+            Controls.Add(label12);
+            Controls.Add(label13);
+            Controls.Add(label15);
+            Controls.Add(label19);
+            Controls.Add(label20);
+            Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            IsForbidAltF4 = true;
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "FrmCheckIn";
+            ShowTitleIcon = true;
+            Style = Sunny.UI.UIStyle.Custom;
+            Text = "房间入住";
+            ZoomScaleRect = new Rectangle(15, 15, 861, 384);
+            ButtonOkClick += FrmCheckIn_ButtonOkClick;
+            ButtonCancelClick += FrmCheckIn_ButtonCancelClick;
+            Load += FrmCheckIn_Load;
+            Controls.SetChildIndex(label20, 0);
+            Controls.SetChildIndex(label19, 0);
+            Controls.SetChildIndex(label15, 0);
+            Controls.SetChildIndex(label13, 0);
+            Controls.SetChildIndex(label12, 0);
+            Controls.SetChildIndex(txtMoney, 0);
+            Controls.SetChildIndex(txtCustoType, 0);
+            Controls.SetChildIndex(txtState, 0);
+            Controls.SetChildIndex(label14, 0);
+            Controls.SetChildIndex(txtRoomNo, 0);
+            Controls.SetChildIndex(txtCustoTel, 0);
+            Controls.SetChildIndex(txtType, 0);
+            Controls.SetChildIndex(label16, 0);
+            Controls.SetChildIndex(label3, 0);
+            Controls.SetChildIndex(label18, 0);
+            Controls.SetChildIndex(txtRoomPosition, 0);
+            Controls.SetChildIndex(txtCustoName, 0);
+            Controls.SetChildIndex(txtCustoNo, 0);
+            Controls.SetChildIndex(label1, 0);
+            Controls.SetChildIndex(txtDeposit, 0);
+            Controls.SetChildIndex(pnlBtm, 0);
+            pnlBtm.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

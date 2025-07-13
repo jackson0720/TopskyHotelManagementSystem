@@ -23,9 +23,9 @@
  */
 
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Shared;
 using Sunny.UI;
-using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -41,7 +41,7 @@ namespace EOM.TSHotelManagement.FormUI
         public static string co_CustoAddress;
         public static string co_CustoType;
         public static string co_CustoID;
-        public static Hydroelectricity w;
+        public static CreateEnergyManagementInputDto w;
         private LoadingProgress _loadingProgress;
 
         public FrmCheckOutForm(LoadingProgress loadingProgress)
@@ -83,122 +83,89 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmCheckOutForm_Load(object sender, EventArgs e)
         {
             #region 加载客户类型信息
-            result = HttpHelper.Request("Base/SelectCustoTypeAllCanUse");
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
+            var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
+            if (customerTypes.StatusCode != StatusCodeConstants.Success)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<CustoType> lstSourceGrid = HttpHelper.JsonToList<CustoType>(result.message);
-            this.cboCustoType.DataSource = lstSourceGrid;
-            this.cboCustoType.DisplayMember = "TypeName";
-            this.cboCustoType.ValueMember = "UserType";
-            this.cboCustoType.SelectedIndex = 0;
-            this.cboCustoType.ReadOnly = true;
+            List<ReadCustoTypeOutputDto> lstSourceGrid = customerTypes.listSource;
             #endregion
 
-            #region 加载证件类型信息
-            result = HttpHelper.Request("Base/SelectPassPortTypeAllCanUse");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectPassPortTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            List<PassPortType> passPorts = HttpHelper.JsonToList<PassPortType>(result.message);
-            this.cboPassportType.DataSource = passPorts;
-            this.cboPassportType.DisplayMember = "PassportName";
-            this.cboPassportType.ValueMember = "PassportId";
-            this.cboPassportType.SelectedIndex = 0;
-            #endregion
-
-            #region 加载性别信息
-            result = HttpHelper.Request("Base/SelectSexTypeAll?delete_mk=0");
-            if (result.statusCode != 200)
-            {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            List<SexType> listSexType = HttpHelper.JsonToList<SexType>(result.message);
-            this.cboCustoSex.DataSource = listSexType;
-            this.cboCustoSex.DisplayMember = "sexName";
-            this.cboCustoSex.ValueMember = "sexId";
-            this.cboCustoSex.SelectedIndex = 0;
-            #endregion
-
-            double sum = 0;
-            txtCustoNo.Text = ucRoom.rm_CustoNo;
+            decimal sum = 0;
+            txtCustomerNumber.Text = ucRoom.rm_CustoNo;
             CustoNo.Text = ucRoom.rm_CustoNo;
             txtRoomNo.Text = ucRoom.rm_RoomNo;
 
             dic = new Dictionary<string, string>()
             {
-                { "no",txtRoomNo.Text.ToString()}
+                { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text.ToString()}
             };
 
-            result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
+            var roomInfo = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
+            if (roomInfo.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectSexTypeAll+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
-            Room room = HttpHelper.JsonToModel<Room>(result.message);
+            ReadRoomOutputDto room = roomInfo.Source;
 
-            if (room.CheckTime == null)
+            if (room.LastCheckInTime == null)
             {
                 dtpCheckTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd");
             }
             else
             {
-                dtpCheckTime.Text = Convert.ToDateTime(room.CheckTime).ToString("yyyy-MM-dd");
+                dtpCheckTime.Text = Convert.ToDateTime(room.LastCheckInTime).ToString("yyyy-MM-dd");
             }
             dic = new Dictionary<string, string>()
             {
-                { "roomno",txtRoomNo.Text}
+                { nameof(ReadRoomInputDto.RoomNumber) , txtRoomNo.Text}
             };
-            result = HttpHelper.Request("Room/DayByRoomNo", dic);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Room_DayByRoomNo, dic);
+            var stayDays = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
+            if (stayDays.StatusCode != 200)
             {
                 UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
-            sum = Convert.ToDouble(Convert.ToString(Convert.ToInt32(result.message) * room.RoomMoney));
+            sum = Convert.ToDecimal(Convert.ToString(Convert.ToInt32(stayDays.Source.StayDays) * room.RoomRent));
 
-            lblDay.Text = Convert.ToString(Convert.ToInt32(result.message));
-            w = new Hydroelectricity()
+            lblDay.Text = Convert.ToString(Convert.ToInt32(stayDays.Source.StayDays));
+
+            w = new CreateEnergyManagementInputDto()
             {
-                CustoNo = txtCustoNo.Text,
-                EndDate = Convert.ToDateTime(DateTime.Parse(Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss"))),
-                PowerUse = Convert.ToDecimal(Convert.ToInt32(result.message) * 3 * 1),
-                WaterUse = Convert.ToDecimal(Convert.ToDouble(result.message) * 80 * 0.002),
-                RoomNo = txtRoomNo.Text,
-                Record = "admin",
-                UseDate = Convert.ToDateTime(DateTime.Parse(dtpCheckTime.Text)),
+                PowerUsage = Convert.ToDecimal(Convert.ToInt32(stayDays.Source.StayDays) * 3 * 1),
+                WaterUsage = Convert.ToDecimal(Convert.ToDouble(stayDays.Source.StayDays) * 80 * 0.002)
             };
 
             #region 加载客户信息
             dic = new Dictionary<string, string>()
             {
-                { "CustoNo",CustoNo.Text.ToString()}
+                { nameof(ReadCustomerInputDto.CustomerNumber),CustoNo.Text.ToString() }
             };
-            result = HttpHelper.Request("Custo​/SelectCardInfoByCustoNo", dic);
-            if (result.statusCode != 200)
+            result = HttpHelper.Request(ApiConstants.Customer_SelectCustoByInfo, dic);
+            SingleOutputDto<ReadCustomerOutputDto> customer = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message);
+            if (customer?.StatusCode != StatusCodeConstants.Success)
             {
-                UIMessageBox.ShowError("SelectCardInfoByCustoNo+接口服务异常，请提交Issue或尝试更新版本！");
+                UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            Custo cto = HttpHelper.JsonToModel<Custo>(result.message);
             try
             {
-                CustoName.Text = cto.CustoName;
-                txtCustoName.Text = cto.CustoName;
-                txtTel.Text = cto.CustoTel;
-                cboCustoSex.SelectedIndex = cto.CustoSex;
-                cboCustoType.SelectedIndex = cto.CustoType;
-                cboPassportType.SelectedIndex = cto.PassportType;
-                dtpBirth.Value = Convert.ToDateTime(cto.CustoBirth);
-                txtPassportNum.Text = cto.CustoID;
+                CustoName.Text = customer?.Source.CustomerName;
+                txtCustomerName.Text = customer?.Source.CustomerName;
+                txtTel.Text = customer?.Source.CustomerPhoneNumber;
+                txtCustomerGender.Text = customer?.Source.GenderName ?? string.Empty;
+                txtCustomerType.Text = customer.Source.CustomerTypeName;
+                txtPassportName.Text = customer.Source.PassportName;
+                txtDateOfBirth.Text = customer.Source.DateOfBirth.ToString("yyyy/MM/dd");
+                txtIdCardNumber.Text = customer.Source.IdCardNumber;
+                txtCustomerAddress.Text = customer.Source.CustomerAddress;
             }
             catch
             {
@@ -210,108 +177,60 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
 
             #region 加载消费信息
-            string RoomNo = txtRoomNo.Text;
-            dic = new Dictionary<string, string>()
+
+            var dataCount = 0;
+            btnPg.PageSizeOptions = new int[] { 15, 30, 50, 100 };
+            dgvSpendList.Spin("正在加载中...", config =>
             {
-                { "RoomNo",RoomNo}
-            };
-            result = HttpHelper.Request("Spend/SelectSpendInfoRoomNo", dic);
-            if (result.statusCode != 200)
+                TableComHelper tableComHelper = new TableComHelper();
+                dgvSpendList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<ReadSpendOutputDto>());
+                dgvSpendList.DataSource = GetPageData(btnPg.Current, btnPg.PageSize, ref dataCount);
+                btnPg.PageSize = 15;
+                btnPg.Current = 1;
+                btnPg.Total = dataCount;
+            }, () =>
             {
-                UIMessageBox.ShowError("SelectSpendInfoRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            dgvSpendList.AutoGenerateColumns = false;
-            dgvSpendList.DataSource = HttpHelper.JsonToList<Spend>(result.message);
-            double total = 0;
-            if (dgvSpendList.Rows.Count == 0)
-            {
-                total = 0;
-            }
-            else
-            {
-                dic = new Dictionary<string, string>()
-                {
-                    { "roomno",RoomNo},
-                    { "custono",CustoNo.Text.ToString()}
-                };
-                result = HttpHelper.Request("Spend/SelectMoneyByRoomNoAndTime", dic);
-                if (result.statusCode != 200)
-                {
-                    UIMessageBox.ShowError("SelectMoneyByRoomNoAndTime+接口服务异常，请提交Issue或尝试更新版本！");
-                    return;
-                }
-                total = Convert.ToDouble(result.message);
-            }
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
 
             #endregion
 
             #region 加载水电费信息
-            dic = new Dictionary<string, string>()
+            dgvWti.Spin("正在加载中...", config =>
             {
-                { "roomno",txtRoomNo.Text.Trim()}
-            };
-            result = HttpHelper.Request("Hydroelectricity/SelectWtiInfo", dic);
-            if (result.statusCode != 200)
+                TableComHelper tableComHelper = new TableComHelper();
+                dgvWti.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<ReadEnergyManagementOutputDto>());
+                dgvWti.DataSource = GetEnergyPageData();
+            }, () =>
             {
-                UIMessageBox.ShowError("SelectWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            var listWti = HttpHelper.JsonToList<Hydroelectricity>(result.message);
-            dgvWti.DataSource = listWti;
-            dgvWti.AutoGenerateColumns = false;
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
             #endregion
 
-            if (cboCustoType.Text == "钻石会员")
-            {
-                double m = total + sum;
-                lblGetReceipts.Text = Decimal.Parse(m.ToString()).ToString("#,##0.00");
-                lblVIPPrice.Text = Decimal.Parse((m * 0.80).ToString()).ToString("#,##0.00");
-                lblVIP.Text = "八折";
-            }
-            else if (cboCustoType.Text == "白金会员")
-            {
+            var customerType = lstSourceGrid.SingleOrDefault(a => a.CustomerTypeName == txtCustomerType.Text);
 
-                double m = total + sum;
-                lblGetReceipts.Text = Decimal.Parse(m.ToString()).ToString("#,##0.00");
-                lblVIPPrice.Text = Decimal.Parse((m * 0.85).ToString()).ToString("#,##0.00");
-                lblVIP.Text = "八五折";
-            }
-            else if (cboCustoType.Text == "黄金会员")
+            //计算消费总额
+            dic = new Dictionary<string, string>()
             {
-                double m = total + sum;
-                lblGetReceipts.Text = Decimal.Parse(m.ToString()).ToString("#,##0.00");
-                lblVIPPrice.Text = Decimal.Parse((m * 0.90).ToString()).ToString("#,##0.00");
-                lblVIP.Text = "九折";
-            }
-            else if (cboCustoType.Text == "普通会员")
+                { nameof(ReadSpendInputDto.RoomNumber), txtRoomNo.Text.Trim() },
+                { nameof(ReadSpendInputDto.CustomerNumber), txtCustomerNumber.Text.Trim() },
+            };
+            result = HttpHelper.Request(ApiConstants.Spend_SumConsumptionAmount, dic);
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadSpendOutputDto>>(result.message);
+            if (response.StatusCode != StatusCodeConstants.Success)
             {
-                double m = total + sum;
-                lblGetReceipts.Text = Decimal.Parse(m.ToString()).ToString("#,##0.00");
-                lblVIPPrice.Text = Decimal.Parse((m * 0.95).ToString()).ToString("#,##0.00");
-                lblVIP.Text = "九五折";
+                UIMessageBox.ShowError($"{ApiConstants.Spend_SumConsumptionAmount}+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
             }
-            else if (cboCustoType.Text == "普通用户")
-            {
-                double m = total + sum;
-                lblGetReceipts.Text = Decimal.Parse(m.ToString()).ToString("#,##0.00");
-                lblVIPPrice.Text = Decimal.Parse(m.ToString()).ToString("#,##0.00");
-                lblVIP.Text = "不  打  折";
-
-            }
-
-            if (_loadingProgress != null)
-            {
-                _loadingProgress.Close();
-            }
-
-        }
-        #endregion
-
-        #region 关闭
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            decimal total = response.Source.ConsumptionAmount;
+            decimal m = total + sum;
+            decimal discount = (customerType != null && customerType.Discount > 0 && customerType.Discount < 100)
+                ? customerType.Discount / 100M
+                : 1M;
+            lblGetReceipts.Text = m.ToString("#,##0.00");
+            lblVIPPrice.Text = (m * discount).ToString("#,##0.00");
+            lblVIP.Text = (discount < 1M) ? DiscountConverter.ToZheString(customerType.Discount) : "无折扣(100%)";
+            Refresh();
         }
         #endregion
 
@@ -322,10 +241,9 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 try
                 {
-                    double n = Convert.ToDouble(Convert.ToDecimal(txtReceipts.Text));
-                    double m = Convert.ToDouble(Convert.ToDecimal(lblGetReceipts.Text));
-                    double h = Convert.ToDouble(Convert.ToDecimal(lblVIPPrice.Text));
-                    lblChange.Text = Decimal.Parse((n - h).ToString()).ToString("#,##0.00");
+                    double receipt = Convert.ToDouble(Convert.ToDecimal(txtReceipts.Text));
+                    double vipPrice = Convert.ToDouble(Convert.ToDecimal(lblVIPPrice.Text));
+                    lblChange.Text = Decimal.Parse((receipt - vipPrice).ToString()).ToString("#,##0.00");
                 }
                 catch
                 {
@@ -346,114 +264,32 @@ namespace EOM.TSHotelManagement.FormUI
         #region 结算按钮点击事件
         private void btnBalance_Click(object sender, EventArgs e)
         {
-            if (!txtReceipts.Text.IsNullOrEmpty() && Convert.ToDecimal(txtReceipts.Text) > Convert.ToDecimal(lblVIPPrice.Text))//判断实收金额是否为空以及是否小于应收金额
+            if (!string.IsNullOrEmpty(txtReceipts.Text) && Convert.ToDecimal(txtReceipts.Text) > Convert.ToDecimal(lblVIPPrice.Text))//判断实收金额是否为空以及是否小于应收金额
             {
-                using (TransactionScope scope = new TransactionScope())
+                result = HttpHelper.Request(ApiConstants.Room_CheckoutRoom,
+                    HttpHelper.ModelToJson(new CheckoutRoomDto
+                    {
+                        RoomNumber = txtRoomNo.Text.Trim(),
+                        CustomerNumber = txtCustomerNumber.Text.Trim(),
+                        DataChgDate = DateTime.Now,
+                        DataChgUsr = LoginInfo.WorkerNo,
+                        ElectricityUsage = w.PowerUsage,
+                        WaterUsage = w.WaterUsage
+                    }));
+                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
+                if (response.StatusCode != StatusCodeConstants.Success)
                 {
-                    dic = new Dictionary<string, string>()
-                    {
-                        { "no",txtRoomNo.Text}
-                    };
-                    result = HttpHelper.Request("Room/SelectRoomByRoomNo", dic);
-                    if (result.statusCode != 200)
-                    {
-                        UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                        return;
-                    }
-                    Room r = HttpHelper.JsonToModel<Room>(result.message);//根据房间编号查询房间信息
-                    string checktime = r.CheckTime.ToString();//获取入住时间
-                    if (dgvSpendList.Rows.Count == 0)
-                    {
-                        dic = new Dictionary<string, string>()
-                        {
-                            { "room",txtRoomNo.Text}
-                        };
-                        result = HttpHelper.Request("Room/UpdateRoomByRoomNo", dic);
-                        if (result.statusCode != 200)
-                        {
-                            UIMessageBox.ShowError("UpdateRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
-                            return;
-                        }
-                        bool n = result.message.ToString().Equals("true");
-                        if (n)
-                        {
-                            result = HttpHelper.Request("HydroelectricPower​/InsertWtiInfo", HttpHelper.ModelToJson(w));
-                            if (result.statusCode != 200)
-                            {
-                                UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                                return;
-                            }
-                            this.Close();
-                        }
-                        else
-                        {
-                            return;
-                        }
-                        UIMessageBox.Show("结算成功！", "系统提示", UIStyle.Green);
-                        FrmRoomManager.Reload("");
-                        FrmRoomManager._RefreshRoomCount();
-
-                        #region 获取添加操作日志所需的信息
-                        RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
-                        #endregion
-                        scope.Complete();
-                    }
-                    else
-                    {
-                        dic = new Dictionary<string, string>()
-                        {
-                            { "roomno",txtRoomNo.Text},
-                            { "checktime",checktime}
-                        };
-                        result = HttpHelper.Request("Spend​/UpdateMoneyState", dic);
-                        if (result.statusCode != 200)
-                        {
-                            UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue或尝试更新版本！");
-                            return;
-                        }
-                        if (result.message.ToString().Equals("true"))
-                        {
-                            dic = new Dictionary<string, string>()
-                            {
-                                { "room",txtRoomNo.Text}
-                            };
-                            result = HttpHelper.Request("Room/UpdateRoomByRoomNo", dic);
-                            if (result.statusCode != 200)
-                            {
-                                UIMessageBox.ShowError("UpdateMoneyState+接口服务异常，请提交Issue或尝试更新版本！");
-                                return;
-                            }
-                            bool n = result.message.ToString().Equals("true");
-                            if (n)
-                            {
-                                result = HttpHelper.Request("HydroelectricPower​/InsertWtiInfo", HttpHelper.ModelToJson(w));
-                                if (result.statusCode != 200)
-                                {
-                                    UIMessageBox.ShowError("InsertWtiInfo+接口服务异常，请提交Issue或尝试更新版本！");
-                                    return;
-                                }
-                                this.Close();
-                            }
-                            else
-                            {
-                                return;
-                            }
-                            UIMessageBox.Show("结算成功！", "系统提示", UIStyle.Green);
-                            FrmRoomManager.Reload("");
-                            FrmRoomManager._RefreshRoomCount();
-                            #region 获取添加操作日志所需的信息
-                            RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoNo.Text + "进行了退房结算操作！", 3);
-                            #endregion
-                            scope.Complete();
-                            return;
-                        }
-                        else
-                        {
-                            UIMessageBox.Show("结算失败！", "系统提示", UIStyle.Red);
-                            return;
-                        }
-                    }
+                    UIMessageBox.ShowError($"{ApiConstants.Room_CheckoutRoom}+接口服务异常，请提交Issue或尝试更新版本！");
+                    return;
                 }
+                UIMessageBox.Show("结算成功！", "系统提示", UIStyle.Green);
+                FrmRoomManager.Reload("");
+                FrmRoomManager._RefreshRoomCount();
+
+                #region 获取添加操作日志所需的信息
+                RecordHelper.Record(LoginInfo.WorkerClub + "-" + LoginInfo.WorkerPosition + "-" + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustomerNumber.Text + "进行了退房结算操作！", Common.Core.LogLevel.Critical);
+                #endregion
+                this.Close();
             }
             else
             {
@@ -462,5 +298,76 @@ namespace EOM.TSHotelManagement.FormUI
             }
         }
         #endregion
+
+        private string btnPg_ShowTotalChanged(object sender, AntdUI.PagePageEventArgs e)
+        {
+            return $"{e.PageSize} / {e.Total}条 共{e.PageTotal}页";
+        }
+
+        private void btnPg_ValueChanged(object sender, AntdUI.PagePageEventArgs e)
+        {
+            var dataCount = 0;
+            dgvSpendList.Spin("正在加载中...", config =>
+            {
+                dgvSpendList.DataSource = GetPageData(e.Current, e.PageSize, ref dataCount);
+                btnPg.Total = dataCount;
+            }, () =>
+            {
+                System.Diagnostics.Debug.WriteLine("加载结束");
+            });
+        }
+
+        object GetPageData(int current, int pageSize, ref int totalCount)
+        {
+            string RoomNo = txtRoomNo.Text;
+            dic = new Dictionary<string, string>()
+            {
+                { nameof(ReadSpendInputDto.RoomNumber) , RoomNo },
+                { nameof(ReadAdministratorInputDto.IgnorePaging) , "true" }
+            };
+            result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByRoomNo, dic);
+            var spendInfo = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
+            if (spendInfo.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+            }
+
+            List<ReadSpendOutputDto> spends = spendInfo.listSource;
+            totalCount = spendInfo.total;
+            var listTableSource = new List<AntdUI.AntItem[]>();
+
+            spends = spends.OrderBy(a => a.SpendNumber).ToList();
+
+            TableComHelper tableComHelper = new TableComHelper();
+            listTableSource = tableComHelper.ConvertToAntdItems(spends);
+
+            return listTableSource;
+        }
+
+        object GetEnergyPageData()
+        {
+            dic = new Dictionary<string, string>()
+            {
+                { nameof(ReadEnergyManagementInputDto.RoomNo),txtRoomNo.Text.Trim()}
+            };
+            result = HttpHelper.Request(ApiConstants.EnergyManagement_SelectEnergyManagementInfo, dic);
+            var energyManagements = HttpHelper.JsonToModel<ListOutputDto<ReadEnergyManagementOutputDto>>(result.message);
+            if (energyManagements.StatusCode != StatusCodeConstants.Success)
+            {
+                UIMessageBox.ShowError($"{ApiConstants.EnergyManagement_SelectEnergyManagementInfo}+接口服务异常，请提交Issue或尝试更新版本！");
+            }
+
+            List<ReadEnergyManagementOutputDto> energys = energyManagements.listSource;
+            var listTableSource = new List<AntdUI.AntItem[]>();
+
+            energys = energys.OrderByDescending(a => a.StartDate).ToList();
+
+            TableComHelper tableComHelper = new TableComHelper();
+            listTableSource = tableComHelper.ConvertToAntdItems(energys);
+
+            return listTableSource;
+        }
+
+
     }
 }

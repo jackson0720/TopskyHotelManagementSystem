@@ -101,16 +101,6 @@ namespace EOM.TSHotelManagement.FormUI.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] EOM_TSHotelManagement_Common_Core {
-            get {
-                object obj = ResourceManager.GetObject("EOM.TSHotelManagement.Common.Core", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap jpg_auto_04N58PICPw2s58PICaP4M8cef_PIC2018_jpg_w1024_new_small {
@@ -217,16 +207,6 @@ namespace EOM.TSHotelManagement.FormUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] TableColumns {
-            get {
-                object obj = ResourceManager.GetObject("TableColumns", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

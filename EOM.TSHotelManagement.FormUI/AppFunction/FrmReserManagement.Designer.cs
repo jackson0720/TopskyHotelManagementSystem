@@ -29,267 +29,268 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReserManager));
-            this.btnReserList = new Sunny.UI.UIButton();
-            this.txtCustoName = new Sunny.UI.UITextBox();
-            this.txtCustoTel = new Sunny.UI.UITextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cboReserWay = new Sunny.UI.UIComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cboReserRoomNo = new Sunny.UI.UIComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.dtpBouDate = new Sunny.UI.UIDatePicker();
-            this.label12 = new System.Windows.Forms.Label();
-            this.dtpEndDate = new Sunny.UI.UIDatePicker();
-            this.label13 = new System.Windows.Forms.Label();
-            this.btnReser = new Sunny.UI.UIButton();
-            this.SuspendLayout();
+            btnReserList = new Sunny.UI.UIButton();
+            txtCustoName = new Sunny.UI.UITextBox();
+            txtCustoTel = new Sunny.UI.UITextBox();
+            label1 = new Label();
+            label9 = new Label();
+            cboReserWay = new Sunny.UI.UIComboBox();
+            label10 = new Label();
+            cboReserRoomNo = new Sunny.UI.UIComboBox();
+            label11 = new Label();
+            dtpBookDate = new Sunny.UI.UIDatePicker();
+            label12 = new Label();
+            dtpEndDate = new Sunny.UI.UIDatePicker();
+            label13 = new Label();
+            btnReser = new Sunny.UI.UIButton();
+            SuspendLayout();
             // 
             // btnReserList
             // 
-            this.btnReserList.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReserList.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnReserList.Location = new System.Drawing.Point(89, 50);
-            this.btnReserList.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnReserList.Name = "btnReserList";
-            this.btnReserList.Radius = 15;
-            this.btnReserList.Size = new System.Drawing.Size(136, 35);
-            this.btnReserList.Style = Sunny.UI.UIStyle.Custom;
-            this.btnReserList.TabIndex = 72;
-            this.btnReserList.Text = "查看预约列表";
-            this.btnReserList.Click += new System.EventHandler(this.btnReserList_Click);
+            btnReserList.Cursor = Cursors.Hand;
+            btnReserList.Font = new Font("微软雅黑", 12F);
+            btnReserList.Location = new Point(89, 50);
+            btnReserList.MinimumSize = new Size(1, 1);
+            btnReserList.Name = "btnReserList";
+            btnReserList.Radius = 15;
+            btnReserList.Size = new Size(136, 35);
+            btnReserList.Style = Sunny.UI.UIStyle.Custom;
+            btnReserList.TabIndex = 72;
+            btnReserList.Text = "查看预约列表";
+            btnReserList.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnReserList.Click += btnReserList_Click;
             // 
             // txtCustoName
             // 
-            this.txtCustoName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoName.FillColor = System.Drawing.Color.White;
-            this.txtCustoName.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoName.Location = new System.Drawing.Point(122, 94);
-            this.txtCustoName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoName.Maximum = 2147483647D;
-            this.txtCustoName.Minimum = -2147483648D;
-            this.txtCustoName.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoName.Name = "txtCustoName";
-            this.txtCustoName.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoName.Radius = 20;
-            this.txtCustoName.Size = new System.Drawing.Size(159, 35);
-            this.txtCustoName.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoName.StyleCustomMode = true;
-            this.txtCustoName.TabIndex = 107;
-            this.txtCustoName.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtCustoName.Cursor = Cursors.IBeam;
+            txtCustoName.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoName.Location = new Point(122, 94);
+            txtCustoName.Margin = new Padding(4, 5, 4, 5);
+            txtCustoName.MinimumSize = new Size(1, 1);
+            txtCustoName.Name = "txtCustoName";
+            txtCustoName.Padding = new Padding(5);
+            txtCustoName.Radius = 20;
+            txtCustoName.ShowText = false;
+            txtCustoName.Size = new Size(159, 35);
+            txtCustoName.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoName.StyleCustomMode = true;
+            txtCustoName.TabIndex = 107;
+            txtCustoName.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoName.Watermark = "";
             // 
             // txtCustoTel
             // 
-            this.txtCustoTel.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustoTel.FillColor = System.Drawing.Color.White;
-            this.txtCustoTel.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtCustoTel.Location = new System.Drawing.Point(122, 147);
-            this.txtCustoTel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCustoTel.Maximum = 2147483647D;
-            this.txtCustoTel.MaxLength = 11;
-            this.txtCustoTel.Minimum = -2147483648D;
-            this.txtCustoTel.MinimumSize = new System.Drawing.Size(1, 1);
-            this.txtCustoTel.Name = "txtCustoTel";
-            this.txtCustoTel.Padding = new System.Windows.Forms.Padding(5);
-            this.txtCustoTel.Radius = 20;
-            this.txtCustoTel.Size = new System.Drawing.Size(159, 35);
-            this.txtCustoTel.Style = Sunny.UI.UIStyle.Custom;
-            this.txtCustoTel.StyleCustomMode = true;
-            this.txtCustoTel.TabIndex = 108;
-            this.txtCustoTel.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            txtCustoTel.Cursor = Cursors.IBeam;
+            txtCustoTel.Font = new Font("微软雅黑", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoTel.Location = new Point(122, 147);
+            txtCustoTel.Margin = new Padding(4, 5, 4, 5);
+            txtCustoTel.MaxLength = 11;
+            txtCustoTel.MinimumSize = new Size(1, 1);
+            txtCustoTel.Name = "txtCustoTel";
+            txtCustoTel.Padding = new Padding(5);
+            txtCustoTel.Radius = 20;
+            txtCustoTel.ShowText = false;
+            txtCustoTel.Size = new Size(159, 35);
+            txtCustoTel.Style = Sunny.UI.UIStyle.Custom;
+            txtCustoTel.StyleCustomMode = true;
+            txtCustoTel.TabIndex = 108;
+            txtCustoTel.TextAlignment = ContentAlignment.MiddleLeft;
+            txtCustoTel.Watermark = "";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(30, 151);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 25);
-            this.label1.TabIndex = 106;
-            this.label1.Text = "预约号码";
+            label1.AutoSize = true;
+            label1.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label1.Location = new Point(30, 151);
+            label1.Name = "label1";
+            label1.Size = new Size(88, 25);
+            label1.TabIndex = 106;
+            label1.Text = "预约号码";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label9.Location = new System.Drawing.Point(30, 99);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 25);
-            this.label9.TabIndex = 105;
-            this.label9.Text = "客户姓名";
+            label9.AutoSize = true;
+            label9.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label9.Location = new Point(30, 99);
+            label9.Name = "label9";
+            label9.Size = new Size(88, 25);
+            label9.TabIndex = 105;
+            label9.Text = "客户姓名";
             // 
             // cboReserWay
             // 
-            this.cboReserWay.DataSource = null;
-            this.cboReserWay.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cboReserWay.FillColor = System.Drawing.Color.White;
-            this.cboReserWay.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.cboReserWay.Items.AddRange(new object[] {
-            "前台",
-            "小程序",
-            "电话"});
-            this.cboReserWay.Location = new System.Drawing.Point(122, 200);
-            this.cboReserWay.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboReserWay.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cboReserWay.Name = "cboReserWay";
-            this.cboReserWay.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cboReserWay.Radius = 20;
-            this.cboReserWay.ReadOnly = true;
-            this.cboReserWay.Size = new System.Drawing.Size(159, 35);
-            this.cboReserWay.Style = Sunny.UI.UIStyle.Custom;
-            this.cboReserWay.TabIndex = 110;
-            this.cboReserWay.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboReserWay.Watermark = "";
+            cboReserWay.DataSource = null;
+            cboReserWay.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cboReserWay.FillColor = Color.White;
+            cboReserWay.Font = new Font("微软雅黑", 15.75F);
+            cboReserWay.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cboReserWay.Items.AddRange(new object[] { "前台", "小程序", "电话" });
+            cboReserWay.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cboReserWay.Location = new Point(122, 200);
+            cboReserWay.Margin = new Padding(4, 5, 4, 5);
+            cboReserWay.MinimumSize = new Size(63, 0);
+            cboReserWay.Name = "cboReserWay";
+            cboReserWay.Padding = new Padding(0, 0, 30, 2);
+            cboReserWay.Radius = 20;
+            cboReserWay.ReadOnly = true;
+            cboReserWay.Size = new Size(159, 35);
+            cboReserWay.Style = Sunny.UI.UIStyle.Custom;
+            cboReserWay.SymbolSize = 24;
+            cboReserWay.TabIndex = 110;
+            cboReserWay.TextAlignment = ContentAlignment.MiddleLeft;
+            cboReserWay.Watermark = "";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.Location = new System.Drawing.Point(33, 203);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(88, 25);
-            this.label10.TabIndex = 109;
-            this.label10.Text = "预约渠道";
+            label10.AutoSize = true;
+            label10.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label10.Location = new Point(33, 203);
+            label10.Name = "label10";
+            label10.Size = new Size(88, 25);
+            label10.TabIndex = 109;
+            label10.Text = "预约渠道";
             // 
             // cboReserRoomNo
             // 
-            this.cboReserRoomNo.DataSource = null;
-            this.cboReserRoomNo.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.cboReserRoomNo.FillColor = System.Drawing.Color.White;
-            this.cboReserRoomNo.Font = new System.Drawing.Font("微软雅黑", 15.75F);
-            this.cboReserRoomNo.Location = new System.Drawing.Point(122, 253);
-            this.cboReserRoomNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboReserRoomNo.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cboReserRoomNo.Name = "cboReserRoomNo";
-            this.cboReserRoomNo.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cboReserRoomNo.Radius = 20;
-            this.cboReserRoomNo.Size = new System.Drawing.Size(159, 35);
-            this.cboReserRoomNo.Style = Sunny.UI.UIStyle.Custom;
-            this.cboReserRoomNo.TabIndex = 112;
-            this.cboReserRoomNo.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboReserRoomNo.Watermark = "";
+            cboReserRoomNo.DataSource = null;
+            cboReserRoomNo.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            cboReserRoomNo.FillColor = Color.White;
+            cboReserRoomNo.Font = new Font("微软雅黑", 15.75F);
+            cboReserRoomNo.ItemHoverColor = Color.FromArgb(155, 200, 255);
+            cboReserRoomNo.ItemSelectForeColor = Color.FromArgb(235, 243, 255);
+            cboReserRoomNo.Location = new Point(122, 253);
+            cboReserRoomNo.Margin = new Padding(4, 5, 4, 5);
+            cboReserRoomNo.MinimumSize = new Size(63, 0);
+            cboReserRoomNo.Name = "cboReserRoomNo";
+            cboReserRoomNo.Padding = new Padding(0, 0, 30, 2);
+            cboReserRoomNo.Radius = 20;
+            cboReserRoomNo.Size = new Size(159, 35);
+            cboReserRoomNo.Style = Sunny.UI.UIStyle.Custom;
+            cboReserRoomNo.SymbolSize = 24;
+            cboReserRoomNo.TabIndex = 112;
+            cboReserRoomNo.TextAlignment = ContentAlignment.MiddleLeft;
+            cboReserRoomNo.Watermark = "";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label11.Location = new System.Drawing.Point(33, 255);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 25);
-            this.label11.TabIndex = 111;
-            this.label11.Text = "预约房号";
+            label11.AutoSize = true;
+            label11.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label11.Location = new Point(33, 255);
+            label11.Name = "label11";
+            label11.Size = new Size(88, 25);
+            label11.TabIndex = 111;
+            label11.Text = "预约房号";
             // 
-            // dtpBouDate
+            // dtpBookDate
             // 
-            this.dtpBouDate.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.dtpBouDate.FillColor = System.Drawing.Color.White;
-            this.dtpBouDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.dtpBouDate.Location = new System.Drawing.Point(122, 307);
-            this.dtpBouDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtpBouDate.MaxLength = 10;
-            this.dtpBouDate.MinimumSize = new System.Drawing.Size(63, 0);
-            this.dtpBouDate.Name = "dtpBouDate";
-            this.dtpBouDate.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.dtpBouDate.Radius = 20;
-            this.dtpBouDate.Size = new System.Drawing.Size(159, 31);
-            this.dtpBouDate.Style = Sunny.UI.UIStyle.Custom;
-            this.dtpBouDate.SymbolDropDown = 61555;
-            this.dtpBouDate.SymbolNormal = 61555;
-            this.dtpBouDate.TabIndex = 114;
-            this.dtpBouDate.Text = "2021-05-13";
-            this.dtpBouDate.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dtpBouDate.Value = new System.DateTime(2021, 5, 13, 0, 0, 0, 0);
-            this.dtpBouDate.ValueChanged += new Sunny.UI.UIDatePicker.OnDateTimeChanged(this.dtpBouDate_ValueChanged);
-            this.dtpBouDate.TextChanged += new System.EventHandler(this.dtpBouDate_TextChanged);
-            this.dtpBouDate.Validated += new System.EventHandler(this.dtpBouDate_Validated);
+            dtpBookDate.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            dtpBookDate.FillColor = Color.White;
+            dtpBookDate.Font = new Font("Microsoft Sans Serif", 15.75F);
+            dtpBookDate.Location = new Point(122, 307);
+            dtpBookDate.Margin = new Padding(4, 5, 4, 5);
+            dtpBookDate.MaxLength = 10;
+            dtpBookDate.MinimumSize = new Size(63, 0);
+            dtpBookDate.Name = "dtpBookDate";
+            dtpBookDate.Padding = new Padding(0, 0, 30, 2);
+            dtpBookDate.Radius = 20;
+            dtpBookDate.Size = new Size(159, 31);
+            dtpBookDate.Style = Sunny.UI.UIStyle.Custom;
+            dtpBookDate.SymbolDropDown = 61555;
+            dtpBookDate.SymbolNormal = 61555;
+            dtpBookDate.SymbolSize = 24;
+            dtpBookDate.TabIndex = 114;
+            dtpBookDate.Text = "2021-05-13";
+            dtpBookDate.TextAlignment = ContentAlignment.MiddleLeft;
+            dtpBookDate.Value = new DateTime(2021, 5, 13, 0, 0, 0, 0);
+            dtpBookDate.Watermark = "";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label12.Location = new System.Drawing.Point(30, 307);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(88, 25);
-            this.label12.TabIndex = 113;
-            this.label12.Text = "预约起始";
+            label12.AutoSize = true;
+            label12.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label12.Location = new Point(30, 307);
+            label12.Name = "label12";
+            label12.Size = new Size(88, 25);
+            label12.TabIndex = 113;
+            label12.Text = "预约起始";
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
-            this.dtpEndDate.FillColor = System.Drawing.Color.White;
-            this.dtpEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.dtpEndDate.Location = new System.Drawing.Point(125, 356);
-            this.dtpEndDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dtpEndDate.MaxLength = 10;
-            this.dtpEndDate.MinimumSize = new System.Drawing.Size(63, 0);
-            this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.dtpEndDate.Radius = 20;
-            this.dtpEndDate.ReadOnly = true;
-            this.dtpEndDate.Size = new System.Drawing.Size(156, 31);
-            this.dtpEndDate.Style = Sunny.UI.UIStyle.Custom;
-            this.dtpEndDate.SymbolDropDown = 61555;
-            this.dtpEndDate.SymbolNormal = 61555;
-            this.dtpEndDate.TabIndex = 116;
-            this.dtpEndDate.Text = "2021-05-13";
-            this.dtpEndDate.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dtpEndDate.Value = new System.DateTime(2021, 5, 13, 0, 0, 0, 0);
+            dtpEndDate.DropDownStyle = Sunny.UI.UIDropDownStyle.DropDownList;
+            dtpEndDate.FillColor = Color.White;
+            dtpEndDate.Font = new Font("Microsoft Sans Serif", 15.75F);
+            dtpEndDate.Location = new Point(125, 356);
+            dtpEndDate.Margin = new Padding(4, 5, 4, 5);
+            dtpEndDate.MaxLength = 10;
+            dtpEndDate.MinimumSize = new Size(63, 0);
+            dtpEndDate.Name = "dtpEndDate";
+            dtpEndDate.Padding = new Padding(0, 0, 30, 2);
+            dtpEndDate.Radius = 20;
+            dtpEndDate.Size = new Size(156, 31);
+            dtpEndDate.Style = Sunny.UI.UIStyle.Custom;
+            dtpEndDate.SymbolDropDown = 61555;
+            dtpEndDate.SymbolNormal = 61555;
+            dtpEndDate.SymbolSize = 24;
+            dtpEndDate.TabIndex = 116;
+            dtpEndDate.Text = "2021-05-13";
+            dtpEndDate.TextAlignment = ContentAlignment.MiddleLeft;
+            dtpEndDate.Value = new DateTime(2021, 5, 13, 0, 0, 0, 0);
+            dtpEndDate.Watermark = "";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label13.Location = new System.Drawing.Point(33, 359);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 25);
-            this.label13.TabIndex = 115;
-            this.label13.Text = "预约止日";
+            label13.AutoSize = true;
+            label13.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label13.Location = new Point(33, 359);
+            label13.Name = "label13";
+            label13.Size = new Size(88, 25);
+            label13.TabIndex = 115;
+            label13.Text = "预约止日";
             // 
             // btnReser
             // 
-            this.btnReser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReser.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnReser.Location = new System.Drawing.Point(109, 411);
-            this.btnReser.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnReser.Name = "btnReser";
-            this.btnReser.Radius = 15;
-            this.btnReser.Size = new System.Drawing.Size(97, 35);
-            this.btnReser.Style = Sunny.UI.UIStyle.Custom;
-            this.btnReser.TabIndex = 117;
-            this.btnReser.Text = "预约";
-            this.btnReser.Click += new System.EventHandler(this.btnReser_Click);
+            btnReser.Cursor = Cursors.Hand;
+            btnReser.Font = new Font("微软雅黑", 12F);
+            btnReser.Location = new Point(109, 411);
+            btnReser.MinimumSize = new Size(1, 1);
+            btnReser.Name = "btnReser";
+            btnReser.Radius = 15;
+            btnReser.Size = new Size(97, 35);
+            btnReser.Style = Sunny.UI.UIStyle.Custom;
+            btnReser.TabIndex = 117;
+            btnReser.Text = "预约";
+            btnReser.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnReser.Click += btnReser_Click;
             // 
             // FrmReserManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(315, 461);
-            this.Controls.Add(this.btnReser);
-            this.Controls.Add(this.dtpEndDate);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.dtpBouDate);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.cboReserRoomNo);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.cboReserWay);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtCustoName);
-            this.Controls.Add(this.txtCustoTel);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.btnReserList);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FrmReserManager";
-            this.ShowIcon = true;
-            this.ShowTitleIcon = true;
-            this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "预约管理";
-            this.Load += new System.EventHandler(this.FrmRoomManager_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(235, 243, 255);
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(315, 461);
+            Controls.Add(btnReser);
+            Controls.Add(dtpEndDate);
+            Controls.Add(label13);
+            Controls.Add(dtpBookDate);
+            Controls.Add(label12);
+            Controls.Add(cboReserRoomNo);
+            Controls.Add(label11);
+            Controls.Add(cboReserWay);
+            Controls.Add(label10);
+            Controls.Add(txtCustoName);
+            Controls.Add(txtCustoTel);
+            Controls.Add(label1);
+            Controls.Add(label9);
+            Controls.Add(btnReserList);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "FrmReserManager";
+            ShowTitleIcon = true;
+            Style = Sunny.UI.UIStyle.Custom;
+            Text = "预约管理";
+            ZoomScaleRect = new Rectangle(15, 15, 315, 461);
+            Load += FrmRoomManager_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -302,7 +303,7 @@
         private System.Windows.Forms.Label label10;
         private Sunny.UI.UIComboBox cboReserRoomNo;
         private System.Windows.Forms.Label label11;
-        private Sunny.UI.UIDatePicker dtpBouDate;
+        private Sunny.UI.UIDatePicker dtpBookDate;
         private System.Windows.Forms.Label label12;
         private Sunny.UI.UIDatePicker dtpEndDate;
         private System.Windows.Forms.Label label13;

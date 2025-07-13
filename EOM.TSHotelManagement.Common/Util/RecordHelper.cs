@@ -1,4 +1,5 @@
-﻿using EOM.TSHotelManagement.Common.Core;
+﻿using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Common.Core;
 
 namespace EOM.TSHotelManagement.Common
 {
@@ -12,19 +13,19 @@ namespace EOM.TSHotelManagement.Common
         /// </summary>
         /// <param name="OperationLog"></param>
         /// <param name="level"></param>
-        public static void Record(string operationLog, int level)
+        public static void Record(string operationLog, LogLevel level)
         {
-            string api = "App/AddLog";
-            var logDetail = new OperationLog
+            string api = ApiConstants.Utility_AddLog;
+            var logDetail = new CreateOperationLogInputDto
             {
                 OperationTime = Convert.ToDateTime(DateTime.Now),
                 LogContent = operationLog,
-                OperationAccount = LoginInfo.WorkerNo + AdminInfo.Account,
-                OperationLevel = level == 1 ? RecordLevel.Normal : level == 2 ? RecordLevel.Warning : RecordLevel.Danger,
-                SoftwareVersion = AdminInfo.SoftwareVersion + LoginInfo.SoftwareVersion,
-                delete_mk = 0,
-                datains_usr = AdminInfo.Account + LoginInfo.WorkerNo,
-                datains_date = Convert.ToDateTime(DateTime.Now)
+                OperationAccount = LoginInfo.WorkerNo,
+                LogLevel = level,
+                SoftwareVersion = LoginInfo.SoftwareVersion,
+                IsDelete = 0,
+                DataInsUsr = LoginInfo.WorkerNo,
+                DataInsDate = Convert.ToDateTime(DateTime.Now)
             };
             HttpHelper.Request(api, HttpHelper.ModelToJson(logDetail));
         }

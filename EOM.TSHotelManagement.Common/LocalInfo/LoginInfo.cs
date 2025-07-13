@@ -58,5 +58,10 @@ namespace EOM.TSHotelManagement.Common
         /// 存储当前用户Token
         /// </summary>
         public static string UserToken = "";
+
+        /// <summary>
+        /// 软件更新日志
+        /// </summary>
+        public static string SoftwareReleaseLog = "";
     }
 }

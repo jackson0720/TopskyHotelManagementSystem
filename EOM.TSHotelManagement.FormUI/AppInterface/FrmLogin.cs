@@ -24,11 +24,9 @@
 
 using AntdUI;
 using EOM.TSHotelManagement.Common;
-using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.FormUI.Properties;
+using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Common.Util;
 using jvncorelib.EntityLib;
-using Sunny.UI;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -52,31 +50,6 @@ namespace EOM.TSHotelManagement.FormUI
         #region 记录鼠标和窗体坐标的方法
         private Point mouseOld;//鼠标旧坐标
         private Point formOld;//窗体旧坐标 
-        #endregion
-
-        #region 调用淡出淡入效果函数
-        //[System.Runtime.InteropServices.DllImport("user32.dll")]
-        #endregion
-
-        #region 窗体淡出淡入方法
-        //protected static extern bool AnimateWindow(IntPtr hWnd, int dwTime, int dwFlags);
-
-        ///**********************************************************************************************/
-        ////dwflag的取值如下  
-        //public const Int32 AW_HOR_POSITIVE = 0x00000001;        //从左到右显示  
-        //public const Int32 AW_HOR_NEGATIVE = 0x00000002;        //从右到左显示  
-        //public const Int32 AW_VER_POSITIVE = 0x00000004;        //从上到下显示  
-        //public const Int32 AW_VER_NEGATIVE = 0x00000008;        //从下到上显示  
-
-        ////若使用了AW_HIDE标志，则使窗口向内重叠，即收缩窗口；否则使窗口向外扩展，即展开窗口  
-        //public const Int32 AW_CENTER = 0x00000010;
-        //public const Int32 AW_HIDE = 0x00010000;        //隐藏窗口，缺省则显示窗口  
-        //public const Int32 AW_ACTIVATE = 0x00020000;        //激活窗口。在使用了AW_HIDE标志后不能使用这个标志  
-
-        ////使用滑动类型。缺省则为滚动动画类型。当使用AW_CENTER标志时，这个标志就被忽略  
-        //public const Int32 AW_SLIDE = 0x00040000;
-        //public const Int32 AW_BLEND = 0x00080000;        //透明度从高到低 
-
         #endregion
 
         #region 记录移动的窗体坐标
@@ -115,20 +88,12 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
-        #region 窗体打开时淡入效果
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.Owner.Hide();
-            txtWorkerId.Text = "WK010";
-            txtWorkerPwd.Text = "admin";
+            txtAccount.PlaceholderText = LocalizationHelper.GetLocalizedString("Please input employee number or email", "请输入员工编号或邮箱");
+            txtWorkerPwd.PlaceholderText = LocalizationHelper.GetLocalizedString("Please input employee password", "请输入员工密码");
         }
-        #endregion
-
-        #region 窗体关闭时淡出效果
-        private void FrmLogin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-        }
-        #endregion
 
         #region 检验输入完整性
         /// <summary>
@@ -137,15 +102,15 @@ namespace EOM.TSHotelManagement.FormUI
         /// <returns></returns>
         private bool CheckInput()
         {
-            if (txtWorkerId.Text == "")
+            if (txtAccount.Text == "")
             {
-                UIMessageBox.Show("请输入员工编号！", "输入提示", UIStyle.Red);
-                txtWorkerId.Focus();
+                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Please input employee number or email", "请输入员工编号或邮箱地址"), TType.Error);
+                txtAccount.Focus();
                 return false;
             }
             if (txtWorkerPwd.Text == "")
             {
-                UIMessageBox.Show("请输入员工密码！", "输入提示", UIStyle.Red);
+                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Please input password", "请输入员工密码"), TType.Error);
                 txtWorkerPwd.Focus();
                 return false;
             }
@@ -156,61 +121,64 @@ namespace EOM.TSHotelManagement.FormUI
         #region 登录图片点击事件
         private void picLogin_Click(object sender, EventArgs e)
         {
-            _loadingProgress.Show();
             try
             {
                 if (CheckInput())
                 {
-                    Worker worker = new Worker() { WorkerId = txtWorkerId.Text.Trim(), WorkerPwd = txtWorkerPwd.Text.Trim() };
+                    var worker = new ReadEmployeeInputDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
 
-                    result = HttpHelper.Request("Worker/SelectWorkerInfoByWorkerIdAndWorkerPwd", HttpHelper.ModelToJson(worker));
+                    result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd, HttpHelper.ModelToJson(worker));
 
-                    if (result.statusCode != 200)
+                    var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
+
+                    if (response.StatusCode != StatusCodeConstants.Success)
                     {
-                        AntdUI.Modal.open(this, "系统提示", "账号或密码错误！",TType.Error);
-                        txtWorkerPwd.Focus();
+                        AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd} is abnormal. Please submit an issue", $"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd}+接口服务异常，请提交issue"), TType.Error);
                         return;
                     }
 
-                    Worker w = HttpHelper.JsonToModel<Worker>(result.message);
+                    ReadEmployeeOutputDto w = response.Source;
 
                     if (!w.IsNullOrEmpty())
                     {
-                        if (w.delete_mk == 1)
+                        if (w.IsEnable == 0)
                         {
-                            AntdUI.Modal.open(this, "系统提示", "账号已禁用，请联系上级解封！", TType.Error);
+                            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("The account has been disabled, please contact your superiors to unblock it!", "账号已禁用，请联系上级解封！"), TType.Error);
                             return;
                         }
 
-                        LoginInfo.WorkerNo = w.WorkerId;
-                        LoginInfo.WorkerName = w.WorkerName;
-                        LoginInfo.WorkerClub = w.ClubName;
+                        LoginInfo.WorkerNo = w.EmployeeId;
+                        LoginInfo.WorkerName = w.EmployeeName;
+                        LoginInfo.WorkerClub = w.DepartmentName;
                         LoginInfo.WorkerPosition = w.PositionName;
                         LoginInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
-                        LoginInfo.UserToken = w.user_token;
-                        FrmMain frm = new FrmMain(this, _loadingProgress);
+                        LoginInfo.UserToken = w.UserToken;
+
+                        if (w.IsInitialize == 0)
+                        {
+                            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("The initial password for the current account has not been changed, and it will be directed to the change page later", "当前账号未修改初始密码，稍后将引导至修改页面"), TType.Error);
+                            FrmMySpace frmMySpace = new FrmMySpace();
+                            frmMySpace.ShowDialog();
+                        }
+
+                        FrmMain frm = new FrmMain(this);
                         this.Hide();
-                        frm.TopMost = true;
                         frm.ShowDialog(this);
                     }
                     else
                     {
-                        AntdUI.Modal.open(this, "系统提示", "密码错误！", TType.Error);
+                        AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Employee number/email or password incorrect", "员工编号/邮箱地址或密码错误！"), TType.Error);
                         txtWorkerPwd.Focus();
                     }
                 }
             }
             catch (Exception ex)
             {
-                AntdUI.Modal.open(this, "系统提示", "服务器维护中，请稍后再试！", TType.Error);
+                RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"), Common.Core.LogLevel.Critical);
+                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("The server is under maintenance, please try again later", "服务器维护中，请稍后再试！"), TType.Error);
             }
         }
         #endregion
 
-        private void btnLoginBackSystem_Click(object sender, EventArgs e)
-        {
-            FrmAdminEnter frmAdminEnter = new FrmAdminEnter(this);
-            frmAdminEnter.ShowDialog(this);
-        }
     }
 }
