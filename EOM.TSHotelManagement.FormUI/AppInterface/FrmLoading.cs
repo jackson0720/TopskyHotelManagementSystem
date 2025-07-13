@@ -32,12 +32,11 @@ namespace EOM.TSHotelManagement.FormUI
     public partial class FrmLoading : Window
     {
         private string CurrentVersion => ApplicationUtil.GetApplicationVersion().ToString();
-        private string GithubRepoUrl = "https://api.github.com/repos/easy-open-meta/TopskyHotelManagerSystem/releases/latest";
-        private string GiteeRepoUrl = "https://gitee.com/api/v5/repos/java-and-net/TopskyHotelManagerSystem/releases/latest";
-        private string FileName { get; set; }
-        private string CurrentExecutablePath => Application.ExecutablePath;
-        private string CurrentExecutableName => Path.GetFileName(CurrentExecutablePath);
-        private string FallbackUrl = "https://pan.gkhive.com/%E6%9C%AC%E5%9C%B0%E7%A3%81%E7%9B%98/blog_files/TS%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%BA%93";
+        private string GithubRepoUrl => "https://api.github.com/repos/easy-open-meta/TopskyHotelManagerSystem/releases/latest";
+        private string GiteeRepoUrl => "https://gitee.com/api/v5/repos/java-and-net/TopskyHotelManagerSystem/releases/latest";
+        private string GithubProxyUrl => "https://ghproxy.oscode.top";
+        private string FolderName => "TSHotelUpgradePackages";
+        private string FallbackUrl => "https://pan.gkhive.com/%E6%9C%AC%E5%9C%B0%E7%A3%81%E7%9B%98/blog_files/TS%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E5%BA%93";
 
         private ProgressBar progressBar;
 
@@ -122,12 +121,12 @@ namespace EOM.TSHotelManagement.FormUI
 
                 if (executableAsset == null) return;
 
-                downloadUrl = executableAsset.BrowserDownloadUrl;
+                downloadUrl = $"{GithubProxyUrl}/{executableAsset.BrowserDownloadUrl}";
             }
 
-            
 
-            DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress));
+
+            DownloadAndInstallUpdate(downloadUrl, "TS酒店管理系统.exe", new Progress<double>(ReportProgress), version);
             lblTips.Text = "安装包正在下载中，请稍等...";
         }
 
@@ -146,13 +145,34 @@ namespace EOM.TSHotelManagement.FormUI
             return userAgent ?? string.Empty;
         }
 
-        private async Task<bool> DownloadAndInstallUpdate(string downloadUrl, string fileName, IProgress<double> progress)
+        private async Task<bool> DownloadAndInstallUpdate(string downloadUrl, string fileName, IProgress<double> progress, string tagName)
         {
             try
             {
-                using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
-                var tempFilePath = Path.Combine(Path.GetTempPath(), fileName);
+                lblTips.Text = "正在选择保存路径...";
+                fbdSavePath.UseDescriptionForTitle = true;
+                fbdSavePath.Description = "请选择保存安装包的位置";
+                fbdSavePath.RootFolder = Environment.SpecialFolder.Desktop;
+                fbdSavePath.ShowNewFolderButton = true;
 
+                if (fbdSavePath.ShowDialog() != DialogResult.OK)
+                {
+                    lblTips.Text = "下载已取消，将自动退出程序";
+                    Thread.Sleep(2000);
+                    ExitApplication();
+                    return false;
+                }
+
+                string selectedPath = fbdSavePath.SelectedPath;
+
+                string targetDirectory = Path.Combine(selectedPath, FolderName, tagName);
+
+                if(!Path.Exists(targetDirectory)) 
+                    Directory.CreateDirectory(targetDirectory);
+
+                var tempFilePath = Path.Combine(targetDirectory, fileName);
+
+                using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
                 var response = await client.GetAsync(downloadUrl, HttpCompletionOption.ResponseHeadersRead);
                 var contentLength = response.Content.Headers.ContentLength;
 
@@ -163,9 +183,8 @@ namespace EOM.TSHotelManagement.FormUI
                 var buffer = new byte[8192];
                 int bytesRead;
 
-                AntdUI.Modal.open(this, "下载提示",
-                    $"已开始下载，请稍等。\n文件名称: {fileName}",
-                    TType.Info);
+                lblTips.Text = "正在下载...";
+                this.Refresh();
 
                 while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
                 {
@@ -176,6 +195,9 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         var progressPercentage = (double)totalBytesRead / contentLength.Value * 100;
                         progress.Report(progressPercentage);
+
+                        lblTips.Text = $"下载中... {progressPercentage:F1}%";
+                        this.Refresh();
                     }
                 }
 
@@ -188,7 +210,6 @@ namespace EOM.TSHotelManagement.FormUI
                 });
 
                 ExitApplication();
-
                 return true;
             }
             catch (OperationCanceledException)
@@ -234,7 +255,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmLoading_Load(object sender, EventArgs e)
         {
-            lblLocalSoftwareVersion.Text = ApplicationUtil.GetApplicationVersion().ToString();
+            lblLocalSoftwareVersion.Text = CurrentVersion;
             CheckForUpdate();
         }
 

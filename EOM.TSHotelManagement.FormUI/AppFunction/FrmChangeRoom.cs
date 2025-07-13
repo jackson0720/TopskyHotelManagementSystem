@@ -24,11 +24,8 @@
 
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.Shared;
-using jvncorelib.CodeLib;
+using jvncorelib.EntityLib;
 using Sunny.UI;
-using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -41,7 +38,6 @@ namespace EOM.TSHotelManagement.FormUI
 
         ResponseMsg result = null;
         Dictionary<string, string> dic = null;
-        static bool firstLoad = true;
 
         private void FrmChangeRoom_Load(object sender, EventArgs e)
         {
@@ -55,7 +51,6 @@ namespace EOM.TSHotelManagement.FormUI
             cboRoomList.DataSource = datas.listSource;
             cboRoomList.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
             cboRoomList.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
-            firstLoad = false;
         }
 
         private void btnChangeRoom_Click(object sender, EventArgs e)
@@ -101,7 +96,13 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void cboRoomList_TextChanged(object sender, EventArgs e)
         {
-            string str = firstLoad ? ucRoom.RoomNo.ToString() : cboRoomList.SelectedValue.ToString();
+            string str = cboRoomList.SelectedValue.IsNullOrEmpty() ? string.Empty : cboRoomList.SelectedValue.ToString();
+            if (string.IsNullOrEmpty(str))
+            {
+                lblRoomType.Text = string.Empty;
+                return;
+            }
+
             dic = new Dictionary<string, string>()
             {
                 { nameof(ReadRoomTypeInputDto.RoomNumber) , str }

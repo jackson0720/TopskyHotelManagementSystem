@@ -29,9 +29,7 @@ using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.CodeLib;
 using Sunny.UI;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
 
 namespace EOM.TSHotelManagement.FormUI
 {

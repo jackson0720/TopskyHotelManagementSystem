@@ -24,10 +24,8 @@
 
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using jvncorelib.CodeLib;
-using jvncorelib.EntityLib;
+using EOM.TSHotelManagement.Shared;
 using Sunny.UI;
-using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -165,7 +163,7 @@ namespace EOM.TSHotelManagement.FormUI
                 txtCustomerGender.Text = customer?.Source.GenderName ?? string.Empty;
                 txtCustomerType.Text = customer.Source.CustomerTypeName;
                 txtPassportName.Text = customer.Source.PassportName;
-                txtDateOfBirth.Text = Convert.ToString(customer.Source.DateOfBirth);
+                txtDateOfBirth.Text = customer.Source.DateOfBirth.ToString("yyyy/MM/dd");
                 txtIdCardNumber.Text = customer.Source.IdCardNumber;
                 txtCustomerAddress.Text = customer.Source.CustomerAddress;
             }
@@ -212,7 +210,7 @@ namespace EOM.TSHotelManagement.FormUI
             var customerType = lstSourceGrid.SingleOrDefault(a => a.CustomerTypeName == txtCustomerType.Text);
 
             //计算消费总额
-            dic = new Dictionary<string, string>() 
+            dic = new Dictionary<string, string>()
             {
                 { nameof(ReadSpendInputDto.RoomNumber), txtRoomNo.Text.Trim() },
                 { nameof(ReadSpendInputDto.CustomerNumber), txtCustomerNumber.Text.Trim() },
@@ -226,20 +224,13 @@ namespace EOM.TSHotelManagement.FormUI
             }
             decimal total = response.Source.ConsumptionAmount;
             decimal m = total + sum;
-            if (!customerType.IsNullOrEmpty() && customerType.Discount != 0)
-            {
-                lblGetReceipts.Text = m.ToString("#,##0.00");
-                lblVIPPrice.Text = (m * customerType.Discount).ToString("#,##0.00");
-                lblVIP.Text = customerType.Discount.ToZheString();
-                Refresh();
-            }
-            else
-            {
-                lblGetReceipts.Text = m.ToString("#,##0.00");
-                lblVIPPrice.Text = m.ToString("#,##0.00");
-                lblVIP.Text = "折扣未配置或无折扣";
-                Refresh();
-            }
+            decimal discount = (customerType != null && customerType.Discount > 0 && customerType.Discount < 100)
+                ? customerType.Discount / 100M
+                : 1M;
+            lblGetReceipts.Text = m.ToString("#,##0.00");
+            lblVIPPrice.Text = (m * discount).ToString("#,##0.00");
+            lblVIP.Text = (discount < 1M) ? DiscountConverter.ToZheString(customerType.Discount) : "无折扣(100%)";
+            Refresh();
         }
         #endregion
 

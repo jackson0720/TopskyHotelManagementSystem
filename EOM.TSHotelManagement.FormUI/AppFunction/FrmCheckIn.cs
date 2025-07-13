@@ -144,8 +144,9 @@ namespace EOM.TSHotelManagement.FormUI
                 var spendAmount = listCustoSpend.Sum(a => a.ConsumptionAmount);
                 var new_type = listVipRule
                     .Where(vipRule => spendAmount >= vipRule.RuleValue)
-                    .OrderByDescending(vipRule => vipRule.RuleValue)
-                    .FirstOrDefault()?.VipLevelId ?? 0;
+                            .OrderByDescending(vipRule => vipRule.RuleValue)
+                            .ThenByDescending(vipRule => vipRule.VipLevelId)
+                            .FirstOrDefault()?.VipLevelId ?? 0;
 
                 // 如果会员等级有变，更新会员等级
                 if (new_type != 0)

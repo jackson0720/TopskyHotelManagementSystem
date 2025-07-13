@@ -9,11 +9,14 @@
 <div align="center">
 	<p>中文文档 | <a href="./README.en.md">English Document</a></p>
 </div>
+
 #  :exclamation: 重要说明：
 
  **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
 
  **即日起，程序版本号规范将固定为x.x.x.x，第一位为当前程序版本，第二位为当前程序框架版本，第三位为功能大变更版本，第四位为日常修复版本，例如：基于.NET 8框架的2.0版本，对应的版本号是2.8.0.0，往后的.NET 9将会是2.9.0.0，并以此类推**
+
+**即日起，该项目正式进入维护阶段，不再新增任何功能。同时，我们很高兴地宣布，TopSkyHotelManagementSystem的移动端开发工作正式启动，具体仓库地址为：[TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui)，该项目基于.NET 8的MAUI进行开发，目前仅考虑安卓端，其他暂不具备条件。**
 
 #  :pray: 引用的开源项目：
 
@@ -23,7 +26,7 @@
 
 3. ##### SunnyUI——SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。[SunnyUI.Net,GPL3.0开源协议](https://gitee.com/yhuse/SunnyUI)
 
-4. ##### RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)
+4. ##### **RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)**
 
 5. ##### AntdUI——👚 基于 Ant Design 设计语言的 Winform 界面库。[AntdUI,Apache-2.0开源协议](https://gitee.com/antdui/AntdUI)
 
@@ -109,6 +112,14 @@ EOM.Client.TopskyHotelManagementSystem
 | (前台)用户管理 | 用户信息展示 | 搜索用户信息 | 添加客户 |          |              |              |
 | (前台)商品消费 | 商品列表     | 搜索商品信息 | 商品消费 | 消费信息 |              |              |
 
+#  :books: 多平台代码仓库汇总：
+
+| 平台  | 仓库地址                                                               | 仓库简介                                     | 开源协议        | 依赖项目        |
+|-----|--------------------------------------------------------------------|------------------------------------------|-------------|-------------|
+| PC端 | https://gitee.com/java-and-net/TopskyHotelManagementSystem         | 基于Net8 WinForm平台开发(无业务逻辑)，针对中小型酒店设计的管理系统 | [MIT License](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)|
+| 网页端 | https://gitee.com/java-and-net/topsky-hotel-management-system-vue3 | 基于Vue3开发的针对中小型酒店设计的管理系统                  | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api) |
+| 安卓端 | https://gitee.com/java-and-net/topsky-hotel-management-system-maui | 基于Net8 MAUI平台开发的移动端项目                    | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-maui/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api) |
+| 服务端 | https://gitee.com/java-and-net/topsky-hotel-management-system-web-api | 基于.Net8搭配SQLSugar框架构建的TS酒店管理系统后端API项目，主要服务于Client、Web、Android端    | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/LICENSE) |
 
 #  :family: 项目作者：
 
@@ -123,10 +134,6 @@ EOM.Client.TopskyHotelManagementSystem
 
 #  :inbox_tray: 数据库运行部署(本地)：
 
-**作者及开发团队强烈建议使用MariaDB数据库，安装MariaDB数据库并开启服务，通过可视化管理工具对数据库进行建立，可通过打开执行数据库脚本文件夹内的.sql后缀格式文件进行快速建立数据表和导入数据，执行步骤(以MariaDB数据库为例)：**
-
-**1、通过可视化管理工具链接MariaDB数据库，随后新建名为‘tshoteldb’数据库。**
-
-**2、通过可视化管理工具打开：数据库脚本\MariaDB版本\MDB_tshotel_script_table.sql以及数据库脚本\MariaDB版本\MDB_tshotel_script_data.sql进行数据表建立和数据导入。**
+**略，本项目不包含后台业务逻辑。详情请查看：[业务逻辑项目](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%90%E8%A1%8C%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0)**
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)

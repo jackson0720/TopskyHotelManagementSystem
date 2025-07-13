@@ -86,7 +86,7 @@
             // 
             lblVIPPrice.AutoSize = true;
             lblVIPPrice.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblVIPPrice.Location = new Point(517, 396);
+            lblVIPPrice.Location = new Point(509, 394);
             lblVIPPrice.Name = "lblVIPPrice";
             lblVIPPrice.Size = new Size(40, 20);
             lblVIPPrice.TabIndex = 28;
@@ -95,11 +95,11 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Font = new Font("Microsoft Sans Serif", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            label15.Font = new Font("Microsoft Sans Serif", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Red;
             label15.Location = new Point(7, 525);
             label15.Name = "label15";
-            label15.Size = new Size(253, 17);
+            label15.Size = new Size(273, 17);
             label15.TabIndex = 11;
             label15.Text = "Tips：请提醒客人不要忘记带齐行李哦~";
             // 
@@ -107,7 +107,7 @@
             // 
             lblDay.AutoSize = true;
             lblDay.Font = new Font("Microsoft Sans Serif", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDay.Location = new Point(572, 76);
+            lblDay.Location = new Point(593, 76);
             lblDay.Name = "lblDay";
             lblDay.Size = new Size(45, 25);
             lblDay.TabIndex = 114;
@@ -117,17 +117,17 @@
             // 
             lable00.AutoSize = true;
             lable00.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lable00.Location = new Point(422, 396);
+            lable00.Location = new Point(422, 394);
             lable00.Name = "lable00";
             lable00.Size = new Size(89, 20);
             lable00.TabIndex = 26;
-            lable00.Text = "折后金额：";
+            lable00.Text = "应付金额：";
             // 
             // label29
             // 
             label29.AutoSize = true;
             label29.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label29.Location = new Point(551, 24);
+            label29.Location = new Point(572, 24);
             label29.Name = "label29";
             label29.Size = new Size(88, 25);
             label29.TabIndex = 113;
@@ -137,7 +137,7 @@
             // 
             lblVIP.AutoSize = true;
             lblVIP.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblVIP.Location = new Point(517, 364);
+            lblVIP.Location = new Point(508, 362);
             lblVIP.Name = "lblVIP";
             lblVIP.Size = new Size(73, 20);
             lblVIP.TabIndex = 24;
@@ -147,7 +147,7 @@
             // 
             label25.AutoSize = true;
             label25.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.Location = new Point(422, 364);
+            label25.Location = new Point(422, 362);
             label25.Name = "label25";
             label25.Size = new Size(89, 20);
             label25.TabIndex = 23;
@@ -177,7 +177,7 @@
             // 
             lblChange.AutoSize = true;
             lblChange.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblChange.Location = new Point(516, 460);
+            lblChange.Location = new Point(509, 458);
             lblChange.Name = "lblChange";
             lblChange.Size = new Size(40, 20);
             lblChange.TabIndex = 21;
@@ -187,7 +187,7 @@
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label21.Location = new Point(421, 460);
+            label21.Location = new Point(421, 458);
             label21.Name = "label21";
             label21.Size = new Size(89, 20);
             label21.TabIndex = 20;
@@ -197,7 +197,7 @@
             // 
             lblGetReceipts.AutoSize = true;
             lblGetReceipts.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGetReceipts.Location = new Point(516, 428);
+            lblGetReceipts.Location = new Point(509, 330);
             lblGetReceipts.Name = "lblGetReceipts";
             lblGetReceipts.Size = new Size(40, 20);
             lblGetReceipts.TabIndex = 19;
@@ -207,7 +207,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label1.Location = new Point(26, 76);
+            label1.Location = new Point(7, 76);
             label1.Name = "label1";
             label1.Size = new Size(88, 25);
             label1.TabIndex = 106;
@@ -217,7 +217,7 @@
             // 
             label24.AutoSize = true;
             label24.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label24.Location = new Point(26, 24);
+            label24.Location = new Point(7, 24);
             label24.Name = "label24";
             label24.Size = new Size(88, 25);
             label24.TabIndex = 105;
@@ -227,7 +227,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.Location = new Point(421, 334);
+            label17.Location = new Point(421, 426);
             label17.Name = "label17";
             label17.Size = new Size(89, 20);
             label17.TabIndex = 14;
@@ -237,11 +237,11 @@
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label18.Location = new Point(421, 428);
+            label18.Location = new Point(422, 330);
             label18.Name = "label18";
             label18.Size = new Size(89, 20);
             label18.TabIndex = 15;
-            label18.Text = "应收金额：";
+            label18.Text = "消费总额：";
             // 
             // label2
             // 
@@ -392,7 +392,7 @@
             dtpCheckTime.Name = "dtpCheckTime";
             dtpCheckTime.PlaceholderText = "";
             dtpCheckTime.ReadOnly = true;
-            dtpCheckTime.Size = new Size(168, 42);
+            dtpCheckTime.Size = new Size(180, 42);
             dtpCheckTime.TabIndex = 161;
             // 
             // txtRoomNo
@@ -402,27 +402,27 @@
             txtRoomNo.Name = "txtRoomNo";
             txtRoomNo.PlaceholderText = "";
             txtRoomNo.ReadOnly = true;
-            txtRoomNo.Size = new Size(168, 42);
+            txtRoomNo.Size = new Size(180, 42);
             txtRoomNo.TabIndex = 160;
             // 
             // CustoName
             // 
             CustoName.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            CustoName.Location = new Point(117, 67);
+            CustoName.Location = new Point(98, 67);
             CustoName.Name = "CustoName";
             CustoName.PlaceholderText = "";
             CustoName.ReadOnly = true;
-            CustoName.Size = new Size(143, 42);
+            CustoName.Size = new Size(180, 42);
             CustoName.TabIndex = 159;
             // 
             // CustoNo
             // 
             CustoNo.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            CustoNo.Location = new Point(117, 16);
+            CustoNo.Location = new Point(98, 16);
             CustoNo.Name = "CustoNo";
             CustoNo.PlaceholderText = "";
             CustoNo.ReadOnly = true;
-            CustoNo.Size = new Size(143, 42);
+            CustoNo.Size = new Size(180, 42);
             CustoNo.TabIndex = 158;
             // 
             // btnBalance
@@ -438,11 +438,12 @@
             // txtReceipts
             // 
             txtReceipts.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            txtReceipts.Location = new Point(506, 327);
+            txtReceipts.HandCursor = Cursors.IBeam;
+            txtReceipts.Location = new Point(508, 424);
             txtReceipts.Name = "txtReceipts";
             txtReceipts.PlaceholderText = "";
             txtReceipts.Radius = 0;
-            txtReceipts.Size = new Size(99, 33);
+            txtReceipts.Size = new Size(97, 29);
             txtReceipts.TabIndex = 156;
             txtReceipts.TextChanged += txtReceipts_TextChanged;
             // 

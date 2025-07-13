@@ -16,6 +16,8 @@
 
 **Effective immediately, version numbers will follow the format x.x.x.x. First digit: program version, second: framework version, third: major updates, fourth: bug fixes. For example, version 2.0 on .NET 8 is 2.8.0.0. On .NET 9, it will be 2.9.0.0, and so on.**
 
+**Effective immediately, this project officially enters the maintenance phase and will no longer incorporate any new features. Simultaneously, we are pleased to announce the commencement of mobile development for the TopSkyHotelManagementSystem. The repository address is: [TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui). This project is being developed using .NET 8's MAUI framework, with initial development focused exclusively on the Android platform. Expansion to other platforms is not currently feasible.**
+
 # :pray: Open Source Projects Referenced:
 
 1. ##### Fody—Packs all dlls into an exe application. [Fody, MIT License](https://github.com/Fody/Fody)
@@ -24,7 +26,7 @@
 
 3. ##### SunnyUI—SunnyUI.Net, based on C# .Net WinForm open-source control library, tool library, extension library, and multi-page development framework. [SunnyUI.Net, GPL3.0 License](https://gitee.com/yhuse/SunnyUI)
 
-4. ##### RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0 License](https://github.com/restsharp/RestSharp)
+4. ##### **RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0 License](https://github.com/restsharp/RestSharp)**
 
 5. ##### AntdUI——基于 Ant Design 设计语言的 Winform 界面库. AntdUI。[AntdUI,Apache-2.0 License](https://gitee.com/antdui/AntdUI)
 
@@ -112,6 +114,14 @@ EOM.Client.TopSkyHotelManagerSystem
 | (Front Desk) Customer Management | Display Customer Info | Search Customer Info | Add Customer        |                  |                    |                    |
 | (Front Desk) Product Consumption | Product List          | Search Product Info  | Product Consumption | Consumption Info |                    |                    |
 
+# :books: Summary of Multi-Platform Code Repositories:
+| Platform | Repository URL                                                        | Repository Description                                                                                                   | License     | Dependency |
+|----------|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|-------------|------------|
+| PC       | https://gitee.com/java-and-net/TopskyHotelManagementSystem            | .NET 8 WinForm-based solution (UI layer without business logic) designed for small/medium-sized hotel management systems | [MIT License](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)     |
+| Web      | https://gitee.com/java-and-net/topsky-hotel-management-system-vue3    | Vue 3-based frontend designed for small/medium-sized hotel management systems                                            | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)     |
+| Android  | https://gitee.com/java-and-net/topsky-hotel-management-system-maui    | .NET 8 MAUI-based mobile application project                                                                             | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-maui/blob/Main/LICENSE) | [WebApi](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api)     |
+| Backend  | https://gitee.com/java-and-net/topsky-hotel-management-system-web-api | .NET 8 backend API project for TS Hotel Management System built with SQLSugar ORM, serving PC/Web/Android clients        | [MIT License](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/LICENSE) |            |
+
 # :family: Project Authors:
 
 **Original Team: Jackson, Benjamin, Bin, Jonathan**
@@ -125,10 +135,6 @@ EOM.Client.TopSkyHotelManagerSystem
 
 # :inbox_tray: Database Setup and Deployment (Local):
 
-**The author and development team strongly recommend using the PostgreSQL database. Install the PostgreSQL database and start the service, establish the database through a visualization management tool, and quickly create data tables and import data by opening the .sql format files within the database script folder. Steps (using PostgreSQL database as an example):**
-
-**1. Link to the PostgreSQL database through a visualization management tool, then create a new database named ‘tshoteldb’.**
-
-**2. Open the db_file.sql in the database script\PostgreSQL version folder through the visualization management tool for data table creation and data import.**
+**Omitted. This project does not include backend business logic. For details, please refer to: [Business Logic Project](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.en.md)**
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)

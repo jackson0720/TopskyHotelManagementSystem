@@ -125,7 +125,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 if (CheckInput())
                 {
-                    var worker = new ReadEmployeeInputDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim() , Password = txtWorkerPwd.Text.Trim() };
+                    var worker = new ReadEmployeeInputDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
 
                     result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd, HttpHelper.ModelToJson(worker));
 
@@ -174,7 +174,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"),Common.Core.LogLevel.Critical);
+                RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"), Common.Core.LogLevel.Critical);
                 AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("The server is under maintenance, please try again later", "服务器维护中，请稍后再试！"), TType.Error);
             }
         }

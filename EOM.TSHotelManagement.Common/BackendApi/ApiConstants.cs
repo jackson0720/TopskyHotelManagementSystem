@@ -3,7 +3,6 @@
     public static class ApiConstants
     {
         // Base URLs
-        public const string Base_GetBase = "Base/GetBase";
         public const string Base_SelectNationAll = "Base/SelectNationAll";
         public const string Base_SelectGenderTypeAll = "Base/SelectGenderTypeAll";
         public const string Base_SelectDeptAllCanUse = "Base/SelectDeptAllCanUse";
@@ -16,7 +15,7 @@
         public const string Employee_SelectEmployeeInfoByEmployeeId = "Employee/SelectEmployeeInfoByEmployeeId";
         public const string Employee_UpdateEmployee = "Employee/UpdateEmployee";
         public const string Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd = "Employee/SelectEmployeeInfoByEmployeeIdAndEmployeePwd";
-        public const string Employee_UpdateEmployeeAccountPassword= "Employee/UpdateEmployeeAccountPassword";
+        public const string Employee_UpdateEmployeeAccountPassword = "Employee/UpdateEmployeeAccountPassword";
 
         // EmployeePhoto URLs
         public const string EmployeePhoto_EmployeePhoto = "EmployeePhoto/EmployeePhoto";
@@ -46,6 +45,7 @@
         public const string Room_SelectReservedRoomAllByRoomState = "Room/SelectReservedRoomAllByRoomState";
         public const string Room_TransferRoom = "Room/TransferRoom";
         public const string Room_CheckoutRoom = "Room/CheckoutRoom";
+        public const string Room_CheckinRoomByReservation = "Room/CheckinRoomByReservation";
 
         // Reser URLs
         public const string Reser_SelectReserAll = "Reser/SelectReserAll";
@@ -64,13 +64,15 @@
         public const string Customer_UpdCustomerInfo = "Customer/UpdCustomerInfo";
         public const string Customer_InsertCustomerInfo = "Customer/InsertCustomerInfo";
 
+        // Customer Type URLs
+        public const string CustoType_SelectCustoTypeByTypeId = "Base/SelectCustoTypeByTypeId";
+
         // Spend URLs
         public const string Spend_SelectSpendByRoomNo = "Spend/SelectSpendByRoomNo";
         public const string Spend_SumConsumptionAmount = "Spend/SumConsumptionAmount";
         public const string Spend_UpdateMoneyState = "Spend/UpdateMoneyState";
-        public const string Spend_SelectSpendByCustoNo = "Spend​/SelectSpendByCustoNo";
         public const string Spend_UpdateSpendInfoByRoomNo = "Spend​/UpdateSpendInfoByRoomNo";
-        public const string Spend_InsertSpendInfo = "Spend​/InsertSpendInfo";
+        public const string Spend_AddCustomerSpend = "Spend​/AddCustomerSpend";
         public const string Spend_SeletHistorySpendInfoAll = "Spend/SeletHistorySpendInfoAll";
         public const string Spend_UpdSpenInfo = "Spend/UpdSpenInfo";
         public const string Spend_UndoCustomerSpend = "Spend/UndoCustomerSpend";

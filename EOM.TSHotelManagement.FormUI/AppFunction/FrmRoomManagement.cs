@@ -281,7 +281,8 @@ namespace EOM.TSHotelManagement.FormUI
             lblRoomNo.Text = ucRoom.co_RoomNo;
             lblCustoName.Text = ucRoom.co_CustoName;
             lblRoomPosition.Text = ucRoom.co_RoomPosition;
-            lblCheckTime.Text = ucRoom.co_CheckTime == null ? "" : Convert.ToDateTime(ucRoom.co_CheckTime).ToString("yyyy-MM-dd");
+            lblCheckTime.Text = ucRoom.co_CheckTime == null || ucRoom.co_CheckTime == new DateTime(1900, 1, 1) ? ""
+                : Convert.ToDateTime(ucRoom.co_CheckTime).ToString("yyyy-MM-dd");
             lblRoomState.Text = ucRoom.co_RoomState;
         }
 
