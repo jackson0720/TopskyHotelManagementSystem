@@ -35,6 +35,7 @@
             label1 = new AntdUI.Label();
             label3 = new AntdUI.Label();
             lblReleaseLog = new AntdUI.Input();
+            fbdSavePath = new FolderBrowserDialog();
             SuspendLayout();
             // 
             // lblTips
@@ -136,5 +137,6 @@
         private AntdUI.Label label1;
         private AntdUI.Label label3;
         private AntdUI.Input lblReleaseLog;
+        private FolderBrowserDialog fbdSavePath;
     }
 }
