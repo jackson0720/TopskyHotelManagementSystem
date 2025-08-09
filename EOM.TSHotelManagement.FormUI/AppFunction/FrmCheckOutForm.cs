@@ -85,12 +85,12 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载客户类型信息
             result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
-            if (customerTypes.StatusCode != StatusCodeConstants.Success)
+            if (customerTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError("SelectCustoTypeAllCanUse+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<ReadCustoTypeOutputDto> lstSourceGrid = customerTypes.listSource;
+            List<ReadCustoTypeOutputDto> lstDataGrid = customerTypes.Data.Items;
             #endregion
 
             decimal sum = 0;
@@ -105,13 +105,13 @@ namespace EOM.TSHotelManagement.FormUI
 
             result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
             var roomInfo = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
-            if (roomInfo.StatusCode != StatusCodeConstants.Success)
+            if (roomInfo.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError("SelectRoomByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
-            ReadRoomOutputDto room = roomInfo.Source;
+            ReadRoomOutputDto room = roomInfo.Data;
 
             if (room.LastCheckInTime == null)
             {
@@ -127,20 +127,20 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Room_DayByRoomNo, dic);
             var stayDays = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
-            if (stayDays.StatusCode != 200)
+            if (stayDays.Code != 200)
             {
                 UIMessageBox.ShowError("DayByRoomNo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
-            sum = Convert.ToDecimal(Convert.ToString(Convert.ToInt32(stayDays.Source.StayDays) * room.RoomRent));
+            sum = Convert.ToDecimal(Convert.ToString(Convert.ToInt32(stayDays.Data.StayDays) * room.RoomRent));
 
-            lblDay.Text = Convert.ToString(Convert.ToInt32(stayDays.Source.StayDays));
+            lblDay.Text = Convert.ToString(Convert.ToInt32(stayDays.Data.StayDays));
 
             w = new CreateEnergyManagementInputDto()
             {
-                PowerUsage = Convert.ToDecimal(Convert.ToInt32(stayDays.Source.StayDays) * 3 * 1),
-                WaterUsage = Convert.ToDecimal(Convert.ToDouble(stayDays.Source.StayDays) * 80 * 0.002)
+                PowerUsage = Convert.ToDecimal(Convert.ToInt32(stayDays.Data.StayDays) * 3 * 1),
+                WaterUsage = Convert.ToDecimal(Convert.ToDouble(stayDays.Data.StayDays) * 80 * 0.002)
             };
 
             #region 加载客户信息
@@ -150,22 +150,22 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustoByInfo, dic);
             SingleOutputDto<ReadCustomerOutputDto> customer = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message);
-            if (customer?.StatusCode != StatusCodeConstants.Success)
+            if (customer?.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError("SelectCustoByInfo+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             try
             {
-                CustoName.Text = customer?.Source.CustomerName;
-                txtCustomerName.Text = customer?.Source.CustomerName;
-                txtTel.Text = customer?.Source.CustomerPhoneNumber;
-                txtCustomerGender.Text = customer?.Source.GenderName ?? string.Empty;
-                txtCustomerType.Text = customer.Source.CustomerTypeName;
-                txtPassportName.Text = customer.Source.PassportName;
-                txtDateOfBirth.Text = customer.Source.DateOfBirth.ToString("yyyy/MM/dd");
-                txtIdCardNumber.Text = customer.Source.IdCardNumber;
-                txtCustomerAddress.Text = customer.Source.CustomerAddress;
+                CustoName.Text = customer?.Data.CustomerName;
+                txtCustomerName.Text = customer?.Data.CustomerName;
+                txtTel.Text = customer?.Data.CustomerPhoneNumber;
+                txtCustomerGender.Text = customer?.Data.GenderName ?? string.Empty;
+                txtCustomerType.Text = customer.Data.CustomerTypeName;
+                txtPassportName.Text = customer.Data.PassportName;
+                txtDateOfBirth.Text = customer.Data.DateOfBirth.ToString("yyyy/MM/dd");
+                txtIdCardNumber.Text = customer.Data.IdCardNumber;
+                txtCustomerAddress.Text = customer.Data.CustomerAddress;
             }
             catch
             {
@@ -207,7 +207,7 @@ namespace EOM.TSHotelManagement.FormUI
             });
             #endregion
 
-            var customerType = lstSourceGrid.SingleOrDefault(a => a.CustomerTypeName == txtCustomerType.Text);
+            var customerType = lstDataGrid.SingleOrDefault(a => a.CustomerTypeName == txtCustomerType.Text);
 
             //计算消费总额
             dic = new Dictionary<string, string>()
@@ -217,19 +217,19 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Spend_SumConsumptionAmount, dic);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadSpendOutputDto>>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Spend_SumConsumptionAmount}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            decimal total = response.Source.ConsumptionAmount;
+            decimal total = response.Data.ConsumptionAmount;
             decimal m = total + sum;
             decimal discount = (customerType != null && customerType.Discount > 0 && customerType.Discount < 100)
                 ? customerType.Discount / 100M
                 : 1M;
             lblGetReceipts.Text = m.ToString("#,##0.00");
             lblVIPPrice.Text = (m * discount).ToString("#,##0.00");
-            lblVIP.Text = (discount < 1M) ? DiscountConverter.ToZheString(customerType.Discount) : "无折扣(100%)";
+            lblVIP.Text = (discount < 1M) ? DiscountHelper.ToZheString(customerType.Discount) : "无折扣(100%)";
             Refresh();
         }
         #endregion
@@ -276,8 +276,8 @@ namespace EOM.TSHotelManagement.FormUI
                         ElectricityUsage = w.PowerUsage,
                         WaterUsage = w.WaterUsage
                     }));
-                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.Room_CheckoutRoom}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
@@ -327,21 +327,21 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByRoomNo, dic);
             var spendInfo = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
-            if (spendInfo.StatusCode != StatusCodeConstants.Success)
+            if (spendInfo.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
             }
 
-            List<ReadSpendOutputDto> spends = spendInfo.listSource;
-            totalCount = spendInfo.total;
-            var listTableSource = new List<AntdUI.AntItem[]>();
+            List<ReadSpendOutputDto> spends = spendInfo.Data.Items;
+            totalCount = spendInfo.Data.TotalCount;
+            var listTableData = new List<AntdUI.AntItem[]>();
 
             spends = spends.OrderBy(a => a.SpendNumber).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
-            listTableSource = tableComHelper.ConvertToAntdItems(spends);
+            listTableData = tableComHelper.ConvertToAntdItems(spends);
 
-            return listTableSource;
+            return listTableData;
         }
 
         object GetEnergyPageData()
@@ -352,20 +352,20 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.EnergyManagement_SelectEnergyManagementInfo, dic);
             var energyManagements = HttpHelper.JsonToModel<ListOutputDto<ReadEnergyManagementOutputDto>>(result.message);
-            if (energyManagements.StatusCode != StatusCodeConstants.Success)
+            if (energyManagements.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.EnergyManagement_SelectEnergyManagementInfo}+接口服务异常，请提交Issue或尝试更新版本！");
             }
 
-            List<ReadEnergyManagementOutputDto> energys = energyManagements.listSource;
-            var listTableSource = new List<AntdUI.AntItem[]>();
+            List<ReadEnergyManagementOutputDto> energys = energyManagements.Data.Items;
+            var listTableData = new List<AntdUI.AntItem[]>();
 
             energys = energys.OrderByDescending(a => a.StartDate).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
-            listTableSource = tableComHelper.ConvertToAntdItems(energys);
+            listTableData = tableComHelper.ConvertToAntdItems(energys);
 
-            return listTableSource;
+            return listTableData;
         }
 
 

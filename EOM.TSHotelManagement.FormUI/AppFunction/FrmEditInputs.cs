@@ -49,13 +49,13 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载客户类型信息
             var result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
-            if (customerTypes.StatusCode != StatusCodeConstants.Success)
+            if (customerTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var lstSourceGrid = customerTypes.listSource;
-            this.cbCustoType.DataSource = lstSourceGrid;
+            var lstDataGrid = customerTypes.Data.Items;
+            this.cbCustoType.DataSource = lstDataGrid;
             this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
             this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
             this.cbCustoType.SelectedIndex = 0;
@@ -65,12 +65,12 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载证件类型信息
             result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
             var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
-            if (passportTypes.StatusCode != StatusCodeConstants.Success)
+            if (passportTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var passPorts = passportTypes.listSource;
+            var passPorts = passportTypes.Data.Items;
             this.cbPassportType.DataSource = passPorts;
             this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
             this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
@@ -85,12 +85,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
             var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (genderTypes.StatusCode != StatusCodeConstants.Success)
+            if (genderTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var listSexType = genderTypes.listSource;
+            var listSexType = genderTypes.Data.Items;
             this.cbSex.DataSource = listSexType;
             this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.Description);
             this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.Id);
@@ -143,8 +143,8 @@ namespace EOM.TSHotelManagement.FormUI
             };
 
             result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerInfo, HttpHelper.ModelToJson(custo));
-            var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.Show("修改失败", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
                 return;
@@ -191,8 +191,8 @@ namespace EOM.TSHotelManagement.FormUI
             };
 
             result = HttpHelper.Request(ApiConstants.Customer_InsertCustomerInfo, HttpHelper.ModelToJson(custo));
-            var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.Show($"添加失败\n{response.Message}", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
                 return;

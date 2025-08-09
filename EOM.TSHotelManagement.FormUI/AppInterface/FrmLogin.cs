@@ -26,6 +26,7 @@ using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Util;
+using jvncorelib.EncryptorLib;
 using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -131,13 +132,13 @@ namespace EOM.TSHotelManagement.FormUI
 
                     var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
 
-                    if (response.StatusCode != StatusCodeConstants.Success)
+                    if (response.Code != BusinessStatusCode.Success)
                     {
                         AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd} is abnormal. Please submit an issue", $"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd}+接口服务异常，请提交issue"), TType.Error);
                         return;
                     }
 
-                    ReadEmployeeOutputDto w = response.Source;
+                    ReadEmployeeOutputDto w = response.Data;
 
                     if (!w.IsNullOrEmpty())
                     {
@@ -151,6 +152,7 @@ namespace EOM.TSHotelManagement.FormUI
                         LoginInfo.WorkerName = w.EmployeeName;
                         LoginInfo.WorkerClub = w.DepartmentName;
                         LoginInfo.WorkerPosition = w.PositionName;
+                        LoginInfo.Password = new EncryptLib().Encryption(txtWorkerPwd.Text.Trim(), EncryptionLevel.Enhanced);
                         LoginInfo.SoftwareVersion = ApplicationUtil.GetApplicationVersion().ToString();
                         LoginInfo.UserToken = w.UserToken;
 

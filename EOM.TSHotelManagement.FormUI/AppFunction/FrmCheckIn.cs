@@ -50,20 +50,20 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, pairs);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message!);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageTip.ShowError($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交issue");
                 return;
             }
-            ReadRoomOutputDto r = response.Source;
+            ReadRoomOutputDto r = response.Data;
             result = HttpHelper.Request(ApiConstants.RoomType_SelectRoomTypeByRoomNo, pairs);
             var roomTypeResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomTypeOutputDto>>(result.message!);
-            if (roomTypeResponse.StatusCode != StatusCodeConstants.Success)
+            if (roomTypeResponse.Code != BusinessStatusCode.Success)
             {
                 UIMessageTip.ShowError($"{ApiConstants.RoomType_SelectRoomTypeByRoomNo}+接口服务异常，请提交issue");
                 return;
             }
-            ReadRoomTypeOutputDto t = roomTypeResponse.Source;
+            ReadRoomTypeOutputDto t = roomTypeResponse.Data;
             txtType.Text = t.RoomTypeName;
             txtMoney.Text = r.RoomRent.ToString();
             txtRoomPosition.Text = r.RoomLocation;
@@ -76,12 +76,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, pairs);
             var customerResponse = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message!);
-            if (customerResponse.StatusCode != StatusCodeConstants.Success)
+            if (customerResponse.Code != BusinessStatusCode.Success)
             {
                 UIMessageTip.ShowError($"{ApiConstants.Customer_SelectCustomers}+接口服务异常，请提交issue");
                 return;
             }
-            var custoList = customerResponse.listSource;
+            var custoList = customerResponse.Data.Items;
             if (custoList != null && custoList != null)
             {
                 var ctos = custoList.Select(custo => custo.CustomerNumber).ToArray();
@@ -119,12 +119,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             var result = HttpHelper.Request(ApiConstants.VipLevelRule_SelectVipRuleList, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadVipLevelRuleOutputDto>>(result.message!);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageTip.ShowError($"{ApiConstants.VipLevelRule_SelectVipRuleList}+接口服务异常，请提交issue: {response.Message}", 3000);
             }
 
-            var listVipRule = response.listSource
+            var listVipRule = response.Data.Items
                 .OrderBy(a => a.RuleValue)
                 .Distinct()
                 .ToList();
@@ -133,12 +133,12 @@ namespace EOM.TSHotelManagement.FormUI
             var user = new Dictionary<string, string> { { nameof(ReadSpendInputDto.CustomerNumber), txtCustoNo.Text.Trim() } };
             result = HttpHelper.Request(ApiConstants.Spend_SeletHistorySpendInfoAll, user);
             var customerSpends = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message!);
-            if (customerSpends.StatusCode != StatusCodeConstants.Success)
+            if (customerSpends.Code != BusinessStatusCode.Success)
             {
                 UIMessageTip.ShowError($"{ApiConstants.Spend_SeletHistorySpendInfoAll}+接口服务异常，请提交issue: {response.Message}", 3000);
             }
 
-            var listCustoSpend = customerSpends.listSource;
+            var listCustoSpend = customerSpends.Data.Items;
             if (!listCustoSpend.IsNullOrEmpty())
             {
                 var spendAmount = listCustoSpend.Sum(a => a.ConsumptionAmount);
@@ -152,8 +152,8 @@ namespace EOM.TSHotelManagement.FormUI
                 if (new_type != 0)
                 {
                     result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerTypeByCustoNo, HttpHelper.ModelToJson(new UpdateCustomerInputDto { CustomerNumber = txtCustoNo.Text.Trim(), CustomerType = new_type }));
-                    var updateResponse = HttpHelper.JsonToModel<BaseOutputDto>(result.message!);
-                    if (updateResponse.StatusCode != StatusCodeConstants.Success)
+                    var updateResponse = HttpHelper.JsonToModel<BaseResponse>(result.message!);
+                    if (updateResponse.Code != BusinessStatusCode.Success)
                     {
                         throw new Exception($"{ApiConstants.Customer_UpdCustomerTypeByCustoNo}+接口服务异常");
                     }
@@ -166,12 +166,12 @@ namespace EOM.TSHotelManagement.FormUI
                 user = new Dictionary<string, string> { { nameof(ReadCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim() } };
                 result = HttpHelper.Request(ApiConstants.Customer_SelectCustoByInfo, user);
                 var customerResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message!);
-                if (customerResponse.StatusCode != StatusCodeConstants.Success)
+                if (customerResponse.Code != BusinessStatusCode.Success)
                 {
                     throw new Exception($"{ApiConstants.Customer_SelectCustoByInfo}+接口服务异常");
                 }
 
-                var custo = customerResponse.Source;
+                var custo = customerResponse.Data;
                 txtCustoName.Text = custo?.CustomerNumber ?? "";
                 txtCustoTel.Text = custo?.CustomerPhoneNumber ?? "";
                 txtCustoType.Text = custo?.CustomerTypeName ?? "";
@@ -183,12 +183,12 @@ namespace EOM.TSHotelManagement.FormUI
             var user = new Dictionary<string, string> { { nameof(ReadCustomerInputDto.CustomerNumber), txtCustoNo.Text.Trim() } };
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustoByInfo, user);
             var customerResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message!);
-            if (customerResponse.StatusCode != StatusCodeConstants.Success)
+            if (customerResponse.Code != BusinessStatusCode.Success)
             {
                 throw new Exception($"{ApiConstants.Customer_SelectCustoByInfo}+接口服务异常");
             }
 
-            var custo = customerResponse.Source;
+            var custo = customerResponse.Data;
             if (!custo.IsNullOrEmpty())
             {
                 using (TransactionScope scope = new TransactionScope())
@@ -202,8 +202,8 @@ namespace EOM.TSHotelManagement.FormUI
                         DataChgUsr = LoginInfo.WorkerNo
                     };
                     result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfo, HttpHelper.ModelToJson(r));
-                    var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message!);
-                    if (response.StatusCode != StatusCodeConstants.Success)
+                    var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
+                    if (response.Code != BusinessStatusCode.Success)
                     {
                         UIMessageTip.ShowError($"{ApiConstants.Room_UpdateRoomInfo}+接口服务异常，请提交issue");
                         UIMessageBox.Show("登记入住失败！", "登记提示", UIStyle.Red);

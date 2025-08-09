@@ -26,6 +26,7 @@ using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Util;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -167,7 +168,7 @@ namespace EOM.TSHotelManagement.FormUI
 
                 string targetDirectory = Path.Combine(selectedPath, FolderName, tagName);
 
-                if(!Path.Exists(targetDirectory)) 
+                if (!Path.Exists(targetDirectory))
                     Directory.CreateDirectory(targetDirectory);
 
                 var tempFilePath = Path.Combine(targetDirectory, fileName);
@@ -255,6 +256,14 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmLoading_Load(object sender, EventArgs e)
         {
+            if (RuntimeInformation.OSArchitecture != Architecture.X64)
+            {
+                lblTips.Text = LocalizationHelper.GetLocalizedString("Current Software only support x64 bit Architecture, running failure", "本应用仅支持x64位系统架构，运行失败");
+                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("Tips", "系统提示"), LocalizationHelper.GetLocalizedString("Current Software only support x64 bit Architecture, running failure", "本应用不支持x64位系统架构，运行失败"), TType.Info);
+                Thread.Sleep(2000);
+                ExitApplication();
+                return;
+            }
             lblLocalSoftwareVersion.Text = CurrentVersion;
             CheckForUpdate();
         }

@@ -71,21 +71,21 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Reser_SelectReserAll, dic);
             var resers = HttpHelper.JsonToModel<ListOutputDto<ReadReserOutputDto>>(result.message);
-            if (resers.StatusCode != StatusCodeConstants.Success)
+            if (resers.Code != BusinessStatusCode.Success)
             {
                 AntdUI.Message.error(this, $"{ApiConstants.Reser_SelectReserAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
             }
-            List<ReadReserOutputDto> reserDataSource = resers.listSource;
-            totalCount = resers.total;
-            var listTableSource = new List<AntdUI.AntItem[]>();
+            List<ReadReserOutputDto> reserDataSource = resers.Data.Items;
+            totalCount = resers.Data.TotalCount;
+            var listTableData = new List<AntdUI.AntItem[]>();
 
             reserDataSource = reserDataSource.OrderBy(a => a.ReservationId).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
-            listTableSource = tableComHelper.ConvertToAntdItems(reserDataSource);
+            listTableData = tableComHelper.ConvertToAntdItems(reserDataSource);
 
-            return listTableSource;
+            return listTableData;
         }
 
         private string btnPg_ShowTotalChanged(object sender, AntdUI.PagePageEventArgs e)
@@ -113,13 +113,13 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载客户类型信息
             result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
-            if (customerTypeDataSource.StatusCode != StatusCodeConstants.Success)
+            if (customerTypeDataSource.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<ReadCustoTypeOutputDto> lstSourceGrid = customerTypeDataSource.listSource;
-            this.cbCustoType.DataSource = lstSourceGrid;
+            List<ReadCustoTypeOutputDto> lstDataGrid = customerTypeDataSource.Data.Items;
+            this.cbCustoType.DataSource = lstDataGrid;
             this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
             this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
             this.cbCustoType.SelectedIndex = 0;
@@ -129,12 +129,12 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载证件类型信息
             result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
             var passportDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
-            if (passportDataSource.StatusCode != StatusCodeConstants.Success)
+            if (passportDataSource.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<ReadPassportTypeOutputDto> passPorts = passportDataSource.listSource;
+            List<ReadPassportTypeOutputDto> passPorts = passportDataSource.Data.Items;
             this.cbPassportType.DataSource = passPorts;
             this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
             this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
@@ -149,12 +149,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
             var genderTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (genderTypeDataSource.StatusCode != StatusCodeConstants.Success)
+            if (genderTypeDataSource.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            List<EnumDto> listSexType = genderTypeDataSource.listSource;
+            List<EnumDto> listSexType = genderTypeDataSource.Data.Items;
             this.cbSex.DataSource = listSexType;
             this.cbSex.DisplayMember = nameof(EnumDto.Description);
             this.cbSex.ValueMember = nameof(EnumDto.Id);
@@ -196,8 +196,8 @@ namespace EOM.TSHotelManagement.FormUI
                 DataChgDate = DateTime.Now
             };
             result = HttpHelper.Request(ApiConstants.Room_CheckinRoomByReservation, HttpHelper.ModelToJson(reser));
-            var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Room_CheckinRoomByReservation}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;

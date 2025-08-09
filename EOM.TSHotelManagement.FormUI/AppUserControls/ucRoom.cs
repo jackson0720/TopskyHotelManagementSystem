@@ -229,12 +229,12 @@ namespace EOM.TSHotelManagement.FormUI
             result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, getParam);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
 
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.Show($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常！", "来自小T提示", UIStyle.Red);
                 return;
             }
-            r = response.Source;
+            r = response.Data;
             if (r.RoomStateId == (int)Common.Core.RoomState.Vacant)
             {
                 tsmiCheckIn.Enabled = true;
@@ -357,7 +357,7 @@ namespace EOM.TSHotelManagement.FormUI
                     };
                     result = HttpHelper.Request(ApiConstants.Reser_SelectReserInfoByRoomNo, getParam);
                     var reserResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadReserOutputDto>>(result.message);
-                    if (reserResponse.StatusCode != StatusCodeConstants.Success)
+                    if (reserResponse.Code != BusinessStatusCode.Success)
                     {
                         UIMessageBox.Show($"{ApiConstants.Reser_SelectReserInfoByRoomNo}+接口服务异常！", "来自小T提示", UIStyle.Red);
                         return;
@@ -366,11 +366,11 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         var reser = new DeleteReserInputDto
                         {
-                            ReservationId = reserResponse.Source!.ReservationId
+                            ReservationId = reserResponse.Data!.ReservationId
                         };
                         result = HttpHelper.Request(ApiConstants.Reser_DeleteReserInfo, HttpHelper.ModelToJson(reser));
-                        var reserResult = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                        if (reserResult.StatusCode != StatusCodeConstants.Success)
+                        var reserResult = HttpHelper.JsonToModel<BaseResponse>(result.message);
+                        if (reserResult.Code != BusinessStatusCode.Success)
                         {
                             UIMessageBox.Show($"{ApiConstants.Reser_DeleteReserInfo}+接口服务异常！", "来自小T提示", UIStyle.Red);
                             return;

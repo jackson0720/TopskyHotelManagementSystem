@@ -101,21 +101,21 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
             var customers = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
-            if (customers.StatusCode != StatusCodeConstants.Success)
+            if (customers.Code != BusinessStatusCode.Success)
             {
                 AntdUI.Message.error(this, "SelectCustomers+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
             }
-            List<ReadCustomerOutputDto> custos = customers.listSource;
-            totalCount = customers.total;
-            var listTableSource = new List<AntdUI.AntItem[]>();
+            List<ReadCustomerOutputDto> custos = customers.Data.Items;
+            totalCount = customers.Data.TotalCount;
+            var listTableData = new List<AntdUI.AntItem[]>();
 
             custos = custos.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
-            listTableSource = tableComHelper.ConvertToAntdItems(custos);
+            listTableData = tableComHelper.ConvertToAntdItems(custos);
 
-            return listTableSource;
+            return listTableData;
         }
 
         #endregion
@@ -141,23 +141,23 @@ namespace EOM.TSHotelManagement.FormUI
             }
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
             response = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 AntdUI.Message.error(this, $"{ApiConstants.Customer_SelectCustomers}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
-            custos = response.listSource;
-            var totalCount = response.total;
-            var listTableSource = new List<AntdUI.AntItem[]>();
+            custos = response.Data.Items;
+            var totalCount = response.Data.TotalCount;
+            var listTableData = new List<AntdUI.AntItem[]>();
 
             custos = custos.OrderBy(a => a.CustomerNumber).ThenBy(a => a.CustomerName).ToList();
 
             TableComHelper tableComHelper = new TableComHelper();
-            listTableSource = tableComHelper.ConvertToAntdItems(custos);
+            listTableData = tableComHelper.ConvertToAntdItems(custos);
 
             dgvCustomerList.Columns = tableComHelper.ConvertToAntdColumns(tableComHelper.GenerateDataColumns<ReadCustomerOutputDto>());
-            dgvCustomerList.DataSource = listTableSource;
+            dgvCustomerList.DataSource = listTableData;
         }
 
         private void btnAddCusto_BtnClick(object sender, EventArgs e)
