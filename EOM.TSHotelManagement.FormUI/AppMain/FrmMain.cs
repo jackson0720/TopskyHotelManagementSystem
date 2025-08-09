@@ -276,7 +276,6 @@ namespace EOM.TSHotelManagement.FormUI
             }
 
             pnlCheckInfo.Visible = false;
-            checkEmployeeCheckInfo();
 
             notifyIcon1.Text = "TS酒店管理系统-" + LoginInfo.WorkerName + "-版本号：" + ApplicationUtil.GetApplicationVersion();
             wk_WorkerName = LoginInfo.WorkerName;
@@ -288,6 +287,7 @@ namespace EOM.TSHotelManagement.FormUI
             pnlMID.Controls.Add(frmRoomManager);
             frmRoomManager.Show();
 
+            checkEmployeeCheckInfo();
         }
         #endregion
 
