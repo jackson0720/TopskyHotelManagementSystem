@@ -22,13 +22,14 @@
  *
  */
 using AntdUI;
+using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Util;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmAboutUs : Window
+    public partial class FrmAbout : Window
     {
-        public FrmAboutUs()
+        public FrmAbout()
         {
             InitializeComponent();
         }
@@ -61,11 +62,23 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmAboutUs_Load(object sender, EventArgs e)
         {
-            rtbAboutUs.Text = LocalizationHelper.GetLocalizedString("Our team has always been committed to creating a user-friendly and easy-to-use management software. Our vision is to use technology to create easy-to-use open source software/components and to create software with a vision in mind. Our team is full of vitality and passion!\r\n     Regarding our team, you can browse: https://www.oscode.top Learn more!  \r\n     For detailed information about this software, you can browse: https://gitee.com/java-and-net/TopskyHotelManagerSystem Learn more! In addition, we will still provide support for future version upgrades!",
-                "     我们团队一直都致力于打造一款人机交互方便，操作简单的管理软件，我们的愿景是“用技术创造易用的开源软件/组件”，一路心怀愿景去制作软件，我们的团队充满活力、激情！\r\n     关于我们团队，您可以浏览：https://www.oscode.top了解更多！  \r\n     关于本软件的详细信息，您可以浏览：https://gitee.com/java-and-net/TopskyHotelManagerSystem 了解更多！另外仍会提供后续的版本升级支持！");
+            GetAboutInfo();
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void GetAboutInfo()
+        {
+            lblSoftName.Text = $"{ApplicationUtil.GetApplicationName()}";
+            lblClientVersionDescriotion.Text = LocalizationHelper.GetLocalizedString("Client Version:", "客户端版本：");
+            lblClientVersion.Text = $"{ApplicationUtil.GetApplicationVersion()}({ApplicationUtil.GetSystemArchitectureViaEnv()})";
+            lblServerVersionDescriotion.Text = LocalizationHelper.GetLocalizedString("Server Version:", "服务端版本：");
+            lblServerVersion.Text = $"{ApplicationUtil.GetServerVersion()}";
+            lblFrameworkVersionDescription.Text = LocalizationHelper.GetLocalizedString("Framework Version:", "框架版本：");
+            lblFrameworkVersion.Text = $"{ApplicationUtil.GetApplicationFrameworkVersion()}";
+            lblCopyright.Text = $"{LocalizationHelper.GetLocalizedString("Copyright", "版权所有")} © 2021-{DateTime.Now.Year} 易开元(EOM). ";
+            lblNotice.Text = $"{LocalizationHelper.GetLocalizedString("All rights reserved", "保留所有权利")}.";
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -61,6 +61,7 @@
             txtAccount.PlaceholderText = "";
             txtAccount.Size = new Size(238, 52);
             txtAccount.TabIndex = 32;
+            txtAccount.Text = "WK010";
             // 
             // txtWorkerPwd
             // 
@@ -74,6 +75,7 @@
             txtWorkerPwd.PlaceholderText = "";
             txtWorkerPwd.Size = new Size(238, 52);
             txtWorkerPwd.TabIndex = 33;
+            txtWorkerPwd.Text = "WK010";
             // 
             // picLogin
             // 

@@ -113,6 +113,16 @@ namespace EOM.TSHotelManagement.FormUI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap lock_screen {
+            get {
+                object obj = ResourceManager.GetObject("lock_screen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap picCommodity_Image {
             get {
                 object obj = ResourceManager.GetObject("picCommodity.Image", resourceCulture);

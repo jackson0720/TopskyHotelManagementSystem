@@ -51,12 +51,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             var result = HttpHelper.Request(ApiConstants.Base_SelectNationAll, dic);
             var nations = HttpHelper.JsonToModel<ListOutputDto<ReadNationOutputDto>>(result.message);
-            if (nations.StatusCode != StatusCodeConstants.Success)
+            if (nations.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectNationAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cbWorkerNation.DataSource = nations.listSource;
+            cbWorkerNation.DataSource = nations.Data.Items;
             cbWorkerNation.DisplayMember = nameof(ReadNationOutputDto.NationName);
             cbWorkerNation.ValueMember = nameof(ReadNationOutputDto.NationNumber);
             //加载性别信息
@@ -67,23 +67,23 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
             var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (genderTypes.StatusCode != StatusCodeConstants.Success)
+            if (genderTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboSex.DataSource = genderTypes.listSource;
+            cboSex.DataSource = genderTypes.Data.Items;
             cboSex.DisplayMember = nameof(ReadGenderTypeOutputDto.Description);
             cboSex.ValueMember = nameof(ReadGenderTypeOutputDto.Id);
             //加载部门信息
             result = HttpHelper.Request(ApiConstants.Base_SelectDeptAllCanUse);
             var depts = HttpHelper.JsonToModel<ListOutputDto<ReadDepartmentOutputDto>>(result.message);
-            if (depts.StatusCode != StatusCodeConstants.Success)
+            if (depts.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectDeptAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboWorkerClub.DataSource = depts.listSource;
+            cboWorkerClub.DataSource = depts.Data.Items;
             cboWorkerClub.DisplayMember = nameof(ReadDepartmentOutputDto.DepartmentName);
             cboWorkerClub.ValueMember = nameof(ReadDepartmentOutputDto.DepartmentNumber);
             //加载职位信息
@@ -94,12 +94,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectPositionAll, dic);
             var positions = HttpHelper.JsonToModel<ListOutputDto<ReadPositionOutputDto>>(result.message);
-            if (positions.StatusCode != StatusCodeConstants.Success)
+            if (positions.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectPositionAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboWorkerPosition.DataSource = positions.listSource;
+            cboWorkerPosition.DataSource = positions.Data.Items;
             cboWorkerPosition.DisplayMember = nameof(ReadPositionOutputDto.PositionName);
             cboWorkerPosition.ValueMember = nameof(ReadPositionOutputDto.PositionNumber);
 
@@ -118,12 +118,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             var result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeId, dic);
             var employees = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
-            if (employees.StatusCode != StatusCodeConstants.Success)
+            if (employees.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeId}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            ReadEmployeeOutputDto worker = employees.Source;
+            ReadEmployeeOutputDto worker = employees.Data;
             if (!worker.IsNullOrEmpty())
             {
                 txtWorkerNo.Text = worker.EmployeeId;
@@ -144,16 +144,16 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.EmployeePhoto_EmployeePhoto, dic);
             var workerPic = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(result.message);
-            if (workerPic.StatusCode != StatusCodeConstants.Success)
+            if (workerPic.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_EmployeePhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var workerPicSource = workerPic.Source;
-            if (workerPicSource != null && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
+            var workerPicData = workerPic.Data;
+            if (workerPicData != null && !string.IsNullOrEmpty(workerPicData.PhotoPath))
             {
                 picWorkerPic.BackgroundImage = null;
-                if (!string.IsNullOrEmpty(workerPicSource.PhotoPath)) picWorkerPic.Load(workerPicSource.PhotoPath);
+                if (!string.IsNullOrEmpty(workerPicData.PhotoPath)) picWorkerPic.Load(workerPicData.PhotoPath);
             }
         }
 
@@ -203,8 +203,8 @@ namespace EOM.TSHotelManagement.FormUI
             if (CheckInput(worker))
             {
                 result = HttpHelper.Request(ApiConstants.Employee_UpdateEmployee, HttpHelper.ModelToJson(worker));
-                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.Employee_UpdateEmployee}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
@@ -235,17 +235,17 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.EmployeePhoto_EmployeePhoto, dic);
             var workerPic = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(result.message);
-            if (workerPic.StatusCode != StatusCodeConstants.Success)
+            if (workerPic.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_EmployeePhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var workerPicSource = workerPic.Source;
-            if (!workerPicSource.IsNullOrEmpty() && !string.IsNullOrEmpty(workerPicSource.PhotoPath))
+            var workerPicData = workerPic.Data;
+            if (!workerPicData.IsNullOrEmpty() && !string.IsNullOrEmpty(workerPicData.PhotoPath))
             {
                 result = HttpHelper.Request(ApiConstants.EmployeePhoto_DeleteWorkerPhoto, HttpHelper.ModelToJson(workerPic));
-                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_DeleteWorkerPhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
@@ -273,13 +273,13 @@ namespace EOM.TSHotelManagement.FormUI
             };
             var requestResult = HttpHelper.UploadFile(ApiConstants.EmployeePhoto_InsertWorkerPhoto, openPic.FileName, additionalParams);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(requestResult.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{response.Message}:{ApiConstants.EmployeePhoto_InsertWorkerPhoto}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             UIMessageTip.ShowOk("头像上传成功！稍等将会加载头像哦..");
-            picWorkerPic.Load(response.Source.PhotoPath);
+            picWorkerPic.Load(response.Data.PhotoPath);
         }
 
         private void btnUpdatePassword_Click(object sender, EventArgs e)
@@ -298,8 +298,8 @@ namespace EOM.TSHotelManagement.FormUI
                 DataChgDate = DateTime.Now,
                 DataChgUsr = LoginInfo.WorkerNo
             }));
-            var response = HttpHelper.JsonToModel<BaseOutputDto>(request.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            var response = HttpHelper.JsonToModel<BaseResponse>(request.message);
+            if (response.Code != BusinessStatusCode.Success)
             {
                 AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+Interface service exception, please submit an issue or try updating the version!", $"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+接口服务异常，请提交Issue或尝试更新版本！"));
                 return;

@@ -114,9 +114,9 @@ namespace EOM.TSHotelManagement.FormUI
 
                         var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(httpResponse.message);
 
-                        if (response.StatusCode != StatusCodeConstants.Success)
+                        if (response.Code != BusinessStatusCode.Success)
                         {
-                            throw new HttpRequestException($"{url} 请求失败，状态码：{response.StatusCode}");
+                            throw new HttpRequestException($"{url} 请求失败，状态码：{response.Code}");
                         }
 
                         var propertyInfo = typeof(ReadRoomOutputDto).GetProperty(propertyName);
@@ -125,7 +125,7 @@ namespace EOM.TSHotelManagement.FormUI
                             throw new MissingFieldException($"ReadRoomOutputDto 中未找到 {propertyName} 属性");
                         }
 
-                        if (propertyInfo.GetValue(response.Source) is int countValue)
+                        if (propertyInfo.GetValue(response.Data) is int countValue)
                         {
                             statusCounts[targetVar] = countValue;
                         }
@@ -226,12 +226,12 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 var result = HttpHelper.Request(ApiConstants.RoomType_SelectRoomTypesAll, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomTypeOutputDto>>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     throw new Exception($"{ApiConstants.RoomType_SelectRoomTypesAll}+接口服务异常");
                 }
 
-                var listRoomTypes = response.listSource;
+                var listRoomTypes = response.Data.Items;
 
                 if (listRoomTypes == null)
                 {
@@ -298,12 +298,12 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 result = HttpHelper.Request(ApiConstants.Room_SelectRoomAll, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                romsty = response.listSource;
+                romsty = response.Data.Items;
             }
             else
             {
@@ -315,12 +315,12 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 result = HttpHelper.Request(ApiConstants.Room_SelectRoomByTypeName, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByTypeName}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                romsty = response.listSource;
+                romsty = response.Data.Items;
             }
             for (int i = 0; i < romsty.Count; i++)
             {
@@ -350,12 +350,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomState, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomState}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            romsty = response.listSource;
+            romsty = response.Data.Items;
             for (int i = 0; i < romsty.Count; i++)
             {
                 room = new ucRoom();

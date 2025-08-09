@@ -2,6 +2,7 @@
 {
     public static class ApiConstants
     {
+        public const string Default_Version = "version";
         // Base URLs
         public const string Base_SelectNationAll = "Base/SelectNationAll";
         public const string Base_SelectGenderTypeAll = "Base/SelectGenderTypeAll";
@@ -74,7 +75,7 @@
         public const string Spend_UpdateSpendInfoByRoomNo = "Spend​/UpdateSpendInfoByRoomNo";
         public const string Spend_AddCustomerSpend = "Spend​/AddCustomerSpend";
         public const string Spend_SeletHistorySpendInfoAll = "Spend/SeletHistorySpendInfoAll";
-        public const string Spend_UpdSpenInfo = "Spend/UpdSpenInfo";
+        public const string Spend_UpdSpendInfo = "Spend/UpdSpendInfo";
         public const string Spend_UndoCustomerSpend = "Spend/UndoCustomerSpend";
 
         // EnergyManagement URLs

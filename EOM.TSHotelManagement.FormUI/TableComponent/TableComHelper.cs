@@ -78,7 +78,7 @@ namespace EOM.TSHotelManagement.FormUI
         /// <returns></returns>
         public List<AntdUI.AntItem[]> ConvertToAntdItems<T>(List<T> datas)
         {
-            var listTableSource = new List<AntdUI.AntItem[]>();
+            var listTableData = new List<AntdUI.AntItem[]>();
             var properties = typeof(T).GetProperties();
 
             foreach (var data in datas)
@@ -139,9 +139,9 @@ namespace EOM.TSHotelManagement.FormUI
                     }
                 }
 
-                listTableSource.Add(antItems.ToArray());
+                listTableData.Add(antItems.ToArray());
             }
-            return listTableSource;
+            return listTableData;
         }
 
         public string GetValue(IList<AntdUI.AntItem> items, string key)

@@ -56,12 +56,12 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载客户类型信息
             result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
-            if (customerTypes.StatusCode != StatusCodeConstants.Success)
+            if (customerTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            this.cbCustoType.DataSource = customerTypes.listSource;
+            this.cbCustoType.DataSource = customerTypes.Data.Items;
             this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
             this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
             this.cbCustoType.SelectedIndex = 0;
@@ -71,12 +71,12 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载证件类型信息
             result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
             var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
-            if (passportTypes.StatusCode != StatusCodeConstants.Success)
+            if (passportTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            this.cbPassportType.DataSource = passportTypes.listSource;
+            this.cbPassportType.DataSource = passportTypes.Data.Items;
             this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
             this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
             this.cbPassportType.SelectedIndex = 0;
@@ -90,12 +90,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
             var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (genderTypes.StatusCode != StatusCodeConstants.Success)
+            if (genderTypes.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            this.cbSex.DataSource = genderTypes.listSource;
+            this.cbSex.DataSource = genderTypes.Data.Items;
             this.cbSex.DisplayMember = nameof(EnumDto.Description);
             this.cbSex.ValueMember = nameof(EnumDto.Id);
             this.cbSex.SelectedIndex = 0;
@@ -108,19 +108,19 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustoByInfo, dic);
             var c = HttpHelper.JsonToModel<SingleOutputDto<ReadCustomerOutputDto>>(result.message);
-            if (c.StatusCode != StatusCodeConstants.Success)
+            if (c.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Customer_SelectCustoByInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            txtCustoAdress.Text = c.Source.CustomerAddress;
-            txtCustoName.Text = c.Source.CustomerName;
-            txtCardID.Text = c.Source.IdCardNumber;
-            txtCustoTel.Text = c.Source.CustomerPhoneNumber;
-            cbSex.Text = c.Source.CustomerGender == 1 ? "男" : "女";
-            cbCustoType.SelectedValue = c.Source.CustomerType;
-            cbPassportType.SelectedValue = c.Source.PassportId;
-            dtpBirthday.Value = Convert.ToDateTime(c.Source.DateOfBirth);
+            txtCustoAdress.Text = c.Data.CustomerAddress;
+            txtCustoName.Text = c.Data.CustomerName;
+            txtCardID.Text = c.Data.IdCardNumber;
+            txtCustoTel.Text = c.Data.CustomerPhoneNumber;
+            cbSex.Text = c.Data.CustomerGender == 1 ? "男" : "女";
+            cbCustoType.SelectedValue = c.Data.CustomerType;
+            cbPassportType.SelectedValue = c.Data.PassportId;
+            dtpBirthday.Value = Convert.ToDateTime(c.Data.DateOfBirth);
         }
     }
 }

@@ -43,12 +43,12 @@ namespace EOM.TSHotelManagement.FormUI
         {
             result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
             var datas = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-            if (datas.StatusCode != StatusCodeConstants.Success)
+            if (datas.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboRoomList.DataSource = datas.listSource;
+            cboRoomList.DataSource = datas.Data.Items;
             cboRoomList.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
             cboRoomList.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
         }
@@ -71,8 +71,8 @@ namespace EOM.TSHotelManagement.FormUI
                     DataChgDate = Convert.ToDateTime(DateTime.Now)
                 };
                 result = HttpHelper.Request(ApiConstants.Room_TransferRoom, HttpHelper.ModelToJson(transferRoom));
-                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message!);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.Room_TransferRoom}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
@@ -109,12 +109,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.RoomType_SelectRoomTypeByRoomNo, dic);
             var data = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomTypeOutputDto>>(result.message);
-            if (data.StatusCode != StatusCodeConstants.Success)
+            if (data.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.RoomType_SelectRoomTypeByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            var roomType = data.Source;
+            var roomType = data.Data;
             lblRoomType.Text = roomType.RoomTypeName;
         }
     }

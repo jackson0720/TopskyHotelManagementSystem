@@ -46,12 +46,12 @@ namespace EOM.TSHotelManagement.FormUI
             txtRoomNo.Text = ucRoom.rm_RoomNo;
             result = HttpHelper.Request(ApiConstants.Base_SelectRoomStateAll);
             var datas = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (datas.StatusCode != 200)
+            if (datas.Code != 200)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Base_SelectRoomStateAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboState.DataSource = datas.listSource;
+            cboState.DataSource = datas.Data.Items;
             cboState.DisplayMember = nameof(EnumDto.Description);
             cboState.ValueMember = nameof(EnumDto.Id);
             cboState.SelectedIndex = 0;
@@ -73,8 +73,8 @@ namespace EOM.TSHotelManagement.FormUI
                 case (int)RoomState.Reserved:
                     var updateRoom = new UpdateRoomInputDto { RoomNumber = txtRoomNo.Text.Trim(), RoomStateId = Convert.ToInt32(cboState.SelectedValue) };
                     result = HttpHelper.Request(ApiConstants.Room_UpdateRoomStateByRoomNo, updateRoom.ModelToJson());
-                    var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                    if (response.StatusCode != StatusCodeConstants.Success)
+                    var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+                    if (response.Code != BusinessStatusCode.Success)
                     {
                         UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomStateByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;

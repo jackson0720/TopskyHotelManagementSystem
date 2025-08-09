@@ -22,7 +22,7 @@ namespace EOM.TSHotelManagement.Common
         /// <summary>
         /// WebApi URL
         /// </summary>
-        public const string apiUrl = "https://tshotel-api.oscode.top/api/";
+        public const string apiUrl = "https://tshotel.oscode.top/api/";
 #endif
 
         public class IgnoreNullValuesConverter : JsonConverter

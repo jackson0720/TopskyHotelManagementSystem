@@ -71,15 +71,15 @@ namespace EOM.TSHotelManagement.FormUI
                     DataInsUsr = LoginInfo.WorkerNo
                 };
                 result = HttpHelper.Request(ApiConstants.Reser_InsertReserInfo, HttpHelper.ModelToJson(reser));
-                var response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfoWithReser, HttpHelper.ModelToJson(room));
-                response = HttpHelper.JsonToModel<BaseOutputDto>(result.message);
-                if (response.StatusCode != StatusCodeConstants.Success)
+                response = HttpHelper.JsonToModel<BaseResponse>(result.message);
+                if (response.Code != BusinessStatusCode.Success)
                 {
                     UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
@@ -99,12 +99,12 @@ namespace EOM.TSHotelManagement.FormUI
             cboReserWay.SelectedIndex = 0;
             result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Code != BusinessStatusCode.Success)
             {
                 UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboReserRoomNo.DataSource = response.listSource;
+            cboReserRoomNo.DataSource = response.Data.Items;
             cboReserRoomNo.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
             cboReserRoomNo.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
             cboReserRoomNo.Text = ucRoom.co_RoomNo;
