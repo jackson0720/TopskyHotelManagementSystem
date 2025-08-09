@@ -69,7 +69,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             lblSoftName.Text = $"{ApplicationUtil.GetApplicationName()}";
             lblClientVersionDescriotion.Text = LocalizationHelper.GetLocalizedString("Client Version:", "客户端版本：");
-            lblClientVersion.Text = $"{ApplicationUtil.GetApplicationVersion()}({ApplicationUtil.GetSystemArchitectureViaEnv()})";
+            lblClientVersion.Text = $"{ApplicationUtil.GetApplicationVersion()} ({ApplicationUtil.GetSystemArchitectureViaEnv()})";
             lblServerVersionDescriotion.Text = LocalizationHelper.GetLocalizedString("Server Version:", "服务端版本：");
             lblServerVersion.Text = $"{ApplicationUtil.GetServerVersion()}";
             lblFrameworkVersionDescription.Text = LocalizationHelper.GetLocalizedString("Framework Version:", "框架版本：");
