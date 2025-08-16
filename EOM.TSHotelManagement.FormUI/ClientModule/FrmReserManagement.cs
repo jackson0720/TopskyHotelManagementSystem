@@ -21,20 +21,23 @@
  *SOFTWARE.
  *
  */
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using jvncorelib.CodeLib;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmReserManager : UIForm
+    public partial class FrmReserManager : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReserManager));
         public FrmReserManager()
         {
             InitializeComponent();
+            whReserRoomManagement = new ucWindowHeader("房间预约管理", string.Empty, (Image)resources.GetObject("FrmReserManager.Icon")!);
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
             SetStyle(ControlStyles.UserPaint, true);
@@ -58,8 +61,8 @@ namespace EOM.TSHotelManagement.FormUI
                     ReservationPhoneNumber = txtCustoTel.Text.Trim(),
                     ReservationChannel = cboReserWay.Text,
                     ReservationRoomNumber = cboReserRoomNo.Text,
-                    ReservationStartDate = dtpBookDate.Value,
-                    ReservationEndDate = dtpEndDate.Value,
+                    ReservationStartDate = dtpStartDate.Value ?? dtpStartDate.Value.GetValueOrDefault(),
+                    ReservationEndDate = dtpEndDate.Value ?? dtpEndDate.Value.GetValueOrDefault(),
                     DataInsUsr = LoginInfo.WorkerNo,
                     DataInsDate = DateTime.Now
                 };
@@ -70,21 +73,21 @@ namespace EOM.TSHotelManagement.FormUI
                     DataInsDate = DateTime.Now,
                     DataInsUsr = LoginInfo.WorkerNo
                 };
-                result = HttpHelper.Request(ApiConstants.Reser_InsertReserInfo, HttpHelper.ModelToJson(reser));
+                result = HttpHelper.Request(ApiConstants.Reser_InsertReserInfo, reser.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
                 if (response.Code != BusinessStatusCode.Success)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfoWithReser, HttpHelper.ModelToJson(room));
+                result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfoWithReser, room.ModelToJson());
                 response = HttpHelper.JsonToModel<BaseResponse>(result.message);
                 if (response.Code != BusinessStatusCode.Success)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                UIMessageBox.ShowSuccess("预约成功！请在指定时间内进行登记入住");
+                AntdUI.Modal.open(this, UIMessageConstant.Success, "预约成功！请在指定时间内进行登记入住");
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", Common.Core.LogLevel.Normal);
                 #endregion
@@ -96,25 +99,27 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void FrmRoomManager_Load(object sender, EventArgs e)
         {
-            cboReserWay.SelectedIndex = 0;
             result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
             if (response.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboReserRoomNo.DataSource = response.Data.Items;
-            cboReserRoomNo.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
-            cboReserRoomNo.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
+            cboReserRoomNo.Items.AddRange(response.Data.Items.Select(item => new AntdUI.SelectItem(item.RoomNumber)).ToArray());
             cboReserRoomNo.Text = ucRoom.co_RoomNo;
-            dtpBookDate.Value = Convert.ToDateTime(DateTime.Now);
+            dtpStartDate.Value = Convert.ToDateTime(DateTime.Now);
         }
 
         private void btnReserList_Click(object sender, EventArgs e)
         {
             FrmReserList frm = new FrmReserList();
             frm.Show();
+        }
+
+        private void phReserRoomManagement_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

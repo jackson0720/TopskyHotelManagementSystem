@@ -128,7 +128,7 @@ namespace EOM.TSHotelManagement.FormUI
                 {
                     var worker = new ReadEmployeeInputDto() { EmployeeId = txtAccount.Text.Trim(), EmailAddress = txtAccount.Text.Trim(), Password = txtWorkerPwd.Text.Trim() };
 
-                    result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd, HttpHelper.ModelToJson(worker));
+                    result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd, worker.ModelToJson());
 
                     var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
 

@@ -28,9 +28,9 @@ using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmSelectCustoInfo : UIForm
+    public partial class FrmCustomerInfo : UIForm
     {
-        public FrmSelectCustoInfo()
+        public FrmCustomerInfo()
         {
             InitializeComponent();
         }

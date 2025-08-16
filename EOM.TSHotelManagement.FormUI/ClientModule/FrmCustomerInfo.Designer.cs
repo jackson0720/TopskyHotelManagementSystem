@@ -1,6 +1,6 @@
 ﻿namespace EOM.TSHotelManagement.FormUI
 {
-    partial class FrmSelectCustoInfo
+    partial class FrmCustomerInfo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSelectCustoInfo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomerInfo));
             this.cbCustoType = new Sunny.UI.UIComboBox();
             this.cbPassportType = new Sunny.UI.UIComboBox();
             this.cbSex = new Sunny.UI.UIComboBox();

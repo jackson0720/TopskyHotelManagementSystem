@@ -70,7 +70,7 @@ namespace EOM.TSHotelManagement.FormUI
                     DataChgUsr = LoginInfo.WorkerNo,
                     DataChgDate = Convert.ToDateTime(DateTime.Now)
                 };
-                result = HttpHelper.Request(ApiConstants.Room_TransferRoom, HttpHelper.ModelToJson(transferRoom));
+                result = HttpHelper.Request(ApiConstants.Room_TransferRoom, transferRoom.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
                 if (response.Code != BusinessStatusCode.Success)
                 {

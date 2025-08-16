@@ -50,6 +50,7 @@
             btnAdd = new AntdUI.Button();
             btnCancel = new AntdUI.Button();
             dgvRoomSell = new AntdUI.Table();
+            ucWindowHeader1 = new ucWindowHeader();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -272,6 +273,7 @@
             dgvSellthing.AutoSizeColumnsMode = AntdUI.ColumnsMode.Fill;
             dgvSellthing.Bordered = true;
             dgvSellthing.Font = new Font("Microsoft YaHei UI", 9F);
+            dgvSellthing.Gap = 12;
             dgvSellthing.Location = new Point(4, 88);
             dgvSellthing.Name = "dgvSellthing";
             dgvSellthing.Size = new Size(487, 351);
@@ -317,17 +319,26 @@
             dgvRoomSell.AutoSizeColumnsMode = AntdUI.ColumnsMode.Fill;
             dgvRoomSell.Bordered = true;
             dgvRoomSell.Font = new Font("Microsoft YaHei UI", 9F);
+            dgvRoomSell.Gap = 12;
             dgvRoomSell.Location = new Point(497, 217);
             dgvRoomSell.Name = "dgvRoomSell";
             dgvRoomSell.Size = new Size(572, 262);
             dgvRoomSell.TabIndex = 138;
             dgvRoomSell.CellClick += dgvRoomSell_CellClick;
             // 
+            // ucWindowHeader1
+            // 
+            ucWindowHeader1.Location = new Point(1, 1);
+            ucWindowHeader1.Name = "ucWindowHeader1";
+            ucWindowHeader1.Size = new Size(1071, 35);
+            ucWindowHeader1.TabIndex = 139;
+            // 
             // FrmSellThing
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(1072, 486);
+            Controls.Add(ucWindowHeader1);
             Controls.Add(dgvRoomSell);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
@@ -342,14 +353,10 @@
             Controls.Add(label1);
             Controls.Add(groupBox2);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            IsForbidAltF4 = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmSellThing";
-            ShowTitleIcon = true;
-            Style = Sunny.UI.UIStyle.Custom;
             Text = "商品消费";
-            ZoomScaleRect = new Rectangle(15, 15, 1072, 490);
             Load += FrmSellThing_Load;
             groupBox2.ResumeLayout(false);
             ResumeLayout(false);
@@ -402,5 +409,6 @@
         private AntdUI.Button btnAdd;
         private AntdUI.Button btnCancel;
         private AntdUI.Table dgvRoomSell;
+        private ucWindowHeader ucWindowHeader1;
     }
 }

@@ -151,7 +151,8 @@ namespace EOM.TSHotelManagement.FormUI
                 // 如果会员等级有变，更新会员等级
                 if (new_type != 0)
                 {
-                    result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerTypeByCustoNo, HttpHelper.ModelToJson(new UpdateCustomerInputDto { CustomerNumber = txtCustoNo.Text.Trim(), CustomerType = new_type }));
+                    var customer = new UpdateCustomerInputDto { CustomerNumber = txtCustoNo.Text.Trim(), CustomerType = new_type };
+                    result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerTypeByCustoNo, customer.ModelToJson());
                     var updateResponse = HttpHelper.JsonToModel<BaseResponse>(result.message!);
                     if (updateResponse.Code != BusinessStatusCode.Success)
                     {
@@ -201,7 +202,7 @@ namespace EOM.TSHotelManagement.FormUI
                         RoomNumber = txtRoomNo.Text,
                         DataChgUsr = LoginInfo.WorkerNo
                     };
-                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfo, HttpHelper.ModelToJson(r));
+                    result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfo, r.ModelToJson());
                     var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
                     if (response.Code != BusinessStatusCode.Success)
                     {

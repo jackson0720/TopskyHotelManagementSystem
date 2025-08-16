@@ -25,6 +25,7 @@
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Shared;
+using jvncorelib.EntityLib;
 using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -266,16 +267,16 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (!string.IsNullOrEmpty(txtReceipts.Text) && Convert.ToDecimal(txtReceipts.Text) > Convert.ToDecimal(lblVIPPrice.Text))//判断实收金额是否为空以及是否小于应收金额
             {
-                result = HttpHelper.Request(ApiConstants.Room_CheckoutRoom,
-                    HttpHelper.ModelToJson(new CheckoutRoomDto
-                    {
-                        RoomNumber = txtRoomNo.Text.Trim(),
-                        CustomerNumber = txtCustomerNumber.Text.Trim(),
-                        DataChgDate = DateTime.Now,
-                        DataChgUsr = LoginInfo.WorkerNo,
-                        ElectricityUsage = w.PowerUsage,
-                        WaterUsage = w.WaterUsage
-                    }));
+                var model = new CheckoutRoomDto
+                {
+                    RoomNumber = txtRoomNo.Text.Trim(),
+                    CustomerNumber = txtCustomerNumber.Text.Trim(),
+                    DataChgDate = DateTime.Now,
+                    DataChgUsr = LoginInfo.WorkerNo,
+                    ElectricityUsage = w.PowerUsage,
+                    WaterUsage = w.WaterUsage
+                };
+                result = HttpHelper.Request(ApiConstants.Room_CheckoutRoom, model.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
                 if (response.Code != BusinessStatusCode.Success)
                 {

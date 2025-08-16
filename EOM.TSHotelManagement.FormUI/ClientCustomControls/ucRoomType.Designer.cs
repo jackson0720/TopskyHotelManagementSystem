@@ -28,33 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnRoomType = new Sunny.UI.UIButton();
+            btnRoomType = new AntdUI.Button();
             SuspendLayout();
             // 
             // btnRoomType
             // 
-            btnRoomType.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnRoomType.Font = new System.Drawing.Font("微软雅黑", 12F);
-            btnRoomType.Location = new System.Drawing.Point(0, 2);
-            btnRoomType.Margin = new System.Windows.Forms.Padding(4);
-            btnRoomType.MinimumSize = new System.Drawing.Size(1, 1);
+            btnRoomType.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRoomType.Location = new Point(6, 3);
             btnRoomType.Name = "btnRoomType";
-            btnRoomType.Size = new System.Drawing.Size(107, 33);
-            btnRoomType.TabIndex = 1;
-            btnRoomType.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
+            btnRoomType.Size = new Size(107, 34);
+            btnRoomType.TabIndex = 0;
+            btnRoomType.Type = AntdUI.TTypeMini.Info;
             // 
             // ucRoomType
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(btnRoomType);
             Name = "ucRoomType";
-            Size = new System.Drawing.Size(107, 37);
+            Size = new Size(107, 37);
             ResumeLayout(false);
         }
 
         #endregion
 
-        public Sunny.UI.UIButton btnRoomType;
+        public AntdUI.Button btnRoomType;
     }
 }

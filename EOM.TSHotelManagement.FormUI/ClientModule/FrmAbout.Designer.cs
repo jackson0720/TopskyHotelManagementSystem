@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
-            btnClose = new AntdUI.Button();
             picLogo = new PictureBox();
             lblSoftName = new Label();
             lblServerVersion = new AntdUI.Label();
@@ -40,20 +39,9 @@
             lblNotice = new AntdUI.Label();
             lblFrameworkVersion = new AntdUI.Label();
             lblFrameworkVersionDescription = new AntdUI.Label();
+            whAboutHeader = new ucWindowHeader();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
-            // 
-            // btnClose
-            // 
-            btnClose.BackColor = Color.Transparent;
-            btnClose.BackgroundImage = Properties.Resources.close;
-            btnClose.Font = new Font("Microsoft YaHei UI", 9F);
-            btnClose.Ghost = true;
-            btnClose.Location = new Point(348, 3);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(41, 38);
-            btnClose.TabIndex = 42;
-            btnClose.Click += btnClose_Click;
             // 
             // picLogo
             // 
@@ -165,12 +153,20 @@
             lblFrameworkVersionDescription.Text = "";
             lblFrameworkVersionDescription.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // whAboutHeader
+            // 
+            whAboutHeader.Location = new Point(1, -1);
+            whAboutHeader.Name = "whAboutHeader";
+            whAboutHeader.Size = new Size(391, 35);
+            whAboutHeader.TabIndex = 53;
+            // 
             // FrmAbout
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(390, 476);
+            Controls.Add(whAboutHeader);
             Controls.Add(lblFrameworkVersion);
             Controls.Add(lblFrameworkVersionDescription);
             Controls.Add(lblNotice);
@@ -181,7 +177,6 @@
             Controls.Add(lblClientVersionDescriotion);
             Controls.Add(lblSoftName);
             Controls.Add(picLogo);
-            Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
@@ -196,8 +191,6 @@
         }
 
         #endregion
-
-        private AntdUI.Button btnClose;
         private PictureBox picLogo;
         private Label lblSoftName;
         private AntdUI.Label lblServerVersion;
@@ -208,5 +201,6 @@
         private AntdUI.Label lblNotice;
         private AntdUI.Label lblFrameworkVersion;
         private AntdUI.Label lblFrameworkVersionDescription;
+        private ucWindowHeader whAboutHeader;
     }
 }

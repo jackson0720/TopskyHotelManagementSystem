@@ -1,8 +1,9 @@
 ﻿using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.FormUI.Properties;
 using EOM.TSHotelManagement.Shared;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -12,10 +13,12 @@ namespace EOM.TSHotelManagement.FormUI
     public partial class ucRoom : UserControl
     {
         private LoadingProgress _loadingProgress;
-        public ucRoom()
+        private FrmRoomManager _fromRoomManagement;
+        public ucRoom(FrmRoomManager frmRoomManagement)
         {
             InitializeComponent();
             _loadingProgress = new LoadingProgress();
+            _fromRoomManagement = frmRoomManagement;
         }
 
 
@@ -219,7 +222,7 @@ namespace EOM.TSHotelManagement.FormUI
             var roomText = btnRoom.Text?.Split("\n\n");
             if (roomText == null || roomText.Length < 2)
             {
-                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
+                AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, "房间信息不完整！");
                 return;
             }
             getParam = new Dictionary<string, string>
@@ -231,7 +234,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             if (response.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.Show($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常！", "来自小T提示", UIStyle.Red);
+                AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常！");
                 return;
             }
             r = response.Data;
@@ -284,7 +287,7 @@ namespace EOM.TSHotelManagement.FormUI
                     rm_RoomType = romRoomInfo.RoomName;
                     rm_RoomMoney = Convert.ToDecimal(romRoomInfo.RoomRent).ToString();
                     rm_RoomStateId = (int)Common.Core.RoomState.Reserved;
-                    UIMessageBox.ShowInfo("欢迎入住，请先注册客户信息！");
+                    AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, "欢迎入住，请先注册客户信息！");
                     FrmReserList frm = new FrmReserList();
                     frm.ShowDialog();
                     return;
@@ -301,7 +304,8 @@ namespace EOM.TSHotelManagement.FormUI
             }
             else
             {
-                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
+                AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, "房间信息不完整！");
+                return;
             }
         }
 
@@ -321,8 +325,12 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (romCustoInfo != null && romRoomInfo != null)
             {
-                bool tf = UIMessageBox.Show("确定要进行转房吗？", "来自小T的提醒", UIStyle.Orange, UIMessageBoxButtons.OKCancel);
-                if (tf)
+                var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(_fromRoomManagement, UIMessageConstant.Information, "确定要进行转房吗？", AntdUI.TType.Info)
+                {
+                    CancelText = LocalizationHelper.GetLocalizedString("No", "不了"),
+                    OkText = LocalizationHelper.GetLocalizedString("Yes", "是的")
+                });
+                if (dr == DialogResult.OK)
                 {
                     RoomNo = romRoomInfo.RoomNumber;
                     CustoNo = romCustoInfo.CustomerNumber;
@@ -333,14 +341,15 @@ namespace EOM.TSHotelManagement.FormUI
             }
             else
             {
-                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
+                AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, "房间信息不完整！");
+                return;
             }
         }
 
         private void tsmiSelectUserInfo_Click(object sender, EventArgs e)
         {
             rm_CustoNo = romCustoInfo.CustomerNumber;
-            FrmSelectCustoInfo frm = new FrmSelectCustoInfo();
+            FrmCustomerInfo frm = new FrmCustomerInfo();
             frm.ShowDialog();
         }
 
@@ -348,8 +357,12 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (r.RoomStateId == (int)Common.Core.RoomState.Reserved)
             {
-                bool tf = UIMessageBox.Show("当前房间已被预约，确认更改状态后将会删除原本预约状态及信息，你确定吗？", "来自小T的提醒", UIStyle.Red, UIMessageBoxButtons.OKCancel);
-                if (tf)
+                var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(_fromRoomManagement, UIMessageConstant.Information, "当前房间已被预约，确认更改状态后将会删除原本预约状态及信息，你确定吗？", AntdUI.TType.Info)
+                {
+                    CancelText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_No, UIMessageConstant.Chs_No),
+                    OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Yes, UIMessageConstant.Chs_Yes)
+                });
+                if (dr == DialogResult.OK)
                 {
                     getParam = new Dictionary<string, string>()
                     {
@@ -359,7 +372,7 @@ namespace EOM.TSHotelManagement.FormUI
                     var reserResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadReserOutputDto>>(result.message);
                     if (reserResponse.Code != BusinessStatusCode.Success)
                     {
-                        UIMessageBox.Show($"{ApiConstants.Reser_SelectReserInfoByRoomNo}+接口服务异常！", "来自小T提示", UIStyle.Red);
+                        AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, $"{ApiConstants.Reser_SelectReserInfoByRoomNo}+接口服务异常！");
                         return;
                     }
                     else
@@ -368,11 +381,11 @@ namespace EOM.TSHotelManagement.FormUI
                         {
                             ReservationId = reserResponse.Data!.ReservationId
                         };
-                        result = HttpHelper.Request(ApiConstants.Reser_DeleteReserInfo, HttpHelper.ModelToJson(reser));
+                        result = HttpHelper.Request(ApiConstants.Reser_DeleteReserInfo, reser.ModelToJson());
                         var reserResult = HttpHelper.JsonToModel<BaseResponse>(result.message);
                         if (reserResult.Code != BusinessStatusCode.Success)
                         {
-                            UIMessageBox.Show($"{ApiConstants.Reser_DeleteReserInfo}+接口服务异常！", "来自小T提示", UIStyle.Red);
+                            AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, $"{ApiConstants.Reser_DeleteReserInfo}+接口服务异常！");
                             return;
                         }
                     }
@@ -387,7 +400,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             else
             {
-                UIMessageBox.Show("房间信息不完整！", "来自小T提示", UIStyle.Red);
+                AntdUI.Modal.open(_fromRoomManagement, UIMessageConstant.Error, "房间信息不完整！");
             }
         }
     }

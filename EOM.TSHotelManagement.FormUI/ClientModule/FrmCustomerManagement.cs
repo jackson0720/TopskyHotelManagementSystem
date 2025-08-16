@@ -24,7 +24,7 @@
 
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.FormUI

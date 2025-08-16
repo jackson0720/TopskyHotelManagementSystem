@@ -62,7 +62,7 @@
     <Compile Update="AppFunction\FrmRoomStateManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ClientModule\FrmSelectCustoInfo.cs">
+    <Compile Update="ClientModule\FrmCustomerInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ClientModule\FrmSellThing.cs">
@@ -82,9 +82,6 @@
     </Compile>
     <Compile Update="ClientMain\FrmMain.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ClientCustomControls\ucNavBar.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ClientCustomControls\ucRoom.cs">
       <SubType>UserControl</SubType>
@@ -121,7 +118,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="antdui" Version="1.8.4" />
+		<PackageReference Include="antdui" Version="2.0.17" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Costura.Fody" Version="6.0.0" PrivateAssets="All" />
 		<PackageReference Include="Fody" Version="6.9.2" PrivateAssets="All" />

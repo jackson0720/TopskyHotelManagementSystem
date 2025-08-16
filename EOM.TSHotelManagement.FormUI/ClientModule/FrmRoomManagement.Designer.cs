@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            flpRoom = new FlowLayoutPanel();
             pnlRoomInfo = new Panel();
             lblRoomState = new Label();
             label11 = new Label();
@@ -40,20 +39,11 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            flpRoomTypes = new Sunny.UI.UIFlowLayoutPanel();
             muRoomState = new AntdUI.Menu();
+            flpRoomTypes = new AntdUI.In.FlowLayoutPanel();
+            flpRoom = new AntdUI.In.FlowLayoutPanel();
             pnlRoomInfo.SuspendLayout();
             SuspendLayout();
-            // 
-            // flpRoom
-            // 
-            flpRoom.AutoScroll = true;
-            flpRoom.BackColor = Color.Transparent;
-            flpRoom.Location = new Point(265, 103);
-            flpRoom.Margin = new Padding(4);
-            flpRoom.Name = "flpRoom";
-            flpRoom.Size = new Size(804, 516);
-            flpRoom.TabIndex = 71;
             // 
             // pnlRoomInfo
             // 
@@ -184,25 +174,6 @@
             label1.TabIndex = 0;
             label1.Text = "房间号码：";
             // 
-            // flpRoomTypes
-            // 
-            flpRoomTypes.BackColor = Color.Transparent;
-            flpRoomTypes.FillColor = Color.Transparent;
-            flpRoomTypes.FillColor2 = Color.Transparent;
-            flpRoomTypes.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            flpRoomTypes.Location = new Point(265, 4);
-            flpRoomTypes.Margin = new Padding(4, 5, 4, 5);
-            flpRoomTypes.MinimumSize = new Size(1, 1);
-            flpRoomTypes.Name = "flpRoomTypes";
-            flpRoomTypes.Padding = new Padding(2);
-            flpRoomTypes.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            flpRoomTypes.RectSides = ToolStripStatusLabelBorderSides.None;
-            flpRoomTypes.ShowText = false;
-            flpRoomTypes.Size = new Size(804, 90);
-            flpRoomTypes.TabIndex = 95;
-            flpRoomTypes.Text = "uiFlowLayoutPanel1";
-            flpRoomTypes.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
             // muRoomState
             // 
             muRoomState.Font = new Font("Microsoft YaHei UI", 10F);
@@ -214,6 +185,20 @@
             muRoomState.TabIndex = 96;
             muRoomState.SelectChanged += muRoomState_SelectChanged;
             // 
+            // flpRoomTypes
+            // 
+            flpRoomTypes.Location = new Point(265, 6);
+            flpRoomTypes.Name = "flpRoomTypes";
+            flpRoomTypes.Size = new Size(804, 90);
+            flpRoomTypes.TabIndex = 97;
+            // 
+            // flpRoom
+            // 
+            flpRoom.Location = new Point(265, 103);
+            flpRoom.Name = "flpRoom";
+            flpRoom.Size = new Size(804, 516);
+            flpRoom.TabIndex = 98;
+            // 
             // FrmRoomManager
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -221,10 +206,10 @@
             BackColor = Color.FromArgb(235, 243, 255);
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1072, 623);
-            Controls.Add(muRoomState);
-            Controls.Add(flpRoomTypes);
-            Controls.Add(pnlRoomInfo);
             Controls.Add(flpRoom);
+            Controls.Add(flpRoomTypes);
+            Controls.Add(muRoomState);
+            Controls.Add(pnlRoomInfo);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);
@@ -239,7 +224,6 @@
 
         #endregion
         public System.Windows.Forms.FlowLayoutPanel pe;
-        private System.Windows.Forms.FlowLayoutPanel flpRoom;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -251,7 +235,8 @@
         public System.Windows.Forms.Label lblRoomPosition;
         public System.Windows.Forms.Label lblCheckTime;
         public System.Windows.Forms.Panel pnlRoomInfo;
-        private Sunny.UI.UIFlowLayoutPanel flpRoomTypes;
         private AntdUI.Menu muRoomState;
+        private AntdUI.In.FlowLayoutPanel flpRoomTypes;
+        private AntdUI.In.FlowLayoutPanel flpRoom;
     }
 }

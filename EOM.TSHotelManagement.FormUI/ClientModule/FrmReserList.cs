@@ -21,18 +21,22 @@
  *SOFTWARE.
  *
  */
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.CodeLib;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmReserList : UIForm
+    public partial class FrmReserList : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReserList));
         public FrmReserList()
         {
             InitializeComponent();
+
+            ucWindowHeader1 = new ucWindowHeader("预约列表", string.Empty, (Image)resources.GetObject("FrmReserList.Icon")!);
         }
 
         ResponseMsg result = new ResponseMsg();
@@ -115,15 +119,11 @@ namespace EOM.TSHotelManagement.FormUI
             var customerTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
             if (customerTypeDataSource.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<ReadCustoTypeOutputDto> lstDataGrid = customerTypeDataSource.Data.Items;
-            this.cbCustoType.DataSource = lstDataGrid;
-            this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
-            this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
-            this.cbCustoType.SelectedIndex = 0;
-            this.cbCustoType.ReadOnly = true;
+            this.cboCustomerType.Items.AddRange(lstDataGrid.Select(item=>new AntdUI.SelectItem(item.CustomerTypeName,item.CustomerType)).ToArray());
             #endregion
 
             #region 加载证件类型信息
@@ -131,14 +131,11 @@ namespace EOM.TSHotelManagement.FormUI
             var passportDataSource = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
             if (passportDataSource.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<ReadPassportTypeOutputDto> passPorts = passportDataSource.Data.Items;
-            this.cbPassportType.DataSource = passPorts;
-            this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
-            this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
-            this.cbPassportType.SelectedIndex = 0;
+            this.cboPassportType.Items.AddRange(passPorts.Select(item => new AntdUI.SelectItem(item.PassportName, item.PassportId)).ToArray());
             #endregion
 
             #region 加载性别信息
@@ -151,13 +148,11 @@ namespace EOM.TSHotelManagement.FormUI
             var genderTypeDataSource = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
             if (genderTypeDataSource.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             List<EnumDto> listSexType = genderTypeDataSource.Data.Items;
-            this.cbSex.DataSource = listSexType;
-            this.cbSex.DisplayMember = nameof(EnumDto.Description);
-            this.cbSex.ValueMember = nameof(EnumDto.Id);
+            this.cboGender.Items.AddRange(listSexType.Select(item => new AntdUI.SelectItem(item.Description, item.Id)).ToArray());
             #endregion
         }
 
@@ -168,9 +163,9 @@ namespace EOM.TSHotelManagement.FormUI
                 ReservationId = helper.GetValue(data, nameof(ReadReserOutputDto.ReservationId));
                 RoomNumber = helper.GetValue(data, nameof(ReadReserOutputDto.ReservationRoomNumber));
                 string custoNo = new UniqueCode().GetNewId("TS-");
-                txtCustoNo.Text = custoNo;
-                txtCustoName.Text = helper.GetValue(data, nameof(ReadReserOutputDto.CustomerName));
-                txtTel.Text = helper.GetValue(data, nameof(ReadReserOutputDto.ReservationPhoneNumber));
+                txtCustomerId.Text = custoNo;
+                txtCustomerName.Text = helper.GetValue(data, nameof(ReadReserOutputDto.CustomerName));
+                txtCustomerTel.Text = helper.GetValue(data, nameof(ReadReserOutputDto.ReservationPhoneNumber));
             }
         }
 
@@ -180,30 +175,30 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 ReservationId = ReservationId,
                 RoomNumber = RoomNumber,
-                CustomerNumber = txtCustoNo.Text.Trim(),
-                CustomerName = txtCustoName.Text.Trim(),
-                CustomerType = Convert.ToInt32(cbCustoType.SelectedValue),
-                CustomerPhoneNumber = txtTel.Text.Trim(),
-                CustomerAddress = txtCustoAdress.Text.Trim(),
-                IdCardNumber = txtCardID.Text.Trim(),
-                PassportId = Convert.ToInt32(cbPassportType.SelectedValue),
-                CustomerGender = Convert.ToInt32(cbSex.SelectedValue),
-                DateOfBirth = DateOnly.FromDateTime(dtpBirthday.Value),
+                CustomerNumber = txtCustomerId.Text.Trim(),
+                CustomerName = txtCustomerName.Text.Trim(),
+                CustomerType = Convert.ToInt32(cboCustomerType.SelectedValue),
+                CustomerPhoneNumber = txtCustomerTel.Text.Trim(),
+                CustomerAddress = txtCustomerAddress.Text.Trim(),
+                IdCardNumber = txtCustomerCardID.Text.Trim(),
+                PassportId = Convert.ToInt32(cboPassportType.SelectedValue),
+                CustomerGender = Convert.ToInt32(cboGender.SelectedValue),
+                DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(dtpDateOfBirth.Value)),
                 IsDelete = 0,
                 DataInsUsr = LoginInfo.WorkerNo,
                 DataChgUsr = LoginInfo.WorkerNo,
                 DataInsDate = DateTime.Now,
                 DataChgDate = DateTime.Now
             };
-            result = HttpHelper.Request(ApiConstants.Room_CheckinRoomByReservation, HttpHelper.ModelToJson(reser));
+            result = HttpHelper.Request(ApiConstants.Room_CheckinRoomByReservation, reser.ModelToJson());
             var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
             if (response.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Room_CheckinRoomByReservation}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_CheckinRoomByReservation}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
-            UIMessageBox.ShowSuccess("操作成功");
+            AntdUI.Modal.open(this, UIMessageConstant.Success, "操作成功");
             LoadReserData();
             FrmRoomManager.Reload("");
             FrmRoomManager._RefreshRoomCount();
@@ -213,15 +208,15 @@ namespace EOM.TSHotelManagement.FormUI
         private void txtCardID_Validated(object sender, EventArgs e)
         {
             //获取得到输入的身份证号码
-            string identityCard = txtCardID.Text.Trim();
+            string identityCard = txtCustomerCardID.Text.Trim();
 
             if (string.IsNullOrEmpty(identityCard))
             {
                 //身份证号码不能为空，如果为空返回
-                UIMessageBox.ShowError("身份证号码不能为空！");
-                if (txtCardID.CanFocus)
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "身份证号码不能为空！");
+                if (txtCustomerCardID.CanFocus)
                 {
-                    txtCardID.Focus();//设置当前输入焦点为txtCardID_identityCard
+                    txtCustomerCardID.Focus();//设置当前输入焦点为txtCardID_identityCard
                 }
                 return;
             }
@@ -230,10 +225,10 @@ namespace EOM.TSHotelManagement.FormUI
                 //身份证号码只能为15位或18位其它不合法
                 if (identityCard.Length != 15 && identityCard.Length != 18)
                 {
-                    UIMessageBox.ShowWarning("身份证号码为15位或18位，请检查！");
-                    if (txtCardID.CanFocus)
+                    AntdUI.Modal.open(this, UIMessageConstant.Warning, "身份证号码为15位或18位，请检查！");
+                    if (txtCustomerCardID.CanFocus)
                     {
-                        txtCardID.Focus();
+                        txtCustomerCardID.Focus();
                     }
                     return;
                 }
@@ -242,23 +237,23 @@ namespace EOM.TSHotelManagement.FormUI
             if (identityCard.Length == 18)
             {
                 var result = ApplicationUtil.SearchCode(identityCard);
-                if (result.message.IsNullOrEmpty()) //如果没有错误消息输出，则代表成功
+                if (string.IsNullOrEmpty(result.message)) //如果没有错误消息输出，则代表成功
                 {
                     try
                     {
-                        cbSex.Text = result.sex;
-                        txtCustoAdress.Text = result.address;
-                        dtpBirthday.Value = Convert.ToDateTime(result.birthday);
+                        cboGender.SelectedValue = result.sex;
+                        txtCustomerAddress.Text = result.address;
+                        dtpDateOfBirth.Value = Convert.ToDateTime(result.birthday);
                     }
                     catch
                     {
-                        UIMessageBox.ShowError("请正确输入证件号码！");
+                        AntdUI.Modal.open(this, UIMessageConstant.Error, "请正确输入证件号码！");
                         return;
                     }
                 }
                 else
                 {
-                    UIMessageBox.ShowError(result.message);
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, result.message);
                     return;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.Common
 {
@@ -27,7 +28,7 @@ namespace EOM.TSHotelManagement.Common
                 DataInsUsr = LoginInfo.WorkerNo,
                 DataInsDate = Convert.ToDateTime(DateTime.Now)
             };
-            HttpHelper.Request(api, HttpHelper.ModelToJson(logDetail));
+            HttpHelper.Request(api, logDetail.ModelToJson());
         }
 
     }

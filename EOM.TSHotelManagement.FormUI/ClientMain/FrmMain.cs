@@ -27,9 +27,11 @@ using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.FormUI.Properties;
+using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -356,7 +358,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             if (response.Code != BusinessStatusCode.Success)
             {
-                UIMessageTip.ShowError($"打卡接口:{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}异常：{response.Message}");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"打卡接口:{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}异常：{response.Message}");
                 return;
             }
 
@@ -373,8 +375,12 @@ namespace EOM.TSHotelManagement.FormUI
 
             if (!shouldHaveChecked)
             {
-                bool dr = UIMessageBox.Show($"你的{shiftName}还未打卡哦，请先打卡吧！", "打卡提醒", UIStyle.Blue, UIMessageBoxButtons.OK);
-                if (dr == true)
+                var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(this, UIMessageConstant.Information, $"你的{shiftName}还未打卡哦，请先打卡吧！", AntdUI.TType.Info)
+                {
+                    CancelText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Wait, UIMessageConstant.Chs_Wait),
+                    OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Yes, UIMessageConstant.Chs_Yes)
+                });
+                if (dr == DialogResult.OK)
                 {
                     CreateEmployeeCheckInputDto workerCheck = new()
                     {
@@ -392,7 +398,7 @@ namespace EOM.TSHotelManagement.FormUI
                     var checkResult = HttpHelper.JsonToModel<BaseResponse>(result.message);
                     if (checkResult.Code != BusinessStatusCode.Success)
                     {
-                        UIMessageTip.ShowError($"打卡接口{ApiConstants.EmployeeCheck_AddCheckInfo}异常：{checkResult.Message}");
+                        AntdUI.Modal.open(this, UIMessageConstant.Error, $"打卡接口{ApiConstants.EmployeeCheck_AddCheckInfo}异常：{checkResult.Message}");
                         return;
                     }
 
@@ -400,11 +406,11 @@ namespace EOM.TSHotelManagement.FormUI
                     response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
                     if (response.Code != BusinessStatusCode.Success)
                     {
-                        UIMessageTip.ShowError($"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
+                        AntdUI.Modal.open(this, UIMessageConstant.Error, $"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
                         return;
                     }
 
-                    UIMessageBox.Show($"{shiftName}打卡成功！你已共打卡" + lblCheckDay.Text + "天", "打卡提醒", UIStyle.Green, UIMessageBoxButtons.OK);
+                    AntdUI.Modal.open(this, UIMessageConstant.Success, $"{shiftName}打卡成功！你已共打卡" + lblCheckDay.Text + "天");
                     linkLabel1.Text = $"{shiftName}已打卡";
                     linkLabel1.ForeColor = Color.Green;
                     linkLabel1.LinkColor = Color.Green;

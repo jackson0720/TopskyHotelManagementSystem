@@ -22,17 +22,18 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
-using Sunny.UI;
 using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmSellThing : Sunny.UI.UIForm
+    public partial class FrmSellThing : Window
     {
         static string roomNo;
 
@@ -78,7 +79,7 @@ namespace EOM.TSHotelManagement.FormUI
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadSellThingOutputDto>>(result.message);
             if (response.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Sellthing_SelectSellThingAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Sellthing_SelectSellThingAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
 
@@ -113,7 +114,7 @@ namespace EOM.TSHotelManagement.FormUI
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
                 if (response.Code != BusinessStatusCode.Success)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Spend_SelectSpendByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Spend_SelectSpendByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 List<ReadSpendOutputDto> lstData = response.Data.Items;
@@ -176,31 +177,31 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (string.IsNullOrEmpty(txtRoomNo.Text))
             {
-                UIMessageBox.Show("消费房间不能为空", "提示信息", UIStyle.Red, UIMessageBoxButtons.OKCancel);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "消费房间不能为空");
                 txtRoomNo.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txtSellNo.Text))
             {
-                UIMessageBox.Show("商品编号不能为空", "提示信息", UIStyle.Red, UIMessageBoxButtons.OKCancel);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "商品编号不能为空");
                 txtSellNo.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txtSellName.Text))
             {
-                UIMessageBox.Show("商品名称不能为空", "提示信息", UIStyle.Red, UIMessageBoxButtons.OKCancel);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "商品名称不能为空");
                 txtSellName.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txtPrice.Text))
             {
-                UIMessageBox.Show("商品单价不能为空", "提示信息", UIStyle.Red, UIMessageBoxButtons.OKCancel);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "商品单价不能为空");
                 txtPrice.Focus();
                 return false;
             }
             if (nudNum.Value <= 0)
             {
-                UIMessageBox.Show("数量不能小于或等于0", "提示信息", UIStyle.Red, UIMessageBoxButtons.OKCancel);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "数量不能小于或等于0");
                 txtPrice.Focus();
                 return false;
             }
@@ -217,12 +218,12 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (lblState.Visible == false)
             {
-                UIMessageBox.Show("请先输入消费的房间！", "提示信息", UIStyle.Red);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "请先输入消费的房间！");
                 return;
             }
             if (nudNum.Value <= 0)
             {
-                UIMessageBox.Show("请输入消费数量！", "提示信息", UIStyle.Red);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "请输入消费数量！");
                 return;
             }
             if (lblState.Text == "该房间可消费")
@@ -231,7 +232,7 @@ namespace EOM.TSHotelManagement.FormUI
 
                 try
                 {
-                    var result = HttpHelper.Request(ApiConstants.Spend_AddCustomerSpend, HttpHelper.ModelToJson(new AddCustomerSpendInputDto
+                    var customerSpend = new AddCustomerSpendInputDto
                     {
                         RoomNumber = txtRoomNo.Text.Trim(),
                         ProductNumber = txtSellNo.Text.Trim(),
@@ -240,21 +241,22 @@ namespace EOM.TSHotelManagement.FormUI
                         Price = Convert.ToDecimal(txtPrice.Text),
                         WorkerNo = LoginInfo.WorkerNo,
                         SoftwareVersion = LoginInfo.SoftwareVersion
-                    }));
+                    };
+                    var result = HttpHelper.Request(ApiConstants.Spend_AddCustomerSpend, customerSpend.ModelToJson());
                     var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
                     if (response.Code != BusinessStatusCode.Success)
                     {
-                        UIMessageBox.ShowError(response.Message ?? "添加消费记录失败");
+                        AntdUI.Modal.open(this, UIMessageConstant.Error, response.Message ?? "添加消费记录失败");
                         return;
                     }
-                    UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green);
+                    AntdUI.Modal.open(this, UIMessageConstant.Success, "添加成功");
 
                     LoadSpendInfoByRoomNo(txtRoomNo.Text.Trim());
                     LoadSellThingInfo();
                 }
                 catch (Exception ex)
                 {
-                    UIMessageBox.ShowError($"接口调用异常: {ex.Message}");
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"接口调用异常: {ex.Message}");
                     return;
                 }
             }
@@ -269,17 +271,22 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (lblState.Visible == false)
             {
-                UIMessageBox.Show("请先输入消费的房间！", "提示信息", UIStyle.Red);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "请先输入消费的房间！");
                 return;
             }
             if (!spend.IsNullOrEmpty())
             {
                 if (spend.ConsumptionType == SpendType.Room.Code || spend.ConsumptionType == SpendType.Other.Code)
                 {
-                    UIMessageBox.Show($"此条消费记录非{SpendType.Product.Description}记录，无法删除！", "提示信息", UIStyle.Red);
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"此条消费记录非{SpendType.Product.Description}记录，无法删除！");
                     return;
                 }
-                if (UIMessageDialog.ShowMessageDialog("你确定要撤回该消费记录吗？", UILocalize.WarningTitle, true, Style))
+                var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(this, UIMessageConstant.Information, $"你确定要撤回该消费记录吗？", AntdUI.TType.Info)
+                {
+                    CancelText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Wait, UIMessageConstant.Chs_Wait),
+                    OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Yes, UIMessageConstant.Chs_Yes)
+                });
+                if (dr == DialogResult.OK)
                 {
                     using (TransactionScope scope = new TransactionScope())
                     {
@@ -293,30 +300,30 @@ namespace EOM.TSHotelManagement.FormUI
                         var response = HttpHelper.JsonToModel<SingleOutputDto<ReadSellThingOutputDto>>(result.message);
                         if (response.Code != BusinessStatusCode.Success)
                         {
-                            UIMessageBox.ShowError($"{ApiConstants.Sellthing_SelectSellThingByNameAndPrice}+接口服务异常，请提交Issue或尝试更新版本！");
+                            AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Sellthing_SelectSellThingByNameAndPrice}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         ReadSellThingOutputDto s = response.Data;
                         decimal num = Convert.ToDecimal(spend.ConsumptionQuantity);
                         decimal inboundStock = (s.Stock + num);
-                        result = HttpHelper.Request(ApiConstants.Spend_UndoCustomerSpend, HttpHelper.ModelToJson(new UpdateSpendInputDto { SpendNumber = spend.SpendNumber }));
+                        var model = new UpdateSpendInputDto { SpendNumber = spend.SpendNumber };
+                        result = HttpHelper.Request(ApiConstants.Spend_UndoCustomerSpend, model.ModelToJson());
                         var undoSpendResponse = HttpHelper.JsonToModel<BaseResponse>(result.message);
                         if (undoSpendResponse.Code != BusinessStatusCode.Success)
                         {
-                            UIMessageBox.ShowError($"{ApiConstants.Spend_UndoCustomerSpend}+接口服务异常，请提交Issue或尝试更新版本！");
+                            AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Spend_UndoCustomerSpend}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
                         var sellThing = new UpdateSellThingInputDto { ProductName = s.ProductName, ProductPrice = s.ProductPrice, Stock = inboundStock, ProductNumber = s.ProductNumber, Specification = s.Specification };
-                        result = HttpHelper.Request(ApiConstants.Sellthing_UpdateSellthingInfo, HttpHelper.ModelToJson(sellThing));
+                        result = HttpHelper.Request(ApiConstants.Sellthing_UpdateSellthingInfo, sellThing.ModelToJson());
                         var updateResponse = HttpHelper.JsonToModel<BaseResponse>(result.message);
                         if (updateResponse.Code != BusinessStatusCode.Success)
                         {
-                            UIMessageTip.ShowError("撤销失败！", 1000);
                             RecordHelper.Record($"接口异常。Message：\n{updateResponse.Message}", Common.Core.LogLevel.Critical);
-                            UIMessageBox.ShowError($"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
+                            AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Sellthing_UpdateSellthingInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                             return;
                         }
-                        UIMessageTip.ShowOk("撤销成功！", 1000);
+                        AntdUI.Modal.open(this, UIMessageConstant.Success, "撤销成功！");
                         #region 获取添加操作日志所需的信息
                         RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "撤销了消费商品:" + txtSellName.Text + "操作！", Common.Core.LogLevel.Warning);
                         #endregion
@@ -334,12 +341,12 @@ namespace EOM.TSHotelManagement.FormUI
                 }
                 else
                 {
-                    UIMessageTip.ShowError("操作取消！", 1000);
+                    AntdUI.Modal.open(this, UIMessageConstant.Warning, "操作取消！");
                 }
             }
             else
             {
-                UIMessageBox.Show("请选择要删除的消费记录！", "提示信息", UIStyle.Red);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "请选择要删除的消费记录！");
             }
         }
 
@@ -366,7 +373,7 @@ namespace EOM.TSHotelManagement.FormUI
             string room = txtRoomNo.Text.Trim();
             if (string.IsNullOrWhiteSpace(room) == true)
             {
-                UIMessageTip.ShowWarning("请输入消费房间号！", 1000);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "请输入消费房间号！");
                 return;
             }
             dic = new Dictionary<string, string>()
@@ -377,7 +384,7 @@ namespace EOM.TSHotelManagement.FormUI
             var checkResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
             if (checkResponse.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             ReadRoomOutputDto r = checkResponse.Data;
@@ -414,7 +421,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (lblState.Visible == false)
             {
-                UIMessageBox.Show("请先输入消费的房间！", "提示信息", UIStyle.Red);
+                AntdUI.Modal.open(this, UIMessageConstant.Warning, "请先输入消费的房间！");
                 return;
             }
             if (e.Record is IList<AntdUI.AntItem> data)

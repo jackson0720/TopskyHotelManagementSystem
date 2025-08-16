@@ -29,7 +29,7 @@ using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.FormUI.AppUserControls;
 using EOM.TSHotelManagement.FormUI.Properties;
 using EOM.TSHotelManagement.Shared;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -150,7 +150,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                UIMessageBox.ShowError($"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}");
             }
         }
 
@@ -235,11 +235,11 @@ namespace EOM.TSHotelManagement.FormUI
 
                 if (listRoomTypes == null)
                 {
-                    UIMessageBox.ShowError("Room types list is null");
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, "Room types list is null");
                     return;
                 }
 
-                flpRoomTypes.Clear();
+                flpRoomTypes.Controls.Clear();
 
                 AddRoomTypeButton("全部房间", "btnAll", btnAll_Click);
                 foreach (var type in listRoomTypes)
@@ -249,7 +249,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                UIMessageBox.ShowError($"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}");
             }
         }
 
@@ -264,7 +264,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void btnRoomType_Click(object? sender, EventArgs e)
         {
-            if (sender is UIButton button)
+            if (sender is AntdUI.Button button)
             {
                 string buttonName = button.Text;
                 LoadData(buttonName);
@@ -300,7 +300,7 @@ namespace EOM.TSHotelManagement.FormUI
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
                 if (response.Code != BusinessStatusCode.Success)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = response.Data.Items;
@@ -317,14 +317,14 @@ namespace EOM.TSHotelManagement.FormUI
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
                 if (response.Code != BusinessStatusCode.Success)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByTypeName}+接口服务异常，请提交Issue或尝试更新版本！");
+                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomByTypeName}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = response.Data.Items;
             }
             for (int i = 0; i < romsty.Count; i++)
             {
-                room = new ucRoom();
+                room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName ?? "      ");
                 room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];
@@ -352,13 +352,13 @@ namespace EOM.TSHotelManagement.FormUI
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
             if (response.Code != BusinessStatusCode.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Room_SelectRoomByRoomState}+接口服务异常，请提交Issue或尝试更新版本！");
+                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomByRoomState}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             romsty = response.Data.Items;
             for (int i = 0; i < romsty.Count; i++)
             {
-                room = new ucRoom();
+                room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName);
                 room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];

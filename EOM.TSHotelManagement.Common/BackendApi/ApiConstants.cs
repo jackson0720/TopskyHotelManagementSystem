@@ -11,6 +11,7 @@
         public const string Base_SelectCustoTypeAllCanUse = "Base/SelectCustoTypeAllCanUse";
         public const string Base_SelectPassPortTypeAllCanUse = "Base/SelectPassPortTypeAllCanUse";
         public const string Base_SelectRoomStateAll = "Base/SelectRoomStateAll";
+        public const string Base_SelectReserTypeAll = "Base/SelectReserTypeAll";
 
         // Employee URLs
         public const string Employee_SelectEmployeeInfoByEmployeeId = "Employee/SelectEmployeeInfoByEmployeeId";

@@ -29,9 +29,12 @@ namespace EOM.TSHotelManagement.FormUI
 {
     public partial class FrmAbout : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
         public FrmAbout()
         {
             InitializeComponent();
+
+            whAboutHeader = new ucWindowHeader("关于", string.Empty, (Image)resources.GetObject("FrmAbout.Icon")!);
         }
 
         #region 记录鼠标和窗体坐标的方法

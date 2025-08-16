@@ -22,14 +22,16 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.CodeLib;
+using jvncorelib.EntityLib;
 using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmEditInputs : UIEditForm
+    public partial class FrmEditInputs : Window
     {
         private LoadingProgress? _loadingProgress;
         public FrmEditInputs(LoadingProgress? loadingProgress = null)
@@ -44,7 +46,7 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmEditInputs_Load(object sender, EventArgs e)
         {
             string cardId = new UniqueCode().GetNewId("TS");
-            txtCustoNo.Text = cardId;
+            txtCustomerId.Text = cardId;
 
             #region 加载客户类型信息
             var result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
@@ -55,11 +57,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             var lstDataGrid = customerTypes.Data.Items;
-            this.cbCustoType.DataSource = lstDataGrid;
-            this.cbCustoType.DisplayMember = nameof(ReadCustoTypeOutputDto.CustomerTypeName);
-            this.cbCustoType.ValueMember = nameof(ReadCustoTypeOutputDto.CustomerType);
-            this.cbCustoType.SelectedIndex = 0;
-            this.cbCustoType.ReadOnly = true;
+            this.cboCustomerType.Items.AddRange(lstDataGrid.Select(item => new AntdUI.SelectItem(item.CustomerTypeName, item.CustomerType)).ToArray());
             #endregion
 
             #region 加载证件类型信息
@@ -71,10 +69,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             var passPorts = passportTypes.Data.Items;
-            this.cbPassportType.DataSource = passPorts;
-            this.cbPassportType.DisplayMember = nameof(ReadPassportTypeOutputDto.PassportName);
-            this.cbPassportType.ValueMember = nameof(ReadPassportTypeOutputDto.PassportId);
-            this.cbPassportType.SelectedIndex = 0;
+            this.cboPassportType.Items.AddRange(passPorts.Select(item => new AntdUI.SelectItem(item.PassportName, item.PassportId)).ToArray());
             #endregion
 
             #region 加载性别信息
@@ -91,35 +86,31 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             var listSexType = genderTypes.Data.Items;
-            this.cbSex.DataSource = listSexType;
-            this.cbSex.DisplayMember = nameof(ReadGenderTypeOutputDto.Description);
-            this.cbSex.ValueMember = nameof(ReadGenderTypeOutputDto.Id);
-            this.cbSex.SelectedIndex = 0;
+            this.cboGender.Items.AddRange(listSexType.Select(item => new AntdUI.SelectItem(item.Description, item.Id)).ToArray());
             #endregion
 
             if (this.Text.Equals("修改客户信息"))
             {
-                txtCustoNo.Text = FrmCustomerManager.cm_CustoNo;
-                txtCustoName.Text = FrmCustomerManager.cm_CustoName;
-                txtCustoAdress.Text = FrmCustomerManager.cm_CustoAddress;
-                cbCustoType.SelectedValue = FrmCustomerManager.cm_CustoType;
-                cbSex.SelectedValue = FrmCustomerManager.cm_CustoSex;
-                cbPassportType.SelectedValue = FrmCustomerManager.cm_PassportType;
-                dtpBirthday.Value = FrmCustomerManager.cm_CustoBirth;
-                txtCardID.Text = FrmCustomerManager.cm_CustoIdCardNumber;
-                txtCustoAdress.Text = FrmCustomerManager.cm_CustoAddress;
-                txtTel.Text = FrmCustomerManager.cm_CustoTel;
-                btnOK.Text = "修改";
+                txtCustomerId.Text = FrmCustomerManager.cm_CustoNo;
+                txtCustomerName.Text = FrmCustomerManager.cm_CustoName;
+                txtCustomerAddress.Text = FrmCustomerManager.cm_CustoAddress;
+                cboCustomerType.SelectedValue = FrmCustomerManager.cm_CustoType;
+                cboGender.SelectedValue = FrmCustomerManager.cm_CustoSex;
+                cboPassportType.SelectedValue = FrmCustomerManager.cm_PassportType;
+                dtpDateOfBirth.Value = FrmCustomerManager.cm_CustoBirth;
+                txtCustomerCardID.Text = FrmCustomerManager.cm_CustoIdCardNumber;
+                txtCustomerTel.Text = FrmCustomerManager.cm_CustoTel;
+                btnOk.Text = "修改";
 
-                this.ButtonOkClick -= new EventHandler(FrmEditInputs_ButtonOkClick);
-                this.ButtonOkClick += new EventHandler(btnOK_UpdClick);
+                this.btnOk.Click -= new EventHandler(FrmEditInputs_ButtonOkClick);
+                this.btnOk.Click += new EventHandler(btnOK_UpdClick);
 
-                if (!cbPassportType.SelectedText.ToString().Contains("身份证"))
-                {
-                    dtpBirthday.Enabled = true;
-                    dtpBirthday.ReadOnly = false;
-                    return;
-                }
+                //if (!cboPassportType.SelectedValue.ToString().Contains("身份证"))
+                //{
+                //    dtpBirthday.Enabled = true;
+                //    dtpBirthday.ReadOnly = false;
+                //    return;
+                //}
 
             }
         }
@@ -129,20 +120,20 @@ namespace EOM.TSHotelManagement.FormUI
             UpdateCustomerInputDto custo = new UpdateCustomerInputDto()
             {
                 Id = FrmCustomerManager.cm_CustoId,
-                CustomerNumber = txtCustoNo.Text,
-                CustomerName = txtCustoName.Text,
-                CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                DateOfBirth = DateOnly.FromDateTime(dtpBirthday.Value.Date),
-                CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
-                PassportId = Convert.ToInt32(cbPassportType.SelectedValue),
-                IdCardNumber = txtCardID.Text,
-                CustomerPhoneNumber = txtTel.Text,
-                CustomerAddress = txtCustoAdress.Text,
+                CustomerNumber = txtCustomerId.Text,
+                CustomerName = txtCustomerName.Text,
+                CustomerGender = Convert.ToInt32(cboGender.SelectedValue.ToString()),
+                DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(dtpDateOfBirth.Value).Date),
+                CustomerType = Convert.ToInt32(cboCustomerType.SelectedValue.ToString()),
+                PassportId = Convert.ToInt32(cboPassportType.SelectedValue),
+                IdCardNumber = txtCustomerCardID.Text,
+                CustomerPhoneNumber = txtCustomerTel.Text,
+                CustomerAddress = txtCustomerAddress.Text,
                 IsDelete = 0,
                 DataChgUsr = LoginInfo.WorkerNo,
             };
 
-            result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerInfo, HttpHelper.ModelToJson(custo));
+            result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerInfo, custo.ModelToJson());
             var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
             if (response.Code != BusinessStatusCode.Success)
             {
@@ -156,20 +147,6 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
             this.Close();
             FrmCustomerManager.ReloadCustomer(false);
-
-            foreach (Control Ctrol in this.Controls)
-            {
-                if (Ctrol is Sunny.UI.UITextBox)
-                {
-                    Ctrol.Text = "";
-                }
-                if (Ctrol is Sunny.UI.UIComboBox)
-                {
-                    this.cbSex.SelectedIndex = 0;
-                    this.cbCustoType.SelectedIndex = 0;
-                    this.cbPassportType.SelectedIndex = 0;
-                }
-            }
         }
 
         private void FrmEditInputs_ButtonOkClick(object sender, EventArgs e)
@@ -177,20 +154,20 @@ namespace EOM.TSHotelManagement.FormUI
             CreateCustomerInputDto custo = new CreateCustomerInputDto()
             {
                 DataInsDate = DateTime.Now,
-                CustomerNumber = txtCustoNo.Text,
-                CustomerName = txtCustoName.Text,
-                CustomerGender = Convert.ToInt32(cbSex.SelectedValue.ToString()),
-                DateOfBirth = dtpBirthday.Value.Date,
-                CustomerType = Convert.ToInt32(cbCustoType.SelectedValue.ToString()),
-                PassportId = Convert.ToInt32(cbPassportType.SelectedValue.ToString()),
-                IdCardNumber = txtCardID.Text,
-                CustomerPhoneNumber = txtTel.Text,
-                CustomerAddress = txtCustoAdress.Text,
+                CustomerNumber = txtCustomerId.Text,
+                CustomerName = txtCustomerName.Text,
+                CustomerGender = Convert.ToInt32(cboGender.SelectedValue.ToString()),
+                DateOfBirth = Convert.ToDateTime(dtpDateOfBirth.Value).Date,
+                CustomerType = Convert.ToInt32(cboCustomerType.SelectedValue.ToString()),
+                PassportId = Convert.ToInt32(cboPassportType.SelectedValue.ToString()),
+                IdCardNumber = txtCustomerCardID.Text,
+                CustomerPhoneNumber = txtCustomerTel.Text,
+                CustomerAddress = txtCustomerAddress.Text,
                 DataInsUsr = LoginInfo.WorkerNo,
                 IsDelete = 0
             };
 
-            result = HttpHelper.Request(ApiConstants.Customer_InsertCustomerInfo, HttpHelper.ModelToJson(custo));
+            result = HttpHelper.Request(ApiConstants.Customer_InsertCustomerInfo, custo.ModelToJson());
             var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
             if (response.Code != BusinessStatusCode.Success)
             {
@@ -203,47 +180,26 @@ namespace EOM.TSHotelManagement.FormUI
             RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, Common.Core.LogLevel.Critical);
             #endregion
             this.Close();
-
-
-            foreach (Control Ctrol in this.Controls)
-            {
-                if (Ctrol is Sunny.UI.UITextBox)
-                {
-                    Ctrol.Text = "";
-                }
-                if (Ctrol is Sunny.UI.UIComboBox)
-                {
-                    this.cbSex.SelectedIndex = 0;
-                    this.cbCustoType.SelectedIndex = 0;
-                    this.cbPassportType.SelectedIndex = 0;
-                }
-            }
-        }
-
-
-        private void FrmEditInputs_ButtonCancelClick(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void txtCardID_Validated(object sender, EventArgs e)
         {
             //获取得到输入的身份证号码
-            string identityCard = txtCardID.Text.Trim();
+            string identityCard = txtCustomerCardID.Text.Trim();
 
-            if (!cbPassportType.Text.ToString().Contains("身份证"))
+            if (!cboPassportType.Text.ToString().Contains("身份证"))
             {
-                dtpBirthday.Enabled = true;
-                dtpBirthday.ReadOnly = false;
+                dtpDateOfBirth.Enabled = true;
+                dtpDateOfBirth.ReadOnly = false;
                 return;
             }
             if (string.IsNullOrEmpty(identityCard))
             {
                 //身份证号码不能为空，如果为空返回
                 UIMessageBox.ShowError("身份证号码不能为空！");
-                if (txtCardID.CanFocus)
+                if (txtCustomerCardID.CanFocus)
                 {
-                    txtCardID.Focus();//设置当前输入焦点为txtCardID_identityCard
+                    txtCustomerCardID.Focus();//设置当前输入焦点为txtCardID_identityCard
                 }
                 return;
             }
@@ -253,9 +209,9 @@ namespace EOM.TSHotelManagement.FormUI
                 if (identityCard.Length != 15 && identityCard.Length != 18)
                 {
                     UIMessageBox.ShowWarning("身份证号码为15位或18位，请检查！");
-                    if (txtCardID.CanFocus)
+                    if (txtCustomerCardID.CanFocus)
                     {
-                        txtCardID.Focus();
+                        txtCustomerCardID.Focus();
                     }
                     return;
                 }
@@ -264,16 +220,16 @@ namespace EOM.TSHotelManagement.FormUI
             if (identityCard.Length == 18)
             {
                 var result = ApplicationUtil.SearchCode(identityCard);
-                if (result.message.IsNullOrEmpty()) //如果没有错误消息输出，则代表成功
+                if (string.IsNullOrEmpty(result.message)) //如果没有错误消息输出，则代表成功
                 {
                     try
                     {
-                        cbSex.Text = result.sex ?? string.Empty;
-                        txtCustoAdress.Text = result.address ?? string.Empty;
+                        cboGender.Text = result.sex ?? string.Empty;
+                        txtCustomerAddress.Text = result.address ?? string.Empty;
 
                         if (DateTime.TryParse(result.birthday, out DateTime parsedDate))
                         {
-                            dtpBirthday.Value = parsedDate;
+                            dtpDateOfBirth.Value = parsedDate;
                         }
                         else
                         {
@@ -285,10 +241,6 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         UIMessageBox.ShowError("请正确输入证件号码！");
                         return;
-                    }
-                    finally
-                    {
-                        cbPassportType.SelectedIndex = 0;
                     }
                 }
                 else
