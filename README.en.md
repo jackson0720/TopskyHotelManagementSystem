@@ -24,8 +24,6 @@
 
 2. ##### SQLSugar, the most popular ORM framework in China. [SQLSugar, Apache-2.0 License](https://gitee.com/dotnetchina/SqlSugar)
 
-3. ##### SunnyUI—SunnyUI.Net, based on C# .Net WinForm open-source control library, tool library, extension library, and multi-page development framework. [SunnyUI.Net, GPL3.0 License](https://gitee.com/yhuse/SunnyUI)
-
 4. ##### **RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0 License](https://github.com/restsharp/RestSharp)**
 
 5. ##### AntdUI——基于 Ant Design 设计语言的 Winform 界面库. AntdUI。[AntdUI,Apache-2.0 License](https://gitee.com/antdui/AntdUI)
@@ -36,7 +34,7 @@
 
 2. Bugs and comments are welcome!
 
-3. This system’s 95% of the pages are created based on the SunnyUI.Net control library, hereby specially declared!
+3. This system’s 95% of the pages are created based on the AntdUI.Net control library, hereby specially declared!
 
 4. Regarding the database script issue, please first go to the database script folder, choose either the MySQL version or PostgreSQL version folder to download the Data and Table files. In the database, execute the Table.sql first, then the Data.sql!
 
@@ -133,8 +131,18 @@ EOM.Client.TopSkyHotelManagerSystem
 **Download and install .NET SDK version 8 or above.**
 **Download and install Microsoft Visual Studio Professional 2022 or above, unzip the downloaded Zip package, and run the .sln file.**
 
-# :inbox_tray: Database Setup and Deployment (Local):
+#  :inbox_tray: Open Source Linsense：
 
-**Omitted. This project does not include backend business logic. For details, please refer to: [Business Logic Project](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.en.md)**
+[MIT Linsense](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE)
+
+#  :pray: Rely on the project's open source license：
+
+Fody [MIT Linsense](https://github.com/Fody/Fody/blob/master/License.txt)
+
+SQLSugar  [Apache-2.0 Linsense](https://gitee.com/dotnetchina/SqlSugar/blob/master/LICENSE)
+
+RestSharp [Apache-2.0 Linsense](https://github.com/restsharp/RestSharp/blob/dev/LICENSE.txt)
+
+AntdUI [Apache-2.0 Linsense](https://gitee.com/AntdUI/AntdUI/blob/main/LICENSE)
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)
