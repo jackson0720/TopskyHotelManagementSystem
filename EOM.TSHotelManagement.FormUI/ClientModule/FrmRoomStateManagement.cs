@@ -37,7 +37,7 @@ namespace EOM.TSHotelManagement.FormUI
         public FrmRoomStateManager()
         {
             InitializeComponent();
-            ucWindowHeader1 = new ucWindowHeader("房间状态管理", string.Empty, (Image)resources.GetObject("FrmRoomStateManager.Icon")!);
+            ucWindowHeader1.ApplySettingsWithoutMinimize("房间状态管理", string.Empty, (Image)resources.GetObject("FrmRoomStateManager.Icon")!);
         }
 
         Dictionary<string, string> dic = null;
@@ -50,18 +50,16 @@ namespace EOM.TSHotelManagement.FormUI
             txtRoomNo.Text = ucRoom.rm_RoomNo;
             result = HttpHelper.Request(ApiConstants.Base_SelectRoomStateAll);
             var datas = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (datas.Code != 200)
+            if (datas.Success == false)
             {
-                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Base_SelectRoomStateAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectRoomStateAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboRoomState.Items.AddRange(datas.Data.Items.Select(item => new AntdUI.SelectItem(item.Name, item.Id)).ToArray());
-            //cboState.DisplayMember = nameof(EnumDto.Description);
-            //cboState.ValueMember = nameof(EnumDto.Id);
-            //cboState.SelectedIndex = 0;
+            cboRoomState.Items.AddRange(datas.Data.Items.Select(item => new AntdUI.SelectItem(item.Description, item.Id)).ToArray());
+            cboRoomState.SelectedIndex = 0;
         }
         #endregion
-        int selectedValue = 0;
+        int selectedValue = 1;
         #region 确定按钮点击事件
         private void btnOk_Click(object sender, EventArgs e)
         {
@@ -69,7 +67,7 @@ namespace EOM.TSHotelManagement.FormUI
             switch (selectedValue)
             {
                 case (int)RoomState.Occupied:
-                    AntdUI.Modal.open(this, UIMessageConstant.Warning, "不能设置为已住状态！");
+                    NotificationService.ShowWarning("不能设置为已住状态！");
                     break;
                 case (int)RoomState.Vacant:
                 case (int)RoomState.Maintenance:
@@ -78,18 +76,18 @@ namespace EOM.TSHotelManagement.FormUI
                     var updateRoom = new UpdateRoomInputDto { RoomNumber = txtRoomNo.Text.Trim(), RoomStateId = Convert.ToInt32(selectedValue) };
                     result = HttpHelper.Request(ApiConstants.Room_UpdateRoomStateByRoomNo, updateRoom.ModelToJson());
                     var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                    if (response.Code != BusinessStatusCode.Success)
+                    if (response.Success == false)
                     {
-                        AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_UpdateRoomStateByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                        NotificationService.ShowError($"{ApiConstants.Room_UpdateRoomStateByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
-                    AntdUI.Modal.open(this, UIMessageConstant.Success, "房间" + txtRoomNo.Text + "成功修改为" + cboRoomState.SelectedValue);
+                    NotificationService.ShowSuccess("房间" + txtRoomNo.Text + "成功修改为" + cboRoomState.Text);
                     FrmRoomManager.Reload("");
                     FrmRoomManager._RefreshRoomCount();
                     this.Close();
                     break;
                 default:
-                    AntdUI.Modal.open(this, UIMessageConstant.Warning, "请选择房间状态");
+                    NotificationService.ShowWarning("请选择房间状态");
                     break;
             }
 
@@ -98,7 +96,7 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void cboRoomState_SelectedValueChanged(object sender, ObjectNEventArgs e)
         {
-            selectedValue = Convert.ToInt32(e.Tag);
+            selectedValue = Convert.ToInt32(e.Value);
         }
     }
 }

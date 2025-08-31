@@ -79,7 +79,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                AntdUI.Modal.open(this, "系统提示", $"检查更新时发生错误: {ex.Message}", TType.Info);
+                NotificationService.ShowError($"检查更新时发生错误: {ex.Message}");
                 OpenFallbackUrl();
             }
             finally
@@ -102,7 +102,7 @@ namespace EOM.TSHotelManagement.FormUI
             if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
             {
                 LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
-                AntdUI.Modal.open(this, "系统提示", "当前已是最新版本，无需更新！", TType.Info);
+                NotificationService.ShowSuccess("当前已是最新版本，无需更新！");
                 Task.Run(() => threadPro());
                 return;
             }
@@ -215,12 +215,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (OperationCanceledException)
             {
-                AntdUI.Modal.open(this, "系统提示", "网络连接超时，无法下载更新。", TType.Info);
+                NotificationService.ShowError("网络连接超时，无法下载更新。");
                 OpenFallbackUrl();
             }
             catch (Exception ex)
             {
-                AntdUI.Modal.open(this, "系统提示", $"下载更新时发生错误: {ex.Message}", TType.Info);
+                NotificationService.ShowError($"下载更新时发生错误: {ex.Message}");
                 OpenFallbackUrl();
             }
             return false;
@@ -250,7 +250,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"An error occurred while opening the browser: {ex.Message}", $"打开浏览器时发生错误: {ex.Message}"), TType.Error);
+                NotificationService.ShowError(LocalizationHelper.GetLocalizedString($"An error occurred while opening the browser: {ex.Message}", $"打开浏览器时发生错误: {ex.Message}"));
             }
         }
 
@@ -259,7 +259,7 @@ namespace EOM.TSHotelManagement.FormUI
             if (RuntimeInformation.OSArchitecture != Architecture.X64)
             {
                 lblTips.Text = LocalizationHelper.GetLocalizedString("Current Software only support x64 bit Architecture, running failure", "本应用仅支持x64位系统架构，运行失败");
-                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("Tips", "系统提示"), LocalizationHelper.GetLocalizedString("Current Software only support x64 bit Architecture, running failure", "本应用不支持x64位系统架构，运行失败"), TType.Info);
+                NotificationService.ShowError(LocalizationHelper.GetLocalizedString("Current Software only support x64 bit Architecture, running failure", "本应用不支持x64位系统架构，运行失败"));
                 Thread.Sleep(2000);
                 ExitApplication();
                 return;

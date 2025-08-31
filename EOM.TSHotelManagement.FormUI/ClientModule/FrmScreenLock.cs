@@ -1,10 +1,10 @@
-﻿using EOM.TSHotelManagement.Common;
+﻿using AntdUI;
+using EOM.TSHotelManagement.Common;
 using jvncorelib.EncryptorLib;
-using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmScreenLock : UIForm
+    public partial class FrmScreenLock : Window
     {
         public FrmScreenLock()
         {
@@ -25,7 +25,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (txtPassword.Text.Trim() == string.Empty)
             {
-                UIMessageBox.ShowError("密码不能为空，请重新输入！");
+                NotificationService.ShowError("密码不能为空，请重新输入！");
                 txtPassword.Focus();
                 return;
             }
@@ -36,7 +36,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             else
             {
-                UIMessageBox.ShowError("密码错误，请重新输入！");
+                NotificationService.ShowError("密码错误，请重新输入！");
                 txtPassword.Focus();
                 txtPassword.Clear();
             }

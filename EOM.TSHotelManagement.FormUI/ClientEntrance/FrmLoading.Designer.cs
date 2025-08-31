@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLoading));
             lblTips = new AntdUI.Label();
             lbInternetSoftwareVersion = new AntdUI.Label();
             lblLocalSoftwareVersion = new AntdUI.Label();
@@ -99,6 +100,7 @@
             // 
             // lblReleaseLog
             // 
+            lblReleaseLog.AutoScroll = true;
             lblReleaseLog.Location = new Point(12, 164);
             lblReleaseLog.Multiline = true;
             lblReleaseLog.Name = "lblReleaseLog";
@@ -118,6 +120,7 @@
             Controls.Add(label1);
             Controls.Add(lblTips);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmLoading";
@@ -128,8 +131,6 @@
         }
 
         #endregion
-        private Sunny.UI.UILabel lblDllVersion;
-        private Sunny.UI.UILabel uiLabel3;
         private AntdUI.Label lblTips;
         private AntdUI.Label lbInternetSoftwareVersion;
         private AntdUI.Label lblLocalSoftwareVersion;

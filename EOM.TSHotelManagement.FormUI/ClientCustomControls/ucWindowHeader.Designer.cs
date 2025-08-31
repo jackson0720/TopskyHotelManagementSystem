@@ -63,24 +63,26 @@
             btnMinimize.Anchor = AnchorStyles.Right;
             btnMinimize.BackColor = Color.FromArgb(22, 119, 255);
             btnMinimize.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
-            btnMinimize.Location = new Point(337, 5);
+            btnMinimize.Location = new Point(333, 3);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.Size = new Size(23, 25);
             btnMinimize.TabIndex = 141;
             btnMinimize.Text = "—";
             btnMinimize.Type = AntdUI.TTypeMini.Info;
+            btnMinimize.Click += btnMinimize_Click;
             // 
             // btnClose
             // 
             btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnClose.BackColor = Color.FromArgb(22, 119, 255);
             btnClose.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
-            btnClose.Location = new Point(366, 6);
+            btnClose.Location = new Point(362, 4);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(23, 25);
             btnClose.TabIndex = 140;
             btnClose.Text = "×";
             btnClose.Type = AntdUI.TTypeMini.Info;
+            btnClose.Click += btnClose_Click;
             // 
             // tlpContainer
             // 
@@ -105,6 +107,7 @@
             Controls.Add(tlpContainer);
             Name = "ucWindowHeader";
             Size = new Size(391, 35);
+            Load += ucWindowHeader_Load;
             phCustoHeader.ResumeLayout(false);
             ResumeLayout(false);
         }

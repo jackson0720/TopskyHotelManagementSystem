@@ -56,90 +56,90 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label10.Location = new Point(14, 505);
+            label10.Font = new Font("Noto Sans SC", 14.2499981F);
+            label10.Location = new Point(30, 508);
             label10.Name = "label10";
-            label10.Size = new Size(88, 25);
+            label10.Size = new Size(85, 19);
             label10.TabIndex = 122;
             label10.Text = "居住地址";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label9.Location = new Point(403, 450);
+            label9.Font = new Font("Noto Sans SC", 14.2499981F);
+            label9.Location = new Point(408, 457);
             label9.Name = "label9";
-            label9.Size = new Size(88, 25);
+            label9.Size = new Size(85, 19);
             label9.TabIndex = 121;
             label9.Text = "联系方式";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label8.Location = new Point(403, 399);
+            label8.Font = new Font("Noto Sans SC", 14.2499981F);
+            label8.Location = new Point(408, 404);
             label8.Name = "label8";
-            label8.Size = new Size(88, 25);
+            label8.Size = new Size(85, 19);
             label8.TabIndex = 120;
             label8.Text = "证件号码";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label7.Location = new Point(403, 348);
+            label7.Font = new Font("Noto Sans SC", 14.2499981F);
+            label7.Location = new Point(408, 354);
             label7.Name = "label7";
-            label7.Size = new Size(88, 25);
+            label7.Size = new Size(85, 19);
             label7.TabIndex = 119;
             label7.Text = "证件类型";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label6.Location = new Point(403, 297);
+            label6.Font = new Font("Noto Sans SC", 14.2499981F);
+            label6.Location = new Point(408, 304);
             label6.Name = "label6";
-            label6.Size = new Size(88, 25);
+            label6.Size = new Size(85, 19);
             label6.TabIndex = 118;
             label6.Text = "客户类型";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label5.Location = new Point(16, 453);
+            label5.Font = new Font("Noto Sans SC", 14.2499981F);
+            label5.Location = new Point(28, 457);
             label5.Name = "label5";
-            label5.Size = new Size(88, 25);
+            label5.Size = new Size(85, 19);
             label5.TabIndex = 117;
             label5.Text = "出生日期";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label4.Location = new Point(16, 401);
+            label4.Font = new Font("Noto Sans SC", 14.2499981F);
+            label4.Location = new Point(38, 406);
             label4.Name = "label4";
-            label4.Size = new Size(86, 25);
+            label4.Size = new Size(77, 19);
             label4.TabIndex = 116;
             label4.Text = "性      别";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label3.Location = new Point(16, 349);
+            label3.Font = new Font("Noto Sans SC", 14.2499981F);
+            label3.Location = new Point(30, 355);
             label3.Name = "label3";
-            label3.Size = new Size(88, 25);
+            label3.Size = new Size(85, 19);
             label3.TabIndex = 115;
             label3.Text = "客户姓名";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label2.Location = new Point(16, 297);
+            label2.Font = new Font("Noto Sans SC", 14.2499981F);
+            label2.Location = new Point(30, 304);
             label2.Name = "label2";
-            label2.Size = new Size(88, 25);
+            label2.Size = new Size(85, 19);
             label2.TabIndex = 114;
             label2.Text = "客户编号";
             // 
@@ -155,7 +155,6 @@
             // 
             // btnPg
             // 
-            btnPg.Current = 0;
             btnPg.Location = new Point(14, 253);
             btnPg.Name = "btnPg";
             btnPg.PageSize = 15;
@@ -188,7 +187,7 @@
             // 
             cboGender.DropDownArrow = true;
             cboGender.Font = new Font("Noto Sans SC", 12F);
-            cboGender.Location = new Point(121, 394);
+            cboGender.Location = new Point(121, 396);
             cboGender.Name = "cboGender";
             cboGender.Placement = AntdUI.TAlignFrom.Bottom;
             cboGender.Size = new Size(251, 40);
@@ -198,7 +197,7 @@
             // txtCustomerName
             // 
             txtCustomerName.Font = new Font("Noto Sans SC", 12F);
-            txtCustomerName.Location = new Point(121, 341);
+            txtCustomerName.Location = new Point(121, 343);
             txtCustomerName.Name = "txtCustomerName";
             txtCustomerName.Size = new Size(252, 45);
             txtCustomerName.TabIndex = 155;
@@ -223,7 +222,7 @@
             // txtCustomerTel
             // 
             txtCustomerTel.Font = new Font("Noto Sans SC", 12F);
-            txtCustomerTel.Location = new Point(499, 440);
+            txtCustomerTel.Location = new Point(501, 441);
             txtCustomerTel.Name = "txtCustomerTel";
             txtCustomerTel.Size = new Size(250, 45);
             txtCustomerTel.TabIndex = 158;
@@ -231,7 +230,7 @@
             // txtCustomerCardID
             // 
             txtCustomerCardID.Font = new Font("Noto Sans SC", 12F);
-            txtCustomerCardID.Location = new Point(499, 389);
+            txtCustomerCardID.Location = new Point(501, 389);
             txtCustomerCardID.Name = "txtCustomerCardID";
             txtCustomerCardID.Size = new Size(250, 45);
             txtCustomerCardID.TabIndex = 159;
@@ -241,7 +240,7 @@
             // 
             cboPassportType.DropDownArrow = true;
             cboPassportType.Font = new Font("Noto Sans SC", 12F);
-            cboPassportType.Location = new Point(499, 341);
+            cboPassportType.Location = new Point(501, 342);
             cboPassportType.Name = "cboPassportType";
             cboPassportType.Placement = AntdUI.TAlignFrom.Bottom;
             cboPassportType.Size = new Size(250, 40);
@@ -252,7 +251,7 @@
             // 
             cboCustomerType.DropDownArrow = true;
             cboCustomerType.Font = new Font("Noto Sans SC", 12F);
-            cboCustomerType.Location = new Point(499, 290);
+            cboCustomerType.Location = new Point(499, 295);
             cboCustomerType.Name = "cboCustomerType";
             cboCustomerType.Placement = AntdUI.TAlignFrom.Bottom;
             cboCustomerType.Size = new Size(250, 40);
@@ -295,8 +294,11 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmReserList";
+            Resizable = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "预约列表";
             Load += FrmReserList_Load;
             ResumeLayout(false);
@@ -313,7 +315,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private Sunny.UI.UIButton btnSelect;
         private AntdUI.Table dgvReserList;
         private AntdUI.Pagination btnPg;
         private ucWindowHeader ucWindowHeader1;

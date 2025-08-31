@@ -23,6 +23,7 @@
  */
 
 using AntdUI;
+using AntdUI.Svg;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Util;
@@ -78,23 +79,16 @@ namespace EOM.TSHotelManagement.FormUI
 
         public void StopUseExit()
         {
-            notifyIcon1.Visible = false;
-            tsmiExitSystem.Enabled = false;
+            niClientIcon.Visible = false;
         }
 
         public void StartUseExit()
         {
-            notifyIcon1.Visible = true;
-            tsmiExitSystem.Enabled = true;
+            niClientIcon.Visible = true;
         }
 
         public static string wk_WorkerName;
         public static string wk_WorkerNames;
-
-
-        #region 窗体渐变相关代码
-        private bool showing = true;
-        #endregion
 
         #region 记录鼠标和窗体坐标的方法
         private Point mouseOld;//鼠标旧坐标
@@ -102,7 +96,7 @@ namespace EOM.TSHotelManagement.FormUI
         #endregion
 
         #region 记录移动的窗体坐标
-        private void FrmMain_MouseDown_1(object sender, MouseEventArgs e)
+        private void FrmMain_MouseDown(object sender, MouseEventArgs e)
         {
             formOld = this.Location;
             mouseOld = MousePosition;
@@ -110,7 +104,7 @@ namespace EOM.TSHotelManagement.FormUI
         #endregion
 
         #region 记录窗体移动的坐标
-        private void FrmMain_MouseMove_1(object sender, MouseEventArgs e)
+        private void FrmMain_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -122,31 +116,6 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
-        #region 定时器：获取网络时间
-        private void tmrDate_Tick(object sender, EventArgs e)
-        {
-            lblTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm");
-
-            DateTime tmCur = Convert.ToDateTime(DateTime.Now);
-
-            if (tmCur.Hour < 8 || tmCur.Hour > 18)
-            {//晚上
-                label3.Text = "(*´▽｀)ノノ晚上好," + LoginInfo.WorkerName;
-                btnHello.BackgroundImage = Resources.月亮;
-            }
-            else if (tmCur.Hour > 8 && tmCur.Hour < 12)
-            {//上午
-                label3.Text = "上午好," + LoginInfo.WorkerName;
-                btnHello.BackgroundImage = Resources.早上;
-            }
-            else
-            {//下午
-                label3.Text = "下午好," + LoginInfo.WorkerName;
-                btnHello.BackgroundImage = Resources.咖啡;
-            }
-        }
-        #endregion
-
         ListOutputDto<ReadPromotionContentOutputDto> fonts = null;
         int fontn = 0;
         private void LoadFonts()
@@ -154,7 +123,7 @@ namespace EOM.TSHotelManagement.FormUI
             #region 从数据库读取文字滚动的内容
             result = HttpHelper.Request(ApiConstants.PromotionContent_SelectPromotionContents);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadPromotionContentOutputDto>>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
                 fonts = null;
             }
@@ -184,7 +153,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
 
             System.Windows.Forms.Application.Exit();
-            notifyIcon1.Dispose();
+            niClientIcon.Dispose();
         }
         #endregion
 
@@ -204,7 +173,7 @@ namespace EOM.TSHotelManagement.FormUI
             #region 菜单导航代码块
             result = HttpHelper.Request(ApiConstants.NavBar_NavBarList);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadNavBarOutputDto>>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
                 AntdUI.Message.error(this, "服务器维护中，请过会再试");
                 listData = null;
@@ -244,6 +213,23 @@ namespace EOM.TSHotelManagement.FormUI
             #endregion
         }
 
+        AntdUI.IContextMenuStripItem[] menulist = new AntdUI.IContextMenuStripItem[]
+        {
+            new AntdUI.ContextMenuStripItem(UIControlConstant.ChangeAccount).SetIcon(UIControlIconConstant.ChangeAccount),
+            new AntdUI.ContextMenuStripItem(UIControlConstant.PersonnalCenter).SetIcon(UIControlIconConstant.PersonnalCenter).SetSub(
+                    new AntdUI.ContextMenuStripItem(UIControlConstant.PersonnalInformation).SetIcon(UIControlIconConstant.PersonnalInformation),
+                    new AntdUI.ContextMenuStripItem(UIControlConstant.AccountSecurity).SetIcon(UIControlIconConstant.AccountSecurity),
+                    new AntdUI.ContextMenuStripItem(UIControlConstant.AccountAvator).SetIcon(UIControlIconConstant.AccountAvator)
+                        ),
+            new AntdUI.ContextMenuStripItem(UIControlConstant.SystemLock).SetIcon(UIControlIconConstant.SystemLock),
+            new AntdUI.ContextMenuStripItem(UIControlConstant.UpdateLog).SetIcon(UIControlIconConstant.Log),
+            new AntdUI.ContextMenuStripItem(UIControlConstant.Help).SetIcon(UIControlIconConstant.Help).SetSub(
+                    new AntdUI.ContextMenuStripItem(UIControlConstant.VisitOfficial).SetIcon(UIControlIconConstant.Internet)
+                        ),
+            new AntdUI.ContextMenuStripItem(UIControlConstant.About).SetIcon(UIControlIconConstant.About),
+            new AntdUI.ContextMenuStripItem(UIControlConstant.ExitSystem).SetIcon(UIControlIconConstant.Exit)
+        };
+
         #region 窗体加载事件方法
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -251,35 +237,30 @@ namespace EOM.TSHotelManagement.FormUI
 
             lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + " V" + ApplicationUtil.GetApplicationVersion();
 
-            tmrDate.Enabled = true;
-
             LoadNavBar();
 
             LoadFonts();
 
-            lblTime.Text = Convert.ToDateTime(DateTime.Now).ToString("yyyy-MM-dd HH:mm");
+            DateTime tmCur = DateTime.Now;
 
-            DateTime tmCur = Convert.ToDateTime(DateTime.Now);
+            int currentHour = tmCur.Hour;
 
             if (tmCur.Hour < 8 || tmCur.Hour > 18)
             {
-                label3.Text = "(*´▽｀)ノノ晚上好 " + LoginInfo.WorkerName;
-                btnHello.BackgroundImage = Resources.月亮;
+                lbHello.Text = "(*´▽｀)ノノ晚上好 " + LoginInfo.WorkerName;
             }
             else if (tmCur.Hour > 8 && tmCur.Hour < 12)
             {
-                label3.Text = "(*´▽｀)ノノ上午好 " + LoginInfo.WorkerName;
-                btnHello.BackgroundImage = Resources.早上;
+                lbHello.Text = "(*´▽｀)ノノ上午好 " + LoginInfo.WorkerName;
             }
             else
             {
-                label3.Text = "(*´▽｀)ノノ下午好 " + LoginInfo.WorkerName;
-                btnHello.BackgroundImage = Resources.咖啡;
+                lbHello.Text = "(*´▽｀)ノノ下午好 " + LoginInfo.WorkerName;
             }
 
             pnlCheckInfo.Visible = false;
 
-            notifyIcon1.Text = "TS酒店管理系统-" + LoginInfo.WorkerName + "-版本号：" + ApplicationUtil.GetApplicationVersion();
+            niClientIcon.Text = "TS酒店管理系统 - " + LoginInfo.WorkerName + " - 版本号：" + ApplicationUtil.GetApplicationVersion();
             wk_WorkerName = LoginInfo.WorkerName;
 
             FrmRoomManager frmRoomManager = new FrmRoomManager
@@ -289,55 +270,101 @@ namespace EOM.TSHotelManagement.FormUI
             pnlMID.Controls.Add(frmRoomManager);
             frmRoomManager.Show();
 
-            checkEmployeeCheckInfo();
+            Dictionary<string, string> user = new Dictionary<string, string>()
+            {
+                { nameof(ReadEmployeeCheckInputDto.EmployeeId), LoginInfo.WorkerNo}
+            };
+
+            var result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo, user);
+            var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
+
+            if (response.Success == false)
+            {
+                AntdUI.Notification.open(new AntdUI.Notification.Config(this, UIMessageConstant.Error, $"打卡接口:{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}异常：{response.Message}", AntdUI.TType.Error, AntdUI.TAlignFrom.TR, Font)
+                {
+                    Radius = 10,
+                    FontStyleTitle = FontStyle.Bold,
+                    ShowInWindow = true
+                });
+                return;
+            }
+
+            bool isMorningShift = currentHour < 12;
+
+            bool shouldHaveChecked = isMorningShift ? response.Data.MorningChecked : response.Data.EveningChecked;
+            string shiftName = isMorningShift ? "早班" : "晚班";
+
+            linkLabel1.Text = shouldHaveChecked ? $"{shiftName}已打卡" : $"{shiftName}未打卡";
+            linkLabel1.ForeColor = shouldHaveChecked ? Color.Green : Color.Red;
+            linkLabel1.LinkColor = shouldHaveChecked ? Color.Green : Color.Red;
+
+            lblCheckDay.Text = Convert.ToString(response.Data.CheckDay);
+            pnlCheckInfo.Visible = true;
+
         }
         #endregion
 
-        #region 调用系统锁屏方法
-        private void tsmiLockScreen_Click(object sender, EventArgs e)
+        private void LeftKey(AntdUI.ContextMenuStripItem it)
         {
-            var lockForm = new FrmScreenLock();
-            lockForm.ShowDialog();
+            switch (it.Text)
+            {
+                case UIControlConstant.ChangeAccount:
+                    var dr = AntdUI.Modal.open(new AntdUI.Modal.Config(this, UIMessageConstant.Warning, LocalizationHelper.GetLocalizedString("Are you sure you want to switch accounts?", "你确定要切换账号吗？"), AntdUI.TType.Warn)
+                    {
+                        CancelText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Cancel, UIMessageConstant.Chs_Cancel),
+                        OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Yes, UIMessageConstant.Chs_Yes)
+                    });
+                    if (dr == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+                    break;
+                case UIControlConstant.SystemLock:
+                    FrmScreenLock frmScreenLock = new();
+                    frmScreenLock.ShowDialog();
+                    break;
+                case UIControlConstant.UpdateLog:
+                    AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("Update log", "更新日志"), LoginInfo.SoftwareReleaseLog, TType.Info);
+                    break;
+                case UIControlConstant.About:
+                    FrmAbout frmAbout = new();
+                    frmAbout.ShowDialog();
+                    break;
+                case UIControlConstant.ExitSystem:
+                    System.Windows.Forms.Application.Exit();
+                    break;
+                case UIControlConstant.VisitOfficial:
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "https://www.oscode.top",
+                        UseShellExecute = true
+                    });
+                    break;
+                case UIControlConstant.PersonnalInformation:
+                    FrmPersonnelInfo frmPersonnelInfo = new();
+                    frmPersonnelInfo.ShowDialog();
+                    break;
+                case UIControlConstant.AccountSecurity:
+                    FrmAccountSecurity frmAccountSecurity = new();
+                    frmAccountSecurity.ShowDialog();
+                    break;
+                case UIControlConstant.AccountAvator:
+                    FrmAvator frmAvator = new();
+                    frmAvator.ShowDialog();
+                    break;
+            }
         }
-        #endregion
-
-        #region 检查软件更新版本事件方法
-        private void tsmiCheckUpdate_Click(object sender, EventArgs e)
-        {
-        }
-        #endregion
-
-        #region 切换用户事件方法
-        private void tsmiChangeUser_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        #endregion
-
-        #region 退出酒店管理系统事件方法
-        private void tsmiExitSystem_Click(object sender, EventArgs e)
-        {
-            System.Windows.Forms.Application.Exit();
-
-        }
-        #endregion
-
-        #region 关于我们选项的事件方法
-        private void tsmiAboutUs_Click(object sender, EventArgs e)
-        {
-        }
-        #endregion
 
         #region 当窗体关闭后的事件方法
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            notifyIcon1.Dispose();
+            niClientIcon.Dispose();
         }
         #endregion
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            notifyIcon1.Dispose();
+            niClientIcon.Dispose();
             this.returnForm1.Visible = true;
         }
 
@@ -356,13 +383,13 @@ namespace EOM.TSHotelManagement.FormUI
             var result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo, user);
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
 
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
-                AntdUI.Modal.open(this, UIMessageConstant.Error, $"打卡接口:{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}异常：{response.Message}");
+                NotificationService.ShowError($"打卡接口:{ApiConstants.EmployeeCheck_SelectToDayCheckInfoByWorkerNo}异常：{response.Message}");
                 return;
             }
 
-            var tmCur = DateTime.Today;
+            var tmCur = DateTime.Now;
             int currentHour = tmCur.Hour;
             bool isMorningShift = currentHour < 12;
 
@@ -396,21 +423,21 @@ namespace EOM.TSHotelManagement.FormUI
 
                     result = HttpHelper.Request(ApiConstants.EmployeeCheck_AddCheckInfo, workerCheck.ModelToJson());
                     var checkResult = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                    if (checkResult.Code != BusinessStatusCode.Success)
+                    if (checkResult.Success == false)
                     {
-                        AntdUI.Modal.open(this, UIMessageConstant.Error, $"打卡接口{ApiConstants.EmployeeCheck_AddCheckInfo}异常：{checkResult.Message}");
+                        NotificationService.ShowError($"打卡接口{ApiConstants.EmployeeCheck_AddCheckInfo}异常：{checkResult.Message}");
                         return;
                     }
 
                     result = HttpHelper.Request(ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId, user);
                     response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeCheckOutputDto>>(result.message);
-                    if (response.Code != BusinessStatusCode.Success)
+                    if (response.Success == false)
                     {
-                        AntdUI.Modal.open(this, UIMessageConstant.Error, $"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
+                        NotificationService.ShowError($"打卡天数接口{ApiConstants.EmployeeCheck_SelectWorkerCheckDaySumByEmployeeId}异常：{response.Message}");
                         return;
                     }
 
-                    AntdUI.Modal.open(this, UIMessageConstant.Success, $"{shiftName}打卡成功！你已共打卡" + lblCheckDay.Text + "天");
+                    NotificationService.ShowSuccess($"{shiftName}打卡成功！你已共打卡" + lblCheckDay.Text + "天");
                     linkLabel1.Text = $"{shiftName}已打卡";
                     linkLabel1.ForeColor = Color.Green;
                     linkLabel1.LinkColor = Color.Green;
@@ -419,6 +446,8 @@ namespace EOM.TSHotelManagement.FormUI
 
             lblCheckDay.Text = Convert.ToString(response.Data.CheckDay);
             pnlCheckInfo.Visible = true;
+            lblCheckDay.Refresh();
+            this.Refresh();
         }
 
         private void lblClose_Click(object sender, EventArgs e)
@@ -426,41 +455,14 @@ namespace EOM.TSHotelManagement.FormUI
             pnlCheckInfo.Visible = false;
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void tsmiMySpace_Click(object sender, EventArgs e)
-        {
-            FrmMySpace frmMySpace = new FrmMySpace();
-            frmMySpace.Text = LoginInfo.WorkerName + "的个人中心";
-            frmMySpace.Show();
-        }
-
         public void CloseMine()
         {
             this.Close();
         }
 
-        private void picLogo_Click(object sender, EventArgs e)
+        private void niClientIcon_BalloonTipClosed(object sender, EventArgs e)
         {
-        }
-
-        private void tsmiLoginBackSystem_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void btnSetting_Click(object sender, EventArgs e)
-        {
-            cmsMain.Show(Cursor.Position);
-        }
-
-        private void notifyIcon1_BalloonTipClosed(object sender, EventArgs e)
-        {
-            notifyIcon1.Dispose();
+            niClientIcon.Dispose();
         }
 
         private void cpUITheme_ValueChanged(object sender, ColorEventArgs e)
@@ -504,24 +506,24 @@ namespace EOM.TSHotelManagement.FormUI
 
         }
 
-        private void tsmiUpdateLog_Click(object sender, EventArgs e)
+        private void btnSetting_MouseClick(object sender, MouseEventArgs e)
         {
-            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("Update log", "更新日志"), LoginInfo.SoftwareReleaseLog, TType.Info);
-        }
-
-        private void tsmiAccessOfficial_Click(object sender, EventArgs e)
-        {
-            Process.Start(new ProcessStartInfo
+            if (e.Button == MouseButtons.Left)
             {
-                FileName = "https://www.oscode.top",
-                UseShellExecute = true
-            });
+                AntdUI.ContextMenuStrip.Config config = new AntdUI.ContextMenuStrip.Config(this, LeftKey, menulist);
+                config.Font = new Font("Noto Sans SC", 9f, FontStyle.Bold);
+                AntdUI.ContextMenuStrip.open(config);
+            }
         }
 
-        private void tsmiAbout_Click(object sender, EventArgs e)
+        private void niClientIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            FrmAbout frmAbout = new FrmAbout();
-            frmAbout.ShowDialog();
+            if (e.Button == MouseButtons.Right)
+            {
+                AntdUI.ContextMenuStrip.Config config = new AntdUI.ContextMenuStrip.Config(this, LeftKey, menulist);
+                config.Font = new Font("Noto Sans SC", 9f, FontStyle.Bold);
+                AntdUI.ContextMenuStrip.open(config);
+            }
         }
     }
 }

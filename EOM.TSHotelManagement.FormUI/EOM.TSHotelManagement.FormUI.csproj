@@ -37,17 +37,11 @@
     <Compile Update="ClientModule\FrmCheckIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ClientModule\FrmCheckOutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="AppFunction\FrmCustoManager.cs" />
     <Compile Update="AppFunction\FrmCustomerManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ClientModule\FrmEditInputs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ClientModule\FrmMySpace.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ClientModule\FrmReserList.cs">
@@ -118,11 +112,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="antdui" Version="2.0.17" />
+		<PackageReference Include="antdui" Version="2.1.1" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Costura.Fody" Version="6.0.0" PrivateAssets="All" />
 		<PackageReference Include="Fody" Version="6.9.2" PrivateAssets="All" />
-		<PackageReference Include="SunnyUI" Version="3.6.5" />
 	</ItemGroup>
 	<ItemGroup>
 		<FodyWeavers Include="Costura" />

@@ -27,17 +27,22 @@ using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
-using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
 {
     public partial class FrmEditInputs : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditInputs));
         private LoadingProgress? _loadingProgress;
         public FrmEditInputs(LoadingProgress? loadingProgress = null)
         {
             InitializeComponent();
             _loadingProgress = loadingProgress;
+
+            ucWindowHeader1.ApplySettingsWithoutMinimize(
+                this.Text.Contains("修改") ? "修改客户信息" : "添加客户信息",
+                string.Empty,
+                (Image)resources.GetObject("FrmEditInputs.Icon")!);
         }
 
         Dictionary<string, string> dic = null;
@@ -51,9 +56,9 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载客户类型信息
             var result = HttpHelper.Request(ApiConstants.Base_SelectCustoTypeAllCanUse);
             var customerTypes = HttpHelper.JsonToModel<ListOutputDto<ReadCustoTypeOutputDto>>(result.message);
-            if (customerTypes.Code != BusinessStatusCode.Success)
+            if (customerTypes.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectCustoTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var lstDataGrid = customerTypes.Data.Items;
@@ -63,9 +68,9 @@ namespace EOM.TSHotelManagement.FormUI
             #region 加载证件类型信息
             result = HttpHelper.Request(ApiConstants.Base_SelectPassPortTypeAllCanUse);
             var passportTypes = HttpHelper.JsonToModel<ListOutputDto<ReadPassportTypeOutputDto>>(result.message);
-            if (passportTypes.Code != BusinessStatusCode.Success)
+            if (passportTypes.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectPassPortTypeAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var passPorts = passportTypes.Data.Items;
@@ -80,9 +85,9 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
             var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (genderTypes.Code != BusinessStatusCode.Success)
+            if (genderTypes.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var listSexType = genderTypes.Data.Items;
@@ -135,13 +140,13 @@ namespace EOM.TSHotelManagement.FormUI
 
             result = HttpHelper.Request(ApiConstants.Customer_UpdCustomerInfo, custo.ModelToJson());
             var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
-                UIMessageBox.Show("修改失败", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
+                NotificationService.ShowError("修改失败");
                 return;
             }
 
-            UIMessageBox.Show("修改成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
+            NotificationService.ShowSuccess("修改成功");
             #region 获取添加操作日志所需的信息
             RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改了一名客户信息，客户编号为：" + custo.CustomerNumber, Common.Core.LogLevel.Critical);
             #endregion
@@ -169,12 +174,12 @@ namespace EOM.TSHotelManagement.FormUI
 
             result = HttpHelper.Request(ApiConstants.Customer_InsertCustomerInfo, custo.ModelToJson());
             var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
-                UIMessageBox.Show($"添加失败\n{response.Message}", "系统提示", UIStyle.Red, UIMessageBoxButtons.OK);
+                NotificationService.ShowError($"添加失败\n{response.Message}");
                 return;
             }
-            UIMessageBox.Show("添加成功", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
+            NotificationService.ShowSuccess("添加成功");
             FrmCustomerManager.ReloadCustomer(false);
             #region 获取添加操作日志所需的信息
             RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "添加了一名客户，客户编号为：" + custo.CustomerNumber, Common.Core.LogLevel.Critical);
@@ -196,7 +201,7 @@ namespace EOM.TSHotelManagement.FormUI
             if (string.IsNullOrEmpty(identityCard))
             {
                 //身份证号码不能为空，如果为空返回
-                UIMessageBox.ShowError("身份证号码不能为空！");
+                NotificationService.ShowError("身份证号码不能为空！");
                 if (txtCustomerCardID.CanFocus)
                 {
                     txtCustomerCardID.Focus();//设置当前输入焦点为txtCardID_identityCard
@@ -208,11 +213,7 @@ namespace EOM.TSHotelManagement.FormUI
                 //身份证号码只能为15位或18位其它不合法
                 if (identityCard.Length != 15 && identityCard.Length != 18)
                 {
-                    UIMessageBox.ShowWarning("身份证号码为15位或18位，请检查！");
-                    if (txtCustomerCardID.CanFocus)
-                    {
-                        txtCustomerCardID.Focus();
-                    }
+                    NotificationService.ShowWarning("身份证号码为15位或18位，请检查！");
                     return;
                 }
             }
@@ -233,19 +234,19 @@ namespace EOM.TSHotelManagement.FormUI
                         }
                         else
                         {
-                            UIMessageBox.ShowError("请正确输入证件号码！");
+                            NotificationService.ShowError("请正确输入证件号码！");
                             return;
                         }
                     }
                     catch
                     {
-                        UIMessageBox.ShowError("请正确输入证件号码！");
+                        NotificationService.ShowError("请正确输入证件号码！");
                         return;
                     }
                 }
                 else
                 {
-                    UIMessageBox.ShowError(result.message);
+                    NotificationService.ShowError(result.message);
                     return;
                 }
             }

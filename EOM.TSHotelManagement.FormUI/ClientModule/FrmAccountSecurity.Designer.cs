@@ -36,13 +36,14 @@
             avatar1 = new AntdUI.Avatar();
             btnUpdatePassword = new AntdUI.Button();
             txtNewPassword = new AntdUI.Input();
+            ucWindowHeader1 = new ucWindowHeader();
             SuspendLayout();
             // 
             // avatar3
             // 
             avatar3.Image = (Image)resources.GetObject("avatar3.Image");
             avatar3.ImageFit = AntdUI.TFit.None;
-            avatar3.Location = new Point(260, 156);
+            avatar3.Location = new Point(16, 135);
             avatar3.Name = "avatar3";
             avatar3.Size = new Size(45, 43);
             avatar3.TabIndex = 54;
@@ -52,7 +53,7 @@
             // 
             txtOldPassword.BackColor = Color.White;
             txtOldPassword.Font = new Font("Microsoft YaHei UI", 14F);
-            txtOldPassword.Location = new Point(303, 153);
+            txtOldPassword.Location = new Point(59, 132);
             txtOldPassword.Name = "txtOldPassword";
             txtOldPassword.PasswordChar = '*';
             txtOldPassword.PasswordCopy = true;
@@ -63,7 +64,7 @@
             // 
             // lblEmployeeId
             // 
-            lblEmployeeId.Location = new Point(303, 83);
+            lblEmployeeId.Location = new Point(59, 62);
             lblEmployeeId.Name = "lblEmployeeId";
             lblEmployeeId.Size = new Size(238, 43);
             lblEmployeeId.TabIndex = 52;
@@ -74,7 +75,7 @@
             // 
             avatar2.Image = (Image)resources.GetObject("avatar2.Image");
             avatar2.ImageFit = AntdUI.TFit.None;
-            avatar2.Location = new Point(260, 236);
+            avatar2.Location = new Point(16, 215);
             avatar2.Name = "avatar2";
             avatar2.Size = new Size(45, 43);
             avatar2.TabIndex = 51;
@@ -84,7 +85,7 @@
             // 
             avatar1.Image = (Image)resources.GetObject("avatar1.Image");
             avatar1.ImageFit = AntdUI.TFit.None;
-            avatar1.Location = new Point(260, 83);
+            avatar1.Location = new Point(16, 62);
             avatar1.Name = "avatar1";
             avatar1.Size = new Size(45, 43);
             avatar1.TabIndex = 50;
@@ -93,9 +94,9 @@
             // btnUpdatePassword
             // 
             btnUpdatePassword.Font = new Font("Microsoft YaHei UI", 12F);
-            btnUpdatePassword.Location = new Point(313, 310);
+            btnUpdatePassword.Location = new Point(76, 289);
             btnUpdatePassword.Name = "btnUpdatePassword";
-            btnUpdatePassword.Size = new Size(191, 57);
+            btnUpdatePassword.Size = new Size(161, 51);
             btnUpdatePassword.TabIndex = 49;
             btnUpdatePassword.Text = "修改密码";
             btnUpdatePassword.Type = AntdUI.TTypeMini.Primary;
@@ -105,7 +106,7 @@
             // 
             txtNewPassword.BackColor = Color.White;
             txtNewPassword.Font = new Font("Microsoft YaHei UI", 14F);
-            txtNewPassword.Location = new Point(303, 232);
+            txtNewPassword.Location = new Point(59, 211);
             txtNewPassword.Name = "txtNewPassword";
             txtNewPassword.PasswordChar = '*';
             txtNewPassword.PasswordCopy = true;
@@ -114,12 +115,20 @@
             txtNewPassword.Size = new Size(238, 52);
             txtNewPassword.TabIndex = 48;
             // 
+            // ucWindowHeader1
+            // 
+            ucWindowHeader1.Location = new Point(-1, -1);
+            ucWindowHeader1.Name = "ucWindowHeader1";
+            ucWindowHeader1.Size = new Size(313, 33);
+            ucWindowHeader1.TabIndex = 55;
+            // 
             // FrmAccountSecurity
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(312, 353);
+            Controls.Add(ucWindowHeader1);
             Controls.Add(avatar3);
             Controls.Add(txtOldPassword);
             Controls.Add(lblEmployeeId);
@@ -127,7 +136,9 @@
             Controls.Add(avatar1);
             Controls.Add(btnUpdatePassword);
             Controls.Add(txtNewPassword);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAccountSecurity";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAccountSecurity";
             Load += FrmAccountSecurity_Load;
             ResumeLayout(false);
@@ -142,5 +153,6 @@
         private AntdUI.Avatar avatar1;
         private AntdUI.Button btnUpdatePassword;
         private AntdUI.Input txtNewPassword;
+        private ucWindowHeader ucWindowHeader1;
     }
 }

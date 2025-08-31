@@ -30,28 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            lblTime = new Label();
-            tmrDate = new System.Windows.Forms.Timer(components);
             lblSoftName = new Label();
             pnlMID = new Panel();
-            notifyIcon1 = new NotifyIcon(components);
-            cmsMain = new ContextMenuStrip(components);
-            tsmiChangeUser = new ToolStripMenuItem();
-            tsmiMySpace = new ToolStripMenuItem();
-            toolStripSeparator3 = new ToolStripSeparator();
-            tsmiLockScreen = new ToolStripMenuItem();
-            toolStripSeparator4 = new ToolStripSeparator();
-            tsmiUpdateLog = new ToolStripMenuItem();
-            tsmiHelp = new ToolStripMenuItem();
-            tsmiAccessOfficial = new ToolStripMenuItem();
-            tsmiAbout = new ToolStripMenuItem();
-            tsmiExitSystem = new ToolStripMenuItem();
+            niClientIcon = new NotifyIcon(components);
             linkLabel1 = new LinkLabel();
-            lblScroll = new Sunny.UI.UIScrollingText();
             tmrFont = new System.Windows.Forms.Timer(components);
-            label3 = new Label();
-            btnHello = new Sunny.UI.UIButton();
-            uiButton1 = new Sunny.UI.UIButton();
+            lbHello = new Label();
             pnlCheckInfo = new Panel();
             lblCheckDay = new AntdUI.Label();
             lblClose = new Label();
@@ -63,30 +47,11 @@
             btnFormSize = new AntdUI.Button();
             btnSetting = new AntdUI.Button();
             cpUITheme = new AntdUI.ColorPicker();
-            cmsMain.SuspendLayout();
+            lblScroll = new AntdUI.Label();
+            ltNow = new AntdUI.LabelTime();
             pnlCheckInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
-            // 
-            // lblTime
-            // 
-            lblTime.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            lblTime.AutoSize = true;
-            lblTime.BackColor = Color.Transparent;
-            lblTime.FlatStyle = FlatStyle.Flat;
-            lblTime.Font = new Font("Noto Sans SC", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTime.Location = new Point(53, 141);
-            lblTime.Margin = new Padding(4, 0, 4, 0);
-            lblTime.Name = "lblTime";
-            lblTime.Size = new Size(89, 19);
-            lblTime.TabIndex = 2;
-            lblTime.Text = "NowTime";
-            // 
-            // tmrDate
-            // 
-            tmrDate.Enabled = true;
-            tmrDate.Interval = 60000;
-            tmrDate.Tick += tmrDate_Tick;
             // 
             // lblSoftName
             // 
@@ -111,99 +76,13 @@
             pnlMID.Size = new Size(1072, 490);
             pnlMID.TabIndex = 23;
             // 
-            // notifyIcon1
+            // niClientIcon
             // 
-            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
-            notifyIcon1.Text = "TS酒店管理系统";
-            notifyIcon1.Visible = true;
-            notifyIcon1.BalloonTipClosed += notifyIcon1_BalloonTipClosed;
-            notifyIcon1.MouseDoubleClick += notifyIcon1_MouseDoubleClick;
-            // 
-            // cmsMain
-            // 
-            cmsMain.Font = new Font("Microsoft YaHei UI Light", 12F, FontStyle.Italic, GraphicsUnit.Point, 134);
-            cmsMain.Items.AddRange(new ToolStripItem[] { tsmiChangeUser, tsmiMySpace, toolStripSeparator3, tsmiLockScreen, toolStripSeparator4, tsmiUpdateLog, tsmiHelp, tsmiAbout, tsmiExitSystem });
-            cmsMain.Name = "cmsMain";
-            cmsMain.RenderMode = ToolStripRenderMode.Professional;
-            cmsMain.Size = new Size(181, 192);
-            // 
-            // tsmiChangeUser
-            // 
-            tsmiChangeUser.Font = new Font("Noto Sans SC", 11.9999981F);
-            tsmiChangeUser.Image = Properties.Resources.切换账号;
-            tsmiChangeUser.Name = "tsmiChangeUser";
-            tsmiChangeUser.Size = new Size(180, 22);
-            tsmiChangeUser.Text = "切换用户";
-            tsmiChangeUser.Click += tsmiChangeUser_Click;
-            // 
-            // tsmiMySpace
-            // 
-            tsmiMySpace.Font = new Font("Noto Sans SC", 11.9999981F);
-            tsmiMySpace.Image = Properties.Resources.个人中心;
-            tsmiMySpace.Name = "tsmiMySpace";
-            tsmiMySpace.Size = new Size(180, 22);
-            tsmiMySpace.Text = "个人中心";
-            tsmiMySpace.Click += tsmiMySpace_Click;
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(177, 6);
-            // 
-            // tsmiLockScreen
-            // 
-            tsmiLockScreen.Font = new Font("Noto Sans SC", 11.9999981F);
-            tsmiLockScreen.Image = Properties.Resources.锁屏;
-            tsmiLockScreen.Name = "tsmiLockScreen";
-            tsmiLockScreen.Size = new Size(180, 22);
-            tsmiLockScreen.Text = "系统锁定";
-            tsmiLockScreen.Click += tsmiLockScreen_Click;
-            // 
-            // toolStripSeparator4
-            // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(177, 6);
-            // 
-            // tsmiUpdateLog
-            // 
-            tsmiUpdateLog.Font = new Font("Noto Sans SC", 11.9999981F);
-            tsmiUpdateLog.Name = "tsmiUpdateLog";
-            tsmiUpdateLog.Size = new Size(180, 22);
-            tsmiUpdateLog.Text = "查看更新日志";
-            tsmiUpdateLog.Click += tsmiUpdateLog_Click;
-            // 
-            // tsmiHelp
-            // 
-            tsmiHelp.DropDownItems.AddRange(new ToolStripItem[] { tsmiAccessOfficial });
-            tsmiHelp.Font = new Font("Noto Sans SC", 11.9999981F);
-            tsmiHelp.Image = Properties.Resources.关于我们;
-            tsmiHelp.Name = "tsmiHelp";
-            tsmiHelp.Size = new Size(180, 22);
-            tsmiHelp.Text = "帮助";
-            // 
-            // tsmiAccessOfficial
-            // 
-            tsmiAccessOfficial.Name = "tsmiAccessOfficial";
-            tsmiAccessOfficial.Size = new Size(180, 22);
-            tsmiAccessOfficial.Text = "访问官网";
-            tsmiAccessOfficial.Click += tsmiAccessOfficial_Click;
-            // 
-            // tsmiAbout
-            // 
-            tsmiAbout.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tsmiAbout.Name = "tsmiAbout";
-            tsmiAbout.Size = new Size(180, 22);
-            tsmiAbout.Text = "关于";
-            tsmiAbout.Click += tsmiAbout_Click;
-            // 
-            // tsmiExitSystem
-            // 
-            tsmiExitSystem.Font = new Font("Noto Sans SC", 11.9999981F);
-            tsmiExitSystem.Image = Properties.Resources.注销;
-            tsmiExitSystem.Name = "tsmiExitSystem";
-            tsmiExitSystem.Size = new Size(180, 22);
-            tsmiExitSystem.Text = "退出系统";
-            tsmiExitSystem.Click += tsmiExitSystem_Click;
+            niClientIcon.Icon = (Icon)resources.GetObject("niClientIcon.Icon");
+            niClientIcon.Text = "TS酒店管理系统";
+            niClientIcon.Visible = true;
+            niClientIcon.BalloonTipClosed += niClientIcon_BalloonTipClosed;
+            niClientIcon.MouseClick += niClientIcon_MouseClick;
             // 
             // linkLabel1
             // 
@@ -221,82 +100,25 @@
             linkLabel1.VisitedLinkColor = Color.Green;
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
-            // lblScroll
-            // 
-            lblScroll.Active = true;
-            lblScroll.FillColor = Color.FromArgb(235, 243, 255);
-            lblScroll.Font = new Font("微软雅黑", 12F);
-            lblScroll.Interval = 1000;
-            lblScroll.Location = new Point(328, 58);
-            lblScroll.Margin = new Padding(4);
-            lblScroll.MinimumSize = new Size(1, 1);
-            lblScroll.Name = "lblScroll";
-            lblScroll.Radius = 0;
-            lblScroll.RectSides = ToolStripStatusLabelBorderSides.None;
-            lblScroll.ScrollingType = Sunny.UI.UIScrollingText.UIScrollingType.LeftToRight;
-            lblScroll.Size = new Size(739, 33);
-            lblScroll.TabIndex = 0;
-            // 
             // tmrFont
             // 
             tmrFont.Enabled = true;
             tmrFont.Interval = 1000;
             tmrFont.Tick += tmrFont_Tick;
             // 
-            // label3
+            // lbHello
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
-            label3.FlatStyle = FlatStyle.Flat;
-            label3.Font = new Font("Noto Sans SC", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(53, 193);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(53, 19);
-            label3.TabIndex = 30;
-            label3.Text = "Hello";
-            // 
-            // btnHello
-            // 
-            btnHello.BackColor = Color.Transparent;
-            btnHello.BackgroundImageLayout = ImageLayout.Zoom;
-            btnHello.FillColor = Color.Transparent;
-            btnHello.Font = new Font("微软雅黑", 12F);
-            btnHello.Location = new Point(5, 183);
-            btnHello.Margin = new Padding(4);
-            btnHello.MinimumSize = new Size(1, 1);
-            btnHello.Name = "btnHello";
-            btnHello.Radius = 20;
-            btnHello.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            btnHello.RectColor = Color.Transparent;
-            btnHello.RectSides = ToolStripStatusLabelBorderSides.None;
-            btnHello.Size = new Size(40, 34);
-            btnHello.Style = Sunny.UI.UIStyle.Custom;
-            btnHello.StyleCustomMode = true;
-            btnHello.TabIndex = 33;
-            btnHello.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            // 
-            // uiButton1
-            // 
-            uiButton1.BackColor = Color.Transparent;
-            uiButton1.BackgroundImage = (Image)resources.GetObject("uiButton1.BackgroundImage");
-            uiButton1.BackgroundImageLayout = ImageLayout.Stretch;
-            uiButton1.FillColor = Color.Transparent;
-            uiButton1.Font = new Font("微软雅黑", 12F);
-            uiButton1.Location = new Point(6, 127);
-            uiButton1.Margin = new Padding(4);
-            uiButton1.MinimumSize = new Size(1, 1);
-            uiButton1.Name = "uiButton1";
-            uiButton1.Radius = 20;
-            uiButton1.RadiusSides = Sunny.UI.UICornerRadiusSides.None;
-            uiButton1.RectColor = Color.Transparent;
-            uiButton1.RectSides = ToolStripStatusLabelBorderSides.None;
-            uiButton1.Size = new Size(40, 39);
-            uiButton1.Style = Sunny.UI.UIStyle.Custom;
-            uiButton1.StyleCustomMode = true;
-            uiButton1.TabIndex = 31;
-            uiButton1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            lbHello.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lbHello.AutoSize = true;
+            lbHello.BackColor = Color.Transparent;
+            lbHello.FlatStyle = FlatStyle.Flat;
+            lbHello.Font = new Font("Noto Sans SC", 14.2499981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbHello.Location = new Point(5, 198);
+            lbHello.Margin = new Padding(4, 0, 4, 0);
+            lbHello.Name = "lbHello";
+            lbHello.Size = new Size(53, 19);
+            lbHello.TabIndex = 30;
+            lbHello.Text = "Hello";
             // 
             // pnlCheckInfo
             // 
@@ -370,7 +192,6 @@
             picLogo.Size = new Size(165, 111);
             picLogo.TabIndex = 15;
             picLogo.TabStop = false;
-            picLogo.Click += picLogo_Click;
             // 
             // muNavBar
             // 
@@ -417,7 +238,7 @@
             btnSetting.Name = "btnSetting";
             btnSetting.Size = new Size(41, 38);
             btnSetting.TabIndex = 42;
-            btnSetting.Click += btnSetting_Click;
+            btnSetting.MouseClick += btnSetting_MouseClick;
             // 
             // cpUITheme
             // 
@@ -425,9 +246,28 @@
             cpUITheme.Name = "cpUITheme";
             cpUITheme.Size = new Size(41, 38);
             cpUITheme.TabIndex = 43;
-            cpUITheme.Text = "colorPicker1";
+            cpUITheme.Text = "col";
             cpUITheme.Value = Color.FromArgb(22, 119, 255);
             cpUITheme.ValueChanged += cpUITheme_ValueChanged;
+            // 
+            // lblScroll
+            // 
+            lblScroll.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblScroll.Location = new Point(328, 49);
+            lblScroll.Name = "lblScroll";
+            lblScroll.Size = new Size(745, 39);
+            lblScroll.TabIndex = 44;
+            lblScroll.Text = "";
+            lblScroll.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ltNow
+            // 
+            ltNow.AutoWidth = true;
+            ltNow.Font = new Font("Noto Sans SC", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ltNow.Location = new Point(5, 142);
+            ltNow.Name = "ltNow";
+            ltNow.Size = new Size(127, 35);
+            ltNow.TabIndex = 45;
             // 
             // FrmMain
             // 
@@ -435,25 +275,22 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoValidate = AutoValidate.Disable;
             BackColor = Color.FromArgb(235, 243, 255);
-            BackgroundImageLayout = ImageLayout.Stretch;
             CausesValidation = false;
             ClientSize = new Size(1080, 721);
-            Controls.Add(cpUITheme);
+            Controls.Add(ltNow);
             Controls.Add(lblScroll);
+            Controls.Add(cpUITheme);
             Controls.Add(btnSetting);
             Controls.Add(btnClose);
             Controls.Add(btnFormSize);
             Controls.Add(muNavBar);
-            Controls.Add(btnHello);
-            Controls.Add(uiButton1);
-            Controls.Add(label3);
+            Controls.Add(lbHello);
             Controls.Add(pnlCheckInfo);
             Controls.Add(linkLabel1);
             Controls.Add(pnlMID);
             Controls.Add(picLogo);
             Controls.Add(lblSoftName);
-            Controls.Add(lblTime);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "FrmMain";
@@ -462,9 +299,8 @@
             FormClosing += FrmMain_FormClosing;
             FormClosed += FrmMain_FormClosed;
             Load += FrmMain_Load;
-            MouseDown += FrmMain_MouseDown_1;
-            MouseMove += FrmMain_MouseMove_1;
-            cmsMain.ResumeLayout(false);
+            MouseDown += FrmMain_MouseDown;
+            MouseMove += FrmMain_MouseMove;
             pnlCheckInfo.ResumeLayout(false);
             pnlCheckInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
@@ -473,40 +309,25 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label lblTime;
-        private System.Windows.Forms.Timer tmrDate;
         private System.Windows.Forms.Label lblSoftName;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Panel pnlMID;
-        private System.Windows.Forms.ToolStripMenuItem tsmiChangeUser;
-        private System.Windows.Forms.ToolStripMenuItem tsmiLockScreen;
         private System.Windows.Forms.ToolStripMenuItem tsmiCheckUpdate;
-        private System.Windows.Forms.ToolStripMenuItem tsmiExitSystem;
-        private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Panel pnlCheckInfo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblClose;
-        public System.Windows.Forms.NotifyIcon notifyIcon1;
-        public System.Windows.Forms.ContextMenuStrip cmsMain;
+        public System.Windows.Forms.NotifyIcon niClientIcon;
         private System.Windows.Forms.Timer tmrFont;
-        private Sunny.UI.UIScrollingText lblScroll;
-        private System.Windows.Forms.Label label3;
-        private Sunny.UI.UIButton uiButton1;
-        private Sunny.UI.UIButton btnHello;
-        private System.Windows.Forms.ToolStripMenuItem tsmiMySpace;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private Sunny.UI.UIButton picSetting;
+        private System.Windows.Forms.Label lbHello;
         private AntdUI.Menu muNavBar;
         private AntdUI.Button btnClose;
         private AntdUI.Button btnFormSize;
         private AntdUI.Button btnSetting;
         private AntdUI.ColorPicker cpUITheme;
-        private ToolStripMenuItem tsmiUpdateLog;
         private AntdUI.Label lblCheckDay;
-        private ToolStripMenuItem tsmiAccessOfficial;
-        private ToolStripMenuItem tsmiAbout;
+        private AntdUI.Label lblScroll;
+        private AntdUI.LabelTime ltNow;
     }
 }

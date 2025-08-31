@@ -22,18 +22,21 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.EntityLib;
-using Sunny.UI;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmChangeRoom : UIForm
+    public partial class FrmChangeRoom : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChangeRoom));
         public FrmChangeRoom()
         {
             InitializeComponent();
+
+            ucWindowHeader1.ApplySettingsWithoutMinimize("转换房间", string.Empty, (Image)resources.GetObject("FrmChangeRoom.Icon")!);
         }
 
         ResponseMsg result = null;
@@ -43,14 +46,12 @@ namespace EOM.TSHotelManagement.FormUI
         {
             result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
             var datas = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-            if (datas.Success)
+            if (!datas.Success)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboRoomList.DataSource = datas.Data.Items;
-            cboRoomList.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
-            cboRoomList.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
+            this.cboRoomList.Items.AddRange(datas.Data.Items.Select(item => new AntdUI.SelectItem(item.RoomNumber, item.RoomNumber)).ToArray());
         }
 
         private void btnChangeRoom_Click(object sender, EventArgs e)
@@ -72,9 +73,9 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 result = HttpHelper.Request(ApiConstants.Room_TransferRoom, transferRoom.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message!);
-                if (response.Code != BusinessStatusCode.Success)
+                if (!response.Success)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Room_TransferRoom}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Room_TransferRoom}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
 
@@ -85,12 +86,12 @@ namespace EOM.TSHotelManagement.FormUI
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + transferRoom.DataChgDate + "位于" + LoginInfo.SoftwareVersion + "执行：" + transferRoom.CustomerNumber + "于" + transferRoom.DataChgDate + "进行了换房！", Common.Core.LogLevel.Warning);
                 #endregion
-                UIMessageBox.ShowSuccess("转房成功");
+                NotificationService.ShowSuccess("转房成功");
                 this.Close();
             }
             catch (Exception)
             {
-                UIMessageBox.ShowError("转房失败");
+                NotificationService.ShowError("转房失败");
             }
         }
 
@@ -109,9 +110,9 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.RoomType_SelectRoomTypeByRoomNo, dic);
             var data = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomTypeOutputDto>>(result.message);
-            if (data.Code != BusinessStatusCode.Success)
+            if (data.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.RoomType_SelectRoomTypeByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.RoomType_SelectRoomTypeByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             var roomType = data.Data;

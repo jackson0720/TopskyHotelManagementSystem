@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSellThing));
             groupBox2 = new GroupBox();
-            txtPrice = new Sunny.UI.UITextBox();
-            uiLabel6 = new Sunny.UI.UILabel();
-            nudNum = new Sunny.UI.UIDoubleUpDown();
-            uiLabel5 = new Sunny.UI.UILabel();
-            txtSellName = new Sunny.UI.UITextBox();
-            uiLabel4 = new Sunny.UI.UILabel();
-            txtSellNo = new Sunny.UI.UITextBox();
-            uiLabel3 = new Sunny.UI.UILabel();
+            label6 = new AntdUI.Label();
+            label5 = new AntdUI.Label();
+            label4 = new AntdUI.Label();
+            label3 = new AntdUI.Label();
+            nudNum = new AntdUI.InputNumber();
+            txtPrice = new AntdUI.Input();
+            txtSellName = new AntdUI.Input();
+            txtSellNo = new AntdUI.Input();
             label1 = new AntdUI.Label();
             txtFind = new AntdUI.Input();
             btnFind = new AntdUI.Button();
@@ -56,14 +56,14 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(txtPrice);
-            groupBox2.Controls.Add(uiLabel6);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(label5);
+            groupBox2.Controls.Add(label4);
+            groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(nudNum);
-            groupBox2.Controls.Add(uiLabel5);
+            groupBox2.Controls.Add(txtPrice);
             groupBox2.Controls.Add(txtSellName);
-            groupBox2.Controls.Add(uiLabel4);
             groupBox2.Controls.Add(txtSellNo);
-            groupBox2.Controls.Add(uiLabel3);
             groupBox2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
             groupBox2.Location = new Point(617, 88);
             groupBox2.Name = "groupBox2";
@@ -72,128 +72,84 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "订购中心";
             // 
-            // txtPrice
+            // label6
             // 
-            txtPrice.Cursor = Cursors.IBeam;
-            txtPrice.Font = new Font("微软雅黑", 12F);
-            txtPrice.Location = new Point(310, 74);
-            txtPrice.Margin = new Padding(4, 5, 4, 5);
-            txtPrice.MinimumSize = new Size(1, 1);
-            txtPrice.Name = "txtPrice";
-            txtPrice.Padding = new Padding(5);
-            txtPrice.Radius = 20;
-            txtPrice.ReadOnly = true;
-            txtPrice.ShowText = false;
-            txtPrice.Size = new Size(116, 29);
-            txtPrice.Style = Sunny.UI.UIStyle.Custom;
-            txtPrice.TabIndex = 30;
-            txtPrice.TextAlignment = ContentAlignment.MiddleLeft;
-            txtPrice.Watermark = "";
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("微软雅黑", 12F);
+            label6.Location = new Point(258, 32);
+            label6.Name = "label6";
+            label6.Size = new Size(61, 23);
+            label6.TabIndex = 38;
+            label6.Text = "数量：";
             // 
-            // uiLabel6
+            // label5
             // 
-            uiLabel6.Font = new Font("微软雅黑", 12F);
-            uiLabel6.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel6.Location = new Point(258, 74);
-            uiLabel6.Name = "uiLabel6";
-            uiLabel6.Size = new Size(61, 29);
-            uiLabel6.Style = Sunny.UI.UIStyle.Custom;
-            uiLabel6.TabIndex = 29;
-            uiLabel6.Text = "单价：";
-            uiLabel6.TextAlign = ContentAlignment.MiddleLeft;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("微软雅黑", 12F);
+            label5.Location = new Point(258, 78);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 23);
+            label5.TabIndex = 37;
+            label5.Text = "单价：";
+            // 
+            // label4
+            // 
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("微软雅黑", 12F);
+            label4.Location = new Point(26, 78);
+            label4.Name = "label4";
+            label4.Size = new Size(92, 23);
+            label4.TabIndex = 36;
+            label4.Text = "商品名称：";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("微软雅黑", 12F);
+            label3.Location = new Point(26, 32);
+            label3.Name = "label3";
+            label3.Size = new Size(92, 23);
+            label3.TabIndex = 35;
+            label3.Text = "商品编号：";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // nudNum
             // 
-            nudNum.AutoValidate = AutoValidate.Disable;
-            nudNum.Font = new Font("新宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            nudNum.Location = new Point(310, 30);
-            nudNum.Margin = new Padding(4, 5, 4, 5);
-            nudNum.Maximum = 9999D;
-            nudNum.Minimum = 0D;
-            nudNum.MinimumSize = new Size(100, 0);
+            nudNum.Font = new Font("微软雅黑", 12F);
+            nudNum.Location = new Point(307, 25);
             nudNum.Name = "nudNum";
-            nudNum.Radius = 20;
-            nudNum.ShowText = false;
-            nudNum.Size = new Size(116, 29);
-            nudNum.Step = 1D;
-            nudNum.Style = Sunny.UI.UIStyle.Custom;
-            nudNum.StyleCustomMode = true;
-            nudNum.TabIndex = 25;
-            nudNum.Text = null;
-            nudNum.TextAlignment = ContentAlignment.MiddleCenter;
-            nudNum.ValueChanged += nudNum_ValueChanged;
+            nudNum.Size = new Size(119, 38);
+            nudNum.TabIndex = 34;
+            nudNum.Text = "0";
+            nudNum.TextAlign = HorizontalAlignment.Center;
             // 
-            // uiLabel5
+            // txtPrice
             // 
-            uiLabel5.Font = new Font("微软雅黑", 12F);
-            uiLabel5.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel5.Location = new Point(258, 30);
-            uiLabel5.Name = "uiLabel5";
-            uiLabel5.Size = new Size(61, 29);
-            uiLabel5.Style = Sunny.UI.UIStyle.Custom;
-            uiLabel5.TabIndex = 28;
-            uiLabel5.Text = "数量：";
-            uiLabel5.TextAlign = ContentAlignment.MiddleLeft;
+            txtPrice.Font = new Font("微软雅黑", 12F);
+            txtPrice.Location = new Point(307, 69);
+            txtPrice.Name = "txtPrice";
+            txtPrice.ReadOnly = true;
+            txtPrice.Size = new Size(119, 38);
+            txtPrice.TabIndex = 33;
             // 
             // txtSellName
             // 
-            txtSellName.Cursor = Cursors.IBeam;
             txtSellName.Font = new Font("微软雅黑", 12F);
-            txtSellName.Location = new Point(107, 74);
-            txtSellName.Margin = new Padding(4, 5, 4, 5);
-            txtSellName.MinimumSize = new Size(1, 1);
+            txtSellName.Location = new Point(107, 69);
             txtSellName.Name = "txtSellName";
-            txtSellName.Padding = new Padding(5);
-            txtSellName.Radius = 20;
             txtSellName.ReadOnly = true;
-            txtSellName.ShowText = false;
-            txtSellName.Size = new Size(145, 29);
-            txtSellName.Style = Sunny.UI.UIStyle.Custom;
-            txtSellName.TabIndex = 27;
-            txtSellName.TextAlignment = ContentAlignment.MiddleLeft;
-            txtSellName.Watermark = "";
-            // 
-            // uiLabel4
-            // 
-            uiLabel4.Font = new Font("微软雅黑", 12F);
-            uiLabel4.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel4.Location = new Point(26, 73);
-            uiLabel4.Name = "uiLabel4";
-            uiLabel4.Size = new Size(92, 29);
-            uiLabel4.Style = Sunny.UI.UIStyle.Custom;
-            uiLabel4.TabIndex = 26;
-            uiLabel4.Text = "商品名称：";
-            uiLabel4.TextAlign = ContentAlignment.MiddleLeft;
+            txtSellName.Size = new Size(145, 38);
+            txtSellName.TabIndex = 32;
             // 
             // txtSellNo
             // 
-            txtSellNo.Cursor = Cursors.IBeam;
             txtSellNo.Font = new Font("微软雅黑", 12F);
-            txtSellNo.Location = new Point(107, 30);
-            txtSellNo.Margin = new Padding(4, 5, 4, 5);
-            txtSellNo.MinimumSize = new Size(1, 1);
+            txtSellNo.Location = new Point(107, 25);
             txtSellNo.Name = "txtSellNo";
-            txtSellNo.Padding = new Padding(5);
-            txtSellNo.Radius = 20;
             txtSellNo.ReadOnly = true;
-            txtSellNo.ShowText = false;
-            txtSellNo.Size = new Size(145, 29);
-            txtSellNo.Style = Sunny.UI.UIStyle.Custom;
-            txtSellNo.TabIndex = 25;
-            txtSellNo.TextAlignment = ContentAlignment.MiddleLeft;
-            txtSellNo.Watermark = "";
-            // 
-            // uiLabel3
-            // 
-            uiLabel3.Font = new Font("微软雅黑", 12F);
-            uiLabel3.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel3.Location = new Point(26, 29);
-            uiLabel3.Name = "uiLabel3";
-            uiLabel3.Size = new Size(92, 29);
-            uiLabel3.Style = Sunny.UI.UIStyle.Custom;
-            uiLabel3.TabIndex = 23;
-            uiLabel3.Text = "商品编号：";
-            uiLabel3.TextAlign = ContentAlignment.MiddleLeft;
+            txtSellNo.Size = new Size(145, 38);
+            txtSellNo.TabIndex = 31;
             // 
             // label1
             // 
@@ -282,7 +238,6 @@
             // 
             // btnPg
             // 
-            btnPg.Current = 0;
             btnPg.Font = new Font("微软雅黑", 12F);
             btnPg.Location = new Point(4, 448);
             btnPg.Name = "btnPg";
@@ -352,10 +307,12 @@
             Controls.Add(txtFind);
             Controls.Add(label1);
             Controls.Add(groupBox2);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmSellThing";
+            Resizable = false;
             Text = "商品消费";
             Load += FrmSellThing_Load;
             groupBox2.ResumeLayout(false);
@@ -364,15 +321,6 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox2;
-        //private Sunny.UI.UIDataGridView dgvRoomSell;
-        private Sunny.UI.UITextBox txtPrice;
-        private Sunny.UI.UILabel uiLabel6;
-        private Sunny.UI.UIDoubleUpDown nudNum;
-        private Sunny.UI.UILabel uiLabel5;
-        private Sunny.UI.UITextBox txtSellName;
-        private Sunny.UI.UILabel uiLabel4;
-        private Sunny.UI.UITextBox txtSellNo;
-        private Sunny.UI.UILabel uiLabel3;
         private System.Windows.Forms.DataGridViewTextBoxColumn clRoomNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clCustoNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clSpendName;
@@ -410,5 +358,13 @@
         private AntdUI.Button btnCancel;
         private AntdUI.Table dgvRoomSell;
         private ucWindowHeader ucWindowHeader1;
+        private AntdUI.InputNumber nudNum;
+        private AntdUI.Input txtPrice;
+        private AntdUI.Input txtSellName;
+        private AntdUI.Input txtSellNo;
+        private AntdUI.Label label6;
+        private AntdUI.Label label5;
+        private AntdUI.Label label4;
+        private AntdUI.Label label3;
     }
 }

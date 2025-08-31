@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAvator));
             label4 = new AntdUI.Label();
             picWorkerPic = new PictureBox();
             openPic = new OpenFileDialog();
+            ucWindowHeader1 = new ucWindowHeader();
             ((System.ComponentModel.ISupportInitialize)picWorkerPic).BeginInit();
             SuspendLayout();
             // 
@@ -61,15 +63,25 @@
             openPic.Filter = "PNG文件|*.png|JPG文件|*.jpg|位图文件|*.bmp";
             openPic.FileOk += openPic_FileOk;
             // 
+            // ucWindowHeader1
+            // 
+            ucWindowHeader1.Location = new Point(-2, 0);
+            ucWindowHeader1.Name = "ucWindowHeader1";
+            ucWindowHeader1.Size = new Size(804, 35);
+            ucWindowHeader1.TabIndex = 4;
+            // 
             // FrmAvator
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(800, 450);
+            Controls.Add(ucWindowHeader1);
             Controls.Add(label4);
             Controls.Add(picWorkerPic);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAvator";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAvator";
             Load += FrmAvator_Load;
             ((System.ComponentModel.ISupportInitialize)picWorkerPic).EndInit();
@@ -81,5 +93,6 @@
         private AntdUI.Label label4;
         private PictureBox picWorkerPic;
         private OpenFileDialog openPic;
+        private ucWindowHeader ucWindowHeader1;
     }
 }

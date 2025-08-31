@@ -32,9 +32,9 @@
             label2 = new Label();
             label1 = new Label();
             txtRoomNo = new AntdUI.Input();
-            cboRoomState = new AntdUI.Dropdown();
             btnOk = new AntdUI.Button();
             ucWindowHeader1 = new ucWindowHeader();
+            cboRoomState = new AntdUI.Select();
             SuspendLayout();
             // 
             // label2
@@ -45,7 +45,7 @@
             label2.Name = "label2";
             label2.Size = new Size(88, 25);
             label2.TabIndex = 132;
-            label2.Text = "客户编号";
+            label2.Text = "房间号码";
             // 
             // label1
             // 
@@ -62,20 +62,9 @@
             txtRoomNo.Font = new Font("Noto Sans SC", 12F);
             txtRoomNo.Location = new Point(99, 44);
             txtRoomNo.Name = "txtRoomNo";
+            txtRoomNo.ReadOnly = true;
             txtRoomNo.Size = new Size(203, 45);
             txtRoomNo.TabIndex = 137;
-            // 
-            // cboRoomState
-            // 
-            cboRoomState.DropDownArrow = true;
-            cboRoomState.Font = new Font("Noto Sans SC", 12F);
-            cboRoomState.Location = new Point(99, 98);
-            cboRoomState.Name = "cboRoomState";
-            cboRoomState.Placement = AntdUI.TAlignFrom.Bottom;
-            cboRoomState.Size = new Size(200, 40);
-            cboRoomState.TabIndex = 138;
-            cboRoomState.ToggleType = AntdUI.TTypeMini.Info;
-            cboRoomState.SelectedValueChanged += cboRoomState_SelectedValueChanged;
             // 
             // btnOk
             // 
@@ -95,24 +84,39 @@
             ucWindowHeader1.Size = new Size(309, 35);
             ucWindowHeader1.TabIndex = 141;
             // 
+            // cboRoomState
+            // 
+            cboRoomState.Font = new Font("Noto Sans SC", 12F);
+            cboRoomState.List = true;
+            cboRoomState.ListAutoWidth = true;
+            cboRoomState.Location = new Point(99, 96);
+            cboRoomState.Name = "cboRoomState";
+            cboRoomState.Placement = AntdUI.TAlignFrom.Bottom;
+            cboRoomState.Size = new Size(203, 45);
+            cboRoomState.TabIndex = 180;
+            cboRoomState.SelectedValueChanged += cboRoomState_SelectedValueChanged;
+            // 
             // FrmRoomStateManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(308, 196);
+            Controls.Add(cboRoomState);
             Controls.Add(ucWindowHeader1);
             Controls.Add(btnOk);
-            Controls.Add(cboRoomState);
             Controls.Add(txtRoomNo);
             Controls.Add(label1);
             Controls.Add(label2);
             Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmRoomStateManager";
+            Resizable = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "修改房间状态";
             Load += FrmRoomStateManager_Load;
             ResumeLayout(false);
@@ -124,8 +128,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private AntdUI.Input txtRoomNo;
-        private AntdUI.Dropdown cboRoomState;
         private AntdUI.Button btnOk;
         private ucWindowHeader ucWindowHeader1;
+        private AntdUI.Select cboRoomState;
     }
 }

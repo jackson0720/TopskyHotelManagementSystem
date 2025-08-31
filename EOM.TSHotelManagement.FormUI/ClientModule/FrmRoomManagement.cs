@@ -114,15 +114,25 @@ namespace EOM.TSHotelManagement.FormUI
 
                         var response = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(httpResponse.message);
 
-                        if (response.Code != BusinessStatusCode.Success)
+                        if (response.Success == false)
                         {
-                            throw new HttpRequestException($"{url} 请求失败，状态码：{response.Code}");
+                            AntdUI.Notification.open(new AntdUI.Notification.Config(this, UIMessageConstant.Error, $"{url} 请求失败，状态码：{response.Code}", AntdUI.TType.Error, AntdUI.TAlignFrom.TR, Font)
+                            {
+                                Radius = 10,
+                                FontStyleTitle = FontStyle.Bold,
+                                ShowInWindow = true
+                            });
                         }
 
                         var propertyInfo = typeof(ReadRoomOutputDto).GetProperty(propertyName);
                         if (propertyInfo == null)
                         {
-                            throw new MissingFieldException($"ReadRoomOutputDto 中未找到 {propertyName} 属性");
+                            AntdUI.Notification.open(new AntdUI.Notification.Config(this, UIMessageConstant.Error, $"ReadRoomOutputDto 中未找到 {propertyName} 属性", AntdUI.TType.Error, AntdUI.TAlignFrom.TR, Font)
+                            {
+                                Radius = 10,
+                                FontStyleTitle = FontStyle.Bold,
+                                ShowInWindow = true
+                            });
                         }
 
                         if (propertyInfo.GetValue(response.Data) is int countValue)
@@ -150,7 +160,12 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                AntdUI.Modal.open(this, UIMessageConstant.Error, $"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}");
+                AntdUI.Notification.open(new AntdUI.Notification.Config(this, UIMessageConstant.Error, $"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}", AntdUI.TType.Error, AntdUI.TAlignFrom.TR, Font)
+                {
+                    Radius = 10,
+                    FontStyleTitle = FontStyle.Bold,
+                    ShowInWindow = true
+                });
             }
         }
 
@@ -226,16 +241,16 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 var result = HttpHelper.Request(ApiConstants.RoomType_SelectRoomTypesAll, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomTypeOutputDto>>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    throw new Exception($"{ApiConstants.RoomType_SelectRoomTypesAll}+接口服务异常");
+                    NotificationService.ShowError($"{ApiConstants.RoomType_SelectRoomTypesAll}+接口服务异常");
                 }
 
                 var listRoomTypes = response.Data.Items;
 
                 if (listRoomTypes == null)
                 {
-                    AntdUI.Modal.open(this, UIMessageConstant.Error, "Room types list is null");
+                    NotificationService.ShowError($"房间类型列表为空");
                     return;
                 }
 
@@ -249,7 +264,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             catch (Exception ex)
             {
-                AntdUI.Modal.open(this, UIMessageConstant.Error, $"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}");
+                NotificationService.ShowError($"接口服务异常，请提交Issue或尝试更新版本！: {ex.Message}");
             }
         }
 
@@ -298,9 +313,9 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 result = HttpHelper.Request(ApiConstants.Room_SelectRoomAll, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Room_SelectRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = response.Data.Items;
@@ -315,9 +330,9 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 result = HttpHelper.Request(ApiConstants.Room_SelectRoomByTypeName, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomByTypeName}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Room_SelectRoomByTypeName}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 romsty = response.Data.Items;
@@ -350,9 +365,9 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomState, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
-                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectRoomByRoomState}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Room_SelectRoomByRoomState}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             romsty = response.Data.Items;

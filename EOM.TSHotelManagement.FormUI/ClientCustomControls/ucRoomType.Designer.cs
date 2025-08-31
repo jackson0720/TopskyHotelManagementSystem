@@ -34,9 +34,9 @@
             // btnRoomType
             // 
             btnRoomType.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRoomType.Location = new Point(6, 3);
+            btnRoomType.Location = new Point(2, 0);
             btnRoomType.Name = "btnRoomType";
-            btnRoomType.Size = new Size(107, 34);
+            btnRoomType.Size = new Size(113, 37);
             btnRoomType.TabIndex = 0;
             btnRoomType.Type = AntdUI.TTypeMini.Info;
             // 
@@ -46,7 +46,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(btnRoomType);
             Name = "ucRoomType";
-            Size = new Size(107, 37);
+            Size = new Size(117, 38);
             ResumeLayout(false);
         }
 

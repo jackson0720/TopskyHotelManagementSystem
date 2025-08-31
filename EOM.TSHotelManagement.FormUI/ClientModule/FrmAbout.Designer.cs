@@ -74,7 +74,7 @@
             lblServerVersion.Font = new Font("Noto Sans SC", 9F);
             lblServerVersion.Location = new Point(194, 287);
             lblServerVersion.Name = "lblServerVersion";
-            lblServerVersion.Size = new Size(103, 23);
+            lblServerVersion.Size = new Size(183, 23);
             lblServerVersion.TabIndex = 48;
             lblServerVersion.Text = "";
             // 
@@ -84,7 +84,7 @@
             lblClientVersion.Font = new Font("Noto Sans SC", 9F);
             lblClientVersion.Location = new Point(194, 258);
             lblClientVersion.Name = "lblClientVersion";
-            lblClientVersion.Size = new Size(103, 23);
+            lblClientVersion.Size = new Size(183, 23);
             lblClientVersion.TabIndex = 47;
             lblClientVersion.Text = "";
             // 
@@ -92,9 +92,9 @@
             // 
             lblServerVersionDescriotion.BackColor = Color.Transparent;
             lblServerVersionDescriotion.Font = new Font("Noto Sans SC", 9F);
-            lblServerVersionDescriotion.Location = new Point(94, 287);
+            lblServerVersionDescriotion.Location = new Point(13, 287);
             lblServerVersionDescriotion.Name = "lblServerVersionDescriotion";
-            lblServerVersionDescriotion.Size = new Size(90, 23);
+            lblServerVersionDescriotion.Size = new Size(171, 23);
             lblServerVersionDescriotion.TabIndex = 46;
             lblServerVersionDescriotion.Text = "";
             lblServerVersionDescriotion.TextAlign = ContentAlignment.MiddleRight;
@@ -103,9 +103,9 @@
             // 
             lblClientVersionDescriotion.BackColor = Color.Transparent;
             lblClientVersionDescriotion.Font = new Font("Noto Sans SC", 9F);
-            lblClientVersionDescriotion.Location = new Point(94, 258);
+            lblClientVersionDescriotion.Location = new Point(13, 258);
             lblClientVersionDescriotion.Name = "lblClientVersionDescriotion";
-            lblClientVersionDescriotion.Size = new Size(90, 23);
+            lblClientVersionDescriotion.Size = new Size(171, 23);
             lblClientVersionDescriotion.TabIndex = 45;
             lblClientVersionDescriotion.Text = "";
             lblClientVersionDescriotion.TextAlign = ContentAlignment.MiddleRight;
@@ -114,9 +114,9 @@
             // 
             lblCopyright.BackColor = Color.Transparent;
             lblCopyright.Font = new Font("Noto Sans SC", 9F);
-            lblCopyright.Location = new Point(71, 346);
+            lblCopyright.Location = new Point(13, 346);
             lblCopyright.Name = "lblCopyright";
-            lblCopyright.Size = new Size(240, 23);
+            lblCopyright.Size = new Size(364, 23);
             lblCopyright.TabIndex = 49;
             lblCopyright.Text = "";
             lblCopyright.TextAlign = ContentAlignment.MiddleCenter;
@@ -125,9 +125,9 @@
             // 
             lblNotice.BackColor = Color.Transparent;
             lblNotice.Font = new Font("Noto Sans SC", 9F);
-            lblNotice.Location = new Point(71, 375);
+            lblNotice.Location = new Point(13, 375);
             lblNotice.Name = "lblNotice";
-            lblNotice.Size = new Size(240, 23);
+            lblNotice.Size = new Size(364, 23);
             lblNotice.TabIndex = 50;
             lblNotice.Text = "";
             lblNotice.TextAlign = ContentAlignment.MiddleCenter;
@@ -138,7 +138,7 @@
             lblFrameworkVersion.Font = new Font("Noto Sans SC", 9F);
             lblFrameworkVersion.Location = new Point(194, 316);
             lblFrameworkVersion.Name = "lblFrameworkVersion";
-            lblFrameworkVersion.Size = new Size(103, 23);
+            lblFrameworkVersion.Size = new Size(183, 23);
             lblFrameworkVersion.TabIndex = 52;
             lblFrameworkVersion.Text = "";
             // 
@@ -146,9 +146,9 @@
             // 
             lblFrameworkVersionDescription.BackColor = Color.Transparent;
             lblFrameworkVersionDescription.Font = new Font("Noto Sans SC", 9F);
-            lblFrameworkVersionDescription.Location = new Point(94, 316);
+            lblFrameworkVersionDescription.Location = new Point(13, 316);
             lblFrameworkVersionDescription.Name = "lblFrameworkVersionDescription";
-            lblFrameworkVersionDescription.Size = new Size(90, 23);
+            lblFrameworkVersionDescription.Size = new Size(171, 23);
             lblFrameworkVersionDescription.TabIndex = 51;
             lblFrameworkVersionDescription.Text = "";
             lblFrameworkVersionDescription.TextAlign = ContentAlignment.MiddleRight;
@@ -177,10 +177,11 @@
             Controls.Add(lblClientVersionDescriotion);
             Controls.Add(lblSoftName);
             Controls.Add(picLogo);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             Name = "FrmAbout";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "关于我们";
             Load += FrmAboutUs_Load;

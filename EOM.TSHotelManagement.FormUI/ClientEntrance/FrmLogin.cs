@@ -105,13 +105,13 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (txtAccount.Text == "")
             {
-                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Please input employee number or email", "请输入员工编号或邮箱地址"), TType.Error);
+                NotificationService.ShowError(LocalizationHelper.GetLocalizedString("Please input employee number or email", "请输入员工编号或邮箱地址"));
                 txtAccount.Focus();
                 return false;
             }
             if (txtWorkerPwd.Text == "")
             {
-                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Please input password", "请输入员工密码"), TType.Error);
+                NotificationService.ShowError(LocalizationHelper.GetLocalizedString("Please input password", "请输入员工密码"));
                 txtWorkerPwd.Focus();
                 return false;
             }
@@ -132,9 +132,9 @@ namespace EOM.TSHotelManagement.FormUI
 
                     var response = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
 
-                    if (response.Code != BusinessStatusCode.Success)
+                    if (response.Success == false)
                     {
-                        AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd} is abnormal. Please submit an issue", $"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd}+接口服务异常，请提交issue"), TType.Error);
+                        NotificationService.ShowError(LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd} is abnormal. Please submit an issue", $"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeIdAndEmployeePwd}+接口服务异常，请提交issue"));
                         return;
                     }
 
@@ -144,7 +144,7 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         if (w.IsEnable == 0)
                         {
-                            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("The account has been disabled, please contact your superiors to unblock it!", "账号已禁用，请联系上级解封！"), TType.Error);
+                            NotificationService.ShowError(LocalizationHelper.GetLocalizedString("The account has been disabled, please contact your superiors to unblock it!", "账号已禁用，请联系上级解封！"));
                             return;
                         }
 
@@ -158,9 +158,9 @@ namespace EOM.TSHotelManagement.FormUI
 
                         if (w.IsInitialize == 0)
                         {
-                            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("The initial password for the current account has not been changed, and it will be directed to the change page later", "当前账号未修改初始密码，稍后将引导至修改页面"), TType.Error);
-                            FrmMySpace frmMySpace = new FrmMySpace();
-                            frmMySpace.ShowDialog();
+                            NotificationService.ShowError(LocalizationHelper.GetLocalizedString("The initial password for the current account has not been changed, and it will be directed to the change page later", "当前账号未修改初始密码，稍后将引导至修改页面"));
+                            FrmAccountSecurity frmAccountSecurity = new FrmAccountSecurity();
+                            frmAccountSecurity.ShowDialog();
                         }
 
                         FrmMain frm = new FrmMain(this);
@@ -169,7 +169,7 @@ namespace EOM.TSHotelManagement.FormUI
                     }
                     else
                     {
-                        AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Employee number/email or password incorrect", "员工编号/邮箱地址或密码错误！"), TType.Error);
+                        NotificationService.ShowError(LocalizationHelper.GetLocalizedString("Employee number/email or password incorrect", "员工编号/邮箱地址或密码错误！"));
                         txtWorkerPwd.Focus();
                     }
                 }
@@ -177,7 +177,7 @@ namespace EOM.TSHotelManagement.FormUI
             catch (Exception ex)
             {
                 RecordHelper.Record(LocalizationHelper.GetLocalizedString($"Login error:{ex.Message}", $"登录异常:{ex.Message}"), Common.Core.LogLevel.Critical);
-                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("The server is under maintenance, please try again later", "服务器维护中，请稍后再试！"), TType.Error);
+                NotificationService.ShowError(LocalizationHelper.GetLocalizedString("The server is under maintenance, please try again later", "服务器维护中，请稍后再试！"));
             }
         }
         #endregion

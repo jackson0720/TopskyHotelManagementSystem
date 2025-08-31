@@ -17,9 +17,12 @@ namespace EOM.TSHotelManagement.FormUI
 {
     public partial class FrmAccountSecurity : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAccountSecurity));
         public FrmAccountSecurity()
         {
             InitializeComponent();
+
+            ucWindowHeader1.ApplySettingsWithoutMinimize("账号安全", string.Empty, (Image)resources.GetObject("FrmAccountSecurity.Icon")!);
         }
 
         private void FrmAccountSecurity_Load(object sender, EventArgs e)
@@ -33,7 +36,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             if (string.IsNullOrEmpty(txtOldPassword.Text) || string.IsNullOrEmpty(txtNewPassword.Text))
             {
-                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Please input new password or old password", "请输入旧密码或新密码"), TType.Error);
+                NotificationService.ShowWarning(LocalizationHelper.GetLocalizedString("Please input new password or old password", "请输入旧密码或新密码"));
                 return;
             }
 
@@ -47,12 +50,12 @@ namespace EOM.TSHotelManagement.FormUI
             };
             var request = HttpHelper.Request(ApiConstants.Employee_UpdateEmployeeAccountPassword, employee.ModelToJson());
             var response = HttpHelper.JsonToModel<BaseResponse>(request.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
-                AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+Interface service exception, please submit an issue or try updating the version!", $"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+接口服务异常，请提交Issue或尝试更新版本！"));
+                NotificationService.ShowError(LocalizationHelper.GetLocalizedString($"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+Interface service exception, please submit an issue or try updating the version!", $"{ApiConstants.Employee_UpdateEmployeeAccountPassword}+接口服务异常，请提交Issue或尝试更新版本！"));
                 return;
             }
-            AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("System prompt", "系统提示"), LocalizationHelper.GetLocalizedString("Update password success", "更新密码成功"), TType.Success);
+            NotificationService.ShowSuccess(LocalizationHelper.GetLocalizedString("Update password success", "更新密码成功"));
             return;
         }
     }

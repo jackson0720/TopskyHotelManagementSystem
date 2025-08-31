@@ -2,7 +2,6 @@
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.EntityLib;
-using Sunny.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,15 +11,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace EOM.TSHotelManagement.FormUI
 {
     public partial class FrmPersonnelInfo : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPersonnelInfo));
         public FrmPersonnelInfo()
         {
             InitializeComponent();
+
+            ucWindowHeader1.ApplySettingsWithoutMinimize("我的信息", string.Empty, (Image)resources.GetObject("FrmPersonnelInfo.Icon")!);
         }
 
         private void FrmPersonnelInfo_Load(object sender, EventArgs e)
@@ -34,9 +35,9 @@ namespace EOM.TSHotelManagement.FormUI
             };
             var result = HttpHelper.Request(ApiConstants.Base_SelectNationAll, dic);
             var nations = HttpHelper.JsonToModel<ListOutputDto<ReadNationOutputDto>>(result.message);
-            if (nations.Code != BusinessStatusCode.Success)
+            if (nations.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectNationAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectNationAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboEmployeeNation.Items.AddRange(nations.Data.Items.Select(item=> new AntdUI.SelectItem(item.NationName,item.NationNumber)).ToArray());
@@ -48,18 +49,18 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectGenderTypeAll, dic);
             var genderTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (genderTypes.Code != BusinessStatusCode.Success)
+            if (genderTypes.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectGenderTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboGender.Items.AddRange(genderTypes.Data.Items.Select(item => new AntdUI.SelectItem(item.Description, item.Id)).ToArray());
             //加载部门信息
             result = HttpHelper.Request(ApiConstants.Base_SelectDeptAllCanUse);
             var depts = HttpHelper.JsonToModel<ListOutputDto<ReadDepartmentOutputDto>>(result.message);
-            if (depts.Code != BusinessStatusCode.Success)
+            if (depts.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectDeptAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectDeptAllCanUse}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboEmployeeDepartment.Items.AddRange(depts.Data.Items.Select(item => new AntdUI.SelectItem(item.DepartmentName, item.DepartmentNumber)).ToArray());
@@ -71,9 +72,9 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Base_SelectPositionAll, dic);
             var positions = HttpHelper.JsonToModel<ListOutputDto<ReadPositionOutputDto>>(result.message);
-            if (positions.Code != BusinessStatusCode.Success)
+            if (positions.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectPositionAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectPositionAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboEmployeePosition.Items.AddRange(positions.Data.Items.Select(item => new AntdUI.SelectItem(item.PositionName, item.PositionNumber)).ToArray());
@@ -89,9 +90,9 @@ namespace EOM.TSHotelManagement.FormUI
             };
             var result = HttpHelper.Request(ApiConstants.Employee_SelectEmployeeInfoByEmployeeId, dic);
             var employees = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeeOutputDto>>(result.message);
-            if (employees.Code != BusinessStatusCode.Success)
+            if (employees.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeId}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Employee_SelectEmployeeInfoByEmployeeId}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             ReadEmployeeOutputDto worker = employees.Data;
@@ -109,23 +110,6 @@ namespace EOM.TSHotelManagement.FormUI
                 txtEmployeeAddress.Text = worker.Address;
                 txtEmployeeTel.Text = worker.PhoneNumber;
             }
-            //dic = new Dictionary<string, string>
-            //{
-            //    { nameof(ReadEmployeePhotoInputDto.EmployeeId) , LoginInfo.WorkerNo }
-            //};
-            //result = HttpHelper.Request(ApiConstants.EmployeePhoto_EmployeePhoto, dic);
-            //var workerPic = HttpHelper.JsonToModel<SingleOutputDto<ReadEmployeePhotoOutputDto>>(result.message);
-            //if (workerPic.Code != BusinessStatusCode.Success)
-            //{
-            //    UIMessageBox.ShowError($"{ApiConstants.EmployeePhoto_EmployeePhoto}+接口服务异常，请提交Issue或尝试更新版本！");
-            //    return;
-            //}
-            //var workerPicData = workerPic.Data;
-            //if (workerPicData != null && !string.IsNullOrEmpty(workerPicData.PhotoPath))
-            //{
-            //    picWorkerPic.BackgroundImage = null;
-            //    if (!string.IsNullOrEmpty(workerPicData.PhotoPath)) picWorkerPic.Load(workerPicData.PhotoPath);
-            //}
             Refresh();
         }
 
@@ -177,12 +161,12 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 result = HttpHelper.Request(ApiConstants.Employee_UpdateEmployee, worker.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Employee_UpdateEmployee}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Employee_UpdateEmployee}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                UIMessageBox.Show("修改成功！", "系统提示", UIStyle.Green, UIMessageBoxButtons.OK);
+                NotificationService.ShowSuccess("修改成功！");
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "修改个人信息操作！", Common.Core.LogLevel.Warning);
                 #endregion

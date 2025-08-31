@@ -37,7 +37,7 @@ namespace EOM.TSHotelManagement.FormUI
         public FrmReserManager()
         {
             InitializeComponent();
-            whReserRoomManagement = new ucWindowHeader("房间预约管理", string.Empty, (Image)resources.GetObject("FrmReserManager.Icon")!);
+            whReserRoomManagement.ApplySettingsWithoutMinimize("房间预约管理", string.Empty, (Image)resources.GetObject("FrmReserManager.Icon")!);
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
             SetStyle(ControlStyles.UserPaint, true);
@@ -75,19 +75,19 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 result = HttpHelper.Request(ApiConstants.Reser_InsertReserInfo, reser.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
                 result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfoWithReser, room.ModelToJson());
                 response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                AntdUI.Modal.open(this, UIMessageConstant.Success, "预约成功！请在指定时间内进行登记入住");
+                NotificationService.ShowSuccess("预约成功！请在指定时间内进行登记入住");
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", Common.Core.LogLevel.Normal);
                 #endregion
@@ -101,9 +101,9 @@ namespace EOM.TSHotelManagement.FormUI
         {
             result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
-                AntdUI.Modal.open(this, UIMessageConstant.Error, $"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
             cboReserRoomNo.Items.AddRange(response.Data.Items.Select(item => new AntdUI.SelectItem(item.RoomNumber)).ToArray());
@@ -115,11 +115,6 @@ namespace EOM.TSHotelManagement.FormUI
         {
             FrmReserList frm = new FrmReserList();
             frm.Show();
-        }
-
-        private void phReserRoomManagement_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
