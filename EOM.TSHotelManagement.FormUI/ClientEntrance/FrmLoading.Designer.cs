@@ -126,11 +126,12 @@
             Controls.Add(label1);
             Controls.Add(lblTips);
             Font = new Font("Noto Sans SC", 9F);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmLoading";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmLoading";
             Load += FrmLoading_Load;

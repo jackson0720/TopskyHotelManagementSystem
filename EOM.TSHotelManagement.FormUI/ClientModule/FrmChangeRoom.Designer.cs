@@ -109,12 +109,13 @@
             Controls.Add(label1);
             Controls.Add(label24);
             Controls.Add(ucWindowHeader1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmChangeRoom";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "转换房间";
             Load += FrmChangeRoom_Load;

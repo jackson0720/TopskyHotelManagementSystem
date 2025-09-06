@@ -307,10 +307,11 @@
             Controls.Add(label19);
             Controls.Add(label20);
             Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
             Name = "FrmCheckIn";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "房间入住";
             Load += FrmCheckIn_Load;
