@@ -24,7 +24,7 @@
 
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.FormUI
@@ -101,7 +101,7 @@ namespace EOM.TSHotelManagement.FormUI
             };
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
             var customers = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
-            if (customers.Code != BusinessStatusCode.Success)
+            if (customers.Success == false)
             {
                 AntdUI.Message.error(this, "SelectCustomers+接口服务异常，请提交Issue或尝试更新版本！");
                 return null!;
@@ -141,7 +141,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             result = HttpHelper.Request(ApiConstants.Customer_SelectCustomers, dic);
             response = HttpHelper.JsonToModel<ListOutputDto<ReadCustomerOutputDto>>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
                 AntdUI.Message.error(this, $"{ApiConstants.Customer_SelectCustomers}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;

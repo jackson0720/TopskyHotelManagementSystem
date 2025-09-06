@@ -21,20 +21,23 @@
  *SOFTWARE.
  *
  */
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using jvncorelib.CodeLib;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 using System.Transactions;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmReserManager : UIForm
+    public partial class FrmReserManager : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReserManager));
         public FrmReserManager()
         {
             InitializeComponent();
+            whReserRoomManagement.ApplySettingsWithoutMinimize("房间预约管理", string.Empty, (Image)resources.GetObject("FrmReserManager.Icon")!);
             #region 防止背景闪屏方法
             this.DoubleBuffered = true;//设置本窗体
             SetStyle(ControlStyles.UserPaint, true);
@@ -56,59 +59,67 @@ namespace EOM.TSHotelManagement.FormUI
                     ReservationId = reserid,
                     CustomerName = txtCustoName.Text.Trim(),
                     ReservationPhoneNumber = txtCustoTel.Text.Trim(),
-                    ReservationChannel = cboReserWay.Text,
-                    ReservationRoomNumber = cboReserRoomNo.Text,
-                    ReservationStartDate = dtpBookDate.Value,
-                    ReservationEndDate = dtpEndDate.Value,
+                    ReservationChannel = cboReserChannel.SelectedValue?.ToString() ?? string.Empty,
+                    ReservationRoomNumber = cboReserRoom.Text,
+                    ReservationStartDate = dtpStartDate.Value ?? dtpStartDate.Value.GetValueOrDefault(),
+                    ReservationEndDate = dtpEndDate.Value ?? dtpEndDate.Value.GetValueOrDefault(),
                     DataInsUsr = LoginInfo.WorkerNo,
                     DataInsDate = DateTime.Now
                 };
                 UpdateRoomInputDto room = new UpdateRoomInputDto()
                 {
-                    RoomNumber = cboReserRoomNo.Text,
+                    RoomNumber = cboReserRoom.Text,
                     RoomStateId = (int)RoomState.Reserved,
                     DataInsDate = DateTime.Now,
                     DataInsUsr = LoginInfo.WorkerNo
                 };
-                result = HttpHelper.Request(ApiConstants.Reser_InsertReserInfo, HttpHelper.ModelToJson(reser));
+                result = HttpHelper.Request(ApiConstants.Reser_InsertReserInfo, reser.ModelToJson());
                 var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Reser_InsertReserInfo}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfoWithReser, HttpHelper.ModelToJson(room));
+                result = HttpHelper.Request(ApiConstants.Room_UpdateRoomInfoWithReser, room.ModelToJson());
                 response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                if (response.Code != BusinessStatusCode.Success)
+                if (response.Success == false)
                 {
-                    UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
+                    NotificationService.ShowError($"{ApiConstants.Room_UpdateRoomInfoWithReser}+接口服务异常，请提交Issue或尝试更新版本！");
                     return;
                 }
-                UIMessageBox.ShowSuccess("预约成功！请在指定时间内进行登记入住");
+                NotificationService.ShowSuccess("预约成功！请在指定时间内进行登记入住");
                 #region 获取添加操作日志所需的信息
                 RecordHelper.Record(LoginInfo.WorkerClub + LoginInfo.WorkerPosition + LoginInfo.WorkerName + "于" + Convert.ToDateTime(DateTime.Now) + "帮助" + txtCustoTel.Text + "进行了预订房间操作！", Common.Core.LogLevel.Normal);
                 #endregion
                 scope.Complete();
                 FrmRoomManager.Reload("");
+                FrmRoomManager._RefreshRoomCount();
                 this.Close();
             }
         }
 
         private void FrmRoomManager_Load(object sender, EventArgs e)
         {
-            cboReserWay.SelectedIndex = 0;
             result = HttpHelper.Request(ApiConstants.Room_SelectCanUseRoomAll);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadRoomOutputDto>>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboReserRoomNo.DataSource = response.Data.Items;
-            cboReserRoomNo.DisplayMember = nameof(ReadRoomOutputDto.RoomNumber);
-            cboReserRoomNo.ValueMember = nameof(ReadRoomOutputDto.RoomNumber);
-            cboReserRoomNo.Text = ucRoom.co_RoomNo;
-            dtpBookDate.Value = Convert.ToDateTime(DateTime.Now);
+            cboReserRoom.Items.AddRange(response.Data.Items.Select(item => new AntdUI.SelectItem(item.RoomNumber)).ToArray());
+
+            result = HttpHelper.Request(ApiConstants.Reser_SelectReserTypeAll);
+            var reserTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
+            if (reserTypes.Success == false)
+            {
+                NotificationService.ShowError($"{ApiConstants.Reser_SelectReserTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            cboReserChannel.Items.AddRange(reserTypes.Data.Items.Select(item => new AntdUI.SelectItem(item.Description, item.Name)).ToArray());
+
+            cboReserRoom.Text = ucRoom.co_RoomNo;
+            dtpStartDate.Value = Convert.ToDateTime(DateTime.Now);
         }
 
         private void btnReserList_Click(object sender, EventArgs e)

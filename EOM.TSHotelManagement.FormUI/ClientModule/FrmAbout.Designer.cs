@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
-            btnClose = new AntdUI.Button();
             picLogo = new PictureBox();
             lblSoftName = new Label();
             lblServerVersion = new AntdUI.Label();
@@ -40,20 +39,9 @@
             lblNotice = new AntdUI.Label();
             lblFrameworkVersion = new AntdUI.Label();
             lblFrameworkVersionDescription = new AntdUI.Label();
+            whAboutHeader = new ucWindowHeader();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
-            // 
-            // btnClose
-            // 
-            btnClose.BackColor = Color.Transparent;
-            btnClose.BackgroundImage = Properties.Resources.close;
-            btnClose.Font = new Font("Microsoft YaHei UI", 9F);
-            btnClose.Ghost = true;
-            btnClose.Location = new Point(348, 3);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(41, 38);
-            btnClose.TabIndex = 42;
-            btnClose.Click += btnClose_Click;
             // 
             // picLogo
             // 
@@ -83,30 +71,30 @@
             // lblServerVersion
             // 
             lblServerVersion.BackColor = Color.Transparent;
-            lblServerVersion.Font = new Font("Noto Sans SC", 9F);
+            lblServerVersion.Font = new Font("Noto Sans SC", 10.5F);
             lblServerVersion.Location = new Point(194, 287);
             lblServerVersion.Name = "lblServerVersion";
-            lblServerVersion.Size = new Size(103, 23);
+            lblServerVersion.Size = new Size(183, 23);
             lblServerVersion.TabIndex = 48;
             lblServerVersion.Text = "";
             // 
             // lblClientVersion
             // 
             lblClientVersion.BackColor = Color.Transparent;
-            lblClientVersion.Font = new Font("Noto Sans SC", 9F);
+            lblClientVersion.Font = new Font("Noto Sans SC", 10.5F);
             lblClientVersion.Location = new Point(194, 258);
             lblClientVersion.Name = "lblClientVersion";
-            lblClientVersion.Size = new Size(103, 23);
+            lblClientVersion.Size = new Size(183, 23);
             lblClientVersion.TabIndex = 47;
             lblClientVersion.Text = "";
             // 
             // lblServerVersionDescriotion
             // 
             lblServerVersionDescriotion.BackColor = Color.Transparent;
-            lblServerVersionDescriotion.Font = new Font("Noto Sans SC", 9F);
-            lblServerVersionDescriotion.Location = new Point(94, 287);
+            lblServerVersionDescriotion.Font = new Font("Noto Sans SC", 10.5F);
+            lblServerVersionDescriotion.Location = new Point(13, 287);
             lblServerVersionDescriotion.Name = "lblServerVersionDescriotion";
-            lblServerVersionDescriotion.Size = new Size(90, 23);
+            lblServerVersionDescriotion.Size = new Size(171, 23);
             lblServerVersionDescriotion.TabIndex = 46;
             lblServerVersionDescriotion.Text = "";
             lblServerVersionDescriotion.TextAlign = ContentAlignment.MiddleRight;
@@ -114,10 +102,10 @@
             // lblClientVersionDescriotion
             // 
             lblClientVersionDescriotion.BackColor = Color.Transparent;
-            lblClientVersionDescriotion.Font = new Font("Noto Sans SC", 9F);
-            lblClientVersionDescriotion.Location = new Point(94, 258);
+            lblClientVersionDescriotion.Font = new Font("Noto Sans SC", 10.5F);
+            lblClientVersionDescriotion.Location = new Point(13, 258);
             lblClientVersionDescriotion.Name = "lblClientVersionDescriotion";
-            lblClientVersionDescriotion.Size = new Size(90, 23);
+            lblClientVersionDescriotion.Size = new Size(171, 23);
             lblClientVersionDescriotion.TabIndex = 45;
             lblClientVersionDescriotion.Text = "";
             lblClientVersionDescriotion.TextAlign = ContentAlignment.MiddleRight;
@@ -125,10 +113,10 @@
             // lblCopyright
             // 
             lblCopyright.BackColor = Color.Transparent;
-            lblCopyright.Font = new Font("Noto Sans SC", 9F);
-            lblCopyright.Location = new Point(71, 346);
+            lblCopyright.Font = new Font("Noto Sans SC", 10.5F);
+            lblCopyright.Location = new Point(13, 346);
             lblCopyright.Name = "lblCopyright";
-            lblCopyright.Size = new Size(240, 23);
+            lblCopyright.Size = new Size(364, 23);
             lblCopyright.TabIndex = 49;
             lblCopyright.Text = "";
             lblCopyright.TextAlign = ContentAlignment.MiddleCenter;
@@ -136,10 +124,10 @@
             // lblNotice
             // 
             lblNotice.BackColor = Color.Transparent;
-            lblNotice.Font = new Font("Noto Sans SC", 9F);
-            lblNotice.Location = new Point(71, 375);
+            lblNotice.Font = new Font("Noto Sans SC", 10.5F);
+            lblNotice.Location = new Point(13, 375);
             lblNotice.Name = "lblNotice";
-            lblNotice.Size = new Size(240, 23);
+            lblNotice.Size = new Size(364, 23);
             lblNotice.TabIndex = 50;
             lblNotice.Text = "";
             lblNotice.TextAlign = ContentAlignment.MiddleCenter;
@@ -147,23 +135,30 @@
             // lblFrameworkVersion
             // 
             lblFrameworkVersion.BackColor = Color.Transparent;
-            lblFrameworkVersion.Font = new Font("Noto Sans SC", 9F);
+            lblFrameworkVersion.Font = new Font("Noto Sans SC", 10.5F);
             lblFrameworkVersion.Location = new Point(194, 316);
             lblFrameworkVersion.Name = "lblFrameworkVersion";
-            lblFrameworkVersion.Size = new Size(103, 23);
+            lblFrameworkVersion.Size = new Size(183, 23);
             lblFrameworkVersion.TabIndex = 52;
             lblFrameworkVersion.Text = "";
             // 
             // lblFrameworkVersionDescription
             // 
             lblFrameworkVersionDescription.BackColor = Color.Transparent;
-            lblFrameworkVersionDescription.Font = new Font("Noto Sans SC", 9F);
-            lblFrameworkVersionDescription.Location = new Point(94, 316);
+            lblFrameworkVersionDescription.Font = new Font("Noto Sans SC", 10.5F);
+            lblFrameworkVersionDescription.Location = new Point(13, 316);
             lblFrameworkVersionDescription.Name = "lblFrameworkVersionDescription";
-            lblFrameworkVersionDescription.Size = new Size(90, 23);
+            lblFrameworkVersionDescription.Size = new Size(171, 23);
             lblFrameworkVersionDescription.TabIndex = 51;
             lblFrameworkVersionDescription.Text = "";
             lblFrameworkVersionDescription.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // whAboutHeader
+            // 
+            whAboutHeader.Location = new Point(1, -1);
+            whAboutHeader.Name = "whAboutHeader";
+            whAboutHeader.Size = new Size(391, 35);
+            whAboutHeader.TabIndex = 53;
             // 
             // FrmAbout
             // 
@@ -171,6 +166,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(235, 243, 255);
             ClientSize = new Size(390, 476);
+            Controls.Add(whAboutHeader);
             Controls.Add(lblFrameworkVersion);
             Controls.Add(lblFrameworkVersionDescription);
             Controls.Add(lblNotice);
@@ -181,11 +177,11 @@
             Controls.Add(lblClientVersionDescriotion);
             Controls.Add(lblSoftName);
             Controls.Add(picLogo);
-            Controls.Add(btnClose);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             Name = "FrmAbout";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "关于我们";
             Load += FrmAboutUs_Load;
@@ -196,8 +192,6 @@
         }
 
         #endregion
-
-        private AntdUI.Button btnClose;
         private PictureBox picLogo;
         private Label lblSoftName;
         private AntdUI.Label lblServerVersion;
@@ -208,5 +202,6 @@
         private AntdUI.Label lblNotice;
         private AntdUI.Label lblFrameworkVersion;
         private AntdUI.Label lblFrameworkVersionDescription;
+        private ucWindowHeader whAboutHeader;
     }
 }

@@ -29,7 +29,7 @@ namespace EOM.TSHotelManagement.Common
             };
             ResponseMsg result = HttpHelper.Request(ApiConstants.Utility_SelectCardCode, input.ModelToJson());
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadCardCodeOutputDto>>(result.message);
-            if (response.Code != BusinessStatusCode.Success)
+            if (response.Success == false)
             {
                 return new Card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };
             }

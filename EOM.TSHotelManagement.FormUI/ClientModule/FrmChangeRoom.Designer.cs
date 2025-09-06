@@ -29,106 +29,106 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmChangeRoom));
-            this.uiLabel1 = new Sunny.UI.UILabel();
-            this.cboRoomList = new Sunny.UI.UIComboBox();
-            this.uiLabel2 = new Sunny.UI.UILabel();
-            this.lblRoomType = new Sunny.UI.UILabel();
-            this.btnChangeRoom = new Sunny.UI.UIButton();
-            this.SuspendLayout();
+            ucWindowHeader1 = new ucWindowHeader();
+            label24 = new Label();
+            label1 = new Label();
+            lblRoomType = new AntdUI.Label();
+            btnChangeRoom = new AntdUI.Button();
+            cboRoomList = new AntdUI.Select();
+            SuspendLayout();
             // 
-            // uiLabel1
+            // ucWindowHeader1
             // 
-            this.uiLabel1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel1.Location = new System.Drawing.Point(15, 54);
-            this.uiLabel1.Name = "uiLabel1";
-            this.uiLabel1.Size = new System.Drawing.Size(202, 28);
-            this.uiLabel1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLabel1.TabIndex = 6;
-            this.uiLabel1.Text = "请选择需要转换的新房间：";
-            this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            ucWindowHeader1.Location = new Point(0, -1);
+            ucWindowHeader1.Name = "ucWindowHeader1";
+            ucWindowHeader1.Size = new Size(249, 35);
+            ucWindowHeader1.TabIndex = 11;
             // 
-            // cboRoomList
+            // label24
             // 
-            this.cboRoomList.DataSource = null;
-            this.cboRoomList.FillColor = System.Drawing.Color.White;
-            this.cboRoomList.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.cboRoomList.Location = new System.Drawing.Point(208, 55);
-            this.cboRoomList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboRoomList.MinimumSize = new System.Drawing.Size(63, 0);
-            this.cboRoomList.Name = "cboRoomList";
-            this.cboRoomList.Padding = new System.Windows.Forms.Padding(0, 0, 30, 2);
-            this.cboRoomList.Radius = 15;
-            this.cboRoomList.Size = new System.Drawing.Size(150, 29);
-            this.cboRoomList.Style = Sunny.UI.UIStyle.Custom;
-            this.cboRoomList.TabIndex = 7;
-            this.cboRoomList.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cboRoomList.TextChanged += new System.EventHandler(this.cboRoomList_TextChanged);
+            label24.AutoSize = true;
+            label24.Font = new Font("Noto Sans SC", 14F);
+            label24.Location = new Point(5, 58);
+            label24.Name = "label24";
+            label24.Size = new Size(85, 19);
+            label24.TabIndex = 159;
+            label24.Text = "新房间：";
             // 
-            // uiLabel2
+            // label1
             // 
-            this.uiLabel2.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.uiLabel2.Location = new System.Drawing.Point(15, 96);
-            this.uiLabel2.Name = "uiLabel2";
-            this.uiLabel2.Size = new System.Drawing.Size(183, 28);
-            this.uiLabel2.Style = Sunny.UI.UIStyle.Custom;
-            this.uiLabel2.TabIndex = 8;
-            this.uiLabel2.Text = "新  房  间  类  型  为：";
-            this.uiLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            label1.AutoSize = true;
+            label1.Font = new Font("Noto Sans SC", 14F);
+            label1.Location = new Point(5, 108);
+            label1.Name = "label1";
+            label1.Size = new Size(81, 19);
+            label1.TabIndex = 161;
+            label1.Text = "类   型：";
             // 
             // lblRoomType
             // 
-            this.lblRoomType.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.lblRoomType.Location = new System.Drawing.Point(208, 96);
-            this.lblRoomType.Name = "lblRoomType";
-            this.lblRoomType.Size = new System.Drawing.Size(150, 28);
-            this.lblRoomType.Style = Sunny.UI.UIStyle.Custom;
-            this.lblRoomType.TabIndex = 9;
-            this.lblRoomType.Text = "新  房  间  类  型";
-            this.lblRoomType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblRoomType.Font = new Font("Noto Sans SC", 12F);
+            lblRoomType.Location = new Point(91, 99);
+            lblRoomType.Name = "lblRoomType";
+            lblRoomType.Size = new Size(149, 36);
+            lblRoomType.TabIndex = 162;
+            lblRoomType.Text = "";
+            lblRoomType.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnChangeRoom
             // 
-            this.btnChangeRoom.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChangeRoom.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.btnChangeRoom.Location = new System.Drawing.Point(133, 138);
-            this.btnChangeRoom.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnChangeRoom.Name = "btnChangeRoom";
-            this.btnChangeRoom.Radius = 15;
-            this.btnChangeRoom.Size = new System.Drawing.Size(107, 40);
-            this.btnChangeRoom.Style = Sunny.UI.UIStyle.Custom;
-            this.btnChangeRoom.TabIndex = 10;
-            this.btnChangeRoom.Text = "转    房";
-            this.btnChangeRoom.Click += new System.EventHandler(this.btnChangeRoom_Click);
+            btnChangeRoom.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnChangeRoom.Location = new Point(155, 156);
+            btnChangeRoom.Name = "btnChangeRoom";
+            btnChangeRoom.Size = new Size(85, 45);
+            btnChangeRoom.TabIndex = 163;
+            btnChangeRoom.Text = "转    房";
+            btnChangeRoom.Type = AntdUI.TTypeMini.Primary;
+            btnChangeRoom.Click += btnChangeRoom_Click;
+            // 
+            // cboRoomList
+            // 
+            cboRoomList.Font = new Font("Noto Sans SC", 12F);
+            cboRoomList.List = true;
+            cboRoomList.ListAutoWidth = true;
+            cboRoomList.Location = new Point(91, 46);
+            cboRoomList.Name = "cboRoomList";
+            cboRoomList.Placement = AntdUI.TAlignFrom.Bottom;
+            cboRoomList.Size = new Size(149, 45);
+            cboRoomList.TabIndex = 179;
+            cboRoomList.TextChanged += cboRoomList_TextChanged;
             // 
             // FrmChangeRoom
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(243)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(372, 198);
-            this.Controls.Add(this.btnChangeRoom);
-            this.Controls.Add(this.lblRoomType);
-            this.Controls.Add(this.uiLabel2);
-            this.Controls.Add(this.cboRoomList);
-            this.Controls.Add(this.uiLabel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FrmChangeRoom";
-            this.ShowIcon = true;
-            this.ShowTitleIcon = true;
-            this.Style = Sunny.UI.UIStyle.Custom;
-            this.Text = "转换房间";
-            this.Load += new System.EventHandler(this.FrmChangeRoom_Load);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(235, 243, 255);
+            ClientSize = new Size(248, 210);
+            Controls.Add(cboRoomList);
+            Controls.Add(btnChangeRoom);
+            Controls.Add(lblRoomType);
+            Controls.Add(label1);
+            Controls.Add(label24);
+            Controls.Add(ucWindowHeader1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(2);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FrmChangeRoom";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "转换房间";
+            Load += FrmChangeRoom_Load;
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
         #endregion
-        private Sunny.UI.UILabel uiLabel1;
-        private Sunny.UI.UIComboBox cboRoomList;
-        private Sunny.UI.UILabel uiLabel2;
-        private Sunny.UI.UILabel lblRoomType;
-        private Sunny.UI.UIButton btnChangeRoom;
+        private ucWindowHeader ucWindowHeader1;
+        private Label label24;
+        private Label label1;
+        private AntdUI.Label lblRoomType;
+        private AntdUI.Button btnChangeRoom;
+        private AntdUI.Select cboRoomList;
     }
 }

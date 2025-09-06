@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLoading));
             lblTips = new AntdUI.Label();
             lbInternetSoftwareVersion = new AntdUI.Label();
             lblLocalSoftwareVersion = new AntdUI.Label();
@@ -40,6 +41,7 @@
             // 
             // lblTips
             // 
+            lblTips.Font = new Font("Noto Sans SC", 9F);
             lblTips.Location = new Point(12, 48);
             lblTips.Name = "lblTips";
             lblTips.Size = new Size(311, 23);
@@ -50,6 +52,7 @@
             // lbInternetSoftwareVersion
             // 
             lbInternetSoftwareVersion.BackColor = Color.Transparent;
+            lbInternetSoftwareVersion.Font = new Font("Noto Sans SC", 9F);
             lbInternetSoftwareVersion.Location = new Point(152, 106);
             lbInternetSoftwareVersion.Name = "lbInternetSoftwareVersion";
             lbInternetSoftwareVersion.Size = new Size(140, 23);
@@ -60,6 +63,7 @@
             // lblLocalSoftwareVersion
             // 
             lblLocalSoftwareVersion.BackColor = Color.Transparent;
+            lblLocalSoftwareVersion.Font = new Font("Noto Sans SC", 9F);
             lblLocalSoftwareVersion.Location = new Point(152, 77);
             lblLocalSoftwareVersion.Name = "lblLocalSoftwareVersion";
             lblLocalSoftwareVersion.Size = new Size(140, 23);
@@ -70,6 +74,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Noto Sans SC", 9F);
             label2.Location = new Point(43, 106);
             label2.Name = "label2";
             label2.Size = new Size(103, 23);
@@ -80,6 +85,7 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Noto Sans SC", 9F);
             label1.Location = new Point(43, 77);
             label1.Name = "label1";
             label1.Size = new Size(103, 23);
@@ -90,6 +96,7 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Noto Sans SC", 9F);
             label3.Location = new Point(43, 135);
             label3.Name = "label3";
             label3.Size = new Size(103, 23);
@@ -99,6 +106,7 @@
             // 
             // lblReleaseLog
             // 
+            lblReleaseLog.AutoScroll = true;
             lblReleaseLog.Location = new Point(12, 164);
             lblReleaseLog.Multiline = true;
             lblReleaseLog.Name = "lblReleaseLog";
@@ -117,7 +125,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblTips);
+            Font = new Font("Noto Sans SC", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmLoading";
@@ -128,8 +138,6 @@
         }
 
         #endregion
-        private Sunny.UI.UILabel lblDllVersion;
-        private Sunny.UI.UILabel uiLabel3;
         private AntdUI.Label lblTips;
         private AntdUI.Label lbInternetSoftwareVersion;
         private AntdUI.Label lblLocalSoftwareVersion;

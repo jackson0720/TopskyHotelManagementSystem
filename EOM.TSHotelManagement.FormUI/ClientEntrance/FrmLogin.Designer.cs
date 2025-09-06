@@ -33,11 +33,11 @@
             txtAccount = new AntdUI.Input();
             txtWorkerPwd = new AntdUI.Input();
             picLogin = new AntdUI.Button();
-            picFormSize = new AntdUI.Button();
-            picClose = new AntdUI.Button();
             avatar1 = new AntdUI.Avatar();
             avatar2 = new AntdUI.Avatar();
             label1 = new AntdUI.Label();
+            btnMinimize = new AntdUI.Button();
+            btnClose = new AntdUI.Button();
             SuspendLayout();
             // 
             // label2
@@ -55,7 +55,7 @@
             // txtAccount
             // 
             txtAccount.BackColor = Color.White;
-            txtAccount.Font = new Font("Microsoft YaHei UI", 14F);
+            txtAccount.Font = new Font("Noto Sans SC", 12F);
             txtAccount.Location = new Point(648, 190);
             txtAccount.Name = "txtAccount";
             txtAccount.PlaceholderText = "";
@@ -66,7 +66,7 @@
             // txtWorkerPwd
             // 
             txtWorkerPwd.BackColor = Color.White;
-            txtWorkerPwd.Font = new Font("Microsoft YaHei UI", 14F);
+            txtWorkerPwd.Font = new Font("Noto Sans SC", 12F);
             txtWorkerPwd.Location = new Point(648, 264);
             txtWorkerPwd.Name = "txtWorkerPwd";
             txtWorkerPwd.PasswordChar = '*';
@@ -79,7 +79,7 @@
             // 
             // picLogin
             // 
-            picLogin.Font = new Font("Microsoft YaHei UI", 12F);
+            picLogin.Font = new Font("Noto Sans SC", 12F);
             picLogin.Location = new Point(658, 342);
             picLogin.Name = "picLogin";
             picLogin.Radius = 8;
@@ -89,30 +89,6 @@
             picLogin.Text = "登      录";
             picLogin.Type = AntdUI.TTypeMini.Primary;
             picLogin.Click += picLogin_Click;
-            // 
-            // picFormSize
-            // 
-            picFormSize.BackColor = Color.Transparent;
-            picFormSize.BackgroundImage = Properties.Resources.arrow_down_b;
-            picFormSize.Font = new Font("Microsoft YaHei UI", 9F);
-            picFormSize.Ghost = true;
-            picFormSize.Location = new Point(822, 1);
-            picFormSize.Name = "picFormSize";
-            picFormSize.Size = new Size(41, 38);
-            picFormSize.TabIndex = 36;
-            picFormSize.Click += picMin_Click;
-            // 
-            // picClose
-            // 
-            picClose.BackColor = Color.Transparent;
-            picClose.BackgroundImage = Properties.Resources.close;
-            picClose.Font = new Font("Microsoft YaHei UI", 9F);
-            picClose.Ghost = true;
-            picClose.Location = new Point(875, 1);
-            picClose.Name = "picClose";
-            picClose.Size = new Size(41, 38);
-            picClose.TabIndex = 37;
-            picClose.Click += picClose_Click;
             // 
             // avatar1
             // 
@@ -136,13 +112,43 @@
             // 
             // label1
             // 
-            label1.Font = new Font("Microsoft YaHei UI", 14F);
+            label1.Font = new Font("Noto Sans SC", 14F);
             label1.Location = new Point(648, 72);
             label1.Name = "label1";
             label1.Size = new Size(222, 83);
             label1.TabIndex = 40;
             label1.Text = "欢迎登录";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Right;
+            btnMinimize.BackColor = Color.FromArgb(22, 119, 255);
+            btnMinimize.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
+            btnMinimize.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMinimize.Location = new Point(832, 2);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(38, 38);
+            btnMinimize.TabIndex = 143;
+            btnMinimize.Text = "—";
+            btnMinimize.TextAlign = ContentAlignment.BottomCenter;
+            btnMinimize.Type = AntdUI.TTypeMini.Info;
+            btnMinimize.Click += picMin_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.BackColor = Color.FromArgb(22, 119, 255);
+            btnClose.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
+            btnClose.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClose.Location = new Point(876, 2);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(38, 38);
+            btnClose.TabIndex = 142;
+            btnClose.Text = "×";
+            btnClose.TextAlign = ContentAlignment.BottomCenter;
+            btnClose.Type = AntdUI.TTypeMini.Info;
+            btnClose.Click += picClose_Click;
             // 
             // FrmLogin
             // 
@@ -152,11 +158,11 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(916, 510);
+            Controls.Add(btnMinimize);
+            Controls.Add(btnClose);
             Controls.Add(label1);
             Controls.Add(avatar2);
             Controls.Add(avatar1);
-            Controls.Add(picClose);
-            Controls.Add(picFormSize);
             Controls.Add(picLogin);
             Controls.Add(txtWorkerPwd);
             Controls.Add(txtAccount);
@@ -179,11 +185,11 @@
         private AntdUI.Input txtAccount;
         private AntdUI.Input txtWorkerPwd;
         private AntdUI.Button picLogin;
-        private AntdUI.Button picFormSize;
-        private AntdUI.Button picClose;
         private AntdUI.Avatar avatar1;
         private AntdUI.Avatar avatar2;
         private AntdUI.Label label1;
+        private AntdUI.Button btnMinimize;
+        private AntdUI.Button btnClose;
     }
 }
 

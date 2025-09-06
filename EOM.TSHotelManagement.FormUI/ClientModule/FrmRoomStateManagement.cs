@@ -22,19 +22,22 @@
  *
  */
 
+using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
 using EOM.TSHotelManagement.Shared;
-using Sunny.UI;
+using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.FormUI
 {
-    public partial class FrmRoomStateManager : UIForm
+    public partial class FrmRoomStateManager : Window
     {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRoomStateManager));
         public FrmRoomStateManager()
         {
             InitializeComponent();
+            ucWindowHeader1.ApplySettingsWithoutMinimize("房间状态管理", string.Empty, (Image)resources.GetObject("FrmRoomStateManager.Icon")!);
         }
 
         Dictionary<string, string> dic = null;
@@ -43,53 +46,57 @@ namespace EOM.TSHotelManagement.FormUI
         #region 窗体加载事件
         private void FrmRoomStateManager_Load(object sender, EventArgs e)
         {
+
             txtRoomNo.Text = ucRoom.rm_RoomNo;
             result = HttpHelper.Request(ApiConstants.Base_SelectRoomStateAll);
             var datas = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
-            if (datas.Code != 200)
+            if (datas.Success == false)
             {
-                UIMessageBox.ShowError($"{ApiConstants.Base_SelectRoomStateAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                NotificationService.ShowError($"{ApiConstants.Base_SelectRoomStateAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboState.DataSource = datas.Data.Items;
-            cboState.DisplayMember = nameof(EnumDto.Description);
-            cboState.ValueMember = nameof(EnumDto.Id);
-            cboState.SelectedIndex = 0;
+            cboRoomState.Items.AddRange(datas.Data.Items.Select(item => new AntdUI.SelectItem(item.Description, item.Id)).ToArray());
+            cboRoomState.SelectedIndex = 0;
         }
         #endregion
-
+        int selectedValue = 1;
         #region 确定按钮点击事件
         private void btnOk_Click(object sender, EventArgs e)
         {
             var helper = new EnumHelper();
-            switch (cboState.SelectedValue)
+            switch (selectedValue)
             {
                 case (int)RoomState.Occupied:
-                    UIMessageBox.Show("不能设置为已住状态！", "来自小T的提示", UIStyle.Orange);
+                    NotificationService.ShowWarning("不能设置为已住状态！");
                     break;
                 case (int)RoomState.Vacant:
                 case (int)RoomState.Maintenance:
                 case (int)RoomState.Dirty:
                 case (int)RoomState.Reserved:
-                    var updateRoom = new UpdateRoomInputDto { RoomNumber = txtRoomNo.Text.Trim(), RoomStateId = Convert.ToInt32(cboState.SelectedValue) };
+                    var updateRoom = new UpdateRoomInputDto { RoomNumber = txtRoomNo.Text.Trim(), RoomStateId = Convert.ToInt32(selectedValue) };
                     result = HttpHelper.Request(ApiConstants.Room_UpdateRoomStateByRoomNo, updateRoom.ModelToJson());
                     var response = HttpHelper.JsonToModel<BaseResponse>(result.message);
-                    if (response.Code != BusinessStatusCode.Success)
+                    if (response.Success == false)
                     {
-                        UIMessageBox.ShowError($"{ApiConstants.Room_UpdateRoomStateByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
+                        NotificationService.ShowError($"{ApiConstants.Room_UpdateRoomStateByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                         return;
                     }
-                    UIMessageBox.Show("房间" + txtRoomNo.Text + "成功修改为" + cboState.Text, "修改提示", UIStyle.Green);
+                    NotificationService.ShowSuccess("房间" + txtRoomNo.Text + "成功修改为" + cboRoomState.Text);
                     FrmRoomManager.Reload("");
                     FrmRoomManager._RefreshRoomCount();
                     this.Close();
                     break;
                 default:
-                    UIMessageBox.Show("请选择房间状态", "来自小T的提示", UIStyle.Orange);
+                    NotificationService.ShowWarning("请选择房间状态");
                     break;
             }
 
         }
         #endregion
+
+        private void cboRoomState_SelectedValueChanged(object sender, ObjectNEventArgs e)
+        {
+            selectedValue = Convert.ToInt32(e.Value);
+        }
     }
 }

@@ -61,7 +61,6 @@
             // 
             // FrmScreenLock
             // 
-            AllowShowTitle = false;
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(235, 243, 255);
             BackgroundImage = Properties.Resources.lock_screen;
@@ -69,17 +68,17 @@
             ClientSize = new Size(800, 450);
             Controls.Add(btnUnlock);
             Controls.Add(txtPassword);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            IsForbidAltF4 = true;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FrmScreenLock";
-            Padding = new Padding(0);
+            Resizable = false;
             ShowIcon = false;
             ShowInTaskbar = false;
-            ShowTitle = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "系统已锁定";
-            ZoomScaleRect = new Rectangle(15, 15, 800, 450);
+            TopMost = true;
             Load += FrmScreenLock_Load;
             ResumeLayout(false);
         }
