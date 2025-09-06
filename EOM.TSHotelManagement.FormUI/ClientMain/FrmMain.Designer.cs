@@ -296,10 +296,11 @@
             Controls.Add(pnlMID);
             Controls.Add(picLogo);
             Controls.Add(lblSoftName);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "FrmMain";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TS酒店管理系统";
             FormClosing += FrmMain_FormClosing;

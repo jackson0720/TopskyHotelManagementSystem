@@ -80,8 +80,10 @@
             Controls.Add(ucWindowHeader1);
             Controls.Add(label4);
             Controls.Add(picWorkerPic);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAvator";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAvator";
             Load += FrmAvator_Load;

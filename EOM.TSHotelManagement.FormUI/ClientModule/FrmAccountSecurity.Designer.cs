@@ -137,8 +137,10 @@
             Controls.Add(avatar1);
             Controls.Add(btnUpdatePassword);
             Controls.Add(txtNewPassword);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAccountSecurity";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAccountSecurity";
             Load += FrmAccountSecurity_Load;

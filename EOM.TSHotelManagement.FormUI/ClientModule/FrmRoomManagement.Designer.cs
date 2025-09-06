@@ -58,17 +58,17 @@
             pnlRoomInfo.Controls.Add(label3);
             pnlRoomInfo.Controls.Add(label2);
             pnlRoomInfo.Controls.Add(label1);
-            pnlRoomInfo.Location = new Point(2, 312);
+            pnlRoomInfo.Location = new Point(3, 273);
             pnlRoomInfo.Margin = new Padding(4);
             pnlRoomInfo.Name = "pnlRoomInfo";
-            pnlRoomInfo.Size = new Size(255, 307);
+            pnlRoomInfo.Size = new Size(255, 346);
             pnlRoomInfo.TabIndex = 72;
             // 
             // lblRoomState
             // 
             lblRoomState.AutoSize = true;
             lblRoomState.Font = new Font("Noto Sans SC", 12F);
-            lblRoomState.Location = new Point(108, 277);
+            lblRoomState.Location = new Point(108, 173);
             lblRoomState.Margin = new Padding(4, 0, 4, 0);
             lblRoomState.Name = "lblRoomState";
             lblRoomState.Size = new Size(12, 17);
@@ -79,7 +79,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Noto Sans SC", 12F);
-            label11.Location = new Point(11, 277);
+            label11.Location = new Point(11, 173);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(88, 17);
@@ -101,7 +101,7 @@
             // 
             lblCustoName.AutoSize = true;
             lblCustoName.Font = new Font("Noto Sans SC", 12F);
-            lblCustoName.Location = new Point(108, 79);
+            lblCustoName.Location = new Point(108, 53);
             lblCustoName.Margin = new Padding(4, 0, 4, 0);
             lblCustoName.Name = "lblCustoName";
             lblCustoName.Size = new Size(12, 17);
@@ -112,7 +112,7 @@
             // 
             lblRoomPosition.AutoSize = true;
             lblRoomPosition.Font = new Font("Noto Sans SC", 12F);
-            lblRoomPosition.Location = new Point(108, 211);
+            lblRoomPosition.Location = new Point(108, 133);
             lblRoomPosition.Margin = new Padding(4, 0, 4, 0);
             lblRoomPosition.Name = "lblRoomPosition";
             lblRoomPosition.Size = new Size(12, 17);
@@ -123,7 +123,7 @@
             // 
             lblCheckTime.AutoSize = true;
             lblCheckTime.Font = new Font("Noto Sans SC", 12F);
-            lblCheckTime.Location = new Point(108, 145);
+            lblCheckTime.Location = new Point(108, 93);
             lblCheckTime.Margin = new Padding(4, 0, 4, 0);
             lblCheckTime.Name = "lblCheckTime";
             lblCheckTime.Size = new Size(12, 17);
@@ -134,7 +134,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Noto Sans SC", 12F);
-            label4.Location = new Point(11, 211);
+            label4.Location = new Point(11, 133);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(88, 17);
@@ -145,7 +145,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Noto Sans SC", 12F);
-            label3.Location = new Point(11, 145);
+            label3.Location = new Point(11, 93);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(88, 17);
@@ -156,7 +156,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Noto Sans SC", 12F);
-            label2.Location = new Point(11, 79);
+            label2.Location = new Point(11, 53);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(88, 17);
@@ -181,7 +181,7 @@
             muRoomState.Location = new Point(2, 4);
             muRoomState.Mode = AntdUI.TMenuMode.Vertical;
             muRoomState.Name = "muRoomState";
-            muRoomState.Size = new Size(255, 301);
+            muRoomState.Size = new Size(255, 262);
             muRoomState.TabIndex = 96;
             muRoomState.SelectChanged += muRoomState_SelectChanged;
             // 

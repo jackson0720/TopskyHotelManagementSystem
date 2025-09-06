@@ -248,9 +248,10 @@
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(label16);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmPersonnelInfo";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmPersonnelInfo";
             Load += FrmPersonnelInfo_Load;
