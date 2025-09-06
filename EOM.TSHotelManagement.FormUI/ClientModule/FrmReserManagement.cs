@@ -59,8 +59,8 @@ namespace EOM.TSHotelManagement.FormUI
                     ReservationId = reserid,
                     CustomerName = txtCustoName.Text.Trim(),
                     ReservationPhoneNumber = txtCustoTel.Text.Trim(),
-                    ReservationChannel = cboReserWay.Text,
-                    ReservationRoomNumber = cboReserRoomNo.Text,
+                    ReservationChannel = cboReserChannel.SelectedValue?.ToString() ?? string.Empty,
+                    ReservationRoomNumber = cboReserRoom.Text,
                     ReservationStartDate = dtpStartDate.Value ?? dtpStartDate.Value.GetValueOrDefault(),
                     ReservationEndDate = dtpEndDate.Value ?? dtpEndDate.Value.GetValueOrDefault(),
                     DataInsUsr = LoginInfo.WorkerNo,
@@ -68,7 +68,7 @@ namespace EOM.TSHotelManagement.FormUI
                 };
                 UpdateRoomInputDto room = new UpdateRoomInputDto()
                 {
-                    RoomNumber = cboReserRoomNo.Text,
+                    RoomNumber = cboReserRoom.Text,
                     RoomStateId = (int)RoomState.Reserved,
                     DataInsDate = DateTime.Now,
                     DataInsUsr = LoginInfo.WorkerNo
@@ -93,6 +93,7 @@ namespace EOM.TSHotelManagement.FormUI
                 #endregion
                 scope.Complete();
                 FrmRoomManager.Reload("");
+                FrmRoomManager._RefreshRoomCount();
                 this.Close();
             }
         }
@@ -106,8 +107,18 @@ namespace EOM.TSHotelManagement.FormUI
                 NotificationService.ShowError($"{ApiConstants.Room_SelectCanUseRoomAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboReserRoomNo.Items.AddRange(response.Data.Items.Select(item => new AntdUI.SelectItem(item.RoomNumber)).ToArray());
-            cboReserRoomNo.Text = ucRoom.co_RoomNo;
+            cboReserRoom.Items.AddRange(response.Data.Items.Select(item => new AntdUI.SelectItem(item.RoomNumber)).ToArray());
+
+            result = HttpHelper.Request(ApiConstants.Reser_SelectReserTypeAll);
+            var reserTypes = HttpHelper.JsonToModel<ListOutputDto<EnumDto>>(result.message);
+            if (reserTypes.Success == false)
+            {
+                NotificationService.ShowError($"{ApiConstants.Reser_SelectReserTypeAll}+接口服务异常，请提交Issue或尝试更新版本！");
+                return;
+            }
+            cboReserChannel.Items.AddRange(reserTypes.Data.Items.Select(item => new AntdUI.SelectItem(item.Description, item.Name)).ToArray());
+
+            cboReserRoom.Text = ucRoom.co_RoomNo;
             dtpStartDate.Value = Convert.ToDateTime(DateTime.Now);
         }
 

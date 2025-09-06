@@ -58,7 +58,7 @@
             // 
             // dtpCheckTime
             // 
-            dtpCheckTime.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            dtpCheckTime.Font = new Font("Noto Sans SC", 12F);
             dtpCheckTime.Location = new Point(408, 51);
             dtpCheckTime.Name = "dtpCheckTime";
             dtpCheckTime.PlaceholderText = "";
@@ -78,7 +78,7 @@
             // 
             // txtRoomNo
             // 
-            txtRoomNo.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtRoomNo.Font = new Font("Noto Sans SC", 12F);
             txtRoomNo.Location = new Point(408, 102);
             txtRoomNo.Name = "txtRoomNo";
             txtRoomNo.PlaceholderText = "";
@@ -98,7 +98,7 @@
             // 
             // CustoName
             // 
-            CustoName.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            CustoName.Font = new Font("Noto Sans SC", 12F);
             CustoName.Location = new Point(103, 102);
             CustoName.Name = "CustoName";
             CustoName.PlaceholderText = "";
@@ -118,7 +118,7 @@
             // 
             // CustoNo
             // 
-            CustoNo.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            CustoNo.Font = new Font("Noto Sans SC", 12F);
             CustoNo.Location = new Point(103, 51);
             CustoNo.Name = "CustoNo";
             CustoNo.PlaceholderText = "";
@@ -180,6 +180,7 @@
             // 
             // btnPg
             // 
+            btnPg.Font = new Font("Noto Sans SC", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPg.Location = new Point(12, 365);
             btnPg.Name = "btnPg";
             btnPg.PageSize = 15;
@@ -202,6 +203,7 @@
             // 
             // dgvSpendList
             // 
+            dgvSpendList.Font = new Font("Noto Sans SC", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dgvSpendList.Gap = 12;
             dgvSpendList.Location = new Point(12, 148);
             dgvSpendList.Name = "dgvSpendList";

@@ -1,12 +1,6 @@
 ﻿using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -17,7 +11,7 @@ namespace EOM.TSHotelManagement.FormUI
             Modal.open(new Modal.Config(null, UIMessageConstant.Success, message, TType.Success)
             {
                 Draggable = true,
-                CancelText = null, 
+                CancelText = null,
                 OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok)
             });
         }

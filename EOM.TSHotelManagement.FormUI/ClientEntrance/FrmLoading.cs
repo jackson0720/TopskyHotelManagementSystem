@@ -102,7 +102,8 @@ namespace EOM.TSHotelManagement.FormUI
             if (version.Equals(lblLocalSoftwareVersion.Text.Trim()))
             {
                 LoginInfo.SoftwareReleaseLog = $"{releaseBody}";
-                NotificationService.ShowSuccess("当前已是最新版本，无需更新！");
+                NotificationService.ShowSuccess("当前已是最新版本，无需更新！3秒后将自动跳转登录页面");
+                Task.Delay(3000).Wait();
                 Task.Run(() => threadPro());
                 return;
             }

@@ -23,16 +23,13 @@
  */
 
 using AntdUI;
-using AntdUI.Svg;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.FormUI.Properties;
-using EOM.TSHotelManagement.Shared;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -235,7 +232,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             this.Owner.Hide();
 
-            lblSoftName.Text = System.Windows.Forms.Application.ProductName.ToString() + " V" + ApplicationUtil.GetApplicationVersion();
+            lblSoftName.Text = ApplicationUtil.GetApplicationName() + " V" + ApplicationUtil.GetApplicationVersion();
 
             LoadNavBar();
 
@@ -260,7 +257,7 @@ namespace EOM.TSHotelManagement.FormUI
 
             pnlCheckInfo.Visible = false;
 
-            niClientIcon.Text = "TS酒店管理系统 - " + LoginInfo.WorkerName + " - 版本号：" + ApplicationUtil.GetApplicationVersion();
+            niClientIcon.Text = "TS酒店管理系统 - " + LoginInfo.WorkerName + " - 版本号：V" + ApplicationUtil.GetApplicationVersion();
             wk_WorkerName = LoginInfo.WorkerName;
 
             FrmRoomManager frmRoomManager = new FrmRoomManager
@@ -299,7 +296,6 @@ namespace EOM.TSHotelManagement.FormUI
             linkLabel1.LinkColor = shouldHaveChecked ? Color.Green : Color.Red;
 
             lblCheckDay.Text = Convert.ToString(response.Data.CheckDay);
-            pnlCheckInfo.Visible = true;
 
         }
         #endregion
@@ -437,13 +433,12 @@ namespace EOM.TSHotelManagement.FormUI
                         return;
                     }
 
-                    NotificationService.ShowSuccess($"{shiftName}打卡成功！你已共打卡" + lblCheckDay.Text + "天");
                     linkLabel1.Text = $"{shiftName}已打卡";
                     linkLabel1.ForeColor = Color.Green;
                     linkLabel1.LinkColor = Color.Green;
                 }
             }
-
+            NotificationService.ShowSuccess($"{shiftName}打卡成功！你已共打卡" + response.Data.CheckDay + "天");
             lblCheckDay.Text = Convert.ToString(response.Data.CheckDay);
             pnlCheckInfo.Visible = true;
             lblCheckDay.Refresh();

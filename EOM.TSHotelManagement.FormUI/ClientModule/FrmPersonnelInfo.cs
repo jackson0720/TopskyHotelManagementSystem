@@ -2,15 +2,7 @@
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using jvncorelib.EntityLib;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -40,7 +32,7 @@ namespace EOM.TSHotelManagement.FormUI
                 NotificationService.ShowError($"{ApiConstants.Base_SelectNationAll}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            cboEmployeeNation.Items.AddRange(nations.Data.Items.Select(item=> new AntdUI.SelectItem(item.NationName,item.NationNumber)).ToArray());
+            cboEmployeeNation.Items.AddRange(nations.Data.Items.Select(item => new AntdUI.SelectItem(item.NationName, item.NationNumber)).ToArray());
             //加载性别信息
             dic = new Dictionary<string, string>
             {

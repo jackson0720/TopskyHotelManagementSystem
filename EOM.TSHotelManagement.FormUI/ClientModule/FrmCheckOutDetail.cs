@@ -3,15 +3,7 @@ using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -28,6 +20,7 @@ namespace EOM.TSHotelManagement.FormUI
         ResponseMsg result = null;
         Dictionary<string, string> dic = null;
         public static CreateEnergyManagementInputDto w;
+        public static decimal TotalConsumptionAmount = 0M;
 
         private void FrmCheckOutDetail_Load(object sender, EventArgs e)
         {
@@ -128,19 +121,19 @@ namespace EOM.TSHotelManagement.FormUI
             var customerType = customerTypeResponse.Data;
 
             //计算消费总额
-            dic = new Dictionary<string, string>()
-            {
-                { nameof(ReadSpendInputDto.RoomNumber), txtRoomNo.Text.Trim() },
-                { nameof(ReadSpendInputDto.CustomerNumber), CustoNo.Text.Trim() },
-            };
-            result = HttpHelper.Request(ApiConstants.Spend_SumConsumptionAmount, dic);
-            var spendResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadSpendOutputDto>>(result.message);
-            if (spendResponse.Success == false)
-            {
-                NotificationService.ShowError($"{ApiConstants.Spend_SumConsumptionAmount}+接口服务异常，请提交Issue或尝试更新版本！");
-                return;
-            }
-            decimal total = spendResponse.Data.ConsumptionAmount;
+            //dic = new Dictionary<string, string>()
+            //{
+            //    { nameof(ReadSpendInputDto.RoomNumber), txtRoomNo.Text.Trim() },
+            //    { nameof(ReadSpendInputDto.CustomerNumber), CustoNo.Text.Trim() },
+            //};
+            //result = HttpHelper.Request(ApiConstants.Spend_SumConsumptionAmount, dic);
+            //var spendResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadSpendOutputDto>>(result.message);
+            //if (spendResponse.Success == false)
+            //{
+            //    NotificationService.ShowError($"{ApiConstants.Spend_SumConsumptionAmount}+接口服务异常，请提交Issue或尝试更新版本！");
+            //    return;
+            //}
+            decimal total = TotalConsumptionAmount;
             decimal m = total + sum;
             decimal discount = (customerType != null && customerType.Discount > 0 && customerType.Discount < 100)
                 ? customerType.Discount / 100M
@@ -155,6 +148,8 @@ namespace EOM.TSHotelManagement.FormUI
             string RoomNo = txtRoomNo.Text;
             dic = new Dictionary<string, string>()
             {
+                { nameof(ReadSpendInputDto.CustomerNumber) , CustoNo.Text.Trim() },
+                { nameof(ReadSpendInputDto.SettlementStatus) , ConsumptionConstant.UnSettle.Code },
                 { nameof(ReadSpendInputDto.RoomNumber) , RoomNo },
                 { nameof(ReadAdministratorInputDto.IgnorePaging) , "true" }
             };
@@ -173,6 +168,8 @@ namespace EOM.TSHotelManagement.FormUI
 
             TableComHelper tableComHelper = new TableComHelper();
             listTableData = tableComHelper.ConvertToAntdItems(spends);
+
+            TotalConsumptionAmount = spends.Count() == 0 ? 0 : spends.DefaultIfEmpty().Sum(a => a!.ConsumptionAmount);
 
             return listTableData;
         }

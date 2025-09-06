@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucWindowHeader));
             phCustoHeader = new AntdUI.PageHeader();
-            btnMinimize = new AntdUI.Button();
             btnClose = new AntdUI.Button();
             tlpContainer = new TableLayoutPanel();
             phCustoHeader.SuspendLayout();
@@ -40,7 +39,6 @@
             // 
             phCustoHeader.BackColor = Color.FromArgb(22, 119, 255);
             phCustoHeader.CloseSize = 40;
-            phCustoHeader.Controls.Add(btnMinimize);
             phCustoHeader.Controls.Add(btnClose);
             phCustoHeader.DividerColor = Color.White;
             phCustoHeader.DividerShow = true;
@@ -58,24 +56,12 @@
             phCustoHeader.Text = "自定义文字";
             phCustoHeader.UseSystemStyleColor = true;
             // 
-            // btnMinimize
-            // 
-            btnMinimize.Anchor = AnchorStyles.Right;
-            btnMinimize.BackColor = Color.FromArgb(22, 119, 255);
-            btnMinimize.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
-            btnMinimize.Location = new Point(333, 3);
-            btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(23, 25);
-            btnMinimize.TabIndex = 141;
-            btnMinimize.Text = "—";
-            btnMinimize.Type = AntdUI.TTypeMini.Info;
-            btnMinimize.Click += btnMinimize_Click;
-            // 
             // btnClose
             // 
             btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnClose.BackColor = Color.FromArgb(22, 119, 255);
             btnClose.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
+            btnClose.Font = new Font("Noto Sans SC", 13F);
             btnClose.Location = new Point(362, 4);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(23, 25);
@@ -115,7 +101,6 @@
         #endregion
 
         public AntdUI.PageHeader phCustoHeader;
-        private AntdUI.Button btnMinimize;
         private AntdUI.Button btnClose;
         private TableLayoutPanel tlpContainer;
     }

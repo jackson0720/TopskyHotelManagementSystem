@@ -123,7 +123,7 @@ namespace EOM.TSHotelManagement.FormUI
                 return;
             }
             List<ReadCustoTypeOutputDto> lstDataGrid = customerTypeDataSource.Data.Items;
-            this.cboCustomerType.Items.AddRange(lstDataGrid.Select(item=>new AntdUI.SelectItem(item.CustomerTypeName,item.CustomerType)).ToArray());
+            this.cboCustomerType.Items.AddRange(lstDataGrid.Select(item => new AntdUI.SelectItem(item.CustomerTypeName, item.CustomerType)).ToArray());
             #endregion
 
             #region 加载证件类型信息

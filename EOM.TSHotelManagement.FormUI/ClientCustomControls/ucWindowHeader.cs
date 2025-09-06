@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Drawing.Drawing2D;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -29,7 +20,7 @@ namespace EOM.TSHotelManagement.FormUI
         }
 
 
-        #region 房态图圆角代码
+        #region 圆角代码
         public GraphicsPath GetRoundRectPath(RectangleF rect, float radius)
         {
             return GetRoundRectPath(rect.X, rect.Y, rect.Width, rect.Height, radius);
@@ -93,7 +84,6 @@ namespace EOM.TSHotelManagement.FormUI
             phCustoHeader.ShowIcon = showIcon;
             phCustoHeader.Icon = icon;
             btnClose.Visible = showClose;
-            btnMinimize.Visible = showMinimize;
             phCustoHeader.Refresh();
             this.Refresh();
         }
@@ -105,7 +95,6 @@ namespace EOM.TSHotelManagement.FormUI
             phCustoHeader.ShowIcon = true;
             phCustoHeader.Icon = icon;
             btnClose.Visible = true;
-            btnMinimize.Visible = true;
             phCustoHeader.Refresh();
             this.Refresh();
         }
@@ -117,7 +106,6 @@ namespace EOM.TSHotelManagement.FormUI
             phCustoHeader.ShowIcon = false;
             phCustoHeader.Icon = null;
             btnClose.Visible = true;
-            btnMinimize.Visible = false;
             phCustoHeader.Refresh();
             this.Refresh();
         }
@@ -130,7 +118,6 @@ namespace EOM.TSHotelManagement.FormUI
             phCustoHeader.ShowIcon = showIcon;
             phCustoHeader.Icon = icon;
             btnClose.Visible = showClose;
-            btnMinimize.Visible = false;
             phCustoHeader.Refresh();
             this.Refresh();
         }
@@ -147,15 +134,6 @@ namespace EOM.TSHotelManagement.FormUI
             if (parentForm != null)
             {
                 parentForm.Close();
-            }
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            var parentForm = this.FindForm();
-            if (parentForm != null)
-            {
-                parentForm.WindowState = FormWindowState.Minimized;
             }
         }
 

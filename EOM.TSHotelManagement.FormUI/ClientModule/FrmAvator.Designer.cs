@@ -38,6 +38,7 @@
             // 
             // label4
             // 
+            label4.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(293, 347);
             label4.Name = "label4";
             label4.Size = new Size(215, 23);

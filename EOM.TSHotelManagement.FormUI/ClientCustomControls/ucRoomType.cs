@@ -1,4 +1,4 @@
-﻿namespace EOM.TSHotelManagement.FormUI.AppUserControls
+﻿namespace EOM.TSHotelManagement.FormUI
 {
     public partial class ucRoomType : UserControl
     {

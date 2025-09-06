@@ -26,7 +26,6 @@ using AntdUI;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
-using EOM.TSHotelManagement.FormUI.AppUserControls;
 using EOM.TSHotelManagement.FormUI.Properties;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
@@ -341,7 +340,6 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName ?? "      ");
-                room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];
                 room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);
@@ -375,7 +373,6 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 room = new ucRoom(this);
                 room.btnRoom.Text = string.Format("{0}\n\n{1}\n\n{2}", romsty[i].RoomName, romsty[i].RoomNumber, romsty[i].CustomerName);
-                room.lblMark = string.Empty;
                 room.romRoomInfo = romsty[i];
                 room.romCustoInfo = new ReadCustomerOutputDto { CustomerNumber = romsty[i].CustomerNumber, CustomerName = romsty[i].CustomerName };
                 flpRoom.Controls.Add(room);

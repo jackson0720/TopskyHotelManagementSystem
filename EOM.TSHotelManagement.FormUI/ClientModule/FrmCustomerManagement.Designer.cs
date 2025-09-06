@@ -52,7 +52,7 @@
             // 
             // btnSerach
             // 
-            btnSerach.Font = new Font("Microsoft YaHei UI", 12F);
+            btnSerach.Font = new Font("Noto Sans SC", 12F);
             btnSerach.Location = new Point(602, 441);
             btnSerach.Name = "btnSerach";
             btnSerach.Size = new Size(93, 47);
@@ -63,19 +63,21 @@
             // 
             // btnAddCusto
             // 
-            btnAddCusto.Font = new Font("Microsoft YaHei UI", 12F);
+            btnAddCusto.Font = new Font("Noto Sans SC", 12F);
+            btnAddCusto.IconPosition = AntdUI.TAlignMini.Top;
             btnAddCusto.Location = new Point(772, 441);
             btnAddCusto.Name = "btnAddCusto";
             btnAddCusto.Size = new Size(93, 47);
             btnAddCusto.TabIndex = 128;
             btnAddCusto.Text = "添加客户";
+            btnAddCusto.TextCenterHasIcon = true;
             btnAddCusto.Type = AntdUI.TTypeMini.Primary;
             btnAddCusto.Click += btnAddCusto_BtnClick;
             // 
             // btnUpdCustomer
             // 
             btnUpdCustomer.Enabled = false;
-            btnUpdCustomer.Font = new Font("Microsoft YaHei UI", 12F);
+            btnUpdCustomer.Font = new Font("Noto Sans SC", 12F);
             btnUpdCustomer.Location = new Point(942, 441);
             btnUpdCustomer.Name = "btnUpdCustomer";
             btnUpdCustomer.Size = new Size(93, 47);
@@ -111,6 +113,7 @@
             // 
             // btnPg
             // 
+            btnPg.Font = new Font("Noto Sans SC", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnPg.Location = new Point(10, 404);
             btnPg.Name = "btnPg";
             btnPg.PageSize = 15;
@@ -123,7 +126,7 @@
             // 
             // label1
             // 
-            label1.Font = new Font("Noto Sans SC", 12.7499981F);
+            label1.Font = new Font("Noto Sans SC", 12F);
             label1.Location = new Point(283, 453);
             label1.Name = "label1";
             label1.Size = new Size(86, 26);
@@ -133,7 +136,7 @@
             // 
             // label2
             // 
-            label2.Font = new Font("Noto Sans SC", 12.7499981F);
+            label2.Font = new Font("Noto Sans SC", 12F);
             label2.Location = new Point(12, 453);
             label2.Name = "label2";
             label2.Size = new Size(86, 26);
@@ -143,7 +146,7 @@
             // 
             // txtCustoName
             // 
-            txtCustoName.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoName.Font = new Font("Noto Sans SC", 12F);
             txtCustoName.Location = new Point(375, 444);
             txtCustoName.Name = "txtCustoName";
             txtCustoName.PlaceholderText = "请输入客户姓名...";
@@ -152,7 +155,7 @@
             // 
             // txtCustoNo
             // 
-            txtCustoNo.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            txtCustoNo.Font = new Font("Noto Sans SC", 12F);
             txtCustoNo.Location = new Point(104, 444);
             txtCustoNo.Name = "txtCustoNo";
             txtCustoNo.PlaceholderText = "请输入客户编号...";

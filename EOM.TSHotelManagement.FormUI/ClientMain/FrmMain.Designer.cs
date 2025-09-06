@@ -43,12 +43,12 @@
             label2 = new Label();
             picLogo = new PictureBox();
             muNavBar = new AntdUI.Menu();
-            btnClose = new AntdUI.Button();
-            btnFormSize = new AntdUI.Button();
             btnSetting = new AntdUI.Button();
             cpUITheme = new AntdUI.ColorPicker();
             lblScroll = new AntdUI.Label();
             ltNow = new AntdUI.LabelTime();
+            btnMinimize = new AntdUI.Button();
+            btnClose = new AntdUI.Button();
             pnlCheckInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
@@ -204,37 +204,13 @@
             muNavBar.Text = "menu1";
             muNavBar.SelectChanged += muNavBar_SelectChanged;
             // 
-            // btnClose
-            // 
-            btnClose.BackColor = Color.Transparent;
-            btnClose.BackgroundImage = Properties.Resources.close;
-            btnClose.Font = new Font("Microsoft YaHei UI", 9F);
-            btnClose.Ghost = true;
-            btnClose.Location = new Point(1032, 5);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(41, 38);
-            btnClose.TabIndex = 41;
-            btnClose.Click += picClose_Click;
-            // 
-            // btnFormSize
-            // 
-            btnFormSize.BackColor = Color.Transparent;
-            btnFormSize.BackgroundImage = Properties.Resources.arrow_down_b;
-            btnFormSize.Font = new Font("Microsoft YaHei UI", 9F);
-            btnFormSize.Ghost = true;
-            btnFormSize.Location = new Point(982, 5);
-            btnFormSize.Name = "btnFormSize";
-            btnFormSize.Size = new Size(41, 38);
-            btnFormSize.TabIndex = 40;
-            btnFormSize.Click += picFormSize_Click;
-            // 
             // btnSetting
             // 
             btnSetting.BackColor = Color.Transparent;
             btnSetting.BackgroundImage = Properties.Resources.settings2;
-            btnSetting.Font = new Font("Microsoft YaHei UI", 9F);
+            btnSetting.Font = new Font("Noto Sans SC", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSetting.Ghost = true;
-            btnSetting.Location = new Point(932, 5);
+            btnSetting.Location = new Point(946, 4);
             btnSetting.Name = "btnSetting";
             btnSetting.Size = new Size(41, 38);
             btnSetting.TabIndex = 42;
@@ -242,7 +218,7 @@
             // 
             // cpUITheme
             // 
-            cpUITheme.Location = new Point(882, 5);
+            cpUITheme.Location = new Point(899, 4);
             cpUITheme.Name = "cpUITheme";
             cpUITheme.Size = new Size(41, 38);
             cpUITheme.TabIndex = 43;
@@ -269,6 +245,36 @@
             ltNow.Size = new Size(127, 35);
             ltNow.TabIndex = 45;
             // 
+            // btnMinimize
+            // 
+            btnMinimize.Anchor = AnchorStyles.Right;
+            btnMinimize.BackColor = Color.FromArgb(22, 119, 255);
+            btnMinimize.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
+            btnMinimize.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMinimize.Location = new Point(993, 4);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(38, 38);
+            btnMinimize.TabIndex = 145;
+            btnMinimize.Text = "—";
+            btnMinimize.TextAlign = ContentAlignment.BottomCenter;
+            btnMinimize.Type = AntdUI.TTypeMini.Info;
+            btnMinimize.Click += picFormSize_Click;
+            // 
+            // btnClose
+            // 
+            btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnClose.BackColor = Color.FromArgb(22, 119, 255);
+            btnClose.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
+            btnClose.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnClose.Location = new Point(1037, 4);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(38, 38);
+            btnClose.TabIndex = 144;
+            btnClose.Text = "×";
+            btnClose.TextAlign = ContentAlignment.BottomCenter;
+            btnClose.Type = AntdUI.TTypeMini.Info;
+            btnClose.Click += picClose_Click;
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -277,12 +283,12 @@
             BackColor = Color.FromArgb(235, 243, 255);
             CausesValidation = false;
             ClientSize = new Size(1080, 721);
+            Controls.Add(btnMinimize);
+            Controls.Add(btnClose);
             Controls.Add(ltNow);
             Controls.Add(lblScroll);
             Controls.Add(cpUITheme);
             Controls.Add(btnSetting);
-            Controls.Add(btnClose);
-            Controls.Add(btnFormSize);
             Controls.Add(muNavBar);
             Controls.Add(lbHello);
             Controls.Add(pnlCheckInfo);
@@ -322,12 +328,12 @@
         private System.Windows.Forms.Timer tmrFont;
         private System.Windows.Forms.Label lbHello;
         private AntdUI.Menu muNavBar;
-        private AntdUI.Button btnClose;
-        private AntdUI.Button btnFormSize;
         private AntdUI.Button btnSetting;
         private AntdUI.ColorPicker cpUITheme;
         private AntdUI.Label lblCheckDay;
         private AntdUI.Label lblScroll;
         private AntdUI.LabelTime ltNow;
+        private AntdUI.Button btnMinimize;
+        private AntdUI.Button btnClose;
     }
 }

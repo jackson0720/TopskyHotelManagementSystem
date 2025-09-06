@@ -42,15 +42,15 @@
             btnPg = new AntdUI.Pagination();
             ucWindowHeader1 = new ucWindowHeader();
             btnOk = new AntdUI.Button();
-            cboGender = new AntdUI.Dropdown();
             txtCustomerName = new AntdUI.Input();
             txtCustomerId = new AntdUI.Input();
             txtCustomerAddress = new AntdUI.Input();
             txtCustomerTel = new AntdUI.Input();
             txtCustomerCardID = new AntdUI.Input();
-            cboPassportType = new AntdUI.Dropdown();
-            cboCustomerType = new AntdUI.Dropdown();
             dtpDateOfBirth = new AntdUI.DatePicker();
+            cboCustomerType = new AntdUI.Select();
+            cboPassportType = new AntdUI.Select();
+            cboGender = new AntdUI.Select();
             SuspendLayout();
             // 
             // label10
@@ -145,6 +145,7 @@
             // 
             // dgvReserList
             // 
+            dgvReserList.Font = new Font("Noto Sans SC", 9F);
             dgvReserList.Gap = 12;
             dgvReserList.Location = new Point(14, 87);
             dgvReserList.Name = "dgvReserList";
@@ -155,6 +156,7 @@
             // 
             // btnPg
             // 
+            btnPg.Font = new Font("Noto Sans SC", 9F);
             btnPg.Location = new Point(14, 253);
             btnPg.Name = "btnPg";
             btnPg.PageSize = 15;
@@ -182,17 +184,6 @@
             btnOk.Text = "入住并注册";
             btnOk.Type = AntdUI.TTypeMini.Info;
             btnOk.Click += btnSelect_Click;
-            // 
-            // cboGender
-            // 
-            cboGender.DropDownArrow = true;
-            cboGender.Font = new Font("Noto Sans SC", 12F);
-            cboGender.Location = new Point(121, 396);
-            cboGender.Name = "cboGender";
-            cboGender.Placement = AntdUI.TAlignFrom.Bottom;
-            cboGender.Size = new Size(251, 40);
-            cboGender.TabIndex = 156;
-            cboGender.ToggleType = AntdUI.TTypeMini.Info;
             // 
             // txtCustomerName
             // 
@@ -222,41 +213,19 @@
             // txtCustomerTel
             // 
             txtCustomerTel.Font = new Font("Noto Sans SC", 12F);
-            txtCustomerTel.Location = new Point(501, 441);
+            txtCustomerTel.Location = new Point(501, 444);
             txtCustomerTel.Name = "txtCustomerTel";
-            txtCustomerTel.Size = new Size(250, 45);
+            txtCustomerTel.Size = new Size(250, 43);
             txtCustomerTel.TabIndex = 158;
             // 
             // txtCustomerCardID
             // 
             txtCustomerCardID.Font = new Font("Noto Sans SC", 12F);
-            txtCustomerCardID.Location = new Point(501, 389);
+            txtCustomerCardID.Location = new Point(501, 394);
             txtCustomerCardID.Name = "txtCustomerCardID";
             txtCustomerCardID.Size = new Size(250, 45);
             txtCustomerCardID.TabIndex = 159;
             txtCustomerCardID.Validated += txtCardID_Validated;
-            // 
-            // cboPassportType
-            // 
-            cboPassportType.DropDownArrow = true;
-            cboPassportType.Font = new Font("Noto Sans SC", 12F);
-            cboPassportType.Location = new Point(501, 342);
-            cboPassportType.Name = "cboPassportType";
-            cboPassportType.Placement = AntdUI.TAlignFrom.Bottom;
-            cboPassportType.Size = new Size(250, 40);
-            cboPassportType.TabIndex = 160;
-            cboPassportType.ToggleType = AntdUI.TTypeMini.Info;
-            // 
-            // cboCustomerType
-            // 
-            cboCustomerType.DropDownArrow = true;
-            cboCustomerType.Font = new Font("Noto Sans SC", 12F);
-            cboCustomerType.Location = new Point(499, 295);
-            cboCustomerType.Name = "cboCustomerType";
-            cboCustomerType.Placement = AntdUI.TAlignFrom.Bottom;
-            cboCustomerType.Size = new Size(250, 40);
-            cboCustomerType.TabIndex = 161;
-            cboCustomerType.ToggleType = AntdUI.TTypeMini.Info;
             // 
             // dtpDateOfBirth
             // 
@@ -266,19 +235,52 @@
             dtpDateOfBirth.Size = new Size(252, 43);
             dtpDateOfBirth.TabIndex = 162;
             // 
+            // cboCustomerType
+            // 
+            cboCustomerType.Font = new Font("Noto Sans SC", 12F);
+            cboCustomerType.List = true;
+            cboCustomerType.ListAutoWidth = true;
+            cboCustomerType.Location = new Point(501, 293);
+            cboCustomerType.Name = "cboCustomerType";
+            cboCustomerType.Placement = AntdUI.TAlignFrom.Bottom;
+            cboCustomerType.Size = new Size(251, 45);
+            cboCustomerType.TabIndex = 178;
+            // 
+            // cboPassportType
+            // 
+            cboPassportType.Font = new Font("Noto Sans SC", 12F);
+            cboPassportType.List = true;
+            cboPassportType.ListAutoWidth = true;
+            cboPassportType.Location = new Point(501, 343);
+            cboPassportType.Name = "cboPassportType";
+            cboPassportType.Placement = AntdUI.TAlignFrom.Bottom;
+            cboPassportType.Size = new Size(251, 45);
+            cboPassportType.TabIndex = 177;
+            // 
+            // cboGender
+            // 
+            cboGender.Font = new Font("Noto Sans SC", 12F);
+            cboGender.List = true;
+            cboGender.ListAutoWidth = true;
+            cboGender.Location = new Point(122, 394);
+            cboGender.Name = "cboGender";
+            cboGender.Placement = AntdUI.TAlignFrom.Bottom;
+            cboGender.Size = new Size(251, 45);
+            cboGender.TabIndex = 179;
+            // 
             // FrmReserList
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(235, 243, 255);
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(763, 556);
-            Controls.Add(dtpDateOfBirth);
+            Controls.Add(cboGender);
             Controls.Add(cboCustomerType);
             Controls.Add(cboPassportType);
+            Controls.Add(dtpDateOfBirth);
             Controls.Add(txtCustomerCardID);
             Controls.Add(txtCustomerTel);
             Controls.Add(txtCustomerAddress);
-            Controls.Add(cboGender);
             Controls.Add(txtCustomerName);
             Controls.Add(txtCustomerId);
             Controls.Add(btnOk);
@@ -319,14 +321,14 @@
         private AntdUI.Pagination btnPg;
         private ucWindowHeader ucWindowHeader1;
         private AntdUI.Button btnOk;
-        private AntdUI.Dropdown cboGender;
         private AntdUI.Input txtCustomerName;
         private AntdUI.Input txtCustomerId;
         private AntdUI.Input txtCustomerAddress;
         private AntdUI.Input txtCustomerTel;
         private AntdUI.Input txtCustomerCardID;
-        private AntdUI.Dropdown cboPassportType;
-        private AntdUI.Dropdown cboCustomerType;
         private AntdUI.DatePicker dtpDateOfBirth;
+        private AntdUI.Select cboCustomerType;
+        private AntdUI.Select cboPassportType;
+        private AntdUI.Select cboGender;
     }
 }

@@ -71,7 +71,7 @@
             // lblServerVersion
             // 
             lblServerVersion.BackColor = Color.Transparent;
-            lblServerVersion.Font = new Font("Noto Sans SC", 9F);
+            lblServerVersion.Font = new Font("Noto Sans SC", 10.5F);
             lblServerVersion.Location = new Point(194, 287);
             lblServerVersion.Name = "lblServerVersion";
             lblServerVersion.Size = new Size(183, 23);
@@ -81,7 +81,7 @@
             // lblClientVersion
             // 
             lblClientVersion.BackColor = Color.Transparent;
-            lblClientVersion.Font = new Font("Noto Sans SC", 9F);
+            lblClientVersion.Font = new Font("Noto Sans SC", 10.5F);
             lblClientVersion.Location = new Point(194, 258);
             lblClientVersion.Name = "lblClientVersion";
             lblClientVersion.Size = new Size(183, 23);
@@ -91,7 +91,7 @@
             // lblServerVersionDescriotion
             // 
             lblServerVersionDescriotion.BackColor = Color.Transparent;
-            lblServerVersionDescriotion.Font = new Font("Noto Sans SC", 9F);
+            lblServerVersionDescriotion.Font = new Font("Noto Sans SC", 10.5F);
             lblServerVersionDescriotion.Location = new Point(13, 287);
             lblServerVersionDescriotion.Name = "lblServerVersionDescriotion";
             lblServerVersionDescriotion.Size = new Size(171, 23);
@@ -102,7 +102,7 @@
             // lblClientVersionDescriotion
             // 
             lblClientVersionDescriotion.BackColor = Color.Transparent;
-            lblClientVersionDescriotion.Font = new Font("Noto Sans SC", 9F);
+            lblClientVersionDescriotion.Font = new Font("Noto Sans SC", 10.5F);
             lblClientVersionDescriotion.Location = new Point(13, 258);
             lblClientVersionDescriotion.Name = "lblClientVersionDescriotion";
             lblClientVersionDescriotion.Size = new Size(171, 23);
@@ -113,7 +113,7 @@
             // lblCopyright
             // 
             lblCopyright.BackColor = Color.Transparent;
-            lblCopyright.Font = new Font("Noto Sans SC", 9F);
+            lblCopyright.Font = new Font("Noto Sans SC", 10.5F);
             lblCopyright.Location = new Point(13, 346);
             lblCopyright.Name = "lblCopyright";
             lblCopyright.Size = new Size(364, 23);
@@ -124,7 +124,7 @@
             // lblNotice
             // 
             lblNotice.BackColor = Color.Transparent;
-            lblNotice.Font = new Font("Noto Sans SC", 9F);
+            lblNotice.Font = new Font("Noto Sans SC", 10.5F);
             lblNotice.Location = new Point(13, 375);
             lblNotice.Name = "lblNotice";
             lblNotice.Size = new Size(364, 23);
@@ -135,7 +135,7 @@
             // lblFrameworkVersion
             // 
             lblFrameworkVersion.BackColor = Color.Transparent;
-            lblFrameworkVersion.Font = new Font("Noto Sans SC", 9F);
+            lblFrameworkVersion.Font = new Font("Noto Sans SC", 10.5F);
             lblFrameworkVersion.Location = new Point(194, 316);
             lblFrameworkVersion.Name = "lblFrameworkVersion";
             lblFrameworkVersion.Size = new Size(183, 23);
@@ -145,7 +145,7 @@
             // lblFrameworkVersionDescription
             // 
             lblFrameworkVersionDescription.BackColor = Color.Transparent;
-            lblFrameworkVersionDescription.Font = new Font("Noto Sans SC", 9F);
+            lblFrameworkVersionDescription.Font = new Font("Noto Sans SC", 10.5F);
             lblFrameworkVersionDescription.Location = new Point(13, 316);
             lblFrameworkVersionDescription.Name = "lblFrameworkVersionDescription";
             lblFrameworkVersionDescription.Size = new Size(171, 23);

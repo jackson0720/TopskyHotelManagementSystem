@@ -1,12 +1,10 @@
 ﻿using AntdUI;
-using AntdUI.Svg;
 using EOM.TSHotelManagement.Common;
 using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Util;
 using EOM.TSHotelManagement.FormUI.Properties;
 using EOM.TSHotelManagement.Shared;
 using jvncorelib.EntityLib;
-using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 
@@ -65,14 +63,8 @@ namespace EOM.TSHotelManagement.FormUI
         public ReadCustomerOutputDto romCustoInfo { get; set; }
         #endregion
 
-        public string lblMark { get; set; }
-
         private void btnRoom_Click(object sender, EventArgs e)
         {
-            if (lblMark == "Mark")
-            {
-                return;
-            }
             LoadRoomInfo();
             FrmRoomManager.ReadInfo();
         }

@@ -35,6 +35,7 @@
             // spin1
             // 
             spin1.BackColor = Color.Transparent;
+            spin1.Font = new Font("Noto Sans SC", 10F);
             spin1.Location = new Point(7, 13);
             spin1.Name = "spin1";
             spin1.Size = new Size(141, 84);

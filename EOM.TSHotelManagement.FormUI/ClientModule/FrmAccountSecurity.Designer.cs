@@ -52,7 +52,7 @@
             // txtOldPassword
             // 
             txtOldPassword.BackColor = Color.White;
-            txtOldPassword.Font = new Font("Microsoft YaHei UI", 14F);
+            txtOldPassword.Font = new Font("Noto Sans SC", 14F);
             txtOldPassword.Location = new Point(59, 132);
             txtOldPassword.Name = "txtOldPassword";
             txtOldPassword.PasswordChar = '*';
@@ -64,6 +64,7 @@
             // 
             // lblEmployeeId
             // 
+            lblEmployeeId.Font = new Font("Noto Sans SC", 14F);
             lblEmployeeId.Location = new Point(59, 62);
             lblEmployeeId.Name = "lblEmployeeId";
             lblEmployeeId.Size = new Size(238, 43);
@@ -93,7 +94,7 @@
             // 
             // btnUpdatePassword
             // 
-            btnUpdatePassword.Font = new Font("Microsoft YaHei UI", 12F);
+            btnUpdatePassword.Font = new Font("Noto Sans SC", 12F);
             btnUpdatePassword.Location = new Point(76, 289);
             btnUpdatePassword.Name = "btnUpdatePassword";
             btnUpdatePassword.Size = new Size(161, 51);
@@ -105,7 +106,7 @@
             // txtNewPassword
             // 
             txtNewPassword.BackColor = Color.White;
-            txtNewPassword.Font = new Font("Microsoft YaHei UI", 14F);
+            txtNewPassword.Font = new Font("Noto Sans SC", 14F);
             txtNewPassword.Location = new Point(59, 211);
             txtNewPassword.Name = "txtNewPassword";
             txtNewPassword.PasswordChar = '*';

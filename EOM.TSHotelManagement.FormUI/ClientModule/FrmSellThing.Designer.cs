@@ -64,7 +64,7 @@
             groupBox2.Controls.Add(txtPrice);
             groupBox2.Controls.Add(txtSellName);
             groupBox2.Controls.Add(txtSellNo);
-            groupBox2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            groupBox2.Font = new Font("Noto Sans SC", 9F);
             groupBox2.Location = new Point(617, 88);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(452, 123);
@@ -75,7 +75,7 @@
             // label6
             // 
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("微软雅黑", 12F);
+            label6.Font = new Font("Noto Sans SC", 12F);
             label6.Location = new Point(258, 32);
             label6.Name = "label6";
             label6.Size = new Size(61, 23);
@@ -85,7 +85,7 @@
             // label5
             // 
             label5.BackColor = Color.Transparent;
-            label5.Font = new Font("微软雅黑", 12F);
+            label5.Font = new Font("Noto Sans SC", 12F);
             label5.Location = new Point(258, 78);
             label5.Name = "label5";
             label5.Size = new Size(61, 23);
@@ -95,8 +95,8 @@
             // label4
             // 
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("微软雅黑", 12F);
-            label4.Location = new Point(26, 78);
+            label4.Font = new Font("Noto Sans SC", 12F);
+            label4.Location = new Point(19, 78);
             label4.Name = "label4";
             label4.Size = new Size(92, 23);
             label4.TabIndex = 36;
@@ -106,8 +106,8 @@
             // label3
             // 
             label3.BackColor = Color.Transparent;
-            label3.Font = new Font("微软雅黑", 12F);
-            label3.Location = new Point(26, 32);
+            label3.Font = new Font("Noto Sans SC", 12F);
+            label3.Location = new Point(19, 32);
             label3.Name = "label3";
             label3.Size = new Size(92, 23);
             label3.TabIndex = 35;
@@ -116,8 +116,8 @@
             // 
             // nudNum
             // 
-            nudNum.Font = new Font("微软雅黑", 12F);
-            nudNum.Location = new Point(307, 25);
+            nudNum.Font = new Font("Noto Sans SC", 12F);
+            nudNum.Location = new Point(319, 23);
             nudNum.Name = "nudNum";
             nudNum.Size = new Size(119, 38);
             nudNum.TabIndex = 34;
@@ -126,8 +126,8 @@
             // 
             // txtPrice
             // 
-            txtPrice.Font = new Font("微软雅黑", 12F);
-            txtPrice.Location = new Point(307, 69);
+            txtPrice.Font = new Font("Noto Sans SC", 12F);
+            txtPrice.Location = new Point(319, 69);
             txtPrice.Name = "txtPrice";
             txtPrice.ReadOnly = true;
             txtPrice.Size = new Size(119, 38);
@@ -135,8 +135,8 @@
             // 
             // txtSellName
             // 
-            txtSellName.Font = new Font("微软雅黑", 12F);
-            txtSellName.Location = new Point(107, 69);
+            txtSellName.Font = new Font("Noto Sans SC", 12F);
+            txtSellName.Location = new Point(111, 69);
             txtSellName.Name = "txtSellName";
             txtSellName.ReadOnly = true;
             txtSellName.Size = new Size(145, 38);
@@ -144,8 +144,8 @@
             // 
             // txtSellNo
             // 
-            txtSellNo.Font = new Font("微软雅黑", 12F);
-            txtSellNo.Location = new Point(107, 25);
+            txtSellNo.Font = new Font("Noto Sans SC", 12F);
+            txtSellNo.Location = new Point(111, 23);
             txtSellNo.Name = "txtSellNo";
             txtSellNo.ReadOnly = true;
             txtSellNo.Size = new Size(145, 38);
@@ -154,25 +154,25 @@
             // label1
             // 
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("微软雅黑", 12F);
-            label1.Location = new Point(65, 51);
+            label1.Font = new Font("Noto Sans SC", 12F);
+            label1.Location = new Point(45, 51);
             label1.Name = "label1";
-            label1.Size = new Size(125, 23);
+            label1.Size = new Size(145, 23);
             label1.TabIndex = 26;
-            label1.Text = "要查找的商品：";
+            label1.Text = "要查找的商品名称：";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtFind
             // 
-            txtFind.Font = new Font("微软雅黑", 12F);
-            txtFind.Location = new Point(200, 44);
+            txtFind.Font = new Font("Noto Sans SC", 12F);
+            txtFind.Location = new Point(200, 42);
             txtFind.Name = "txtFind";
             txtFind.Size = new Size(197, 38);
             txtFind.TabIndex = 27;
             // 
             // btnFind
             // 
-            btnFind.Font = new Font("微软雅黑", 12F);
+            btnFind.Font = new Font("Noto Sans SC", 12F);
             btnFind.Location = new Point(407, 44);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(101, 38);
@@ -184,7 +184,7 @@
             // label2
             // 
             label2.BackColor = Color.Transparent;
-            label2.Font = new Font("微软雅黑", 12F);
+            label2.Font = new Font("Noto Sans SC", 12F);
             label2.Location = new Point(518, 51);
             label2.Name = "label2";
             label2.Size = new Size(92, 23);
@@ -194,8 +194,8 @@
             // 
             // txtRoomNo
             // 
-            txtRoomNo.Font = new Font("微软雅黑", 12F);
-            txtRoomNo.Location = new Point(620, 44);
+            txtRoomNo.Font = new Font("Noto Sans SC", 12F);
+            txtRoomNo.Location = new Point(617, 42);
             txtRoomNo.Name = "txtRoomNo";
             txtRoomNo.Size = new Size(134, 38);
             txtRoomNo.TabIndex = 30;
@@ -204,7 +204,7 @@
             // 
             // btnCheck
             // 
-            btnCheck.Font = new Font("微软雅黑", 12F);
+            btnCheck.Font = new Font("Noto Sans SC", 12F);
             btnCheck.Location = new Point(764, 44);
             btnCheck.Name = "btnCheck";
             btnCheck.Size = new Size(101, 38);
@@ -216,7 +216,7 @@
             // lblState
             // 
             lblState.BackColor = Color.Transparent;
-            lblState.Font = new Font("微软雅黑", 12F);
+            lblState.Font = new Font("Noto Sans SC", 12F);
             lblState.Location = new Point(875, 51);
             lblState.Name = "lblState";
             lblState.Size = new Size(130, 23);
@@ -228,7 +228,7 @@
             // 
             dgvSellthing.AutoSizeColumnsMode = AntdUI.ColumnsMode.Fill;
             dgvSellthing.Bordered = true;
-            dgvSellthing.Font = new Font("Microsoft YaHei UI", 9F);
+            dgvSellthing.Font = new Font("Noto Sans SC", 9F);
             dgvSellthing.Gap = 12;
             dgvSellthing.Location = new Point(4, 88);
             dgvSellthing.Name = "dgvSellthing";
@@ -238,7 +238,7 @@
             // 
             // btnPg
             // 
-            btnPg.Font = new Font("微软雅黑", 12F);
+            btnPg.Font = new Font("Noto Sans SC", 12F);
             btnPg.Location = new Point(4, 448);
             btnPg.Name = "btnPg";
             btnPg.PageSize = 15;
@@ -249,7 +249,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Font = new Font("微软雅黑", 12F);
+            btnAdd.Font = new Font("Noto Sans SC", 12F);
             btnAdd.Location = new Point(496, 88);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(115, 38);
@@ -260,7 +260,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Font = new Font("微软雅黑", 12F);
+            btnCancel.Font = new Font("Noto Sans SC", 12F);
             btnCancel.Location = new Point(496, 174);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(115, 38);
@@ -273,7 +273,7 @@
             // 
             dgvRoomSell.AutoSizeColumnsMode = AntdUI.ColumnsMode.Fill;
             dgvRoomSell.Bordered = true;
-            dgvRoomSell.Font = new Font("Microsoft YaHei UI", 9F);
+            dgvRoomSell.Font = new Font("Noto Sans SC", 9F);
             dgvRoomSell.Gap = 12;
             dgvRoomSell.Location = new Point(497, 217);
             dgvRoomSell.Name = "dgvRoomSell";

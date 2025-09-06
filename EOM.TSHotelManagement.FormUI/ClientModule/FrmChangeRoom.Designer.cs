@@ -47,28 +47,29 @@
             // label24
             // 
             label24.AutoSize = true;
-            label24.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label24.Location = new Point(12, 53);
+            label24.Font = new Font("Noto Sans SC", 14F);
+            label24.Location = new Point(5, 58);
             label24.Name = "label24";
-            label24.Size = new Size(88, 25);
+            label24.Size = new Size(85, 19);
             label24.TabIndex = 159;
             label24.Text = "新房间：";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label1.Location = new Point(12, 103);
+            label1.Font = new Font("Noto Sans SC", 14F);
+            label1.Location = new Point(5, 108);
             label1.Name = "label1";
-            label1.Size = new Size(87, 25);
+            label1.Size = new Size(81, 19);
             label1.TabIndex = 161;
             label1.Text = "类   型：";
             // 
             // lblRoomType
             // 
-            lblRoomType.Location = new Point(91, 97);
+            lblRoomType.Font = new Font("Noto Sans SC", 12F);
+            lblRoomType.Location = new Point(91, 99);
             lblRoomType.Name = "lblRoomType";
-            lblRoomType.Size = new Size(149, 40);
+            lblRoomType.Size = new Size(149, 36);
             lblRoomType.TabIndex = 162;
             lblRoomType.Text = "";
             lblRoomType.TextAlign = ContentAlignment.MiddleCenter;

@@ -36,7 +36,7 @@
             btnRoom.AutoEllipsis = true;
             btnRoom.BackColor = Color.Transparent;
             btnRoom.BackgroundImage = Properties.Resources.可住状态;
-            btnRoom.Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            btnRoom.Font = new Font("Noto Sans SC", 9F);
             btnRoom.Ghost = true;
             btnRoom.IconRatio = 0.5F;
             btnRoom.JoinLeft = true;

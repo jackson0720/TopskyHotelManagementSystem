@@ -40,20 +40,20 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label2.Location = new Point(7, 54);
+            label2.Font = new Font("Noto Sans SC", 14F);
+            label2.Location = new Point(7, 57);
             label2.Name = "label2";
-            label2.Size = new Size(88, 25);
+            label2.Size = new Size(85, 19);
             label2.TabIndex = 132;
             label2.Text = "房间号码";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("微软雅黑", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            label1.Location = new Point(7, 106);
+            label1.Font = new Font("Noto Sans SC", 14F);
+            label1.Location = new Point(7, 109);
             label1.Name = "label1";
-            label1.Size = new Size(88, 25);
+            label1.Size = new Size(85, 19);
             label1.TabIndex = 134;
             label1.Text = "房间状态";
             // 

@@ -74,9 +74,8 @@ namespace EOM.TSHotelManagement.FormUI
         {
             dic = new Dictionary<string, string>()
             {
-                { nameof(ReadSellThingInputDto.ProductNumber) , sellthing.Trim() },
                 { nameof(ReadSellThingInputDto.ProductName) , sellthing.Trim() },
-                { nameof(ReadSellThingInputDto.Specification) , sellthing.Trim() }
+                { nameof(ReadSellThingInputDto.IsDelete) , "0" }
             };
             result = HttpHelper.Request(ApiConstants.Sellthing_SelectSellThingAll, dic);
             var response = HttpHelper.JsonToModel<ListOutputDto<ReadSellThingOutputDto>>(result.message);
@@ -105,13 +104,15 @@ namespace EOM.TSHotelManagement.FormUI
         #endregion
 
         #region 根据客户编号加载消费信息的方法
-        private void LoadSpendInfoByRoomNo(string room)
+        private void LoadSpendInfoByRoomNo(ReadRoomOutputDto room)
         {
             dgvRoomSell.Spin("正在加载中...", config =>
             {
                 dic = new Dictionary<string, string>()
                 {
-                    { nameof(ReadSpendInputDto.RoomNumber), room }
+                    { nameof(ReadSpendInputDto.CustomerNumber), room.CustomerNumber },
+                    { nameof(ReadSpendInputDto.RoomNumber), room.RoomNumber },
+                    { nameof(ReadSpendInputDto.SettlementStatus) , ConsumptionConstant.UnSettle.Code },
                 };
                 result = HttpHelper.Request(ApiConstants.Spend_SelectSpendByRoomNo, dic);
                 var response = HttpHelper.JsonToModel<ListOutputDto<ReadSpendOutputDto>>(result.message);
@@ -254,7 +255,7 @@ namespace EOM.TSHotelManagement.FormUI
                     }
                     NotificationService.ShowSuccess("添加成功");
 
-                    LoadSpendInfoByRoomNo(txtRoomNo.Text.Trim());
+                    LoadSpendInfoByRoomNo(r);
                     LoadSellThingInfo();
                 }
                 catch (Exception ex)
@@ -307,8 +308,8 @@ namespace EOM.TSHotelManagement.FormUI
                             return;
                         }
                         ReadSellThingOutputDto s = response.Data;
-                        decimal num = Convert.ToDecimal(spend.ConsumptionQuantity);
-                        decimal inboundStock = (s.Stock + num);
+                        int num = spend.ConsumptionQuantity;
+                        int inboundStock = (s.Stock + num);
                         var model = new UpdateSpendInputDto { SpendNumber = spend.SpendNumber };
                         result = HttpHelper.Request(ApiConstants.Spend_UndoCustomerSpend, model.ModelToJson());
                         var undoSpendResponse = HttpHelper.JsonToModel<BaseResponse>(result.message);
@@ -330,7 +331,7 @@ namespace EOM.TSHotelManagement.FormUI
                         #region 获取添加操作日志所需的信息
                         RecordHelper.Record(LoginInfo.WorkerNo + "-" + LoginInfo.WorkerName + "在" + Convert.ToDateTime(DateTime.Now) + "位于" + LoginInfo.SoftwareVersion + "执行：" + "帮助" + spend.CustomerNumber + "撤销了消费商品:" + txtSellName.Text + "操作！", Common.Core.LogLevel.Warning);
                         #endregion
-                        LoadSpendInfoByRoomNo(txtRoomNo.Text);
+                        LoadSpendInfoByRoomNo(r);
                         LoadSellThingInfo();
                         nudNum.Value = 0;
                         scope.Complete();
@@ -373,7 +374,7 @@ namespace EOM.TSHotelManagement.FormUI
             }
             dic = new Dictionary<string, string>()
             {
-                { nameof(ReadRoomInputDto.RoomNumber) , room}
+                { nameof(ReadSpendInputDto.RoomNumber) , room },
             };
             result = HttpHelper.Request(ApiConstants.Room_SelectRoomByRoomNo, dic);
             var checkResponse = HttpHelper.JsonToModel<SingleOutputDto<ReadRoomOutputDto>>(result.message);
@@ -382,7 +383,7 @@ namespace EOM.TSHotelManagement.FormUI
                 NotificationService.ShowError($"{ApiConstants.Room_SelectRoomByRoomNo}+接口服务异常，请提交Issue或尝试更新版本！");
                 return;
             }
-            ReadRoomOutputDto r = checkResponse.Data;
+            r = checkResponse.Data;
             if (txtRoomNo.Text == "")
             {
                 lblState.Text = "";
@@ -400,7 +401,7 @@ namespace EOM.TSHotelManagement.FormUI
                     lblState.Visible = true;
                     lblState.Text = "该房间可消费";
                     lblState.ForeColor = Color.Black;
-                    LoadSpendInfoByRoomNo(room);
+                    LoadSpendInfoByRoomNo(r);
                 }
                 else
                 {
