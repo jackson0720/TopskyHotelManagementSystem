@@ -12,19 +12,19 @@
 
 #  :exclamation: 重要说明：
 
- **注意：目前master分支随v2.x版本变动而变动，v2.x版本与v1.x版本变动极大，因此想要v1.x版本的可移步至v1.x分支地址** ： https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/ 
+**1.目前master分支随v2.8.x版本变动而变动，v2.0.x版本与v1.x版本均以归档，因此想要v1.x和v2.0.x版本的可移步至对应分支地址:<br/>
+    v1.x分支：https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/<br/>
+    v2.x分支：https://gitee.com/java-and-net/TopskyHotelManagementSystem/tree/v2.0.x** 
 
- **即日起，程序版本号规范将固定为x.x.x.x，第一位为当前程序版本，第二位为当前程序框架版本，第三位为功能大变更版本，第四位为日常修复版本，例如：基于.NET 8框架的2.0版本，对应的版本号是2.8.0.0，往后的.NET 9将会是2.9.0.0，并以此类推**
+**2.程序版本号规范将固定为x.x.x.x，第一位为当前程序版本，第二位为当前程序框架版本，第三位为功能大变更版本，第四位为日常修复版本，例如：基于NET 8框架的2.0版本，对应的版本号是2.8.0.0，往后的NET 9将会是2.9.0.0，并以此类推。**
 
-**即日起，该项目正式进入维护阶段，不再新增任何功能。同时，我们很高兴地宣布，TopSkyHotelManagementSystem的移动端开发工作正式启动，具体仓库地址为：[TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui)，该项目基于.NET 8的MAUI进行开发，目前仅考虑安卓端，其他暂不具备条件。**
+**3.该项目正式进入维护阶段，不再新增任何功能。同时，我们很高兴地宣布，TopSkyHotelManagementSystem的移动端开发工作正式启动，具体仓库地址为：[TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui)，该项目基于.NET 8的MAUI进行开发，目前仅考虑安卓端，其他暂不具备测试条件。**
 
 #  :pray: 引用的开源项目：
 
 1. ##### Fody——将所有dll打包成exe应用程序。[Fody,MIT开源协议](https://github.com/Fody/Fody)      
 
 2. ##### SQLSugar，国内最受欢迎ORM框架[SQLSugar。 [Apache-2.0开源协议](https://gitee.com/dotnetchina/SqlSugar) 
-
-3. ##### SunnyUI——SunnyUI.Net, 基于 C# .Net WinForm 开源控件库、工具类库、扩展类库、多页面开发框架。[SunnyUI.Net,GPL3.0开源协议](https://gitee.com/yhuse/SunnyUI)
 
 4. ##### **RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)**
 
@@ -36,7 +36,7 @@
 
 2、有bug欢迎提出issue！或进行评论
 
-3、本系统UI框架主要基于Sunny.UI和AntdUI进行创建，在此特别声明！
+3、本系统UI框架主要基于AntdUI进行创建，在此特别声明！
 
 4、关于数据库脚本问题，请先移步至数据库脚本文件夹下，选择Mysql版本或PostgreSQL版本任意文件夹下载Data和Table两个文件，再数据库中先执行Table.sql，再执行Data.sql!
 
@@ -132,8 +132,18 @@ EOM.Client.TopskyHotelManagementSystem
 **下载并安装.NET 8及以上SDK版本。**
 **下载并安装Microsoft Visual Studio Professional 2022及以上版本，并通过下载Zip包解压，打开.sln后缀格式文件运行。**
 
-#  :inbox_tray: 数据库运行部署(本地)：
+#  :inbox_tray: 开源协议：
 
-**略，本项目不包含后台业务逻辑。详情请查看：[业务逻辑项目](https://gitee.com/java-and-net/topsky-hotel-management-system-web-api/blob/master/README.md#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%90%E8%A1%8C%E9%83%A8%E7%BD%B2%E6%9C%AC%E5%9C%B0)**
+[MIT Linsense](https://gitee.com/java-and-net/TopskyHotelManagementSystem/blob/master/LICENSE)
+
+#  :inbox_tray: 依赖项目开源协议：
+
+Fody [MIT Linsense](https://github.com/Fody/Fody/blob/master/License.txt)
+
+SQLSugar  [Apache-2.0 Linsense](https://gitee.com/dotnetchina/SqlSugar/blob/master/LICENSE)
+
+RestSharp [Apache-2.0 Linsense](https://github.com/restsharp/RestSharp/blob/dev/LICENSE.txt)
+
+AntdUI [Apache-2.0 Linsense](https://gitee.com/AntdUI/AntdUI/blob/main/LICENSE)
 
 [![java-and-net/TopskyHotelManagementSystem](https://gitee.com/java-and-net/TopskyHotelManagementSystem/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/java-and-net/TopskyHotelManagerSystem)

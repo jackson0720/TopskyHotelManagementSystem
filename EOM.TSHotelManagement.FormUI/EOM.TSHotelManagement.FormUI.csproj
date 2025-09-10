@@ -11,7 +11,7 @@
 	  <UseWindowsForms>true</UseWindowsForms>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	  <ForceDesignerDPIUnaware>true</ForceDesignerDPIUnaware>
-	  <Version>2.8.5.2</Version>
+	  <Version>2.8.6.0</Version>
 	  <StartupObject>EOM.TSHotelManagement.FormUI.Program</StartupObject>
 	  <PlatformTarget>x64</PlatformTarget>
 	  <AssemblyName>TS酒店管理系统</AssemblyName>
@@ -19,9 +19,10 @@
 	  <FodyWeavingTaskPath>$(SolutionDir)packages\Fody\build\Fody.targets</FodyWeavingTaskPath>
 	  <FodyDisabled>false</FodyDisabled>
 	  <ApplicationManifest>app.manifest</ApplicationManifest>
+	  <Platforms>x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="AppFunction\FrmAboutUs.cs">
+    <Compile Update="ClientModule\FrmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="AppFunction\FrmAdminManager.cs">
@@ -30,26 +31,20 @@
     <Compile Update="AppFunction\FrmBaseManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppFunction\FrmChangeRoom.cs">
+    <Compile Update="ClientModule\FrmChangeRoom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppFunction\FrmCheckIn.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="AppFunction\FrmCheckOutForm.cs">
+    <Compile Update="ClientModule\FrmCheckIn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="AppFunction\FrmCustoManager.cs" />
     <Compile Update="AppFunction\FrmCustomerManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppFunction\FrmEditInputs.cs">
+    <Compile Update="ClientModule\FrmEditInputs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppFunction\FrmMySpace.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="AppFunction\FrmReserList.cs">
+    <Compile Update="ClientModule\FrmReserList.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="AppFunction\FrmReserManager.cs">
@@ -61,10 +56,10 @@
     <Compile Update="AppFunction\FrmRoomStateManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppFunction\FrmSelectCustoInfo.cs">
+    <Compile Update="ClientModule\FrmCustomerInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppFunction\FrmSellThing.cs">
+    <Compile Update="ClientModule\FrmSellThing.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="AppFunction\FrmSellThingManager.cs">
@@ -73,22 +68,19 @@
     <Compile Update="AppFunction\FrmWorkerManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppInterface\FrmLoading.cs">
+    <Compile Update="ClientEntrance\FrmLoading.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppInterface\FrmLogin.cs">
+    <Compile Update="ClientEntrance\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppMain\FrmMain.cs">
+    <Compile Update="ClientMain\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AppUserControls\ucNavBar.cs">
+    <Compile Update="ClientCustomControls\ucRoom.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="AppUserControls\ucRoom.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="AppUserControls\ucRoomType.cs">
+    <Compile Update="ClientCustomControls\ucRoomType.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -120,29 +112,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="antdui" Version="1.8.4" />
+		<PackageReference Include="antdui" Version="2.1.1" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Costura.Fody" Version="6.0.0" PrivateAssets="All" />
 		<PackageReference Include="Fody" Version="6.9.2" PrivateAssets="All" />
-		<PackageReference Include="SunnyUI" Version="3.6.5" />
 	</ItemGroup>
 	<ItemGroup>
 		<FodyWeavers Include="Costura" />
 		<FodyWeavers Include="FodyWeavers.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Remove="AppFunction\FrmChart.cs" />
-		<Compile Remove="AppFunction\FrmChart.Designer.cs" />
-		<Compile Remove="AppFunction\FrmNotice.cs" />
-		<Compile Remove="AppFunction\FrmNotice.Designer.cs" />
-		<Compile Remove="AppFunction\FrmUpLoadNotice.cs" />
-		<Compile Remove="AppFunction\FrmUpLoadNotice.Designer.cs" />
-		<Compile Remove="AppInterface\FrmNewLogin.cs" />
-		<Compile Remove="AppInterface\FrmNewLogin.Designer.cs" />
-		<EmbeddedResource Remove="AppFunction\FrmChart.resx" />
-		<EmbeddedResource Remove="AppFunction\FrmNotice.resx" />
-		<EmbeddedResource Remove="AppFunction\FrmUpLoadNotice.resx" />
-		<EmbeddedResource Remove="AppInterface\FrmNewLogin.resx" />
+		<Compile Remove="ClientModule\FrmChart.cs" />
+		<Compile Remove="ClientModule\FrmChart.Designer.cs" />
+		<Compile Remove="ClientModule\FrmNotice.cs" />
+		<Compile Remove="ClientModule\FrmNotice.Designer.cs" />
+		<Compile Remove="ClientModule\FrmUpLoadNotice.cs" />
+		<Compile Remove="ClientModule\FrmUpLoadNotice.Designer.cs" />
+		<Compile Remove="ClientEntrance\FrmNewLogin.cs" />
+		<Compile Remove="ClientEntrance\FrmNewLogin.Designer.cs" />
+		<EmbeddedResource Remove="ClientModule\FrmChart.resx" />
+		<EmbeddedResource Remove="ClientModule\FrmNotice.resx" />
+		<EmbeddedResource Remove="ClientModule\FrmUpLoadNotice.resx" />
+		<EmbeddedResource Remove="ClientEntrance\FrmNewLogin.resx" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="FodyWeavers.xml" />

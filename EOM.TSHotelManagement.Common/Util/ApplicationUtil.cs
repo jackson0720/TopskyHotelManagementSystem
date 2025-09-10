@@ -1,7 +1,9 @@
 ﻿using EOM.TSHotelManagement.Common.Contract;
+using EOM.TSHotelManagement.Common.Util;
 using jvncorelib.EntityLib;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.Common
 {
@@ -27,14 +29,14 @@ namespace EOM.TSHotelManagement.Common
             };
             ResponseMsg result = HttpHelper.Request(ApiConstants.Utility_SelectCardCode, input.ModelToJson());
             var response = HttpHelper.JsonToModel<SingleOutputDto<ReadCardCodeOutputDto>>(result.message);
-            if (response.StatusCode != StatusCodeConstants.Success)
+            if (response.Success == false)
             {
                 return new Card { message = "SelectCardCode+接口服务异常，请提交Issue或尝试更新版本！" };
             }
 
-            if (!response.Source.IsNullOrEmpty())
+            if (!response.Data.IsNullOrEmpty())
             {
-                var address = $"{response.Source.Province}{response.Source.City}{response.Source.District}";
+                var address = $"{response.Data.Province}{response.Data.City}{response.Data.District}";
                 var birthday = code.Substring(6, 4) + "-" + code.Substring(10, 2) + "-" + code.Substring(12, 2);
                 var sex = code.Substring(14, 3);
                 //性别代码为偶数是女性奇数为男性
@@ -75,6 +77,47 @@ namespace EOM.TSHotelManagement.Common
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// 获取服务器版本号
+        /// </summary>
+        /// <returns></returns>
+        public static string GetServerVersion()
+        {
+            var response = HttpHelper.Request(ApiConstants.Default_Version);
+            if (response is ResponseMsg responseMsg)
+            {
+                return responseMsg.message!.Split(':').Last().Trim().ToString();
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// 获取当前计算机的系统架构
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSystemArchitectureViaEnv()
+        {
+            return RuntimeInformation.OSArchitecture.ToString();
+        }
+
+        /// <summary>
+        /// 获取当前应用框架版本
+        /// </summary>
+        /// <returns></returns>
+        public static string GetApplicationFrameworkVersion()
+        {
+            return Environment.Version.ToString();
+        }
+
+        /// <summary>
+        /// 获取当前软件的名称
+        /// </summary>
+        /// <returns></returns>
+        public static string GetApplicationName()
+        {
+            return LocalizationHelper.GetLocalizedString("TopSky Hotel Management System", "TS酒店管理系统");
         }
 
         /// <summary>

@@ -60,6 +60,11 @@ namespace EOM.TSHotelManagement.Common
         public static string UserToken = "";
 
         /// <summary>
+        /// 存储当前用户密码
+        /// </summary>
+        public static string Password = "";
+
+        /// <summary>
         /// 软件更新日志
         /// </summary>
         public static string SoftwareReleaseLog = "";

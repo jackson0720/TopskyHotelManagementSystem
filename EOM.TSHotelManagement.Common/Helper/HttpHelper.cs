@@ -22,7 +22,7 @@ namespace EOM.TSHotelManagement.Common
         /// <summary>
         /// WebApi URL
         /// </summary>
-        public const string apiUrl = "https://tshotel-api.oscode.top/api/";
+        public const string apiUrl = "https://tshotel.oscode.top/api/";
 #endif
 
         public class IgnoreNullValuesConverter : JsonConverter
@@ -403,28 +403,6 @@ namespace EOM.TSHotelManagement.Common
         }
 
         /// <summary>
-        /// Json转数组列表
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="JsonStr"></param>
-        /// <returns></returns>
-        public static List<T>? JsonToList<T>(string JsonStr)
-        {
-            return JsonConvert.DeserializeObject<List<T>>(JsonStr);
-        }
-
-        /// <summary>
-        /// Json转分页列表
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="json"></param>
-        /// <returns></returns>
-        public static T? JsonToPageList<T>(string json) where T : class
-        {
-            return JsonConvert.DeserializeObject<T>(json);
-        }
-
-        /// <summary>
         /// Json转实体
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -433,28 +411,6 @@ namespace EOM.TSHotelManagement.Common
         public static T? JsonToModel<T>(this string input)
         {
             return JsonConvert.DeserializeObject<T>(input);
-        }
-
-        /// <summary>
-        /// 实体转Json
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static string ModelToJson<T>(this T input)
-        {
-            try
-            {
-                return JsonConvert.SerializeObject(input, new JsonSerializerSettings
-                {
-                    Converters = { new IgnoreNullValuesConverter(true) },
-                    Formatting = Formatting.Indented // 如果需要格式化输出
-                });
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
         }
     }
 }

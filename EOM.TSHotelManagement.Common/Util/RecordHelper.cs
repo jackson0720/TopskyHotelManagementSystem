@@ -1,5 +1,7 @@
 ﻿using EOM.TSHotelManagement.Common.Contract;
 using EOM.TSHotelManagement.Common.Core;
+using jvncorelib.CodeLib;
+using jvncorelib.EntityLib;
 
 namespace EOM.TSHotelManagement.Common
 {
@@ -18,6 +20,7 @@ namespace EOM.TSHotelManagement.Common
             string api = ApiConstants.Utility_AddLog;
             var logDetail = new CreateOperationLogInputDto
             {
+                OperationId = new UniqueCode().GetNewId("OP-"),
                 OperationTime = Convert.ToDateTime(DateTime.Now),
                 LogContent = operationLog,
                 OperationAccount = LoginInfo.WorkerNo,
@@ -27,7 +30,7 @@ namespace EOM.TSHotelManagement.Common
                 DataInsUsr = LoginInfo.WorkerNo,
                 DataInsDate = Convert.ToDateTime(DateTime.Now)
             };
-            HttpHelper.Request(api, HttpHelper.ModelToJson(logDetail));
+            HttpHelper.Request(api, logDetail.ModelToJson());
         }
 
     }
