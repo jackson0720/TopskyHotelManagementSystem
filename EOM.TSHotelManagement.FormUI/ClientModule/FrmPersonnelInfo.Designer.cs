@@ -135,6 +135,7 @@
             txtEmployeeId.Location = new Point(103, 51);
             txtEmployeeId.Name = "txtEmployeeId";
             txtEmployeeId.ReadOnly = true;
+            txtEmployeeId.Round = true;
             txtEmployeeId.Size = new Size(205, 45);
             txtEmployeeId.TabIndex = 149;
             // 
@@ -143,6 +144,7 @@
             txtEmployeeName.Font = new Font("Noto Sans SC", 12F);
             txtEmployeeName.Location = new Point(103, 102);
             txtEmployeeName.Name = "txtEmployeeName";
+            txtEmployeeName.Round = true;
             txtEmployeeName.Size = new Size(205, 45);
             txtEmployeeName.TabIndex = 150;
             // 
@@ -151,6 +153,7 @@
             txtEmployeeAddress.Font = new Font("Noto Sans SC", 12F);
             txtEmployeeAddress.Location = new Point(103, 251);
             txtEmployeeAddress.Name = "txtEmployeeAddress";
+            txtEmployeeAddress.Round = true;
             txtEmployeeAddress.Size = new Size(515, 45);
             txtEmployeeAddress.TabIndex = 151;
             // 
@@ -159,6 +162,7 @@
             txtEmployeeTel.Font = new Font("Noto Sans SC", 12F);
             txtEmployeeTel.Location = new Point(104, 202);
             txtEmployeeTel.Name = "txtEmployeeTel";
+            txtEmployeeTel.Round = true;
             txtEmployeeTel.Size = new Size(515, 45);
             txtEmployeeTel.TabIndex = 152;
             // 
@@ -167,6 +171,7 @@
             btnUpdate.Font = new Font("Noto Sans SC", 12F);
             btnUpdate.Location = new Point(530, 302);
             btnUpdate.Name = "btnUpdate";
+            btnUpdate.Shape = AntdUI.TShape.Round;
             btnUpdate.Size = new Size(87, 43);
             btnUpdate.TabIndex = 157;
             btnUpdate.Text = "修   改";
@@ -181,6 +186,7 @@
             cboGender.Location = new Point(103, 152);
             cboGender.Name = "cboGender";
             cboGender.Placement = AntdUI.TAlignFrom.Bottom;
+            cboGender.Round = true;
             cboGender.Size = new Size(205, 45);
             cboGender.TabIndex = 175;
             // 
@@ -192,6 +198,7 @@
             cboEmployeeNation.Location = new Point(413, 152);
             cboEmployeeNation.Name = "cboEmployeeNation";
             cboEmployeeNation.Placement = AntdUI.TAlignFrom.Bottom;
+            cboEmployeeNation.Round = true;
             cboEmployeeNation.Size = new Size(204, 45);
             cboEmployeeNation.TabIndex = 176;
             // 
@@ -203,6 +210,7 @@
             cboEmployeePosition.Location = new Point(413, 102);
             cboEmployeePosition.Name = "cboEmployeePosition";
             cboEmployeePosition.Placement = AntdUI.TAlignFrom.Bottom;
+            cboEmployeePosition.Round = true;
             cboEmployeePosition.Size = new Size(205, 45);
             cboEmployeePosition.TabIndex = 177;
             // 
@@ -214,6 +222,7 @@
             cboEmployeeDepartment.Location = new Point(413, 51);
             cboEmployeeDepartment.Name = "cboEmployeeDepartment";
             cboEmployeeDepartment.Placement = AntdUI.TAlignFrom.Bottom;
+            cboEmployeeDepartment.Round = true;
             cboEmployeeDepartment.Size = new Size(205, 45);
             cboEmployeeDepartment.TabIndex = 178;
             // 

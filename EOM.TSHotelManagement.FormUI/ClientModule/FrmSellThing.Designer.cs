@@ -119,6 +119,7 @@
             nudNum.Font = new Font("Noto Sans SC", 12F);
             nudNum.Location = new Point(319, 23);
             nudNum.Name = "nudNum";
+            nudNum.Round = true;
             nudNum.Size = new Size(119, 38);
             nudNum.TabIndex = 34;
             nudNum.Text = "0";
@@ -130,6 +131,7 @@
             txtPrice.Location = new Point(319, 69);
             txtPrice.Name = "txtPrice";
             txtPrice.ReadOnly = true;
+            txtPrice.Round = true;
             txtPrice.Size = new Size(119, 38);
             txtPrice.TabIndex = 33;
             // 
@@ -139,6 +141,7 @@
             txtSellName.Location = new Point(111, 69);
             txtSellName.Name = "txtSellName";
             txtSellName.ReadOnly = true;
+            txtSellName.Round = true;
             txtSellName.Size = new Size(145, 38);
             txtSellName.TabIndex = 32;
             // 
@@ -148,6 +151,7 @@
             txtSellNo.Location = new Point(111, 23);
             txtSellNo.Name = "txtSellNo";
             txtSellNo.ReadOnly = true;
+            txtSellNo.Round = true;
             txtSellNo.Size = new Size(145, 38);
             txtSellNo.TabIndex = 31;
             // 
@@ -167,14 +171,16 @@
             txtFind.Font = new Font("Noto Sans SC", 12F);
             txtFind.Location = new Point(200, 42);
             txtFind.Name = "txtFind";
+            txtFind.Round = true;
             txtFind.Size = new Size(197, 38);
             txtFind.TabIndex = 27;
             // 
             // btnFind
             // 
             btnFind.Font = new Font("Noto Sans SC", 12F);
-            btnFind.Location = new Point(407, 44);
+            btnFind.Location = new Point(403, 42);
             btnFind.Name = "btnFind";
+            btnFind.Shape = AntdUI.TShape.Round;
             btnFind.Size = new Size(101, 38);
             btnFind.TabIndex = 28;
             btnFind.Text = "查     找";
@@ -197,6 +203,7 @@
             txtRoomNo.Font = new Font("Noto Sans SC", 12F);
             txtRoomNo.Location = new Point(617, 42);
             txtRoomNo.Name = "txtRoomNo";
+            txtRoomNo.Round = true;
             txtRoomNo.Size = new Size(134, 38);
             txtRoomNo.TabIndex = 30;
             txtRoomNo.TextChanged += txtRoomNo_TextChanged;
@@ -207,6 +214,7 @@
             btnCheck.Font = new Font("Noto Sans SC", 12F);
             btnCheck.Location = new Point(764, 44);
             btnCheck.Name = "btnCheck";
+            btnCheck.Shape = AntdUI.TShape.Round;
             btnCheck.Size = new Size(101, 38);
             btnCheck.TabIndex = 31;
             btnCheck.Text = "可否消费";
@@ -252,6 +260,7 @@
             btnAdd.Font = new Font("Noto Sans SC", 12F);
             btnAdd.Location = new Point(496, 88);
             btnAdd.Name = "btnAdd";
+            btnAdd.Shape = AntdUI.TShape.Round;
             btnAdd.Size = new Size(115, 38);
             btnAdd.TabIndex = 136;
             btnAdd.Text = "确定添加";
@@ -263,6 +272,7 @@
             btnCancel.Font = new Font("Noto Sans SC", 12F);
             btnCancel.Location = new Point(496, 174);
             btnCancel.Name = "btnCancel";
+            btnCancel.Shape = AntdUI.TShape.Round;
             btnCancel.Size = new Size(115, 38);
             btnCancel.TabIndex = 137;
             btnCancel.Text = "撤回添加";

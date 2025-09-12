@@ -30,6 +30,7 @@ using EOM.TSHotelManagement.FormUI.Properties;
 using jvncorelib.CodeLib;
 using jvncorelib.EntityLib;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -113,6 +114,30 @@ namespace EOM.TSHotelManagement.FormUI
         }
         #endregion
 
+        private const uint WS_EX_LAYERED = 0x80000;
+        private const int WS_EX_TRANSPARENT = 0x20;
+        private const int GWL_STYLE = (-16);
+        private const int GWL_EXSTYLE = (-20);
+        [DllImport("user32", EntryPoint = "SetWindowLong")]
+        private static extern uint SetWindowLong(
+       IntPtr hwnd,
+       int nIndex,
+       uint dwNewLong
+       );
+        [DllImport("user32", EntryPoint = "GetWindowLong")]
+        private static extern uint GetWindowLong(
+       IntPtr hwnd,
+       int nIndex
+       );
+        /// <summary>
+        /// 使窗口有鼠标穿透功能
+        /// </summary>
+        public void CanPenetrate()
+        {
+            uint intExTemp = GetWindowLong(this.Handle, GWL_EXSTYLE);
+            uint oldGWLEx = SetWindowLong(this.Handle, GWL_EXSTYLE, WS_EX_TRANSPARENT | WS_EX_LAYERED);
+        }
+
         ListOutputDto<ReadPromotionContentOutputDto> fonts = null;
         int fontn = 0;
         private void LoadFonts()
@@ -191,6 +216,7 @@ namespace EOM.TSHotelManagement.FormUI
                     {
                         case "客房管理":
                             menuItem.Icon = Resources.picRoom_Image;
+                            menuItem.Select = true;
                             break;
                         case "客户管理":
                             menuItem.Icon = Resources.picCustomer_Image;
@@ -231,6 +257,11 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.Owner.Hide();
+
+
+            btnMinimize.IconSvg = UIControlIconConstant.Minimize;
+            btnClose.IconSvg = UIControlIconConstant.Close;
+            btnSetting.IconSvg = UIControlIconConstant.Setting;
 
             lblSoftName.Text = ApplicationUtil.GetApplicationName() + " V" + ApplicationUtil.GetApplicationVersion();
 
@@ -320,7 +351,7 @@ namespace EOM.TSHotelManagement.FormUI
                     frmScreenLock.ShowDialog();
                     break;
                 case UIControlConstant.UpdateLog:
-                    AntdUI.Modal.open(this, LocalizationHelper.GetLocalizedString("Update log", "更新日志"), LoginInfo.SoftwareReleaseLog, TType.Info);
+                    NotificationService.ShowInfo(LoginInfo.SoftwareReleaseLog);
                     break;
                 case UIControlConstant.About:
                     FrmAbout frmAbout = new();

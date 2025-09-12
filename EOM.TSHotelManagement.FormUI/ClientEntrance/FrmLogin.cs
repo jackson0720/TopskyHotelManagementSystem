@@ -92,6 +92,8 @@ namespace EOM.TSHotelManagement.FormUI
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.Owner.Hide();
+            btnMinimize.IconSvg = UIControlIconConstant.Minimize;
+            btnClose.IconSvg = UIControlIconConstant.Close;
             txtAccount.PlaceholderText = LocalizationHelper.GetLocalizedString("Please input employee number or email", "请输入员工编号或邮箱");
             txtWorkerPwd.PlaceholderText = LocalizationHelper.GetLocalizedString("Please input employee password", "请输入员工密码");
         }

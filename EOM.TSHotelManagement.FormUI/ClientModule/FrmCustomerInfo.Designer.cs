@@ -57,6 +57,7 @@
             txtCustomerAddress.Name = "txtCustomerAddress";
             txtCustomerAddress.PlaceholderText = "";
             txtCustomerAddress.ReadOnly = true;
+            txtCustomerAddress.Round = true;
             txtCustomerAddress.Size = new Size(506, 42);
             txtCustomerAddress.TabIndex = 176;
             // 
@@ -67,6 +68,7 @@
             txtDateOfBirth.Name = "txtDateOfBirth";
             txtDateOfBirth.PlaceholderText = "";
             txtDateOfBirth.ReadOnly = true;
+            txtDateOfBirth.Round = true;
             txtDateOfBirth.Size = new Size(203, 42);
             txtDateOfBirth.TabIndex = 175;
             // 
@@ -77,6 +79,7 @@
             txtCustomerGender.Name = "txtCustomerGender";
             txtCustomerGender.PlaceholderText = "";
             txtCustomerGender.ReadOnly = true;
+            txtCustomerGender.Round = true;
             txtCustomerGender.Size = new Size(203, 42);
             txtCustomerGender.TabIndex = 174;
             // 
@@ -87,6 +90,7 @@
             txtCustomerName.Name = "txtCustomerName";
             txtCustomerName.PlaceholderText = "";
             txtCustomerName.ReadOnly = true;
+            txtCustomerName.Round = true;
             txtCustomerName.Size = new Size(203, 42);
             txtCustomerName.TabIndex = 173;
             // 
@@ -97,6 +101,7 @@
             txtCustomerNumber.Name = "txtCustomerNumber";
             txtCustomerNumber.PlaceholderText = "";
             txtCustomerNumber.ReadOnly = true;
+            txtCustomerNumber.Round = true;
             txtCustomerNumber.Size = new Size(203, 42);
             txtCustomerNumber.TabIndex = 172;
             // 
@@ -107,6 +112,7 @@
             txtTel.Name = "txtTel";
             txtTel.PlaceholderText = "";
             txtTel.ReadOnly = true;
+            txtTel.Round = true;
             txtTel.Size = new Size(203, 42);
             txtTel.TabIndex = 171;
             // 
@@ -117,6 +123,7 @@
             txtIdCardNumber.Name = "txtIdCardNumber";
             txtIdCardNumber.PlaceholderText = "";
             txtIdCardNumber.ReadOnly = true;
+            txtIdCardNumber.Round = true;
             txtIdCardNumber.Size = new Size(203, 42);
             txtIdCardNumber.TabIndex = 170;
             // 
@@ -127,6 +134,7 @@
             txtPassportName.Name = "txtPassportName";
             txtPassportName.PlaceholderText = "";
             txtPassportName.ReadOnly = true;
+            txtPassportName.Round = true;
             txtPassportName.Size = new Size(203, 42);
             txtPassportName.TabIndex = 169;
             // 
@@ -137,6 +145,7 @@
             txtCustomerType.Name = "txtCustomerType";
             txtCustomerType.PlaceholderText = "";
             txtCustomerType.ReadOnly = true;
+            txtCustomerType.Round = true;
             txtCustomerType.Size = new Size(203, 42);
             txtCustomerType.TabIndex = 168;
             // 

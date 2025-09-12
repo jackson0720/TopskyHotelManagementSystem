@@ -206,20 +206,21 @@
             // 
             // btnSetting
             // 
-            btnSetting.BackColor = Color.Transparent;
-            btnSetting.BackgroundImage = Properties.Resources.settings2;
+            btnSetting.BackColor = Color.FromArgb(22, 119, 255);
             btnSetting.Font = new Font("Noto Sans SC", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSetting.Ghost = true;
             btnSetting.Location = new Point(946, 4);
             btnSetting.Name = "btnSetting";
+            btnSetting.Shape = AntdUI.TShape.Round;
             btnSetting.Size = new Size(41, 38);
             btnSetting.TabIndex = 42;
+            btnSetting.Type = AntdUI.TTypeMini.Info;
             btnSetting.MouseClick += btnSetting_MouseClick;
             // 
             // cpUITheme
             // 
             cpUITheme.Location = new Point(899, 4);
             cpUITheme.Name = "cpUITheme";
+            cpUITheme.Round = true;
             cpUITheme.Size = new Size(41, 38);
             cpUITheme.TabIndex = 43;
             cpUITheme.Text = "col";
@@ -253,10 +254,9 @@
             btnMinimize.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnMinimize.Location = new Point(993, 4);
             btnMinimize.Name = "btnMinimize";
+            btnMinimize.Shape = AntdUI.TShape.Round;
             btnMinimize.Size = new Size(38, 38);
             btnMinimize.TabIndex = 145;
-            btnMinimize.Text = "—";
-            btnMinimize.TextAlign = ContentAlignment.BottomCenter;
             btnMinimize.Type = AntdUI.TTypeMini.Info;
             btnMinimize.Click += picFormSize_Click;
             // 
@@ -268,10 +268,9 @@
             btnClose.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClose.Location = new Point(1037, 4);
             btnClose.Name = "btnClose";
+            btnClose.Shape = AntdUI.TShape.Round;
             btnClose.Size = new Size(38, 38);
             btnClose.TabIndex = 144;
-            btnClose.Text = "×";
-            btnClose.TextAlign = ContentAlignment.BottomCenter;
             btnClose.Type = AntdUI.TTypeMini.Info;
             btnClose.Click += picClose_Click;
             // 

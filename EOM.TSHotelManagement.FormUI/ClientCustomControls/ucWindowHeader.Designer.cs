@@ -62,11 +62,11 @@
             btnClose.BackColor = Color.FromArgb(22, 119, 255);
             btnClose.DisplayStyle = AntdUI.TButtonDisplayStyle.Text;
             btnClose.Font = new Font("Noto Sans SC", 13F);
-            btnClose.Location = new Point(362, 4);
+            btnClose.Location = new Point(362, 5);
             btnClose.Name = "btnClose";
+            btnClose.Shape = AntdUI.TShape.Round;
             btnClose.Size = new Size(23, 25);
             btnClose.TabIndex = 140;
-            btnClose.Text = "×";
             btnClose.Type = AntdUI.TTypeMini.Info;
             btnClose.Click += btnClose_Click;
             // 

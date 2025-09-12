@@ -146,6 +146,7 @@
             dtpDateOfBirth.Font = new Font("Noto Sans SC", 10F);
             dtpDateOfBirth.Location = new Point(94, 201);
             dtpDateOfBirth.Name = "dtpDateOfBirth";
+            dtpDateOfBirth.Round = true;
             dtpDateOfBirth.Size = new Size(252, 43);
             dtpDateOfBirth.TabIndex = 166;
             // 
@@ -154,6 +155,7 @@
             txtCustomerName.Font = new Font("Noto Sans SC", 12F);
             txtCustomerName.Location = new Point(95, 99);
             txtCustomerName.Name = "txtCustomerName";
+            txtCustomerName.Round = true;
             txtCustomerName.Size = new Size(252, 45);
             txtCustomerName.TabIndex = 164;
             // 
@@ -163,6 +165,7 @@
             txtCustomerId.Location = new Point(95, 48);
             txtCustomerId.Name = "txtCustomerId";
             txtCustomerId.ReadOnly = true;
+            txtCustomerId.Round = true;
             txtCustomerId.Size = new Size(252, 45);
             txtCustomerId.TabIndex = 163;
             // 
@@ -171,6 +174,7 @@
             txtCustomerCardID.Font = new Font("Noto Sans SC", 12F);
             txtCustomerCardID.Location = new Point(463, 148);
             txtCustomerCardID.Name = "txtCustomerCardID";
+            txtCustomerCardID.Round = true;
             txtCustomerCardID.Size = new Size(250, 45);
             txtCustomerCardID.TabIndex = 168;
             txtCustomerCardID.Validated += txtCardID_Validated;
@@ -180,6 +184,7 @@
             txtCustomerTel.Font = new Font("Noto Sans SC", 12F);
             txtCustomerTel.Location = new Point(463, 198);
             txtCustomerTel.Name = "txtCustomerTel";
+            txtCustomerTel.Round = true;
             txtCustomerTel.Size = new Size(250, 45);
             txtCustomerTel.TabIndex = 167;
             // 
@@ -188,6 +193,7 @@
             txtCustomerAddress.Font = new Font("Noto Sans SC", 12F);
             txtCustomerAddress.Location = new Point(95, 250);
             txtCustomerAddress.Name = "txtCustomerAddress";
+            txtCustomerAddress.Round = true;
             txtCustomerAddress.Size = new Size(618, 45);
             txtCustomerAddress.TabIndex = 171;
             // 
@@ -203,6 +209,7 @@
             btnOk.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnOk.Location = new Point(579, 307);
             btnOk.Name = "btnOk";
+            btnOk.Shape = AntdUI.TShape.Round;
             btnOk.Size = new Size(135, 45);
             btnOk.TabIndex = 173;
             btnOk.Text = "保     存";
@@ -217,6 +224,7 @@
             cboGender.Location = new Point(95, 150);
             cboGender.Name = "cboGender";
             cboGender.Placement = AntdUI.TAlignFrom.Bottom;
+            cboGender.Round = true;
             cboGender.Size = new Size(251, 45);
             cboGender.TabIndex = 174;
             // 
@@ -228,6 +236,7 @@
             cboPassportType.Location = new Point(463, 98);
             cboPassportType.Name = "cboPassportType";
             cboPassportType.Placement = AntdUI.TAlignFrom.Bottom;
+            cboPassportType.Round = true;
             cboPassportType.Size = new Size(251, 45);
             cboPassportType.TabIndex = 175;
             // 
@@ -239,6 +248,7 @@
             cboCustomerType.Location = new Point(463, 48);
             cboCustomerType.Name = "cboCustomerType";
             cboCustomerType.Placement = AntdUI.TAlignFrom.Bottom;
+            cboCustomerType.Round = true;
             cboCustomerType.Size = new Size(251, 45);
             cboCustomerType.TabIndex = 176;
             // 

@@ -55,6 +55,7 @@
             btnSerach.Font = new Font("Noto Sans SC", 12F);
             btnSerach.Location = new Point(602, 441);
             btnSerach.Name = "btnSerach";
+            btnSerach.Shape = AntdUI.TShape.Round;
             btnSerach.Size = new Size(93, 47);
             btnSerach.TabIndex = 127;
             btnSerach.Text = "搜    索";
@@ -67,6 +68,7 @@
             btnAddCusto.IconPosition = AntdUI.TAlignMini.Top;
             btnAddCusto.Location = new Point(772, 441);
             btnAddCusto.Name = "btnAddCusto";
+            btnAddCusto.Shape = AntdUI.TShape.Round;
             btnAddCusto.Size = new Size(93, 47);
             btnAddCusto.TabIndex = 128;
             btnAddCusto.Text = "添加客户";
@@ -80,6 +82,7 @@
             btnUpdCustomer.Font = new Font("Noto Sans SC", 12F);
             btnUpdCustomer.Location = new Point(942, 441);
             btnUpdCustomer.Name = "btnUpdCustomer";
+            btnUpdCustomer.Shape = AntdUI.TShape.Round;
             btnUpdCustomer.Size = new Size(93, 47);
             btnUpdCustomer.TabIndex = 129;
             btnUpdCustomer.Text = "修改客户";
@@ -150,6 +153,7 @@
             txtCustoName.Location = new Point(375, 444);
             txtCustoName.Name = "txtCustoName";
             txtCustoName.PlaceholderText = "请输入客户姓名...";
+            txtCustoName.Round = true;
             txtCustoName.Size = new Size(173, 42);
             txtCustoName.TabIndex = 150;
             // 
@@ -159,6 +163,7 @@
             txtCustoNo.Location = new Point(104, 444);
             txtCustoNo.Name = "txtCustoNo";
             txtCustoNo.PlaceholderText = "请输入客户编号...";
+            txtCustoNo.Round = true;
             txtCustoNo.Size = new Size(173, 42);
             txtCustoNo.TabIndex = 149;
             // 
