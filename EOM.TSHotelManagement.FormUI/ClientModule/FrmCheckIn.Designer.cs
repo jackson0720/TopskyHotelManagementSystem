@@ -167,9 +167,10 @@
             // 
             // btnCheckIn
             // 
-            btnCheckIn.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCheckIn.Font = new Font("Noto Sans SC", 12F);
             btnCheckIn.Location = new Point(548, 322);
             btnCheckIn.Name = "btnCheckIn";
+            btnCheckIn.Shape = AntdUI.TShape.Round;
             btnCheckIn.Size = new Size(85, 45);
             btnCheckIn.TabIndex = 164;
             btnCheckIn.Text = "入    住";
@@ -178,9 +179,10 @@
             // 
             // btnCancel
             // 
-            btnCancel.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancel.Font = new Font("Noto Sans SC", 12F);
             btnCancel.Location = new Point(639, 322);
             btnCancel.Name = "btnCancel";
+            btnCancel.Shape = AntdUI.TShape.Round;
             btnCancel.Size = new Size(85, 45);
             btnCancel.TabIndex = 165;
             btnCancel.Text = "取    消";
@@ -193,6 +195,7 @@
             txtRoomNo.Location = new Point(93, 51);
             txtRoomNo.Name = "txtRoomNo";
             txtRoomNo.ReadOnly = true;
+            txtRoomNo.Round = true;
             txtRoomNo.Size = new Size(250, 45);
             txtRoomNo.TabIndex = 166;
             // 
@@ -202,6 +205,7 @@
             txtState.Location = new Point(93, 104);
             txtState.Name = "txtState";
             txtState.ReadOnly = true;
+            txtState.Round = true;
             txtState.Size = new Size(250, 45);
             txtState.TabIndex = 167;
             // 
@@ -211,6 +215,7 @@
             txtRoomPosition.Location = new Point(93, 157);
             txtRoomPosition.Name = "txtRoomPosition";
             txtRoomPosition.ReadOnly = true;
+            txtRoomPosition.Round = true;
             txtRoomPosition.Size = new Size(250, 45);
             txtRoomPosition.TabIndex = 168;
             // 
@@ -220,6 +225,7 @@
             txtRent.Location = new Point(474, 104);
             txtRent.Name = "txtRent";
             txtRent.ReadOnly = true;
+            txtRent.Round = true;
             txtRent.Size = new Size(250, 45);
             txtRent.TabIndex = 169;
             // 
@@ -229,6 +235,7 @@
             txtDeposit.Location = new Point(474, 157);
             txtDeposit.Name = "txtDeposit";
             txtDeposit.ReadOnly = true;
+            txtDeposit.Round = true;
             txtDeposit.Size = new Size(250, 45);
             txtDeposit.TabIndex = 170;
             // 
@@ -238,6 +245,7 @@
             txtCustomerName.Location = new Point(474, 210);
             txtCustomerName.Name = "txtCustomerName";
             txtCustomerName.ReadOnly = true;
+            txtCustomerName.Round = true;
             txtCustomerName.Size = new Size(250, 45);
             txtCustomerName.TabIndex = 171;
             // 
@@ -247,6 +255,7 @@
             txtCustomerLevel.Location = new Point(474, 263);
             txtCustomerLevel.Name = "txtCustomerLevel";
             txtCustomerLevel.ReadOnly = true;
+            txtCustomerLevel.Round = true;
             txtCustomerLevel.Size = new Size(250, 45);
             txtCustomerLevel.TabIndex = 172;
             // 
@@ -256,6 +265,7 @@
             txtCustomerTel.Location = new Point(93, 263);
             txtCustomerTel.Name = "txtCustomerTel";
             txtCustomerTel.ReadOnly = true;
+            txtCustomerTel.Round = true;
             txtCustomerTel.Size = new Size(250, 45);
             txtCustomerTel.TabIndex = 173;
             // 
@@ -264,6 +274,7 @@
             txtCustomerNo.Font = new Font("Noto Sans SC", 12F);
             txtCustomerNo.Location = new Point(93, 210);
             txtCustomerNo.Name = "txtCustomerNo";
+            txtCustomerNo.Round = true;
             txtCustomerNo.Size = new Size(250, 45);
             txtCustomerNo.TabIndex = 174;
             txtCustomerNo.Validated += txtCustoNo_Validated;
@@ -274,6 +285,7 @@
             txtRoomType.Location = new Point(474, 51);
             txtRoomType.Name = "txtRoomType";
             txtRoomType.ReadOnly = true;
+            txtRoomType.Round = true;
             txtRoomType.Size = new Size(250, 45);
             txtRoomType.TabIndex = 175;
             // 

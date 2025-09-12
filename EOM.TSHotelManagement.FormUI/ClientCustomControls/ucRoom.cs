@@ -401,6 +401,7 @@ namespace EOM.TSHotelManagement.FormUI
                             UIControlConstant.CheckInRoom => true,
                             UIControlConstant.ReservationRoom => true,
                             UIControlConstant.ChangeRoom => false,
+                            UIControlConstant.ChangeStateRoom => true,
                             UIControlConstant.CheckOutRoom => false,
                             UIControlConstant.CustomerInformation => false,
                             _ => item.Enabled
@@ -412,6 +413,7 @@ namespace EOM.TSHotelManagement.FormUI
                             UIControlConstant.CheckInRoom => false,
                             UIControlConstant.ReservationRoom => false,
                             UIControlConstant.ChangeRoom => true,
+                            UIControlConstant.ChangeStateRoom => true,
                             UIControlConstant.CheckOutRoom => true,
                             UIControlConstant.CustomerInformation => true,
                             _ => item.Enabled
@@ -424,6 +426,7 @@ namespace EOM.TSHotelManagement.FormUI
                             UIControlConstant.CheckInRoom => false,
                             UIControlConstant.ReservationRoom => false,
                             UIControlConstant.ChangeRoom => false,
+                            UIControlConstant.ChangeStateRoom => true,
                             UIControlConstant.CheckOutRoom => false,
                             UIControlConstant.CustomerInformation => false,
                             _ => item.Enabled
@@ -435,6 +438,7 @@ namespace EOM.TSHotelManagement.FormUI
                             UIControlConstant.CheckInRoom => true,
                             UIControlConstant.ReservationRoom => false,
                             UIControlConstant.ChangeRoom => false,
+                            UIControlConstant.ChangeStateRoom => false,
                             UIControlConstant.CheckOutRoom => false,
                             UIControlConstant.CustomerInformation => false,
                             _ => item.Enabled

@@ -82,7 +82,6 @@
             picLogin.Font = new Font("Noto Sans SC", 12F);
             picLogin.Location = new Point(658, 342);
             picLogin.Name = "picLogin";
-            picLogin.Radius = 8;
             picLogin.Shape = AntdUI.TShape.Round;
             picLogin.Size = new Size(191, 57);
             picLogin.TabIndex = 34;
@@ -128,10 +127,9 @@
             btnMinimize.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnMinimize.Location = new Point(832, 2);
             btnMinimize.Name = "btnMinimize";
+            btnMinimize.Shape = AntdUI.TShape.Round;
             btnMinimize.Size = new Size(38, 38);
             btnMinimize.TabIndex = 143;
-            btnMinimize.Text = "—";
-            btnMinimize.TextAlign = ContentAlignment.BottomCenter;
             btnMinimize.Type = AntdUI.TTypeMini.Info;
             btnMinimize.Click += picMin_Click;
             // 
@@ -143,10 +141,9 @@
             btnClose.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClose.Location = new Point(876, 2);
             btnClose.Name = "btnClose";
+            btnClose.Shape = AntdUI.TShape.Round;
             btnClose.Size = new Size(38, 38);
             btnClose.TabIndex = 142;
-            btnClose.Text = "×";
-            btnClose.TextAlign = ContentAlignment.BottomCenter;
             btnClose.Type = AntdUI.TTypeMini.Info;
             btnClose.Click += picClose_Click;
             // 
@@ -171,6 +168,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "FrmLogin";
+            Resizable = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TS酒店管理系统";
             Load += FrmLogin_Load;

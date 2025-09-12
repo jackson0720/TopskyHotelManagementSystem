@@ -43,6 +43,7 @@
             txtPassword.PlaceholderColor = Color.Gray;
             txtPassword.PlaceholderText = "请输入当前登录账号密码...";
             txtPassword.Prefix = Properties.Resources._lock;
+            txtPassword.Round = true;
             txtPassword.Size = new Size(285, 45);
             txtPassword.TabIndex = 0;
             txtPassword.TextAlign = HorizontalAlignment.Center;
@@ -53,6 +54,7 @@
             btnUnlock.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnUnlock.Location = new Point(503, 334);
             btnUnlock.Name = "btnUnlock";
+            btnUnlock.Shape = AntdUI.TShape.Round;
             btnUnlock.Size = new Size(85, 45);
             btnUnlock.TabIndex = 1;
             btnUnlock.Text = "解   锁";

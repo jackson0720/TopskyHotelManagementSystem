@@ -63,6 +63,7 @@
             dtpCheckTime.Name = "dtpCheckTime";
             dtpCheckTime.PlaceholderText = "";
             dtpCheckTime.ReadOnly = true;
+            dtpCheckTime.Round = true;
             dtpCheckTime.Size = new Size(180, 42);
             dtpCheckTime.TabIndex = 185;
             // 
@@ -83,6 +84,7 @@
             txtRoomNo.Name = "txtRoomNo";
             txtRoomNo.PlaceholderText = "";
             txtRoomNo.ReadOnly = true;
+            txtRoomNo.Round = true;
             txtRoomNo.Size = new Size(180, 42);
             txtRoomNo.TabIndex = 184;
             // 
@@ -103,6 +105,7 @@
             CustoName.Name = "CustoName";
             CustoName.PlaceholderText = "";
             CustoName.ReadOnly = true;
+            CustoName.Round = true;
             CustoName.Size = new Size(214, 42);
             CustoName.TabIndex = 183;
             // 
@@ -123,6 +126,7 @@
             CustoNo.Name = "CustoNo";
             CustoNo.PlaceholderText = "";
             CustoNo.ReadOnly = true;
+            CustoNo.Round = true;
             CustoNo.Size = new Size(214, 42);
             CustoNo.TabIndex = 182;
             // 
@@ -141,6 +145,7 @@
             btnBalance.Font = new Font("Noto Sans SC", 12F);
             btnBalance.Location = new Point(544, 533);
             btnBalance.Name = "btnBalance";
+            btnBalance.Shape = AntdUI.TShape.Round;
             btnBalance.Size = new Size(132, 48);
             btnBalance.TabIndex = 181;
             btnBalance.Text = "结        算";
@@ -164,7 +169,8 @@
             txtReceipts.Location = new Point(404, 468);
             txtReceipts.Name = "txtReceipts";
             txtReceipts.PlaceholderText = "";
-            txtReceipts.Size = new Size(111, 36);
+            txtReceipts.Round = true;
+            txtReceipts.Size = new Size(201, 36);
             txtReceipts.TabIndex = 180;
             txtReceipts.TextChanged += txtReceipts_TextChanged;
             // 

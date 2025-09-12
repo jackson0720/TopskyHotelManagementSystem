@@ -59,6 +59,7 @@
             txtOldPassword.PasswordCopy = true;
             txtOldPassword.PlaceholderColorExtend = "";
             txtOldPassword.PlaceholderText = "";
+            txtOldPassword.Round = true;
             txtOldPassword.Size = new Size(238, 52);
             txtOldPassword.TabIndex = 53;
             // 
@@ -97,6 +98,7 @@
             btnUpdatePassword.Font = new Font("Noto Sans SC", 12F);
             btnUpdatePassword.Location = new Point(76, 289);
             btnUpdatePassword.Name = "btnUpdatePassword";
+            btnUpdatePassword.Shape = AntdUI.TShape.Round;
             btnUpdatePassword.Size = new Size(161, 51);
             btnUpdatePassword.TabIndex = 49;
             btnUpdatePassword.Text = "修改密码";
@@ -113,6 +115,7 @@
             txtNewPassword.PasswordCopy = true;
             txtNewPassword.PlaceholderColorExtend = "";
             txtNewPassword.PlaceholderText = "";
+            txtNewPassword.Round = true;
             txtNewPassword.Size = new Size(238, 52);
             txtNewPassword.TabIndex = 48;
             // 

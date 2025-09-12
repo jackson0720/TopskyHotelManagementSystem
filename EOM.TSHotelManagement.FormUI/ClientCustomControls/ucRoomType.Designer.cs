@@ -36,6 +36,7 @@
             btnRoomType.Font = new Font("Noto Sans SC", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRoomType.Location = new Point(2, 0);
             btnRoomType.Name = "btnRoomType";
+            btnRoomType.Shape = AntdUI.TShape.Round;
             btnRoomType.Size = new Size(113, 37);
             btnRoomType.TabIndex = 0;
             btnRoomType.Type = AntdUI.TTypeMini.Info;

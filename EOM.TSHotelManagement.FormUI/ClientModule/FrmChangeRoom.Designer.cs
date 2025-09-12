@@ -79,6 +79,7 @@
             btnChangeRoom.Font = new Font("Noto Sans SC", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnChangeRoom.Location = new Point(155, 156);
             btnChangeRoom.Name = "btnChangeRoom";
+            btnChangeRoom.Shape = AntdUI.TShape.Round;
             btnChangeRoom.Size = new Size(85, 45);
             btnChangeRoom.TabIndex = 163;
             btnChangeRoom.Text = "转    房";
@@ -93,6 +94,7 @@
             cboRoomList.Location = new Point(91, 46);
             cboRoomList.Name = "cboRoomList";
             cboRoomList.Placement = AntdUI.TAlignFrom.Bottom;
+            cboRoomList.Round = true;
             cboRoomList.Size = new Size(149, 45);
             cboRoomList.TabIndex = 179;
             cboRoomList.TextChanged += cboRoomList_TextChanged;

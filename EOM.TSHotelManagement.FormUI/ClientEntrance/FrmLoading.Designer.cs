@@ -110,14 +110,14 @@
             lblReleaseLog.Location = new Point(12, 164);
             lblReleaseLog.Multiline = true;
             lblReleaseLog.Name = "lblReleaseLog";
-            lblReleaseLog.Size = new Size(311, 179);
+            lblReleaseLog.Size = new Size(311, 341);
             lblReleaseLog.TabIndex = 9;
             // 
             // FrmLoading
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(243, 249, 255);
-            ClientSize = new Size(335, 355);
+            ClientSize = new Size(335, 517);
             Controls.Add(lblReleaseLog);
             Controls.Add(label3);
             Controls.Add(lbInternetSoftwareVersion);

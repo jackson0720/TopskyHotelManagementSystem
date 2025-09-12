@@ -63,6 +63,7 @@
             txtRoomNo.Location = new Point(99, 44);
             txtRoomNo.Name = "txtRoomNo";
             txtRoomNo.ReadOnly = true;
+            txtRoomNo.Round = true;
             txtRoomNo.Size = new Size(203, 45);
             txtRoomNo.TabIndex = 137;
             // 
@@ -71,6 +72,7 @@
             btnOk.Font = new Font("Noto Sans SC", 12F);
             btnOk.Location = new Point(215, 147);
             btnOk.Name = "btnOk";
+            btnOk.Shape = AntdUI.TShape.Round;
             btnOk.Size = new Size(87, 43);
             btnOk.TabIndex = 140;
             btnOk.Text = "修   改";
@@ -92,6 +94,7 @@
             cboRoomState.Location = new Point(99, 96);
             cboRoomState.Name = "cboRoomState";
             cboRoomState.Placement = AntdUI.TAlignFrom.Bottom;
+            cboRoomState.Round = true;
             cboRoomState.Size = new Size(203, 45);
             cboRoomState.TabIndex = 180;
             cboRoomState.SelectedValueChanged += cboRoomState_SelectedValueChanged;

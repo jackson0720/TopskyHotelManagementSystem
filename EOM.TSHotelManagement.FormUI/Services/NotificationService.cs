@@ -12,7 +12,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 Draggable = true,
                 CancelText = null,
-                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok)
+                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok),
+                OnButtonStyle = (id, btn) =>
+                {
+                    btn.Shape = TShape.Round;
+                },
             });
         }
 
@@ -22,7 +26,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 Draggable = true,
                 CancelText = null,
-                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok)
+                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok),
+                OnButtonStyle = (id, btn) =>
+                {
+                    btn.Shape = TShape.Round;
+                },
             });
         }
 
@@ -32,7 +40,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 Draggable = true,
                 CancelText = null,
-                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok)
+                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok),
+                OnButtonStyle = (id, btn) =>
+                {
+                    btn.Shape = TShape.Round;
+                },
             });
         }
 
@@ -42,7 +54,11 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 Draggable = true,
                 CancelText = null,
-                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok)
+                OkText = LocalizationHelper.GetLocalizedString(UIMessageConstant.Eng_Ok, UIMessageConstant.Chs_Ok),
+                OnButtonStyle = (id, btn) =>
+                {
+                    btn.Shape = TShape.Round;
+                },
             });
         }
     }

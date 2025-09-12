@@ -48,7 +48,7 @@ namespace EOM.TSHotelManagement.FormUI
             {
                 Minimum = 0,
                 Maximum = 100,
-                Dock = DockStyle.Top
+                Dock = DockStyle.Top,
             };
             this.Controls.Add(progressBar);
         }

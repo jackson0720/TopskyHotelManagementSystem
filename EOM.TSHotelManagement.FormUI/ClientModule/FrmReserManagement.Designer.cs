@@ -111,6 +111,7 @@
             btnReserList.Font = new Font("Noto Sans SC", 12F);
             btnReserList.Location = new Point(316, 195);
             btnReserList.Name = "btnReserList";
+            btnReserList.Shape = AntdUI.TShape.Round;
             btnReserList.Size = new Size(139, 43);
             btnReserList.TabIndex = 118;
             btnReserList.Text = "查看预约列表";
@@ -121,6 +122,7 @@
             btnReser.Font = new Font("Noto Sans SC", 12F);
             btnReser.Location = new Point(461, 195);
             btnReser.Name = "btnReser";
+            btnReser.Shape = AntdUI.TShape.Round;
             btnReser.Size = new Size(87, 43);
             btnReser.TabIndex = 119;
             btnReser.Text = "预   约";
@@ -132,7 +134,8 @@
             txtCustoName.Font = new Font("Noto Sans SC", 12F);
             txtCustoName.Location = new Point(115, 49);
             txtCustoName.Name = "txtCustoName";
-            txtCustoName.Size = new Size(162, 45);
+            txtCustoName.Round = true;
+            txtCustoName.Size = new Size(162, 40);
             txtCustoName.TabIndex = 121;
             // 
             // txtCustoTel
@@ -140,23 +143,26 @@
             txtCustoTel.Font = new Font("Noto Sans SC", 12F);
             txtCustoTel.Location = new Point(376, 49);
             txtCustoTel.Name = "txtCustoTel";
-            txtCustoTel.Size = new Size(161, 45);
+            txtCustoTel.Round = true;
+            txtCustoTel.Size = new Size(162, 40);
             txtCustoTel.TabIndex = 122;
             // 
             // dtpStartDate
             // 
             dtpStartDate.Font = new Font("Noto Sans SC", 10F);
-            dtpStartDate.Location = new Point(115, 146);
+            dtpStartDate.Location = new Point(115, 145);
             dtpStartDate.Name = "dtpStartDate";
-            dtpStartDate.Size = new Size(162, 43);
+            dtpStartDate.Round = true;
+            dtpStartDate.Size = new Size(162, 40);
             dtpStartDate.TabIndex = 125;
             // 
             // dtpEndDate
             // 
             dtpEndDate.Font = new Font("Noto Sans SC", 10F);
-            dtpEndDate.Location = new Point(376, 146);
+            dtpEndDate.Location = new Point(376, 145);
             dtpEndDate.Name = "dtpEndDate";
-            dtpEndDate.Size = new Size(161, 43);
+            dtpEndDate.Round = true;
+            dtpEndDate.Size = new Size(162, 40);
             dtpEndDate.TabIndex = 126;
             // 
             // whReserRoomManagement
@@ -171,9 +177,10 @@
             cboReserChannel.Font = new Font("Noto Sans SC", 12F);
             cboReserChannel.List = true;
             cboReserChannel.ListAutoWidth = true;
-            cboReserChannel.Location = new Point(115, 100);
+            cboReserChannel.Location = new Point(115, 97);
             cboReserChannel.Name = "cboReserChannel";
             cboReserChannel.Placement = AntdUI.TAlignFrom.Bottom;
+            cboReserChannel.Round = true;
             cboReserChannel.Size = new Size(162, 40);
             cboReserChannel.TabIndex = 175;
             // 
@@ -182,9 +189,10 @@
             cboReserRoom.Font = new Font("Noto Sans SC", 12F);
             cboReserRoom.List = true;
             cboReserRoom.ListAutoWidth = true;
-            cboReserRoom.Location = new Point(376, 100);
+            cboReserRoom.Location = new Point(376, 97);
             cboReserRoom.Name = "cboReserRoom";
             cboReserRoom.Placement = AntdUI.TAlignFrom.Bottom;
+            cboReserRoom.Round = true;
             cboReserRoom.Size = new Size(161, 40);
             cboReserRoom.TabIndex = 176;
             // 

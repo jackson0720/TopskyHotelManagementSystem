@@ -1,4 +1,5 @@
-﻿using System.Drawing.Drawing2D;
+﻿using EOM.TSHotelManagement.Common;
+using System.Drawing.Drawing2D;
 
 namespace EOM.TSHotelManagement.FormUI
 {
@@ -83,6 +84,7 @@ namespace EOM.TSHotelManagement.FormUI
             phCustoHeader.SubText = subTitle;
             phCustoHeader.ShowIcon = showIcon;
             phCustoHeader.Icon = icon;
+            btnClose.IconSvg = UIControlIconConstant.Close;
             btnClose.Visible = showClose;
             phCustoHeader.Refresh();
             this.Refresh();
@@ -118,6 +120,7 @@ namespace EOM.TSHotelManagement.FormUI
             phCustoHeader.ShowIcon = showIcon;
             phCustoHeader.Icon = icon;
             btnClose.Visible = showClose;
+            btnClose.IconSvg = UIControlIconConstant.Close;
             phCustoHeader.Refresh();
             this.Refresh();
         }
@@ -126,6 +129,7 @@ namespace EOM.TSHotelManagement.FormUI
         {
             phCustoHeader.Text = string.Empty;
             phCustoHeader.SubText = string.Empty;
+            btnClose.IconSvg = UIControlIconConstant.Close;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
