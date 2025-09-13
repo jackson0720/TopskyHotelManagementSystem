@@ -413,14 +413,14 @@ namespace EOM.TSHotelManagement.FormUI
                             UIControlConstant.CheckInRoom => false,
                             UIControlConstant.ReservationRoom => false,
                             UIControlConstant.ChangeRoom => true,
-                            UIControlConstant.ChangeStateRoom => true,
+                            UIControlConstant.ChangeStateRoom => false,
                             UIControlConstant.CheckOutRoom => true,
                             UIControlConstant.CustomerInformation => true,
                             _ => item.Enabled
                         };
                         break;
-                    case (int)Common.Core.RoomState.Dirty:
                     case (int)Common.Core.RoomState.Maintenance:
+                    case (int)Common.Core.RoomState.Dirty:
                         item.Enabled = item.Text switch
                         {
                             UIControlConstant.CheckInRoom => false,

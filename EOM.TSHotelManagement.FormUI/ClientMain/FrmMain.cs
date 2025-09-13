@@ -397,6 +397,11 @@ namespace EOM.TSHotelManagement.FormUI
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (linkLabel1.LinkColor == Color.Green)
+            {
+                NotificationService.ShowSuccess($"该轮班已打卡，无需重复打卡");
+                return;
+            }
             checkEmployeeCheckInfo();
         }
 
@@ -426,6 +431,7 @@ namespace EOM.TSHotelManagement.FormUI
             linkLabel1.Text = shouldHaveChecked ? $"{shiftName}已打卡" : $"{shiftName}未打卡";
             linkLabel1.ForeColor = shouldHaveChecked ? Color.Green : Color.Red;
             linkLabel1.LinkColor = shouldHaveChecked ? Color.Green : Color.Red;
+            linkLabel1.LinkVisited = shouldHaveChecked ? true : false;
 
             if (!shouldHaveChecked)
             {
@@ -467,6 +473,7 @@ namespace EOM.TSHotelManagement.FormUI
                     linkLabel1.Text = $"{shiftName}已打卡";
                     linkLabel1.ForeColor = Color.Green;
                     linkLabel1.LinkColor = Color.Green;
+                    linkLabel1.LinkVisited = true;
                 }
             }
             NotificationService.ShowSuccess($"{shiftName}打卡成功！你已共打卡" + response.Data.CheckDay + "天");
