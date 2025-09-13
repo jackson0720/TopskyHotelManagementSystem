@@ -140,8 +140,6 @@ EOM.Client.TopskyHotelManagementSystem
 
 Fody [MIT Linsense](https://github.com/Fody/Fody/blob/master/License.txt)
 
-SQLSugar  [Apache-2.0 Linsense](https://gitee.com/dotnetchina/SqlSugar/blob/master/LICENSE)
-
 RestSharp [Apache-2.0 Linsense](https://github.com/restsharp/RestSharp/blob/dev/LICENSE.txt)
 
 AntdUI [Apache-2.0 Linsense](https://gitee.com/AntdUI/AntdUI/blob/main/LICENSE)
