@@ -15,7 +15,7 @@
 	  <StartupObject>EOM.TSHotelManagement.FormUI.Program</StartupObject>
 	  <PlatformTarget>x64</PlatformTarget>
 	  <AssemblyName>TS酒店管理系统</AssemblyName>
-	  <ApplicationIcon>logo.ico</ApplicationIcon>
+	  <ApplicationIcon>Logo\bitbug_favicon (1).ico</ApplicationIcon>
 	  <FodyWeavingTaskPath>$(SolutionDir)packages\Fody\build\Fody.targets</FodyWeavingTaskPath>
 	  <FodyDisabled>false</FodyDisabled>
 	  <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -122,25 +122,11 @@
 		<FodyWeavers Include="FodyWeavers.xml" />
 	</ItemGroup>
 	<ItemGroup>
-		<Compile Remove="ClientModule\FrmChart.cs" />
-		<Compile Remove="ClientModule\FrmChart.Designer.cs" />
-		<Compile Remove="ClientModule\FrmNotice.cs" />
-		<Compile Remove="ClientModule\FrmNotice.Designer.cs" />
-		<Compile Remove="ClientModule\FrmUpLoadNotice.cs" />
-		<Compile Remove="ClientModule\FrmUpLoadNotice.Designer.cs" />
-		<Compile Remove="ClientEntrance\FrmNewLogin.cs" />
-		<Compile Remove="ClientEntrance\FrmNewLogin.Designer.cs" />
-		<EmbeddedResource Remove="ClientModule\FrmChart.resx" />
-		<EmbeddedResource Remove="ClientModule\FrmNotice.resx" />
-		<EmbeddedResource Remove="ClientModule\FrmUpLoadNotice.resx" />
-		<EmbeddedResource Remove="ClientEntrance\FrmNewLogin.resx" />
-	</ItemGroup>
-	<ItemGroup>
 	  <None Remove="FodyWeavers.xml" />
 	  <None Remove="Resources\EOM.TSHotelManagement.Common.Contract.xml" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Content Include="logo.ico" />
+	  <Content Include="Logo\bitbug_favicon (1).ico" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Include="FodyWeavers.xml">
