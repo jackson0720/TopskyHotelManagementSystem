@@ -12,11 +12,13 @@
 
 # :exclamation: Important Notice:
 
-**Note: The master branch changes with the v2.x version, which significantly differs from the v1.x version. Those interested in the v1.x version can move to the v1.x branch address**: https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/
+**1.Note: The master branch changes with the v2.8.x version, which significantly differs from the v1.x version. Those interested in the v1.x version can move to the v1.x branch address**: https://gitee.com/java-and-net/TopskyHotelManagerSystem/tree/v1.x/
 
-**Effective immediately, version numbers will follow the format x.x.x.x. First digit: program version, second: framework version, third: major updates, fourth: bug fixes. For example, version 2.0 on .NET 8 is 2.8.0.0. On .NET 9, it will be 2.9.0.0, and so on.**
+**2.Effective immediately, version numbers will follow the format x.x.x.x. First digit: program version, second: framework version, third: major updates, fourth: bug fixes. For example, version 2.0 on .NET 8 is 2.8.0.0. On .NET 9, it will be 2.9.0.0, and so on.**
 
-**Effective immediately, this project officially enters the maintenance phase and will no longer incorporate any new features. Simultaneously, we are pleased to announce the commencement of mobile development for the TopSkyHotelManagementSystem. The repository address is: [TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui). This project is being developed using .NET 8's MAUI framework, with initial development focused exclusively on the Android platform. Expansion to other platforms is not currently feasible.**
+**3.we are pleased to announce the commencement of mobile development for the TopSkyHotelManagementSystem. The repository address is: [TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui). This project is being developed using .NET 8's MAUI framework, with initial development focused exclusively on the Android platform. Expansion to other platforms is not currently feasible.**
+
+**4.The main features of the project have been fully migrated to the [Vue3 version](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3). The final V2 version (V2.10.8.0) will then be released, and the V2 series will officially enter the End of Life (EOL) phase.** 
 
 # :pray: Open Source Projects Referenced:
 
