@@ -19,7 +19,9 @@
 
 **2.程序版本号规范将固定为x.x.x.x，第一位为当前程序版本，第二位为当前程序框架版本，第三位为功能大变更版本，第四位为日常修复版本，例如：基于NET 8框架的2.0版本，对应的版本号是2.8.0.0，往后的NET 9将会是2.9.0.0，并以此类推。**
 
-**3.该项目正式进入维护阶段，不再新增任何功能。同时，我们很高兴地宣布，TopSkyHotelManagementSystem的移动端开发工作正式启动，具体仓库地址为：[TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui)，该项目基于.NET 8的MAUI进行开发，目前仅考虑安卓端，其他暂不具备测试条件。**
+**3.我们很高兴地宣布，TopSkyHotelManagementSystem的移动端开发工作正式启动，具体仓库地址为：[TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui)，该项目基于.NET 8的MAUI进行开发，目前仅考虑安卓端，其他暂不具备测试条件。**
+
+**4.该项目的主要功能已全部迁移至[Vue3版本](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3)。之后将发布最后一个V2版本（V2.10.8.0），并正式进入EOL（终止支持）阶段。**
 
 #  :pray: 引用的开源项目：
 
