@@ -27,7 +27,7 @@
 
 1. ##### Fody——将所有dll打包成exe应用程序。[Fody,MIT开源协议](https://github.com/Fody/Fody)      
 
-2. ##### SQLSugar，国内最受欢迎ORM框架[SQLSugar。 [Apache-2.0开源协议](https://gitee.com/dotnetchina/SqlSugar) 
+2. ##### SQLSugar，国内最受欢迎ORM框架。 [MIT开源协议](https://gitee.com/dotnetchina/SqlSugar) 
 
 4. ##### **RestSharp——Simple REST and HTTP API Client for .NET。[RestSharp,Apache-2.0开源协议](https://github.com/restsharp/RestSharp)**
 
