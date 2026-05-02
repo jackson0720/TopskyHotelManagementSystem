@@ -21,7 +21,7 @@
 
 **3.我们很高兴地宣布，TopSkyHotelManagementSystem的移动端开发工作正式启动，具体仓库地址为：[TopSkyHotelManagementSystem-MAUI](https://gitee.com/java-and-net/topsky-hotel-management-system-maui)，该项目基于.NET 8的MAUI进行开发，目前仅考虑安卓端，其他暂不具备测试条件。**
 
-**4.该项目的主要功能已全部迁移至[Vue3版本](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3)。之后将发布最后一个V2版本（V2.10.8.0），并正式进入EOL（终止支持）阶段。**
+**4.该项目的主要功能已全部迁移至[Vue3版本](https://gitee.com/java-and-net/topsky-hotel-management-system-vue3)。今日(2026/05/02)起将正式进入EOL（终止支持）阶段。**
 
 #  :pray: 引用的开源项目：
 
